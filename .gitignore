@@ -19,3 +19,4 @@ testem.log
 # local
 *.sublime-project
 *.sublime-workspace
+*.DS_Store
