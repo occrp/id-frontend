@@ -3,6 +3,7 @@
 module.exports = function(environment) {
   var ENV = {
     modulePrefix: 'id2-frontend',
+    podModulePrefix: 'id2-frontend/pods',
     environment: environment,
     rootURL: '/',
     locationType: 'auto',
