@@ -1,8 +1,8 @@
-{{#link-to 'new' class='btn btn-primary'}}New ticket{{/link-to}}
+{{#link-to "new" class="btn btn-primary"}}New ticket{{/link-to}}
 
 {{#each model as |data|}}
   <div class="ticket">
-    <h4 class="ticket-name">{{data.displayName}}</h4>
+    <h4 class="ticket-name">{{#link-to "view" data.id}}{{data.displayName}}{{/link-to}}</h4>
     <p>{{data.type}}</p>
   </div>
 {{/each}}

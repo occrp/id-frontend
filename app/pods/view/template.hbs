@@ -1,0 +1,83 @@
+{{#link-to "browse" class="btn btn-primary"}}Browse{{/link-to}}
+
+<h2>{{model.displayName}}</h2>
+
+<p>Created on {{moment-format model.created}}</p>
+<p>Status: {{model.status}}</p>
+<p>Deadline: {{moment-format model.deadline 'LL'}}</p>
+
+<h3>Details</h3>
+
+<dl>
+{{#if (eq model.type typeList.[0])}}
+
+  <dt>First name</dt>
+  <dd>{{model.name}}</dd>
+
+  <dt>Last name</dt>
+  <dd>{{model.surname}}</dd>
+
+  <dt>Aliases</dt>
+  <dd class="formatted">{{model.aliases}}</dd>
+
+  <dt>Date of birth</dt>
+  <dd>{{moment-format model.dob}}</dd>
+
+  <dt>Family And Associates</dt>
+  <dd class="formatted">{{model.family}}</dd>
+
+  <dt>Business Activities</dt>
+  <dd class="formatted">{{model.businessActivities}}</dd>
+
+  <dt>Background</dt>
+  <dd class="formatted">{{model.background}}</dd>
+
+  <dt>Initial information</dt>
+  <dd class="formatted">{{model.initialInformation}}</dd>
+
+{{else if (eq model.type typeList.[1])}}
+
+  <dt>Company name</dt>
+  <dd>{{model.companyName}}</dd>
+
+  <dt>Country</dt>
+  <dd>[{{model.country}}] {{get countries model.country}}</dd>
+
+  <dt>Company background</dt>
+  <dd class="formatted">{{model.companyBackground}}</dd>
+
+  <dt>Connections</dt>
+  <dd class="formatted">{{model.connections}}</dd>
+
+  <dt>Sources</dt>
+  <dd class="formatted">{{model.sources}}</dd>
+
+{{else}}
+
+  <dt>Question</dt>
+  <dd class="formatted">{{model.question}}</dd>
+
+{{/if}}
+</dl>
+
+<h3>Request information</h3>
+
+<dl>
+  <dt>Requester</dt>
+  <dd>----</dd>
+
+  <dt>Staff responders</dt>
+  <dd>?</dd>
+
+  <dt>Request type</dt>
+  <dd>{{model.type}}</dd>
+
+  <dt>Status updated</dt>
+  <dd>{{moment-format model.statusUpdated}}</dd>
+
+  <dt>Sensitive</dt>
+  <dd>{{model.sensitive}}</dd>
+
+  <dt>Why sensitive</dt>
+  <dd>{{model.whySensitive}}</dd>
+</dl>
