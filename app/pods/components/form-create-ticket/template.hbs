@@ -1,0 +1,148 @@
+<form {{action "save" on="submit"}}>
+
+  <div class="form-group">
+    <div class="radio">
+      <label>
+        {{radio-button
+          name="ticket-type"
+          value=typeList.[0]
+          groupValue=buffer.type
+          changed=(action (mut buffer.type))}}
+        Identify what a person owns
+      </label>
+    </div>
+    <div class="radio">
+      <label>
+        {{radio-button
+          name="ticket-type"
+          value=typeList.[1]
+          groupValue=buffer.type
+          changed=(action (mut buffer.type))}}
+        Determine company ownership
+      </label>
+    </div>
+    <div class="radio">
+      <label>
+        {{radio-button
+          name="ticket-type"
+          value=typeList.[2]
+          groupValue=buffer.type
+          changed=(action (mut buffer.type))}}
+        Any other question
+      </label>
+    </div>
+  </div>
+
+  {{#if (eq buffer.type typeList.[0])}}
+
+    <div class="form-group">
+      <label for="ticket-name">First name</label>
+      {{input value=buffer.name class="form-control" id="ticket-name"}}
+    </div>
+
+    <div class="form-group">
+      <label for="ticket-surname">Last name</label>
+      {{input value=buffer.surname class="form-control" id="ticket-surname"}}
+    </div>
+
+    <div class="form-group">
+      <label for="ticket-aliases">Aliases</label>
+      {{textarea value=buffer.aliases class="form-control" id="ticket-aliases"}}
+      <p class="help-block">Other spellings or cover names.</p>
+    </div>
+
+    <div class="form-group">
+      <label for="ticket-dob">Date of birth</label>
+      {{input type="date" value=buffer.dob class="form-control" id="ticket-dob"}}
+    </div>
+
+    <div class="form-group">
+      <label for="ticket-family">Family And Associates</label>
+      {{textarea value=buffer.family class="form-control" id="ticket-family"}}
+      <p class="help-block">Known family relationships.</p>
+    </div>
+
+    <div class="form-group">
+      <label for="ticket-businessActivities">Business Activities</label>
+      {{textarea value=buffer.businessActivities class="form-control" id="ticket-businessActivities"}}
+    </div>
+
+    <div class="form-group">
+      <label for="ticket-background">Your story</label>
+      {{textarea value=buffer.background class="form-control" id="ticket-background"}}
+      <p class="help-block">What do you know so far?</p>
+    </div>
+
+    <div class="form-group">
+      <label for="ticket-background">Where have you looked?</label>
+      {{textarea value=buffer.initialInformation class="form-control" id="ticket-initialInformation"}}
+      <p class="help-block">Any information you already have.</p>
+    </div>
+
+  {{else if (eq buffer.type typeList.[1])}}
+
+    <div class="form-group">
+      <label for="ticket-companyName">Company name</label>
+      {{input value=buffer.companyName class="form-control" id="ticket-companyName"}}
+    </div>
+
+    <div class="form-group">
+      <label for="ticket-country">Country registered</label>
+      <select onchange={{action (mut buffer.country) value="target.value"}} class="form-control" id="ticket-country">
+        <option value="">- Choose -</option>
+        {{#each-in countries as |code name|}}
+          <option value={{code}} selected={{eq buffer.country code}}>{{name}}</option>
+        {{/each-in}}
+      </select>
+    </div>
+
+    <div class="form-group">
+      <label for="ticket-companyBackground">Your story</label>
+      {{textarea value=buffer.companyBackground class="form-control" id="ticket-companyBackground"}}
+      <p class="help-block">What do you know so far?</p>
+    </div>
+
+    <div class="form-group">
+      <label for="ticket-connections">Connections to other companies and people</label>
+      {{textarea value=buffer.connections class="form-control" id="ticket-connections"}}
+    </div>
+
+    <div class="form-group">
+      <label for="ticket-sources">Where have you looked?</label>
+      {{textarea value=buffer.sources class="form-control" id="ticket-sources"}}
+      <p class="help-block">What sources do you have so far?</p>
+    </div>
+
+  {{else}}
+
+    <div class="form-group">
+      <label for="ticket-question">What Do You Want To Know?</label>
+      {{textarea value=buffer.question class="form-control" id="ticket-question"}}
+      <p class="help-block">Any information you already have.</p>
+    </div>
+
+  {{/if}}
+
+  <div class="form-group">
+    <div class="checkbox">
+      <label>
+        {{input type="checkbox" checked=buffer.sensitive}}
+        Sensitive
+      </label>
+    </div>
+  </div>
+
+  <div class="form-group">
+    <label for="ticket-whySensitive">Where is it sensitive?</label>
+    {{textarea value=buffer.whySensitive class="form-control" id="ticket-whySensitive"}}
+  </div>
+
+  <div class="form-group">
+    <label for="ticket-dob">Deadline</label>
+    {{input type="date" value=buffer.deadline class="form-control" id="ticket-deadline"}}
+    <p class="help-block">We will try to meet your deadline, but please note that our researchers are quite busy -- give them as much time as you possibly can!</p>
+  </div>
+
+  <button type="submit" class="btn">Save</button>
+</form>
+

@@ -18,12 +18,12 @@ export const statusList = [
 
 export default DS.Model.extend({
   // Common
-  type: attr('string'),
+  type: attr('string', { defaultValue: typeList[0] }),
   created: attr('date'),
-  status: attr('string'),
+  status: attr('string', { defaultValue: statusList[0] }),
   statusUpdated: attr('date'),
 
-  sensitive: attr('boolean'),
+  sensitive: attr('boolean', { defaultValue: false }),
   whySensitive: attr('string'),
   deadline: attr('date'),
 
