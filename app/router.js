@@ -7,7 +7,7 @@ const Router = Ember.Router.extend({
 });
 
 Router.map(function() {
-  this.route('browse');
+  this.route('browse', { path: '/view' });
   this.route('new');
   this.route('view', { path: '/view/:ticket_id' });
 });
