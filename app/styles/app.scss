@@ -3,6 +3,28 @@ body {
   background: white;
 }
 
+// Slightly tinted grays
+$pal-gray100:         hsl(210, 11%, 96%)                              !default;
+  $pal-gray95:        hsl(204, 15%, 94%)                              !default;
+  $pal-gray85:        #CFD8DC                                         !default;
+$pal-gray70:          hsl(199, 14%, 73%)                              !default;
+$pal-gray60:          hsl(199, 15%, 62%)                              !default;
+$pal-gray50:          hsl(199, 15%, 54%)                              !default;
+$pal-gray40:          hsl(199, 17%, 41%)                              !default;
+$pal-gray30:          hsl(199, 17%, 33%)                              !default;
+  $pal-gray25:        hsl(199, 16%, 26%)                              !default;
+$pal-gray20:          hsl(201, 18%, 19%)                              !default;
+
+.wrapper {
+  box-sizing: border-box;
+  width: 100%;
+  max-width: 1170px;
+  margin: 0 auto;
+  padding: 0 15px;
+  padding-bottom: 40px;
+  color: $pal-gray25;
+}
+
 .ticket {
   padding: 0.5em 0;
   border-bottom: 1px solid #eee;
@@ -10,4 +32,101 @@ body {
 
 .formatted {
   white-space: pre-wrap;
+}
+
+@mixin cf {
+  &::before,
+  &::after {
+    content: " ";
+    display: table;
+  }
+
+  &::after {
+    clear: both;
+  }
+}
+
+$tabs-color: #1F8A70;
+
+.tabs {
+  @include cf;
+  margin-top: 30px;
+  margin-bottom: 10px;
+  display: table;
+  width: 100%;
+}
+
+.tabs-item {
+  box-sizing: border-box;
+  position: relative;
+  display: table-cell;
+  width: 100 / 3 * 1%;
+  color: $pal-gray30;
+  font-size: 16px;
+  padding: 15px 15px;
+  border-bottom: 3px solid $tabs-color;
+  cursor: pointer;
+  vertical-align: top;
+
+  &:hover {
+    background: linear-gradient(to top,  mix(white, $tabs-color, 85%), white);
+
+    span {
+      color: $tabs-color;
+    }
+  }
+
+  &:nth-child(3) {
+    // float: right;
+  }
+
+  &.is-selected {
+    border: 3px solid $tabs-color;
+    padding: 12px 12px 15px 12px;
+    border-bottom: 0;
+    background: white;
+    color: $tabs-color;
+    border-top-left-radius: 6px;
+    border-top-right-radius: 6px;
+    // border-bottom: 0;
+    // padding-top: 8px;
+    // padding-bottom: 10px;
+  }
+
+  input {
+    position: absolute;
+    top: 0;
+    left: 0;
+    visibility: hidden;
+  }
+
+  i {
+    font-size: 24px;
+    // vertical-align: middle;
+    float: left;
+    padding-right: 12px;
+    padding-left: 5px;
+  }
+
+  span {
+    display: block;
+    overflow: hidden;
+  }
+}
+
+.fieldGroup {
+  padding: 10px 15px;
+  margin-bottom: 15px;
+}
+
+.fieldGroup--bordered {
+  border-bottom: 3px solid $tabs-color;
+}
+
+.form-control {
+  color: $pal-gray30;
+}
+
+.help-block {
+  color: $pal-gray50;
 }
