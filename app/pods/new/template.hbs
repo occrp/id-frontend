@@ -1,3 +1,16 @@
-{{#link-to "browse" class="btn btn-primary"}}Browse{{/link-to}}
+<div class="cover cover--header">
+<div class="wrapper">
+
+  {{#link-to "browse" class="btn btn-primary pull-right"}}My requests{{/link-to}}
+  <h1 class="cover-title">Request Information</h1>
+
+</div>
+</div>
+
+<div class="cover cover--content">
+<div class="wrapper">
 
 {{form-create-ticket model=model afterSave=(action "goToTicketPage")}}
+
+</div>
+</div>

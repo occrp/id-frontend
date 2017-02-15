@@ -3,10 +3,17 @@ body {
   background: white;
 }
 
+//override
+
+.navbar {
+  margin-bottom: 0;
+}
+
 // Slightly tinted grays
 $pal-gray100:         hsl(210, 11%, 96%)                              !default;
   $pal-gray95:        hsl(204, 15%, 94%)                              !default;
   $pal-gray85:        #CFD8DC                                         !default;
+$pal-gray80:          #C3C7D3                                         !default;
 $pal-gray70:          hsl(199, 14%, 73%)                              !default;
 $pal-gray60:          hsl(199, 15%, 62%)                              !default;
 $pal-gray50:          hsl(199, 15%, 54%)                              !default;
@@ -15,14 +22,33 @@ $pal-gray30:          hsl(199, 17%, 33%)                              !default;
   $pal-gray25:        hsl(199, 16%, 26%)                              !default;
 $pal-gray20:          hsl(201, 18%, 19%)                              !default;
 
+$primary-color: #1F8A70;
+
 .wrapper {
   box-sizing: border-box;
   width: 100%;
   max-width: 1170px;
   margin: 0 auto;
   padding: 0 15px;
-  padding-bottom: 40px;
   color: $pal-gray25;
+}
+
+
+
+.cover {}
+
+.cover-title {
+  margin: 0 0 20px 0;
+}
+
+.cover--header {
+  background: $pal-gray100;
+  padding: 25px 0;
+  border-bottom: 1px solid $pal-gray85;
+}
+
+.cover--content {
+  padding: 20px 0 40px 0;
 }
 
 .ticket {
@@ -46,7 +72,11 @@ $pal-gray20:          hsl(201, 18%, 19%)                              !default;
   }
 }
 
-$tabs-color: #1F8A70;
+.btn-primary {
+  // background: $primary-color;
+}
+
+$tabs-color: $primary-color;
 
 .tabs {
   @include cf;
@@ -80,7 +110,7 @@ $tabs-color: #1F8A70;
     // float: right;
   }
 
-  &.is-selected {
+  &.is-active {
     border: 3px solid $tabs-color;
     padding: 12px 12px 15px 12px;
     border-bottom: 0;
@@ -114,13 +144,77 @@ $tabs-color: #1F8A70;
   }
 }
 
+
+.navTabs {
+  @include cf;
+  margin-bottom: -26px; // negate .cover--header
+  clear: both;
+  padding-top: 30px;
+}
+
+.navTabs-item {
+  float: left;
+  padding: 10px 15px;
+  border-top-right-radius: 5px;
+  border-top-left-radius: 5px;
+  border: 2px solid $pal-gray70;
+  border-top-color: $pal-gray70;
+  border-bottom: 1px solid $pal-gray85;
+  margin-left: 7px;
+  background: white;
+  color: $pal-gray30;
+  font-weight: bold;
+  font-size: 16px;
+
+  &:first-child {
+    margin-left: 0;
+  }
+
+  .label {
+    padding: .2em .5em;
+    margin-left: 5px;
+    background: $pal-gray60;
+    letter-spacing: 0.05em;
+  }
+
+  &.is-active {
+    background: white;
+    color: $tabs-color;
+    border-color: $tabs-color;
+    border-bottom-color: white;
+
+    .label {
+      background: $tabs-color;
+    }
+  }
+
+  &:hover,
+  &:focus {
+    text-decoration: none;
+    color: $tabs-color;
+    // border-top-color: $tabs-color;
+    // background: linear-gradient(to top, mix(white, $tabs-color, 85%), white 50%);
+    // border-bottom-color: $pal-gray95;
+
+    .label {
+      // background: $tabs-color;
+    }
+  }
+
+
+}
+
 .fieldGroup {
   padding: 10px 15px;
   margin-bottom: 15px;
 }
 
-.fieldGroup--bordered {
+.fieldGroup--borderedWithColor {
   border-bottom: 3px solid $tabs-color;
+}
+
+.fieldGroup--bordered {
+  border-bottom: 3px solid $pal-gray70;
 }
 
 .form-control {
@@ -129,4 +223,8 @@ $tabs-color: #1F8A70;
 
 .help-block {
   color: $pal-gray50;
+}
+
+dd + dt {
+  margin-top:1em;
 }

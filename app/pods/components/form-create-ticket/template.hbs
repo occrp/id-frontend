@@ -1,7 +1,7 @@
 <form {{action "save" on="submit"}}>
 
   <div class="tabs">
-    <label class="tabs-item {{if (eq buffer.type typeList.[0]) "is-selected"}}">
+    <label class="tabs-item {{if (eq buffer.type typeList.[0]) "is-active"}}">
       {{radio-button
         name="ticket-type"
         value=typeList.[0]
@@ -10,7 +10,7 @@
       <i class="fa fa-user"></i>
       <span>Identify what a person owns</span>
     </label>
-    <label class="tabs-item {{if (eq buffer.type typeList.[1]) "is-selected"}}">
+    <label class="tabs-item {{if (eq buffer.type typeList.[1]) "is-active"}}">
       {{radio-button
         name="ticket-type"
         value=typeList.[1]
@@ -19,7 +19,7 @@
       <i class="fa fa-building"></i>
       <span>Determine company ownership</span>
     </label>
-    <label class="tabs-item {{if (eq buffer.type typeList.[2]) "is-selected"}}">
+    <label class="tabs-item {{if (eq buffer.type typeList.[2]) "is-active"}}">
       {{radio-button
         name="ticket-type"
         value=typeList.[2]
@@ -30,7 +30,7 @@
     </label>
   </div>
 
-  <div class="fieldGroup fieldGroup--bordered">
+  <div class="fieldGroup fieldGroup--borderedWithColor">
 
     {{#if (eq buffer.type typeList.[0])}}
 
@@ -124,7 +124,7 @@
 
   </div>
 
-  <div class="fieldGroup">
+  <div class="fieldGroup fieldGroup--bordered">
 
     <div class="form-group">
       <div class="checkbox">
@@ -149,7 +149,7 @@
   </div>
 
   <div class="fieldGroup">
-    <button type="submit" class="btn">Save</button>
+    <button type="submit" class="btn btn-primary btn-lg">Save</button>
   </div>
 </form>
 

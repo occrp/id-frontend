@@ -1,4 +1,25 @@
-{{#link-to "new" class="btn btn-primary"}}New ticket{{/link-to}}
+<div class="cover cover--header">
+<div class="wrapper">
+
+  {{#link-to "new" class="btn btn-primary  pull-right"}}New request{{/link-to}}
+  <h1 class="cover-title">My requests</h1>
+
+  <div class="navTabs">
+    <a href class="navTabs-item is-active">
+      Open
+      <span class="label">42</span>
+    </a>
+    <a href class="navTabs-item">
+      Closed
+      <span class="label">3</span>
+    </a>
+  </div>
+
+</div>
+</div>
+
+<div class="cover cover--content">
+<div class="wrapper">
 
 {{#each model as |data|}}
   <div class="ticket">
@@ -6,3 +27,6 @@
     <p>{{data.type}}</p>
   </div>
 {{/each}}
+
+</div>
+</div>
