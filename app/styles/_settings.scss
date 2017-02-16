@@ -1,0 +1,32 @@
+// Pallete
+// ==========================================================================
+
+// Slightly tinted grays
+$pal-gray100:         hsl(204, 11%, 96%)                              !default;
+$pal-gray95:          hsl(204, 15%, 94%)                              !default;
+$pal-gray90:          hsl(204, 15%, 89%)                              !default;
+$pal-gray85:          hsl(204, 16%, 84%)                              !default;
+$pal-gray80:          hsl(204, 15%, 80%)                              !default;
+$pal-gray70:          hsl(204, 14%, 73%)                              !default;
+$pal-gray60:          hsl(204, 15%, 62%)                              !default;
+$pal-gray50:          hsl(204, 15%, 54%)                              !default;
+$pal-gray40:          hsl(204, 17%, 41%)                              !default;
+$pal-gray30:          hsl(204, 17%, 33%)                              !default;
+$pal-gray25:          hsl(204, 16%, 26%)                              !default;
+$pal-gray20:          hsl(204, 18%, 19%)                              !default;
+
+$pal-red:             #982022;
+$pal-teal:            #009688;
+$pal-cyan:            #00BCD4;
+
+$pal-primary:         $pal-red;
+$pal-accent:          $pal-cyan;
+
+$tabs-color:          $pal-red;
+
+// Border Radii
+// ==========================================================================
+
+$borderRadius-base:     3px                                           !default;
+$borderRadius-large:    5px                                           !default;
+$borderRadius-small:    2px                                           !default;

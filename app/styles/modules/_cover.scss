@@ -1,0 +1,19 @@
+.cover {}
+
+.cover-title {
+  margin: 0;
+
+  & + p {
+    margin-top: 1em;
+  }
+}
+
+.cover--header {
+  background: $pal-gray100;
+  padding: 25px 0;
+  border-bottom: 1px solid $pal-gray85;
+}
+
+.cover--content {
+  padding: 20px 0 40px 0;
+}

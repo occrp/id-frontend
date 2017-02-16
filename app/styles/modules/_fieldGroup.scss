@@ -1,0 +1,20 @@
+.fieldGroup {
+  padding: 40px 15px;
+}
+
+.fieldGroup--bordered {
+  border-bottom: 2px solid $pal-gray30;
+}
+
+.fieldGroup-title {
+  margin: 50px 0 30px 0;
+
+  &:first-child {
+    margin-top: 0;
+  }
+}
+
+.l-constrain {
+  max-width: 600px;
+  margin: 0 auto;
+}

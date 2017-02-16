@@ -12,6 +12,9 @@ $font-family-sans-serif: 'Open Sans', sans-serif !default;
 $font-family-serif: 'Georgia', serif !default;
 $input-border-focus: $brand-primary;
 
+// MODS
+$input-border-focus: #00BCD4;
+
 @import "node_modules/bootstrap-sass/assets/stylesheets/_bootstrap.scss";
 
 @import "old/mixins";

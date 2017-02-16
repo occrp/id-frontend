@@ -1,0 +1,47 @@
+.navTabs {
+  @include cf;
+  margin-bottom: -26px; // negate .cover--header
+  clear: both;
+  padding-top: 30px;
+}
+
+.navTabs-item {
+  float: left;
+  padding: 10px 15px;
+  border-top-right-radius: 5px;
+  border-top-left-radius: 5px;
+  border: 2px solid transparent;
+  border-bottom-width: 1px;
+  margin-left: 7px;
+  color: $pal-gray30;
+  font-weight: bold;
+  font-size: 16px;
+
+  &:first-child {
+    margin-left: 0;
+  }
+
+  .label {
+    padding: .2em .5em;
+    margin-left: 5px;
+    background: $pal-gray50;
+    letter-spacing: 0.05em;
+  }
+
+  &.is-active {
+    background: white;
+    color: $tabs-color;
+    border-color: $pal-gray30;
+    border-bottom-color: white;
+
+    .label {
+      background: $pal-accent;
+    }
+  }
+
+  &:hover,
+  &:focus {
+    text-decoration: none;
+    color: $tabs-color;
+  }
+}
