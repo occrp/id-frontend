@@ -1,0 +1,35 @@
+<input type="text"
+  id="{{inputId}}"
+  class="form-control"
+  value={{if value (moment-format value 'DD/MM/YYYY')}}
+  onkeyup={{action 'updateDatepicker' value="target.value"}}
+  onclick={{action 'open'}}
+  onfocus={{action (mut isFocused) true}}
+  onblur={{action (mut isFocused) false}}
+  placeholder="dd/mm/yyyy" />
+
+{{#if isShowingPopup}}
+{{#tether-dialog
+  close='close'
+  target=(concat '#' inputId)
+  container-class="datepickerPopup"
+  targetAttachment="top left"
+  attachment="bottom left"
+  constraints=constraints
+  hasOverlay=false
+  clickOutsideToClose=true}}
+
+  <div class="datepickerContainer">
+    {{#power-calendar class="datepicker"
+      center=center
+      onCenterChange=(action (mut center) value="date")
+      selected=value
+      onSelect=onSelect as |calendar|}}
+      {{calendar.nav}}
+      {{calendar.days weekdayFormat="min" minDate=minDate maxDate=maxDate}}
+    {{/power-calendar}}
+  </div>
+
+{{/tether-dialog}}
+{{/if}}
+

@@ -1,0 +1,111 @@
+
+.datepickerPopup {
+  // Tether offset
+  padding: 8px 0;
+}
+
+.datepickerContainer {
+  position: relative;
+  padding: 4px;
+  padding-bottom: 2px;
+  border: 1px solid $pal-gray30;
+  border-radius: $borderRadius-large;
+  background: white;
+  box-shadow: 0 5px 15px -5px rgba(0,0,0,.5);
+
+  // The joy of arrow tips
+  &:before,
+  &:after {
+    content: '';
+    position: absolute;
+    bottom: -12px;
+    left: 50%;
+    margin-left: -6px;
+    width: 0;
+    height: 0;
+    border: 6px solid transparent;
+    border-top-color: $pal-gray30;
+  }
+
+  &:after {
+    border-top-color: white;
+    bottom: -11px;
+  }
+
+  .ember-tether-target-attached-bottom & {
+    &:before {
+      border-top-color: transparent;
+      border-bottom-color: $pal-gray30;
+      top: -12px;
+      bottom: auto;
+    }
+
+    &:after {
+      border-top-color: transparent;
+      border-bottom-color: white;
+      top: -11px;
+      bottom: auto;
+    }
+  }
+}
+
+.datepicker {
+  @include ember-power-calendar($cell-size: 32px);
+}
+
+
+// EPC overrides
+// Have to copy a bunch of stuff these because no specificity :/
+
+
+.ember-power-calendar-nav-control {
+  color: $pal-primary;
+  padding: 3px 10px;
+  padding-top: 0;
+  line-height: 20px;
+
+  &:focus {
+    transform: none;
+    color: mix(black, $pal-primary, 25%);
+  }
+
+  &:hover {
+    transform: scale(1.2);
+  }
+}
+
+.ember-power-calendar-day {
+  color: $pal-gray70;
+}
+
+.ember-power-calendar-day--current-month {
+  color: $pal-gray40;
+  background-color: $pal-gray100;
+}
+
+.ember-power-calendar-day--today {
+  color: $pal-accent;
+}
+.ember-power-calendar-day:not([disabled]):hover {
+  background-color: $pal-gray90;
+}
+.ember-power-calendar-day--other-month:not([disabled]):hover {
+  color: $pal-gray60;
+}
+
+.ember-power-calendar-day--selected,
+.ember-power-calendar-day--selected:not([disabled]):hover {
+  background-color: lighten($pal-accent, 50%);
+  color: $pal-accent;
+}
+.ember-power-calendar-day--selected.ember-power-calendar-day--range-start,
+.ember-power-calendar-day--selected.ember-power-calendar-day--range-end {
+  background-color: lighten(#0078c9, 40%);
+  &:hover {
+    background-color: lighten(#0078c9, 40%);
+  }
+}
+
+.ember-power-calendar-day--focused {
+  box-shadow: inset 0px -2px 0px 0px $pal-accent;
+}

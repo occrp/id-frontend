@@ -65,7 +65,8 @@
 
       <div class="form-group">
         <label for="ticket-dob">Date of birth</label>
-        {{input type="date" value=buffer.dob class="form-control" id="ticket-dob"}}
+
+        {{input-date value=buffer.dob onSelect=(action (mut buffer.dob) value="date") inputId="ticket-dob" maxDate=today}}
       </div>
 
       <div class="form-group">
@@ -145,9 +146,9 @@
     <h2 class="fieldGroup-title">Request details</h2>
 
     <div class="form-group">
-      <label for="ticket-dob">Deadline</label>
+      <label for="ticket-deadline">Deadline</label>
       <p class="help-block">We will try to meet your deadline, but please note that our researchers are quite busy. <br />Give them as much time as you possibly can!</p>
-      {{input type="date" value=buffer.deadline class="form-control" id="ticket-deadline"}}
+      {{input-date value=buffer.deadline onSelect=(action (mut buffer.deadline) value="date") inputId="ticket-deadline" minDate=today}}
     </div>
 
     <div class="form-group">
