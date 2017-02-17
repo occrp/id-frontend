@@ -7,6 +7,10 @@
 
 .form-control {
   color: $pal-gray30;
+
+  &:focus {
+    box-shadow: none;
+  }
 }
 
 .help-block {
