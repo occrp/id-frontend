@@ -20,3 +20,5 @@ testem.log
 *.sublime-project
 *.sublime-workspace
 *.DS_Store
+firebase.json
+.firebaserc
