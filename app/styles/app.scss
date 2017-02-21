@@ -40,3 +40,10 @@ body {
 dd + dt {
   margin-top: 1em;
 }
+
+.section {
+
+  & + & {
+    margin-top: 30px;
+  }
+}

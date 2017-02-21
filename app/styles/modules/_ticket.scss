@@ -1,4 +1,52 @@
+.ticketList {
+  display: table;
+  width: 100%;
+}
+
 .ticket {
-  padding: 0.5em 0;
-  border-bottom: 1px solid #eee;
+  display: table-row;
+
+  i {
+    font-size: 24px;
+    color: $pal-gray50;
+  }
+
+  &:hover {
+    text-decoration: none;
+    i {
+      color: $pal-accent;
+    }
+    .ticket-cell {
+      border-bottom-color: $pal-gray30;
+    }
+  }
+}
+
+.ticket-cell {
+  display: table-cell;
+  padding: 10px 10px 5px 10px;
+  border-bottom: 1px solid $pal-gray90;
+}
+
+.ticket-addon {
+  width: 1%;
+}
+
+.ticket-icon {
+  vertical-align: middle;
+}
+
+.ticket-date {
+  width: 200px;
+  color: $pal-gray50;
+}
+
+.ticketHeaders {
+  display: table-row;
+}
+
+.ticketHeaders div {
+  display: table-cell;
+  padding: 10px 10px;
+  border-bottom: 2px solid $pal-gray30;
 }

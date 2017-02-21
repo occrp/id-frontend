@@ -8,14 +8,14 @@
   <h1 class="cover-title">My requests</h1>
 
   <div class="navTabs">
-    <a href class="navTabs-item is-active">
+    {{#link-to 'browse' (query-params status="open") class="navTabs-item"}}
       Open
-      <span class="label">42</span>
-    </a>
-    <a href class="navTabs-item">
+      <span class="label">{{model.meta.totalOpen}}</span>
+    {{/link-to}}
+    {{#link-to 'browse' (query-params status="closed") class="navTabs-item"}}
       Closed
-      <span class="label">3</span>
-    </a>
+      <span class="label">{{model.meta.totalClosed}}</span>
+    {{/link-to}}
   </div>
 
 </div>
@@ -24,12 +24,34 @@
 <div class="cover cover--content">
 <div class="wrapper">
 
-{{#each model as |data|}}
-  <div class="ticket">
-    <h4 class="ticket-name">{{#link-to "view" data.id}}{{data.displayName}}{{/link-to}}</h4>
-    <p>{{data.type}}</p>
+  <div class="section">
+    <select><option>Filters go here</option></select>
   </div>
-{{/each}}
+
+  <div class="section">
+
+    <div class="ticketList">
+      <div class="ticketHeaders">
+        <div></div>
+        <div>Display name</div>
+        <div class="text-right">Requested on</div>
+      </div>
+    {{#each model as |data|}}
+      {{#link-to "view" data.id class="ticket"}}
+        <div class="ticket-cell ticket-addon ticket-icon">
+          {{ticket-icon type=data.type}}
+        </div>
+        <div class="ticket-cell">
+          <h4 class="ticket-name">{{data.displayName}}</h4>
+        </div>
+        <div class="ticket-cell ticket-date text-right">
+          <p>{{moment-format data.created 'll'}}</p>
+        </div>
+      {{/link-to}}
+    {{/each}}
+    </div>
+
+  </div>
 
 </div>
 </div>

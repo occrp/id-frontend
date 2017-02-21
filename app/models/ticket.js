@@ -6,15 +6,17 @@ import raw from 'ember-macro-helpers/raw';
 
 const { attr } = DS;
 
-export const typeList = [
-  'person_ownership',
-  'company_ownership',
-  'other'
-];
+export const typeMap = {
+  'person_ownership': { name: 'Person', icon: 'fa-user' },
+  'company_ownership': { name: 'Company', icon: 'fa-building' },
+  'other': { name: 'Other', icon: 'fa-question' }
+};
+
+export const typeList = Object.keys(typeMap);
 
 export const statusList = [
   'new',
-  'in-prgoress',
+  'in-progress',
   'closed',
   'cancelled'
 ];
@@ -110,7 +112,8 @@ export default DS.Model.extend({
       case typeList[1]:
         return this.get('companyName');
       default:
-        return this.get('question').slice(0, 40);
+        let extra = this.get('question').length > 40 ? '...' : '';
+        return this.get('question').slice(0, 40) + extra;
     }
   })
 });
