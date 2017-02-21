@@ -1,5 +1,8 @@
 import Ember from 'ember';
 import DS from 'ember-data';
+import { validator, buildValidations } from 'ember-cp-validations';
+import notEqual from '../macros/not-equal';
+import raw from 'ember-macro-helpers/raw';
 
 const { attr } = DS;
 
@@ -15,6 +18,53 @@ export const statusList = [
   'closed',
   'cancelled'
 ];
+
+export const Validations = buildValidations({
+  // Person
+  name: validator('presence', {
+    presence: true,
+    disabled: notEqual('model.type', raw(typeList[0]))
+  }),
+  surname: validator('presence', {
+    presence: true,
+    disabled: notEqual('model.type', raw(typeList[0]))
+  }),
+  background: validator('presence', {
+    presence: true,
+    disabled: notEqual('model.type', raw(typeList[0]))
+  }),
+  initialInformation: validator('presence', {
+    presence: true,
+    disabled: notEqual('model.type', raw(typeList[0]))
+  }),
+
+  // Company
+  companyName: validator('presence', {
+    presence: true,
+    disabled: notEqual('model.type', raw(typeList[1]))
+  }),
+  country: validator('presence', {
+    presence: true,
+    disabled: notEqual('model.type', raw(typeList[1]))
+  }),
+  companyBackground: validator('presence', {
+    presence: true,
+    disabled: notEqual('model.type', raw(typeList[1]))
+  }),
+  sources: validator('presence', {
+    presence: true,
+    disabled: notEqual('model.type', raw(typeList[1]))
+  }),
+
+  // Other
+  question: validator('presence', {
+    presence: true,
+    disabled: notEqual('model.type', raw(typeList[2]))
+  })
+}, {
+  debounce: 100,
+  message: 'Please fill in this field'
+});
 
 export default DS.Model.extend({
   // Common
@@ -36,19 +86,19 @@ export default DS.Model.extend({
   // Person
   name: attr('string'),
   surname: attr('string'),
-  aliases: attr('string'),
-  dob: attr('date'),
-  family: attr('string'),
   background: attr('string'),
-  businessActivities: attr('string'),
   initialInformation: attr('string'),
+  dob: attr('date'),
+  aliases: attr('string'),
+  family: attr('string'),
+  businessActivities: attr('string'),
 
   // Company
   companyName: attr('string'),
   country: attr('string'),
   companyBackground: attr('string'),
-  connections: attr('string'),
   sources: attr('string'),
+  connections: attr('string'),
 
   // Other
   question: attr('string'),

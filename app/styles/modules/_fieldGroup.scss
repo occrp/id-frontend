@@ -14,6 +14,14 @@
   }
 }
 
+.info-block {
+  color: $pal-gray50;
+
+  label + & {
+    margin: 0 0 10px 0;
+  }
+}
+
 .l-constrain {
   max-width: 600px;
   margin: 0 auto;
