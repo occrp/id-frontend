@@ -13,7 +13,6 @@
   }
 }
 
-
 .form-group {
   // Keeping the spacing but only between siblings
   margin-bottom: 0;
@@ -29,4 +28,8 @@
   label {
     color: $pal-gray40;
   }
+}
+
+.label-info {
+  background-color: $pal-accent;
 }

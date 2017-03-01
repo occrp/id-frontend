@@ -7,19 +7,21 @@ import raw from 'ember-macro-helpers/raw';
 const { attr } = DS;
 
 export const typeMap = {
-  'person_ownership': { name: 'Person', icon: 'fa-user' },
-  'company_ownership': { name: 'Company', icon: 'fa-building' },
-  'other': { name: 'Other', icon: 'fa-question' }
+  'person_ownership': { name: 'Identify what a person owns', icon: 'fa-user' },
+  'company_ownership': { name: 'Determine company ownership', icon: 'fa-building' },
+  'other': { name: 'Any other question', icon: 'fa-question' }
 };
 
 export const typeList = Object.keys(typeMap);
 
-export const statusList = [
-  'new',
-  'in-progress',
-  'closed',
-  'cancelled'
-];
+export const statusMap = {
+  'new': { name: 'New', labelClass: 'label-info' },
+  'in-progress': { name: 'In progress', labelClass: 'label-warning' },
+  'closed': { name: 'Closed', labelClass: 'label-success' },
+  'cancelled': { name: 'Cancelled', labelClass: 'label-warning' }
+};
+
+export const statusList = Object.keys(statusMap);
 
 export const Validations = buildValidations({
   // Person
@@ -112,8 +114,7 @@ export default DS.Model.extend({
       case typeList[1]:
         return this.get('companyName');
       default:
-        let extra = this.get('question').length > 40 ? '...' : '';
-        return this.get('question').slice(0, 40) + extra;
+        return this.get('question').slice(0, 140);
     }
   })
 });

@@ -50,3 +50,37 @@
     overflow: hidden;
   }
 }
+
+.staticTab {
+  float: left;
+  box-sizing: border-box;
+  position: relative;
+  font-size: 16px;
+  font-weight: bold;
+  border: 2px solid $pal-gray30;
+  padding: 13px 18px 15px 18px;
+  border-bottom: 0;
+  background: white;
+  color: $pal-gray30;
+  border-top-left-radius: 6px;
+  border-top-right-radius: 6px;
+
+  i {
+    font-size: 24px;
+    float: left;
+    padding-right: 12px;
+    color: $pal-accent;
+  }
+
+  span {
+    display: block;
+    overflow: hidden;
+  }
+}
+
+
+.staticTabContainer {
+  overflow: hidden;
+  padding-top: 15px;
+  margin-bottom: -26px; // negate .cover--header
+}

@@ -183,7 +183,7 @@
 
     <div class="form-group">
       <label for="ticket-deadline">Deadline</label>
-      <p class="help-block">We will try to meet your deadline, but please note that our researchers are quite busy. <br />Give them as much time as you possibly can!</p>
+      <p class="info-block">We will try to meet your deadline, but please note that our researchers are quite busy. <br />Give them as much time as you possibly can!</p>
       {{input-date value=buffer.deadline onSelect=(action (mut buffer.deadline) value="date") inputId="ticket-deadline" minDate=today}}
     </div>
 

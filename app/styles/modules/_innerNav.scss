@@ -1,0 +1,31 @@
+.innerNav {
+  @include cf;
+  font-size: 16px;
+  font-weight: bold;
+  margin: 25px 0 20px 20px;
+
+  i {
+    color: $pal-accent;
+    margin-right: 2px;
+  }
+
+  a {
+    color: $pal-gray50;
+    float: left;
+    margin-right: 20px;
+
+    &.active {
+      color: $pal-gray20;
+    }
+
+    &:focus {
+      text-decoration: none;
+    }
+
+    &:hover,
+    &:active {
+      color: $pal-primary;
+      text-decoration: none;
+    }
+  }
+}

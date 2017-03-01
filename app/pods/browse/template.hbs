@@ -7,45 +7,56 @@
   {{/link-to}}
   <h1 class="cover-title">My requests</h1>
 
-  <div class="navTabs">
-    {{#link-to 'browse' (query-params status="open") class="navTabs-item"}}
-      Open
-      <span class="label">{{model.meta.totalOpen}}</span>
-    {{/link-to}}
-    {{#link-to 'browse' (query-params status="closed") class="navTabs-item"}}
-      Closed
-      <span class="label">{{model.meta.totalClosed}}</span>
-    {{/link-to}}
-  </div>
-
 </div>
 </div>
 
-<div class="cover cover--content">
 <div class="wrapper">
 
   <div class="section">
-    <select><option>Filters go here</option></select>
-  </div>
 
-  <div class="section">
+    <div class="innerNav">
+      {{#link-to 'browse' (query-params status="open") class=""}}
+        <i class="fa fa-exclamation-circle" /> {{model.meta.totalOpen}}
+        Open
+      {{/link-to}}
+      {{#link-to 'browse' (query-params status="closed") class=""}}
+        <i class="fa fa-check" />
+        {{model.meta.totalClosed}}
+        Closed
+      {{/link-to}}
+    </div>
+
+    <div class="filters">
+      <div class="filters-main">
+        All <b class="arrow"></b>
+        {{!-- <span class="typeIconContainer">
+          <i class="fa fa-user"></i>
+        </span> --}}
+      </div>
+      <div class="filters-secondary">
+        <div class="filters-item">
+          Author <b class="arrow"></b>
+        </div>
+        <div class="filters-item">
+          Assignee <b class="arrow"></b>
+        </div>
+        <div class="filters-item">
+          Sort <b class="arrow"></b>
+        </div>
+      </div>
+    </div>
 
     <div class="ticketList">
-      <div class="ticketHeaders">
-        <div></div>
-        <div>Display name</div>
-        <div class="text-right">Requested on</div>
-      </div>
     {{#each model as |data|}}
-      {{#link-to "view" data.id class="ticket"}}
-        <div class="ticket-cell ticket-addon ticket-icon">
-          {{ticket-icon type=data.type}}
+      {{#link-to "view" data.id class=(concat "ticket ticket--" data.type)}}
+        <div class="ticket-cell ticket-icon">
+          {{ticket-icon data.type}}
         </div>
-        <div class="ticket-cell">
-          <h4 class="ticket-name">{{data.displayName}}</h4>
+        <div class="ticket-cell ticket-name">
+          <h4>{{data.displayName}}</h4>
         </div>
         <div class="ticket-cell ticket-date text-right">
-          <p>{{moment-format data.created 'll'}}</p>
+          <p><time datetime={{data.created}} title={{moment-format data.created 'LLL'}}>{{moment-format data.created 'll'}}</time></p>
         </div>
       {{/link-to}}
     {{/each}}
@@ -54,4 +65,4 @@
   </div>
 
 </div>
-</div>
+

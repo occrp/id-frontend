@@ -1,0 +1,74 @@
+.filters {
+  @include cf;
+  background: $pal-gray100;
+  border: 1px solid $pal-gray85;
+  border-top-left-radius: $borderRadius-large;
+  border-top-right-radius: $borderRadius-large;
+  padding: 15px 20px;
+}
+
+.filters-secondary {
+  float: right;
+  font-weight: bold;
+  color: $pal-gray30;
+}
+
+.filters-main {
+  float: left;
+  font-weight: bold;
+  text-transform: uppercase;
+  color: $pal-gray30;
+  margin-right: 25px;
+  margin-left: -6px;
+  display: block;
+
+  i {
+    font-size: 24px;
+    color: $pal-gray50;
+  }
+}
+
+.filters-item {
+  float: left;
+  padding-left: 15px;
+  margin-left: 15px;
+  border-left: 1px solid $pal-gray85;
+  &:first-child {
+    margin-left: 0;
+    border-left: 0;
+    padding-left: 0;
+  }
+}
+
+.arrow {
+  position: relative;
+  display: inline-block;
+  width: 12px;
+  height: 6px;
+  margin-left: 2px;
+  top: -1px;
+
+  &:before,
+  &:after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 0;
+    height: 0;
+    border: 6px solid transparent;
+    border-top-color: $pal-gray30;
+  }
+
+  &:after {
+    border-top-color: $pal-gray100;
+    top: -2px;
+  }
+}
+
+.typeIconContainer {
+  display: block;
+  width: 30px;
+  text-align: center;
+  vertical-align: middle;
+}

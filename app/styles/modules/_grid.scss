@@ -1,0 +1,31 @@
+.grid {
+  display: block;
+  margin-left: -10px;
+  margin-right: -10px;
+  @include cf;
+
+  .grid-unit {
+    box-sizing: border-box;
+    display: block;
+    width: 100%;
+    padding-left: 10px;
+    padding-right: 10px;
+  }
+}
+
+.grid--split {
+  margin-bottom: -30px;
+
+  & > .grid-unit {
+    margin-bottom: 30px;
+  }
+
+  @include respond(to-em(300px)) {
+
+    & > .grid-unit--half {
+      width: 50%;
+      float: left;
+      margin-bottom: 30px;
+    }
+  }
+}

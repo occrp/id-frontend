@@ -1,0 +1,35 @@
+.l-constrain {
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+.l-fixedColumn {
+  @include cf;
+
+  @include respond(to-em(800px)) {
+
+    .l-fixedColumn-main {
+      box-sizing: border-box;
+      float: left;
+      margin-right: 300px;
+      padding-right: 30px;
+      padding-left: 17px;
+      border-right: 1px solid $pal-gray90;
+    }
+
+    .l-fixedColumn-column {
+      box-sizing: border-box;
+      width: 300px;
+      float: left;
+      margin-left: -301px;
+      padding-left: 30px;
+      border-left: 1px solid $pal-gray90;
+    }
+
+  }
+}
+
+.l-fixedColumn-separator {
+  margin: 35px -30px 35px -17px;
+  border-top: 1px solid $pal-gray90;
+}

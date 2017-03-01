@@ -4,18 +4,24 @@
 
 @import 'overrides';
 
+@import 'ember-power-calendar';
+
 @import 'base/typography';
 @import 'base/button';
 
-@import "ember-power-calendar";
-@import 'modules/datepicker';
+@import 'layout';
 
+@import 'modules/datepicker';
 @import 'modules/button';
 @import 'modules/cover';
 @import 'modules/fieldGroup';
 @import 'modules/tabs';
-@import 'modules/navTabs';
+@import 'modules/innerNav';
+@import 'modules/filters';
 @import 'modules/ticket';
+@import 'modules/grid';
+@import 'modules/comment';
+@import 'modules/ticketContent';
 
 
 // should probably encapsulate, keeping it simple for now
@@ -37,13 +43,13 @@ body {
   white-space: pre-wrap;
 }
 
-dd + dt {
-  margin-top: 1em;
-}
-
 .section {
-
   & + & {
     margin-top: 30px;
   }
 }
+
+.subtitle {
+  margin: 0 0 20px 0;
+}
+

@@ -2,12 +2,13 @@
 <div class="wrapper">
 
   {{#link-to "browse" class="button button--bordered pull-right"}}My requests{{/link-to}}
-  <h1 class="cover-title">{{model.displayName}}</h1>
 
-  <p>Created on {{moment-format model.created}}</p>
-  <p>Status: {{model.status}}</p>
-  <p>Deadline: {{moment-format model.deadline 'LL'}}</p>
-
+  <div class="staticTabContainer">
+    <div class="staticTab">
+      {{ticket-icon model.type}}
+      <span>{{get (get typeMap model.type) "name"}}</span>
+    </div>
+  </div>
 </div>
 </div>
 
@@ -15,81 +16,118 @@
 <div class="cover cover--content">
 <div class="wrapper">
 
-  <h3>Details</h3>
+  <div class="l-fixedColumn">
+    <div class="l-fixedColumn-main">
 
-  <dl>
-  {{#if (eq model.type typeList.[0])}}
+      {{#if (eq model.type typeList.[0])}}
+        <h1 class="t-dark t-flush">{{model.displayName}}</h1>
 
-    <dt>First name</dt>
-    <dd>{{model.name}}</dd>
+        <dl class="ticketDetails">
+          <dt>Background</dt>
+          <dd class="formatted">{{model.background}}</dd>
 
-    <dt>Last name</dt>
-    <dd>{{model.surname}}</dd>
+          <dt>Initial information</dt>
+          <dd class="formatted">{{model.initialInformation}}</dd>
 
-    <dt>Aliases</dt>
-    <dd class="formatted">{{model.aliases}}</dd>
+          <dt>Date of birth</dt>
+          <dd>{{moment-format model.dob 'LL'}}</dd>
 
-    <dt>Date of birth</dt>
-    <dd>{{moment-format model.dob}}</dd>
+          <dt>Aliases</dt>
+          <dd class="formatted">{{model.aliases}}</dd>
 
-    <dt>Family And Associates</dt>
-    <dd class="formatted">{{model.family}}</dd>
+          <dt>Family And Associates</dt>
+          <dd class="formatted">{{model.family}}</dd>
 
-    <dt>Business Activities</dt>
-    <dd class="formatted">{{model.businessActivities}}</dd>
+          <dt>Business Activities</dt>
+          <dd class="formatted">{{model.businessActivities}}</dd>
+        </dl>
+      {{else if (eq model.type typeList.[1])}}
+        <h1 class="t-dark t-flush">{{model.companyName}}</h1>
 
-    <dt>Background</dt>
-    <dd class="formatted">{{model.background}}</dd>
+        <dl class="ticketDetails">
+          <dt>Country</dt>
+          <dd>{{get countries model.country}}</dd>
 
-    <dt>Initial information</dt>
-    <dd class="formatted">{{model.initialInformation}}</dd>
+          <dt>Company background</dt>
+          <dd class="formatted">{{model.companyBackground}}</dd>
 
-  {{else if (eq model.type typeList.[1])}}
+          <dt>Sources</dt>
+          <dd class="formatted">{{model.sources}}</dd>
 
-    <dt>Company name</dt>
-    <dd>{{model.companyName}}</dd>
+          <dt>Connections</dt>
+          <dd class="formatted">{{model.connections}}</dd>
+        </dl>
+      {{else}}
+        <dl class="ticketDetails">
+          {{!-- <dt>Question</dt> --}}
+          <dd class="formatted">{{model.question}}</dd>
+        </dl>
+      {{/if}}
 
-    <dt>Country</dt>
-    <dd>[{{model.country}}] {{get countries model.country}}</dd>
+      {{#if model.sensitive}}
+        <div class="alert alert-warning alert--custom">
+          <h4><i class="fa fa-exclamation-triangle" /> Sensitive request</h4>
+          {{#if model.whySensitive}}
+            <div class="formatted">{{model.whySensitive}}</div>
+          {{/if}}
+        </div>
+      {{/if}}
 
-    <dt>Company background</dt>
-    <dd class="formatted">{{model.companyBackground}}</dd>
+      <hr class="l-fixedColumn-separator" />
 
-    <dt>Connections</dt>
-    <dd class="formatted">{{model.connections}}</dd>
+      <h2 class="t-accent">Comments</h2>
 
-    <dt>Sources</dt>
-    <dd class="formatted">{{model.sources}}</dd>
+      <div class="commentList">
 
-  {{else}}
+        <div class="comment">
+          <div class="comment-author"><strong>Stefan Schipor</strong> commented <time>on 24 Feb, 2016</time></div>
+          <div class="comment-body formatted">Hey this is my comment.</div>
+        </div>
 
-    <dt>Question</dt>
-    <dd class="formatted">{{model.question}}</dd>
+        <div class="comment">
+          <div class="comment-author"><strong>Somebody Else</strong> commented <time>4 minutes ago</time></div>
+          <div class="comment-body formatted">Voluptatum doloremque exercitationem beatae est. Est laboriosam libero autem dolores asperiores maiores veritatis. Libero exercitationem totam sit sequi veritatis. Quae et et aut dolor nesciunt. Et veritatis totam. Perferendis quidem magni mollitia molestias quis ut iure.
 
-  {{/if}}
-  </dl>
+Quia ducimus alias laborum consequuntur rerum. Reiciendis nobis quod temporibus velit in culpa tenetur. Consectetur eos harum. Totam soluta tempore vel ipsum consequuntur voluptas quia ipsa. Velit architecto tenetur dolor aut hic sed error illo. Labore quis pariatur omnis magnam explicabo.</div>
+        </div>
 
-  <h3>Request information</h3>
+        <div class="comment">
+          <div class="comment-author"><strong>Leave a comment</strong></div>
+          <div class="comment-body comment-form">
+            <form>
+              {{textarea class="form-control" rows="5"}}
+              <button type="submit" class="button button--primary pull-right">Post comment</button>
+            </form>
+          </div>
+        </div>
 
-  <dl>
-    <dt>Requester</dt>
-    <dd>----</dd>
+      </div>
 
-    <dt>Staff responders</dt>
-    <dd>?</dd>
+    </div>
 
-    <dt>Request type</dt>
-    <dd>{{model.type}}</dd>
+    <div class="l-fixedColumn-column">
 
-    <dt>Status updated</dt>
-    <dd>{{moment-format model.statusUpdated}}</dd>
+      <p>{{status-label model.status}}</p>
 
-    <dt>Sensitive</dt>
-    <dd>{{model.sensitive}}</dd>
+      <dl class="requestDetails">
+        <dt><i class="fa fa-refresh" /> Last update</dt>
+        <dd><time datetime={{model.statusUpdated}} title={{moment-format model.statusUpdated 'LLL'}}>{{moment-from-now model.statusUpdated}}</time></dd>
 
-    <dt>Why sensitive</dt>
-    <dd>{{model.whySensitive}}</dd>
-  </dl>
+        <dt><i class="fa fa-calendar-o" /> Submitted on</dt>
+        <dd><time datetime={{model.created}} title={{moment-format model.created 'LLL'}}>{{moment-format model.created 'LL'}}</time></dd>
+
+        <dt><i class="fa fa-calendar-check-o" /> Deadline</dt>
+        <dd><time datetime={{model.deadline}} title={{moment-format model.deadline 'LLL'}}>{{moment-format model.deadline 'LL'}}</time></dd>
+
+        <dt>Staff responders</dt>
+        <dd>??</dd>
+      </dl>
+
+      <a class="button button--bordered ">Cancel request</a>
+
+    </div>
+
+  </div>
 
 </div>
 </div>

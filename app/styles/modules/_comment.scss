@@ -1,0 +1,50 @@
+.commentList {
+  margin: 20px 0 40px 0;
+  position: relative;
+}
+
+.comment {
+  @include cf;
+  clear: both;
+  font-size: 15px;
+  border: 1px solid $pal-gray85;
+  border-radius: $borderRadius-large;
+  background-clip: padding-box;
+  background: white;
+
+  & + & {
+    margin-top: 20px;
+  }
+}
+
+.comment-author {
+  // float: left;
+  // width: 140px;
+  color: $pal-gray50;
+  background: $pal-gray100;
+  padding: 12px 20px;
+  font-size: 15px;
+  background-clip: padding-box;
+  border-radius: $borderRadius-large;
+
+  strong {
+    color: $pal-gray30;
+    margin-right: 0.25em;
+  }
+}
+
+.comment-body {
+  padding: 15px 20px;
+}
+
+.comment-form {
+  padding: 10px 10px;
+
+  .form-control {
+    font-size: 15px;
+  }
+
+  .button {
+    margin: 10px 0;
+  }
+}

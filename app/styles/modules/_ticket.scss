@@ -1,52 +1,64 @@
 .ticketList {
   display: table;
+  table-layout: fixed;
   width: 100%;
+  border-left: 1px solid $pal-gray90;
+  border-right: 1px solid $pal-gray90;
 }
 
 .ticket {
   display: table-row;
+  color: $pal-gray30;
 
   i {
     font-size: 24px;
-    color: $pal-gray50;
+    color: $pal-accent;
   }
 
   &:hover {
     text-decoration: none;
-    i {
-      color: $pal-accent;
-    }
-    .ticket-cell {
-      border-bottom-color: $pal-gray30;
+    background: mix($pal-gray100, white, 70%);
+
+    .ticket-name {
+      color: $pal-primary;
     }
   }
 }
 
 .ticket-cell {
   display: table-cell;
-  padding: 10px 10px 5px 10px;
+  padding: 5px 10px 5px 10px;
   border-bottom: 1px solid $pal-gray90;
 }
 
-.ticket-addon {
-  width: 1%;
-}
-
 .ticket-icon {
+  width: 60px;
+  text-align: center;
   vertical-align: middle;
 }
 
 .ticket-date {
-  width: 200px;
+  width: 140px;
   color: $pal-gray50;
 }
 
-.ticketHeaders {
-  display: table-row;
+.ticket-name {
+  color: $pal-gray20;
+
+  h4 {
+    font-size: 16px;
+    line-height: 1.428;
+  }
 }
 
-.ticketHeaders div {
-  display: table-cell;
-  padding: 10px 10px;
-  border-bottom: 2px solid $pal-gray30;
+.ticket--other {
+  .ticket-name {
+    color: $pal-gray50;
+
+    h4 {
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+    }
+  }
 }
