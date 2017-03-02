@@ -24,13 +24,13 @@
 
         <dl class="ticketDetails">
           <dt>Background</dt>
-          <dd class="formatted">{{model.background}}</dd>
+          <dd class="formatted" data-test-background>{{model.background}}</dd>
 
           <dt>Initial information</dt>
           <dd class="formatted">{{model.initialInformation}}</dd>
 
           <dt>Date of birth</dt>
-          <dd>{{moment-format model.dob 'LL'}}</dd>
+          <dd data-test-dob>{{moment-format model.dob 'LL'}}</dd>
 
           <dt>Aliases</dt>
           <dd class="formatted">{{model.aliases}}</dd>
@@ -46,10 +46,10 @@
 
         <dl class="ticketDetails">
           <dt>Country</dt>
-          <dd>{{get countries model.country}}</dd>
+          <dd data-test-country>{{get countries model.country}}</dd>
 
           <dt>Company background</dt>
-          <dd class="formatted">{{model.companyBackground}}</dd>
+          <dd class="formatted" data-test-companyBackground>{{model.companyBackground}}</dd>
 
           <dt>Sources</dt>
           <dd class="formatted">{{model.sources}}</dd>
@@ -107,7 +107,7 @@ Quia ducimus alias laborum consequuntur rerum. Reiciendis nobis quod temporibus 
 
     <div class="l-fixedColumn-column">
 
-      <p>{{status-label model.status}}</p>
+      <p>{{status-label model.status data-test-status}}</p>
 
       <dl class="requestDetails">
         <dt><i class="fa fa-refresh" /> Last update</dt>
@@ -123,7 +123,29 @@ Quia ducimus alias laborum consequuntur rerum. Reiciendis nobis quod temporibus 
         <dd>??</dd>
       </dl>
 
-      <a class="button button--bordered ">Cancel request</a>
+      {{#if (or (eq model.status 'new') (eq model.status 'in-progress'))}}
+        <a class="button button--bordered" {{action (mut isShowingModal) true}} data-test-cancel>Cancel request</a>
+      {{else if (not-eq model.status 'closed')}}
+        <a class="button button--accent" data-test-reopen>Reopen request</a>
+      {{/if}}
+
+      {{#if isShowingModal}}
+      {{#ui-modal close=(action (mut isShowingModal) false)}}
+        <div class="modal-content">
+        <div class="modal-body">
+
+          <div class="modal-message">
+            <h4>Are you sure you want to cancel this request?</h4>
+          </div>
+          <div class="modal-actions">
+            <button class="button button--primary" {{action 'cancelTicket'}} data-test-modal-confirmCancel>Cancel request</button>
+            <button class="button button--accent" {{action (mut isShowingModal) false}} data-test-modal-dontCancel>Leave request open</button>
+          </div>
+
+        </div>
+        </div>
+      {{/ui-modal}}
+      {{/if}}
 
     </div>
 

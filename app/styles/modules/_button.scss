@@ -10,6 +10,7 @@
 
   &:hover {
     background: mix(black, $pal-gray50, 15%);
+    color: white;
   }
 
   &:active {
@@ -31,7 +32,6 @@
 
 .button--primary {
   background: $pal-primary;
-  color: white;
 
   &:hover {
     background: mix(black, $pal-primary, 15%);
@@ -87,5 +87,16 @@
   &:active {
     background: mix(black, $pal-primary, 25%);
     border-color: mix(black, $pal-primary, 25%);
+  }
+}
+
+.button--bordered.button--accent {
+  &:hover {
+    background: $pal-accent;
+    border-color: $pal-accent;
+  }
+  &:active {
+    background: mix(black, $pal-accent, 25%);
+    border-color: mix(black, $pal-accent, 25%);
   }
 }

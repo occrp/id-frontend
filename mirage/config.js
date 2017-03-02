@@ -39,4 +39,14 @@ export default function() {
 
     return schema.tickets.create(attrs);
   });
+
+  this.patch('/tickets/:id', function(schema, request) {
+    let attrs = JSON.parse(request.requestBody).data.attributes;
+    let id = request.params.id;
+
+    let model = schema.tickets.find(id);
+
+    return model.update(attrs);
+  });
+
 }
