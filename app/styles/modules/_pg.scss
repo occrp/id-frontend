@@ -3,7 +3,6 @@
 .pg {
   font-size: 15px;
   line-height: (20px / 15px);
-  // padding-top: 2px;
   margin: 20px 0 60px 0;
 }
 
@@ -31,7 +30,7 @@
 .pg-container span {
   display: block;
   box-sizing: border-box;
-  color: $pal-gray30;
+  color: $pal-gray50;
   font-weight: bold;
   padding: 3px / 15px * 1em 8px;
   min-width: 26px;
@@ -45,16 +44,13 @@
   color: $pal-gray70;
 }
 
-
 .pg-prev a,
 .pg-next a,
 .pg-item a {
 
   &:hover {
-    // background: $pal-gray100;
     text-decoration: none;
     color: $pal-primary;
-    border-color: $pal-primary;
   }
 
   &:focus {
@@ -62,16 +58,17 @@
   }
 }
 
+.pg-item a:hover {
+  border-color: $pal-primary;
+}
+
 .pg-item {
 
   &.is-active a {
-    background: $pal-primary !important;
-    color: white;
-    border-color: $pal-primary;
-    // font-weight: normal;
+    color: $pal-gray20;
+    border-color: $pal-accent;
   }
 }
-
 
 .pg-prev a:before,
 .pg-prev span:before,
@@ -97,7 +94,7 @@
 }
 
 .pg-prev.is-disabled {
-  span:before {
+   span:before {
     border-right-color: $pal-gray70;
   }
 }
