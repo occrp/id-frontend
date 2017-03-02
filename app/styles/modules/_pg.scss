@@ -1,0 +1,108 @@
+// .pager and .pagination are used by BS
+
+.pg {
+  font-size: 15px;
+  line-height: (20px / 15px);
+  // padding-top: 2px;
+  margin: 20px 0 60px 0;
+}
+
+.pg-container {
+  margin: 0; // Bootstrap
+  padding: 0; // lack of reset
+  @include cf;
+}
+
+.pg-item,
+.pg-sep,
+.pg-prev,
+.pg-next {
+  display: block;
+  float: left;
+  list-style: none;
+  margin-left: 5px;
+}
+
+.pg-prev {
+  margin-left: 0;
+}
+
+.pg-container a,
+.pg-container span {
+  display: block;
+  box-sizing: border-box;
+  color: $pal-gray30;
+  font-weight: bold;
+  padding: 3px / 15px * 1em 8px;
+  min-width: 26px;
+  border-radius: 3px;
+  text-align: center;
+  vertical-align: middle;
+  border: 1px solid transparent;
+}
+
+.pg-sep {
+  color: $pal-gray70;
+}
+
+
+.pg-prev a,
+.pg-next a,
+.pg-item a {
+
+  &:hover {
+    // background: $pal-gray100;
+    text-decoration: none;
+    color: $pal-primary;
+    border-color: $pal-primary;
+  }
+
+  &:focus {
+    text-decoration: none;
+  }
+}
+
+.pg-item {
+
+  &.is-active a {
+    background: $pal-primary !important;
+    color: white;
+    border-color: $pal-primary;
+    // font-weight: normal;
+  }
+}
+
+
+.pg-prev a:before,
+.pg-prev span:before,
+.pg-next a:after,
+.pg-next span:after {
+  content: '';
+  display: inline-block;
+  width: 0;
+  height: 0;
+  border: 6px solid transparent;
+  border-right-color: $pal-accent;
+  vertical-align: baseline;
+  position: relative;
+  left: -4px;
+}
+
+.pg-next a:after,
+.pg-next span:after  {
+  border-right-color: transparent;
+  border-left-color: $pal-accent;
+  left: auto;
+  right: -4px;
+}
+
+.pg-prev.is-disabled {
+  span:before {
+    border-right-color: $pal-gray70;
+  }
+}
+.pg-next.is-disabled {
+  span:after {
+    border-left-color: $pal-gray70;
+  }
+}

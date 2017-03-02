@@ -11,26 +11,58 @@ let camelCaseKeys = function(hash) {
   }
 
   return json;
-}
+};
 
 export default DS.JSONAPISerializer.extend({
 
-  normalizeArrayResponse(store, primaryModelClass, payload, id, requestType) {
-    let normalizedDocument = this._super(...arguments);
+  normalizeArrayResponse(store, primaryModelClass, payload/*, id, requestType*/) {
+    let result = this._super(...arguments);
 
     // Customize document meta
-    normalizedDocument.meta = camelCaseKeys(normalizedDocument.meta);
+    result.meta = camelCaseKeys(result.meta);
 
-    return normalizedDocument;
+    if (payload.links) {
+      result.meta.pagination = this.createPageMeta(payload.links);
+    }
+
+    return result;
   },
 
-  extractRelationship(relationshipHash) {
-    let normalizedRelationship = this._super(...arguments);
+  extractRelationship(/*relationshipHash*/) {
+    let result = this._super(...arguments);
 
     // Customize relationship meta
-    normalizedRelationship.meta = camelCaseKeys(normalizedRelationship.meta);
+    result.meta = camelCaseKeys(result.meta);
 
-    return normalizedRelationship;
+    return result;
+  },
+
+  createPageMeta(data) {
+    let meta = {};
+
+    Object.keys(data).forEach(type => {
+      const link = data[type];
+      meta[type] = {};
+
+      if (!link) {
+        return;
+      }
+
+      let a = document.createElement('a');
+      a.href = link;
+
+      a.search.slice(1).split('&').forEach(pairs => {
+        const [param, value] = pairs.split('=');
+
+        if (param === 'page[number]') {
+          meta[type].number = parseInt(value);
+        }
+      });
+
+      a = null;
+    });
+
+    return meta;
   }
 
 });

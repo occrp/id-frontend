@@ -1,0 +1,33 @@
+<ul class="pg-container">
+
+  {{#if meta.pagination.prev.number}}
+    <li class="pg-prev">
+      {{#link-to route (query-params page=meta.pagination.prev.number) data-test-pagination="prev"}}
+        <b>Prev</b>
+      {{/link-to}}
+    </li>
+  {{else}}
+    <li class="pg-prev is-disabled"><span> <b>Prev</b> </span></li>
+  {{/if}}
+
+  {{#each items as |number|}}
+    {{#if number}}
+      <li class="pg-item {{if (eq number meta.pagination.self.number) "is-active"}}">
+        {{#link-to route (query-params page=number)}}{{number}}{{/link-to}}
+      </li>
+    {{else}}
+      <li class="pg-sep"><span>&hellip;</span></li>
+    {{/if}}
+  {{/each}}
+
+  {{#if meta.pagination.next.number}}
+    <li class="pg-next">
+      {{#link-to route (query-params page=meta.pagination.next.number) data-test-pagination="next"}}
+        <b>Next</b>
+      {{/link-to}}
+    </li>
+  {{else}}
+    <li class="pg-next is-disabled"><span> <b>Next</b> </span></li>
+  {{/if}}
+
+</ul>
