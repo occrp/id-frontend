@@ -15,11 +15,11 @@
   <div class="section">
 
     <div class="innerNav">
-      {{#link-to 'browse' (query-params status="open") class=""}}
+      {{#link-to 'browse' (query-params status="open" page=1) data-test-status-tab="open"}}
         <i class="fa fa-exclamation-circle" /> {{model.meta.totalOpen}}
         Open
       {{/link-to}}
-      {{#link-to 'browse' (query-params status="closed") class=""}}
+      {{#link-to 'browse' (query-params status="closed" page=1) data-test-status-tab="closed"}}
         <i class="fa fa-check" />
         {{model.meta.totalClosed}}
         Closed
@@ -48,12 +48,12 @@
 
     <div class="ticketList">
     {{#each model as |data|}}
-      {{#link-to "view" data.id class=(concat "ticket ticket--" data.type)}}
+      {{#link-to "view" data.id class=(concat "ticket ticket--" data.type) data-test-ticket=data.id}}
         <div class="ticket-cell ticket-icon">
           {{ticket-icon data.type}}
         </div>
         <div class="ticket-cell ticket-name">
-          <h4>{{data.displayName}}</h4>
+          <h4 data-test-ticket-name>{{data.displayName}}</h4>
         </div>
         <div class="ticket-cell ticket-date text-right">
           <p><time datetime={{data.created}} title={{moment-format data.created 'LLL'}}>{{moment-format data.created 'll'}}</time></p>

@@ -3,7 +3,7 @@
   <p class="h4 subtitle t-dimmed text-center">Your request will be routed to our professional researchers, who will try to help.</p>
 
   <div class="tabs">
-    <label class="tabs-item {{if (eq buffer.type typeList.[0]) "is-active"}}">
+    <label class="tabs-item {{if (eq buffer.type typeList.[0]) "is-active"}}" data-test-type-tab="person">
       {{radio-button
         name="ticket-type"
         value=typeList.[0]
@@ -12,7 +12,7 @@
       <i class="fa fa-user"></i>
       <span>Identify what a person owns</span>
     </label>
-    <label class="tabs-item {{if (eq buffer.type typeList.[1]) "is-active"}}">
+    <label class="tabs-item {{if (eq buffer.type typeList.[1]) "is-active"}}" data-test-type-tab="company">
       {{radio-button
         name="ticket-type"
         value=typeList.[1]
@@ -21,7 +21,7 @@
       <i class="fa fa-building"></i>
       <span>Determine company ownership</span>
     </label>
-    <label class="tabs-item {{if (eq buffer.type typeList.[2]) "is-active"}}">
+    <label class="tabs-item {{if (eq buffer.type typeList.[2]) "is-active"}}" data-test-type-tab="other">
       {{radio-button
         name="ticket-type"
         value=typeList.[2]
@@ -84,6 +84,7 @@
 
         {{input-date value=buffer.dob onSelect=(action (mut buffer.dob) value="date") inputId="ticket-dob" maxDate=today}}
       </div>
+
 
       <div class="form-group">
         <label for="ticket-aliases">Aliases</label>
@@ -190,7 +191,7 @@
     <div class="form-group">
       <div class="checkbox">
         <label>
-          {{input type="checkbox" checked=buffer.sensitive}}
+          {{input type="checkbox" checked=buffer.sensitive id="ticket-sensitive"}}
           <strong>Is it sensitive?</strong>
         </label>
       </div>
@@ -209,11 +210,11 @@
   <div class="fieldGroup">
     <div class="l-constrain">
       {{#if (and didValidate buffer.validations.isInvalid)}}
-        <div class="alert alert-danger">
+        <div class="alert alert-danger" data-test-validation-errors>
           Please fill in the fields marked above before continuing.
         </div>
       {{/if}}
-      <button type="submit" class="button button--primary">Submit your request</button>
+      <button type="submit" class="button button--primary" data-test-save>Submit your request</button>
     </div>
   </div>
 </form>

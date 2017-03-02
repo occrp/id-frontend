@@ -2,6 +2,8 @@ import Ember from 'ember';
 import moment from 'moment';
 
 export default Ember.Component.extend({
+  currentValue: Ember.computed.oneWay('value'),
+
   isShowingPopup: false,
   constraints: [
     {
@@ -31,7 +33,15 @@ export default Ember.Component.extend({
 
       if (date._isValid) {
         this.set('center', date._d);
-        this.set('value', date._d);
+        this.set('currentValue', date._d);
+      }
+    },
+
+    updateValue(val) {
+      let date = moment(val, 'DD/MM/YYYY');
+
+      if (date._isValid) {
+        this.get('onSelect')({date: date._d});
       }
     }
 

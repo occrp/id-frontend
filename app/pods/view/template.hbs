@@ -20,7 +20,7 @@
     <div class="l-fixedColumn-main">
 
       {{#if (eq model.type typeList.[0])}}
-        <h1 class="t-dark t-flush">{{model.displayName}}</h1>
+        <h1 class="t-dark t-flush" data-test-name>{{model.displayName}}</h1>
 
         <dl class="ticketDetails">
           <dt>Background</dt>
@@ -42,7 +42,7 @@
           <dd class="formatted">{{model.businessActivities}}</dd>
         </dl>
       {{else if (eq model.type typeList.[1])}}
-        <h1 class="t-dark t-flush">{{model.companyName}}</h1>
+        <h1 class="t-dark t-flush" data-test-name>{{model.companyName}}</h1>
 
         <dl class="ticketDetails">
           <dt>Country</dt>
@@ -60,7 +60,7 @@
       {{else}}
         <dl class="ticketDetails">
           {{!-- <dt>Question</dt> --}}
-          <dd class="formatted">{{model.question}}</dd>
+          <dd class="formatted" data-test-question>{{model.question}}</dd>
         </dl>
       {{/if}}
 

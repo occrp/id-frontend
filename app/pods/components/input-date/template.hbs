@@ -1,18 +1,19 @@
 <input type="text"
   id="{{inputId}}"
   class="form-control"
-  value={{if value (moment-format value 'DD/MM/YYYY')}}
+  value={{if currentValue (moment-format currentValue 'DD/MM/YYYY')}}
   onkeyup={{action 'updateDatepicker' value="target.value"}}
   onclick={{action 'open'}}
   onfocus={{action (mut isFocused) true}}
   onblur={{action (mut isFocused) false}}
+  onchange={{action 'updateValue' value="target.value"}}
   placeholder="dd/mm/yyyy" />
 
 {{#if isShowingPopup}}
 {{#tether-dialog
+  container-class="datepickerPopup"
   close='close'
   target=(concat '#' inputId)
-  container-class="datepickerPopup"
   targetAttachment="top left"
   attachment="bottom left"
   constraints=constraints
@@ -23,7 +24,7 @@
     {{#power-calendar class="datepicker"
       center=center
       onCenterChange=(action (mut center) value="date")
-      selected=value
+      selected=currentValue
       onSelect=onSelect as |calendar|}}
       {{calendar.nav}}
       {{calendar.days weekdayFormat="min" minDate=minDate maxDate=maxDate}}
