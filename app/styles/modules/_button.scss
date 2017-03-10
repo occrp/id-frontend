@@ -100,3 +100,22 @@
     border-color: mix(black, $pal-accent, 25%);
   }
 }
+
+.iconButton {
+  box-sizing: content-box;
+  background: none;
+  border: none;
+  color: $pal-gray30;
+  width: 20px;
+  line-height: 20px;
+  text-align: center;
+  padding: 0;
+
+  i {
+    font-size: 16px;
+  }
+
+  &:hover {
+    color: $pal-primary
+  }
+}

@@ -25,25 +25,13 @@
       {{/link-to}}
     </div>
 
-    <div class="filters">
-      <div class="filters-main">
-        All <b class="arrow"></b>
-        {{!-- <span class="typeIconContainer">
-          <i class="fa fa-user"></i>
-        </span> --}}
-      </div>
-      <div class="filters-secondary">
-        <div class="filters-item">
-          Author <b class="arrow"></b>
-        </div>
-        <div class="filters-item">
-          Assignee <b class="arrow"></b>
-        </div>
-        <div class="filters-item">
-          Sort <b class="arrow"></b>
-        </div>
-      </div>
-    </div>
+    {{filter-nav
+      type=type
+      author=author
+      assignee=assignee
+      sort=sort
+      updateFilter=(action 'updateFilter')
+      resetFilters=(action 'resetFilters')}}
 
     <div class="ticketList">
     {{#each model as |data|}}

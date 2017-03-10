@@ -7,9 +7,21 @@ import raw from 'ember-macro-helpers/raw';
 const { attr } = DS;
 
 export const typeMap = {
-  'person_ownership': { name: 'Identify what a person owns', icon: 'fa-user' },
-  'company_ownership': { name: 'Determine company ownership', icon: 'fa-building' },
-  'other': { name: 'Any other question', icon: 'fa-question' }
+  'person_ownership': {
+    name: 'Identify what a person owns',
+    shortName: 'Person',
+    icon: 'fa-user'
+  },
+  'company_ownership': {
+    name: 'Determine company ownership',
+    shortName: 'Company',
+    icon: 'fa-building'
+  },
+  'other': {
+    name: 'Any other question',
+    shortName: 'Other',
+    icon: 'fa-question'
+  }
 };
 
 export const typeList = Object.keys(typeMap);
@@ -18,7 +30,7 @@ export const statusMap = {
   'new': { name: 'New', labelClass: 'label-info' },
   'in-progress': { name: 'In progress', labelClass: 'label-warning' },
   'closed': { name: 'Closed', labelClass: 'label-success' },
-  'cancelled': { name: 'Cancelled', labelClass: 'label-warning' }
+  'cancelled': { name: 'Cancelled', labelClass: 'label-danger' }
 };
 
 export const statusList = Object.keys(statusMap);

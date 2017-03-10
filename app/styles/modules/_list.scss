@@ -1,0 +1,62 @@
+.list {
+}
+
+.list-item {
+  display: block;
+  font-size: 13px;
+  line-height: 20px;
+  padding: 10px 15px;
+  background-clip: padding-box;
+  border-bottom: 1px solid $pal-gray85;
+  @include cf;
+
+  &:last-child {
+    border-bottom: 0;
+  }
+
+  color: $pal-gray40;
+
+  i {
+    font-size: 24px;
+    color: $pal-gray70;
+  }
+
+  &:hover {
+    text-decoration: none;
+    color: $pal-primary;
+    background-color: $pal-gray100;
+  }
+
+  &:focus {
+    text-decoration: none;
+    color: $pal-gray40;
+  }
+
+  &.is-active,
+  &.is-active:hover,
+  &.is-active:focus {
+    font-weight: bold;
+    color: $pal-gray20;
+
+    i {
+      color: $pal-accent;
+    }
+  }
+
+  .iconContainer {
+    display: inline-block;
+    width: 30px;
+    height: 20px;
+    float: left;
+    text-align: center;
+    margin-right: 10px;
+  }
+}
+
+.list-item--special {
+  font-weight: bold;
+}
+
+.noResults {
+  padding: 10px 15px;
+}

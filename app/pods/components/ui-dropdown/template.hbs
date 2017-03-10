@@ -1,0 +1,24 @@
+<a href class="dd-trigger {{if isShowingDropdown "is-active"}}" id={{concat "dd-id-" slug}} {{action (toggle 'isShowingDropdown' this)}}>
+  {{name}} <b class="arrow"></b>
+</a>
+
+{{#if isShowingDropdown}}
+  {{#tether-dialog
+    container-class="dd-container"
+    close=(action 'close')
+    target=(concat "#dd-id-" slug)
+    targetAttachment=targetAttachment
+    attachment=attachment
+    hasOverlay=false
+    clickOutsideToClose=true}}
+    <div class="dd-content">
+      {{#if headerText}}
+        <div class="dd-header">
+          <span>{{headerText}}</span>
+          <button class="iconButton" {{action 'close'}}><i class="fa fa-close"></i></button>
+        </div>
+      {{/if}}
+      {{yield (hash close=(action 'close'))}}
+    </div>
+  {{/tether-dialog}}
+{{/if}}

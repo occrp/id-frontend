@@ -1,0 +1,59 @@
+.activeFilters {
+  box-sizing: content-box;
+  min-height: 24px;
+  background: $pal-gray100;
+  padding: 7px 20px;
+  border: 1px solid $pal-gray70;
+  border-top: 0;
+  @include cf;
+
+  .spinner {
+    margin-top: 8px;
+  }
+}
+
+.activeFilters-label {
+  float: left;
+  // font-weight: bold;
+  line-height: 20px;
+  margin: 2px 0;
+  margin-right: 13px;
+  color: $pal-gray30;
+}
+
+.activeFilters-clear {
+  float: right;
+  margin: 2px 0;
+  font-weight: bold;
+}
+
+
+.chip {
+  float: left;
+  border: 1px solid $pal-accent;
+  padding: 0 0;
+  font-size: 13px;
+  line-height: 20px;
+  border-radius: 12px;
+  overflow: hidden;
+  background: $pal-accent;
+  color: white;
+
+  & + & {
+    margin-left: 10px;
+  }
+}
+
+.chip-label {
+  float: left;
+  padding: 1px 8px 1px 10px;
+  font-weight: bold;
+}
+
+.chip-value {
+  float: left;
+  font-weight: bold;
+  padding: 1px 10px 1px 8px;
+  background: white;
+  color: $pal-gray20;
+}

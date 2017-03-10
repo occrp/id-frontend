@@ -49,4 +49,29 @@ export default function() {
     return model.update(attrs);
   });
 
+  this.get('/users', (schema, request) => {
+    let search = request.queryParams['filter[search]'];
+    let ids = request.queryParams['filter[id]'];
+
+    let collection = null;
+
+    if (ids) {
+      collection = schema.users.find(ids.split(','));
+    } else {
+      collection = schema.users.where(function(user) {
+        if (search) {
+          return user.firstName.indexOf(search) !== -1;
+        }
+        return true;
+      });
+    }
+
+    return paginate(collection, request, this.namespace);
+  });
+
+  this.get('/users/:id', (schema, request) => {
+    let id = request.params.id;
+    return schema.users.find(id);
+  });
+
 }

@@ -1,0 +1,19 @@
+<div class="searchBox">
+  <input type="text" class="form-control" oninput={{perform task value="target.value" }} placeholder="Search users" autocomplete="off"/>
+</div>
+
+{{yield}}
+
+{{#if task.isRunning}}
+  {{ui-spinner}}
+{{else}}
+  {{#if task.lastSuccessful.value.length}}
+    <div class="list">
+      {{#each task.lastSuccessful.value as |user|}}
+        <a href class="list-item {{if (eq current user.id) "is-active"}}" {{action 'select' user}}>{{user.attributes.firstName}} {{user.attributes.lastName}}</a>
+      {{/each}}
+    </div>
+  {{else}}
+    <div class="noResults">No results found</div>
+  {{/if}}
+{{/if}}

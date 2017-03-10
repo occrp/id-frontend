@@ -7,7 +7,7 @@ export default function(collection, request, namespace) {
   var pageNumber = parseInt(request.queryParams['page[number]'], 10);
 
   if (!pageNumber) {
-    return;
+    return collection;
   }
 
   var totalPages = Math.ceil(collection.models.length / pageSize);

@@ -1,0 +1,71 @@
+.dd {
+}
+
+.dd-trigger {
+  display: block;
+  color: $pal-gray30;
+  font-weight: bold;
+  padding: 15px 20px;
+
+  i {
+    font-size: 24px;
+    color: $pal-gray50;
+  }
+
+  &:hover,
+  &:focus {
+    text-decoration: none;
+    color: $pal-primary;
+  }
+
+  &.is-active {
+    color: $pal-gray20;
+  }
+}
+
+.dd-header {
+  @include cf;
+  background: $pal-gray95;
+  font-size: 13px;
+  color: $pal-gray30;
+  line-height: 20px;
+  border-bottom: 1px solid $pal-gray70;
+  padding: 5px 10px;
+
+  .iconButton {
+    float: right;
+    margin-right: -5px;
+  }
+
+  span {
+    float: left;
+  }
+}
+
+.dd-content {
+  box-sizing: border-box;
+  background-color: white;
+  width: 280px;
+  margin: 0 -1px 0 0;
+  border: 1px solid rgba(0,0,0,.15);
+  box-shadow: 0 6px 12px rgba(0,0,0,.25);
+  border-radius: $borderRadius-large;
+  border-bottom-right-radius: $borderRadius-large;
+  background-clip: padding-box;
+  overflow: hidden;
+
+  .ember-tether-target-attached-left & {
+    margin-right: 0;
+    margin-left: -1px;
+  }
+
+  .spinner {
+    margin: 15px auto 16px auto;
+  }
+}
+
+.searchBox {
+  padding: 7px;
+  border-bottom: 1px solid $pal-gray70;
+  background: $pal-gray95;
+}

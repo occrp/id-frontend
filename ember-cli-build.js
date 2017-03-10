@@ -12,6 +12,10 @@ module.exports = function(defaults) {
           'id': '/assets/id.css'
         }
       }
+    },
+
+    'ember-composable-helpers': {
+      only: ['pipe', 'pipe-action', 'toggle']
     }
 
   });
