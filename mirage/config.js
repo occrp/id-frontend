@@ -1,7 +1,7 @@
 import paginate from './helpers/paginate';
 
 export default function() {
-  this.namespace = '/api';
+  this.namespace = '/api/3';
 
   this.get('/tickets', (schema, request) => {
     let status = request.queryParams['filter[status]'];
