@@ -1,7 +1,10 @@
 <div class="filters">
   <div class="filters-main">
+    {{yield}}
+  </div>
+  <div class="filters-secondary">
     <div class="filters-item">
-      {{#ui-dropdown name="Type" headerText="Filter by type" targetAttachment="bottom left" attachment="top left" as |dd|}}
+      {{#ui-dropdown name="Type" headerText="Filter by type" as |dd|}}
         <div class="list">
           <a href {{action (pipe (action updateFilter 'type' null) dd.close)}} class="list-item {{if (eq type null) "is-active"}}">All</a>
 
@@ -14,8 +17,6 @@
         </div>
       {{/ui-dropdown}}
     </div>
-  </div>
-  <div class="filters-secondary">
     <div class="filters-item">
       {{#ui-dropdown name="Author" headerText="Filter by author" as |dd|}}
         {{filter-search task=searchUser current=author onSelect=(action 'applyAuthor') close=dd.close}}
@@ -42,29 +43,25 @@
 
 {{#if hasFilters}}
   <div class="activeFilters">
-    {{#if loadFilterValues.isRunning}}
-      {{ui-spinner}}
-    {{else}}
-      <span class="activeFilters-label">Filtered by</span>
-      {{#if type}}
-        <span class="chip">
-          <span class="chip-label">Type</span>
-          <span class="chip-value">{{get (get typeMap type) 'shortName'}}</span>
-        </span>
-      {{/if}}
-      {{#if currentAuthor}}
-        <span class="chip">
-          <span class="chip-label">Author</span>
-          <span class="chip-value">{{currentAuthor.firstName}} {{currentAuthor.lastName}}</span>
-        </span>
-      {{/if}}
-      {{#if currentAssignee}}
-        <span class="chip">
-          <span class="chip-label">Assignee</span>
-          <span class="chip-value">{{currentAssignee.firstName}} {{currentAssignee.lastName}}</span>
-        </span>
-      {{/if}}
-      <a href class="activeFilters-clear" {{action 'reset'}}>Clear all filters</a>
+    <span class="activeFilters-label">Filtered by</span>
+    {{#if type}}
+      <span class="chip">
+        <span class="chip-label">Type</span>
+        <span class="chip-value">{{get (get typeMap type) 'shortName'}}</span>
+      </span>
     {{/if}}
+    {{#if currentAuthor}}
+      <span class="chip">
+        <span class="chip-label">Author</span>
+        <span class="chip-value">{{currentAuthor.firstName}} {{currentAuthor.lastName}}</span>
+      </span>
+    {{/if}}
+    {{#if currentAssignee}}
+      <span class="chip">
+        <span class="chip-label">Assignee</span>
+        <span class="chip-value">{{currentAssignee.firstName}} {{currentAssignee.lastName}}</span>
+      </span>
+    {{/if}}
+    <a href class="activeFilters-clear" {{action 'reset'}}>Clear all filters</a>
   </div>
 {{/if}}

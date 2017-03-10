@@ -2,6 +2,8 @@ import Ember from 'ember';
 import { task, timeout } from 'ember-concurrency';
 import { typeMap } from 'id2-frontend/models/ticket';
 
+const assigneeNoneObj = { firstName: 'none' };
+
 export default Ember.Component.extend({
   store: Ember.inject.service(),
   typeMap,
@@ -57,42 +59,40 @@ export default Ember.Component.extend({
   currentAuthor: null,
   currentAssignee: null,
 
-  loadFilterValues: task(function * () {
-    let author = this.get('author');
-    let assignee = this.get('assignee');
-
-    let userIds = [author, assignee].filter((value) => (value !== null && value !== 'none'));
-
-    if (userIds.length) {
-      let users = yield this.get('store').query('user', {
-        filter: { id: userIds.join(',') }
-      });
-
-      this.set('currentAuthor', users.findBy('id', author));
-      this.set('currentAssignee', users.findBy('id', assignee));
+  loadCurrentFilters: function () {
+    if (this.get('assignee') === 'none') {
+      this.set('currentAssignee', assigneeNoneObj);
     }
 
-    if (assignee === 'none') {
-      this.set('currentAssignee', { firstName: 'none' });
+    let filterMeta = this.get('filterMeta');
+    if (!filterMeta) {
+      return;
     }
-  }),
+
+    if (filterMeta.author) {
+      this.set('currentAuthor', filterMeta.author);
+    }
+    if (filterMeta.assignee) {
+      this.set('currentAssignee', filterMeta.assignee);
+    }
+  },
 
   didInsertElement() {
-    this.get('loadFilterValues').perform();
+    this.loadCurrentFilters();
   },
 
   actions: {
     applyAuthor(user) {
-      this.set('currentAuthor', this.get('store').push({ data: user }))
+      this.set('currentAuthor', user.attributes)
       this.get('updateFilter')('author', user.id)
     },
 
     applyAssignee(user) {
       if (user === 'none') {
-        this.set('currentAssignee', { firstName: 'none' })
+        this.set('currentAssignee', assigneeNoneObj)
         this.get('updateFilter')('assignee', 'none');
       } else {
-        this.set('currentAssignee', this.get('store').push({ data: user }))
+        this.set('currentAssignee', user.attributes)
         this.get('updateFilter')('assignee', user.id)
       }
     },

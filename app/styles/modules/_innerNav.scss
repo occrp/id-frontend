@@ -1,8 +1,9 @@
 .innerNav {
   @include cf;
   font-size: 16px;
+  line-height: 20px;
   font-weight: bold;
-  margin: 25px 0 20px 0;
+  margin: 0 0 0 20px;
 
   i {
     color: $pal-accent;
@@ -12,7 +13,7 @@
   a {
     color: $pal-gray50;
     float: left;
-    margin-right: 20px;
+    padding: 15px 0;
 
     &.active {
       color: $pal-gray20;
@@ -27,5 +28,9 @@
       color: $pal-primary;
       text-decoration: none;
     }
+  }
+
+  a + a {
+    margin-left: 20px;
   }
 }

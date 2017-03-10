@@ -13,25 +13,27 @@
 <div class="wrapper">
 
   <div class="section">
-    <div class="innerNav">
-      {{#link-to 'browse' (query-params status="open" page=1) class=(if (eq status "open") "active") data-test-status-tab="open"}}
-        <i class="fa fa-exclamation-circle" /> {{model.meta.totalOpen}}
-        Open
-      {{/link-to}}
-      {{#link-to 'browse' (query-params status="closed" page=1) class=(if (eq status "closed") "active") data-test-status-tab="closed"}}
-        <i class="fa fa-check" />
-        {{model.meta.totalClosed}}
-        Closed
-      {{/link-to}}
-    </div>
 
-    {{filter-nav
+    {{#filter-nav
       type=type
       author=author
       assignee=assignee
       sort=sort
       updateFilter=(action 'updateFilter')
-      resetFilters=(action 'resetFilters')}}
+      resetFilters=(action 'resetFilters')
+      filterMeta=model.meta.filters}}
+      <div class="innerNav">
+        {{#link-to 'browse' (query-params status="open" page=1) class=(if (eq status "open") "active") data-test-status-tab="open"}}
+          <i class="fa fa-exclamation-circle" /> {{model.meta.totalOpen}}
+          Open
+        {{/link-to}}
+        {{#link-to 'browse' (query-params status="closed" page=1) class=(if (eq status "closed") "active") data-test-status-tab="closed"}}
+          <i class="fa fa-check" />
+          {{model.meta.totalClosed}}
+          Closed
+        {{/link-to}}
+      </div>
+    {{/filter-nav}}
 
     <div class="ticketList">
     {{#each model as |data|}}

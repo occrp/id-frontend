@@ -19,10 +19,33 @@ export default function() {
     let totalOpen = schema.tickets.where({status: 'new'}).length + schema.tickets.where({status: 'in-progress'}).length;
     let totalClosed = schema.tickets.all().length - totalOpen;
 
+    let filters = {};
+
+    let author = request.queryParams['filter[author]'];
+    let assignee = request.queryParams['filter[assignee]'];
+
+    if (author) {
+      let user = schema.users.find(author);
+      filters.author = {
+        'first-name': user.firstName,
+        'last-name': user.lastName
+      };
+    }
+
+    if (assignee && assignee !== 'none') {
+      let user = schema.users.find(assignee);
+      filters.assignee = {
+        'first-name': user.firstName,
+        'last-name': user.lastName
+      };
+    }
+
     request.mirageMeta = {
       'total-open': totalOpen,
-      'total-closed': totalClosed
+      'total-closed': totalClosed,
+      filters
     };
+
 
     return paginate(collection, request, this.namespace);
   });

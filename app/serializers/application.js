@@ -6,7 +6,11 @@ let camelCaseKeys = function(hash) {
 
   for (let prop in hash) {
     if (hash.hasOwnProperty(prop)) {
-      json[Ember.String.camelize(prop)] = hash[prop];
+      if (hash[prop] !== null && typeof hash[prop] === 'object') {
+        json[Ember.String.camelize(prop)] = camelCaseKeys(hash[prop]);
+      } else {
+        json[Ember.String.camelize(prop)] = hash[prop];
+      }
     }
   }
 
