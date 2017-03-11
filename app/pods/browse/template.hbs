@@ -19,9 +19,7 @@
       author=author
       assignee=assignee
       sort=sort
-      updateFilter=(action 'updateFilter')
-      resetFilters=(action 'resetFilters')
-      filterMeta=model.meta.filters}}
+      updateFilter=(action 'updateFilter')}}
       <div class="innerNav">
         {{#link-to 'browse' (query-params status="open" page=1) class=(if (eq status "open") "active") data-test-status-tab="open"}}
           <i class="fa fa-exclamation-circle" /> {{model.meta.totalOpen}}
@@ -34,6 +32,13 @@
         {{/link-to}}
       </div>
     {{/filter-nav}}
+
+    {{filter-active
+      type=type
+      author=author
+      assignee=assignee
+      filterMeta=filterMeta
+      resetFilters=(action 'resetFilters')}}
 
     <div class="ticketList">
     {{#each model as |data|}}

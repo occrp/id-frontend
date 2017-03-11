@@ -10,9 +10,22 @@ export default Ember.Controller.extend(Pageable, {
   assignee: null,
   sort: '-created',
 
+  filterMeta: Ember.computed.reads('model.meta.filters'),
+
   actions: {
-    updateFilter(key, value) {
-      this.set(key, value);
+    updateFilter(key, value, meta) {
+      let hash = {};
+
+      hash[key] = value;
+
+      // We're updating filterMeta's key eagerly so that the active filter UI
+      // updates immediately, instead of waiting for the model to reload &
+      // break filterMeta's CP cache.
+      if (meta) {
+        hash[`filterMeta.${key}`] = meta;
+      }
+
+      this.setProperties(hash);
       this.set('page', 1);
     },
 

@@ -41,27 +41,3 @@
   </div>
 </div>
 
-{{#if hasFilters}}
-  <div class="activeFilters">
-    <span class="activeFilters-label">Filtered by</span>
-    {{#if type}}
-      <span class="chip">
-        <span class="chip-label">Type</span>
-        <span class="chip-value">{{get (get typeMap type) 'shortName'}}</span>
-      </span>
-    {{/if}}
-    {{#if currentAuthor}}
-      <span class="chip">
-        <span class="chip-label">Author</span>
-        <span class="chip-value">{{currentAuthor.firstName}} {{currentAuthor.lastName}}</span>
-      </span>
-    {{/if}}
-    {{#if currentAssignee}}
-      <span class="chip">
-        <span class="chip-label">Assignee</span>
-        <span class="chip-value">{{currentAssignee.firstName}} {{currentAssignee.lastName}}</span>
-      </span>
-    {{/if}}
-    <a href class="activeFilters-clear" {{action 'reset'}}>Clear all filters</a>
-  </div>
-{{/if}}

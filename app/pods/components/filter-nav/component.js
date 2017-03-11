@@ -2,8 +2,6 @@ import Ember from 'ember';
 import { task, timeout } from 'ember-concurrency';
 import { typeMap } from 'id2-frontend/models/ticket';
 
-const assigneeNoneObj = { firstName: 'none' };
-
 export default Ember.Component.extend({
   store: Ember.inject.service(),
   typeMap,
@@ -54,55 +52,17 @@ export default Ember.Component.extend({
     return items.data;
   }).restartable(),
 
-  hasFilters: Ember.computed.or('author', 'assignee', 'type'),
-
-  currentAuthor: null,
-  currentAssignee: null,
-
-  loadCurrentFilters: function () {
-    if (this.get('assignee') === 'none') {
-      this.set('currentAssignee', assigneeNoneObj);
-    }
-
-    let filterMeta = this.get('filterMeta');
-    if (!filterMeta) {
-      return;
-    }
-
-    if (filterMeta.author) {
-      this.set('currentAuthor', filterMeta.author);
-    }
-    if (filterMeta.assignee) {
-      this.set('currentAssignee', filterMeta.assignee);
-    }
-  },
-
-  didInsertElement() {
-    this.loadCurrentFilters();
-  },
-
   actions: {
     applyAuthor(user) {
-      this.set('currentAuthor', user.attributes)
-      this.get('updateFilter')('author', user.id)
+      this.get('updateFilter')('author', user.id, user.attributes)
     },
 
     applyAssignee(user) {
       if (user === 'none') {
-        this.set('currentAssignee', assigneeNoneObj)
         this.get('updateFilter')('assignee', 'none');
       } else {
-        this.set('currentAssignee', user.attributes)
-        this.get('updateFilter')('assignee', user.id)
+        this.get('updateFilter')('assignee', user.id, user.attributes)
       }
-    },
-
-    reset() {
-      this.get('resetFilters')();
-      this.setProperties({
-        currentAuthor: null,
-        currentAssignee: null
-      });
     }
   }
 
