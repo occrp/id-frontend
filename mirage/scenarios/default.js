@@ -7,6 +7,8 @@ export default function(server) {
     Make sure to define a factory for each model you want to create.
   */
 
-  server.createList('user', 20);
-  server.createList('ticket', 130);
+  server.createList('user', 7);
+  server.createList('user', 5, 'staff');
+  server.createList('user', 2, 'superuser');
+  server.createList('ticket', 130, 'withUserRels');
 }

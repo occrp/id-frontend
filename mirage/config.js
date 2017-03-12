@@ -74,22 +74,23 @@ export default function() {
 
   this.get('/users', (schema, request) => {
     let search = request.queryParams['filter[search]'];
-    let ids = request.queryParams['filter[id]'];
+    let isStaff = JSON.parse(request.queryParams['filter[is-staff]']);
 
     let collection = null;
 
-    if (ids) {
-      collection = schema.users.find(ids.split(','));
-    } else {
-      collection = schema.users.where(function(user) {
-        if (search) {
-          return user.firstName.indexOf(search) !== -1;
-        }
-        return true;
-      });
-    }
+    collection = schema.users.where(function(user) {
+      if (isStaff !== undefined && user.isStaff !== isStaff) {
+        return false;
+      }
+      if (search) {
+        return user.firstName.indexOf(search) !== -1;
+      }
+      return true;
+    });
 
-    return paginate(collection, request, this.namespace);
+    collection.models = collection.models.slice(0, 6);
+
+    return collection;
   });
 
   this.get('/users/:id', (schema, request) => {

@@ -1,6 +1,7 @@
-import { Factory, faker } from 'ember-cli-mirage';
+import { Factory, faker, trait } from 'ember-cli-mirage';
 import { typeList, statusList } from 'id2-frontend/models/ticket';
 
+const random = faker.random.arrayElement;
 const t = typeList.length;
 
 const paragraphs = `Labore deserunt beatae et et. Expedita autem maiores. Nobis molestiae explicabo aliquam architecto at mollitia.
@@ -34,5 +35,20 @@ export default Factory.extend({
   connections(i)        { return i%t+1 === 2 ? faker.lorem.sentences() : null; },
   sources(i)            { return i%t+1 === 2 ? faker.lorem.sentences() : null; },
 
-  question(i)           { return i%t+1 === 3 ? faker.lorem.paragraphs() : null; }
+  question(i)           { return i%t+1 === 3 ? faker.lorem.paragraphs() : null; },
+
+  withUserRels: trait({
+    afterCreate(ticket, server) {
+      let regulars = server.schema.users.where({ isStaff: false });
+      let staff = server.schema.users.where({ isStaff: true });
+
+      let hash = {
+        author: random(regulars.models),
+        assignee: random(staff.models)
+      };
+
+      ticket.update(hash);
+    }
+  })
+
 });

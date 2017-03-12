@@ -120,6 +120,14 @@ test('cancelling a ticket', function(assert) {
           "why-sensitive": null
         },
         "id": "1",
+        "relationships": {
+          "assignee": {
+            "data": null
+          },
+          "author": {
+            "data": null
+          }
+        },
         "type": "tickets"
       }
     });

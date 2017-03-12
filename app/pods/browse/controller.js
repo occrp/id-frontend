@@ -10,7 +10,10 @@ export default Ember.Controller.extend(Pageable, {
   assignee: null,
   sort: '-created',
 
-  filterMeta: Ember.computed.reads('model.meta.filters'),
+  filterMeta: Ember.computed('model.meta', function () {
+    let meta = this.get('model.meta');
+    return meta.filters ? meta.filters : { assignee: null, author: null };
+  }),
 
   actions: {
     updateFilter(key, value, meta) {
@@ -34,7 +37,7 @@ export default Ember.Controller.extend(Pageable, {
         type: null,
         author: null,
         assignee: null
-      })
+      });
     }
   }
 });

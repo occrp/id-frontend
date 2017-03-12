@@ -41,6 +41,14 @@ test('creating a new ticket (person)', function(assert) {
           "user-pays": false,
           "why-sensitive": "It just is."
         },
+        "relationships": {
+          "assignee": {
+            "data": null
+          },
+          "author": {
+            "data": null
+          }
+        },
         "type": "tickets"
       }
     });
@@ -117,6 +125,14 @@ test('creating a new ticket (company)', function(assert) {
           "user-pays": false,
           "why-sensitive": null
         },
+        "relationships": {
+          "assignee": {
+            "data": null
+          },
+          "author": {
+            "data": null
+          }
+        },
         "type": "tickets"
       }
     });
@@ -183,6 +199,14 @@ test('creating a new ticket (other)', function(assert) {
           "type": "other",
           "user-pays": false,
           "why-sensitive": null
+        },
+        "relationships": {
+          "assignee": {
+            "data": null
+          },
+          "author": {
+            "data": null
+          }
         },
         "type": "tickets"
       }

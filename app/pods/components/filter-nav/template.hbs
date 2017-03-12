@@ -9,7 +9,7 @@
           <a href {{action (pipe (action updateFilter 'type' null) dd.close)}} class="list-item {{if (eq type null) "is-active"}}">All</a>
 
           {{#each-in typeMap as |key props|}}
-            <a href {{action (pipe (action updateFilter 'type' key) dd.close)}} class="list-item {{if (eq type key) "is-active"}}">
+            <a href {{action (pipe (action updateFilter 'type' key) dd.close)}} class="list-item {{if (eq type key) "is-active"}}" data-test-filter-type={{key}}>
               <span class="iconContainer"><i class="fa {{props.icon}}"></i></span>
               <span class="iconText">{{props.name}}</span>
             </a>
@@ -19,13 +19,13 @@
     </div>
     <div class="filters-item">
       {{#ui-dropdown name="Author" headerText="Filter by author" as |dd|}}
-        {{filter-search task=searchUser current=author onSelect=(action 'applyAuthor') close=dd.close}}
+        {{filter-search task=searchAuthor current=author onSelect=(action 'applyAuthor') close=dd.close}}
       {{/ui-dropdown}}
     </div>
     <div class="filters-item">
       {{#ui-dropdown name="Assignee" headerText="Filter by who's assigned" as |dd|}}
-        {{#filter-search task=searchUser current=assignee onSelect=(action 'applyAssignee') close=dd.close}}
-          <a href class="list-item list-item--special {{if (eq assignee "none") "is-active"}}" {{action (pipe (action 'applyAssignee' "none") dd.close)}}>Assigned to nobody</a>
+        {{#filter-search task=searchStaff isStaff=true current=assignee onSelect=(action 'applyAssignee') close=dd.close}}
+          <a href class="list-item list-item--special {{if (eq assignee "none") "is-active"}}" {{action (pipe (action 'applyAssignee' "none") dd.close)}} data-test-filter-static-option="none">Assigned to nobody</a>
         {{/filter-search}}
       {{/ui-dropdown}}
     </div>
@@ -33,7 +33,7 @@
       {{#ui-dropdown name="Sort" headerText="Sort by" as |dd|}}
         <div class="list">
           {{#each-in sortFields as |key label|}}
-            <a href {{action (pipe (action (mut sort) key) dd.close)}} class="list-item {{if (eq sort key) "is-active"}}">{{label}}</a>
+            <a href {{action (pipe (action updateFilter 'sort' key) dd.close)}} class="list-item {{if (eq sort key) "is-active"}}" data-test-filter-sort={{key}}>{{label}}</a>
           {{/each-in}}
         </div>
       {{/ui-dropdown}}

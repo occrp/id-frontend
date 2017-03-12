@@ -1,4 +1,4 @@
-<a href class="dd-trigger {{if isShowingDropdown "is-active"}}" id={{concat "dd-id-" slug}} {{action (toggle 'isShowingDropdown' this)}}>
+<a href class="dd-trigger {{if isShowingDropdown "is-active"}}" id={{concat "dd-id-" slug}} {{action (toggle 'isShowingDropdown' this)}} data-test-dd-trigger={{slug}}>
   {{name}} <b class="arrow"></b>
 </a>
 
@@ -10,6 +10,7 @@
     targetAttachment=targetAttachment
     attachment=attachment
     hasOverlay=false
+    renderInPlace=(eq ENV.environment 'test')
     clickOutsideToClose=true}}
     <div class="dd-content">
       {{#if headerText}}

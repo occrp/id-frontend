@@ -4,19 +4,19 @@
     {{#if type}}
       <span class="chip">
         <span class="chip-label">Type</span>
-        <span class="chip-value">{{get (get typeMap type) 'shortName'}}</span>
+        <span class="chip-value" data-test-active-filter="type">{{get (get typeMap type) 'shortName'}}</span>
       </span>
     {{/if}}
     {{#if currentAuthor}}
       <span class="chip">
         <span class="chip-label">Author</span>
-        <span class="chip-value">{{currentAuthor.firstName}} {{currentAuthor.lastName}}</span>
+        <span class="chip-value" data-test-active-filter="author">{{currentAuthor.firstName}} {{currentAuthor.lastName}}</span>
       </span>
     {{/if}}
     {{#if currentAssignee}}
       <span class="chip">
         <span class="chip-label">Assignee</span>
-        <span class="chip-value">{{currentAssignee.firstName}} {{currentAssignee.lastName}}</span>
+        <span class="chip-value" data-test-active-filter="assignee">{{currentAssignee.firstName}} {{currentAssignee.lastName}}</span>
       </span>
     {{/if}}
     <a href class="activeFilters-clear" {{action resetFilters}}>Clear all filters</a>

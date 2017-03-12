@@ -4,7 +4,7 @@ import { validator, buildValidations } from 'ember-cp-validations';
 import notEqual from '../macros/not-equal';
 import raw from 'ember-macro-helpers/raw';
 
-const { attr } = DS;
+const { attr, belongsTo } = DS;
 
 export const typeMap = {
   'person_ownership': {
@@ -92,6 +92,9 @@ export default DS.Model.extend({
   sensitive: attr('boolean', { defaultValue: false }),
   whySensitive: attr('string'),
   deadline: attr('date'),
+
+  author: belongsTo('user'),
+  assignee: belongsTo('user'),
 
   // Do we need to keep these in the UI? only for admins?
   findingsVisible: attr('boolean'),
