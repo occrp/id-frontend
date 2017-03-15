@@ -46,7 +46,6 @@ export default function() {
       filters
     };
 
-
     return paginate(collection, request, this.namespace);
   });
 
@@ -96,6 +95,18 @@ export default function() {
   this.get('/users/:id', (schema, request) => {
     let id = request.params.id;
     return schema.users.find(id);
+  });
+
+  this.get('/me', (schema, request) => {
+    return {
+      "id": 42,
+      "email": "user@mail.com",
+      "first_name": "John",
+      "last_name": "Appleseed",
+      "is_staff": false,
+      "is_superuser": false,
+      "locale": ""
+    };
   });
 
 }
