@@ -1,0 +1,26 @@
+.tag {
+  background: $pal-gray70;
+  display: inline-block;
+  font-size: 13px;
+  text-transform: uppercase;
+  font-weight: bold;
+  color: white;
+  border-radius: $borderRadius-small;
+  padding: 2px 0.5em;
+}
+
+.tag--new {
+  background: $pal-accent;
+}
+
+.tag--progress {
+  background: #5cb85c;
+}
+
+.tag--closed {
+  background: #d9534f;
+}
+
+.tag--cancelled {
+  background: #d9534f;
+}

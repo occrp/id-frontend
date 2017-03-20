@@ -63,12 +63,18 @@ export default function() {
   });
 
   this.patch('/tickets/:id', function(schema, request) {
-    let attrs = JSON.parse(request.requestBody).data.attributes;
     let id = request.params.id;
+    let attrs = JSON.parse(request.requestBody).data.attributes;
+    let rels = JSON.parse(request.requestBody).data.relationships;
 
     let model = schema.tickets.find(id);
 
-    return model.update(attrs);
+    if (rels.assignee.data) {
+      model.update({assigneeId: rels.assignee.data.id});
+    }
+    model.update(attrs);
+
+    return model;
   });
 
   this.get('/users', (schema, request) => {
@@ -103,10 +109,10 @@ export default function() {
       "email": "user@mail.com",
       "first_name": "John",
       "last_name": "Appleseed",
-      "is_staff": false,
+      "is_staff": true,
       "is_superuser": false,
       "locale": ""
     };
-  });
+  }, { timing: 0 });
 
 }

@@ -8,27 +8,22 @@
 
 .ticket {
   display: table-row;
-  color: $pal-gray30;
-
-  i {
-    font-size: 24px;
-    color: $pal-accent;
-  }
+  color: $pal-gray40;
 
   &:hover {
-    text-decoration: none;
     background: mix($pal-gray100, white, 70%);
-
-    .ticket-name {
-      color: $pal-primary;
-    }
   }
 }
 
 .ticket-cell {
   display: table-cell;
-  padding: 5px 10px 5px 10px;
+  padding: 10px 10px;
   border-bottom: 1px solid $pal-gray90;
+  vertical-align: middle;
+
+  & > .spinner {
+    display: inline-block;
+  }
 }
 
 .ticket-icon {
@@ -36,30 +31,96 @@
   text-align: center;
   vertical-align: middle;
   padding-left: 15px;
+  padding-right: 10px;
+
+  i {
+    font-size: 24px;
+    color: $pal-accent;
+  }
 }
 
-.ticket-date {
-  width: 140px;
-  color: $pal-gray50;
+.ticket-body {
+  font-size: 13px;
+  line-height: 20px;
+
+  padding-right: 20px;
+
+  p {
+    margin: 0;
+  }
 }
+
+.ticket-addon {
+  width: 150px;
+  font-size: 13px;
+
+  p {
+    margin: 0;
+    line-height: 20px;
+  }
+
+  .ticket-status {
+    margin-bottom: 4px;
+  }
+}
+
+.ticket-actions {
+  width: 45px;
+  padding-left: 0;
+  padding-right: 0;
+
+  .iconButton--dimmed {
+    width: 25px;
+    line-height: 1;
+    padding: 10px 10px;
+
+    i {
+      font-size: 24px;
+    }
+  }
+}
+
+.ticket-dates {
+  width: 130px;
+  font-size: 13px;
+
+  p {
+    margin: 0;
+    line-height: 20px;
+  }
+
+  .ticket-deadline {
+    color: $pal-gray50;
+    margin-top: 2px;
+  }
+
+  i {
+    margin: 0 0.25em 0 0;
+  }
+}
+
 
 .ticket-name {
-  color: $pal-gray20;
+  font-size: 16px;
+  font-weight: bold;
+  line-height: 20px;
+  margin: 0 0 2px 0;
+  padding: 4px 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
 
-  h4 {
-    font-size: 16px;
-    line-height: 1.428;
+  a {
+    color: $pal-gray20;
+
+    &:hover {
+      color: $pal-primary;
+    }
   }
 }
 
 .ticket--other {
   .ticket-name {
-    color: $pal-gray50;
-
-    h4 {
-      overflow: hidden;
-      text-overflow: ellipsis;
-      white-space: nowrap;
-    }
+    font-weight: normal;
   }
 }

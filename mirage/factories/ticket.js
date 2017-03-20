@@ -13,7 +13,7 @@ Quia ducimus alias laborum consequuntur rerum. Reiciendis nobis quod temporibus 
 export default Factory.extend({
   type(i)               { return typeList[i % t]; },
   created()             { return faker.date.past(); },
-  status(i)             { return statusList[i % statusList.length]; },
+  status(i)             { return i > 5 ? random(statusList) : 'new'; },
   statusUpdated()       { return faker.date.past(); },
 
   sensitive(i)          { return i % 2 === 0 ? true : false; },
@@ -44,7 +44,7 @@ export default Factory.extend({
 
       let hash = {
         author: random(regulars.models),
-        assignee: random(staff.models)
+        assignee: ticket.status === 'new' ? null : random(staff.models)
       };
 
       ticket.update(hash);

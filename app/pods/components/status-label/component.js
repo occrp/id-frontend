@@ -5,7 +5,7 @@ export default Ember.Component.extend({
   statusMap,
 
   tagName: 'span',
-  classNames: ['label', 'label--status'],
+  classNames: ['tag', 'tag--status'],
   classNameBindings: ['statusPOJO.labelClass'],
 
   statusPOJO: Ember.computed('status', function() {

@@ -17,3 +17,12 @@
 .t-flush {
   margin-top: 0;
 }
+
+
+.t-darkLink {
+  color: $pal-gray40;
+
+  &:hover {
+    color: $pal-primary;
+  }
+}

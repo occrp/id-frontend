@@ -40,21 +40,7 @@
       filterMeta=filterMeta
       resetFilters=(action 'resetFilters')}}
 
-    <div class="ticketList">
-    {{#each model as |data|}}
-      {{#link-to "view" data.id class=(concat "ticket ticket--" data.type) data-test-ticket=data.id}}
-        <div class="ticket-cell ticket-icon">
-          {{ticket-icon data.type}}
-        </div>
-        <div class="ticket-cell ticket-name">
-          <h4 data-test-ticket-name>{{data.displayName}}</h4>
-        </div>
-        <div class="ticket-cell ticket-date text-right">
-          <p><time datetime={{data.created}} title={{moment-format data.created 'LLL'}}>{{moment-format data.created 'll'}}</time></p>
-        </div>
-      {{/link-to}}
-    {{/each}}
-    </div>
+    {{ticket-list data=model}}
 
     {{ui-pagination meta=model.meta route='browse'}}
 

@@ -37,7 +37,8 @@ export default Ember.Route.extend({
         number: params.page,
         size: params.size
       },
-      sort: params.sort
+      sort: params.sort,
+      include: 'author,assignee'
     });
   }
 });

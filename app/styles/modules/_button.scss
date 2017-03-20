@@ -101,6 +101,22 @@
   }
 }
 
+
+.button--small {
+  font-size: 13px;
+  padding: 3px 12px;
+}
+
+.button--bordered.button--small {
+  color: $pal-gray50;
+  border-color: $pal-gray50;
+  padding: 1px 10px;
+
+  &:hover {
+    color: white;
+  }
+}
+
 .iconButton {
   box-sizing: content-box;
   background: none;
@@ -118,4 +134,8 @@
   &:hover {
     color: $pal-primary
   }
+}
+
+.iconButton--dimmed {
+  color: $pal-gray80;
 }

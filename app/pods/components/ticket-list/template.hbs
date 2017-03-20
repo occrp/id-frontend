@@ -1,0 +1,65 @@
+<div class="ticketList">
+{{#each data as |item|}}
+
+  <div class="ticket ticket--{{item.type}}" data-test-ticket={{item.id}}>
+
+    <div class="ticket-cell ticket-icon">
+      {{ticket-icon item.type}}
+    </div>
+
+    <div class="ticket-cell ticket-body">
+      <h4 class="ticket-name" data-test-ticket-name>{{#link-to "view" item.id}}{{item.displayName}}{{/link-to}}</h4>
+      <p>
+        updated <time datetime={{item.statusUpdated}} title={{moment-format item.statusUpdated 'LLL'}}>{{moment-from-now item.statusUpdated}}</time>
+
+        {{#unless author}}
+          &bull;
+          {{#link-to 'browse' (query-params author=item.author.id page=1) class="t-darkLink"}}
+            <span>{{item.author.displayName}}</span>
+          {{/link-to}}
+        {{/unless}}
+      </p>
+    </div>
+
+    <div class="ticket-cell ticket-addon text-right">
+      {{#if (and updateAssignee.isRunning (eq updateAssignee.last.args.[0] item))}}
+        {{ui-spinner}}
+      {{else}}
+        <p class="ticket-status">{{status-label item.status data-test-ticket-status}}</p>
+        {{#if item.assignee}}
+          <p class="ticket-assignee"><a href class="t-darkLink">{{item.assignee.displayName}}</a></p>
+        {{/if}}
+      {{/if}}
+    </div>
+
+    <div class="ticket-cell ticket-actions">
+      {{#ui-dropdown as |dd|}}
+        {{#dd.trigger}}
+          <button class="iconButton iconButton--dimmed"><i class="fa fa-cog" /></button>
+        {{/dd.trigger}}
+        {{#dd.body headerText="Assign to staff"}}
+          {{search-users
+            task=searchStaff
+            current=item.assignee.id
+            onSelect=(pipe-action (action 'selectUser' item) dd.close)
+            class="text-left"}}
+        {{/dd.body}}
+      {{/ui-dropdown}}
+    </div>
+
+    <div class="ticket-cell ticket-dates">
+      <p>
+        <time datetime={{item.created}} title={{moment-format item.created 'LLL'}}>{{moment-format item.created 'DD MMM YYYY'}}</time>
+      </p>
+      {{#if item.deadline}}
+        <p class="ticket-deadline">
+          due
+          <time datetime={{item.deadline}} title={{moment-format item.deadline 'LLL'}}>{{moment-from-now item.deadline}}</time>
+        </p>
+      {{/if}}
+    </div>
+
+  </div>
+
+{{/each}}
+</div>

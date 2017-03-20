@@ -27,10 +27,10 @@ export const typeMap = {
 export const typeList = Object.keys(typeMap);
 
 export const statusMap = {
-  'new': { name: 'New', labelClass: 'label-info' },
-  'in-progress': { name: 'In progress', labelClass: 'label-warning' },
-  'closed': { name: 'Closed', labelClass: 'label-success' },
-  'cancelled': { name: 'Cancelled', labelClass: 'label-danger' }
+  'new': { name: 'New', labelClass: 'tag--new' },
+  'in-progress': { name: 'In progress', labelClass: 'tag--progress' },
+  'closed': { name: 'Closed', labelClass: 'tag--closed' },
+  'cancelled': { name: 'Cancelled', labelClass: 'tag--cancelled' }
 };
 
 export const statusList = Object.keys(statusMap);
