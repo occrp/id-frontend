@@ -1,5 +1,6 @@
 import Ember from 'ember';
 import DS from 'ember-data';
+import { timeout } from 'ember-concurrency';
 
 const { attr } = DS;
 
@@ -15,3 +16,16 @@ export default DS.Model.extend({
     return `${this.get('firstName')} ${this.get('lastName')}`;
   })
 });
+
+export const getSearchGenerator = function({ isStaff }) {
+  return function * (term) {
+    yield timeout(250);
+
+    let owner = Ember.getOwner(this);
+    let store = owner.lookup('service:store');
+    let items = yield store.query('user', { filter: { search: term, 'is-staff': isStaff } });
+
+    return items;
+  };
+};
+
