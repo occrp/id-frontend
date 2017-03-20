@@ -56,8 +56,8 @@
                 <i class="fa fa-database"></i> External Databases
               </a>
             </li>
-            <li class="active">
-              <a href="/">
+            <li>
+              <a href="/" id="nav-id-app">
                 <i class="fa fa-comments-o"></i> Research Requests
               </a>
             </li>
@@ -111,5 +111,13 @@
     <script src="{{rootURL}}assets/id2-frontend.js"></script>
 
     {{content-for "body-footer"}}
+
+    <script type="text/javascript">
+      var navLink = document.getElementById('nav-id-app');
+      navLink.addEventListener('click', function (e) {
+        e.preventDefault();
+        Id2Frontend.__container__.lookup('router:main').transitionTo('index');
+      });
+    </script>
   </body>
 </html>
