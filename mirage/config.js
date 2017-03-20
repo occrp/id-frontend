@@ -103,7 +103,7 @@ export default function() {
     return schema.users.find(id);
   });
 
-  this.get('/me', (schema, request) => {
+  this.get('/me', () => {
     return {
       "id": 42,
       "email": "user@mail.com",

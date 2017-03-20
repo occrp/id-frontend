@@ -6,7 +6,7 @@
     targetAttachment=targetAttachment
     attachment=attachment
     hasOverlay=false
-    renderInPlace=false
+    renderInPlace=(eq ENV.environment 'test')
     clickOutsideToClose=true}}
     <div class="dd-content">
       {{#if headerText}}

@@ -61,7 +61,7 @@ test('tickets can be paged', function(assert) {
     assert.equal($items.length, 15, 'showing 2nd page tickets');
 
     let $firstItemName = $items.eq(0).find('[data-test-ticket-name]');
-    assert.equal($firstItemName.text(), 'John Doe 26');
+    assert.equal($firstItemName.text().trim(), 'John Doe 26');
   });
 });
 
@@ -91,8 +91,8 @@ test('tickets can be filtered by type', function(assert) {
     assert.equal($items.length, 10, 'showing unfiltered tickets');
   });
 
-  click('[data-test-dd-trigger="type"]');
-  click('[data-test-filter-type="person_ownership"]');
+  click('[data-test-dd="filter-type"] [data-test-dd-trigger]');
+  click('[data-test-type-option="person_ownership"]');
 
   andThen(() => {
     assert.equal(currentURL(), '/view?type=person_ownership');
@@ -146,7 +146,7 @@ test('tickets can be filtered by author', function(assert) {
     assert.equal($items.length, 10, 'showing unfiltered tickets');
   });
 
-  click('[data-test-dd-trigger="author"]');
+  click('[data-test-dd="filter-author"] [data-test-dd-trigger]');
   fillIn('[data-test-filter-search]', 'User #4');
 
   andThen(() => {
@@ -213,7 +213,7 @@ test('tickets can be filtered by assignee', function(assert) {
     assert.equal($items.length, 10, 'showing unfiltered tickets');
   });
 
-  click('[data-test-dd-trigger="assignee"]');
+  click('[data-test-dd="filter-assignee"] [data-test-dd-trigger]');
   click('[data-test-filter-static-option="none"]');
 
   andThen(() => {
@@ -225,7 +225,7 @@ test('tickets can be filtered by assignee', function(assert) {
     assert.equal(find('[data-test-active-filter="assignee"]').text().trim(), 'none');
   });
 
-  click('[data-test-dd-trigger="assignee"]');
+  click('[data-test-dd="filter-assignee"] [data-test-dd-trigger]');
   fillIn('[data-test-filter-search]', 'Staff #2');
 
   andThen(() => {
@@ -257,8 +257,8 @@ test('tickets can sorted', function(assert) {
 
   visit('/view');
 
-  click('[data-test-dd-trigger="sort"]');
-  click('[data-test-filter-sort="-deadline"]');
+  click('[data-test-dd="sort"] [data-test-dd-trigger]');
+  click('[data-test-sort-option="-deadline"]');
 
   andThen(() => {
     assert.equal(currentURL(), '/view?sort=-deadline');
@@ -290,7 +290,7 @@ test('ticket filtering or sorting should reset pagination', function(assert) {
     assert.equal(currentURL(), '/view?page=2&size=3');
   });
 
-  click('[data-test-dd-trigger="author"]');
+  click('[data-test-dd="filter-author"] [data-test-dd-trigger]');
   click('[data-test-filter-option="4"]');
 
   andThen(() => {
@@ -303,7 +303,7 @@ test('ticket filtering or sorting should reset pagination', function(assert) {
     assert.equal(currentURL(), '/view?author=4&page=2&size=3');
   });
 
-  click('[data-test-dd-trigger="assignee"]');
+  click('[data-test-dd="filter-assignee"] [data-test-dd-trigger]');
   click('[data-test-filter-static-option="none"]');
 
   andThen(() => {
@@ -316,8 +316,8 @@ test('ticket filtering or sorting should reset pagination', function(assert) {
     assert.equal(currentURL(), '/view?assignee=none&author=4&page=2&size=3');
   });
 
-  click('[data-test-dd-trigger="type"]');
-  click('[data-test-filter-type="person_ownership"]');
+  click('[data-test-dd="filter-type"] [data-test-dd-trigger]');
+  click('[data-test-type-option="person_ownership"]');
 
   andThen(() => {
     assert.equal(currentURL(), '/view?assignee=none&author=4&size=3&type=person_ownership');
@@ -329,8 +329,8 @@ test('ticket filtering or sorting should reset pagination', function(assert) {
     assert.equal(currentURL(), '/view?assignee=none&author=4&page=2&size=3&type=person_ownership');
   });
 
-  click('[data-test-dd-trigger="sort"]');
-  click('[data-test-filter-sort="-deadline"]');
+  click('[data-test-dd="sort"] [data-test-dd-trigger]');
+  click('[data-test-sort-option="-deadline"]');
 
   andThen(() => {
     assert.equal(currentURL(), '/view?assignee=none&author=4&size=3&sort=-deadline&type=person_ownership');

@@ -4,14 +4,14 @@
   </div>
   <div class="filters-secondary">
     <div class="filters-item">
-      {{#ui-dropdown as |dd|}}
+      {{#ui-dropdown data-test-dd="filter-type" as |dd|}}
         {{#dd.trigger}}Type <b class="arrow"></b>{{/dd.trigger}}
         {{#dd.body headerText="Filter by type"}}
           <div class="list">
             <a href {{action (pipe (action updateFilter 'type' null) dd.close)}} class="list-item {{if (eq type null) "is-active"}}">All</a>
 
             {{#each-in typeMap as |key props|}}
-              <a href {{action (pipe (action updateFilter 'type' key) dd.close)}} class="list-item {{if (eq type key) "is-active"}}" data-test-filter-type={{key}}>
+              <a href {{action (pipe (action updateFilter 'type' key) dd.close)}} class="list-item {{if (eq type key) "is-active"}}" data-test-type-option={{key}}>
                 <span class="iconContainer"><i class="fa {{props.icon}}"></i></span>
                 <span class="iconText">{{props.name}}</span>
               </a>
@@ -22,7 +22,7 @@
     </div>
     {{#if (can "manage tickets")}}
     <div class="filters-item">
-      {{#ui-dropdown as |dd|}}
+      {{#ui-dropdown data-test-dd="filter-author" as |dd|}}
         {{#dd.trigger}}Author <b class="arrow"></b>{{/dd.trigger}}
         {{#dd.body headerText="Filter by author"}}
           {{search-users
@@ -33,7 +33,7 @@
       {{/ui-dropdown}}
     </div>
     <div class="filters-item">
-      {{#ui-dropdown as |dd|}}
+      {{#ui-dropdown data-test-dd="filter-assignee" as |dd|}}
         {{#dd.trigger}}Assignee <b class="arrow"></b>{{/dd.trigger}}
         {{#dd.body headerText="Filter by who's assigned"}}
           {{#search-users
@@ -48,12 +48,12 @@
     </div>
     {{/if}}
     <div class="filters-item">
-      {{#ui-dropdown as |dd|}}
+      {{#ui-dropdown data-test-dd="sort" as |dd|}}
         {{#dd.trigger}}Sort <b class="arrow"></b>{{/dd.trigger}}
         {{#dd.body headerText="Sort by"}}
           <div class="list">
             {{#each-in sortFields as |key label|}}
-              <a href {{action (pipe (action updateFilter 'sort' key) dd.close)}} class="list-item {{if (eq sort key) "is-active"}}" data-test-filter-sort={{key}}>{{label}}</a>
+              <a href {{action (pipe (action updateFilter 'sort' key) dd.close)}} class="list-item {{if (eq sort key) "is-active"}}" data-test-sort-option={{key}}>{{label}}</a>
             {{/each-in}}
           </div>
         {{/dd.body}}

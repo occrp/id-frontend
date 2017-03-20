@@ -8,14 +8,19 @@
     </div>
 
     <div class="ticket-cell ticket-body">
-      <h4 class="ticket-name" data-test-ticket-name>{{#link-to "view" item.id}}{{item.displayName}}{{/link-to}}</h4>
+      <h4 class="ticket-name" data-test-ticket-name>
+        {{#link-to "view" item.id}}{{item.displayName}}{{/link-to}}
+      </h4>
       <p>
-        updated <time datetime={{item.statusUpdated}} title={{moment-format item.statusUpdated 'LLL'}}>{{moment-from-now item.statusUpdated}}</time>
+        updated
+        <time datetime={{item.statusUpdated}} title={{moment-format item.statusUpdated 'LLL'}}>
+          {{moment-from-now item.statusUpdated}}
+        </time>
 
         {{#unless author}}
           &bull;
           {{#link-to 'browse' (query-params author=item.author.id page=1) class="t-darkLink"}}
-            <span>{{item.author.displayName}}</span>
+            {{item.author.displayName}}
           {{/link-to}}
         {{/unless}}
       </p>
@@ -25,9 +30,15 @@
       {{#if (and updateAssignee.isRunning (eq updateAssignee.last.args.[0] item))}}
         {{ui-spinner}}
       {{else}}
-        <p class="ticket-status">{{status-label item.status data-test-ticket-status}}</p>
+        <p class="ticket-status">
+          {{status-label item.status data-test-ticket-status}}
+        </p>
         {{#if item.assignee}}
-          <p class="ticket-assignee"><a href class="t-darkLink">{{item.assignee.displayName}}</a></p>
+          <p class="ticket-assignee">
+            {{#link-to 'browse' (query-params assignee=item.assignee.id page=1) class="t-darkLink"}}
+              {{item.assignee.displayName}}
+            {{/link-to}}
+          </p>
         {{/if}}
       {{/if}}
     </div>
@@ -49,12 +60,16 @@
 
     <div class="ticket-cell ticket-dates">
       <p>
-        <time datetime={{item.created}} title={{moment-format item.created 'LLL'}}>{{moment-format item.created 'DD MMM YYYY'}}</time>
+        <time datetime={{item.created}} title={{moment-format item.created 'LLL'}}>
+          {{moment-format item.created 'DD MMM YYYY'}}
+        </time>
       </p>
       {{#if item.deadline}}
         <p class="ticket-deadline">
           due
-          <time datetime={{item.deadline}} title={{moment-format item.deadline 'LLL'}}>{{moment-from-now item.deadline}}</time>
+          <time datetime={{item.deadline}} title={{moment-format item.deadline 'LLL'}}>
+            {{moment-from-now item.deadline}}
+          </time>
         </p>
       {{/if}}
     </div>
