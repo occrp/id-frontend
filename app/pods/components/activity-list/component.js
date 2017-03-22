@@ -7,7 +7,6 @@ export default Ember.Component.extend(Validations, {
   session: Ember.inject.service(),
 
   comment: null,
-
   didValidate: false,
 
   publishComment: task(function * () {
@@ -18,17 +17,18 @@ export default Ember.Component.extend(Validations, {
       author: this.get('session.currentUser')
     });
     yield record.save();
-    this.set('comment', null);
-    this.set('didValidate', false);
-    return record;
   }),
 
   actions: {
     save() {
       this.validate().then(({ validations }) => {
         this.set('didValidate', true);
+
         if (validations.get('isValid')) {
-          this.get('publishComment').perform();
+          this.get('publishComment').perform().then(() => {
+            this.set('comment', null);
+            this.set('didValidate', false);
+          });
         }
       });
     }
