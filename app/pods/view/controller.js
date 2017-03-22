@@ -13,8 +13,6 @@ export default Ember.Controller.extend({
 
       model.set('status', 'cancelled');
       model.save();
-
-      this.set('isShowingModal', false);
     }
   }
 });

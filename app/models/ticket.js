@@ -80,7 +80,18 @@ export default DS.Model.extend({
       default:
         return this.get('question').slice(0, 140);
     }
+  }),
+
+  isOpen: Ember.computed('status', function() {
+    let status = this.get('status');
+    return status === statusList[0] || status === statusList[1];
+  }),
+
+  isClosed: Ember.computed('status', function() {
+    let status = this.get('status');
+    return status === statusList[2] || status === statusList[3];
   })
+
 });
 
 

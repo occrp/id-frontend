@@ -47,8 +47,8 @@
         </dl>
       {{else}}
         <h1 class="t-dark t-flush" data-test-name>Request</h1>
+
         <dl class="ticketDetails">
-          {{!-- <dt>Question</dt> --}}
           <dd class="formatted" data-test-question>{{model.question}}</dd>
         </dl>
       {{/if}}
@@ -89,28 +89,10 @@
         {{/if}}
       </dl>
 
-      {{#if (or (eq model.status 'new') (eq model.status 'in-progress'))}}
-        <a class="button button--bordered" {{action (mut isShowingModal) true}} data-test-cancel>Cancel request</a>
-      {{else if (not-eq model.status 'closed')}}
-        <a class="button button--accent" data-test-reopen>Reopen request</a>
-      {{/if}}
-
-      {{#if isShowingModal}}
-      {{#ui-modal close=(action (mut isShowingModal) false)}}
-        <div class="modal-content">
-        <div class="modal-body">
-
-          <div class="modal-message">
-            <h4>Are you sure you want to cancel this request?</h4>
-          </div>
-          <div class="modal-actions">
-            <button class="button button--primary" {{action 'cancelTicket'}} data-test-modal-confirmCancel>Cancel request</button>
-            <button class="button button--accent" {{action (mut isShowingModal) false}} data-test-modal-dontCancel>Leave request open</button>
-          </div>
-
-        </div>
-        </div>
-      {{/ui-modal}}
+      {{#if model.isOpen}}
+        {{ticket-cancel onCancel=(action 'cancelTicket')}}
+      {{else}}
+        {{ticket-reopen model=model}}
       {{/if}}
 
     </div>

@@ -1,0 +1,33 @@
+<a class="button button--bordered" {{action (mut isShowingModal) true}} data-test-reopen>
+  Reopen request
+</a>
+
+{{#if isShowingModal}}
+{{#ui-modal close=(action (mut isShowingModal) false)}}
+  <div class="modal-content">
+  <div class="modal-body">
+
+    <form class="comment-form" {{action "save" on="submit"}}>
+
+      {{#validated-field class="form-group" validation=this.validations.attrs.comment didValidate=didValidate as |field|}}
+        <label for="ticket-reopen">Reason for reopening <span class="text-danger">*</span></label>
+        {{textarea value=comment class="form-control" id="ticket-reopen" rows="5"}}
+
+        {{#if field.showErrors}}
+          <div class="help-block">{{v-get this "comment" "message"}}</div>
+        {{/if}}
+      {{/validated-field}}
+
+      <button disabled={{publishActivity.isRunning}} type="submit" class="button button--primary pull-right">
+        Reopen
+      </button>
+
+      {{#if publishActivity.isRunning}}
+        {{ui-spinner}}
+      {{/if}}
+    </form>
+
+  </div>
+  </div>
+{{/ui-modal}}
+{{/if}}

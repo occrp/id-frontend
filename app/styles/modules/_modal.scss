@@ -3,12 +3,15 @@
   z-index: 1000;
 }
 
-.modal-message {
-  text-align: center;
-  padding: 10px 20px 20px 20px;
-  margin: 0 auto;
+.modal-content {
+  min-width: 450px;
+}
 
+.modal-message {
   color: $pal-gray30;
+  text-align: center;
+  margin: 0 auto;
+  padding: 10px 20px 20px 20px;
 }
 
 .modal-actions {
