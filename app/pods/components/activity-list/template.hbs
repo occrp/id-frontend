@@ -1,0 +1,43 @@
+<div class="commentList">
+
+  {{#each data as |item|}}
+  {{#unless item.isNew}}
+    <div class="comment">
+      <div class="comment-author">
+        <strong>{{item.author.displayName}}</strong>
+        at
+        <time datetime={{item.created}} title={{moment-format item.created 'LLL'}}>
+          {{moment-format item.created 'h:mm A, DD MMM YYYY'}}
+        </time>
+      </div>
+      <div class="comment-body formatted">{{item.comment}}</div>
+    </div>
+  {{/unless}}
+  {{/each}}
+
+  <div class="comment">
+    <div class="comment-author"><strong>Leave a comment</strong></div>
+    <div class="comment-form">
+      <form {{action "save" on="submit"}}>
+
+        {{#validated-field class="form-group" validation=this.validations.attrs.comment didValidate=didValidate as |field|}}
+          {{textarea value=comment class="form-control" rows="5"}}
+
+          {{#if field.showErrors}}
+            <div class="help-block">{{v-get this "comment" "message"}}</div>
+          {{/if}}
+        {{/validated-field}}
+
+        <button disabled={{publishComment.isRunning}} type="submit" class="button button--primary pull-right">
+          Post comment
+        </button>
+
+        {{#if publishComment.isRunning}}
+          {{ui-spinner}}
+        {{/if}}
+
+      </form>
+    </div>
+  </div>
+
+</div>

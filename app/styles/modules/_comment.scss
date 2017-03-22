@@ -18,8 +18,6 @@
 }
 
 .comment-author {
-  // float: left;
-  // width: 140px;
   color: $pal-gray50;
   background: $pal-gray100;
   padding: 12px 20px;
@@ -39,12 +37,23 @@
 
 .comment-form {
   padding: 10px 10px;
+  font-size: 14px;
 
   .form-control {
     font-size: 15px;
   }
 
+  .help-block {
+    text-align: right;
+  }
+
   .button {
     margin: 10px 0;
+  }
+
+  .spinner {
+    float: right;
+    margin-right: 20px;
+    margin-top: 10px + 15px;
   }
 }

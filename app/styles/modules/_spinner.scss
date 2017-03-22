@@ -41,3 +41,9 @@
     transform: scale(1.0);
   }
 }
+
+.spinner--white {
+  & > div {
+    background-color: white;
+  }
+}

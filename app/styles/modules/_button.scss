@@ -57,11 +57,20 @@
 
 .button[disabled],
 .button.is-disabled {
-  background: $pal-gray80;
+  background: $pal-gray70;
   cursor: not-allowed;
 
   &:hover {
-    background: $pal-gray80;
+    background: $pal-gray70;
+  }
+}
+
+.button.button--primary[disabled],
+.button.button--primary.is-disabled {
+  background: mix(white, $pal-primary, 20%);
+
+  &:hover {
+    background: mix(white, $pal-primary, 20%);
   }
 }
 

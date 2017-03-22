@@ -64,34 +64,9 @@
 
       <hr class="l-fixedColumn-separator" />
 
-      <h2 class="t-accent">Comments</h2>
+      <h2 class="t-accent">Activity</h2>
 
-      <div class="commentList">
-
-        <div class="comment">
-          <div class="comment-author"><strong>Stefan Schipor</strong> commented <time>on 24 Feb, 2016</time></div>
-          <div class="comment-body formatted">Hey this is my comment.</div>
-        </div>
-
-        <div class="comment">
-          <div class="comment-author"><strong>Somebody Else</strong> commented <time>4 minutes ago</time></div>
-          <div class="comment-body formatted">Voluptatum doloremque exercitationem beatae est. Est laboriosam libero autem dolores asperiores maiores veritatis. Libero exercitationem totam sit sequi veritatis. Quae et et aut dolor nesciunt. Et veritatis totam. Perferendis quidem magni mollitia molestias quis ut iure.
-
-Quia ducimus alias laborum consequuntur rerum. Reiciendis nobis quod temporibus velit in culpa tenetur. Consectetur eos harum. Totam soluta tempore vel ipsum consequuntur voluptas quia ipsa. Velit architecto tenetur dolor aut hic sed error illo. Labore quis pariatur omnis magnam explicabo.</div>
-        </div>
-
-        <div class="comment">
-          <div class="comment-author"><strong>Leave a comment</strong></div>
-          <div class="comment-body comment-form">
-            <form>
-              {{textarea class="form-control" rows="5"}}
-              <button type="submit" class="button button--primary pull-right">Post comment</button>
-            </form>
-          </div>
-        </div>
-
-      </div>
-
+      {{activity-list data=model.activities parent=model}}
     </div>
 
     <div class="l-fixedColumn-column">

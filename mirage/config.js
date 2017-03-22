@@ -103,6 +103,19 @@ export default function() {
     return schema.users.find(id);
   });
 
+  this.post('/activities', (schema, request) => {
+    let data = JSON.parse(request.requestBody).data;
+    let attrs = data.attributes;
+    let rels = data.relationships;
+
+    attrs.created = (new Date()).toISOString();
+
+    attrs.authorId = rels.author.data.id;
+    attrs.ticketId = rels.ticket.data.id;
+
+    return schema.activities.create(attrs);
+  });
+
   this.get('/me', () => {
     return {
       "id": 42,

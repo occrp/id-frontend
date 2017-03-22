@@ -49,6 +49,12 @@ export default Factory.extend({
 
       ticket.update(hash);
     }
+  }),
+
+  withComments: trait({
+    afterCreate(ticket, server) {
+      server.createList('activity', 3, 'isComment', { ticket });
+    }
   })
 
 });
