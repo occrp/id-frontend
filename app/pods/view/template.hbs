@@ -72,41 +72,15 @@
 
       <hr class="l-fixedColumn-separator" />
 
-      <h2 >Activity</h2>
+      <h3 class="t-accent">Activity</h3>
 
-      {{activity-list data=model.activities parent=model}}
+      {{activity-list data=model.activities model=model}}
     </div>
 
     <div class="l-fixedColumn-column">
-
-      <div class="ticketMeta">
-        <p>{{status-label model.status data-test-status}}</p>
-
-        <dl class="requestDetails">
-          <dt><i class="fa fa-refresh" /> Last update</dt>
-          <dd><time datetime={{model.statusUpdated}} title={{moment-format model.statusUpdated 'LLL'}}>{{moment-from-now model.statusUpdated}}</time></dd>
-
-          <dt><i class="fa fa-calendar-check-o" /> Deadline</dt>
-          <dd><time datetime={{model.deadline}} title={{moment-format model.deadline 'LLL'}}>{{moment-format model.deadline 'LL'}} ({{moment-from-now model.deadline}})</time></dd>
-
-          {{#if model.assignee}}
-            <dt>Assigned to</dt>
-            <dd>{{model.assignee.displayName}}</dd>
-          {{/if}}
-        </dl>
-
-        {{#if model.isOpen}}
-          {{#if (can "manage tickets")}}
-            {{ticket-close model=model activityType='close'}}
-          {{else}}
-            {{ticket-close model=model activityType='cancel'}}
-          {{/if}}
-        {{else}}
-          {{ticket-reopen model=model}}
-        {{/if}}
-      </div>
-
+      {{ticket-meta model=model class="ticketMeta"}}
     </div>
+
   </div>
 
 </div>

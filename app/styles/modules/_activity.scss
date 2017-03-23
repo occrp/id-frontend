@@ -2,11 +2,6 @@
   position: relative;
   margin: 25px 0 40px 0;
 
-  // .l-fixedColumn shifts
-  @include respond(to-em(800px)) {
-    margin-left: -20px;
-  }
-
   &:before {
     content: '';
     width: 2px;

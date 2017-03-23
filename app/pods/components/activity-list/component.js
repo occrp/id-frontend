@@ -20,7 +20,7 @@ export default Ember.Component.extend(Validations, {
     let record = this.get('store').createRecord('activity', {
       type: 'update',
       comment: this.get('comment'),
-      ticket: this.get('parent'),
+      ticket: this.get('model'),
       author: this.get('session.currentUser')
     });
     yield record.save();

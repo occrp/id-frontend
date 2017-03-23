@@ -18,12 +18,5 @@ export default Ember.Controller.extend({
     }
   }),
 
-  actions: {
-    cancelTicket() {
-      let model = this.get('model');
 
-      model.set('status', 'cancelled');
-      model.save();
-    }
-  }
 });

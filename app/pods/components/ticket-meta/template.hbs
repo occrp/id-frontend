@@ -1,0 +1,46 @@
+<p>{{status-label model.status data-test-status}}</p>
+
+<dl class="requestDetails">
+  <dt><i class="fa fa-refresh" /> Last update</dt>
+  <dd>
+    <time datetime={{model.statusUpdated}} title={{moment-format model.statusUpdated 'LLL'}}>{{moment-from-now model.statusUpdated}}</time>
+  </dd>
+
+  <dt><i class="fa fa-calendar-check-o" /> Deadline</dt>
+  <dd>
+    <time datetime={{model.deadline}} title={{moment-format model.deadline 'LLL'}}>{{moment-format model.deadline 'LL'}} ({{moment-from-now model.deadline}})</time>
+  </dd>
+
+  {{#if (can 'manage tickets')}}
+    {{#ui-dropdown as |dd|}}
+      {{#dd.trigger}}
+        <button class="iconButton iconButton--dimmed"><i class="fa fa-cog" /></button>
+      {{/dd.trigger}}
+      {{#dd.body headerText="Assign to staff"}}
+        {{search-users
+          task=searchStaff
+          current=model.assignee.id
+          onSelect=(pipe-action (action 'selectUser' model) dd.close)}}
+      {{/dd.body}}
+    {{/ui-dropdown}}
+  {{/if}}
+
+  <dt>Staff responders</dt>
+  <dd>
+    {{#if updateAssignee.isRunning}}
+      {{ui-spinner}}
+    {{else}}
+      {{#if model.assignee}}
+        {{model.assignee.displayName}}
+      {{else}}
+        <span class="t-dimmed">- unassigned -</span>
+      {{/if}}
+    {{/if}}
+  </dd>
+</dl>
+
+{{#if model.isOpen}}
+  {{ticket-close model=model activityType=(if (can "manage tickets") 'close' 'cancel')}}
+{{else}}
+  {{ticket-reopen model=model}}
+{{/if}}

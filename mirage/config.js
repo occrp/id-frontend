@@ -71,6 +71,9 @@ export default function() {
 
     if (rels.assignee.data) {
       model.update({assigneeId: rels.assignee.data.id});
+      if (attrs.status === 'new') {
+        attrs.status = 'in-progress';
+      }
     }
     model.update(attrs);
 
