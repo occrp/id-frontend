@@ -109,9 +109,26 @@ export default function() {
     let rels = data.relationships;
 
     attrs.created = (new Date()).toISOString();
-
     attrs.authorId = rels.author.data.id;
     attrs.ticketId = rels.ticket.data.id;
+
+    let ticket = schema.tickets.find(rels.ticket.data.id);
+
+    switch (attrs.type) {
+      case 'cancel':
+        ticket.update({ status: 'cancelled' });
+        break;
+      case 'close':
+        console.log('well')
+        ticket.update({ status: 'closed' });
+        break;
+      case 'reopen':
+        if (ticket.assignee) {
+          ticket.update({ status: 'in-progress' });
+        } else {
+          ticket.update({ status: 'new' });
+        }
+    }
 
     return schema.activities.create(attrs);
   });

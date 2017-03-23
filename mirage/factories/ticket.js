@@ -20,25 +20,25 @@ export default Factory.extend({
   whySensitive()          { return faker.lorem.sentences(); },
   deadline()              { return faker.date.future(); },
 
-  name: null,
-  surname: null,
-  aliases: null,
-  dob: null,
-  family: null,
-  background: null,
-  businessActivities: null,
-  initialInformation: null,
+  name:                   null,
+  surname:                null,
+  aliases:                null,
+  dob:                    null,
+  family:                 null,
+  background:             null,
+  businessActivities:     null,
+  initialInformation:     null,
 
-  companyName: null,
-  country: null,
-  companyBackground: null,
-  connections: null,
-  sources: null,
+  companyName:            null,
+  country:                null,
+  companyBackground:      null,
+  connections:            null,
+  sources:                null,
 
-  question: null,
+  question:               null,
 
   isPerson: trait({
-    type: typeList[0],
+    type:                 typeList[0],
     name()                { return faker.name.firstName(); },
     surname()             { return faker.name.lastName(); },
     aliases()             { return faker.lorem.sentences(); },
@@ -50,7 +50,7 @@ export default Factory.extend({
   }),
 
   isCompany: trait({
-    type: typeList[1],
+    type:                 typeList[1],
     companyName()         { return faker.company.companyName(); },
     country()             { return faker.address.countryCode(); },
     companyBackground()   { return faker.lorem.sentences(); },
@@ -59,7 +59,7 @@ export default Factory.extend({
   }),
 
   isOther: trait({
-    type: typeList[2],
+    type:                 typeList[2],
     question()            { return faker.lorem.paragraphs(); }
   }),
 

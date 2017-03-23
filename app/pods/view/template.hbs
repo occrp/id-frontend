@@ -90,7 +90,11 @@
       </dl>
 
       {{#if model.isOpen}}
-        {{ticket-cancel onCancel=(action 'cancelTicket')}}
+        {{#if (can "manage tickets")}}
+          {{ticket-close model=model activityType='close'}}
+        {{else}}
+          {{ticket-close model=model activityType='cancel'}}
+        {{/if}}
       {{else}}
         {{ticket-reopen model=model}}
       {{/if}}

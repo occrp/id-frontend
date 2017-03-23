@@ -1,0 +1,21 @@
+<a class="button button--bordered" {{action (mut isShowingModal) true}} data-test-cancel>
+  {{activityType}} request
+</a>
+
+{{#if isShowingModal}}
+{{#ui-modal close=(action (mut isShowingModal) false)}}
+  <div class="modal-content">
+  <div class="modal-body">
+
+    <div class="modal-message">
+      <h4>Are you sure you want to {{activityType}} this request?</h4>
+    </div>
+    <div class="modal-actions">
+      <button class="button button--primary" {{action 'save'}} data-test-modal-confirmCancel>Yes, {{activityType}} request</button>
+      <button class="button button--accent" {{action (mut isShowingModal) false}} data-test-modal-dontCancel>No, leave it open</button>
+    </div>
+
+  </div>
+  </div>
+{{/ui-modal}}
+{{/if}}
