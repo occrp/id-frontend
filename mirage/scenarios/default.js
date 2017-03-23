@@ -21,7 +21,7 @@ export default function(server) {
   server.createList('user', 5, 'staff');
   server.createList('user', 2, 'superuser');
 
-  server.createList('ticket', 3, 'isPerson', 'withComments', {
+  server.createList('ticket', 3, 'isPerson', 'withActivities', {
     status: 'new',
   });
   server.createList('ticket', 3, 'isPerson', 'withAsignee', 'withComments', {

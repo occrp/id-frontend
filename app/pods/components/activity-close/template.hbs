@@ -1,0 +1,9 @@
+<div class="activity-headline">
+  {{status-label (get statusByType data.type)}}
+  by
+  <strong>{{data.author.displayName}}</strong>
+  at
+  <time datetime={{data.created}} title={{moment-format data.created 'LLL'}}>
+    {{moment-format data.created 'h:mm A, DD MMM YYYY'}}
+  </time>
+</div>

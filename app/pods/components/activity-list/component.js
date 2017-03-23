@@ -6,6 +6,13 @@ export default Ember.Component.extend(Validations, {
   store: Ember.inject.service(),
   session: Ember.inject.service(),
 
+  componentsByType: {
+    'update': 'activity-comment',
+    'close': 'activity-close',
+    'cancel': 'activity-close',
+    'reopen': 'activity-reopen',
+  },
+
   comment: null,
   didValidate: false,
 

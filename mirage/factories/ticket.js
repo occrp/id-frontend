@@ -20,23 +20,6 @@ export default Factory.extend({
   whySensitive()          { return faker.lorem.sentences(); },
   deadline()              { return faker.date.future(); },
 
-  name:                   null,
-  surname:                null,
-  aliases:                null,
-  dob:                    null,
-  family:                 null,
-  background:             null,
-  businessActivities:     null,
-  initialInformation:     null,
-
-  companyName:            null,
-  country:                null,
-  companyBackground:      null,
-  connections:            null,
-  sources:                null,
-
-  question:               null,
-
   isPerson: trait({
     type:                 typeList[0],
     name()                { return faker.name.firstName(); },
@@ -84,6 +67,16 @@ export default Factory.extend({
   withComments: trait({
     afterCreate(ticket, server) {
       server.createList('activity', 3, 'isComment', { ticket });
+    }
+  }),
+
+  withActivities: trait({
+    afterCreate(ticket, server) {
+      server.createList('activity', 2, 'isComment', { ticket });
+      server.create('activity', 'isCancel', { ticket });
+      server.create('activity', 'isReopen', { ticket });
+      server.create('activity', 'isComment', { ticket });
+      server.create('activity', 'isClose', { ticket });
     }
   })
 

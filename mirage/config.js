@@ -119,7 +119,6 @@ export default function() {
         ticket.update({ status: 'cancelled' });
         break;
       case 'close':
-        console.log('well')
         ticket.update({ status: 'closed' });
         break;
       case 'reopen':

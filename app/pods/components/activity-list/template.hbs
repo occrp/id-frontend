@@ -1,25 +1,17 @@
-<div class="commentList">
+<div class="activityList">
 
   {{#each data as |item|}}
   {{#unless item.isNew}}
-    <div class="comment">
-      <div class="comment-author">
-        <strong>{{item.author.displayName}}</strong>
-        at
-        <time datetime={{item.created}} title={{moment-format item.created 'LLL'}}>
-          {{moment-format item.created 'h:mm A, DD MMM YYYY'}}
-        </time>
-      </div>
-      <div class="comment-body formatted">{{item.comment}}</div>
-    </div>
+    {{component (get componentsByType item.type) data=item class=(concat "activity activity--" item.type)}}
+
   {{/unless}}
   {{/each}}
 
-  <div class="comment">
-    <div class="comment-author"><strong>Leave a comment</strong></div>
-    <form class="comment-body comment-form" {{action "save" on="submit"}}>
+  <div class="activity activity--update">
+    <div class="activity-author"><strong>Leave a activity</strong></div>
+    <form class="activity-body activity-form" {{action "save" on="submit"}}>
 
-      {{#validated-field class="form-group" validation=this.validations.attrs.comment didValidate=didValidate as |field|}}
+      {{#validated-field class="form-group" validation=this.validations.attrs.activity didValidate=didValidate as |field|}}
         {{textarea value=comment class="form-control" rows="5"}}
 
         {{#if field.showErrors}}
