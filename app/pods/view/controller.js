@@ -7,6 +7,17 @@ export default Ember.Controller.extend({
   typeMap,
   countries,
 
+  title: Ember.computed('model.type', function () {
+    switch (this.get('model.type')) {
+      case typeList[0]:
+        return this.get('model.displayName');
+      case typeList[1]:
+        return this.get('model.companyName');
+      case typeList[2]:
+        return 'Request';
+    }
+  }),
+
   actions: {
     cancelTicket() {
       let model = this.get('model');

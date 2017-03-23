@@ -1,6 +1,11 @@
 .activityList {
-  margin: 25px 0 40px 0;
   position: relative;
+  margin: 25px 0 40px 0;
+
+  // .l-fixedColumn shifts
+  @include respond(to-em(800px)) {
+    margin-left: -20px;
+  }
 
   &:before {
     content: '';
@@ -43,7 +48,7 @@
   strong {
     font-size: 15px;
     color: $pal-gray30;
-    margin: 0 0.25em;
+    margin: 0 0.1em;
 
     &:first-child {
       margin-left: 0;
@@ -65,7 +70,7 @@
   strong {
     font-size: 15px;
     color: $pal-gray30;
-    margin: 0 0.25em;
+    margin: 0 0.1em;
   }
 
   .tag {
