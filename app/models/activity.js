@@ -1,7 +1,5 @@
 import DS from 'ember-data';
 import { validator, buildValidations } from 'ember-cp-validations';
-import notEqual from '../macros/not-equal';
-import raw from 'ember-macro-helpers/raw';
 
 const { attr, belongsTo } = DS;
 
@@ -25,7 +23,6 @@ export default DS.Model.extend({
 
 
 export const Validations = buildValidations({
-  // Person
   comment: validator('presence', {
     presence: true,
   })

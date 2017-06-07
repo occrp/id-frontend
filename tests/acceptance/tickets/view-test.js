@@ -67,7 +67,7 @@ test('rendering ticket details (other)', function(assert) {
 
 
 test('cancelling a ticket', function(assert) {
-  assert.expect(6);
+  assert.expect(5);
 
   server.create('user', {
     id: 42,
@@ -95,7 +95,7 @@ test('cancelling a ticket', function(assert) {
     statusUpdated: '2017-01-01T22:00:00.000Z'
   });
 
-  let done = assert.async();
+  // let done = assert.async();
   server.patch('/tickets/:id', (schema, request) => {
     let attrs = JSON.parse(request.requestBody);
 
@@ -137,7 +137,7 @@ test('cancelling a ticket', function(assert) {
       }
     });
 
-    done();
+    // done();
     return ticket.update(attrs.data.attributes);
   });
 

@@ -1,5 +1,4 @@
 import { Factory, faker, trait } from 'ember-cli-mirage';
-import { typeList } from 'id2-frontend/models/activity';
 
 const random = faker.random.arrayElement;
 
