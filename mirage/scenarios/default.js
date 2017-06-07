@@ -24,14 +24,14 @@ export default function(server) {
   server.createList('ticket', 3, 'isPerson', 'withActivities', {
     status: 'new',
   });
-  server.createList('ticket', 3, 'isPerson', 'withAsignee', 'withComments', {
+  server.createList('ticket', 3, 'isPerson', 'withAssignee', 'withComments', {
     status: 'in-progress',
   });
 
-  server.createList('ticket', 3, 'isPerson', 'withAsignee', 'withComments', {
+  server.createList('ticket', 3, 'isPerson', 'withAssignee', 'withComments', {
     status: 'closed',
   });
-  server.createList('ticket', 3, 'isPerson', 'withAsignee', 'withComments', {
+  server.createList('ticket', 3, 'isPerson', 'withAssignee', 'withComments', {
     status: 'cancelled',
   });
 

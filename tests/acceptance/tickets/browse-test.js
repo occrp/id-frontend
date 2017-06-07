@@ -9,7 +9,7 @@ moduleForAcceptance('Acceptance | tickets/browse');
 test('rendering tickets index', function(assert) {
   assert.expect(4);
 
-  server.createList('ticket', 10, {
+  server.createList('ticket', 10, 'isPerson', {
     status(i) {
       return i < 7 ? random(['new', 'in-progress']) : random(['closed', 'cancelled']);
     }

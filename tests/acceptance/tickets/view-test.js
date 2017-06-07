@@ -69,6 +69,15 @@ test('rendering ticket details (other)', function(assert) {
 test('cancelling a ticket', function(assert) {
   assert.expect(6);
 
+  server.create('user', {
+    id: 42,
+    email: "user@mail.com",
+    firstName: 'John',
+    lastName: 'Appleseed',
+    isStaff: false,
+    isSuperuser: false
+  });
+
   let ticket = server.create('ticket', {
     status: 'new',
     type: 'person_ownership',
@@ -104,10 +113,7 @@ test('cancelling a ticket', function(assert) {
           "deadline": "2018-12-01T22:00:00.000Z",
           "dob": "2004-12-01T22:00:00.000Z",
           "family": "Family",
-          "findings-visible": false,
           "initial-information": "Initial info",
-          "is-for-profit": false,
-          "is-public": false,
           "name": "John",
           "question": null,
           "sensitive": true,
@@ -116,7 +122,6 @@ test('cancelling a ticket', function(assert) {
           "status-updated": "2017-01-01T22:00:00.000Z",
           "surname": "Doe",
           "type": "person_ownership",
-          "user-pays": false,
           "why-sensitive": null
         },
         "id": "1",

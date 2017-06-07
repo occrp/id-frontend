@@ -20,6 +20,24 @@ export default Factory.extend({
   whySensitive()          { return faker.lorem.sentences(); },
   deadline()              { return faker.date.future(); },
 
+  // Attributes based on type. Override with traits
+  name:                   null,
+  surname:                null,
+  aliases:                null,
+  dob:                    null,
+  family:                 null,
+  background:             null,
+  businessActivities:     null,
+  initialInformation:     null,
+
+  companyName:            null,
+  country:                null,
+  companyBackground:      null,
+  connections:            null,
+  sources:                null,
+
+  question:               null,
+
   isPerson: trait({
     type:                 typeList[0],
     name()                { return faker.name.firstName(); },
@@ -54,7 +72,7 @@ export default Factory.extend({
     });
   },
 
-  withAsignee: trait({
+  withAssignee: trait({
     afterCreate(ticket, server) {
       let staff = server.schema.users.where({ isStaff: true });
 

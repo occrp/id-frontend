@@ -26,10 +26,7 @@ test('creating a new ticket (person)', function(assert) {
           "deadline": "2100-01-04T22:00:00.000Z",
           "dob": "2004-12-01T22:00:00.000Z",
           "family": "Family",
-          "findings-visible": false,
           "initial-information": "Initial lorem ipsum.",
-          "is-for-profit": false,
-          "is-public": false,
           "name": "John",
           "question": null,
           "sensitive": true,
@@ -38,7 +35,6 @@ test('creating a new ticket (person)', function(assert) {
           "status-updated": null,
           "surname": "Doe",
           "type": "person_ownership",
-          "user-pays": false,
           "why-sensitive": "It just is."
         },
         "relationships": {
@@ -110,10 +106,7 @@ test('creating a new ticket (company)', function(assert) {
           "deadline": null,
           "dob": null,
           "family": null,
-          "findings-visible": false,
           "initial-information": null,
-          "is-for-profit": false,
-          "is-public": false,
           "name": null,
           "question": null,
           "sensitive": false,
@@ -122,7 +115,6 @@ test('creating a new ticket (company)', function(assert) {
           "status-updated": null,
           "surname": null,
           "type": "company_ownership",
-          "user-pays": false,
           "why-sensitive": null
         },
         "relationships": {
@@ -185,10 +177,7 @@ test('creating a new ticket (other)', function(assert) {
           "deadline": null,
           "dob": null,
           "family": null,
-          "findings-visible": false,
           "initial-information": null,
-          "is-for-profit": false,
-          "is-public": false,
           "name": null,
           "question": "My question.",
           "sensitive": false,
@@ -197,7 +186,6 @@ test('creating a new ticket (other)', function(assert) {
           "status-updated": null,
           "surname": null,
           "type": "other",
-          "user-pays": false,
           "why-sensitive": null
         },
         "relationships": {

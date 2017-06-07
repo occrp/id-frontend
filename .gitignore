@@ -22,3 +22,5 @@ testem.log
 *.DS_Store
 firebase.json
 .firebaserc
+.vscode
+jsconfig.json
