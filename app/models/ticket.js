@@ -50,6 +50,7 @@ export default DS.Model.extend({
   author: belongsTo('user'),
   assignee: belongsTo('user'),
   activities: hasMany('activity', { async: true }),
+  attachments: hasMany('attachment', { async: true }),
 
   // Person
   name: attr('string'),

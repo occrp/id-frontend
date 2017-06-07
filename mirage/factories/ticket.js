@@ -96,6 +96,13 @@ export default Factory.extend({
       server.create('activity', 'isComment', { ticket });
       server.create('activity', 'isClose', { ticket });
     }
-  })
+  }),
+
+  withAttachments: trait({
+    afterCreate(ticket, server) {
+      server.createList('attachment', 3, { ticket });
+    }
+  }),
+
 
 });
