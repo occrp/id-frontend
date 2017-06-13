@@ -3,12 +3,12 @@
 <dl class="requestDetails">
   <dt><i class="fa fa-refresh" /> Last update</dt>
   <dd>
-    <time datetime={{model.statusUpdated}} title={{moment-format model.statusUpdated 'LLL'}}>{{moment-from-now model.statusUpdated}}</time>
+    <time datetime={{model.updatedAt}} title={{moment-format model.updatedAt 'LLL'}}>{{moment-from-now model.updatedAt}}</time>
   </dd>
 
   <dt><i class="fa fa-calendar-check-o" /> Deadline</dt>
   <dd>
-    <time datetime={{model.deadline}} title={{moment-format model.deadline 'LLL'}}>{{moment-format model.deadline 'LL'}} ({{moment-from-now model.deadline}})</time>
+    <time datetime={{model.deadlineAt}} title={{moment-format model.deadlineAt 'LLL'}}>{{moment-format model.deadlineAt 'LL'}} ({{moment-from-now model.deadlineAt}})</time>
   </dd>
 
   {{#if (can 'manage tickets')}}

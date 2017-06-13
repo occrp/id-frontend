@@ -57,7 +57,7 @@ export default function() {
   this.post('/tickets', (schema, request) => {
     let attrs = JSON.parse(request.requestBody).data.attributes;
 
-    attrs.created = (new Date()).toISOString();
+    attrs.createdAt = (new Date()).toISOString();
 
     return schema.tickets.create(attrs);
   });
@@ -111,7 +111,7 @@ export default function() {
     let attrs = data.attributes;
     let rels = data.relationships;
 
-    attrs.created = (new Date()).toISOString();
+    attrs.createdAt = (new Date()).toISOString();
     attrs.authorId = rels.author.data.id;
     attrs.ticketId = rels.ticket.data.id;
 

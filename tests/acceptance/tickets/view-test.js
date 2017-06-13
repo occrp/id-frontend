@@ -11,7 +11,7 @@ test('rendering ticket details (person)', function(assert) {
     name: 'John',
     surname: 'Doe',
     background: 'Lorem ipsum some background.',
-    dob: '2004-12-01T22:00:00.000Z',
+    bornAt: '2004-12-01T22:00:00.000Z',
   });
 
   visit(`/view/${ticket.id}`);
@@ -21,7 +21,7 @@ test('rendering ticket details (person)', function(assert) {
 
     assert.equal(find('[data-test-name]').text(), 'John Doe');
     assert.equal(find('[data-test-background]').text(), 'Lorem ipsum some background.');
-    assert.equal(find('[data-test-dob]').text(), 'December 2, 2004');
+    assert.equal(find('[data-test-born-at]').text(), 'December 2, 2004');
   });
 });
 
@@ -89,10 +89,10 @@ test('cancelling a ticket', function(assert) {
     aliases: 'Aliases',
     businessActivities: 'Bizniss',
     whySensitive: null,
-    dob: '2004-12-01T22:00:00.000Z',
-    created: '2016-12-01T22:00:00.000Z',
-    deadline: '2018-12-01T22:00:00.000Z',
-    statusUpdated: '2017-01-01T22:00:00.000Z'
+    bornAt: '2004-12-01T22:00:00.000Z',
+    createdAt: '2016-12-01T22:00:00.000Z',
+    deadlineAt: '2018-12-01T22:00:00.000Z',
+    updatedAt: '2017-01-01T22:00:00.000Z'
   });
 
   // let done = assert.async();
@@ -109,9 +109,9 @@ test('cancelling a ticket', function(assert) {
           "company-name": null,
           "connections": null,
           "country": null,
-          "created": "2016-12-01T22:00:00.000Z",
-          "deadline": "2018-12-01T22:00:00.000Z",
-          "dob": "2004-12-01T22:00:00.000Z",
+          "created-at": "2016-12-01T22:00:00.000Z",
+          "deadline-at": "2018-12-01T22:00:00.000Z",
+          "born-at": "2004-12-01T22:00:00.000Z",
           "family": "Family",
           "initial-information": "Initial info",
           "name": "John",
@@ -119,7 +119,7 @@ test('cancelling a ticket', function(assert) {
           "sensitive": true,
           "sources": null,
           "status": "cancelled",
-          "status-updated": "2017-01-01T22:00:00.000Z",
+          "updated-at": "2017-01-01T22:00:00.000Z",
           "surname": "Doe",
           "kind": "person_ownership",
           "why-sensitive": null

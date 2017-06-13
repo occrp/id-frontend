@@ -80,9 +80,9 @@
       <h2 class="fieldGroup-title">Other details</h2>
 
       <div class="form-group">
-        <label for="ticket-dob">Date of birth</label>
+        <label for="ticket-born-at">Date of birth</label>
 
-        {{input-date value=buffer.dob onSelect=(action (mut buffer.dob) value="date") inputId="ticket-dob" maxDate=today}}
+        {{input-date value=buffer.bornAt onSelect=(action (mut buffer.bornAt) value="date") inputId="ticket-born-at" maxDate=today}}
       </div>
 
 
@@ -185,7 +185,7 @@
     <div class="form-group">
       <label for="ticket-deadline">Deadline</label>
       <p class="info-block">We will try to meet your deadline, but please note that our researchers are quite busy. <br />Give them as much time as you possibly can!</p>
-      {{input-date value=buffer.deadline onSelect=(action (mut buffer.deadline) value="date") inputId="ticket-deadline" minDate=today}}
+      {{input-date value=buffer.deadlineAt onSelect=(action (mut buffer.deadlineAt) value="date") inputId="ticket-deadline" minDate=today}}
     </div>
 
     <div class="form-group">

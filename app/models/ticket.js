@@ -39,13 +39,13 @@ export const statusList = Object.keys(statusMap);
 export default DS.Model.extend({
   // Common
   kind: attr('string', { defaultValue: kindList[0] }),
-  created: attr('date'),
   status: attr('string', { defaultValue: statusList[0] }),
-  statusUpdated: attr('date'),
+  createdAt: attr('date'),
+  updatedAt: attr('date'),
+  deadlineAt: attr('date'),
 
   sensitive: attr('boolean', { defaultValue: false }),
   whySensitive: attr('string'),
-  deadline: attr('date'),
 
   author: belongsTo('user'),
   assignee: belongsTo('user'),
@@ -56,7 +56,7 @@ export default DS.Model.extend({
   surname: attr('string'),
   background: attr('string'),
   initialInformation: attr('string'),
-  dob: attr('date'),
+  bornAt: attr('date'),
   aliases: attr('string'),
   family: attr('string'),
   businessActivities: attr('string'),

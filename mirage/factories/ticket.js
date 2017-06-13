@@ -12,19 +12,19 @@ Quia ducimus alias laborum consequuntur rerum. Reiciendis nobis quod temporibus 
 
 export default Factory.extend({
   kind(i)                 { return kindList[i % t]; },
-  created()               { return faker.date.past(); },
   status()                { return statusList[0]; },
-  statusUpdated()         { return faker.date.past(); },
+  createdAt()             { return faker.date.past(); },
+  updatedAt()             { return faker.date.past(); },
+  deadlineAt()            { return faker.date.future(); },
 
   sensitive(i)            { return i % 2 === 0 ? true : false; },
   whySensitive()          { return faker.lorem.sentences(); },
-  deadline()              { return faker.date.future(); },
 
   // Attributes based on type. Override with traits
   name:                   null,
   surname:                null,
   aliases:                null,
-  dob:                    null,
+  bornAt:                 null,
   family:                 null,
   background:             null,
   businessActivities:     null,
@@ -43,7 +43,7 @@ export default Factory.extend({
     name()                { return faker.name.firstName(); },
     surname()             { return faker.name.lastName(); },
     aliases()             { return faker.lorem.sentences(); },
-    dob()                 { return faker.date.past(); },
+    bornAt()              { return faker.date.past(); },
     family()              { return faker.lorem.sentences(); },
     background()          { return paragraphs; },
     businessActivities()  { return faker.lorem.sentences(); },

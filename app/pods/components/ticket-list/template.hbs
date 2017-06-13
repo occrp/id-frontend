@@ -13,8 +13,8 @@
       </h4>
       <p>
         updated
-        <time datetime={{item.statusUpdated}} title={{moment-format item.statusUpdated 'LLL'}}>
-          {{moment-from-now item.statusUpdated}}
+        <time datetime={{item.updatedAt}} title={{moment-format item.updatedAt 'LLL'}}>
+          {{moment-from-now item.updatedAt}}
         </time>
 
         {{#unless author}}
@@ -60,15 +60,15 @@
 
     <div class="ticket-cell ticket-dates">
       <p>
-        <time datetime={{item.created}} title={{moment-format item.created 'LLL'}}>
-          {{moment-format item.created 'DD MMM YYYY'}}
+        <time datetime={{item.createdAt}} title={{moment-format item.createdAt 'LLL'}}>
+          {{moment-format item.createdAt 'DD MMM YYYY'}}
         </time>
       </p>
-      {{#if item.deadline}}
+      {{#if item.deadlineAt}}
         <p class="ticket-deadline">
           due
-          <time datetime={{item.deadline}} title={{moment-format item.deadline 'LLL'}}>
-            {{moment-from-now item.deadline}}
+          <time datetime={{item.deadlineAt}} title={{moment-format item.deadlineAt 'LLL'}}>
+            {{moment-from-now item.deadlineAt}}
           </time>
         </p>
       {{/if}}

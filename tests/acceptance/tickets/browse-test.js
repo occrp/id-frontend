@@ -258,10 +258,10 @@ test('tickets can sorted', function(assert) {
   visit('/view');
 
   click('[data-test-dd="sort"] [data-test-dd-trigger]');
-  click('[data-test-sort-option="-deadline"]');
+  click('[data-test-sort-option="-deadline-at"]');
 
   andThen(() => {
-    assert.equal(currentURL(), '/view?sort=-deadline');
+    assert.equal(currentURL(), '/view?sort=-deadline-at');
   });
 });
 
@@ -330,9 +330,9 @@ test('ticket filtering or sorting should reset pagination', function(assert) {
   });
 
   click('[data-test-dd="sort"] [data-test-dd-trigger]');
-  click('[data-test-sort-option="-deadline"]');
+  click('[data-test-sort-option="-deadline-at"]');
 
   andThen(() => {
-    assert.equal(currentURL(), '/view?assignee=none&author=4&kind=person_ownership&size=3&sort=-deadline');
+    assert.equal(currentURL(), '/view?assignee=none&author=4&kind=person_ownership&size=3&sort=-deadline-at');
   });
 });

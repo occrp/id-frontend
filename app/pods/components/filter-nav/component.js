@@ -7,10 +7,10 @@ export default Ember.Component.extend({
   kindMap,
 
   sortFields: {
-    '-created': 'Newest',
-    'created': 'Oldest',
-    'deadline': 'Closest deadline',
-    '-deadline': 'Furthest deadline'
+    '-created-at': 'Newest',
+    'created-at': 'Oldest',
+    'deadline-at': 'Closest deadline',
+    '-deadline-at': 'Furthest deadline'
   },
 
   searchAuthors: task(getSearchGenerator({ isStaff: false })).restartable(),

@@ -8,7 +8,7 @@ export default Ember.Controller.extend(Pageable, {
   kind: null,
   author: null,
   assignee: null,
-  sort: '-created',
+  sort: '-created-at',
 
   filterMeta: Ember.computed('model.meta', function () {
     let meta = this.get('model.meta');

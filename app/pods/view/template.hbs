@@ -13,8 +13,8 @@
 
       <p class="ticketSubtitle">
       Submitted by <strong>{{model.author.displayName}}</strong> on
-        <time datetime={{model.created}} title={{moment-format model.created 'LLL'}}>
-          {{moment-format model.created 'LL'}}
+        <time datetime={{model.createdAt}} title={{moment-format model.createdAt 'LLL'}}>
+          {{moment-format model.createdAt 'LL'}}
         </time>
       </p>
 
@@ -29,7 +29,7 @@
           <dd class="formatted">{{model.initialInformation}}</dd>
 
           <dt>Date of birth</dt>
-          <dd data-test-dob>{{moment-format model.dob 'LL'}}</dd>
+          <dd data-test-born-at>{{moment-format model.bornAt 'LL'}}</dd>
 
           <dt>Aliases</dt>
           <dd class="formatted">{{model.aliases}}</dd>

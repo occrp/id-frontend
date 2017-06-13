@@ -22,9 +22,9 @@ test('creating a new ticket (person)', function(assert) {
           "company-name": null,
           "connections": null,
           "country": null,
-          "created": null,
-          "deadline": "2100-01-04T22:00:00.000Z",
-          "dob": "2004-12-01T22:00:00.000Z",
+          "created-at": null,
+          "deadline-at": "2100-01-04T22:00:00.000Z",
+          "born-at": "2004-12-01T22:00:00.000Z",
           "family": "Family",
           "initial-information": "Initial lorem ipsum.",
           "name": "John",
@@ -32,7 +32,7 @@ test('creating a new ticket (person)', function(assert) {
           "sensitive": true,
           "sources": null,
           "status": "new",
-          "status-updated": null,
+          "updated-at": null,
           "surname": "Doe",
           "kind": "person_ownership",
           "why-sensitive": "It just is."
@@ -64,7 +64,7 @@ test('creating a new ticket (person)', function(assert) {
   fillIn('#ticket-background', 'Lorem ipsum some background.');
   fillIn('#ticket-initialInformation', 'Initial lorem ipsum.');
 
-  fillIn('#ticket-dob', '02/12/2004');
+  fillIn('#ticket-born-at', '02/12/2004');
   fillIn('#ticket-aliases', 'Aliases');
   fillIn('#ticket-family', 'Family');
   fillIn('#ticket-businessActivities', 'Bizniss');
@@ -102,9 +102,9 @@ test('creating a new ticket (company)', function(assert) {
           "company-name": "Acme Inc.",
           "connections": "Connections",
           "country": "RO",
-          "created": null,
-          "deadline": null,
-          "dob": null,
+          "created-at": null,
+          "deadline-at": null,
+          "born-at": null,
           "family": null,
           "initial-information": null,
           "name": null,
@@ -112,7 +112,7 @@ test('creating a new ticket (company)', function(assert) {
           "sensitive": false,
           "sources": "Sources lorem ipsum.",
           "status": "new",
-          "status-updated": null,
+          "updated-at": null,
           "surname": null,
           "kind": "company_ownership",
           "why-sensitive": null
@@ -173,9 +173,9 @@ test('creating a new ticket (other)', function(assert) {
           "company-name": null,
           "connections": null,
           "country": null,
-          "created": null,
-          "deadline": null,
-          "dob": null,
+          "created-at": null,
+          "deadline-at": null,
+          "born-at": null,
           "family": null,
           "initial-information": null,
           "name": null,
@@ -183,7 +183,7 @@ test('creating a new ticket (other)', function(assert) {
           "sensitive": false,
           "sources": null,
           "status": "new",
-          "status-updated": null,
+          "updated-at": null,
           "surname": null,
           "kind": "other",
           "why-sensitive": null
