@@ -129,7 +129,7 @@ test('cancelling a ticket', function(assert) {
           "assignee": {
             "data": null
           },
-          "author": {
+          "requester": {
             "data": null
           }
         },

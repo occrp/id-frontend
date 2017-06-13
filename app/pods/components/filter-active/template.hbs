@@ -7,10 +7,10 @@
         <span class="chip-value" data-test-active-filter="kind">{{get (get kindMap kind) 'shortName'}}</span>
       </span>
     {{/if}}
-    {{#if currentAuthor}}
+    {{#if currentRequester}}
       <span class="chip">
-        <span class="chip-label">Author</span>
-        <span class="chip-value" data-test-active-filter="author">{{currentAuthor.firstName}} {{currentAuthor.lastName}}</span>
+        <span class="chip-label">Requester</span>
+        <span class="chip-value" data-test-active-filter="requester">{{currentRequester.firstName}} {{currentRequester.lastName}}</span>
       </span>
     {{/if}}
     {{#if currentAssignee}}

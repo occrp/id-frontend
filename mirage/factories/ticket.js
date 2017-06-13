@@ -68,7 +68,7 @@ export default Factory.extend({
     let regulars = server.schema.users.where({ isStaff: false });
 
     ticket.update({
-      author: random(regulars.models),
+      requester: random(regulars.models),
     });
   },
 

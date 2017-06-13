@@ -13,12 +13,12 @@ export default Ember.Component.extend({
     '-deadline-at': 'Furthest deadline'
   },
 
-  searchAuthors: task(getSearchGenerator({ isStaff: false })).restartable(),
+  searchRequesters: task(getSearchGenerator({ isStaff: false })).restartable(),
   searchStaff: task(getSearchGenerator({ isStaff: true })).restartable(),
 
   actions: {
-    applyAuthor(user) {
-      this.get('updateFilter')('author', user.get('id'), {
+    applyRequester(user) {
+      this.get('updateFilter')('requester', user.get('id'), {
         firstName: user.get('firstName'),
         lastName: user.get('lastName')
       });

@@ -47,7 +47,7 @@ export default DS.Model.extend({
   sensitive: attr('boolean', { defaultValue: false }),
   whySensitive: attr('string'),
 
-  author: belongsTo('user'),
+  requester: belongsTo('user'),
   assignee: belongsTo('user'),
   activities: hasMany('activity', { async: true }),
 

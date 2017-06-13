@@ -103,7 +103,7 @@ test('tickets can be filtered by kind', function(assert) {
 });
 
 
-test('tickets can be filtered by author', function(assert) {
+test('tickets can be filtered by requester', function(assert) {
   assert.expect(5);
 
   server.createList('user', 5, {
@@ -115,25 +115,25 @@ test('tickets can be filtered by author', function(assert) {
     kind: 'person_ownership',
     firstName(i) { return `Ticket #${i+1}`; },
     lastName: 'Doe',
-    authorId(i) { return i < 2 ? 1 : 4; }
+    requesterId(i) { return i < 2 ? 1 : 4; }
   });
 
   server.get('/tickets', (schema, request) => {
-    let authorId = request.queryParams['filter[author]'];
+    let requesterId = request.queryParams['filter[requester]'];
 
-    if (authorId) {
-      let user = schema.users.find(authorId);
+    if (requesterId) {
+      let user = schema.users.find(requesterId);
 
       request.mirageMeta = {
         filters: {
-          author: {
+          requester: {
             'first-name': user.firstName,
             'last-name': user.lastName
           }
         }
       };
 
-      return schema.tickets.where({ authorId: authorId });
+      return schema.tickets.where({ requesterId: requesterId });
     }
 
     return schema.tickets.all();
@@ -146,7 +146,7 @@ test('tickets can be filtered by author', function(assert) {
     assert.equal($items.length, 10, 'showing unfiltered tickets');
   });
 
-  click('[data-test-dd="filter-author"] [data-test-dd-trigger]');
+  click('[data-test-dd="filter-requester"] [data-test-dd-trigger]');
   fillIn('[data-test-filter-search]', 'User #4');
 
   andThen(() => {
@@ -156,12 +156,12 @@ test('tickets can be filtered by author', function(assert) {
   click('[data-test-filter-option]:first');
 
   andThen(() => {
-    assert.equal(currentURL(), '/view?author=4');
+    assert.equal(currentURL(), '/view?requester=4');
 
     let $items = find('[data-test-ticket]');
     assert.equal($items.length, 8, 'showing user #4 tickets');
 
-    assert.equal(find('[data-test-active-filter="author"]').text(), 'User #4 Doe');
+    assert.equal(find('[data-test-active-filter="requester"]').text(), 'User #4 Doe');
   });
 });
 
@@ -278,7 +278,7 @@ test('ticket filtering or sorting should reset pagination', function(assert) {
     kind: 'person_ownership',
     firstName(i) { return `Ticket #${i+1}`; },
     lastName: 'Doe',
-    authorId: 4,
+    requesterId: 4,
     assigneeId: null
   });
 
@@ -290,49 +290,49 @@ test('ticket filtering or sorting should reset pagination', function(assert) {
     assert.equal(currentURL(), '/view?page=2&size=3');
   });
 
-  click('[data-test-dd="filter-author"] [data-test-dd-trigger]');
+  click('[data-test-dd="filter-requester"] [data-test-dd-trigger]');
   click('[data-test-filter-option="4"]');
 
   andThen(() => {
-    assert.equal(currentURL(), '/view?author=4&size=3');
+    assert.equal(currentURL(), '/view?requester=4&size=3');
   });
 
   click('[data-test-pagination="next"]');
 
   andThen(() => {
-    assert.equal(currentURL(), '/view?author=4&page=2&size=3');
+    assert.equal(currentURL(), '/view?page=2&requester=4&size=3');
   });
 
   click('[data-test-dd="filter-assignee"] [data-test-dd-trigger]');
   click('[data-test-filter-static-option="none"]');
 
   andThen(() => {
-    assert.equal(currentURL(), '/view?assignee=none&author=4&size=3');
+    assert.equal(currentURL(), '/view?assignee=none&requester=4&size=3');
   });
 
   click('[data-test-pagination="next"]');
 
   andThen(() => {
-    assert.equal(currentURL(), '/view?assignee=none&author=4&page=2&size=3');
+    assert.equal(currentURL(), '/view?assignee=none&page=2&requester=4&size=3');
   });
 
   click('[data-test-dd="filter-kind"] [data-test-dd-trigger]');
   click('[data-test-kind-option="person_ownership"]');
 
   andThen(() => {
-    assert.equal(currentURL(), '/view?assignee=none&author=4&kind=person_ownership&size=3');
+    assert.equal(currentURL(), '/view?assignee=none&kind=person_ownership&requester=4&size=3');
   });
 
   click('[data-test-pagination="next"]');
 
   andThen(() => {
-    assert.equal(currentURL(), '/view?assignee=none&author=4&kind=person_ownership&page=2&size=3');
+    assert.equal(currentURL(), '/view?assignee=none&kind=person_ownership&page=2&requester=4&size=3');
   });
 
   click('[data-test-dd="sort"] [data-test-dd-trigger]');
   click('[data-test-sort-option="-deadline-at"]');
 
   andThen(() => {
-    assert.equal(currentURL(), '/view?assignee=none&author=4&kind=person_ownership&size=3&sort=-deadline-at');
+    assert.equal(currentURL(), '/view?assignee=none&kind=person_ownership&requester=4&size=3&sort=-deadline-at');
   });
 });

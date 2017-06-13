@@ -17,7 +17,7 @@ export default Ember.Route.extend({
     size: {
       refreshModel: true
     },
-    author: {
+    requester: {
       refreshModel: true
     },
     assignee: {
@@ -30,7 +30,7 @@ export default Ember.Route.extend({
       filter: {
         status: params.status,
         kind: params.kind,
-        author: params.author,
+        requester: params.requester,
         assignee: params.assignee
       },
       page: {
@@ -38,7 +38,7 @@ export default Ember.Route.extend({
         size: params.size
       },
       sort: params.sort,
-      include: 'author,assignee'
+      include: 'requester,assignee'
     });
   }
 });

@@ -12,7 +12,7 @@
       <h1 class="ticketTitle t-dark t-flush" data-test-name>{{title}}</h1>
 
       <p class="ticketSubtitle">
-      Submitted by <strong>{{model.author.displayName}}</strong> on
+      Submitted by <strong>{{model.requester.displayName}}</strong> on
         <time datetime={{model.createdAt}} title={{moment-format model.createdAt 'LLL'}}>
           {{moment-format model.createdAt 'LL'}}
         </time>

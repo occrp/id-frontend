@@ -41,7 +41,7 @@ test('creating a new ticket (person)', function(assert) {
           "assignee": {
             "data": null
           },
-          "author": {
+          "requester": {
             "data": null
           }
         },
@@ -121,7 +121,7 @@ test('creating a new ticket (company)', function(assert) {
           "assignee": {
             "data": null
           },
-          "author": {
+          "requester": {
             "data": null
           }
         },
@@ -192,7 +192,7 @@ test('creating a new ticket (other)', function(assert) {
           "assignee": {
             "data": null
           },
-          "author": {
+          "requester": {
             "data": null
           }
         },

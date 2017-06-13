@@ -21,12 +21,12 @@ export default function() {
 
     let filters = {};
 
-    let author = request.queryParams['filter[author]'];
+    let requester = request.queryParams['filter[requester]'];
     let assignee = request.queryParams['filter[assignee]'];
 
-    if (author) {
-      let user = schema.users.find(author);
-      filters.author = {
+    if (requester) {
+      let user = schema.users.find(requester);
+      filters.requester = {
         'first-name': user.firstName,
         'last-name': user.lastName
       };
