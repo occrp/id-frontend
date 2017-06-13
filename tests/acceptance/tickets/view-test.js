@@ -8,8 +8,8 @@ test('rendering ticket details (person)', function(assert) {
 
   let ticket = server.create('ticket', {
     kind: 'person_ownership',
-    name: 'John',
-    surname: 'Doe',
+    firstName: 'John',
+    lastName: 'Doe',
     background: 'Lorem ipsum some background.',
     bornAt: '2004-12-01T22:00:00.000Z',
   });
@@ -81,8 +81,8 @@ test('cancelling a ticket', function(assert) {
   let ticket = server.create('ticket', {
     status: 'new',
     kind: 'person_ownership',
-    name: 'John',
-    surname: 'Doe',
+    firstName: 'John',
+    lastName: 'Doe',
     background: 'Lorem ipsum some background.',
     initialInformation: 'Initial info',
     family: 'Family',
@@ -114,13 +114,13 @@ test('cancelling a ticket', function(assert) {
           "born-at": "2004-12-01T22:00:00.000Z",
           "family": "Family",
           "initial-information": "Initial info",
-          "name": "John",
+          "first-name": "John",
           "question": null,
           "sensitive": true,
           "sources": null,
           "status": "cancelled",
           "updated-at": "2017-01-01T22:00:00.000Z",
-          "surname": "Doe",
+          "last-name": "Doe",
           "kind": "person_ownership",
           "why-sensitive": null
         },

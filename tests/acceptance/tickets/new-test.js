@@ -27,13 +27,13 @@ test('creating a new ticket (person)', function(assert) {
           "born-at": "2004-12-01T22:00:00.000Z",
           "family": "Family",
           "initial-information": "Initial lorem ipsum.",
-          "name": "John",
+          "first-name": "John",
           "question": null,
           "sensitive": true,
           "sources": null,
           "status": "new",
           "updated-at": null,
-          "surname": "Doe",
+          "last-name": "Doe",
           "kind": "person_ownership",
           "why-sensitive": "It just is."
         },
@@ -59,8 +59,8 @@ test('creating a new ticket (person)', function(assert) {
     assert.equal(currentURL(), '/new');
   });
 
-  fillIn('#ticket-name', 'John');
-  fillIn('#ticket-surname', 'Doe');
+  fillIn('#ticket-first-name', 'John');
+  fillIn('#ticket-last-name', 'Doe');
   fillIn('#ticket-background', 'Lorem ipsum some background.');
   fillIn('#ticket-initialInformation', 'Initial lorem ipsum.');
 
@@ -107,13 +107,13 @@ test('creating a new ticket (company)', function(assert) {
           "born-at": null,
           "family": null,
           "initial-information": null,
-          "name": null,
+          "first-name": null,
           "question": null,
           "sensitive": false,
           "sources": "Sources lorem ipsum.",
           "status": "new",
           "updated-at": null,
-          "surname": null,
+          "last-name": null,
           "kind": "company_ownership",
           "why-sensitive": null
         },
@@ -178,13 +178,13 @@ test('creating a new ticket (other)', function(assert) {
           "born-at": null,
           "family": null,
           "initial-information": null,
-          "name": null,
+          "first-name": null,
           "question": "My question.",
           "sensitive": false,
           "sources": null,
           "status": "new",
           "updated-at": null,
-          "surname": null,
+          "last-name": null,
           "kind": "other",
           "why-sensitive": null
         },
@@ -233,8 +233,8 @@ test('creating a new ticket (person) - validations', function(assert) {
   andThen(() => {
     assert.equal(currentURL(), '/new');
 
-    assert.ok(find('#ticket-name').closest('.form-group').hasClass('has-error'));
-    assert.ok(find('#ticket-surname').closest('.form-group').hasClass('has-error'));
+    assert.ok(find('#ticket-first-name').closest('.form-group').hasClass('has-error'));
+    assert.ok(find('#ticket-last-name').closest('.form-group').hasClass('has-error'));
     assert.ok(find('#ticket-background').closest('.form-group').hasClass('has-error'));
     assert.ok(find('#ticket-initialInformation').closest('.form-group').hasClass('has-error'));
 
@@ -278,7 +278,7 @@ test('creating a new ticket - switching tabs resets validations', function(asser
   click('[data-test-save]');
 
   andThen(() => {
-    assert.ok(find('#ticket-name').closest('.form-group').hasClass('has-error'));
+    assert.ok(find('#ticket-first-name').closest('.form-group').hasClass('has-error'));
     findWithAssert('[data-test-validation-errors]');
   });
 
@@ -297,7 +297,7 @@ test('creating a new ticket - switching tabs resets validations', function(asser
   click('[data-test-kind-tab="person"]');
 
   andThen(() => {
-    assert.ok(!find('#ticket-name').closest('.form-group').hasClass('has-error'));
+    assert.ok(!find('#ticket-first-name').closest('.form-group').hasClass('has-error'));
     assert.equal(find('[data-test-validation-errors]').length, 0);
   });
 

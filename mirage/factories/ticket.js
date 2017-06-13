@@ -21,8 +21,8 @@ export default Factory.extend({
   whySensitive()          { return faker.lorem.sentences(); },
 
   // Attributes based on type. Override with traits
-  name:                   null,
-  surname:                null,
+  firstName:              null,
+  lastName:               null,
   aliases:                null,
   bornAt:                 null,
   family:                 null,
@@ -40,8 +40,8 @@ export default Factory.extend({
 
   isPerson: trait({
     kind:                 kindList[0],
-    name()                { return faker.name.firstName(); },
-    surname()             { return faker.name.lastName(); },
+    firstName()           { return faker.name.firstName(); },
+    lastName()            { return faker.name.lastName(); },
     aliases()             { return faker.lorem.sentences(); },
     bornAt()              { return faker.date.past(); },
     family()              { return faker.lorem.sentences(); },

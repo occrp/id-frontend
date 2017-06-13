@@ -41,8 +41,8 @@ test('tickets can be paged', function(assert) {
   server.createList('ticket', 70, {
     status(i) { return i < 40 ? 'new' : 'closed'; },
     kind: 'person_ownership',
-    name: 'John',
-    surname(i) { return `Doe ${i + 1}`; },
+    firstName: 'John',
+    lastName(i) { return `Doe ${i + 1}`; },
   });
 
   visit('/view');
@@ -113,8 +113,8 @@ test('tickets can be filtered by author', function(assert) {
   server.createList('ticket', 10, {
     status: 'new',
     kind: 'person_ownership',
-    name(i) { return `Ticket #${i+1}`; },
-    surname: 'Doe',
+    firstName(i) { return `Ticket #${i+1}`; },
+    lastName: 'Doe',
     authorId(i) { return i < 2 ? 1 : 4; }
   });
 
@@ -176,8 +176,8 @@ test('tickets can be filtered by assignee', function(assert) {
   server.createList('ticket', 10, {
     status: 'new',
     kind: 'person_ownership',
-    name(i) { return `Ticket #${i+1}`; },
-    surname: 'Doe',
+    firstName(i) { return `Ticket #${i+1}`; },
+    lastName: 'Doe',
     assigneeId(i) { return i < 4 ? 2 : null; }
   });
 
@@ -251,8 +251,8 @@ test('tickets can sorted', function(assert) {
   server.createList('ticket', 10, {
     status: 'new',
     kind: 'person_ownership',
-    name(i) { return `Ticket #${i+1}`; },
-    surname: 'Doe'
+    firstName(i) { return `Ticket #${i+1}`; },
+    lastName: 'Doe'
   });
 
   visit('/view');
@@ -276,8 +276,8 @@ test('ticket filtering or sorting should reset pagination', function(assert) {
   server.createList('ticket', 10, {
     status: 'new',
     kind: 'person_ownership',
-    name(i) { return `Ticket #${i+1}`; },
-    surname: 'Doe',
+    firstName(i) { return `Ticket #${i+1}`; },
+    lastName: 'Doe',
     authorId: 4,
     assigneeId: null
   });

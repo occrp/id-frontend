@@ -39,21 +39,21 @@
 
       <h2 class="fieldGroup-title">Identify what a person owns</h2>
 
-      {{#validated-field class="form-group" validation=buffer.validations.attrs.name didValidate=didValidate as |field|}}
-        <label for="ticket-name">First name <span class="text-danger">*</span></label>
-        {{input value=buffer.name class="form-control" id="ticket-name" focus-out=field.triggerValidations}}
+      {{#validated-field class="form-group" validation=buffer.validations.attrs.firstName didValidate=didValidate as |field|}}
+        <label for="ticket-first-name">First name <span class="text-danger">*</span></label>
+        {{input value=buffer.firstName class="form-control" id="ticket-first-name" focus-out=field.triggerValidations}}
 
         {{#if field.showErrors}}
-          <div class="help-block">{{v-get buffer "name" "message"}}</div>
+          <div class="help-block">{{v-get buffer "firstName" "message"}}</div>
         {{/if}}
       {{/validated-field}}
 
-      {{#validated-field class="form-group" validation=buffer.validations.attrs.surname didValidate=didValidate as |field|}}
-        <label for="ticket-surname">Last name <span class="text-danger">*</span></label>
-        {{input value=buffer.surname class="form-control" id="ticket-surname" focus-out=field.triggerValidations}}
+      {{#validated-field class="form-group" validation=buffer.validations.attrs.lastName didValidate=didValidate as |field|}}
+        <label for="ticket-last-name">Last name <span class="text-danger">*</span></label>
+        {{input value=buffer.lastName class="form-control" id="ticket-last-name" focus-out=field.triggerValidations}}
 
         {{#if field.showErrors}}
-          <div class="help-block">{{v-get buffer "surname" "message"}}</div>
+          <div class="help-block">{{v-get buffer "lastName" "message"}}</div>
         {{/if}}
       {{/validated-field}}
 

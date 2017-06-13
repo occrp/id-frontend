@@ -52,8 +52,8 @@ export default DS.Model.extend({
   activities: hasMany('activity', { async: true }),
 
   // Person
-  name: attr('string'),
-  surname: attr('string'),
+  firstName: attr('string'),
+  lastName: attr('string'),
   background: attr('string'),
   initialInformation: attr('string'),
   bornAt: attr('date'),
@@ -71,10 +71,10 @@ export default DS.Model.extend({
   // Other
   question: attr('string'),
 
-  displayName: Ember.computed('kind', 'name', 'companyName', 'question', function () {
+  displayName: Ember.computed('kind', 'firstName', 'lastName', 'companyName', 'question', function () {
     switch (this.get('kind')) {
       case kindList[0]:
-        return `${this.get('name')} ${this.get('surname')}`;
+        return `${this.get('firstName')} ${this.get('lastName')}`;
       case kindList[1]:
         return this.get('companyName');
       default:
@@ -97,11 +97,11 @@ export default DS.Model.extend({
 
 export const Validations = buildValidations({
   // Person
-  name: validator('presence', {
+  firstName: validator('presence', {
     presence: true,
     disabled: notEqual('model.kind', raw(kindList[0]))
   }),
-  surname: validator('presence', {
+  lastName: validator('presence', {
     presence: true,
     disabled: notEqual('model.kind', raw(kindList[0]))
   }),
