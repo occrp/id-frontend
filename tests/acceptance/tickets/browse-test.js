@@ -40,7 +40,7 @@ test('tickets can be paged', function(assert) {
 
   server.createList('ticket', 70, {
     status(i) { return i < 40 ? 'new' : 'closed'; },
-    type: 'person_ownership',
+    kind: 'person_ownership',
     name: 'John',
     surname(i) { return `Doe ${i + 1}`; },
   });
@@ -66,19 +66,19 @@ test('tickets can be paged', function(assert) {
 });
 
 
-test('tickets can be filtered by type', function(assert) {
+test('tickets can be filtered by kind', function(assert) {
   assert.expect(3);
 
   server.createList('ticket', 10, {
     status: 'new',
-    type(i) { return i < 4 ? 'person_ownership' : random(['company_ownership'], ['other']); }
+    kind(i) { return i < 4 ? 'person_ownership' : random(['company_ownership'], ['other']); }
   });
 
   server.get('/tickets', (schema, request) => {
-    let type = request.queryParams['filter[type]'];
+    let kind = request.queryParams['filter[kind]'];
 
-    if (type) {
-      return schema.tickets.where({ type: type });
+    if (kind) {
+      return schema.tickets.where({ kind: kind });
     }
 
     return schema.tickets.all();
@@ -91,11 +91,11 @@ test('tickets can be filtered by type', function(assert) {
     assert.equal($items.length, 10, 'showing unfiltered tickets');
   });
 
-  click('[data-test-dd="filter-type"] [data-test-dd-trigger]');
-  click('[data-test-type-option="person_ownership"]');
+  click('[data-test-dd="filter-kind"] [data-test-dd-trigger]');
+  click('[data-test-kind-option="person_ownership"]');
 
   andThen(() => {
-    assert.equal(currentURL(), '/view?type=person_ownership');
+    assert.equal(currentURL(), '/view?kind=person_ownership');
 
     let $items = find('[data-test-ticket]');
     assert.equal($items.length, 4, 'showing person ownership tickets');
@@ -112,7 +112,7 @@ test('tickets can be filtered by author', function(assert) {
   });
   server.createList('ticket', 10, {
     status: 'new',
-    type: 'person_ownership',
+    kind: 'person_ownership',
     name(i) { return `Ticket #${i+1}`; },
     surname: 'Doe',
     authorId(i) { return i < 2 ? 1 : 4; }
@@ -175,7 +175,7 @@ test('tickets can be filtered by assignee', function(assert) {
   });
   server.createList('ticket', 10, {
     status: 'new',
-    type: 'person_ownership',
+    kind: 'person_ownership',
     name(i) { return `Ticket #${i+1}`; },
     surname: 'Doe',
     assigneeId(i) { return i < 4 ? 2 : null; }
@@ -250,7 +250,7 @@ test('tickets can sorted', function(assert) {
 
   server.createList('ticket', 10, {
     status: 'new',
-    type: 'person_ownership',
+    kind: 'person_ownership',
     name(i) { return `Ticket #${i+1}`; },
     surname: 'Doe'
   });
@@ -275,7 +275,7 @@ test('ticket filtering or sorting should reset pagination', function(assert) {
   });
   server.createList('ticket', 10, {
     status: 'new',
-    type: 'person_ownership',
+    kind: 'person_ownership',
     name(i) { return `Ticket #${i+1}`; },
     surname: 'Doe',
     authorId: 4,
@@ -316,23 +316,23 @@ test('ticket filtering or sorting should reset pagination', function(assert) {
     assert.equal(currentURL(), '/view?assignee=none&author=4&page=2&size=3');
   });
 
-  click('[data-test-dd="filter-type"] [data-test-dd-trigger]');
-  click('[data-test-type-option="person_ownership"]');
+  click('[data-test-dd="filter-kind"] [data-test-dd-trigger]');
+  click('[data-test-kind-option="person_ownership"]');
 
   andThen(() => {
-    assert.equal(currentURL(), '/view?assignee=none&author=4&size=3&type=person_ownership');
+    assert.equal(currentURL(), '/view?assignee=none&author=4&kind=person_ownership&size=3');
   });
 
   click('[data-test-pagination="next"]');
 
   andThen(() => {
-    assert.equal(currentURL(), '/view?assignee=none&author=4&page=2&size=3&type=person_ownership');
+    assert.equal(currentURL(), '/view?assignee=none&author=4&kind=person_ownership&page=2&size=3');
   });
 
   click('[data-test-dd="sort"] [data-test-dd-trigger]');
   click('[data-test-sort-option="-deadline"]');
 
   andThen(() => {
-    assert.equal(currentURL(), '/view?assignee=none&author=4&size=3&sort=-deadline&type=person_ownership');
+    assert.equal(currentURL(), '/view?assignee=none&author=4&kind=person_ownership&size=3&sort=-deadline');
   });
 });

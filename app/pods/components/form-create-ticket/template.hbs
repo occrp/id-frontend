@@ -3,30 +3,30 @@
   <p class="h4 subtitle t-dimmed text-center">Your request will be routed to our professional researchers, who will try to help.</p>
 
   <div class="tabs">
-    <label class="tabs-item {{if (eq buffer.type typeList.[0]) "is-active"}}" data-test-type-tab="person">
+    <label class="tabs-item {{if (eq buffer.kind kindList.[0]) "is-active"}}" data-test-kind-tab="person">
       {{radio-button
-        name="ticket-type"
-        value=typeList.[0]
-        groupValue=buffer.type
-        changed=(action 'changeType')}}
+        name="ticket-kind"
+        value=kindList.[0]
+        groupValue=buffer.kind
+        changed=(action 'changeKind')}}
       <i class="fa fa-user"></i>
       <span>Identify what a person owns</span>
     </label>
-    <label class="tabs-item {{if (eq buffer.type typeList.[1]) "is-active"}}" data-test-type-tab="company">
+    <label class="tabs-item {{if (eq buffer.kind kindList.[1]) "is-active"}}" data-test-kind-tab="company">
       {{radio-button
-        name="ticket-type"
-        value=typeList.[1]
-        groupValue=buffer.type
-        changed=(action 'changeType')}}
+        name="ticket-kind"
+        value=kindList.[1]
+        groupValue=buffer.kind
+        changed=(action 'changeKind')}}
       <i class="fa fa-building"></i>
       <span>Determine company ownership</span>
     </label>
-    <label class="tabs-item {{if (eq buffer.type typeList.[2]) "is-active"}}" data-test-type-tab="other">
+    <label class="tabs-item {{if (eq buffer.kind kindList.[2]) "is-active"}}" data-test-kind-tab="other">
       {{radio-button
-        name="ticket-type"
-        value=typeList.[2]
-        groupValue=buffer.type
-        changed=(action 'changeType')}}
+        name="ticket-kind"
+        value=kindList.[2]
+        groupValue=buffer.kind
+        changed=(action 'changeKind')}}
       <i class="fa fa-question"></i>
       <span>Any other question</span>
     </label>
@@ -35,7 +35,7 @@
   <div class="fieldGroup fieldGroup--bordered">
 
     <div class="l-constrain">
-    {{#if (eq buffer.type typeList.[0])}}
+    {{#if (eq buffer.kind kindList.[0])}}
 
       <h2 class="fieldGroup-title">Identify what a person owns</h2>
 
@@ -104,7 +104,7 @@
         {{textarea rows=3 value=buffer.businessActivities class="form-control" id="ticket-businessActivities"}}
       </div>
 
-    {{else if (eq buffer.type typeList.[1])}}
+    {{else if (eq buffer.kind kindList.[1])}}
 
       <h2 class="fieldGroup-title">Determine company ownership</h2>
 

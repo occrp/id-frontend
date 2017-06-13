@@ -5,8 +5,8 @@
     <div class="l-fixedColumn-main">
 
       <div class="ticketType">
-        {{ticket-icon model.type}}
-        <span>{{get (get typeMap model.type) "shortName"}}</span>
+        {{ticket-icon model.kind}}
+        <span>{{get (get kindMap model.kind) "shortName"}}</span>
       </div>
 
       <h1 class="ticketTitle t-dark t-flush" data-test-name>{{title}}</h1>
@@ -20,7 +20,7 @@
 
       <hr class="l-fixedColumn-separator" />
 
-      {{#if (eq model.type typeList.[0])}}
+      {{#if (eq model.kind kindList.[0])}}
         <dl class="ticketDetails">
           <dt>Background</dt>
           <dd class="formatted" data-test-background>{{model.background}}</dd>
@@ -40,7 +40,7 @@
           <dt>Business Activities</dt>
           <dd class="formatted">{{model.businessActivities}}</dd>
         </dl>
-      {{else if (eq model.type typeList.[1])}}
+      {{else if (eq model.kind kindList.[1])}}
         <dl class="ticketDetails">
           <dt>Country</dt>
           <dd data-test-country>{{get countries model.country}}</dd>

@@ -5,7 +5,7 @@ export default Ember.Route.extend({
     status: {
       refreshModel: true
     },
-    type: {
+    kind: {
       refreshModel: true
     },
     sort: {
@@ -29,7 +29,7 @@ export default Ember.Route.extend({
     return this.get('store').query('ticket', {
       filter: {
         status: params.status,
-        type: params.type,
+        kind: params.kind,
         author: params.author,
         assignee: params.assignee
       },

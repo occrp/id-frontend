@@ -34,7 +34,7 @@ test('creating a new ticket (person)', function(assert) {
           "status": "new",
           "status-updated": null,
           "surname": "Doe",
-          "type": "person_ownership",
+          "kind": "person_ownership",
           "why-sensitive": "It just is."
         },
         "relationships": {
@@ -114,7 +114,7 @@ test('creating a new ticket (company)', function(assert) {
           "status": "new",
           "status-updated": null,
           "surname": null,
-          "type": "company_ownership",
+          "kind": "company_ownership",
           "why-sensitive": null
         },
         "relationships": {
@@ -135,7 +135,7 @@ test('creating a new ticket (company)', function(assert) {
 
   visit('/new');
 
-  click('[data-test-type-tab="company"]');
+  click('[data-test-kind-tab="company"]');
 
   fillIn('#ticket-companyName', 'Acme Inc.');
   fillIn('#ticket-country', 'RO');
@@ -185,7 +185,7 @@ test('creating a new ticket (other)', function(assert) {
           "status": "new",
           "status-updated": null,
           "surname": null,
-          "type": "other",
+          "kind": "other",
           "why-sensitive": null
         },
         "relationships": {
@@ -206,7 +206,7 @@ test('creating a new ticket (other)', function(assert) {
 
   visit('/new');
 
-  click('[data-test-type-tab="other"]');
+  click('[data-test-kind-tab="other"]');
 
   fillIn('#ticket-question', 'My question.');
 
@@ -251,7 +251,7 @@ test('creating a new ticket (company) - validations', function(assert) {
     assert.equal(currentURL(), '/new');
   });
 
-  click('[data-test-type-tab="company"]');
+  click('[data-test-kind-tab="company"]');
   click('[data-test-save]');
 
   andThen(() => {
@@ -282,7 +282,7 @@ test('creating a new ticket - switching tabs resets validations', function(asser
     findWithAssert('[data-test-validation-errors]');
   });
 
-  click('[data-test-type-tab="company"]');
+  click('[data-test-kind-tab="company"]');
 
   andThen(() => {
     assert.equal(find('[data-test-validation-errors]').length, 0);
@@ -294,14 +294,14 @@ test('creating a new ticket - switching tabs resets validations', function(asser
     assert.ok(find('#ticket-companyName').closest('.form-group').hasClass('has-error'));
   });
 
-  click('[data-test-type-tab="person"]');
+  click('[data-test-kind-tab="person"]');
 
   andThen(() => {
     assert.ok(!find('#ticket-name').closest('.form-group').hasClass('has-error'));
     assert.equal(find('[data-test-validation-errors]').length, 0);
   });
 
-  click('[data-test-type-tab="company"]');
+  click('[data-test-kind-tab="company"]');
 
   andThen(() => {
     assert.ok(!find('#ticket-companyName').closest('.form-group').hasClass('has-error'));

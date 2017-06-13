@@ -4,14 +4,14 @@
   </div>
   <div class="filters-secondary">
     <div class="filters-item">
-      {{#ui-dropdown data-test-dd="filter-type" as |dd|}}
+      {{#ui-dropdown data-test-dd="filter-kind" as |dd|}}
         {{#dd.trigger}}Type <b class="arrow"></b>{{/dd.trigger}}
         {{#dd.body headerText="Filter by type"}}
           <div class="list">
-            <a href {{action (pipe (action updateFilter 'type' null) dd.close)}} class="list-item {{if (eq type null) "is-active"}}">All</a>
+            <a href {{action (pipe (action updateFilter 'kind' null) dd.close)}} class="list-item {{if (eq kind null) "is-active"}}">All</a>
 
-            {{#each-in typeMap as |key props|}}
-              <a href {{action (pipe (action updateFilter 'type' key) dd.close)}} class="list-item {{if (eq type key) "is-active"}}" data-test-type-option={{key}}>
+            {{#each-in kindMap as |key props|}}
+              <a href {{action (pipe (action updateFilter 'kind' key) dd.close)}} class="list-item {{if (eq kind key) "is-active"}}" data-test-kind-option={{key}}>
                 <span class="iconContainer"><i class="fa {{props.icon}}"></i></span>
                 <span class="iconText">{{props.name}}</span>
               </a>

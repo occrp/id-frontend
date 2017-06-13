@@ -7,7 +7,7 @@ test('rendering ticket details (person)', function(assert) {
   assert.expect(4);
 
   let ticket = server.create('ticket', {
-    type: 'person_ownership',
+    kind: 'person_ownership',
     name: 'John',
     surname: 'Doe',
     background: 'Lorem ipsum some background.',
@@ -30,7 +30,7 @@ test('rendering ticket details (company)', function(assert) {
   assert.expect(4);
 
   let ticket = server.create('ticket', {
-    type: 'company_ownership',
+    kind: 'company_ownership',
     companyName: 'Acme Inc.',
     country: 'BA',
     companyBackground: 'Lorem ipsum some comapny background.',
@@ -52,7 +52,7 @@ test('rendering ticket details (other)', function(assert) {
   assert.expect(2);
 
   let ticket = server.create('ticket', {
-    type: 'other',
+    kind: 'other',
     question: 'My question.'
   });
 
@@ -80,7 +80,7 @@ test('cancelling a ticket', function(assert) {
 
   let ticket = server.create('ticket', {
     status: 'new',
-    type: 'person_ownership',
+    kind: 'person_ownership',
     name: 'John',
     surname: 'Doe',
     background: 'Lorem ipsum some background.',
@@ -121,7 +121,7 @@ test('cancelling a ticket', function(assert) {
           "status": "cancelled",
           "status-updated": "2017-01-01T22:00:00.000Z",
           "surname": "Doe",
-          "type": "person_ownership",
+          "kind": "person_ownership",
           "why-sensitive": null
         },
         "id": "1",

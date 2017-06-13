@@ -1,10 +1,10 @@
 <div class="ticketList">
 {{#each data as |item|}}
 
-  <div class="ticket ticket--{{item.type}}" data-test-ticket={{item.id}}>
+  <div class="ticket ticket--{{item.kind}}" data-test-ticket={{item.id}}>
 
     <div class="ticket-cell ticket-icon">
-      {{ticket-icon item.type}}
+      {{ticket-icon item.kind}}
     </div>
 
     <div class="ticket-cell ticket-body">

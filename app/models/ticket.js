@@ -6,7 +6,7 @@ import raw from 'ember-macro-helpers/raw';
 
 const { attr, belongsTo, hasMany } = DS;
 
-export const typeMap = {
+export const kindMap = {
   'person_ownership': {
     name: 'Identify what a person owns',
     shortName: 'Person',
@@ -24,7 +24,7 @@ export const typeMap = {
   }
 };
 
-export const typeList = Object.keys(typeMap);
+export const kindList = Object.keys(kindMap);
 
 export const statusMap = {
   'new': { name: 'New', labelClass: 'tag--new' },
@@ -38,7 +38,7 @@ export const statusList = Object.keys(statusMap);
 
 export default DS.Model.extend({
   // Common
-  type: attr('string', { defaultValue: typeList[0] }),
+  kind: attr('string', { defaultValue: kindList[0] }),
   created: attr('date'),
   status: attr('string', { defaultValue: statusList[0] }),
   statusUpdated: attr('date'),
@@ -71,11 +71,11 @@ export default DS.Model.extend({
   // Other
   question: attr('string'),
 
-  displayName: Ember.computed('type', 'name', 'companyName', 'question', function () {
-    switch (this.get('type')) {
-      case typeList[0]:
+  displayName: Ember.computed('kind', 'name', 'companyName', 'question', function () {
+    switch (this.get('kind')) {
+      case kindList[0]:
         return `${this.get('name')} ${this.get('surname')}`;
-      case typeList[1]:
+      case kindList[1]:
         return this.get('companyName');
       default:
         return this.get('question').slice(0, 140);
@@ -99,43 +99,43 @@ export const Validations = buildValidations({
   // Person
   name: validator('presence', {
     presence: true,
-    disabled: notEqual('model.type', raw(typeList[0]))
+    disabled: notEqual('model.kind', raw(kindList[0]))
   }),
   surname: validator('presence', {
     presence: true,
-    disabled: notEqual('model.type', raw(typeList[0]))
+    disabled: notEqual('model.kind', raw(kindList[0]))
   }),
   background: validator('presence', {
     presence: true,
-    disabled: notEqual('model.type', raw(typeList[0]))
+    disabled: notEqual('model.kind', raw(kindList[0]))
   }),
   initialInformation: validator('presence', {
     presence: true,
-    disabled: notEqual('model.type', raw(typeList[0]))
+    disabled: notEqual('model.kind', raw(kindList[0]))
   }),
 
   // Company
   companyName: validator('presence', {
     presence: true,
-    disabled: notEqual('model.type', raw(typeList[1]))
+    disabled: notEqual('model.kind', raw(kindList[1]))
   }),
   country: validator('presence', {
     presence: true,
-    disabled: notEqual('model.type', raw(typeList[1]))
+    disabled: notEqual('model.kind', raw(kindList[1]))
   }),
   companyBackground: validator('presence', {
     presence: true,
-    disabled: notEqual('model.type', raw(typeList[1]))
+    disabled: notEqual('model.kind', raw(kindList[1]))
   }),
   sources: validator('presence', {
     presence: true,
-    disabled: notEqual('model.type', raw(typeList[1]))
+    disabled: notEqual('model.kind', raw(kindList[1]))
   }),
 
   // Other
   question: validator('presence', {
     presence: true,
-    disabled: notEqual('model.type', raw(typeList[2]))
+    disabled: notEqual('model.kind', raw(kindList[2]))
   })
 }, {
   debounce: 100,

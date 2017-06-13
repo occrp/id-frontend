@@ -1,10 +1,10 @@
 import Ember from 'ember';
-import { typeMap } from 'id2-frontend/models/ticket';
+import { kindMap } from 'id2-frontend/models/ticket';
 
 export default Ember.Component.extend({
-  typeMap,
+  kindMap,
 
-  hasFilters: Ember.computed.or('author', 'assignee', 'type'),
+  hasFilters: Ember.computed.or('author', 'assignee', 'kind'),
 
   // fyi, these CPs will get triggered twice per change.
   // first when we manually update filterMeta.${key} in the controller

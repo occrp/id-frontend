@@ -1,10 +1,10 @@
 {{#if hasFilters}}
   <div class="activeFilters">
     <span class="activeFilters-label">Filtered by</span>
-    {{#if type}}
+    {{#if kind}}
       <span class="chip">
         <span class="chip-label">Type</span>
-        <span class="chip-value" data-test-active-filter="type">{{get (get typeMap type) 'shortName'}}</span>
+        <span class="chip-value" data-test-active-filter="kind">{{get (get kindMap kind) 'shortName'}}</span>
       </span>
     {{/if}}
     {{#if currentAuthor}}

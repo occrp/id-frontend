@@ -1,8 +1,8 @@
 import { Factory, faker, trait } from 'ember-cli-mirage';
-import { typeList, statusList } from 'id2-frontend/models/ticket';
+import { kindList, statusList } from 'id2-frontend/models/ticket';
 
 const random = faker.random.arrayElement;
-const t = typeList.length;
+const t = kindList.length;
 
 const paragraphs = `Labore deserunt beatae et et. Expedita autem maiores. Nobis molestiae explicabo aliquam architecto at mollitia.
 
@@ -11,7 +11,7 @@ Voluptatum doloremque exercitationem beatae est. Est laboriosam libero autem dol
 Quia ducimus alias laborum consequuntur rerum. Reiciendis nobis quod temporibus velit in culpa tenetur. Consectetur eos harum. Totam soluta tempore vel ipsum consequuntur voluptas quia ipsa. Velit architecto tenetur dolor aut hic sed error illo. Labore quis pariatur omnis magnam explicabo.`;
 
 export default Factory.extend({
-  type(i)                 { return typeList[i % t]; },
+  kind(i)                 { return kindList[i % t]; },
   created()               { return faker.date.past(); },
   status()                { return statusList[0]; },
   statusUpdated()         { return faker.date.past(); },
@@ -39,7 +39,7 @@ export default Factory.extend({
   question:               null,
 
   isPerson: trait({
-    type:                 typeList[0],
+    kind:                 kindList[0],
     name()                { return faker.name.firstName(); },
     surname()             { return faker.name.lastName(); },
     aliases()             { return faker.lorem.sentences(); },
@@ -51,7 +51,7 @@ export default Factory.extend({
   }),
 
   isCompany: trait({
-    type:                 typeList[1],
+    kind:                 kindList[1],
     companyName()         { return faker.company.companyName(); },
     country()             { return faker.address.countryCode(); },
     companyBackground()   { return faker.lorem.sentences(); },
@@ -60,7 +60,7 @@ export default Factory.extend({
   }),
 
   isOther: trait({
-    type:                 typeList[2],
+    kind:                 kindList[2],
     question()            { return faker.lorem.paragraphs(); }
   }),
 

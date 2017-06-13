@@ -1,19 +1,19 @@
 import Ember from 'ember';
-import { typeList, typeMap } from 'id2-frontend/models/ticket';
+import { kindList, kindMap } from 'id2-frontend/models/ticket';
 import countries from 'ember-i18n-iso-countries/langs/en';
 
 export default Ember.Controller.extend({
-  typeList,
-  typeMap,
+  kindList,
+  kindMap,
   countries,
 
-  title: Ember.computed('model.type', function () {
-    switch (this.get('model.type')) {
-      case typeList[0]:
+  title: Ember.computed('model.kind', function () {
+    switch (this.get('model.kind')) {
+      case kindList[0]:
         return this.get('model.displayName');
-      case typeList[1]:
+      case kindList[1]:
         return this.get('model.companyName');
-      case typeList[2]:
+      case kindList[2]:
         return 'Request';
     }
   }),
