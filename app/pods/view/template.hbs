@@ -32,10 +32,10 @@
           <dd data-test-born-at>{{moment-format model.bornAt 'LL'}}</dd>
 
           <dt>Aliases</dt>
-          <dd class="formatted">{{model.aliases}}</dd>
+          <dd class="formatted">{{model.sources}}</dd>
 
           <dt>Family And Associates</dt>
-          <dd class="formatted">{{model.family}}</dd>
+          <dd class="formatted">{{model.connections}}</dd>
 
           <dt>Business Activities</dt>
           <dd class="formatted">{{model.businessActivities}}</dd>
@@ -46,7 +46,7 @@
           <dd data-test-country>{{get countries model.country}}</dd>
 
           <dt>Company background</dt>
-          <dd class="formatted" data-test-companyBackground>{{model.companyBackground}}</dd>
+          <dd class="formatted" data-test-background>{{model.background}}</dd>
 
           <dt>Sources</dt>
           <dd class="formatted">{{model.sources}}</dd>
@@ -57,7 +57,7 @@
       {{else}}
         <dl class="ticketDetails">
           <dt>Question</dt>
-          <dd class="formatted" data-test-question>{{model.question}}</dd>
+          <dd class="formatted" data-test-background>{{model.background}}</dd>
         </dl>
       {{/if}}
 

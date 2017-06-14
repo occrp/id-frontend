@@ -15,22 +15,18 @@ test('creating a new ticket (person)', function(assert) {
     assert.deepEqual(attrs, {
       "data": {
         "attributes": {
-          "aliases": "Aliases",
           "background": "Lorem ipsum some background.",
           "business-activities": "Bizniss",
-          "company-background": null,
           "company-name": null,
-          "connections": null,
+          "connections": "Family",
           "country": null,
           "created-at": null,
           "deadline-at": "2100-01-04T22:00:00.000Z",
           "born-at": "2004-12-01T22:00:00.000Z",
-          "family": "Family",
           "initial-information": "Initial lorem ipsum.",
           "first-name": "John",
-          "question": null,
           "sensitive": true,
-          "sources": null,
+          "sources": "Aliases",
           "status": "new",
           "updated-at": null,
           "last-name": "Doe",
@@ -65,8 +61,8 @@ test('creating a new ticket (person)', function(assert) {
   fillIn('#ticket-initialInformation', 'Initial lorem ipsum.');
 
   fillIn('#ticket-born-at', '02/12/2004');
-  fillIn('#ticket-aliases', 'Aliases');
-  fillIn('#ticket-family', 'Family');
+  fillIn('#ticket-sources-person', 'Aliases');
+  fillIn('#ticket-connections-person', 'Family');
   fillIn('#ticket-businessActivities', 'Bizniss');
 
   fillIn('#ticket-deadline', '05/01/2100');
@@ -95,20 +91,16 @@ test('creating a new ticket (company)', function(assert) {
     assert.deepEqual(attrs, {
       "data": {
         "attributes": {
-          "aliases": null,
-          "background": null,
+          "background": "Lorem ipsum some company background.",
           "business-activities": null,
-          "company-background": "Lorem ipsum some company background.",
           "company-name": "Acme Inc.",
           "connections": "Connections",
           "country": "RO",
           "created-at": null,
           "deadline-at": null,
           "born-at": null,
-          "family": null,
           "initial-information": null,
           "first-name": null,
-          "question": null,
           "sensitive": false,
           "sources": "Sources lorem ipsum.",
           "status": "new",
@@ -139,7 +131,7 @@ test('creating a new ticket (company)', function(assert) {
 
   fillIn('#ticket-companyName', 'Acme Inc.');
   fillIn('#ticket-country', 'RO');
-  fillIn('#ticket-companyBackground', 'Lorem ipsum some company background.');
+  fillIn('#ticket-background-company', 'Lorem ipsum some company background.');
   fillIn('#ticket-sources', 'Sources lorem ipsum.');
 
   fillIn('#ticket-connections', 'Connections');
@@ -166,20 +158,16 @@ test('creating a new ticket (other)', function(assert) {
     assert.deepEqual(attrs, {
       "data": {
         "attributes": {
-          "aliases": null,
-          "background": null,
+          "background": "My question.",
           "business-activities": null,
-          "company-background": null,
           "company-name": null,
           "connections": null,
           "country": null,
           "created-at": null,
           "deadline-at": null,
           "born-at": null,
-          "family": null,
           "initial-information": null,
           "first-name": null,
-          "question": "My question.",
           "sensitive": false,
           "sources": null,
           "status": "new",
@@ -208,14 +196,14 @@ test('creating a new ticket (other)', function(assert) {
 
   click('[data-test-kind-tab="other"]');
 
-  fillIn('#ticket-question', 'My question.');
+  fillIn('#ticket-background-other', 'My question.');
 
   click('[data-test-save]');
 
   andThen(() => {
     assert.equal(currentURL(), '/view/4');
 
-    assert.equal(find('[data-test-question]').text(), 'My question.');
+    assert.equal(find('[data-test-background]').text(), 'My question.');
   });
 });
 
@@ -259,7 +247,7 @@ test('creating a new ticket (company) - validations', function(assert) {
 
     assert.ok(find('#ticket-companyName').closest('.form-group').hasClass('has-error'));
     assert.ok(find('#ticket-country').closest('.form-group').hasClass('has-error'));
-    assert.ok(find('#ticket-companyBackground').closest('.form-group').hasClass('has-error'));
+    assert.ok(find('#ticket-background-company').closest('.form-group').hasClass('has-error'));
     assert.ok(find('#ticket-sources').closest('.form-group').hasClass('has-error'));
 
     findWithAssert('[data-test-validation-errors]');

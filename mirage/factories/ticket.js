@@ -19,49 +19,41 @@ export default Factory.extend({
 
   sensitive(i)            { return i % 2 === 0 ? true : false; },
   whySensitive()          { return faker.lorem.sentences(); },
+  background()            { return paragraphs; },
 
-  // Attributes based on type. Override with traits
+  // Attributes based on kind. Override with traits
   firstName:              null,
   lastName:               null,
-  aliases:                null,
-  bornAt:                 null,
-  family:                 null,
-  background:             null,
-  businessActivities:     null,
   initialInformation:     null,
+  bornAt:                 null,
+  businessActivities:     null,
 
   companyName:            null,
   country:                null,
-  companyBackground:      null,
-  connections:            null,
   sources:                null,
-
-  question:               null,
+  connections:            null,
 
   isPerson: trait({
     kind:                 kindList[0],
     firstName()           { return faker.name.firstName(); },
     lastName()            { return faker.name.lastName(); },
-    aliases()             { return faker.lorem.sentences(); },
+    initialInformation()  { return faker.lorem.sentences(); },
     bornAt()              { return faker.date.past(); },
-    family()              { return faker.lorem.sentences(); },
-    background()          { return paragraphs; },
-    businessActivities()  { return faker.lorem.sentences(); },
-    initialInformation()  { return faker.lorem.sentences(); }
+    sources()             { return faker.lorem.sentences(); },
+    connections()         { return faker.lorem.sentences(); },
+    businessActivities()  { return faker.lorem.sentences(); }
   }),
 
   isCompany: trait({
     kind:                 kindList[1],
     companyName()         { return faker.company.companyName(); },
     country()             { return faker.address.countryCode(); },
-    companyBackground()   { return faker.lorem.sentences(); },
-    connections()         { return faker.lorem.sentences(); },
-    sources()             { return faker.lorem.sentences(); }
+    sources()             { return faker.lorem.sentences(); },
+    connections()         { return faker.lorem.sentences(); }
   }),
 
   isOther: trait({
     kind:                 kindList[2],
-    question()            { return faker.lorem.paragraphs(); }
   }),
 
   afterCreate(ticket, server) {

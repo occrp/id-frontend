@@ -87,16 +87,16 @@
 
 
       <div class="form-group">
-        <label for="ticket-aliases">Aliases</label>
+        <label for="ticket-sources-person">Aliases</label>
         <p class="info-block">Other spellings or cover names.</p>
-        {{textarea rows=3 value=buffer.aliases class="form-control" id="ticket-aliases"}}
+        {{textarea rows=3 value=buffer.sources class="form-control" id="ticket-sources-person"}}
       </div>
 
 
       <div class="form-group">
-        <label for="ticket-family">Family And Associates</label>
+        <label for="ticket-connections-person">Family And Associates</label>
         <p class="info-block">Known family relationships.</p>
-        {{textarea rows=3 value=buffer.family class="form-control" id="ticket-family"}}
+        {{textarea rows=3 value=buffer.connections class="form-control" id="ticket-connections-person"}} 
       </div>
 
       <div class="form-group">
@@ -131,13 +131,13 @@
         {{/if}}
       {{/validated-field}}
 
-      {{#validated-field class="form-group" validation=buffer.validations.attrs.companyBackground didValidate=didValidate as |field|}}
-        <label for="ticket-companyBackground">Your story <span class="text-danger">*</span></label>
+      {{#validated-field class="form-group" validation=buffer.validations.attrs.background didValidate=didValidate as |field|}}
+        <label for="ticket-background-company">Your story <span class="text-danger">*</span></label>
         <p class="info-block">What do you know so far?</p>
-        {{textarea rows=5 value=buffer.companyBackground class="form-control" id="ticket-companyBackground" focus-out=field.triggerValidations}}
+        {{textarea rows=5 value=buffer.background class="form-control" id="ticket-background-company" focus-out=field.triggerValidations}}
 
         {{#if field.showErrors}}
-          <div class="help-block">{{v-get buffer "companyBackground" "message"}}</div>
+          <div class="help-block">{{v-get buffer "background" "message"}}</div>
         {{/if}}
       {{/validated-field}}
 
@@ -162,13 +162,13 @@
 
       <h2 class="fieldGroup-title">Any other question</h2>
 
-      {{#validated-field class="form-group" validation=buffer.validations.attrs.question didValidate=didValidate as |field|}}
-        <label for="ticket-question">What Do You Want To Know? <span class="text-danger">*</span> </label>
+      {{#validated-field class="form-group" validation=buffer.validations.attrs.background didValidate=didValidate as |field|}}
+        <label for="ticket-background-other">What Do You Want To Know? <span class="text-danger">*</span> </label>
         <p class="info-block">Any information you already have.</p>
-        {{textarea rows=7 value=buffer.question class="form-control" id="ticket-question"}}
+        {{textarea rows=7 value=buffer.background class="form-control" id="ticket-background-other"}}
 
         {{#if field.showErrors}}
-          <div class="help-block">{{v-get buffer "question" "message"}}</div>
+          <div class="help-block">{{v-get buffer "background" "message"}}</div>
         {{/if}}
       {{/validated-field}}
 

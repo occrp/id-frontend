@@ -33,7 +33,7 @@ test('rendering ticket details (company)', function(assert) {
     kind: 'company_ownership',
     companyName: 'Acme Inc.',
     country: 'BA',
-    companyBackground: 'Lorem ipsum some comapny background.',
+    background: 'Lorem ipsum some comapny background.',
   });
 
   visit(`/view/${ticket.id}`);
@@ -43,7 +43,7 @@ test('rendering ticket details (company)', function(assert) {
 
     assert.equal(find('[data-test-name]').text(), 'Acme Inc.');
     assert.equal(find('[data-test-country]').text(), 'Bosnia and Herzegovina');
-    assert.equal(find('[data-test-companyBackground]').text(), 'Lorem ipsum some comapny background.');
+    assert.equal(find('[data-test-background]').text(), 'Lorem ipsum some comapny background.');
   });
 });
 
@@ -53,7 +53,7 @@ test('rendering ticket details (other)', function(assert) {
 
   let ticket = server.create('ticket', {
     kind: 'other',
-    question: 'My question.'
+    background: 'My question.'
   });
 
   visit(`/view/${ticket.id}`);
@@ -61,7 +61,7 @@ test('rendering ticket details (other)', function(assert) {
   andThen(() => {
     assert.equal(currentURL(), `/view/${ticket.id}`);
 
-    assert.equal(find('[data-test-question]').text(), 'My question.');
+    assert.equal(find('[data-test-background]').text(), 'My question.');
   });
 });
 
@@ -85,8 +85,8 @@ test('cancelling a ticket', function(assert) {
     lastName: 'Doe',
     background: 'Lorem ipsum some background.',
     initialInformation: 'Initial info',
-    family: 'Family',
-    aliases: 'Aliases',
+    sources: 'Aliases',
+    connections: 'Family',
     businessActivities: 'Bizniss',
     whySensitive: null,
     bornAt: '2004-12-01T22:00:00.000Z',
@@ -102,22 +102,18 @@ test('cancelling a ticket', function(assert) {
     assert.deepEqual(attrs, {
       "data": {
         "attributes": {
-          "aliases": "Aliases",
           "background": "Lorem ipsum some background.",
           "business-activities": "Bizniss",
-          "company-background": null,
           "company-name": null,
-          "connections": null,
+          "connections": "Family",
           "country": null,
           "created-at": "2016-12-01T22:00:00.000Z",
           "deadline-at": "2018-12-01T22:00:00.000Z",
           "born-at": "2004-12-01T22:00:00.000Z",
-          "family": "Family",
           "initial-information": "Initial info",
           "first-name": "John",
-          "question": null,
           "sensitive": true,
-          "sources": null,
+          "sources": "Aliases",
           "status": "cancelled",
           "updated-at": "2017-01-01T22:00:00.000Z",
           "last-name": "Doe",

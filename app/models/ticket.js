@@ -44,41 +44,37 @@ export default DS.Model.extend({
   updatedAt: attr('date'),
   deadlineAt: attr('date'),
 
-  sensitive: attr('boolean', { defaultValue: false }),
-  whySensitive: attr('string'),
-
   requester: belongsTo('user'),
   responder: belongsTo('user'),
   activities: hasMany('activity', { async: true }),
 
+  // Common
+  background: attr('string'),
+  sensitive: attr('boolean', { defaultValue: false }),
+  whySensitive: attr('string'),
+
   // Person
   firstName: attr('string'),
   lastName: attr('string'),
-  background: attr('string'),
   initialInformation: attr('string'),
   bornAt: attr('date'),
-  aliases: attr('string'),
-  family: attr('string'),
   businessActivities: attr('string'),
 
   // Company
   companyName: attr('string'),
   country: attr('string'),
-  companyBackground: attr('string'),
-  sources: attr('string'),
-  connections: attr('string'),
+  sources: attr('string'), // reused on Person, labeled "Aliases"
+  connections: attr('string'), // reused on Person, labeled "Family info"
 
-  // Other
-  question: attr('string'),
-
-  displayName: Ember.computed('kind', 'firstName', 'lastName', 'companyName', 'question', function () {
+  
+  displayName: Ember.computed('kind', 'firstName', 'lastName', 'companyName', 'background', function () {
     switch (this.get('kind')) {
       case kindList[0]:
         return `${this.get('firstName')} ${this.get('lastName')}`;
       case kindList[1]:
         return this.get('companyName');
       default:
-        return this.get('question').slice(0, 140);
+        return this.get('background').slice(0, 140);
     }
   }),
 
@@ -96,16 +92,16 @@ export default DS.Model.extend({
 
 
 export const Validations = buildValidations({
+  background: validator('presence', {
+    presence: true,
+  }),
+
   // Person
   firstName: validator('presence', {
     presence: true,
     disabled: notEqual('model.kind', raw(kindList[0]))
   }),
   lastName: validator('presence', {
-    presence: true,
-    disabled: notEqual('model.kind', raw(kindList[0]))
-  }),
-  background: validator('presence', {
     presence: true,
     disabled: notEqual('model.kind', raw(kindList[0]))
   }),
@@ -123,19 +119,9 @@ export const Validations = buildValidations({
     presence: true,
     disabled: notEqual('model.kind', raw(kindList[1]))
   }),
-  companyBackground: validator('presence', {
-    presence: true,
-    disabled: notEqual('model.kind', raw(kindList[1]))
-  }),
   sources: validator('presence', {
     presence: true,
     disabled: notEqual('model.kind', raw(kindList[1]))
-  }),
-
-  // Other
-  question: validator('presence', {
-    presence: true,
-    disabled: notEqual('model.kind', raw(kindList[2]))
   })
 }, {
   debounce: 100,
