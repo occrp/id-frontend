@@ -1,11 +1,11 @@
 import Ember from 'ember';
-import { typeList, Validations } from 'id2-frontend/models/ticket';
+import { kindList, Validations } from 'id2-frontend/models/ticket';
 import countries from 'ember-i18n-iso-countries/langs/en';
 import BufferedProxy from 'ember-buffered-proxy/proxy';
 import moment from 'moment';
 
 export default Ember.Component.extend({
-  typeList,
+  kindList,
   countries,
 
   today: moment(),
@@ -23,8 +23,8 @@ export default Ember.Component.extend({
 
   actions: {
 
-    changeType(value) {
-      this.set('buffer.type', value);
+    changeKind(value) {
+      this.set('buffer.kind', value);
       this.set('didValidate', false);
     },
 

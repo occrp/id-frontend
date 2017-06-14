@@ -7,11 +7,11 @@ test('rendering ticket details (person)', function(assert) {
   assert.expect(4);
 
   let ticket = server.create('ticket', {
-    type: 'person_ownership',
-    name: 'John',
-    surname: 'Doe',
+    kind: 'person_ownership',
+    firstName: 'John',
+    lastName: 'Doe',
     background: 'Lorem ipsum some background.',
-    dob: '2004-12-01T22:00:00.000Z',
+    bornAt: '2004-12-01T22:00:00.000Z',
   });
 
   visit(`/view/${ticket.id}`);
@@ -21,7 +21,7 @@ test('rendering ticket details (person)', function(assert) {
 
     assert.equal(find('[data-test-name]').text(), 'John Doe');
     assert.equal(find('[data-test-background]').text(), 'Lorem ipsum some background.');
-    assert.equal(find('[data-test-dob]').text(), 'December 2, 2004');
+    assert.equal(find('[data-test-born-at]').text(), 'December 2, 2004');
   });
 });
 
@@ -30,10 +30,10 @@ test('rendering ticket details (company)', function(assert) {
   assert.expect(4);
 
   let ticket = server.create('ticket', {
-    type: 'company_ownership',
+    kind: 'company_ownership',
     companyName: 'Acme Inc.',
     country: 'BA',
-    companyBackground: 'Lorem ipsum some comapny background.',
+    background: 'Lorem ipsum some comapny background.',
   });
 
   visit(`/view/${ticket.id}`);
@@ -43,7 +43,7 @@ test('rendering ticket details (company)', function(assert) {
 
     assert.equal(find('[data-test-name]').text(), 'Acme Inc.');
     assert.equal(find('[data-test-country]').text(), 'Bosnia and Herzegovina');
-    assert.equal(find('[data-test-companyBackground]').text(), 'Lorem ipsum some comapny background.');
+    assert.equal(find('[data-test-background]').text(), 'Lorem ipsum some comapny background.');
   });
 });
 
@@ -52,8 +52,8 @@ test('rendering ticket details (other)', function(assert) {
   assert.expect(2);
 
   let ticket = server.create('ticket', {
-    type: 'other',
-    question: 'My question.'
+    kind: 'other',
+    background: 'My question.'
   });
 
   visit(`/view/${ticket.id}`);
@@ -61,7 +61,7 @@ test('rendering ticket details (other)', function(assert) {
   andThen(() => {
     assert.equal(currentURL(), `/view/${ticket.id}`);
 
-    assert.equal(find('[data-test-question]').text(), 'My question.');
+    assert.equal(find('[data-test-background]').text(), 'My question.');
   });
 });
 
@@ -80,19 +80,19 @@ test('cancelling a ticket', function(assert) {
 
   let ticket = server.create('ticket', {
     status: 'new',
-    type: 'person_ownership',
-    name: 'John',
-    surname: 'Doe',
+    kind: 'person_ownership',
+    firstName: 'John',
+    lastName: 'Doe',
     background: 'Lorem ipsum some background.',
     initialInformation: 'Initial info',
-    family: 'Family',
-    aliases: 'Aliases',
+    sources: 'Aliases',
+    connections: 'Family',
     businessActivities: 'Bizniss',
     whySensitive: null,
-    dob: '2004-12-01T22:00:00.000Z',
-    created: '2016-12-01T22:00:00.000Z',
-    deadline: '2018-12-01T22:00:00.000Z',
-    statusUpdated: '2017-01-01T22:00:00.000Z'
+    bornAt: '2004-12-01T22:00:00.000Z',
+    createdAt: '2016-12-01T22:00:00.000Z',
+    deadlineAt: '2018-12-01T22:00:00.000Z',
+    updatedAt: '2017-01-01T22:00:00.000Z'
   });
 
   // let done = assert.async();
@@ -102,34 +102,30 @@ test('cancelling a ticket', function(assert) {
     assert.deepEqual(attrs, {
       "data": {
         "attributes": {
-          "aliases": "Aliases",
           "background": "Lorem ipsum some background.",
           "business-activities": "Bizniss",
-          "company-background": null,
           "company-name": null,
-          "connections": null,
+          "connections": "Family",
           "country": null,
-          "created": "2016-12-01T22:00:00.000Z",
-          "deadline": "2018-12-01T22:00:00.000Z",
-          "dob": "2004-12-01T22:00:00.000Z",
-          "family": "Family",
+          "created-at": "2016-12-01T22:00:00.000Z",
+          "deadline-at": "2018-12-01T22:00:00.000Z",
+          "born-at": "2004-12-01T22:00:00.000Z",
           "initial-information": "Initial info",
-          "name": "John",
-          "question": null,
+          "first-name": "John",
           "sensitive": true,
-          "sources": null,
+          "sources": "Aliases",
           "status": "cancelled",
-          "status-updated": "2017-01-01T22:00:00.000Z",
-          "surname": "Doe",
-          "type": "person_ownership",
+          "updated-at": "2017-01-01T22:00:00.000Z",
+          "last-name": "Doe",
+          "kind": "person_ownership",
           "why-sensitive": null
         },
         "id": "1",
         "relationships": {
-          "assignee": {
+          "responder": {
             "data": null
           },
-          "author": {
+          "requester": {
             "data": null
           }
         },

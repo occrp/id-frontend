@@ -2,17 +2,17 @@ import Ember from 'ember';
 import Pageable from 'id2-frontend/mixins/pageable';
 
 export default Ember.Controller.extend(Pageable, {
-  queryParams: ['status', 'type', 'author', 'assignee', 'sort'],
+  queryParams: ['status', 'kind', 'requester', 'responder', 'sort'],
 
   status: 'open',
-  type: null,
-  author: null,
-  assignee: null,
-  sort: '-created',
+  kind: null,
+  requester: null,
+  responder: null,
+  sort: '-created-at',
 
   filterMeta: Ember.computed('model.meta', function () {
     let meta = this.get('model.meta');
-    return meta.filters ? meta.filters : { assignee: null, author: null };
+    return meta.filters ? meta.filters : { responder: null, requester: null };
   }),
 
   actions: {
@@ -34,9 +34,9 @@ export default Ember.Controller.extend(Pageable, {
 
     resetFilters() {
       this.setProperties({
-        type: null,
-        author: null,
-        assignee: null
+        kind: null,
+        requester: null,
+        responder: null
       });
     }
   }

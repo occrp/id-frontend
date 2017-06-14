@@ -14,7 +14,7 @@ export const typeList = [
 
 export default DS.Model.extend({
   type: attr('string'),
-  created: attr('date'),
+  createdAt: attr('date'),
   comment: attr('string'),
 
   author: belongsTo('user'),

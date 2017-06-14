@@ -3,7 +3,7 @@ import { Factory, faker, trait } from 'ember-cli-mirage';
 const random = faker.random.arrayElement;
 
 export default Factory.extend({
-  created() { return faker.date.past(); },
+  createdAt() { return faker.date.past(); },
 
   isComment: trait({
     type: 'update',

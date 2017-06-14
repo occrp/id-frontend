@@ -1,22 +1,22 @@
 {{#if hasFilters}}
   <div class="activeFilters">
     <span class="activeFilters-label">Filtered by</span>
-    {{#if type}}
+    {{#if kind}}
       <span class="chip">
         <span class="chip-label">Type</span>
-        <span class="chip-value" data-test-active-filter="type">{{get (get typeMap type) 'shortName'}}</span>
+        <span class="chip-value" data-test-active-filter="kind">{{get (get kindMap kind) 'shortName'}}</span>
       </span>
     {{/if}}
-    {{#if currentAuthor}}
+    {{#if currentRequester}}
       <span class="chip">
-        <span class="chip-label">Author</span>
-        <span class="chip-value" data-test-active-filter="author">{{currentAuthor.firstName}} {{currentAuthor.lastName}}</span>
+        <span class="chip-label">Requester</span>
+        <span class="chip-value" data-test-active-filter="requester">{{currentRequester.firstName}} {{currentRequester.lastName}}</span>
       </span>
     {{/if}}
-    {{#if currentAssignee}}
+    {{#if currentResponder}}
       <span class="chip">
-        <span class="chip-label">Assignee</span>
-        <span class="chip-value" data-test-active-filter="assignee">{{currentAssignee.firstName}} {{currentAssignee.lastName}}</span>
+        <span class="chip-label">Responder</span>
+        <span class="chip-value" data-test-active-filter="responder">{{currentResponder.firstName}} {{currentResponder.lastName}}</span>
       </span>
     {{/if}}
     <a href class="activeFilters-clear" {{action resetFilters}}>Clear all filters</a>

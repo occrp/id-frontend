@@ -21,20 +21,20 @@ export default function() {
 
     let filters = {};
 
-    let author = request.queryParams['filter[author]'];
-    let assignee = request.queryParams['filter[assignee]'];
+    let requester = request.queryParams['filter[requester]'];
+    let responder = request.queryParams['filter[responder]'];
 
-    if (author) {
-      let user = schema.users.find(author);
-      filters.author = {
+    if (requester) {
+      let user = schema.users.find(requester);
+      filters.requester = {
         'first-name': user.firstName,
         'last-name': user.lastName
       };
     }
 
-    if (assignee && assignee !== 'none') {
-      let user = schema.users.find(assignee);
-      filters.assignee = {
+    if (responder && responder !== 'none') {
+      let user = schema.users.find(responder);
+      filters.responder = {
         'first-name': user.firstName,
         'last-name': user.lastName
       };
@@ -57,7 +57,7 @@ export default function() {
   this.post('/tickets', (schema, request) => {
     let attrs = JSON.parse(request.requestBody).data.attributes;
 
-    attrs.created = (new Date()).toISOString();
+    attrs.createdAt = (new Date()).toISOString();
 
     return schema.tickets.create(attrs);
   });
@@ -69,8 +69,8 @@ export default function() {
 
     let model = schema.tickets.find(id);
 
-    if (rels.assignee.data) {
-      model.update({assigneeId: rels.assignee.data.id});
+    if (rels.responder.data) {
+      model.update({responderId: rels.responder.data.id});
       if (attrs.status === 'new') {
         attrs.status = 'in-progress';
       }
@@ -111,7 +111,7 @@ export default function() {
     let attrs = data.attributes;
     let rels = data.relationships;
 
-    attrs.created = (new Date()).toISOString();
+    attrs.createdAt = (new Date()).toISOString();
     attrs.authorId = rels.author.data.id;
     attrs.ticketId = rels.ticket.data.id;
 
@@ -125,7 +125,7 @@ export default function() {
         ticket.update({ status: 'closed' });
         break;
       case 'reopen':
-        if (ticket.assignee) {
+        if (ticket.responder) {
           ticket.update({ status: 'in-progress' });
         } else {
           ticket.update({ status: 'new' });

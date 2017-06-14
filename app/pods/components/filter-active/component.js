@@ -1,25 +1,25 @@
 import Ember from 'ember';
-import { typeMap } from 'id2-frontend/models/ticket';
+import { kindMap } from 'id2-frontend/models/ticket';
 
 export default Ember.Component.extend({
-  typeMap,
+  kindMap,
 
-  hasFilters: Ember.computed.or('author', 'assignee', 'type'),
+  hasFilters: Ember.computed.or('requester', 'responder', 'kind'),
 
   // fyi, these CPs will get triggered twice per change.
   // first when we manually update filterMeta.${key} in the controller
   // second when the model refreshes and filterMeta is changed
 
-  currentAuthor: Ember.computed('author', 'filterMeta.author', function() {
-    return this.get('author') && this.get('filterMeta.author');
+  currentRequester: Ember.computed('requester', 'filterMeta.requester', function() {
+    return this.get('requester') && this.get('filterMeta.requester');
   }),
 
-  currentAssignee: Ember.computed('assignee', 'filterMeta.assignee', function() {
-    if (this.get('assignee') === 'none') {
+  currentResponder: Ember.computed('responder', 'filterMeta.responder', function() {
+    if (this.get('responder') === 'none') {
       return { firstName: 'none' };
     }
 
-    return this.get('assignee') && this.get('filterMeta.assignee');
+    return this.get('responder') && this.get('filterMeta.responder');
   })
 
 });

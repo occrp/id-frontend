@@ -4,14 +4,14 @@
   </div>
   <div class="filters-secondary">
     <div class="filters-item">
-      {{#ui-dropdown data-test-dd="filter-type" as |dd|}}
+      {{#ui-dropdown data-test-dd="filter-kind" as |dd|}}
         {{#dd.trigger}}Type <b class="arrow"></b>{{/dd.trigger}}
         {{#dd.body headerText="Filter by type"}}
           <div class="list">
-            <a href {{action (pipe (action updateFilter 'type' null) dd.close)}} class="list-item {{if (eq type null) "is-active"}}">All</a>
+            <a href {{action (pipe (action updateFilter 'kind' null) dd.close)}} class="list-item {{if (eq kind null) "is-active"}}">All</a>
 
-            {{#each-in typeMap as |key props|}}
-              <a href {{action (pipe (action updateFilter 'type' key) dd.close)}} class="list-item {{if (eq type key) "is-active"}}" data-test-type-option={{key}}>
+            {{#each-in kindMap as |key props|}}
+              <a href {{action (pipe (action updateFilter 'kind' key) dd.close)}} class="list-item {{if (eq kind key) "is-active"}}" data-test-kind-option={{key}}>
                 <span class="iconContainer"><i class="fa {{props.icon}}"></i></span>
                 <span class="iconText">{{props.name}}</span>
               </a>
@@ -22,26 +22,26 @@
     </div>
     {{#if (can "manage tickets")}}
     <div class="filters-item">
-      {{#ui-dropdown data-test-dd="filter-author" as |dd|}}
-        {{#dd.trigger}}Author <b class="arrow"></b>{{/dd.trigger}}
-        {{#dd.body headerText="Filter by author"}}
+      {{#ui-dropdown data-test-dd="filter-requester" as |dd|}}
+        {{#dd.trigger}}Requester <b class="arrow"></b>{{/dd.trigger}}
+        {{#dd.body headerText="Filter by requester"}}
           {{search-users
-            task=searchAuthors
-            current=author
-            onSelect=(pipe-action (action 'applyAuthor') dd.close)}}
+            task=searchRequesters
+            current=requester
+            onSelect=(pipe-action (action 'applyRequester') dd.close)}}
         {{/dd.body}}
       {{/ui-dropdown}}
     </div>
     <div class="filters-item">
-      {{#ui-dropdown data-test-dd="filter-assignee" as |dd|}}
-        {{#dd.trigger}}Assignee <b class="arrow"></b>{{/dd.trigger}}
+      {{#ui-dropdown data-test-dd="filter-responder" as |dd|}}
+        {{#dd.trigger}}Responder <b class="arrow"></b>{{/dd.trigger}}
         {{#dd.body headerText="Filter by who's assigned"}}
           {{#search-users
             task=searchStaff
-            current=assignee
-            onSelect=(pipe-action (action 'applyAssignee') dd.close)
+            current=responder
+            onSelect=(pipe-action (action 'applyResponder') dd.close)
           }}
-            <a href class="list-item list-item--special {{if (eq assignee "none") "is-active"}}" {{action (pipe (action 'applyAssignee' "none") dd.close)}} data-test-filter-static-option="none">Assigned to nobody</a>
+            <a href class="list-item list-item--special {{if (eq responder "none") "is-active"}}" {{action (pipe (action 'applyResponder' "none") dd.close)}} data-test-filter-static-option="none">Assigned to nobody</a>
           {{/search-users}}
         {{/dd.body}}
       {{/ui-dropdown}}

@@ -1,34 +1,34 @@
 import Ember from 'ember';
 import { task } from 'ember-concurrency';
-import { typeMap } from 'id2-frontend/models/ticket';
+import { kindMap } from 'id2-frontend/models/ticket';
 import { getSearchGenerator } from 'id2-frontend/models/user';
 
 export default Ember.Component.extend({
-  typeMap,
+  kindMap,
 
   sortFields: {
-    '-created': 'Newest',
-    'created': 'Oldest',
-    'deadline': 'Closest deadline',
-    '-deadline': 'Furthest deadline'
+    '-created-at': 'Newest',
+    'created-at': 'Oldest',
+    'deadline-at': 'Closest deadline',
+    '-deadline-at': 'Furthest deadline'
   },
 
-  searchAuthors: task(getSearchGenerator({ isStaff: false })).restartable(),
+  searchRequesters: task(getSearchGenerator({ isStaff: false })).restartable(),
   searchStaff: task(getSearchGenerator({ isStaff: true })).restartable(),
 
   actions: {
-    applyAuthor(user) {
-      this.get('updateFilter')('author', user.get('id'), {
+    applyRequester(user) {
+      this.get('updateFilter')('requester', user.get('id'), {
         firstName: user.get('firstName'),
         lastName: user.get('lastName')
       });
     },
 
-    applyAssignee(user) {
+    applyResponder(user) {
       if (user === 'none') {
-        this.get('updateFilter')('assignee', 'none');
+        this.get('updateFilter')('responder', 'none');
       } else {
-        this.get('updateFilter')('assignee', user.get('id'), {
+        this.get('updateFilter')('responder', user.get('id'), {
           firstName: user.get('firstName'),
           lastName: user.get('lastName')
         });

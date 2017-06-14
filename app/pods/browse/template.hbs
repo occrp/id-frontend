@@ -15,9 +15,9 @@
   <div class="section">
 
     {{#filter-nav
-      type=type
-      author=author
-      assignee=assignee
+      kind=kind
+      requester=requester
+      responder=responder
       sort=sort
       updateFilter=(action 'updateFilter')}}
       <div class="innerNav">
@@ -34,9 +34,9 @@
     {{/filter-nav}}
 
     {{filter-active
-      type=type
-      author=author
-      assignee=assignee
+      kind=kind
+      requester=requester
+      responder=responder
       filterMeta=filterMeta
       resetFilters=(action 'resetFilters')}}
 

@@ -3,30 +3,30 @@
   <p class="h4 subtitle t-dimmed text-center">Your request will be routed to our professional researchers, who will try to help.</p>
 
   <div class="tabs">
-    <label class="tabs-item {{if (eq buffer.type typeList.[0]) "is-active"}}" data-test-type-tab="person">
+    <label class="tabs-item {{if (eq buffer.kind kindList.[0]) "is-active"}}" data-test-kind-tab="person">
       {{radio-button
-        name="ticket-type"
-        value=typeList.[0]
-        groupValue=buffer.type
-        changed=(action 'changeType')}}
+        name="ticket-kind"
+        value=kindList.[0]
+        groupValue=buffer.kind
+        changed=(action 'changeKind')}}
       <i class="fa fa-user"></i>
       <span>Identify what a person owns</span>
     </label>
-    <label class="tabs-item {{if (eq buffer.type typeList.[1]) "is-active"}}" data-test-type-tab="company">
+    <label class="tabs-item {{if (eq buffer.kind kindList.[1]) "is-active"}}" data-test-kind-tab="company">
       {{radio-button
-        name="ticket-type"
-        value=typeList.[1]
-        groupValue=buffer.type
-        changed=(action 'changeType')}}
+        name="ticket-kind"
+        value=kindList.[1]
+        groupValue=buffer.kind
+        changed=(action 'changeKind')}}
       <i class="fa fa-building"></i>
       <span>Determine company ownership</span>
     </label>
-    <label class="tabs-item {{if (eq buffer.type typeList.[2]) "is-active"}}" data-test-type-tab="other">
+    <label class="tabs-item {{if (eq buffer.kind kindList.[2]) "is-active"}}" data-test-kind-tab="other">
       {{radio-button
-        name="ticket-type"
-        value=typeList.[2]
-        groupValue=buffer.type
-        changed=(action 'changeType')}}
+        name="ticket-kind"
+        value=kindList.[2]
+        groupValue=buffer.kind
+        changed=(action 'changeKind')}}
       <i class="fa fa-question"></i>
       <span>Any other question</span>
     </label>
@@ -35,25 +35,25 @@
   <div class="fieldGroup fieldGroup--bordered">
 
     <div class="l-constrain">
-    {{#if (eq buffer.type typeList.[0])}}
+    {{#if (eq buffer.kind kindList.[0])}}
 
       <h2 class="fieldGroup-title">Identify what a person owns</h2>
 
-      {{#validated-field class="form-group" validation=buffer.validations.attrs.name didValidate=didValidate as |field|}}
-        <label for="ticket-name">First name <span class="text-danger">*</span></label>
-        {{input value=buffer.name class="form-control" id="ticket-name" focus-out=field.triggerValidations}}
+      {{#validated-field class="form-group" validation=buffer.validations.attrs.firstName didValidate=didValidate as |field|}}
+        <label for="ticket-first-name">First name <span class="text-danger">*</span></label>
+        {{input value=buffer.firstName class="form-control" id="ticket-first-name" focus-out=field.triggerValidations}}
 
         {{#if field.showErrors}}
-          <div class="help-block">{{v-get buffer "name" "message"}}</div>
+          <div class="help-block">{{v-get buffer "firstName" "message"}}</div>
         {{/if}}
       {{/validated-field}}
 
-      {{#validated-field class="form-group" validation=buffer.validations.attrs.surname didValidate=didValidate as |field|}}
-        <label for="ticket-surname">Last name <span class="text-danger">*</span></label>
-        {{input value=buffer.surname class="form-control" id="ticket-surname" focus-out=field.triggerValidations}}
+      {{#validated-field class="form-group" validation=buffer.validations.attrs.lastName didValidate=didValidate as |field|}}
+        <label for="ticket-last-name">Last name <span class="text-danger">*</span></label>
+        {{input value=buffer.lastName class="form-control" id="ticket-last-name" focus-out=field.triggerValidations}}
 
         {{#if field.showErrors}}
-          <div class="help-block">{{v-get buffer "surname" "message"}}</div>
+          <div class="help-block">{{v-get buffer "lastName" "message"}}</div>
         {{/if}}
       {{/validated-field}}
 
@@ -80,23 +80,23 @@
       <h2 class="fieldGroup-title">Other details</h2>
 
       <div class="form-group">
-        <label for="ticket-dob">Date of birth</label>
+        <label for="ticket-born-at">Date of birth</label>
 
-        {{input-date value=buffer.dob onSelect=(action (mut buffer.dob) value="date") inputId="ticket-dob" maxDate=today}}
+        {{input-date value=buffer.bornAt onSelect=(action (mut buffer.bornAt) value="date") inputId="ticket-born-at" maxDate=today}}
       </div>
 
 
       <div class="form-group">
-        <label for="ticket-aliases">Aliases</label>
+        <label for="ticket-sources-person">Aliases</label>
         <p class="info-block">Other spellings or cover names.</p>
-        {{textarea rows=3 value=buffer.aliases class="form-control" id="ticket-aliases"}}
+        {{textarea rows=3 value=buffer.sources class="form-control" id="ticket-sources-person"}}
       </div>
 
 
       <div class="form-group">
-        <label for="ticket-family">Family And Associates</label>
+        <label for="ticket-connections-person">Family And Associates</label>
         <p class="info-block">Known family relationships.</p>
-        {{textarea rows=3 value=buffer.family class="form-control" id="ticket-family"}}
+        {{textarea rows=3 value=buffer.connections class="form-control" id="ticket-connections-person"}} 
       </div>
 
       <div class="form-group">
@@ -104,7 +104,7 @@
         {{textarea rows=3 value=buffer.businessActivities class="form-control" id="ticket-businessActivities"}}
       </div>
 
-    {{else if (eq buffer.type typeList.[1])}}
+    {{else if (eq buffer.kind kindList.[1])}}
 
       <h2 class="fieldGroup-title">Determine company ownership</h2>
 
@@ -131,13 +131,13 @@
         {{/if}}
       {{/validated-field}}
 
-      {{#validated-field class="form-group" validation=buffer.validations.attrs.companyBackground didValidate=didValidate as |field|}}
-        <label for="ticket-companyBackground">Your story <span class="text-danger">*</span></label>
+      {{#validated-field class="form-group" validation=buffer.validations.attrs.background didValidate=didValidate as |field|}}
+        <label for="ticket-background-company">Your story <span class="text-danger">*</span></label>
         <p class="info-block">What do you know so far?</p>
-        {{textarea rows=5 value=buffer.companyBackground class="form-control" id="ticket-companyBackground" focus-out=field.triggerValidations}}
+        {{textarea rows=5 value=buffer.background class="form-control" id="ticket-background-company" focus-out=field.triggerValidations}}
 
         {{#if field.showErrors}}
-          <div class="help-block">{{v-get buffer "companyBackground" "message"}}</div>
+          <div class="help-block">{{v-get buffer "background" "message"}}</div>
         {{/if}}
       {{/validated-field}}
 
@@ -162,13 +162,13 @@
 
       <h2 class="fieldGroup-title">Any other question</h2>
 
-      {{#validated-field class="form-group" validation=buffer.validations.attrs.question didValidate=didValidate as |field|}}
-        <label for="ticket-question">What Do You Want To Know? <span class="text-danger">*</span> </label>
+      {{#validated-field class="form-group" validation=buffer.validations.attrs.background didValidate=didValidate as |field|}}
+        <label for="ticket-background-other">What Do You Want To Know? <span class="text-danger">*</span> </label>
         <p class="info-block">Any information you already have.</p>
-        {{textarea rows=7 value=buffer.question class="form-control" id="ticket-question"}}
+        {{textarea rows=7 value=buffer.background class="form-control" id="ticket-background-other"}}
 
         {{#if field.showErrors}}
-          <div class="help-block">{{v-get buffer "question" "message"}}</div>
+          <div class="help-block">{{v-get buffer "background" "message"}}</div>
         {{/if}}
       {{/validated-field}}
 
@@ -185,7 +185,7 @@
     <div class="form-group">
       <label for="ticket-deadline">Deadline</label>
       <p class="info-block">We will try to meet your deadline, but please note that our researchers are quite busy. <br />Give them as much time as you possibly can!</p>
-      {{input-date value=buffer.deadline onSelect=(action (mut buffer.deadline) value="date") inputId="ticket-deadline" minDate=today}}
+      {{input-date value=buffer.deadlineAt onSelect=(action (mut buffer.deadlineAt) value="date") inputId="ticket-deadline" minDate=today}}
     </div>
 
     <div class="form-group">

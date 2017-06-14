@@ -6,7 +6,7 @@ import raw from 'ember-macro-helpers/raw';
 
 const { attr, belongsTo, hasMany } = DS;
 
-export const typeMap = {
+export const kindMap = {
   'person_ownership': {
     name: 'Identify what a person owns',
     shortName: 'Person',
@@ -24,7 +24,7 @@ export const typeMap = {
   }
 };
 
-export const typeList = Object.keys(typeMap);
+export const kindList = Object.keys(kindMap);
 
 export const statusMap = {
   'new': { name: 'New', labelClass: 'tag--new' },
@@ -38,47 +38,43 @@ export const statusList = Object.keys(statusMap);
 
 export default DS.Model.extend({
   // Common
-  type: attr('string', { defaultValue: typeList[0] }),
-  created: attr('date'),
+  kind: attr('string', { defaultValue: kindList[0] }),
   status: attr('string', { defaultValue: statusList[0] }),
-  statusUpdated: attr('date'),
+  createdAt: attr('date'),
+  updatedAt: attr('date'),
+  deadlineAt: attr('date'),
 
-  sensitive: attr('boolean', { defaultValue: false }),
-  whySensitive: attr('string'),
-  deadline: attr('date'),
-
-  author: belongsTo('user'),
-  assignee: belongsTo('user'),
+  requester: belongsTo('user'),
+  responder: belongsTo('user'),
   activities: hasMany('activity', { async: true }),
 
-  // Person
-  name: attr('string'),
-  surname: attr('string'),
+  // Common
   background: attr('string'),
+  sensitive: attr('boolean', { defaultValue: false }),
+  whySensitive: attr('string'),
+
+  // Person
+  firstName: attr('string'),
+  lastName: attr('string'),
   initialInformation: attr('string'),
-  dob: attr('date'),
-  aliases: attr('string'),
-  family: attr('string'),
+  bornAt: attr('date'),
   businessActivities: attr('string'),
 
   // Company
   companyName: attr('string'),
   country: attr('string'),
-  companyBackground: attr('string'),
-  sources: attr('string'),
-  connections: attr('string'),
+  sources: attr('string'), // reused on Person, labeled "Aliases"
+  connections: attr('string'), // reused on Person, labeled "Family info"
 
-  // Other
-  question: attr('string'),
-
-  displayName: Ember.computed('type', 'name', 'companyName', 'question', function () {
-    switch (this.get('type')) {
-      case typeList[0]:
-        return `${this.get('name')} ${this.get('surname')}`;
-      case typeList[1]:
+  
+  displayName: Ember.computed('kind', 'firstName', 'lastName', 'companyName', 'background', function () {
+    switch (this.get('kind')) {
+      case kindList[0]:
+        return `${this.get('firstName')} ${this.get('lastName')}`;
+      case kindList[1]:
         return this.get('companyName');
       default:
-        return this.get('question').slice(0, 140);
+        return this.get('background').slice(0, 140);
     }
   }),
 
@@ -96,46 +92,36 @@ export default DS.Model.extend({
 
 
 export const Validations = buildValidations({
-  // Person
-  name: validator('presence', {
-    presence: true,
-    disabled: notEqual('model.type', raw(typeList[0]))
-  }),
-  surname: validator('presence', {
-    presence: true,
-    disabled: notEqual('model.type', raw(typeList[0]))
-  }),
   background: validator('presence', {
     presence: true,
-    disabled: notEqual('model.type', raw(typeList[0]))
+  }),
+
+  // Person
+  firstName: validator('presence', {
+    presence: true,
+    disabled: notEqual('model.kind', raw(kindList[0]))
+  }),
+  lastName: validator('presence', {
+    presence: true,
+    disabled: notEqual('model.kind', raw(kindList[0]))
   }),
   initialInformation: validator('presence', {
     presence: true,
-    disabled: notEqual('model.type', raw(typeList[0]))
+    disabled: notEqual('model.kind', raw(kindList[0]))
   }),
 
   // Company
   companyName: validator('presence', {
     presence: true,
-    disabled: notEqual('model.type', raw(typeList[1]))
+    disabled: notEqual('model.kind', raw(kindList[1]))
   }),
   country: validator('presence', {
     presence: true,
-    disabled: notEqual('model.type', raw(typeList[1]))
-  }),
-  companyBackground: validator('presence', {
-    presence: true,
-    disabled: notEqual('model.type', raw(typeList[1]))
+    disabled: notEqual('model.kind', raw(kindList[1]))
   }),
   sources: validator('presence', {
     presence: true,
-    disabled: notEqual('model.type', raw(typeList[1]))
-  }),
-
-  // Other
-  question: validator('presence', {
-    presence: true,
-    disabled: notEqual('model.type', raw(typeList[2]))
+    disabled: notEqual('model.kind', raw(kindList[1]))
   })
 }, {
   debounce: 100,

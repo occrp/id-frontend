@@ -1,8 +1,8 @@
 import { Factory, faker, trait } from 'ember-cli-mirage';
-import { typeList, statusList } from 'id2-frontend/models/ticket';
+import { kindList, statusList } from 'id2-frontend/models/ticket';
 
 const random = faker.random.arrayElement;
-const t = typeList.length;
+const t = kindList.length;
 
 const paragraphs = `Labore deserunt beatae et et. Expedita autem maiores. Nobis molestiae explicabo aliquam architecto at mollitia.
 
@@ -11,73 +11,65 @@ Voluptatum doloremque exercitationem beatae est. Est laboriosam libero autem dol
 Quia ducimus alias laborum consequuntur rerum. Reiciendis nobis quod temporibus velit in culpa tenetur. Consectetur eos harum. Totam soluta tempore vel ipsum consequuntur voluptas quia ipsa. Velit architecto tenetur dolor aut hic sed error illo. Labore quis pariatur omnis magnam explicabo.`;
 
 export default Factory.extend({
-  type(i)                 { return typeList[i % t]; },
-  created()               { return faker.date.past(); },
+  kind(i)                 { return kindList[i % t]; },
   status()                { return statusList[0]; },
-  statusUpdated()         { return faker.date.past(); },
+  createdAt()             { return faker.date.past(); },
+  updatedAt()             { return faker.date.past(); },
+  deadlineAt()            { return faker.date.future(); },
 
   sensitive(i)            { return i % 2 === 0 ? true : false; },
   whySensitive()          { return faker.lorem.sentences(); },
-  deadline()              { return faker.date.future(); },
+  background()            { return paragraphs; },
 
-  // Attributes based on type. Override with traits
-  name:                   null,
-  surname:                null,
-  aliases:                null,
-  dob:                    null,
-  family:                 null,
-  background:             null,
-  businessActivities:     null,
+  // Attributes based on kind. Override with traits
+  firstName:              null,
+  lastName:               null,
   initialInformation:     null,
+  bornAt:                 null,
+  businessActivities:     null,
 
   companyName:            null,
   country:                null,
-  companyBackground:      null,
-  connections:            null,
   sources:                null,
-
-  question:               null,
+  connections:            null,
 
   isPerson: trait({
-    type:                 typeList[0],
-    name()                { return faker.name.firstName(); },
-    surname()             { return faker.name.lastName(); },
-    aliases()             { return faker.lorem.sentences(); },
-    dob()                 { return faker.date.past(); },
-    family()              { return faker.lorem.sentences(); },
-    background()          { return paragraphs; },
-    businessActivities()  { return faker.lorem.sentences(); },
-    initialInformation()  { return faker.lorem.sentences(); }
+    kind:                 kindList[0],
+    firstName()           { return faker.name.firstName(); },
+    lastName()            { return faker.name.lastName(); },
+    initialInformation()  { return faker.lorem.sentences(); },
+    bornAt()              { return faker.date.past(); },
+    sources()             { return faker.lorem.sentences(); },
+    connections()         { return faker.lorem.sentences(); },
+    businessActivities()  { return faker.lorem.sentences(); }
   }),
 
   isCompany: trait({
-    type:                 typeList[1],
+    kind:                 kindList[1],
     companyName()         { return faker.company.companyName(); },
     country()             { return faker.address.countryCode(); },
-    companyBackground()   { return faker.lorem.sentences(); },
-    connections()         { return faker.lorem.sentences(); },
-    sources()             { return faker.lorem.sentences(); }
+    sources()             { return faker.lorem.sentences(); },
+    connections()         { return faker.lorem.sentences(); }
   }),
 
   isOther: trait({
-    type:                 typeList[2],
-    question()            { return faker.lorem.paragraphs(); }
+    kind:                 kindList[2],
   }),
 
   afterCreate(ticket, server) {
     let regulars = server.schema.users.where({ isStaff: false });
 
     ticket.update({
-      author: random(regulars.models),
+      requester: random(regulars.models),
     });
   },
 
-  withAssignee: trait({
+  withResponder: trait({
     afterCreate(ticket, server) {
       let staff = server.schema.users.where({ isStaff: true });
 
       ticket.update({
-        assignee: random(staff.models)
+        responder: random(staff.models)
       });
     }
   }),

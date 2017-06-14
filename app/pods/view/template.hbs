@@ -5,22 +5,22 @@
     <div class="l-fixedColumn-main">
 
       <div class="ticketType">
-        {{ticket-icon model.type}}
-        <span>{{get (get typeMap model.type) "shortName"}}</span>
+        {{ticket-icon model.kind}}
+        <span>{{get (get kindMap model.kind) "shortName"}}</span>
       </div>
 
       <h1 class="ticketTitle t-dark t-flush" data-test-name>{{title}}</h1>
 
       <p class="ticketSubtitle">
-      Submitted by <strong>{{model.author.displayName}}</strong> on
-        <time datetime={{model.created}} title={{moment-format model.created 'LLL'}}>
-          {{moment-format model.created 'LL'}}
+      Submitted by <strong>{{model.requester.displayName}}</strong> on
+        <time datetime={{model.createdAt}} title={{moment-format model.createdAt 'LLL'}}>
+          {{moment-format model.createdAt 'LL'}}
         </time>
       </p>
 
       <hr class="l-fixedColumn-separator" />
 
-      {{#if (eq model.type typeList.[0])}}
+      {{#if (eq model.kind kindList.[0])}}
         <dl class="ticketDetails">
           <dt>Background</dt>
           <dd class="formatted" data-test-background>{{model.background}}</dd>
@@ -29,24 +29,24 @@
           <dd class="formatted">{{model.initialInformation}}</dd>
 
           <dt>Date of birth</dt>
-          <dd data-test-dob>{{moment-format model.dob 'LL'}}</dd>
+          <dd data-test-born-at>{{moment-format model.bornAt 'LL'}}</dd>
 
           <dt>Aliases</dt>
-          <dd class="formatted">{{model.aliases}}</dd>
+          <dd class="formatted">{{model.sources}}</dd>
 
           <dt>Family And Associates</dt>
-          <dd class="formatted">{{model.family}}</dd>
+          <dd class="formatted">{{model.connections}}</dd>
 
           <dt>Business Activities</dt>
           <dd class="formatted">{{model.businessActivities}}</dd>
         </dl>
-      {{else if (eq model.type typeList.[1])}}
+      {{else if (eq model.kind kindList.[1])}}
         <dl class="ticketDetails">
           <dt>Country</dt>
           <dd data-test-country>{{get countries model.country}}</dd>
 
           <dt>Company background</dt>
-          <dd class="formatted" data-test-companyBackground>{{model.companyBackground}}</dd>
+          <dd class="formatted" data-test-background>{{model.background}}</dd>
 
           <dt>Sources</dt>
           <dd class="formatted">{{model.sources}}</dd>
@@ -57,7 +57,7 @@
       {{else}}
         <dl class="ticketDetails">
           <dt>Question</dt>
-          <dd class="formatted" data-test-question>{{model.question}}</dd>
+          <dd class="formatted" data-test-background>{{model.background}}</dd>
         </dl>
       {{/if}}
 
