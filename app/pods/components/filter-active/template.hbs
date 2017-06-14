@@ -13,10 +13,10 @@
         <span class="chip-value" data-test-active-filter="requester">{{currentRequester.firstName}} {{currentRequester.lastName}}</span>
       </span>
     {{/if}}
-    {{#if currentAssignee}}
+    {{#if currentResponder}}
       <span class="chip">
-        <span class="chip-label">Assignee</span>
-        <span class="chip-value" data-test-active-filter="assignee">{{currentAssignee.firstName}} {{currentAssignee.lastName}}</span>
+        <span class="chip-label">Responder</span>
+        <span class="chip-value" data-test-active-filter="responder">{{currentResponder.firstName}} {{currentResponder.lastName}}</span>
       </span>
     {{/if}}
     <a href class="activeFilters-clear" {{action resetFilters}}>Clear all filters</a>

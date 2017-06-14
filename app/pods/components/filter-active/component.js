@@ -4,7 +4,7 @@ import { kindMap } from 'id2-frontend/models/ticket';
 export default Ember.Component.extend({
   kindMap,
 
-  hasFilters: Ember.computed.or('requester', 'assignee', 'kind'),
+  hasFilters: Ember.computed.or('requester', 'responder', 'kind'),
 
   // fyi, these CPs will get triggered twice per change.
   // first when we manually update filterMeta.${key} in the controller
@@ -14,12 +14,12 @@ export default Ember.Component.extend({
     return this.get('requester') && this.get('filterMeta.requester');
   }),
 
-  currentAssignee: Ember.computed('assignee', 'filterMeta.assignee', function() {
-    if (this.get('assignee') === 'none') {
+  currentResponder: Ember.computed('responder', 'filterMeta.responder', function() {
+    if (this.get('responder') === 'none') {
       return { firstName: 'none' };
     }
 
-    return this.get('assignee') && this.get('filterMeta.assignee');
+    return this.get('responder') && this.get('filterMeta.responder');
   })
 
 });

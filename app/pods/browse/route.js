@@ -20,7 +20,7 @@ export default Ember.Route.extend({
     requester: {
       refreshModel: true
     },
-    assignee: {
+    responder: {
       refreshModel: true
     }
   },
@@ -31,14 +31,14 @@ export default Ember.Route.extend({
         status: params.status,
         kind: params.kind,
         requester: params.requester,
-        assignee: params.assignee
+        responder: params.responder
       },
       page: {
         number: params.page,
         size: params.size
       },
       sort: params.sort,
-      include: 'requester,assignee'
+      include: 'requester,responder'
     });
   }
 });

@@ -24,11 +24,11 @@ export default Ember.Component.extend({
       });
     },
 
-    applyAssignee(user) {
+    applyResponder(user) {
       if (user === 'none') {
-        this.get('updateFilter')('assignee', 'none');
+        this.get('updateFilter')('responder', 'none');
       } else {
-        this.get('updateFilter')('assignee', user.get('id'), {
+        this.get('updateFilter')('responder', user.get('id'), {
           firstName: user.get('firstName'),
           lastName: user.get('lastName')
         });

@@ -126,7 +126,7 @@ test('cancelling a ticket', function(assert) {
         },
         "id": "1",
         "relationships": {
-          "assignee": {
+          "responder": {
             "data": null
           },
           "requester": {

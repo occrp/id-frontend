@@ -33,15 +33,15 @@
       {{/ui-dropdown}}
     </div>
     <div class="filters-item">
-      {{#ui-dropdown data-test-dd="filter-assignee" as |dd|}}
-        {{#dd.trigger}}Assignee <b class="arrow"></b>{{/dd.trigger}}
+      {{#ui-dropdown data-test-dd="filter-responder" as |dd|}}
+        {{#dd.trigger}}Responder <b class="arrow"></b>{{/dd.trigger}}
         {{#dd.body headerText="Filter by who's assigned"}}
           {{#search-users
             task=searchStaff
-            current=assignee
-            onSelect=(pipe-action (action 'applyAssignee') dd.close)
+            current=responder
+            onSelect=(pipe-action (action 'applyResponder') dd.close)
           }}
-            <a href class="list-item list-item--special {{if (eq assignee "none") "is-active"}}" {{action (pipe (action 'applyAssignee' "none") dd.close)}} data-test-filter-static-option="none">Assigned to nobody</a>
+            <a href class="list-item list-item--special {{if (eq responder "none") "is-active"}}" {{action (pipe (action 'applyResponder' "none") dd.close)}} data-test-filter-static-option="none">Assigned to nobody</a>
           {{/search-users}}
         {{/dd.body}}
       {{/ui-dropdown}}

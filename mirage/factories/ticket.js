@@ -72,12 +72,12 @@ export default Factory.extend({
     });
   },
 
-  withAssignee: trait({
+  withResponder: trait({
     afterCreate(ticket, server) {
       let staff = server.schema.users.where({ isStaff: true });
 
       ticket.update({
-        assignee: random(staff.models)
+        responder: random(staff.models)
       });
     }
   }),

@@ -22,7 +22,7 @@ export default function() {
     let filters = {};
 
     let requester = request.queryParams['filter[requester]'];
-    let assignee = request.queryParams['filter[assignee]'];
+    let responder = request.queryParams['filter[responder]'];
 
     if (requester) {
       let user = schema.users.find(requester);
@@ -32,9 +32,9 @@ export default function() {
       };
     }
 
-    if (assignee && assignee !== 'none') {
-      let user = schema.users.find(assignee);
-      filters.assignee = {
+    if (responder && responder !== 'none') {
+      let user = schema.users.find(responder);
+      filters.responder = {
         'first-name': user.firstName,
         'last-name': user.lastName
       };
@@ -69,8 +69,8 @@ export default function() {
 
     let model = schema.tickets.find(id);
 
-    if (rels.assignee.data) {
-      model.update({assigneeId: rels.assignee.data.id});
+    if (rels.responder.data) {
+      model.update({responderId: rels.responder.data.id});
       if (attrs.status === 'new') {
         attrs.status = 'in-progress';
       }
@@ -125,7 +125,7 @@ export default function() {
         ticket.update({ status: 'closed' });
         break;
       case 'reopen':
-        if (ticket.assignee) {
+        if (ticket.responder) {
           ticket.update({ status: 'in-progress' });
         } else {
           ticket.update({ status: 'new' });

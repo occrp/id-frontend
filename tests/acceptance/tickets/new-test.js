@@ -38,7 +38,7 @@ test('creating a new ticket (person)', function(assert) {
           "why-sensitive": "It just is."
         },
         "relationships": {
-          "assignee": {
+          "responder": {
             "data": null
           },
           "requester": {
@@ -118,7 +118,7 @@ test('creating a new ticket (company)', function(assert) {
           "why-sensitive": null
         },
         "relationships": {
-          "assignee": {
+          "responder": {
             "data": null
           },
           "requester": {
@@ -189,7 +189,7 @@ test('creating a new ticket (other)', function(assert) {
           "why-sensitive": null
         },
         "relationships": {
-          "assignee": {
+          "responder": {
             "data": null
           },
           "requester": {
