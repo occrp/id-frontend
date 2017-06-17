@@ -1,4 +1,5 @@
 import paginate from './helpers/paginate';
+import { upload } from 'ember-file-upload/mirage';
 
 export default function() {
   this.namespace = '/api/3';
@@ -182,5 +183,19 @@ export default function() {
       "locale": ""
     };
   }, { timing: 0 });
+
+  this.post('/attachments', upload(function (schema, request) {
+    let file = request.requestBody.file;
+    return schema.attachments.create({
+      url: file.url,
+      fileName: file.name,
+      fileSize: file.size,
+      mimeType: file.type,
+      createdAt: (new Date()).toISOString(),
+      updatedAt: (new Date()).toISOString(),
+      userId: request.requestBody.user,
+      ticketId: request.requestBody.ticket
+    });
+  }));
 
 }

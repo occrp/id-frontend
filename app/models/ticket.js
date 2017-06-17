@@ -46,7 +46,8 @@ export default DS.Model.extend({
 
   requester: belongsTo('user'),
   responder: belongsTo('user'),
-  activities: hasMany('activity', { async: true }),
+  activities: hasMany('activity'),
+  attachments: hasMany('attachment'), 
 
   // Common
   background: attr('string'),
