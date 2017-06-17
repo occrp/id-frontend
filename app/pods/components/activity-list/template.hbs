@@ -2,20 +2,19 @@
 
   {{#each data as |item|}}
   {{#unless item.isNew}}
-    {{component (get componentsByType item.type) data=item class=(concat "activity activity--" item.type)}}
-
+    {{component (get componentsByType item.verb) data=item class=(concat "activity activity--" item.verb)}}
   {{/unless}}
   {{/each}}
 
-  <div class="activity activity--update">
+  <div class="activity activity--comment">
     <div class="activity-author"><strong>Leave a comment</strong></div>
     <form class="activity-body activity-form" {{action "save" on="submit"}}>
 
-      {{#validated-field class="form-group" validation=this.validations.attrs.activity didValidate=didValidate as |field|}}
-        {{textarea value=comment class="form-control" rows="5"}}
+      {{#validated-field class="form-group" validation=this.validations.attrs.body didValidate=didValidate as |field|}}
+        {{textarea value=body class="form-control" rows="5"}}
 
         {{#if field.showErrors}}
-          <div class="help-block">{{v-get this "comment" "message"}}</div>
+          <div class="help-block">{{v-get this "body" "message"}}</div>
         {{/if}}
       {{/validated-field}}
 

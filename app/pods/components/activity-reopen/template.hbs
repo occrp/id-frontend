@@ -1,12 +1,12 @@
 <div class="activity-author">
   <span class="tag tag--progress">reopened</span>
   by
-  <strong>{{data.author.displayName}}</strong>
+  <strong>{{data.user.displayName}}</strong>
   at
   <time datetime={{data.createdAt}} title={{moment-format data.createdAt 'LLL'}}>
     {{moment-format data.createdAt 'h:mm A, DD MMM YYYY'}}
   </time>
 </div>
 <div class="activity-body formatted">
-  {{~data.comment~}}
+  {{~data.comment.body~}}
 </div>

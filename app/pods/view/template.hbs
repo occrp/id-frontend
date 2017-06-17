@@ -72,7 +72,7 @@
 
       <hr class="l-fixedColumn-separator" />
 
-      <h3 class="t-accent">Activity</h3>
+      <h3 class="t-accent activityHeading">Activity {{#unless model.activities.length}}{{ui-spinner}}{{/unless}}</h3>
 
       {{activity-list data=model.activities model=model}}
     </div>

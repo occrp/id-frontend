@@ -1,3 +1,11 @@
+.activityHeading {
+  .spinner {
+    font-size: 14px;
+    display: inline-block;
+    margin-left: 1em;
+  }
+} 
+
 .activityList {
   position: relative;
   margin: 25px 0 40px 0;
@@ -22,8 +30,8 @@
   box-shadow: 0 0 0 3px white;
 }
 
-.activity--update,
-.activity--reopen {
+.activity--comment,
+.activity--status_new {
   @include cf;
   clear: both;
   border: 1px solid $pal-gray85;

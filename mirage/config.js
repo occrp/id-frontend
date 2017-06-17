@@ -64,20 +64,28 @@ export default function() {
 
   this.patch('/tickets/:id', function(schema, request) {
     let id = request.params.id;
-    let attrs = JSON.parse(request.requestBody).data.attributes;
-    let rels = JSON.parse(request.requestBody).data.relationships;
+    let attrs = this.normalizedRequestAttrs();
 
-    let model = schema.tickets.find(id);
+    let ticket = schema.tickets.find(id);
 
-    if (rels.responder.data) {
-      model.update({responderId: rels.responder.data.id});
-      if (attrs.status === 'new') {
-        attrs.status = 'in-progress';
-      }
+    // if (attrs.responderId && attrs.status === 'new') {
+    //   attrs.status = 'in-progress';
+    // }
+
+    let oldStatus = ticket.status;
+
+    if (oldStatus !== attrs.status) {
+      schema.activities.create({
+        verb: `status_${attrs.status}`,
+        createdAt: (new Date()).toISOString(),
+        ticket,
+        user: schema.users.find(42)
+      });
     }
-    model.update(attrs);
+    
+    ticket.update(attrs);
 
-    return model;
+    return ticket;
   });
 
   this.get('/users', (schema, request) => {
@@ -112,7 +120,7 @@ export default function() {
     let rels = data.relationships;
 
     attrs.createdAt = (new Date()).toISOString();
-    attrs.authorId = rels.author.data.id;
+    attrs.userId = rels.user.data.id;
     attrs.ticketId = rels.ticket.data.id;
 
     let ticket = schema.tickets.find(rels.ticket.data.id);
@@ -133,6 +141,34 @@ export default function() {
     }
 
     return schema.activities.create(attrs);
+  });
+
+
+  this.get('/activities/:id', (schema, request) => {
+    let ticketId = request.params.id;
+    return schema.activities.where({ ticketId: ticketId });
+  });
+
+
+  this.post('/comments', function (schema) {
+    let attrs = this.normalizedRequestAttrs();
+
+    attrs.createdAt = (new Date()).toISOString();
+
+    let ticket = schema.tickets.find(attrs.ticketId);
+    let user = schema.users.find(attrs.userId);
+
+    let comment = schema.comments.create(attrs);
+
+    schema.activities.create({
+      verb: 'comment',
+      createdAt: (new Date()).toISOString(),
+      ticket,
+      user,
+      comment
+    });
+
+    return comment;
   });
 
   this.get('/me', () => {

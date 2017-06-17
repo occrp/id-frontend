@@ -67,7 +67,7 @@ test('rendering ticket details (other)', function(assert) {
 
 
 test('cancelling a ticket', function(assert) {
-  assert.expect(5);
+  assert.expect(6);
 
   server.create('user', {
     id: 42,
@@ -126,7 +126,10 @@ test('cancelling a ticket', function(assert) {
             "data": null
           },
           "requester": {
-            "data": null
+            "data": {
+              "id": "42",
+              "type": "users"
+            }
           }
         },
         "type": "tickets"

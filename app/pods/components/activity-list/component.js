@@ -1,27 +1,26 @@
 import Ember from 'ember';
 import { task } from 'ember-concurrency';
-import { Validations } from 'id2-frontend/models/activity';
+import { Validations } from 'id2-frontend/models/comment';
 
 export default Ember.Component.extend(Validations, {
   store: Ember.inject.service(),
   session: Ember.inject.service(),
 
   componentsByType: {
-    'update': 'activity-comment',
-    'close': 'activity-close',
-    'cancel': 'activity-close',
-    'reopen': 'activity-reopen',
+    'comment': 'activity-comment',
+    'status_closed': 'activity-close',
+    'status_cancelled': 'activity-close',
+    'status_new': 'activity-reopen',
   },
 
-  comment: null,
+  body: null,
   didValidate: false,
 
   publishComment: task(function * () {
-    let record = this.get('store').createRecord('activity', {
-      type: 'update',
-      comment: this.get('comment'),
+    let record = this.get('store').createRecord('comment', {
+      body: this.get('body'),
       ticket: this.get('model'),
-      author: this.get('session.currentUser')
+      user: this.get('session.currentUser')
     });
     yield record.save();
   }),
@@ -33,8 +32,9 @@ export default Ember.Component.extend(Validations, {
 
         if (validations.get('isValid')) {
           this.get('publishComment').perform().then(() => {
-            this.set('comment', null);
+            this.set('body', null);
             this.set('didValidate', false);
+            this.get('model').hasMany('activities').reload();
           });
         }
       });

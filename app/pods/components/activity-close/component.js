@@ -2,7 +2,7 @@ import Ember from 'ember';
 
 export default Ember.Component.extend({
   statusByType: {
-    'close': 'closed',
-    'cancel': 'cancelled'
+    'status_closed': 'closed',
+    'status_cancelled': 'cancelled'
   }
 });

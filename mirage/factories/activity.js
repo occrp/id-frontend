@@ -6,51 +6,55 @@ export default Factory.extend({
   createdAt() { return faker.date.past(); },
 
   isComment: trait({
-    type: 'update',
-    comment() { return faker.lorem.sentences(); },
+    verb: 'comment',
 
     afterCreate(activity, server) {
       let regulars = server.schema.users.where({ isStaff: false });
 
+      let comment = server.create('comment', { ticket: activity.ticket });
+
       activity.update({
-        author: random(regulars.models)
+        user: random(regulars.models),
+        comment
       });
     }
   }),
 
   isCancel: trait({
-    type: 'cancel',
+    verb: 'status_cancelled',
 
     afterCreate(activity, server) {
       let regulars = server.schema.users.where({ isStaff: false });
 
       activity.update({
-        author: random(regulars.models)
+        user: random(regulars.models)
       });
     }
   }),
 
   isClose: trait({
-    type: 'close',
+    verb: 'status_closed',
 
     afterCreate(activity, server) {
       let staff = server.schema.users.where({ isStaff: true });
 
       activity.update({
-        author: random(staff.models)
+        user: random(staff.models)
       });
     }
   }),
 
   isReopen: trait({
-    type: 'reopen',
-    comment() { return faker.lorem.sentences(); },
+    verb: 'status_new',
 
     afterCreate(activity, server) {
       let regulars = server.schema.users.where({ isStaff: false });
 
+      let comment = server.create('comment', { ticket: activity.ticket });
+
       activity.update({
-        author: random(regulars.models)
+        user: random(regulars.models),
+        comment
       });
     }
   })
