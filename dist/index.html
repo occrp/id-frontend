@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Id2Frontend</title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    
+<meta name="id2-frontend/config/environment" content="%7B%22modulePrefix%22%3A%22id2-frontend%22%2C%22podModulePrefix%22%3A%22id2-frontend/pods%22%2C%22environment%22%3A%22production%22%2C%22rootURL%22%3A%22/%22%2C%22locationType%22%3A%22auto%22%2C%22EmberENV%22%3A%7B%22FEATURES%22%3A%7B%7D%2C%22EXTEND_PROTOTYPES%22%3A%7B%22Date%22%3Afalse%7D%7D%2C%22APP%22%3A%7B%22name%22%3A%22id2-frontend%22%2C%22version%22%3A%220.0.0+1d4e96e3%22%7D%2C%22moment%22%3A%7B%22outputFormat%22%3A%22LLL%22%7D%2C%22exportApplicationGlobal%22%3Atrue%2C%22ember-cli-mirage%22%3A%7B%22enabled%22%3Afalse%2C%22usingProxy%22%3Afalse%2C%22useDefaultPassthroughs%22%3Atrue%7D%7D" />
+
+    <!-- wrapper assets -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:400,600,700&subset=cyrillic">
+    <link rel="stylesheet" href="/assets/id.css" integrity="sha256-vrxauINPg3WtsJUy67mXo9T5q6m2EUiEu+Ro42H94uw= sha512-lu8gTGqluN40j8q4XWx2Sse29rJhOPGOWCxn7oGhaOXHrHR3veg6OQoU46FPX0e3Xz79m9oLa6ntTT3S0OyFfQ==" >
+
+    <!-- standard assets -->
+    <link rel="stylesheet" href="/assets/vendor.css" integrity="sha256-47DEQpj8HBSa+/TImW+5JCeuQeRkm5NMpJWZG3hSuFU= sha512-z4PhNX7vuL3xVChQ1m2AB9Yg5AULVxXcg/SpIdNs6c5H0NE8XYXysP+DGNKHfuwvY7kxvUdBeoGlODJ6+SfaPg==" >
+    <link rel="stylesheet" href="/assets/id2-frontend.css" integrity="sha256-wJt2i3SB09KDcJLcSsWic+yHq//RQsi4vC07/8+3Shc= sha512-4myrbIieZdeQY9A7t04Je3YsocXvYK1YflSqKol3GLj8ztz3WCAIA0URU20iSa7mEUt7A2JskWHfs55nqwpKzQ==" >
+
+    
+  </head>
+  <body>
+    
+
+    <nav class="navbar navbar-default navbar-static-top">
+      <div class="container-fluid">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#nav-menu-collapse" aria-expanded="false">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+
+          <a class="navbar-brand" href="#home">
+            <img alt="ID_SITE_NAME" src="https://cdn.occrp.org/common/logo/occrp_logo_mobile.png">
+          </a>
+          <a class="navbar-brand hidden-xs" href="#home">
+            Investigative Dashboard
+          </a>
+
+        </div>
+
+        <div class="collapse navbar-collapse" id="nav-menu-collapse">
+
+          <!-- nav_main_menu.jinja -->
+          <ul class="nav navbar-nav">
+            <li>
+                <a href="https://data.occrp.org">
+                  <i class="fa fa-search"></i> Search
+                </a>
+            </li>
+            <li>
+              <a href="#databases">
+                <i class="fa fa-database"></i> External Databases
+              </a>
+            </li>
+            <li>
+              <a href="/" id="nav-id-app">
+                <i class="fa fa-comments-o"></i> Research Requests
+              </a>
+            </li>
+          </ul>
+
+          <!-- nav_account_menu.jinja -->
+          <ul class="nav navbar-nav navbar-right">
+
+            <li class="dropdown">
+              <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                <i class="fa fa-user"></i>
+                user.display_name
+                <b class="caret"></b>
+              </a>
+              <ul class="dropdown-menu" role="menu">
+                <li>
+                  <a href="#profile">
+                    <i class="fa fa-user"></i> Profile
+                  </a>
+                </li>
+                <li>
+                  <a href="#logout">
+                    <i class="fa fa-sign-out"></i> Sign out
+                  </a>
+                </li>
+              </ul>
+            </li>
+
+            <li class="dropdown">
+              <a class="dropdown-toggle" href="#" data-toggle="dropdown">
+                <i class="fa fa-language"></i>
+                <b class="caret"></b>
+              </a>
+              <ul class="dropdown-menu" role="menu">
+                <li><a href="#locale-1">locale.1</a></li>
+                <li><a href="#locale-2">locale.2</a></li>
+                <li><a href="#locale-3">locale.3</a></li>
+              </ul>
+            </li>
+
+          </ul>
+
+        </div>
+      </div>
+    </nav>
+
+
+    <div id="container"></div>
+
+    <script src="/assets/vendor.js" integrity="sha256-6C77qmlIoOwHngBSO2ZLenRnEvLhvXFLmpCJpQLzvZw= sha512-6stACrkHq1BhyK/M0FeQIQ7g9wExMy9qD+oti3oTZVyzkAbTsYyc9hz2TkRZn8xwWrzg9kontFiuM3DZ9/J8Ng==" ></script>
+    <script src="/assets/id2-frontend.js" integrity="sha256-Y81x1LQ8Cypqg6lomy4Zw922T33KizMiWCCeuO3R7v4= sha512-IFiT/xxi3cCTKHktHl7yI0CvrJ8SOybtgyZDPpcR+XxJUhogiihypy93Fnsr/m4gMmvJYuPxEJnPGajg2qK+Sw==" ></script>
+
+    
+
+    <script type="text/javascript">
+      var navLink = document.getElementById('nav-id-app');
+      navLink.addEventListener('click', function (e) {
+        e.preventDefault();
+        Id2Frontend.__container__.lookup('router:main').transitionTo('index');
+      });
+    </script>
+  </body>
+</html>
