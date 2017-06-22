@@ -186,7 +186,8 @@ export default function() {
 
   this.post('/attachments', upload(function (schema, request) {
     let file = request.requestBody.file;
-    return schema.attachments.create({
+
+    let attachment = schema.attachments.create({
       url: file.url,
       fileName: file.name,
       fileSize: file.size,
@@ -196,6 +197,19 @@ export default function() {
       userId: request.requestBody.user,
       ticketId: request.requestBody.ticket
     });
+
+    let ticket = schema.tickets.find(request.requestBody.ticket);
+    let user = schema.users.find(request.requestBody.user);
+
+    schema.activities.create({
+      verb: 'attached',
+      createdAt: (new Date()).toISOString(),
+      ticket,
+      user,
+      attachment
+    });
+
+    return attachment;
   }));
 
 }

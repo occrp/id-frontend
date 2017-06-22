@@ -9,7 +9,7 @@ export default Serializer.extend({
     };
   },
 
-  serialize(object, request) {
+  serialize() {
     let json = Serializer.prototype.serialize.apply(this, arguments);
 
     // Imitates the actual API since the back-end will not include the link

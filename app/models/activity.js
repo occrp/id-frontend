@@ -9,5 +9,6 @@ export default DS.Model.extend({
   user: belongsTo(),
   ticket: belongsTo(),
 
-  comment: belongsTo()
+  comment: belongsTo(),
+  attachment: belongsTo()
 });

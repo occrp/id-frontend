@@ -57,5 +57,20 @@ export default Factory.extend({
         comment
       });
     }
-  })
+  }),
+
+  isAttachment: trait({
+    verb: 'attached',
+
+    afterCreate(activity, server) {
+      let regulars = server.schema.users.where({ isStaff: false });
+
+      let attachment = server.create('attachment', { ticket: activity.ticket });
+
+      activity.update({
+        user: random(regulars.models),
+        attachment
+      });
+    }
+  }),
 });

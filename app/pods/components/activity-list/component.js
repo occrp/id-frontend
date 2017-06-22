@@ -11,6 +11,7 @@ export default Ember.Component.extend(Validations, {
     'status_closed': 'activity-close',
     'status_cancelled': 'activity-close',
     'status_new': 'activity-reopen',
+    'attached': 'activity-attachment'
   },
 
   body: null,

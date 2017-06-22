@@ -1,0 +1,8 @@
+<div class="activity-headline">
+  <strong>{{data.user.displayName}}</strong>
+  uploaded <a href="#">some files</a>
+  at
+  <time datetime={{data.createdAt}} title={{moment-format data.createdAt 'LLL'}}>
+    {{moment-format data.createdAt 'h:mm A, DD MMM YYYY'}}
+  </time>
+</div>
