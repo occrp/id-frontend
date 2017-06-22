@@ -4,7 +4,7 @@ export default Serializer.extend({
   links(ticket) {
     return {
       'activities': {
-        related: `/api/3/activities/${ticket.id}`
+        related: `/api/v3/activities/${ticket.id}`
       }
     };
   },
