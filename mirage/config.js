@@ -2,7 +2,7 @@ import paginate from './helpers/paginate';
 import { upload } from 'ember-file-upload/mirage';
 
 export default function() {
-  this.namespace = '/api/3';
+  this.namespace = '/api/v3';
 
   this.get('/tickets', (schema, request) => {
     let status = request.queryParams['filter[status]'];
