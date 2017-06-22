@@ -11,7 +11,7 @@ test('rendering ticket details (person)', function(assert) {
     firstName: 'John',
     lastName: 'Doe',
     background: 'Lorem ipsum some background.',
-    bornAt: '2004-12-01T22:00:00.000Z',
+    bornAt: '2004-12-02T00:00:00.000Z',
   });
 
   visit(`/view/${ticket.id}`);

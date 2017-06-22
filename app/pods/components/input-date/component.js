@@ -29,7 +29,7 @@ export default Ember.Component.extend({
         return;
       }
 
-      let date = moment(val, 'DD/MM/YYYY');
+      let date = moment.utc(val, 'DD/MM/YYYY');
 
       if (date._isValid) {
         this.set('center', date._d);
@@ -38,7 +38,7 @@ export default Ember.Component.extend({
     },
 
     updateValue(val) {
-      let date = moment(val, 'DD/MM/YYYY');
+      let date = moment.utc(val, 'DD/MM/YYYY');
 
       if (date._isValid) {
         this.get('onSelect')({date: date._d});
