@@ -5,6 +5,12 @@ import { getSearchGenerator } from 'id2-frontend/models/user';
 export default Ember.Component.extend({
   searchStaff: task(getSearchGenerator({isStaff: true})).restartable(),
 
+  responderIds: Ember.computed('model.responders.[]', function () {
+    let responders = this.get('model.responders');
+    let userIds = responders.map(resp => resp.belongsTo('user').id())
+    return userIds;
+  }),
+
   updateResponder: task(function * (model, user) {
     model.set('responder', user);
     yield model.save();

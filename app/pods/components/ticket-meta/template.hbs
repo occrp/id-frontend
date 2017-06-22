@@ -19,7 +19,7 @@
       {{#dd.body headerText="Assign to staff"}}
         {{search-users
           task=searchStaff
-          current=model.responder.id
+          current=responderIds
           onSelect=(pipe-action (action 'selectUser' model) dd.close)}}
       {{/dd.body}}
     {{/ui-dropdown}}
@@ -30,8 +30,10 @@
     {{#if updateResponder.isRunning}}
       {{ui-spinner}}
     {{else}}
-      {{#if model.responder}}
-        {{model.responder.displayName}}
+      {{#if model.responders.length}}
+        {{#each model.responders as |responder|}}
+          {{responder.user.displayName}}
+        {{/each}}
       {{else}}
         <span class="t-dimmed">- unassigned -</span>
       {{/if}}
