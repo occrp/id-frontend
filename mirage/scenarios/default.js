@@ -8,7 +8,7 @@ export default function(server) {
   */
 
   // mirror GET /me
-  server.create('user', {
+  server.create('profile', {
     id: 42,
     email: "user@mail.com",
     firstName: 'John',
@@ -17,9 +17,9 @@ export default function(server) {
     isSuperuser: true
   });
 
-  server.createList('user', 7);
-  server.createList('user', 5, 'staff');
-  server.createList('user', 2, 'superuser');
+  server.createList('profile', 7);
+  server.createList('profile', 5, 'staff');
+  server.createList('profile', 2, 'superuser');
 
   server.createList('ticket', 3, 'isPerson', 'withActivities', 'withAttachments', {
     status: 'new',

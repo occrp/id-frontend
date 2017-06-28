@@ -106,7 +106,7 @@ test('tickets can be filtered by kind', function(assert) {
 test('tickets can be filtered by requester', function(assert) {
   assert.expect(5);
 
-  server.createList('user', 5, {
+  server.createList('profile', 5, {
     firstName(i) { return `User #${i+1}`; },
     lastName: 'Doe'
   });
@@ -122,13 +122,13 @@ test('tickets can be filtered by requester', function(assert) {
     let requesterId = request.queryParams['filter[requester]'];
 
     if (requesterId) {
-      let user = schema.users.find(requesterId);
+      let profile = schema.profiles.find(requesterId);
 
       request.mirageMeta = {
         filters: {
           requester: {
-            'first-name': user.firstName,
-            'last-name': user.lastName
+            'first-name': profile.firstName,
+            'last-name': profile.lastName
           }
         }
       };
@@ -169,7 +169,7 @@ test('tickets can be filtered by requester', function(assert) {
 test('tickets can be filtered by responder', function(assert) {
   assert.expect(8);
 
-  server.createList('user', 5, 'staff', {
+  server.createList('profile', 5, 'staff', {
     firstName(i) { return `Staff #${i+1}`; },
     lastName: 'Doe'
   });
@@ -189,13 +189,13 @@ test('tickets can be filtered by responder', function(assert) {
     }
 
     if (responderId) {
-      let user = schema.users.find(responderId);
+      let profile = schema.profiles.find(responderId);
 
       request.mirageMeta = {
         filters: {
           responder: {
-            'first-name': user.firstName,
-            'last-name': user.lastName
+            'first-name': profile.firstName,
+            'last-name': profile.lastName
           }
         }
       };
@@ -269,7 +269,7 @@ test('tickets can sorted', function(assert) {
 test('ticket filtering or sorting should reset pagination', function(assert) {
   assert.expect(8);
 
-  server.createList('user', 5, {
+  server.createList('profile', 5, {
     firstName(i) { return `User #${i+1}`; },
     lastName: 'Doe'
   });

@@ -9,7 +9,7 @@ export default Factory.extend({
     verb: 'comment',
 
     afterCreate(activity, server) {
-      let regulars = server.schema.users.where({ isStaff: false });
+      let regulars = server.schema.profiles.where({ isStaff: false });
 
       let comment = server.create('comment', { ticket: activity.ticket });
 
@@ -24,7 +24,7 @@ export default Factory.extend({
     verb: 'status_cancelled',
 
     afterCreate(activity, server) {
-      let regulars = server.schema.users.where({ isStaff: false });
+      let regulars = server.schema.profiles.where({ isStaff: false });
 
       activity.update({
         user: random(regulars.models)
@@ -36,7 +36,7 @@ export default Factory.extend({
     verb: 'status_closed',
 
     afterCreate(activity, server) {
-      let staff = server.schema.users.where({ isStaff: true });
+      let staff = server.schema.profiles.where({ isStaff: true });
 
       activity.update({
         user: random(staff.models)
@@ -48,7 +48,7 @@ export default Factory.extend({
     verb: 'status_new',
 
     afterCreate(activity, server) {
-      let regulars = server.schema.users.where({ isStaff: false });
+      let regulars = server.schema.profiles.where({ isStaff: false });
 
       let comment = server.create('comment', { ticket: activity.ticket });
 
@@ -63,7 +63,7 @@ export default Factory.extend({
     verb: 'attached',
 
     afterCreate(activity, server) {
-      let regulars = server.schema.users.where({ isStaff: false });
+      let regulars = server.schema.profiles.where({ isStaff: false });
 
       let attachment = server.create('attachment', { ticket: activity.ticket });
 

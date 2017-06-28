@@ -6,10 +6,10 @@ export default DS.Model.extend({
   createdAt: attr('date'),
   verb: attr('string'),
 
-  user: belongsTo(),
+  user: belongsTo('profile'),
   ticket: belongsTo(),
 
   comment: belongsTo(),
   attachment: belongsTo(),
-  responderUser: belongsTo('user')
+  responderUser: belongsTo('profile')
 });

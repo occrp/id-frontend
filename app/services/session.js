@@ -15,7 +15,7 @@ export default Ember.Service.extend({
       let user = store.push({
         data: {
           id: payload.id,
-          type: 'user',
+          type: 'profile',
           attributes: {
             firstName: payload.first_name,
             lastName: payload.last_name,

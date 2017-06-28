@@ -26,18 +26,18 @@ export default function() {
     let responder = request.queryParams['filter[responder]'];
 
     if (requester) {
-      let user = schema.users.find(requester);
+      let profile = schema.profiles.find(requester);
       filters.requester = {
-        'first-name': user.firstName,
-        'last-name': user.lastName
+        'first-name': profile.firstName,
+        'last-name': profile.lastName
       };
     }
 
     if (responder && responder !== 'none') {
-      let user = schema.users.find(responder);
+      let profile = schema.profiles.find(responder);
       filters.responder = {
-        'first-name': user.firstName,
-        'last-name': user.lastName
+        'first-name': profile.firstName,
+        'last-name': profile.lastName
       };
     }
 
@@ -80,7 +80,7 @@ export default function() {
         verb: `status_${attrs.status}`,
         createdAt: (new Date()).toISOString(),
         ticket,
-        user: schema.users.find(42)
+        user: schema.profiles.find(42)
       });
     }
     
@@ -89,18 +89,18 @@ export default function() {
     return ticket;
   });
 
-  this.get('/users', (schema, request) => {
+  this.get('/profiles', (schema, request) => {
     let search = request.queryParams['filter[search]'];
     let isStaff = JSON.parse(request.queryParams['filter[is-staff]']);
 
     let collection = null;
 
-    collection = schema.users.where(function(user) {
-      if (isStaff !== undefined && user.isStaff !== isStaff) {
+    collection = schema.profiles.where(function(profile) {
+      if (isStaff !== undefined && profile.isStaff !== isStaff) {
         return false;
       }
       if (search) {
-        return user.firstName.indexOf(search) !== -1;
+        return profile.firstName.indexOf(search) !== -1;
       }
       return true;
     });
@@ -110,9 +110,9 @@ export default function() {
     return collection;
   });
 
-  this.get('/users/:id', (schema, request) => {
+  this.get('/profiles/:id', (schema, request) => {
     let id = request.params.id;
-    return schema.users.find(id);
+    return schema.profiles.find(id);
   });
 
   this.post('/activities', (schema, request) => {
@@ -157,7 +157,7 @@ export default function() {
     attrs.createdAt = (new Date()).toISOString();
 
     let ticket = schema.tickets.find(attrs.ticketId);
-    let user = schema.users.find(attrs.userId);
+    let profile = schema.profiles.find(attrs.userId);
 
     let comment = schema.comments.create(attrs);
 
@@ -165,7 +165,7 @@ export default function() {
       verb: 'comment',
       createdAt: (new Date()).toISOString(),
       ticket,
-      user,
+      user: profile,
       comment
     });
 
@@ -199,13 +199,13 @@ export default function() {
     });
 
     let ticket = schema.tickets.find(request.requestBody.ticket);
-    let user = schema.users.find(request.requestBody.user);
+    let profile = schema.profiles.find(request.requestBody.user);
 
     schema.activities.create({
       verb: 'attached',
       createdAt: (new Date()).toISOString(),
       ticket,
-      user,
+      user: profile,
       attachment
     });
 
@@ -220,7 +220,7 @@ export default function() {
     attrs.updatedAt = (new Date()).toISOString();
 
     let ticket = schema.tickets.find(attrs.ticketId);
-    let user = schema.users.find(attrs.userId);
+    let profile = schema.profiles.find(attrs.userId);
 
     let responder = schema.responders.create(attrs);
 
@@ -228,8 +228,8 @@ export default function() {
       verb: 'responder:create',
       createdAt: (new Date()).toISOString(),
       ticket,
-      user: schema.users.find(42),
-      responderUser: user
+      user: schema.profiles.find(42),
+      responderUser: profile
     });
 
     return responder;
@@ -241,14 +241,14 @@ export default function() {
 
     let responder = schema.responders.find(responderId);
     let ticket = schema.tickets.find(responder.ticketId);
-    let user = schema.users.find(responder.userId);
+    let profile = schema.profiles.find(responder.userId);
 
     schema.activities.create({
       verb: 'responder:destroy',
       createdAt: (new Date()).toISOString(),
       ticket,
-      user: schema.users.find(42),
-      responderUser: user
+      user: schema.profiles.find(42),
+      responderUser: profile
     });
 
     responder.destroy();

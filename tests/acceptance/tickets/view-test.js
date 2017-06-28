@@ -69,7 +69,7 @@ test('rendering ticket details (other)', function(assert) {
 test('cancelling a ticket', function(assert) {
   assert.expect(6);
 
-  server.create('user', {
+  server.create('profile', {
     id: 42,
     email: "user@mail.com",
     firstName: 'John',
@@ -125,7 +125,7 @@ test('cancelling a ticket', function(assert) {
           "requester": {
             "data": {
               "id": "42",
-              "type": "users"
+              "type": "profiles"
             }
           }
         },

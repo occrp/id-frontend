@@ -12,7 +12,7 @@ export default Factory.extend({
   updatedAt()     { return faker.date.past(); },
 
   afterCreate(attachment, server) {
-    let regulars = server.schema.users.where({ isStaff: false });
+    let regulars = server.schema.profiles.where({ isStaff: false });
 
     attachment.update({
       user: random(regulars.models)

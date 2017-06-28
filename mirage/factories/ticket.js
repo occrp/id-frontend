@@ -57,7 +57,7 @@ export default Factory.extend({
   }),
 
   afterCreate(ticket, server) {
-    let regulars = server.schema.users.where({ isStaff: false });
+    let regulars = server.schema.profiles.where({ isStaff: false });
 
     ticket.update({
       requester: random(regulars.models),
@@ -66,7 +66,7 @@ export default Factory.extend({
 
   withResponder: trait({
     afterCreate(ticket, server) {
-      let staff = server.schema.users.where({ isStaff: true });
+      let staff = server.schema.profiles.where({ isStaff: true });
 
       server.createList('responder', 3, { 
         ticket,

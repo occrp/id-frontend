@@ -23,7 +23,7 @@ export const getSearchGenerator = function({ isStaff }) {
 
     let owner = Ember.getOwner(this);
     let store = owner.lookup('service:store');
-    let items = yield store.query('user', { filter: { search: term, 'is-staff': isStaff } });
+    let items = yield store.query('profile', { filter: { search: term, 'is-staff': isStaff } });
 
     return items;
   };

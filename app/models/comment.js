@@ -7,7 +7,7 @@ export default DS.Model.extend({
   body: attr('string'),
   createdAt: attr('date'),
 
-  user: belongsTo(),
+  user: belongsTo('profile'),
   ticket: belongsTo()  
 });
 

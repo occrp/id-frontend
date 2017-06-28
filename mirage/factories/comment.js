@@ -7,7 +7,7 @@ export default Factory.extend({
   body() { return faker.lorem.sentences(); },
 
   afterCreate(comment, server) {
-    let regulars = server.schema.users.where({ isStaff: false });
+    let regulars = server.schema.profiles.where({ isStaff: false });
 
     comment.update({
       user: random(regulars.models)

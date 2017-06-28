@@ -44,7 +44,7 @@ export default DS.Model.extend({
   updatedAt: attr('date'),
   deadlineAt: attr('date'),
 
-  requester: belongsTo('user'),
+  requester: belongsTo('profile'),
   responders: hasMany('responder'),
   activities: hasMany('activity'),
   attachments: hasMany('attachment'), 
