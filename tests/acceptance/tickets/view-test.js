@@ -122,9 +122,6 @@ test('cancelling a ticket', function(assert) {
         },
         "id": "1",
         "relationships": {
-          "responder": {
-            "data": null
-          },
           "requester": {
             "data": {
               "id": "42",

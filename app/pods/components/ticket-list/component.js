@@ -3,11 +3,15 @@ import { task } from 'ember-concurrency';
 import { getSearchGenerator } from 'id2-frontend/models/user';
 
 export default Ember.Component.extend({
+  store: Ember.inject.service(),
   searchStaff: task(getSearchGenerator({isStaff: true})).restartable(),
 
   updateResponder: task(function * (model, user) {
-    model.set('responder', user);
-    yield model.save();
+    let record = this.get('store').createRecord('responder', {
+      ticket: model,
+      user: user
+    });
+    yield record.save();
   }),
 
   actions: {

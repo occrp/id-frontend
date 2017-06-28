@@ -3,11 +3,19 @@ import { task } from 'ember-concurrency';
 import { getSearchGenerator } from 'id2-frontend/models/user';
 
 export default Ember.Component.extend({
+  store: Ember.inject.service(),
   searchStaff: task(getSearchGenerator({isStaff: true})).restartable(),
 
   updateResponder: task(function * (model, user) {
-    model.set('responder', user);
-    yield model.save();
+    let record = this.get('store').createRecord('responder', {
+      ticket: model,
+      user: user
+    });
+    yield record.save();
+  }),
+
+  removeResponder: task(function * (record) {
+    yield record.destroyRecord();
   }),
 
   updateStatus: task(function * (newStatus) {
@@ -19,7 +27,15 @@ export default Ember.Component.extend({
 
   actions: {
     selectUser(model, user) {
-      this.get('updateResponder').perform(model, user);
+      this.get('updateResponder').perform(model, user).then(() => {
+        this.get('model').hasMany('activities').reload();
+      });
+    },
+
+    removeUser(responder) {
+      this.get('removeResponder').perform(responder).then(() => {
+        this.get('model').hasMany('activities').reload();
+      });
     },
 
     saveStatus(activityType) {

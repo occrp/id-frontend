@@ -85,7 +85,7 @@
     margin-bottom: 0.25em;
     color: $pal-gray50;
 
-    i {
+    & > i {
       font-size: 14px;
       margin-right: 0.25em;
     }
@@ -107,18 +107,17 @@
   }
 
   // the dropdown >_>
-  .dd {
+  .responderControls {
     float: right;
-    margin-top: 1.1em;
+
+    & > .spinner {
+      margin-top: 5px;
+    }
   }
 
-  .iconButton--dimmed {
-    width: 25px;
-    line-height: 1;
-    padding: 10px 10px;
-
-    i {
-      font-size: 24px;
+  .dd-trigger {
+    &.is-active .button {
+      @extend .button--accent:active
     }
   }
 

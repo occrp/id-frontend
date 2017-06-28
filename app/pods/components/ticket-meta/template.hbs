@@ -11,30 +11,39 @@
     <time datetime={{model.deadlineAt}} title={{moment-format model.deadlineAt 'LLL'}}>{{moment-format model.deadlineAt 'LL'}} ({{moment-from-now model.deadlineAt}})</time>
   </dd>
 
-  {{#if (can 'manage tickets')}}
-    {{#ui-dropdown as |dd|}}
-      {{#dd.trigger}}
-        <button class="iconButton iconButton--dimmed"><i class="fa fa-cog" /></button>
-      {{/dd.trigger}}
-      {{#dd.body headerText="Assign to staff"}}
-        {{search-users
-          task=searchStaff
-          current=model.responder.id
-          onSelect=(pipe-action (action 'selectUser' model) dd.close)}}
-      {{/dd.body}}
-    {{/ui-dropdown}}
-  {{/if}}
-
-  <dt>Staff responders</dt>
+  <dt>
+    {{#if (can 'manage tickets')}}
+      <div class="responderControls">
+        {{#if (or updateResponder.isRunning removeResponder.isRunning)}}
+          {{ui-spinner}}
+        {{else}}
+          {{#ui-dropdown as |dd|}}
+            {{#dd.trigger}}
+              <button class="button button--accent button--micro"><i class="fa fa-plus"></i> Assign</button>
+            {{/dd.trigger}}
+            {{#dd.body class="mt-5" headerText="Assign to staff"}}
+              {{search-users
+                task=searchStaff
+                current=model.responderIds
+                onSelect=(pipe-action (action 'selectUser' model) dd.close)}}
+            {{/dd.body}}
+          {{/ui-dropdown}}
+        {{/if}}
+      </div>
+    {{/if}}
+    Staff responders
+  </dt>
   <dd>
-    {{#if updateResponder.isRunning}}
-      {{ui-spinner}}
+    {{#if model.responders.length}}
+      <ul class="userList">
+      {{#each model.responders as |responder|}}
+        {{#user-list-item class=(concat "userList-item " (if responder.isSaving "is-dimmed")) onRemove=(action 'removeUser' responder)}}
+          {{responder.user.displayName}}
+        {{/user-list-item}}
+      {{/each}}
+      </ul>
     {{else}}
-      {{#if model.responder}}
-        {{model.responder.displayName}}
-      {{else}}
-        <span class="t-dimmed">- unassigned -</span>
-      {{/if}}
+      <div class="userList">No one assigned</div>
     {{/if}}
   </dd>
 </dl>

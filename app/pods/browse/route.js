@@ -38,7 +38,7 @@ export default Ember.Route.extend({
         size: params.size
       },
       sort: params.sort,
-      include: 'requester,responder'
+      include: 'requester,responders,responders.user'
     });
   }
 });

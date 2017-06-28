@@ -45,7 +45,7 @@ export default DS.Model.extend({
   deadlineAt: attr('date'),
 
   requester: belongsTo('user'),
-  responder: belongsTo('user'),
+  responders: hasMany('responder'),
   activities: hasMany('activity'),
   attachments: hasMany('attachment'), 
 
@@ -77,6 +77,12 @@ export default DS.Model.extend({
       default:
         return this.get('background').slice(0, 140);
     }
+  }),
+
+  responderIds: Ember.computed('responders.[]', function () {
+    let responders = this.get('responders');
+    let userIds = responders.map(resp => resp.belongsTo('user').id())
+    return userIds;
   }),
 
   isOpen: Ember.computed('status', function() {

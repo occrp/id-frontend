@@ -68,8 +68,9 @@ export default Factory.extend({
     afterCreate(ticket, server) {
       let staff = server.schema.users.where({ isStaff: true });
 
-      ticket.update({
-        responder: random(staff.models)
+      server.createList('responder', 3, { 
+        ticket,
+        user() { return random(staff.models); }
       });
     }
   }),

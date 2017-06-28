@@ -1,26 +1,31 @@
 .tag {
-  background: $pal-gray70;
+  background: white;
   display: inline-block;
   font-size: 13px;
   text-transform: uppercase;
   font-weight: bold;
-  color: white;
+  color: $pal-gray70;
+  border: 1px solid $pal-gray70;
   border-radius: $borderRadius-small;
-  padding: 2px 0.5em;
+  padding: 1px 0.5em;
 }
 
 .tag--new {
-  background: $pal-accent;
+  color: mix(black, $pal-green, 15%);
+  border-color: $pal-green;
 }
 
 .tag--progress {
-  background: #5cb85c;
+  color: mix(black, $pal-cyan, 15%);
+  border-color: $pal-cyan;
 }
 
 .tag--closed {
-  background: #d9534f;
+  color: $pal-materialRed;
+  border-color: mix(black, $pal-materialRed, 15%);
 }
 
 .tag--cancelled {
-  background: #d9534f;
+  color: $pal-materialRed;
+  border-color: mix(black, $pal-materialRed, 15%);
 }
