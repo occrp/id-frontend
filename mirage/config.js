@@ -212,4 +212,46 @@ export default function() {
     return attachment;
   }));
 
+
+  this.post('/responders', function (schema) {
+    let attrs = this.normalizedRequestAttrs();
+
+    attrs.createdAt = (new Date()).toISOString();
+    attrs.updatedAt = (new Date()).toISOString();
+
+    let ticket = schema.tickets.find(attrs.ticketId);
+    let user = schema.users.find(attrs.userId);
+
+    let responder = schema.responders.create(attrs);
+
+    schema.activities.create({
+      verb: 'responder:create',
+      createdAt: (new Date()).toISOString(),
+      ticket,
+      user: schema.users.find(42),
+      responderUser: user
+    });
+
+    return responder;
+  });
+
+
+  this.del('/responders/:id', function (schema, request) {
+    let responderId = request.params.id;
+
+    let responder = schema.responders.find(responderId);
+    let ticket = schema.tickets.find(responder.ticketId);
+    let user = schema.users.find(responder.userId);
+
+    schema.activities.create({
+      verb: 'responder:destroy',
+      createdAt: (new Date()).toISOString(),
+      ticket,
+      user: schema.users.find(42),
+      responderUser: user
+    });
+
+    responder.destroy();
+  });
+
 }

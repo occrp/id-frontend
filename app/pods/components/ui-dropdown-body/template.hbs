@@ -1,6 +1,6 @@
 {{#if isOpen}}
   {{#tether-dialog
-    container-class="dd-container"
+    container-class=(concat "dd-container" " " class)
     close=(action close)
     target=(concat "#" uuid)
     targetAttachment=targetAttachment

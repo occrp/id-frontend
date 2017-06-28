@@ -126,6 +126,20 @@
   }
 }
 
+.button--micro {
+  font-size: 11px;
+  line-height: 16px;
+  padding: 2px 8px;
+
+  i {
+    font-size: 12px;
+    margin: 0 1px 0 -2px;
+    color: white;
+  }
+
+}
+
+
 .iconButton {
   box-sizing: content-box;
   background: none;

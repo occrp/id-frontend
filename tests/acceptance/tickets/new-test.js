@@ -34,9 +34,6 @@ test('creating a new ticket (person)', function(assert) {
           "why-sensitive": "It just is."
         },
         "relationships": {
-          "responder": {
-            "data": null
-          },
           "requester": {
             "data": null
           }
@@ -110,9 +107,6 @@ test('creating a new ticket (company)', function(assert) {
           "why-sensitive": null
         },
         "relationships": {
-          "responder": {
-            "data": null
-          },
           "requester": {
             "data": null
           }
@@ -177,9 +171,6 @@ test('creating a new ticket (other)', function(assert) {
           "why-sensitive": null
         },
         "relationships": {
-          "responder": {
-            "data": null
-          },
           "requester": {
             "data": null
           }

@@ -33,12 +33,8 @@
         <p class="ticket-status">
           {{status-label item.status data-test-ticket-status}}
         </p>
-        {{#if item.responder}}
-          <p class="ticket-responder">
-            {{#link-to 'browse' (query-params responder=item.responder.id page=1) class="t-darkLink"}}
-              {{item.responder.displayName}}
-            {{/link-to}}
-          </p>
+        {{#if item.responders.length}}
+          {{ticket-responders class="ticket-responders" data=item.responders}}
         {{/if}}
       {{/if}}
     </div>
@@ -46,12 +42,12 @@
     <div class="ticket-cell ticket-actions">
       {{#ui-dropdown as |dd|}}
         {{#dd.trigger}}
-          <button class="iconButton iconButton--dimmed"><i class="fa fa-cog" /></button>
+          <button class="iconButton iconButton--dimmed"><i class="fa fa-user-plus" /></button>
         {{/dd.trigger}}
         {{#dd.body headerText="Assign to staff"}}
           {{search-users
             task=searchStaff
-            current=item.responder.id
+            current=item.responderIds
             onSelect=(pipe-action (action 'selectUser' item) dd.close)
             class="text-left"}}
         {{/dd.body}}

@@ -1,0 +1,60 @@
+.userList {
+  padding: 0;
+  margin: 0;
+  list-style-type: none;
+  padding-top: 0.75em;
+  padding-bottom: 0.5em;
+  margin-bottom: -0.5em;
+  width: 100%;
+  display: block;
+  overflow: hidden; // hides "remove" buttons
+}
+
+.userList-item {
+  display: block;
+  font-weight: bold;
+  color: $pal-gray30;
+  margin-bottom: 0.5em;
+  @include cf;
+
+  &:last-child {
+    margin-bottom: 0;
+  }
+
+  &:hover .iconButton i {
+    color: $pal-gray50;
+  }
+
+  .iconButton {
+    height: 20px;
+    vertical-align: middle;
+    i {
+      font-size: 20px;
+    }
+
+    &:hover i {
+      color: $pal-red;
+    }
+  }
+
+  &.is-dimmed {
+    color: $pal-gray50;
+  }
+}
+
+
+.userList-controls {
+  float: right;
+  transform: translateX(100%);
+  left: -20px;
+  position: relative;
+  transition: transform .2s ease-in-out;
+
+  &.is-expanded {
+    transform: translateX(20px)
+  }
+}
+
+.userList-content {
+  float: left;
+}

@@ -79,6 +79,12 @@ export default DS.Model.extend({
     }
   }),
 
+  responderIds: Ember.computed('responders.[]', function () {
+    let responders = this.get('responders');
+    let userIds = responders.map(resp => resp.belongsTo('user').id())
+    return userIds;
+  }),
+
   isOpen: Ember.computed('status', function() {
     let status = this.get('status');
     return status === statusList[0] || status === statusList[1];

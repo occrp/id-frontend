@@ -10,5 +10,6 @@ export default DS.Model.extend({
   ticket: belongsTo(),
 
   comment: belongsTo(),
-  attachment: belongsTo()
+  attachment: belongsTo(),
+  responderUser: belongsTo('user')
 });
