@@ -6,7 +6,7 @@ export default Factory.extend({
   createdAt() { return faker.date.past(); },
 
   isComment: trait({
-    verb: 'comment',
+    verb: 'comment:create',
 
     afterCreate(activity, server) {
       let regulars = server.schema.profiles.where({ isStaff: false });
@@ -21,7 +21,7 @@ export default Factory.extend({
   }),
 
   isCancel: trait({
-    verb: 'status_cancelled',
+    verb: 'ticket:update:status_cancelled',
 
     afterCreate(activity, server) {
       let regulars = server.schema.profiles.where({ isStaff: false });
@@ -33,7 +33,7 @@ export default Factory.extend({
   }),
 
   isClose: trait({
-    verb: 'status_closed',
+    verb: 'ticket:update:status_closed',
 
     afterCreate(activity, server) {
       let staff = server.schema.profiles.where({ isStaff: true });
@@ -45,7 +45,7 @@ export default Factory.extend({
   }),
 
   isReopen: trait({
-    verb: 'status_new',
+    verb: 'ticket:update:status_new',
 
     afterCreate(activity, server) {
       let regulars = server.schema.profiles.where({ isStaff: false });
@@ -60,7 +60,7 @@ export default Factory.extend({
   }),
 
   isAttachment: trait({
-    verb: 'attached',
+    verb: 'attachment:create',
 
     afterCreate(activity, server) {
       let regulars = server.schema.profiles.where({ isStaff: false });
@@ -73,4 +73,35 @@ export default Factory.extend({
       });
     }
   }),
+
+  isAssignment: trait({
+    verb: 'responder:create',
+
+    afterCreate(activity, server) {
+      let regulars = server.schema.profiles.where({ isStaff: false });
+      let pick = random(regulars.models);
+
+      server.create('responder', {
+        ticket: activity.ticket,
+        user: pick
+      });
+
+      activity.update({
+        responderUser: pick
+      });
+    }
+  }),
+
+  isUnassignment: trait({
+    verb: 'responder:destroy',
+
+    afterCreate(activity, server) {
+      let regulars = server.schema.profiles.where({ isStaff: false });
+      let pick = random(regulars.models);
+
+      activity.update({
+        responderUser: pick
+      });
+    }
+  })
 });

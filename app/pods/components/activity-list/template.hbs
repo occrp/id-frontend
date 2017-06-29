@@ -1,9 +1,9 @@
 <div class="activityList">
 
   {{#each data as |item|}}
-  {{#unless item.isNew}}
-    {{component (get componentsByType item.verb) data=item class=(concat "activity activity--" item.verb)}}
-  {{/unless}}
+    {{#with (get componentsByType item.verb) as |type|}}
+      {{component (concat 'activity-' type) data=item class=(concat "activity activity--" type)}}
+    {{/with}}
   {{/each}}
 
   <div class="activity activity--comment">

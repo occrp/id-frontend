@@ -89,6 +89,8 @@ export default Factory.extend({
       server.create('activity', 'isComment', { ticket });
       server.create('activity', 'isClose', { ticket });
       server.create('activity', 'isAttachment', { ticket });
+      server.create('activity', 'isAssignment', { ticket });
+      server.create('activity', 'isUnassignment', { ticket });
     }
   }),
 

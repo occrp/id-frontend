@@ -1,8 +1,7 @@
 <div class="activity-headline">
-  {{status-label 'closed'}}
-  by
-  <strong>{{data.user.displayName}}</strong>
-  at
+  <span class="iconContainer"><i class="fa fa-user-times" /></span>
+  <strong>{{data.responderUser.displayName}}</strong>
+  was unassigned at
   <time datetime={{data.createdAt}} title={{moment-format data.createdAt 'LLL'}}>
     {{moment-format data.createdAt 'h:mm A, DD MMM YYYY'}}
   </time>

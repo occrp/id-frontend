@@ -77,7 +77,7 @@ export default function() {
 
     if (oldStatus !== attrs.status) {
       schema.activities.create({
-        verb: `status_${attrs.status}`,
+        verb: `ticket:update:status_${attrs.status}`,
         createdAt: (new Date()).toISOString(),
         ticket,
         user: schema.profiles.find(42)
@@ -115,35 +115,6 @@ export default function() {
     return schema.profiles.find(id);
   });
 
-  this.post('/activities', (schema, request) => {
-    let data = JSON.parse(request.requestBody).data;
-    let attrs = data.attributes;
-    let rels = data.relationships;
-
-    attrs.createdAt = (new Date()).toISOString();
-    attrs.userId = rels.user.data.id;
-    attrs.ticketId = rels.ticket.data.id;
-
-    let ticket = schema.tickets.find(rels.ticket.data.id);
-
-    switch (attrs.type) {
-      case 'cancel':
-        ticket.update({ status: 'cancelled' });
-        break;
-      case 'close':
-        ticket.update({ status: 'closed' });
-        break;
-      case 'reopen':
-        if (ticket.responder) {
-          ticket.update({ status: 'in-progress' });
-        } else {
-          ticket.update({ status: 'new' });
-        }
-    }
-
-    return schema.activities.create(attrs);
-  });
-
 
   this.get('/activities/:id', (schema, request) => {
     let ticketId = request.params.id;
@@ -162,7 +133,7 @@ export default function() {
     let comment = schema.comments.create(attrs);
 
     schema.activities.create({
-      verb: 'comment',
+      verb: 'comment:create',
       createdAt: (new Date()).toISOString(),
       ticket,
       user: profile,
@@ -202,7 +173,7 @@ export default function() {
     let profile = schema.profiles.find(request.requestBody.user);
 
     schema.activities.create({
-      verb: 'attached',
+      verb: 'attachment:create',
       createdAt: (new Date()).toISOString(),
       ticket,
       user: profile,

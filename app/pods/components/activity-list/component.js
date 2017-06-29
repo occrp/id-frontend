@@ -7,11 +7,13 @@ export default Ember.Component.extend(Validations, {
   session: Ember.inject.service(),
 
   componentsByType: {
-    'comment': 'activity-comment',
-    'status_closed': 'activity-close',
-    'status_cancelled': 'activity-close',
-    'status_new': 'activity-reopen',
-    'attached': 'activity-attachment'
+    'comment:create': 'comment',
+    'ticket:update:status_closed': 'close',
+    'ticket:update:status_cancelled': 'cancel',
+    'ticket:update:status_new': 'reopen',
+    'attachment:create': 'attachment',
+    'responder:create': 'assign',
+    'responder:destroy': 'unassign'
   },
 
   body: null,
