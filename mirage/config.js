@@ -116,8 +116,9 @@ export default function() {
   });
 
 
-  this.get('/activities/:id', (schema, request) => {
-    let ticketId = request.params.id;
+  this.get('/activities', (schema, request) => {
+    // not a standard endpoint. used in place of a ticket.activities relationship
+    let ticketId = request.queryParams['filter[ticket]'];
     return schema.activities.where({ ticketId: ticketId });
   });
 

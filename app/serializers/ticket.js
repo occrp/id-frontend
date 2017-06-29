@@ -13,7 +13,7 @@ export default ApplicationSerializer.extend({
 
     ticket.relationships.activities = {
       links: {
-        related: `/${namespace}/activities/${ticket.id}`
+        related: `/${namespace}/activities?filter[ticket]=${ticket.id}`
       }
     };
     return ticket;
