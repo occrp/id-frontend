@@ -18,9 +18,11 @@
         {{/if}}
       {{/validated-field}}
 
-      <button disabled={{publishComment.isRunning}} type="submit" class="button button--primary pull-right">
-        Post comment
-      </button>
+      <div class="form-actions">
+        <button disabled={{publishComment.isRunning}} type="submit" class="button button--primary pull-right">
+          Post comment
+        </button>
+      </div>
 
       {{#if publishComment.isRunning}}
         {{ui-spinner}}

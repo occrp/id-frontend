@@ -96,7 +96,7 @@
 
 
 .activity-body {
-    font-size: 15px;
+  font-size: 15px;
   padding: 15px 20px;
 
   &.activity-form {
@@ -116,14 +116,14 @@
     text-align: right;
   }
 
-  .button {
-    margin: 10px 0 0 0;
-  }
-
   .spinner {
     float: right;
     margin-right: 20px;
-    margin-top: 10px + 15px;
+    margin-top: 15px;
+  }
+
+  .form-actions {
+    margin-top: 10px;
   }
 }
 

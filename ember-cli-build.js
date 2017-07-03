@@ -18,8 +18,11 @@ module.exports = function(defaults) {
 
     'ember-composable-helpers': {
       only: ['pipe', 'pipe-action', 'toggle', 'contains']
-    }
+    },
 
+    nodeModulesToVendor: [
+      'node_modules/filesize/lib'
+    ]
   });
 
   // Use `app.import` to add additional libraries to the generated
@@ -35,5 +38,10 @@ module.exports = function(defaults) {
   // please specify an object with the list of modules as keys
   // along with the exports of each module as its value.
 
+  app.import('vendor/filesize.js', {
+    using: [
+      { transformation: 'amd', as: 'filesize' }
+    ]
+  });
   return app.toTree();
 };

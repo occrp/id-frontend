@@ -88,9 +88,9 @@
 
   &:hover,
   &:active {
-    background: $pal-primary;
+    background: mix(black, $pal-primary, 15%);
     color: white;
-    border-color: $pal-primary;
+    border-color: mix(black, $pal-primary, 15%);;
   }
 
   &:active {

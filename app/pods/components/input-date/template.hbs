@@ -10,10 +10,10 @@
   placeholder="dd/mm/yyyy" />
 
 {{#if isShowingPopup}}
-{{#tether-dialog
-  container-class="datepickerPopup"
-  close='close'
-  target=(concat '#' inputId)
+{{#modal-dialog
+  containerClass="datepickerPopup"
+  onClose='close'
+  tetherTarget=(concat '#' inputId)
   targetAttachment="top left"
   attachment="bottom left"
   constraints=constraints
@@ -31,6 +31,6 @@
     {{/power-calendar}}
   </div>
 
-{{/tether-dialog}}
+{{/modal-dialog}}
 {{/if}}
 

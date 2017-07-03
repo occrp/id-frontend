@@ -182,7 +182,7 @@ export default function() {
     });
 
     return attachment;
-  }));
+  }, { network: '3g' }));
 
 
   this.post('/responders', function (schema) {

@@ -33,17 +33,17 @@
     {{/if}}
     Staff responders
   </dt>
-  <dd>
+  <dd class="with-padding">
     {{#if model.responders.length}}
-      <ul class="userList">
+      <ul class="editableList">
       {{#each model.responders as |responder|}}
-        {{#user-list-item class=(concat "userList-item " (if responder.isSaving "is-dimmed")) onRemove=(action 'removeUser' responder)}}
+        {{#editable-list-item class=(concat "editableList-item " (if responder.isSaving "is-dimmed")) onRemove=(action 'removeUser' responder)}}
           {{responder.user.displayName}}
-        {{/user-list-item}}
+        {{/editable-list-item}}
       {{/each}}
       </ul>
     {{else}}
-      <div class="userList">No one assigned</div>
+      <div class="editableList">No one assigned</div>
     {{/if}}
   </dd>
 </dl>

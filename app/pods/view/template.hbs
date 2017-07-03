@@ -70,15 +70,11 @@
         </div>
       {{/if}}
 
+      <hr class="l-fixedColumn-separator" />
 
-      <h4>Attachments</h4>
-      <ul>
-      {{#each model.attachments as |item|}}
-        <li><strong>{{item.fileName}}</strong> / {{item.mimeType}} / {{item.fileSize}}</li>
-      {{/each}}
-      </ul>
+      <h3 class="t-accent">Attachments</h3>
 
-      {{ticket-uploader model=model}}
+      {{attachment-manager model=model}}
 
       <hr class="l-fixedColumn-separator" />
 

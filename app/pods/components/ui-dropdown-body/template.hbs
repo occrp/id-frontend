@@ -1,8 +1,8 @@
 {{#if isOpen}}
-  {{#tether-dialog
-    container-class=(concat "dd-container" " " class)
-    close=(action close)
-    target=(concat "#" uuid)
+  {{#modal-dialog
+    containerClass=(concat "dd-container" " " class)
+    onClose=(action close)
+    tetherTarget=(concat "#" uuid)
     targetAttachment=targetAttachment
     attachment=attachment
     hasOverlay=false
@@ -17,5 +17,5 @@
       {{/if}}
       {{yield}}
     </div>
-  {{/tether-dialog}}
+  {{/modal-dialog}}
 {{/if}}

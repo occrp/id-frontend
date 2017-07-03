@@ -1,10 +1,22 @@
 import Ember from 'ember';
-import { task } from 'ember-concurrency';
-
+import { task, all } from 'ember-concurrency';
+const { get, set } = Ember;
 
 export default Ember.Component.extend({
   store: Ember.inject.service(),
   session: Ember.inject.service(),
+
+  isShowingModal: false,
+
+  batchUpload: task(function * (queue) {
+    let childTasks = [];
+    
+    queue.files.forEach(file => {
+      childTasks.push(this.get('uploadFile').perform(file));
+    });
+
+    yield all(childTasks);
+  }).restartable(),
 
   uploadFile: task(function * (file) {
     let adapter = Ember.getOwner(this).lookup('adapter:application');
@@ -26,8 +38,15 @@ export default Ember.Component.extend({
   }).maxConcurrency(3).enqueue(),
 
   actions: {
-    addFile(file) {
-      this.get('uploadFile').perform(file);
+    startUploads(queue) {      
+      this.get('batchUpload').perform(queue).then(() => {
+        this.set('isShowingModal', false);
+      });
+    },
+
+    flushQueue(queue) {
+      get(queue, 'files').forEach((file) => set(file, 'queue', null));
+      set(queue, 'files', Ember.A());
     }
   }
 

@@ -1,0 +1,77 @@
+.attachments {
+  display: flex;
+  align-items: strech;
+  margin-top: 20px;
+}
+
+.attachments-list {
+  flex: 1 0 auto;
+  padding-right: 20px;
+  max-width: 50%;
+}
+
+.attachments-dropzone {
+  flex: 1 0 auto;
+  min-height: 160px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  border: 2px dashed $pal-gray70;
+  border-radius: $borderRadius-large;
+  padding: 20px;
+  text-align: center;
+
+  &.is-active.is-valid {
+    border-color: $pal-accent;
+    border-style: solid;
+  }
+
+  &.is-active.is-invalid {
+    border-color: $pal-materialRed;
+  }
+}
+
+.dropzone {
+
+}
+
+.dropzone-title {
+  font-weight: bold;
+  color: $pal-accent;
+  margin: 0;
+}
+
+.dropzone-body {
+  p {
+    margin: 1em;
+  }
+}
+
+.file {
+  display: block;
+  width: 100%;
+  white-space: nowrap;
+  overflow-x: hidden;
+  text-overflow: ellipsis;  
+  color: $pal-gray30;
+  font-weight: bold;
+  border: 1px solid $pal-gray90;
+  border-radius: $borderRadius-large;
+  padding: 7px;
+  padding-left: 13px;
+
+  .tag {
+    float: right;
+    margin: -1px 0;
+    margin-left: 1em;
+  }
+
+  & + & {
+    margin-top: 10px;
+  }
+}
+
+a.file:hover {
+  text-decoration: none;
+  border-color: $pal-primary;
+}
