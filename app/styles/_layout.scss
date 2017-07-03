@@ -11,6 +11,7 @@
     .l-fixedColumn-main {
       box-sizing: border-box;
       float: left;
+      width: calc(100% - 300px);
       margin-right: 300px;
       padding-right: 30px;
       padding-left: 20px;
