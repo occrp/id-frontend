@@ -21,11 +21,11 @@
       sort=sort
       updateFilter=(action 'updateFilter')}}
       <div class="innerNav">
-        {{#link-to 'browse' (query-params status="new,in-progress" page=1) class=(if (eq status "new,in-progress") "active") data-test-status-tab="open"}}
+        {{#link-to 'browse' (query-params status=statusPairs.open page=1) class=(if (contains status statusPairs.open) "active") data-test-status-tab="open"}}
           <i class="fa fa-exclamation-circle" /> {{model.meta.totalOpen}}
           Open
         {{/link-to}}
-        {{#link-to 'browse' (query-params status="closed,cancelled" page=1) class=(if (eq status "closed,cancelled") "active") data-test-status-tab="closed"}}
+        {{#link-to 'browse' (query-params status=statusPairs.closed page=1) class=(if (contains status statusPairs.closed) "active") data-test-status-tab="closed"}}
           <i class="fa fa-check" />
           {{model.meta.totalClosed}}
           Closed

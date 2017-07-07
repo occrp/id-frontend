@@ -4,11 +4,16 @@ import Pageable from 'id2-frontend/mixins/pageable';
 export default Ember.Controller.extend(Pageable, {
   queryParams: ['status', 'kind', 'requester', 'responder', 'sort'],
 
-  status: 'open',
+  status: ['new','in-progress'],
   kind: null,
   requester: null,
   responder: null,
   sort: '-created-at',
+
+  statusPairs: {
+    open: ['new','in-progress'],
+    closed: ['closed','cancelled']
+  },
 
   filterMeta: Ember.computed('model.meta', function () {
     let meta = this.get('model.meta');
