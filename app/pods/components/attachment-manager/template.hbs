@@ -10,30 +10,33 @@
     </div>
   {{/if}}
 
-  {{#ui-dropzone class="attachments-dropzone" name="ticket-attachments" as |dropzone queue|}}
-    <div class="dropzone">
-      {{#if dropzone.active}}
-        {{#if dropzone.valid}}
-          <h4 class="dropzone-title">Drop to upload</h4>
-        {{else}}
-          Invalid
-        {{/if}}
-      {{else}}
-        <h4 class="dropzone-title">Upload files</h4>
-        <div class="dropzone-body">
-          {{#if dropzone.supported}}
-            <p>Drag and drop files onto this area or</p>
+  <div class="attachments-dropzone">
+    {{#ui-dropzone class="dropzone" name="ticket-attachments" as |dropzone queue|}}
+      <div>
+        {{#if dropzone.active}}
+          {{#if dropzone.valid}}
+            <h4 class="dropzone-title">Drop to upload</h4>
+          {{else}}
+            Invalid
           {{/if}}
-          {{#file-upload
-            name="ticket-attachments"
-            multiple=true
-            onfileadd=(action (mut isShowingModal) true) class="dropzone-trigger button button--accent"}}
-            Select a file
-          {{/file-upload}}
-        </div>
-      {{/if}}
-    </div>
+        {{else}}
+          <h4 class="dropzone-title">Upload files</h4>
+          <div class="dropzone-body">
+            {{#if dropzone.supported}}
+              <p>Drag and drop files onto this area or</p>
+            {{/if}}
+            {{#file-upload
+              name="ticket-attachments"
+              multiple=true
+              onfileadd=(action (mut isShowingModal) true) class="dropzone-trigger button button--accent"}}
+              Select a file
+            {{/file-upload}}
+          </div>
+        {{/if}}
+      </div>
   {{/ui-dropzone}}
+  </div>
+
 
 </div>
 

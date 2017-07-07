@@ -1,25 +1,35 @@
 .attachments {
   display: flex;
-  align-items: strech;
   margin-top: 20px;
+  width: 100%;
 }
 
 .attachments-list {
-  flex: 1 0 auto;
-  padding-right: 20px;
-  max-width: 50%;
+  flex: 1 1 50%;
+  min-width: 0; // arcane flexbox bug https://css-tricks.com/flexbox-truncated-text/
+  margin-right: 10px;
 }
 
 .attachments-dropzone {
-  flex: 1 0 auto;
-  min-height: 160px;
+  flex: 1 1 50%;
   display: flex;
   flex-direction: column;
-  justify-content: center;
+
+  .attachments-list + & {
+    margin-left: 10px;
+  }
+}
+
+.dropzone {
+  flex: 1 0 100%;
+  min-height: 160px;
   border: 2px dashed $pal-gray70;
   border-radius: $borderRadius-large;
   padding: 20px;
   text-align: center;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
 
   &.is-active.is-valid {
     border-color: $pal-accent;
@@ -29,10 +39,6 @@
   &.is-active.is-invalid {
     border-color: $pal-materialRed;
   }
-}
-
-.dropzone {
-
 }
 
 .dropzone-title {
