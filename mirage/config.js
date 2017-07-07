@@ -5,16 +5,10 @@ export default function() {
   this.namespace = '/api/v3';
 
   this.get('/tickets', (schema, request) => {
-    let status = request.queryParams['filter[status]'];
+    let status = request.queryParams['filter[status]'].split(',');
 
     let collection = schema.tickets.where(function(ticket) {
-      if (status === 'open') {
-        return ticket.status === 'new' || ticket.status === 'in-progress';
-      }
-      if (status === 'closed') {
-        return ticket.status === 'closed' || ticket.status === 'cancelled';
-      }
-      return true;
+      return status.includes(ticket.status);
     });
 
     let totalOpen = schema.tickets.where({status: 'new'}).length + schema.tickets.where({status: 'in-progress'}).length;
