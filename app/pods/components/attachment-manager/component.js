@@ -24,10 +24,9 @@ export default Ember.Component.extend({
 
     try {
       let response = yield file.upload(`/${namespace}/attachments`, {
+        fileKey: 'upload',
         accepts: [
-          'text/html',
-          'application/xml',
-          'application/xhtml+xml'
+          '*/*',
         ],
         data: {
           ticket: JSON.stringify(
