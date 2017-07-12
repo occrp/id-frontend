@@ -10,7 +10,7 @@ export default Ember.Component.extend({
 
   batchUpload: task(function * (queue) {
     let childTasks = [];
-    
+
     queue.files.forEach(file => {
       childTasks.push(this.get('uploadFile').perform(file));
     });
@@ -25,8 +25,9 @@ export default Ember.Component.extend({
     try {
       let response = yield file.upload(`/${namespace}/attachments`, {
         data: {
-          ticket: this.get('model.id'),
-          user: this.get('session.currentUser.id')
+          ticket: JSON.stringify(
+            {id: this.get('model.id'), type: 'tickets'}
+          ),
         }
       });
 
@@ -38,7 +39,7 @@ export default Ember.Component.extend({
   }).maxConcurrency(3).enqueue(),
 
   actions: {
-    startUploads(queue) {      
+    startUploads(queue) {
       this.get('batchUpload').perform(queue).then(() => {
         this.set('isShowingModal', false);
       });
