@@ -1,15 +1,19 @@
 import Ember from 'ember';
-import { statusMap } from 'id2-frontend/models/ticket';
 
 export default Ember.Component.extend({
-  statusMap,
-
   tagName: 'span',
   classNames: ['tag', 'tag--status'],
-  classNameBindings: ['statusPOJO.labelClass'],
+  classNameBindings: ['statusClass'],
 
-  statusPOJO: Ember.computed('status', function() {
-    return statusMap[this.get('status')];
+  classByStatus: {
+    'new': 'tag--new',
+    'in-progress': 'tag--progress',
+    'closed': 'tag--closed',
+    'cancelled': 'tag--cancelled'
+  },
+
+  statusClass: Ember.computed('status', function() {
+    return this.get('classByStatus')[this.get('status')];
   })
 }).reopenClass({
   positionalParams: ['status']

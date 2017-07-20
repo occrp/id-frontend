@@ -1,16 +1,18 @@
 import Ember from 'ember';
-import { kindMap } from 'id2-frontend/models/ticket';
 
 export default Ember.Component.extend({
-  kindMap,
-
   tagName: 'i',
   classNames: ['fa'],
-  classNameBindings: ['typePOJO.icon'],
-  // attributeBindings: ['typePOJO.name:title'],
+  classNameBindings: ['kindIcon'],
 
-  typePOJO: Ember.computed('kind', function() {
-    return kindMap[this.get('kind')];
+  iconByKind: {
+    'person_ownership': 'fa-user',
+    'company_ownership': 'fa-building',
+    'other': 'fa-question'
+  },
+
+  kindIcon: Ember.computed('kind', function() {
+    return this.get('iconByKind')[this.get('kind')];
   })
 }).reopenClass({
   positionalParams: ['kind']

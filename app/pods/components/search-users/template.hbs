@@ -1,5 +1,5 @@
 <div class="searchBox">
-  <input type="text" class="form-control" oninput={{perform task value="target.value" }} placeholder="Search users" autocomplete="off" data-test-filter-search />
+  <input type="text" class="form-control" oninput={{perform task value="target.value" }} placeholder={{t 'profile.search.placeholder'}} autocomplete="off" data-test-filter-search />
 </div>
 
 {{yield}}
@@ -15,6 +15,6 @@
       {{/each}}
     </div>
   {{else if task.lastSuccessful}}
-    <div class="noResults">No results found</div>
+    <div class="noResults">{{t 'profile.search.noResults'}}</div>
   {{/if}}
 {{/if}}

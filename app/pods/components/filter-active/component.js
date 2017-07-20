@@ -1,9 +1,7 @@
 import Ember from 'ember';
-import { kindMap } from 'id2-frontend/models/ticket';
 
 export default Ember.Component.extend({
-  kindMap,
-
+  i18n: Ember.inject.service(),
   hasFilters: Ember.computed.or('requester', 'responder', 'kind'),
 
   // fyi, these CPs will get triggered twice per change.
@@ -16,7 +14,9 @@ export default Ember.Component.extend({
 
   currentResponder: Ember.computed('responder', 'filterMeta.responder', function() {
     if (this.get('responder') === 'none') {
-      return { firstName: 'none' };
+      return {
+        firstName: this.get('i18n').t('ticket.responder.empty')
+      };
     }
 
     return this.get('responder') && this.get('filterMeta.responder');

@@ -9,8 +9,8 @@
         value=kindList.[0]
         groupValue=buffer.kind
         changed=(action 'changeKind')}}
-      <i class="fa fa-user"></i>
-      <span>Identify what a person owns</span>
+      {{ticket-icon kindList.[0]}}
+      <span>{{t (concat 'ticket.kind.' kindList.[0] '.name')}}</span>
     </label>
     <label class="tabs-item {{if (eq buffer.kind kindList.[1]) "is-active"}}" data-test-kind-tab="company">
       {{radio-button
@@ -18,8 +18,8 @@
         value=kindList.[1]
         groupValue=buffer.kind
         changed=(action 'changeKind')}}
-      <i class="fa fa-building"></i>
-      <span>Determine company ownership</span>
+      {{ticket-icon kindList.[1]}}
+      <span>{{t (concat 'ticket.kind.' kindList.[1] '.name')}}</span>
     </label>
     <label class="tabs-item {{if (eq buffer.kind kindList.[2]) "is-active"}}" data-test-kind-tab="other">
       {{radio-button
@@ -27,8 +27,8 @@
         value=kindList.[2]
         groupValue=buffer.kind
         changed=(action 'changeKind')}}
-      <i class="fa fa-question"></i>
-      <span>Any other question</span>
+      {{ticket-icon kindList.[2]}}
+      <span>{{t (concat 'ticket.kind.' kindList.[2] '.name')}}</span>
     </label>
   </div>
 
@@ -37,88 +37,115 @@
     <div class="l-constrain">
     {{#if (eq buffer.kind kindList.[0])}}
 
-      <h2 class="fieldGroup-title">Identify what a person owns</h2>
+      <h2 class="fieldGroup-title">{{t (concat 'ticket.kind.' kindList.[0] '.name')}}</h2>
 
-      {{#validated-field class="form-group" validation=buffer.validations.attrs.firstName didValidate=didValidate as |field|}}
-        <label for="ticket-first-name">First name <span class="text-danger">*</span></label>
+      {{#validated-field
+        class="form-group"
+        validation=buffer.validations.attrs.firstName
+        didValidate=didValidate as |field|}}
+
+        <label for="ticket-first-name">{{t 'ticket.firstName.label'}} <span class="text-danger">*</span></label>
         {{input value=buffer.firstName class="form-control" id="ticket-first-name" focus-out=field.triggerValidations}}
 
         {{#if field.showErrors}}
           <div class="help-block">{{v-get buffer "firstName" "message"}}</div>
         {{/if}}
+
       {{/validated-field}}
 
-      {{#validated-field class="form-group" validation=buffer.validations.attrs.lastName didValidate=didValidate as |field|}}
-        <label for="ticket-last-name">Last name <span class="text-danger">*</span></label>
+      {{#validated-field
+        class="form-group"
+        validation=buffer.validations.attrs.lastName
+        didValidate=didValidate as |field|}}
+
+        <label for="ticket-last-name">{{t 'ticket.lastName.label'}} <span class="text-danger">*</span></label>
         {{input value=buffer.lastName class="form-control" id="ticket-last-name" focus-out=field.triggerValidations}}
 
         {{#if field.showErrors}}
           <div class="help-block">{{v-get buffer "lastName" "message"}}</div>
         {{/if}}
+
       {{/validated-field}}
 
-      {{#validated-field class="form-group" validation=buffer.validations.attrs.background didValidate=didValidate as |field|}}
-        <label for="ticket-background">Your story <span class="text-danger">*</span></label>
-        <p class="info-block">What do you know so far?</p>
+      {{#validated-field
+        class="form-group"
+        validation=buffer.validations.attrs.background
+        didValidate=didValidate as |field|}}
+
+        <label for="ticket-background">{{t 'ticket.background.formLabel'}} <span class="text-danger">*</span></label>
+        <p class="info-block">{{t 'ticket.background.desc'}}</p>
         {{textarea rows=5 value=buffer.background class="form-control" id="ticket-background" focus-out=field.triggerValidations}}
 
         {{#if field.showErrors}}
           <div class="help-block">{{v-get buffer "background" "message"}}</div>
         {{/if}}
+
       {{/validated-field}}
 
-      {{#validated-field class="form-group" validation=buffer.validations.attrs.initialInformation didValidate=didValidate as |field|}}
-        <label for="ticket-initialInformation">Where have you looked? <span class="text-danger">*</span></label>
-        <p class="info-block">Any information you already have.</p>
+      {{#validated-field 
+       class="form-group"
+       validation=buffer.validations.attrs.initialInformation
+       didValidate=didValidate as |field|}}
+
+        <label for="ticket-initialInformation">{{t 'ticket.initialInformation.formLabel'}} <span class="text-danger">*</span></label>
+        <p class="info-block">{{t 'ticket.initialInformation.desc'}}</p>
         {{textarea rows=5 value=buffer.initialInformation class="form-control" id="ticket-initialInformation" focus-out=field.triggerValidations}}
 
         {{#if field.showErrors}}
           <div class="help-block">{{v-get buffer "initialInformation" "message"}}</div>
         {{/if}}
+
       {{/validated-field}}
 
-      <h2 class="fieldGroup-title">Other details</h2>
+      <h2 class="fieldGroup-title">{{t 'pods.new.form.otherDetails'}}</h2>
 
       <div class="form-group">
-        <label for="ticket-born-at">Date of birth</label>
+        <label for="ticket-born-at">{{t 'ticket.bornAt.label'}}</label>
 
         {{input-date value=buffer.bornAt onSelect=(action (mut buffer.bornAt) value="date") inputId="ticket-born-at" maxDate=today}}
       </div>
 
-
       <div class="form-group">
-        <label for="ticket-sources-person">Aliases</label>
-        <p class="info-block">Other spellings or cover names.</p>
+        <label for="ticket-sources-person">{{t 'ticket.sourcesPerson.label'}}</label>
+        <p class="info-block">{{t 'ticket.sourcesPerson.desc'}}</p>
         {{textarea rows=3 value=buffer.sources class="form-control" id="ticket-sources-person"}}
       </div>
 
-
       <div class="form-group">
-        <label for="ticket-connections-person">Family And Associates</label>
-        <p class="info-block">Known family relationships.</p>
+        <label for="ticket-connections-person">{{t 'ticket.connectionsPerson.label'}}</label>
+        <p class="info-block">{{t 'ticket.connectionsPerson.desc'}}</p>
         {{textarea rows=3 value=buffer.connections class="form-control" id="ticket-connections-person"}} 
       </div>
 
       <div class="form-group">
-        <label for="ticket-businessActivities">Business Activities</label>
+        <label for="ticket-businessActivities">{{t 'ticket.businessActivities.label'}}</label>
         {{textarea rows=3 value=buffer.businessActivities class="form-control" id="ticket-businessActivities"}}
       </div>
 
     {{else if (eq buffer.kind kindList.[1])}}
 
-      <h2 class="fieldGroup-title">Determine company ownership</h2>
+      <h2 class="fieldGroup-title">{{t (concat 'ticket.kind.' kindList.[1] '.name')}}</h2>
 
-      {{#validated-field class="form-group" validation=buffer.validations.attrs.companyName didValidate=didValidate as |field|}}
-        <label for="ticket-companyName">Company name <span class="text-danger">*</span></label>
+      {{#validated-field
+        class="form-group"
+        validation=buffer.validations.attrs.companyName
+        didValidate=didValidate as |field|}}
+
+        <label for="ticket-companyName">{{t 'ticket.companyName.label'}} <span class="text-danger">*</span></label>
         {{input value=buffer.companyName class="form-control" id="ticket-companyName" focus-out=field.triggerValidations}}
 
         {{#if field.showErrors}}
           <div class="help-block">{{v-get buffer "companyName" "message"}}</div>
         {{/if}}
+
       {{/validated-field}}
 
-      {{#validated-field class="form-group" validation=buffer.validations.attrs.country didValidate=didValidate as |field|}}
-        <label for="ticket-country">Country registered <span class="text-danger">*</span></label>
+      {{#validated-field 
+        class="form-group"
+        validation=buffer.validations.attrs.country
+        didValidate=didValidate as |field|}}
+
+        <label for="ticket-country">{{t 'ticket.country.label'}} <span class="text-danger">*</span></label>
         <select onchange={{action (mut buffer.country) value="target.value"}} onblur={{action field.triggerValidations}} class="form-control" id="ticket-country">
           <option value="">- Choose -</option>
           {{#each-in countries as |code name|}}
@@ -129,47 +156,64 @@
         {{#if field.showErrors}}
           <div class="help-block">{{v-get buffer "country" "message"}}</div>
         {{/if}}
+
       {{/validated-field}}
 
-      {{#validated-field class="form-group" validation=buffer.validations.attrs.background didValidate=didValidate as |field|}}
-        <label for="ticket-background-company">Your story <span class="text-danger">*</span></label>
-        <p class="info-block">What do you know so far?</p>
+      {{#validated-field
+        class="form-group"
+        validation=buffer.validations.attrs.background
+        didValidate=didValidate as |field|}}
+
+        <label for="ticket-background-company">{{t 'ticket.backgroundCompany.formLabel'}} <span class="text-danger">*</span></label>
+        <p class="info-block">{{t 'ticket.backgroundCompany.desc'}}</p>
         {{textarea rows=5 value=buffer.background class="form-control" id="ticket-background-company" focus-out=field.triggerValidations}}
 
         {{#if field.showErrors}}
           <div class="help-block">{{v-get buffer "background" "message"}}</div>
         {{/if}}
+
       {{/validated-field}}
 
-      {{#validated-field class="form-group" validation=buffer.validations.attrs.sources didValidate=didValidate as |field|}}
-        <label for="ticket-sources">Where have you looked? <span class="text-danger">*</span></label>
-        <p class="info-block">What sources do you have so far?</p>
+      {{#validated-field
+        class="form-group"
+        validation=buffer.validations.attrs.sources
+        didValidate=didValidate as |field|}}
+
+        <label for="ticket-sources">{{t 'ticket.sources.formLabel'}} <span class="text-danger">*</span></label>
+        <p class="info-block">{{t 'ticket.sources.desc'}}</p>
         {{textarea rows=5 value=buffer.sources class="form-control" id="ticket-sources" focus-out=field.triggerValidations}}
 
         {{#if field.showErrors}}
           <div class="help-block">{{v-get buffer "sources" "message"}}</div>
         {{/if}}
+        
       {{/validated-field}}
 
-      <h2 class="fieldGroup-title">Other details</h2>
+      <h2 class="fieldGroup-title">{{t 'pods.new.form.otherDetails'}}</h2>
 
       <div class="form-group">
-        <label for="ticket-connections">Connections to other companies and people</label>
+        <label for="ticket-connections">{{t 'ticket.connections.formLabel'}}</label>
         {{textarea rows=3 value=buffer.connections class="form-control" id="ticket-connections" focus-out=field.triggerValidations}}
       </div>
 
     {{else}}
 
-      <h2 class="fieldGroup-title">Any other question</h2>
+      <h2 class="fieldGroup-title">{{t (concat 'ticket.kind.' kindList.[2] '.name')}}</h2>
 
-      {{#validated-field class="form-group" validation=buffer.validations.attrs.background didValidate=didValidate as |field|}}
-        <label for="ticket-background-other">What Do You Want To Know? <span class="text-danger">*</span> </label>
-        <p class="info-block">Any information you already have.</p>
+      {{#validated-field
+        class="form-group"
+        validation=buffer.validations.attrs.background
+        didValidate=didValidate 
+        as |field|}}
+
+        <label for="ticket-background-other">{{t 'ticket.backgroundOther.formLabel'}} <span class="text-danger">*</span></label>
+        <p class="info-block">{{t 'ticket.backgroundOther.desc'}}</p>
         {{textarea rows=7 value=buffer.background class="form-control" id="ticket-background-other"}}
 
         {{#if field.showErrors}}
           <div class="help-block">{{v-get buffer "background" "message"}}</div>
         {{/if}}
+
       {{/validated-field}}
 
     {{/if}}
@@ -180,11 +224,11 @@
   <div class="fieldGroup fieldGroup--bordered">
     <div class="l-constrain">
 
-    <h2 class="fieldGroup-title">Request details</h2>
+    <h2 class="fieldGroup-title">{{t 'pods.new.form.requestDetails'}}</h2>
 
     <div class="form-group">
-      <label for="ticket-deadline">Deadline</label>
-      <p class="info-block">We will try to meet your deadline, but please note that our researchers are quite busy. <br />Give them as much time as you possibly can!</p>
+      <label for="ticket-deadline">{{t 'ticket.deadline.label'}}</label>
+      <p class="info-block">{{t 'ticket.deadline.desc'}}</p>
       {{input-date value=buffer.deadlineAt onSelect=(action (mut buffer.deadlineAt) value="date") inputId="ticket-deadline" minDate=today}}
     </div>
 
@@ -192,14 +236,14 @@
       <div class="checkbox">
         <label>
           {{input type="checkbox" checked=buffer.sensitive id="ticket-sensitive"}}
-          <strong>Is it sensitive?</strong>
+          <strong>{{t 'ticket.sensitive.label'}}</strong>
         </label>
       </div>
     </div>
 
     {{#if buffer.sensitive}}
       <div class="form-group">
-        <label for="ticket-whySensitive">Why is it sensitive?</label>
+        <label for="ticket-whySensitive">{{t 'ticket.whySensitive.label'}}</label>
         {{textarea rows=3 value=buffer.whySensitive class="form-control" id="ticket-whySensitive"}}
       </div>
     {{/if}}
@@ -211,10 +255,10 @@
     <div class="l-constrain">
       {{#if (and didValidate buffer.validations.isInvalid)}}
         <div class="alert alert-danger" data-test-validation-errors>
-          Please fill in the fields marked above before continuing.
+          {{t 'pods.new.form.invalidMessage'}}
         </div>
       {{/if}}
-      <button type="submit" class="button button--primary" data-test-save>Submit your request</button>
+      <button type="submit" class="button button--primary" data-test-save>{{t 'pods.new.form.submitButton'}}</button>
     </div>
   </div>
 </form>

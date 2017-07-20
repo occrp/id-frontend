@@ -6,13 +6,15 @@
 
       <div class="ticketType">
         {{ticket-icon model.kind}}
-        <span>{{get (get kindMap model.kind) "shortName"}}</span>
+        <span>{{t (concat 'ticket.kind.' model.kind '.shortName')}}</span>
       </div>
 
       <h1 class="ticketTitle t-dark t-flush" data-test-name>{{title}}</h1>
 
       <p class="ticketSubtitle">
-      Submitted by <strong>{{model.requester.displayName}}</strong> on
+        {{t 'ticket.requester.prefix'}}
+        <strong>{{model.requester.displayName}}</strong>
+        {{t 'prefixes.on'}}
         <time datetime={{model.createdAt}} title={{moment-format model.createdAt 'LLL'}}>
           {{moment-format model.createdAt 'LL'}}
         </time>
@@ -22,48 +24,48 @@
 
       {{#if (eq model.kind kindList.[0])}}
         <dl class="ticketDetails">
-          <dt>Background</dt>
+          <dt>{{t 'ticket.background.label'}}</dt>
           <dd class="formatted" data-test-background>{{model.background}}</dd>
 
-          <dt>Initial information</dt>
+          <dt>{{t 'ticket.initialInformation.label'}}</dt>
           <dd class="formatted">{{model.initialInformation}}</dd>
 
-          <dt>Date of birth</dt>
+          <dt>{{t 'ticket.bornAt.label'}}</dt>
           <dd data-test-born-at>{{moment-format model.bornAt 'LL'}}</dd>
 
-          <dt>Aliases</dt>
+          <dt>{{t 'ticket.sourcesPerson.label'}}</dt>
           <dd class="formatted">{{model.sources}}</dd>
 
-          <dt>Family And Associates</dt>
+          <dt>{{t 'ticket.connectionsPerson.label'}}</dt>
           <dd class="formatted">{{model.connections}}</dd>
 
-          <dt>Business Activities</dt>
+          <dt>{{t 'ticket.businessActivities.label'}}</dt>
           <dd class="formatted">{{model.businessActivities}}</dd>
         </dl>
       {{else if (eq model.kind kindList.[1])}}
         <dl class="ticketDetails">
-          <dt>Country</dt>
+          <dt>{{t 'ticket.country.label'}}</dt>
           <dd data-test-country>{{get countries model.country}}</dd>
 
-          <dt>Company background</dt>
+          <dt>{{t 'ticket.backgroundCompany.label'}}</dt>
           <dd class="formatted" data-test-background>{{model.background}}</dd>
 
-          <dt>Sources</dt>
+          <dt>{{t 'ticket.sources.label'}}</dt>
           <dd class="formatted">{{model.sources}}</dd>
 
-          <dt>Connections</dt>
+          <dt>{{t 'ticket.connections.label'}}</dt>
           <dd class="formatted">{{model.connections}}</dd>
         </dl>
       {{else}}
         <dl class="ticketDetails">
-          <dt>Question</dt>
+          <dt>{{t 'ticket.backgroundOther.label'}}</dt>
           <dd class="formatted" data-test-background>{{model.background}}</dd>
         </dl>
       {{/if}}
 
       {{#if model.sensitive}}
         <div class="alert alert-warning alert--custom">
-          <h4><i class="fa fa-exclamation-triangle" /> Sensitive request</h4>
+          <h4><i class="fa fa-exclamation-triangle" /> {{t 'ticket.sensitive.trueLabel'}}</h4>
           {{#if model.whySensitive}}
             <div class="formatted">{{model.whySensitive}}</div>
           {{/if}}
@@ -72,13 +74,16 @@
 
       <hr class="l-fixedColumn-separator" />
 
-      <h3 class="t-accent">Attachments</h3>
+      <h3 class="t-accent">{{t 'attachment' count=2}}</h3>
 
       {{attachment-manager model=model}}
 
       <hr class="l-fixedColumn-separator" />
 
-      <h3 class="t-accent activityHeading">Activity {{#unless model.activities.length}}{{ui-spinner}}{{/unless}}</h3>
+      <h3 class="t-accent activityHeading">
+        {{t 'activity' count=1}}
+        {{#unless model.activities.length}}{{ui-spinner}}{{/unless}}
+      </h3>
 
       {{activity-list data=model.activities model=model}}
     </div>

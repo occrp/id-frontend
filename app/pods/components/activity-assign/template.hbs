@@ -1,7 +1,7 @@
 <div class="activity-headline">
   <span class="iconContainer"><i class="fa fa-user-plus" /></span>
   <strong>{{data.responderUser.displayName}}</strong>
-  was assigned at
+  {{t 'activity.assign.action'}} {{t 'prefixes.at'}}
   <time datetime={{data.createdAt}} title={{moment-format data.createdAt 'LLL'}}>
     {{moment-format data.createdAt 'h:mm A, DD MMM YYYY'}}
   </time>

@@ -1,5 +1,5 @@
 <a class="button button--bordered" {{action (mut isShowingModal) true}} data-test-cancel>
-  {{activityType}} request
+  {{t 'pods.view.close.button' verb=activityType}}
 </a>
 
 {{#if isShowingModal}}
@@ -8,11 +8,15 @@
   <div class="modal-body">
 
     <div class="modal-message">
-      <h4>Are you sure you want to {{activityType}} this request?</h4>
+      <h4>{{t 'pods.view.close.title' verb=activityType}}</h4>
     </div>
     <div class="modal-actions modal-actions--center">
-      <button class="button button--primary" {{action 'save'}} data-test-modal-confirmCancel>Yes, {{activityType}} request</button>
-      <button class="button button--accent" {{action (mut isShowingModal) false}} data-test-modal-dontCancel>No, leave it open</button>
+      <button class="button button--primary" {{action 'save'}} data-test-modal-confirmCancel>
+        {{t 'pods.view.close.confirm' verb=activityType}}
+      </button>
+      <button class="button button--accent" {{action (mut isShowingModal) false}} data-test-modal-dontCancel>
+        {{t 'pods.view.close.cancel'}}
+      </button>
     </div>
 
   </div>

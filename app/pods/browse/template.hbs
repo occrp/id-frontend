@@ -3,9 +3,9 @@
 
   {{#link-to "new" class="button button--bordered pull-right"}}
     <i class="fa fa-plus"></i>
-    New request
+    {{t 'pods.browse.newButton'}}
   {{/link-to}}
-  <h1 class="cover-title">My requests</h1>
+  <h1 class="cover-title">{{t 'pods.browse.title'}}</h1>
 
 </div>
 </div>
@@ -23,12 +23,12 @@
       <div class="innerNav">
         {{#link-to 'browse' (query-params status=statusPairs.open page=1) class=(if (contains status statusPairs.open) "active") data-test-status-tab="open"}}
           <i class="fa fa-exclamation-circle" /> {{model.meta.totalOpen}}
-          Open
+          {{t 'ticket.status.groups.open'}}
         {{/link-to}}
         {{#link-to 'browse' (query-params status=statusPairs.closed page=1) class=(if (contains status statusPairs.closed) "active") data-test-status-tab="closed"}}
           <i class="fa fa-check" />
           {{model.meta.totalClosed}}
-          Closed
+          {{t 'ticket.status.groups.closed'}}
         {{/link-to}}
       </div>
     {{/filter-nav}}

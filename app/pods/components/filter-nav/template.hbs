@@ -5,17 +5,21 @@
   <div class="filters-secondary">
     <div class="filters-item">
       {{#ui-dropdown data-test-dd="filter-kind" as |dd|}}
-        {{#dd.trigger}}Type <b class="arrow"></b>{{/dd.trigger}}
-        {{#dd.body headerText="Filter by type"}}
+        {{#dd.trigger}}
+          {{t 'ticket.kind' count=1}} <b class="arrow"></b>
+        {{/dd.trigger}}
+        {{#dd.body headerText=(t 'filters.kind.title')}}
           <div class="list">
-            <a href {{action (pipe (action updateFilter 'kind' null) dd.close)}} class="list-item {{if (eq kind null) "is-active"}}">All</a>
+            <a href {{action (pipe (action updateFilter 'kind' null) dd.close)}} class="list-item {{if (eq kind null) "is-active"}}">
+              {{t 'filters.options.all'}}
+            </a>
 
-            {{#each-in kindMap as |key props|}}
-              <a href {{action (pipe (action updateFilter 'kind' key) dd.close)}} class="list-item {{if (eq kind key) "is-active"}}" data-test-kind-option={{key}}>
-                <span class="iconContainer"><i class="fa {{props.icon}}"></i></span>
-                <span class="iconText">{{props.name}}</span>
+            {{#each kindList as |value|}}
+              <a href {{action (pipe (action updateFilter 'kind' value) dd.close)}} class="list-item {{if (eq kind value) "is-active"}}" data-test-kind-option={{value}}>
+                <span class="iconContainer">{{ticket-icon value}}</span>
+                <span class="iconText">{{t (concat 'ticket.kind.' value '.name')}}</span>
               </a>
-            {{/each-in}}
+            {{/each}}
           </div>
         {{/dd.body}}
       {{/ui-dropdown}}
@@ -23,8 +27,10 @@
     {{#if (can "manage tickets")}}
     <div class="filters-item">
       {{#ui-dropdown data-test-dd="filter-requester" as |dd|}}
-        {{#dd.trigger}}Requester <b class="arrow"></b>{{/dd.trigger}}
-        {{#dd.body headerText="Filter by requester"}}
+        {{#dd.trigger}}
+          {{t 'ticket.requester' count=1}} <b class="arrow"></b>
+        {{/dd.trigger}}
+        {{#dd.body headerText=(t 'filters.requester.title')}}
           {{search-users
             task=searchRequesters
             current=requester
@@ -34,14 +40,18 @@
     </div>
     <div class="filters-item">
       {{#ui-dropdown data-test-dd="filter-responder" as |dd|}}
-        {{#dd.trigger}}Responder <b class="arrow"></b>{{/dd.trigger}}
-        {{#dd.body headerText="Filter by who's assigned"}}
+        {{#dd.trigger}}
+          {{t 'ticket.responder' count=1}} <b class="arrow"></b>
+        {{/dd.trigger}}
+        {{#dd.body headerText=(t 'filters.responder.title')}}
           {{#search-users
             task=searchStaff
             current=responder
             onSelect=(pipe-action (action 'applyResponder') dd.close)
           }}
-            <a href class="list-item list-item--special {{if (eq responder "none") "is-active"}}" {{action (pipe (action 'applyResponder' "none") dd.close)}} data-test-filter-static-option="none">Assigned to nobody</a>
+            <a href class="list-item list-item--special {{if (eq responder "none") "is-active"}}" {{action (pipe (action 'applyResponder' "none") dd.close)}} data-test-filter-static-option="none">
+              {{t 'filters.responder.emptyOption'}}
+            </a>
           {{/search-users}}
         {{/dd.body}}
       {{/ui-dropdown}}
@@ -49,8 +59,10 @@
     {{/if}}
     <div class="filters-item">
       {{#ui-dropdown data-test-dd="sort" as |dd|}}
-        {{#dd.trigger}}Sort <b class="arrow"></b>{{/dd.trigger}}
-        {{#dd.body headerText="Sort by"}}
+        {{#dd.trigger}}
+          {{t 'filters.sort.label'}} <b class="arrow"></b>
+        {{/dd.trigger}}
+        {{#dd.body headerText=(t 'filters.sort.title')}}
           <div class="list">
             {{#each-in sortFields as |key label|}}
               <a href {{action (pipe (action updateFilter 'sort' key) dd.close)}} class="list-item {{if (eq sort key) "is-active"}}" data-test-sort-option={{key}}>{{label}}</a>

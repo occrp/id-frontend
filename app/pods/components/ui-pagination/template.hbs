@@ -3,7 +3,7 @@
   {{#if meta.pagination.prev.number}}
     <li class="pg-prev">
       {{#link-to route (query-params page=meta.pagination.prev.number) data-test-pagination="prev"}}
-        <b>Prev</b>
+        <b>{{t 'pagination.prev'}}</b>
       {{/link-to}}
     </li>
   {{else}}
@@ -23,7 +23,7 @@
   {{#if meta.pagination.next.number}}
     <li class="pg-next">
       {{#link-to route (query-params page=meta.pagination.next.number) data-test-pagination="next"}}
-        <b>Next</b>
+        <b>{{t 'pagination.next'}}</b>
       {{/link-to}}
     </li>
   {{else}}

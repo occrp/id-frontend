@@ -17,5 +17,5 @@ export const Validations = buildValidations({
   })
 }, {
   debounce: 100,
-  message: 'Please fill in this field'
+  messageKey: 'errors.genericInvalid'
 });

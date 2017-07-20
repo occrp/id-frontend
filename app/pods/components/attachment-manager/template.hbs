@@ -15,21 +15,21 @@
       <div>
         {{#if dropzone.active}}
           {{#if dropzone.valid}}
-            <h4 class="dropzone-title">Drop to upload</h4>
+            <h4 class="dropzone-title">{{t 'attachment.dropzone.activeTitle'}}</h4>
           {{else}}
             Invalid
           {{/if}}
         {{else}}
-          <h4 class="dropzone-title">Upload files</h4>
+          <h4 class="dropzone-title">{{t 'attachment.dropzone.title'}}</h4>
           <div class="dropzone-body">
             {{#if dropzone.supported}}
-              <p>Drag and drop files onto this area or</p>
+              <p>{{t 'attachment.dropzone.desc'}}</p>
             {{/if}}
             {{#file-upload
               name="ticket-attachments"
               multiple=true
               onfileadd=(action (mut isShowingModal) true) class="dropzone-trigger button button--accent"}}
-              Select a file
+              {{t 'attachment.dropzone.select'}}
             {{/file-upload}}
           </div>
         {{/if}}
@@ -48,7 +48,7 @@
 
       <form>
         <div class="modal-title">
-          <h4>{{queue.files.length}} files selected</h4>
+          <h4>{{t 'attachment.filesSelected' count=queue.files.length}}</h4>
         </div>
 
         <div class="modal-innerContent">
@@ -60,8 +60,8 @@
         </div>
 
         <div class="modal-actions modal-actions--right">
-          <button class="button button--primary" {{action 'startUploads' queue}} disabled={{batchUpload.isRunning}}>Upload</button>
-          <button class="button button--bordered" {{action (pipe (action (mut isShowingModal) false) (action 'flushQueue' queue))}}>Cancel</button>
+          <button class="button button--primary" {{action 'startUploads' queue}} disabled={{batchUpload.isRunning}}>{{t 'actions.upload'}}</button>
+          <button class="button button--bordered" {{action (pipe (action (mut isShowingModal) false) (action 'flushQueue' queue))}}>{{t 'actions.cancel'}}</button>
 
           {{#if batchUpload.isRunning}}
             <div class="modal-progress">

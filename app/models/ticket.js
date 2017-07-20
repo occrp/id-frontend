@@ -6,34 +6,18 @@ import raw from 'ember-macro-helpers/raw';
 
 const { attr, belongsTo, hasMany } = DS;
 
-export const kindMap = {
-  'person_ownership': {
-    name: 'Identify what a person owns',
-    shortName: 'Person',
-    icon: 'fa-user'
-  },
-  'company_ownership': {
-    name: 'Determine company ownership',
-    shortName: 'Company',
-    icon: 'fa-building'
-  },
-  'other': {
-    name: 'Any other question',
-    shortName: 'Other',
-    icon: 'fa-question'
-  }
-};
+export const kindList = [
+  'person_ownership',
+  'company_ownership',
+  'other'
+];
 
-export const kindList = Object.keys(kindMap);
-
-export const statusMap = {
-  'new': { name: 'New', labelClass: 'tag--new' },
-  'in-progress': { name: 'In progress', labelClass: 'tag--progress' },
-  'closed': { name: 'Closed', labelClass: 'tag--closed' },
-  'cancelled': { name: 'Cancelled', labelClass: 'tag--cancelled' }
-};
-
-export const statusList = Object.keys(statusMap);
+export const statusList = [
+  'new',
+  'in-progress',
+  'closed',
+  'cancelled'
+];
 
 
 export default DS.Model.extend({
@@ -132,5 +116,5 @@ export const Validations = buildValidations({
   })
 }, {
   debounce: 100,
-  message: 'Please fill in this field'
+  messageKey: 'errors.genericInvalid'
 });
