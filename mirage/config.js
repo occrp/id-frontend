@@ -151,7 +151,8 @@ export default function() {
   }, { timing: 0 });
 
   this.post('/attachments', upload(function (schema, request) {
-    let file = request.requestBody.file;
+    let file = request.requestBody.upload;
+    let meta = JSON.parse(request.requestBody.ticket);
 
     let attachment = schema.attachments.create({
       url: file.url,
@@ -160,12 +161,12 @@ export default function() {
       mimeType: file.type,
       createdAt: (new Date()).toISOString(),
       updatedAt: (new Date()).toISOString(),
-      userId: request.requestBody.user,
-      ticketId: request.requestBody.ticket
+      userId: 42,
+      ticketId: meta.id
     });
 
     let ticket = schema.tickets.find(request.requestBody.ticket);
-    let profile = schema.profiles.find(request.requestBody.user);
+    let profile = schema.profiles.find(42);
 
     schema.activities.create({
       verb: 'attachment:create',
