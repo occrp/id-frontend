@@ -7,20 +7,25 @@
   {{/each}}
 
   <div class="activity activity--comment">
-    <div class="activity-author"><strong>Leave a comment</strong></div>
+    <div class="activity-author"><strong>{{t 'activity.comment.title'}}</strong></div>
     <form class="activity-body activity-form" {{action "save" on="submit"}}>
 
-      {{#validated-field class="form-group" validation=this.validations.attrs.body didValidate=didValidate as |field|}}
+      {{#validated-field
+        class="form-group"
+        validation=this.validations.attrs.body 
+        didValidate=didValidate as |field|}}
+
         {{textarea value=body class="form-control" rows="5"}}
 
         {{#if field.showErrors}}
           <div class="help-block">{{v-get this "body" "message"}}</div>
         {{/if}}
+        
       {{/validated-field}}
 
       <div class="form-actions">
         <button disabled={{publishComment.isRunning}} type="submit" class="button button--primary pull-right">
-          Post comment
+          {{t 'activity.comment.submitButton'}}
         </button>
       </div>
 

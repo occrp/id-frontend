@@ -1,10 +1,10 @@
 import Ember from 'ember';
 import { task } from 'ember-concurrency';
-import { kindMap } from 'id2-frontend/models/ticket';
+import { kindList } from 'id2-frontend/models/ticket';
 import { getSearchGenerator } from 'id2-frontend/models/profile';
 
 export default Ember.Component.extend({
-  kindMap,
+  kindList,
 
   sortFields: {
     '-created-at': 'Newest',

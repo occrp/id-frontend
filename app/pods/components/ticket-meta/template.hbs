@@ -1,12 +1,12 @@
 <p>{{status-label model.status data-test-status}}</p>
 
 <dl class="requestDetails">
-  <dt><i class="fa fa-refresh" /> Last update</dt>
+  <dt><i class="fa fa-refresh" /> {{t 'ticket.updatedAt.label'}}</dt>
   <dd>
     <time datetime={{model.updatedAt}} title={{moment-format model.updatedAt 'LLL'}}>{{moment-from-now model.updatedAt}}</time>
   </dd>
 
-  <dt><i class="fa fa-calendar-check-o" /> Deadline</dt>
+  <dt><i class="fa fa-calendar-check-o" /> {{t 'ticket.deadline.label'}}</dt>
   <dd>
     <time datetime={{model.deadlineAt}} title={{moment-format model.deadlineAt 'LLL'}}>{{moment-format model.deadlineAt 'LL'}} ({{moment-from-now model.deadlineAt}})</time>
   </dd>
@@ -19,9 +19,9 @@
         {{else}}
           {{#ui-dropdown as |dd|}}
             {{#dd.trigger}}
-              <button class="button button--accent button--micro"><i class="fa fa-plus"></i> Assign</button>
+              <button class="button button--accent button--micro"><i class="fa fa-plus"></i> {{t 'actions.assign.shortForm'}}</button>
             {{/dd.trigger}}
-            {{#dd.body class="mt-5" headerText="Assign to staff"}}
+            {{#dd.body class="mt-5" headerText=(t 'actions.assign.longForm')}}
               {{search-users
                 task=searchStaff
                 current=model.responderIds
@@ -31,7 +31,7 @@
         {{/if}}
       </div>
     {{/if}}
-    Staff responders
+    {{t 'ticket.responder.label'}}
   </dt>
   <dd class="with-padding">
     {{#if model.responders.length}}
@@ -43,7 +43,7 @@
       {{/each}}
       </ul>
     {{else}}
-      <div class="editableList">No one assigned</div>
+      <div class="editableList">{{t 'ticket.responder.empty'}}</div>
     {{/if}}
   </dd>
 </dl>

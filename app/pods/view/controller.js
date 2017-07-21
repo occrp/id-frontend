@@ -1,10 +1,9 @@
 import Ember from 'ember';
-import { kindList, kindMap } from 'id2-frontend/models/ticket';
+import { kindList } from 'id2-frontend/models/ticket';
 import countries from 'ember-i18n-iso-countries/langs/en';
 
 export default Ember.Controller.extend({
   kindList,
-  kindMap,
   countries,
 
   title: Ember.computed('model.kind', function () {

@@ -222,7 +222,7 @@ test('tickets can be filtered by responder', function(assert) {
     let $items = find('[data-test-ticket]');
     assert.equal($items.length, 6, 'showing unassigned tickets');
 
-    assert.equal(find('[data-test-active-filter="responder"]').text().trim(), 'none');
+    assert.equal(find('[data-test-active-filter="responder"]').text().trim(), 'No one assigned');
   });
 
   click('[data-test-dd="filter-responder"] [data-test-dd-trigger]');

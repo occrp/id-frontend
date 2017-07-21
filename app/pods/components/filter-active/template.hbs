@@ -1,24 +1,28 @@
 {{#if hasFilters}}
   <div class="activeFilters">
-    <span class="activeFilters-label">Filtered by</span>
+    <span class="activeFilters-label">
+      {{t 'filters.current.title'}}
+    </span>
     {{#if kind}}
       <span class="chip">
-        <span class="chip-label">Type</span>
-        <span class="chip-value" data-test-active-filter="kind">{{get (get kindMap kind) 'shortName'}}</span>
+        <span class="chip-label">{{t 'ticket.kind' count=1}}</span>
+        <span class="chip-value" data-test-active-filter="kind">{{t (concat 'ticket.kind.' kind '.shortName')}}</span>
       </span>
     {{/if}}
     {{#if currentRequester}}
       <span class="chip">
-        <span class="chip-label">Requester</span>
+        <span class="chip-label">{{t 'ticket.requester' count=1}}</span>
         <span class="chip-value" data-test-active-filter="requester">{{currentRequester.firstName}} {{currentRequester.lastName}}</span>
       </span>
     {{/if}}
     {{#if currentResponder}}
       <span class="chip">
-        <span class="chip-label">Responder</span>
+        <span class="chip-label">{{t 'ticket.responder' count=1}}</span>
         <span class="chip-value" data-test-active-filter="responder">{{currentResponder.firstName}} {{currentResponder.lastName}}</span>
       </span>
     {{/if}}
-    <a href class="activeFilters-clear" {{action resetFilters}}>Clear all filters</a>
+    <a href class="activeFilters-clear" {{action resetFilters}}>
+      {{t 'filters.current.clear'}}
+    </a>
   </div>
 {{/if}}

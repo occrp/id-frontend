@@ -26,9 +26,12 @@ module.exports = function(environment) {
 
     moment: {
       outputFormat: 'LLL'
+    },
+
+    i18n: {
+      defaultLocale: 'en'
     }
   };
-
 
   if (environment === 'development') {
     // ENV.APP.LOG_RESOLVER = true;
