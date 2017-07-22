@@ -5,6 +5,7 @@ moduleForAcceptance('Acceptance | tickets/new');
 
 test('creating a new ticket (person)', async function(assert) {
   assert.expect(4);
+  initSession();
 
   server.createList('ticket', 3);
 
@@ -77,6 +78,7 @@ test('creating a new ticket (person)', async function(assert) {
 
 test('creating a new ticket (company)', async function(assert) {
   assert.expect(3);
+  initSession();
 
   server.createList('ticket', 3);
 
@@ -142,6 +144,7 @@ test('creating a new ticket (company)', async function(assert) {
 
 test('creating a new ticket (other)', async function(assert) {
   assert.expect(3);
+  initSession();
 
   server.createList('ticket', 3);
 
@@ -201,6 +204,7 @@ test('creating a new ticket (other)', async function(assert) {
 
 test('creating a new ticket (person) - validations', async function(assert) {
   assert.expect(6);
+  initSession();
 
   await visit('/new');
 
@@ -220,6 +224,7 @@ test('creating a new ticket (person) - validations', async function(assert) {
 
 test('creating a new ticket (company) - validations', async function(assert) {
   assert.expect(6);
+  initSession();
 
   await visit('/new');
 
@@ -240,6 +245,7 @@ test('creating a new ticket (company) - validations', async function(assert) {
 
 test('creating a new ticket - switching tabs resets validations', async function(assert) {
   assert.expect(7);
+  initSession();
 
   await visit('/new');
 

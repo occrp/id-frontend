@@ -8,6 +8,7 @@ moduleForAcceptance('Acceptance | tickets/browse');
 
 test('rendering tickets index', async function(assert) {
   assert.expect(4);
+  initSession();
 
   server.createList('ticket', 10, 'isPerson', {
     status(i) {
@@ -33,6 +34,7 @@ test('rendering tickets index', async function(assert) {
 
 test('tickets can be paged', async function(assert) {
   assert.expect(4);
+  initSession();
 
   server.createList('ticket', 70, {
     status(i) { return i < 40 ? 'new' : 'closed'; },
@@ -60,6 +62,7 @@ test('tickets can be paged', async function(assert) {
 
 test('tickets can be filtered by kind', async function(assert) {
   assert.expect(3);
+  initSession();
 
   server.createList('ticket', 10, {
     status: 'new',
@@ -98,6 +101,9 @@ test('tickets can be filtered by requester', async function(assert) {
     firstName(i) { return `User #${i+1}`; },
     lastName: 'Doe'
   });
+
+  initSession({ isStaff: true });
+
   server.createList('ticket', 10, {
     status: 'new',
     kind: 'person_ownership',
@@ -159,6 +165,9 @@ test('tickets can be filtered by responder', async function(assert) {
     firstName(i) { return `Staff #${i+1}`; },
     lastName: 'Doe'
   });
+
+  initSession({ isStaff: true });
+
   server.createList('ticket', 10, {
     status: 'new',
     kind: 'person_ownership',
@@ -229,6 +238,7 @@ test('tickets can be filtered by responder', async function(assert) {
 
 test('tickets can sorted', async function(assert) {
   assert.expect(1);
+  initSession();
 
   server.createList('ticket', 10, {
     status: 'new',
@@ -253,6 +263,9 @@ test('ticket filtering or sorting should reset pagination', async function(asser
     firstName(i) { return `User #${i+1}`; },
     lastName: 'Doe'
   });
+
+  initSession({ isStaff: true });
+
   server.createList('ticket', 10, {
     status: 'new',
     kind: 'person_ownership',

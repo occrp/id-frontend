@@ -5,6 +5,7 @@ moduleForAcceptance('Acceptance | tickets/view');
 
 test('rendering ticket details (person)', async function(assert) {
   assert.expect(4);
+  initSession();
 
   let ticket = server.create('ticket', {
     kind: 'person_ownership',
@@ -26,6 +27,7 @@ test('rendering ticket details (person)', async function(assert) {
 
 test('rendering ticket details (company)', async function(assert) {
   assert.expect(4);
+  initSession();
 
   let ticket = server.create('ticket', {
     kind: 'company_ownership',
@@ -46,6 +48,7 @@ test('rendering ticket details (company)', async function(assert) {
 
 test('rendering ticket details (other)', async function(assert) {
   assert.expect(2);
+  initSession();
 
   let ticket = server.create('ticket', {
     kind: 'other',
@@ -62,15 +65,7 @@ test('rendering ticket details (other)', async function(assert) {
 
 test('cancelling a ticket', async function(assert) {
   assert.expect(6);
-
-  server.create('profile', {
-    id: 42,
-    email: "user@mail.com",
-    firstName: 'John',
-    lastName: 'Appleseed',
-    isStaff: false,
-    isSuperuser: false
-  });
+  initSession();
 
   let ticket = server.create('ticket', {
     status: 'new',
@@ -82,6 +77,7 @@ test('cancelling a ticket', async function(assert) {
     sources: 'Aliases',
     connections: 'Family',
     businessActivities: 'Bizniss',
+    sensitive: false,
     whySensitive: null,
     bornAt: '2004-12-01T22:00:00.000Z',
     createdAt: '2016-12-01T22:00:00.000Z',
@@ -89,45 +85,31 @@ test('cancelling a ticket', async function(assert) {
     updatedAt: '2017-01-01T22:00:00.000Z'
   });
 
-  // let done = assert.async();
+  let done = assert.async();
   server.patch('/tickets/:id', (schema, request) => {
     let attrs = JSON.parse(request.requestBody);
 
-    assert.deepEqual(attrs, {
-      "data": {
-        "attributes": {
-          "background": "Lorem ipsum some background.",
-          "business-activities": "Bizniss",
-          "company-name": null,
-          "connections": "Family",
-          "country": null,
-          "created-at": "2016-12-01T22:00:00.000Z",
-          "deadline-at": "2018-12-01T22:00:00.000Z",
-          "born-at": "2004-12-01T22:00:00.000Z",
-          "initial-information": "Initial info",
-          "first-name": "John",
-          "sensitive": true,
-          "sources": "Aliases",
-          "status": "cancelled",
-          "updated-at": "2017-01-01T22:00:00.000Z",
-          "last-name": "Doe",
-          "kind": "person_ownership",
-          "why-sensitive": null
-        },
-        "id": "1",
-        "relationships": {
-          "requester": {
-            "data": {
-              "id": "42",
-              "type": "profiles"
-            }
-          }
-        },
-        "type": "tickets"
-      }
+    assert.deepEqual(attrs.data.attributes, {
+      "background": "Lorem ipsum some background.",
+      "business-activities": "Bizniss",
+      "company-name": null,
+      "connections": "Family",
+      "country": null,
+      "created-at": "2016-12-01T22:00:00.000Z",
+      "deadline-at": "2018-12-01T22:00:00.000Z",
+      "born-at": "2004-12-01T22:00:00.000Z",
+      "initial-information": "Initial info",
+      "first-name": "John",
+      "sensitive": false,
+      "sources": "Aliases",
+      "status": "cancelled",
+      "updated-at": "2017-01-01T22:00:00.000Z",
+      "last-name": "Doe",
+      "kind": "person_ownership",
+      "why-sensitive": null
     });
 
-    // done();
+    done();
     return ticket.update(attrs.data.attributes);
   });
 
@@ -145,5 +127,72 @@ test('cancelling a ticket', async function(assert) {
   await click('[data-test-modal-confirmCancel]');
 
   assert.equal(find('[data-test-status]').text().trim(), 'Cancelled');
+  assert.equal(find('.ember-modal-dialog').length, 0);
+});
+
+test('closing a ticket', async function(assert) {
+  assert.expect(6);
+  initSession({ isStaff: true });
+
+  let ticket = server.create('ticket', {
+    status: 'new',
+    kind: 'person_ownership',
+    firstName: 'John',
+    lastName: 'Doe',
+    background: 'Lorem ipsum some background.',
+    initialInformation: 'Initial info',
+    sources: 'Aliases',
+    connections: 'Family',
+    businessActivities: 'Bizniss',
+    sensitive: false,
+    whySensitive: null,
+    bornAt: '2004-12-01T22:00:00.000Z',
+    createdAt: '2016-12-01T22:00:00.000Z',
+    deadlineAt: '2018-12-01T22:00:00.000Z',
+    updatedAt: '2017-01-01T22:00:00.000Z',
+  });
+
+  let done = assert.async();
+  server.patch('/tickets/:id', (schema, request) => {
+    let attrs = JSON.parse(request.requestBody);
+
+    assert.deepEqual(attrs.data.attributes, {
+      "background": "Lorem ipsum some background.",
+      "business-activities": "Bizniss",
+      "company-name": null,
+      "connections": "Family",
+      "country": null,
+      "created-at": "2016-12-01T22:00:00.000Z",
+      "deadline-at": "2018-12-01T22:00:00.000Z",
+      "born-at": "2004-12-01T22:00:00.000Z",
+      "initial-information": "Initial info",
+      "first-name": "John",
+      "sensitive": false,
+      "sources": "Aliases",
+      "status": "closed",
+      "updated-at": "2017-01-01T22:00:00.000Z",
+      "last-name": "Doe",
+      "kind": "person_ownership",
+      "why-sensitive": null
+    });
+
+    done();
+    return ticket.update(attrs.data.attributes);
+  });
+
+  await visit(`/view/${ticket.id}`);
+
+  assert.equal(currentURL(), `/view/${ticket.id}`);
+
+  assert.equal(find('[data-test-status]').text().trim(), 'New');
+  assert.equal(find('.ember-modal-dialog').length, 0);
+
+  await click('[data-test-cancel]');
+
+  findWithAssert('.ember-modal-dialog');
+
+  await click('[data-test-modal-confirmCancel]');
+
+  assert.equal(find('[data-test-status]').text().trim(), 'Closed');
   assert.equal(find('.ember-modal-dialog').length, 0);
 });

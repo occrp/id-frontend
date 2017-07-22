@@ -1,6 +1,7 @@
 module.exports = {
   globals: {
     server: true,
+    initSession: true
   },
   root: true,
   parserOptions: {

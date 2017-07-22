@@ -1,8 +1,23 @@
 import paginate from './helpers/paginate';
 import { upload } from 'ember-file-upload/mirage';
 
+import Ember from 'ember';
+const { underscore } = Ember.String;
+
 export default function() {
   this.namespace = '/api/v3';
+
+  this.get('/me', function (schema) {
+    let attrs = schema.profiles.find(42).attrs;
+    let processedAttrs = {};
+
+    Object.keys(attrs).forEach(function(key) {
+      processedAttrs[underscore(key)] = attrs[key];
+    });
+
+    return processedAttrs;
+  }, { timing: 0 });
+
 
   this.get('/tickets', (schema, request) => {
     let status = request.queryParams['filter[status__in]'];
@@ -139,17 +154,6 @@ export default function() {
     return comment;
   });
 
-  this.get('/me', () => {
-    return {
-      "id": 42,
-      "email": "user@mail.com",
-      "first_name": "John",
-      "last_name": "Appleseed",
-      "is_staff": true,
-      "is_superuser": false,
-      "locale": ""
-    };
-  }, { timing: 0 });
 
   this.post('/attachments', upload(function (schema, request) {
     let file = request.requestBody.upload;
