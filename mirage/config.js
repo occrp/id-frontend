@@ -5,7 +5,7 @@ export default function() {
   this.namespace = '/api/v3';
 
   this.get('/tickets', (schema, request) => {
-    let status = request.queryParams['filter[status]'];
+    let status = request.queryParams['filter[status__in]'];
 
     let collection = schema.tickets.where(function(ticket) {
       return status.includes(ticket.status);
