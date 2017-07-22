@@ -43,7 +43,10 @@ test('creating a new ticket (person)', async function(assert) {
     });
 
     done();
-    return schema.tickets.create(attrs);
+    return schema.tickets.create(Object.assign({}, attrs, {
+      createdAt: (new Date()).toISOString(),
+      updatedAt: (new Date()).toISOString()
+    }));
   });
 
   await visit('/new');
@@ -112,7 +115,10 @@ test('creating a new ticket (company)', async function(assert) {
     });
 
     done();
-    return schema.tickets.create(attrs);
+    return schema.tickets.create(Object.assign({}, attrs, {
+      createdAt: (new Date()).toISOString(),
+      updatedAt: (new Date()).toISOString()
+    }));
   });
 
   await visit('/new');
@@ -174,7 +180,10 @@ test('creating a new ticket (other)', async function(assert) {
     });
 
     done();
-    return schema.tickets.create(attrs);
+    return schema.tickets.create(Object.assign({}, attrs, {
+      createdAt: (new Date()).toISOString(),
+      updatedAt: (new Date()).toISOString()
+    }));
   });
 
   await visit('/new');

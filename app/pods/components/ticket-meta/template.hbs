@@ -6,10 +6,12 @@
     <time datetime={{model.updatedAt}} title={{moment-format model.updatedAt 'LLL'}}>{{moment-from-now model.updatedAt}}</time>
   </dd>
 
-  <dt><i class="fa fa-calendar-check-o" /> {{t 'ticket.deadline.label'}}</dt>
-  <dd>
-    <time datetime={{model.deadlineAt}} title={{moment-format model.deadlineAt 'LLL'}}>{{moment-format model.deadlineAt 'LL'}} ({{moment-from-now model.deadlineAt}})</time>
-  </dd>
+  {{#if model.deadlineAt}}
+    <dt><i class="fa fa-calendar-check-o" /> {{t 'ticket.deadline.label'}}</dt>
+    <dd>
+      <time datetime={{model.deadlineAt}} title={{moment-format model.deadlineAt 'LLL'}}>{{moment-format model.deadlineAt 'LL'}} ({{moment-from-now model.deadlineAt}})</time>
+    </dd>
+  {{/if}}
 
   <dt>
     {{#if (can 'manage tickets')}}

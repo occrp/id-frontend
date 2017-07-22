@@ -49,10 +49,11 @@ export default function() {
     return schema.tickets.find(id);
   });
 
-  this.post('/tickets', (schema, request) => {
-    let attrs = JSON.parse(request.requestBody).data.attributes;
+  this.post('/tickets', (schema) => {
+    let attrs = this.normalizedRequestAttrs();
 
     attrs.createdAt = (new Date()).toISOString();
+    attrs.updatedAt = (new Date()).toISOString();
 
     return schema.tickets.create(attrs);
   });
