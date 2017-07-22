@@ -92,7 +92,7 @@ test('tickets can be filtered by kind', async function(assert) {
 
 
 test('tickets can be filtered by requester', async function(assert) {
-  assert.expect(5);
+  assert.expect(6);
 
   server.createList('profile', 5, {
     firstName(i) { return `User #${i+1}`; },
@@ -145,11 +145,15 @@ test('tickets can be filtered by requester', async function(assert) {
   assert.equal($items.length, 8, 'showing user #4 tickets');
 
   assert.equal(find('[data-test-active-filter="requester"]').text(), 'User #4 Doe');
+
+  await click('[data-test-dd="filter-requester"] [data-test-dd-trigger]');
+
+  assert.ok(find('[data-test-filter-option]:contains("User #4 Doe")').hasClass('is-active'));
 });
 
 
 test('tickets can be filtered by responder', async function(assert) {
-  assert.expect(8);
+  assert.expect(9);
 
   server.createList('profile', 5, 'staff', {
     firstName(i) { return `Staff #${i+1}`; },
@@ -216,6 +220,10 @@ test('tickets can be filtered by responder', async function(assert) {
   assert.equal($items.length, 4, 'showing tickets assigned to user #2');
 
   assert.equal(find('[data-test-active-filter="responder"]').text(), 'Staff #2 Doe');
+
+  await click('[data-test-dd="filter-responder"] [data-test-dd-trigger]');
+
+  assert.ok(find('[data-test-filter-option]:contains("Staff #2 Doe")').hasClass('is-active'));
 });
 
 
