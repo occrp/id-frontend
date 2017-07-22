@@ -1,7 +1,7 @@
 import ApplicationAdapter from './application';
 
 export default ApplicationAdapter.extend({
-  urlForQuery (query, modelName) {
+  urlForQuery (query) {
     if (query.filter && query.filter.status) {
       query.filter['status__in'] = query.filter.status;
       delete query.filter.status;

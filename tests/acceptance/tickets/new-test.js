@@ -3,7 +3,7 @@ import moduleForAcceptance from 'id2-frontend/tests/helpers/module-for-acceptanc
 
 moduleForAcceptance('Acceptance | tickets/new');
 
-test('creating a new ticket (person)', function(assert) {
+test('creating a new ticket (person)', async function(assert) {
   assert.expect(4);
 
   server.createList('ticket', 3);
@@ -46,37 +46,33 @@ test('creating a new ticket (person)', function(assert) {
     return schema.tickets.create(attrs);
   });
 
-  visit('/new');
+  await visit('/new');
 
-  andThen(function() {
-    assert.equal(currentURL(), '/new');
-  });
+  assert.equal(currentURL(), '/new');
 
-  fillIn('#ticket-first-name', 'John');
-  fillIn('#ticket-last-name', 'Doe');
-  fillIn('#ticket-background', 'Lorem ipsum some background.');
-  fillIn('#ticket-initialInformation', 'Initial lorem ipsum.');
+  await fillIn('#ticket-first-name', 'John');
+  await fillIn('#ticket-last-name', 'Doe');
+  await fillIn('#ticket-background', 'Lorem ipsum some background.');
+  await fillIn('#ticket-initialInformation', 'Initial lorem ipsum.');
 
-  fillIn('#ticket-born-at', '02/12/2004');
-  fillIn('#ticket-sources-person', 'Aliases');
-  fillIn('#ticket-connections-person', 'Family');
-  fillIn('#ticket-businessActivities', 'Bizniss');
+  await fillIn('#ticket-born-at', '02/12/2004');
+  await fillIn('#ticket-sources-person', 'Aliases');
+  await fillIn('#ticket-connections-person', 'Family');
+  await fillIn('#ticket-businessActivities', 'Bizniss');
 
-  fillIn('#ticket-deadline', '05/01/2100');
-  click('#ticket-sensitive');
-  fillIn('#ticket-whySensitive', 'It just is.');
+  await fillIn('#ticket-deadline', '05/01/2100');
+  await click('#ticket-sensitive');
+  await fillIn('#ticket-whySensitive', 'It just is.');
 
-  click('[data-test-save]');
+  await click('[data-test-save]');
 
-  andThen(() => {
-    assert.equal(currentURL(), '/view/4');
+  assert.equal(currentURL(), '/view/4');
 
-    assert.equal(find('[data-test-name]').text(), 'John Doe');
-  });
+  assert.equal(find('[data-test-name]').text(), 'John Doe');
 });
 
 
-test('creating a new ticket (company)', function(assert) {
+test('creating a new ticket (company)', async function(assert) {
   assert.expect(3);
 
   server.createList('ticket', 3);
@@ -119,28 +115,26 @@ test('creating a new ticket (company)', function(assert) {
     return schema.tickets.create(attrs);
   });
 
-  visit('/new');
+  await visit('/new');
 
-  click('[data-test-kind-tab="company"]');
+  await click('[data-test-kind-tab="company"]');
 
-  fillIn('#ticket-companyName', 'Acme Inc.');
-  fillIn('#ticket-country', 'RO');
-  fillIn('#ticket-background-company', 'Lorem ipsum some company background.');
-  fillIn('#ticket-sources', 'Sources lorem ipsum.');
+  await fillIn('#ticket-companyName', 'Acme Inc.');
+  await fillIn('#ticket-country', 'RO');
+  await fillIn('#ticket-background-company', 'Lorem ipsum some company background.');
+  await fillIn('#ticket-sources', 'Sources lorem ipsum.');
 
-  fillIn('#ticket-connections', 'Connections');
+  await fillIn('#ticket-connections', 'Connections');
 
-  click('[data-test-save]');
+  await click('[data-test-save]');
 
-  andThen(() => {
-    assert.equal(currentURL(), '/view/4');
+  assert.equal(currentURL(), '/view/4');
 
-    assert.equal(find('[data-test-name]').text(), 'Acme Inc.');
-  });
+  assert.equal(find('[data-test-name]').text(), 'Acme Inc.');
 });
 
 
-test('creating a new ticket (other)', function(assert) {
+test('creating a new ticket (other)', async function(assert) {
   assert.expect(3);
 
   server.createList('ticket', 3);
@@ -183,106 +177,84 @@ test('creating a new ticket (other)', function(assert) {
     return schema.tickets.create(attrs);
   });
 
-  visit('/new');
+  await visit('/new');
 
-  click('[data-test-kind-tab="other"]');
+  await click('[data-test-kind-tab="other"]');
 
-  fillIn('#ticket-background-other', 'My question.');
+  await fillIn('#ticket-background-other', 'My question.');
 
-  click('[data-test-save]');
+  await click('[data-test-save]');
 
-  andThen(() => {
-    assert.equal(currentURL(), '/view/4');
+  assert.equal(currentURL(), '/view/4');
 
-    assert.equal(find('[data-test-background]').text(), 'My question.');
-  });
+  assert.equal(find('[data-test-background]').text(), 'My question.');
 });
 
-test('creating a new ticket (person) - validations', function(assert) {
+test('creating a new ticket (person) - validations', async function(assert) {
   assert.expect(6);
 
-  visit('/new');
+  await visit('/new');
 
-  andThen(function() {
-    assert.equal(currentURL(), '/new');
-  });
+  assert.equal(currentURL(), '/new');
 
-  click('[data-test-save]');
+  await click('[data-test-save]');
 
-  andThen(() => {
-    assert.equal(currentURL(), '/new');
+  assert.equal(currentURL(), '/new');
 
-    assert.ok(find('#ticket-first-name').closest('.form-group').hasClass('has-error'));
-    assert.ok(find('#ticket-last-name').closest('.form-group').hasClass('has-error'));
-    assert.ok(find('#ticket-background').closest('.form-group').hasClass('has-error'));
-    assert.ok(find('#ticket-initialInformation').closest('.form-group').hasClass('has-error'));
+  assert.ok(find('#ticket-first-name').closest('.form-group').hasClass('has-error'));
+  assert.ok(find('#ticket-last-name').closest('.form-group').hasClass('has-error'));
+  assert.ok(find('#ticket-background').closest('.form-group').hasClass('has-error'));
+  assert.ok(find('#ticket-initialInformation').closest('.form-group').hasClass('has-error'));
 
-    findWithAssert('[data-test-validation-errors]');
-  });
+  findWithAssert('[data-test-validation-errors]');
 });
 
-test('creating a new ticket (company) - validations', function(assert) {
+test('creating a new ticket (company) - validations', async function(assert) {
   assert.expect(6);
 
-  visit('/new');
+  await visit('/new');
 
-  andThen(function() {
-    assert.equal(currentURL(), '/new');
-  });
+  assert.equal(currentURL(), '/new');
 
-  click('[data-test-kind-tab="company"]');
-  click('[data-test-save]');
+  await click('[data-test-kind-tab="company"]');
+  await click('[data-test-save]');
 
-  andThen(() => {
-    assert.equal(currentURL(), '/new');
+  assert.equal(currentURL(), '/new');
 
-    assert.ok(find('#ticket-companyName').closest('.form-group').hasClass('has-error'));
-    assert.ok(find('#ticket-country').closest('.form-group').hasClass('has-error'));
-    assert.ok(find('#ticket-background-company').closest('.form-group').hasClass('has-error'));
-    assert.ok(find('#ticket-sources').closest('.form-group').hasClass('has-error'));
+  assert.ok(find('#ticket-companyName').closest('.form-group').hasClass('has-error'));
+  assert.ok(find('#ticket-country').closest('.form-group').hasClass('has-error'));
+  assert.ok(find('#ticket-background-company').closest('.form-group').hasClass('has-error'));
+  assert.ok(find('#ticket-sources').closest('.form-group').hasClass('has-error'));
 
-    findWithAssert('[data-test-validation-errors]');
-  });
+  findWithAssert('[data-test-validation-errors]');
 });
 
-test('creating a new ticket - switching tabs resets validations', function(assert) {
+test('creating a new ticket - switching tabs resets validations', async function(assert) {
   assert.expect(7);
 
-  visit('/new');
+  await visit('/new');
 
-  andThen(function() {
-    assert.equal(currentURL(), '/new');
-  });
+  assert.equal(currentURL(), '/new');
 
-  click('[data-test-save]');
+  await click('[data-test-save]');
 
-  andThen(() => {
-    assert.ok(find('#ticket-first-name').closest('.form-group').hasClass('has-error'));
-    findWithAssert('[data-test-validation-errors]');
-  });
+  assert.ok(find('#ticket-first-name').closest('.form-group').hasClass('has-error'));
+  findWithAssert('[data-test-validation-errors]');
 
-  click('[data-test-kind-tab="company"]');
+  await click('[data-test-kind-tab="company"]');
 
-  andThen(() => {
-    assert.equal(find('[data-test-validation-errors]').length, 0);
-  });
+  assert.equal(find('[data-test-validation-errors]').length, 0);
 
-  click('[data-test-save]');
+  await click('[data-test-save]');
 
-  andThen(() => {
-    assert.ok(find('#ticket-companyName').closest('.form-group').hasClass('has-error'));
-  });
+  assert.ok(find('#ticket-companyName').closest('.form-group').hasClass('has-error'));
 
-  click('[data-test-kind-tab="person"]');
+  await click('[data-test-kind-tab="person"]');
 
-  andThen(() => {
-    assert.ok(!find('#ticket-first-name').closest('.form-group').hasClass('has-error'));
-    assert.equal(find('[data-test-validation-errors]').length, 0);
-  });
+  assert.ok(!find('#ticket-first-name').closest('.form-group').hasClass('has-error'));
+  assert.equal(find('[data-test-validation-errors]').length, 0);
 
-  click('[data-test-kind-tab="company"]');
+  await click('[data-test-kind-tab="company"]');
 
-  andThen(() => {
-    assert.ok(!find('#ticket-companyName').closest('.form-group').hasClass('has-error'));
-  });
+  assert.ok(!find('#ticket-companyName').closest('.form-group').hasClass('has-error'));
 });

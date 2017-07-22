@@ -3,7 +3,7 @@ import moduleForAcceptance from 'id2-frontend/tests/helpers/module-for-acceptanc
 
 moduleForAcceptance('Acceptance | tickets/view');
 
-test('rendering ticket details (person)', function(assert) {
+test('rendering ticket details (person)', async function(assert) {
   assert.expect(4);
 
   let ticket = server.create('ticket', {
@@ -14,19 +14,17 @@ test('rendering ticket details (person)', function(assert) {
     bornAt: '2004-12-02T00:00:00.000Z',
   });
 
-  visit(`/view/${ticket.id}`);
+  await visit(`/view/${ticket.id}`);
 
-  andThen(() => {
-    assert.equal(currentURL(), `/view/${ticket.id}`);
+  assert.equal(currentURL(), `/view/${ticket.id}`);
 
-    assert.equal(find('[data-test-name]').text(), 'John Doe');
-    assert.equal(find('[data-test-background]').text(), 'Lorem ipsum some background.');
-    assert.equal(find('[data-test-born-at]').text(), 'December 2, 2004');
-  });
+  assert.equal(find('[data-test-name]').text(), 'John Doe');
+  assert.equal(find('[data-test-background]').text(), 'Lorem ipsum some background.');
+  assert.equal(find('[data-test-born-at]').text(), 'December 2, 2004');
 });
 
 
-test('rendering ticket details (company)', function(assert) {
+test('rendering ticket details (company)', async function(assert) {
   assert.expect(4);
 
   let ticket = server.create('ticket', {
@@ -36,19 +34,17 @@ test('rendering ticket details (company)', function(assert) {
     background: 'Lorem ipsum some comapny background.',
   });
 
-  visit(`/view/${ticket.id}`);
+  await visit(`/view/${ticket.id}`);
 
-  andThen(() => {
-    assert.equal(currentURL(), `/view/${ticket.id}`);
+  assert.equal(currentURL(), `/view/${ticket.id}`);
 
-    assert.equal(find('[data-test-name]').text(), 'Acme Inc.');
-    assert.equal(find('[data-test-country]').text(), 'Bosnia and Herzegovina');
-    assert.equal(find('[data-test-background]').text(), 'Lorem ipsum some comapny background.');
-  });
+  assert.equal(find('[data-test-name]').text(), 'Acme Inc.');
+  assert.equal(find('[data-test-country]').text(), 'Bosnia and Herzegovina');
+  assert.equal(find('[data-test-background]').text(), 'Lorem ipsum some comapny background.');
 });
 
 
-test('rendering ticket details (other)', function(assert) {
+test('rendering ticket details (other)', async function(assert) {
   assert.expect(2);
 
   let ticket = server.create('ticket', {
@@ -56,17 +52,15 @@ test('rendering ticket details (other)', function(assert) {
     background: 'My question.'
   });
 
-  visit(`/view/${ticket.id}`);
+  await visit(`/view/${ticket.id}`);
 
-  andThen(() => {
-    assert.equal(currentURL(), `/view/${ticket.id}`);
+  assert.equal(currentURL(), `/view/${ticket.id}`);
 
-    assert.equal(find('[data-test-background]').text(), 'My question.');
-  });
+  assert.equal(find('[data-test-background]').text(), 'My question.');
 });
 
 
-test('cancelling a ticket', function(assert) {
+test('cancelling a ticket', async function(assert) {
   assert.expect(6);
 
   server.create('profile', {
@@ -137,26 +131,19 @@ test('cancelling a ticket', function(assert) {
     return ticket.update(attrs.data.attributes);
   });
 
-  visit(`/view/${ticket.id}`);
+  await visit(`/view/${ticket.id}`);
 
-  andThen(() => {
-    assert.equal(currentURL(), `/view/${ticket.id}`);
+  assert.equal(currentURL(), `/view/${ticket.id}`);
 
-    assert.equal(find('[data-test-status]').text().trim(), 'New');
-    assert.equal(find('.ember-modal-dialog').length, 0);
-  });
+  assert.equal(find('[data-test-status]').text().trim(), 'New');
+  assert.equal(find('.ember-modal-dialog').length, 0);
 
-  click('[data-test-cancel]');
+  await click('[data-test-cancel]');
 
-  andThen(() => {
-    findWithAssert('.ember-modal-dialog');
-  });
+  findWithAssert('.ember-modal-dialog');
 
-  click('[data-test-modal-confirmCancel]');
+  await click('[data-test-modal-confirmCancel]');
 
-  andThen(() => {
-    assert.equal(find('[data-test-status]').text().trim(), 'Cancelled');
-    assert.equal(find('.ember-modal-dialog').length, 0);
-  });
-
+  assert.equal(find('[data-test-status]').text().trim(), 'Cancelled');
+  assert.equal(find('.ember-modal-dialog').length, 0);
 });

@@ -6,7 +6,7 @@ const random = faker.random.arrayElement;
 
 moduleForAcceptance('Acceptance | tickets/browse');
 
-test('rendering tickets index', function(assert) {
+test('rendering tickets index', async function(assert) {
   assert.expect(4);
 
   server.createList('ticket', 10, 'isPerson', {
@@ -15,27 +15,23 @@ test('rendering tickets index', function(assert) {
     }
   });
 
-  visit('/view');
+  await visit('/view');
 
-  andThen(function() {
-    assert.equal(currentURL(), '/view');
+  assert.equal(currentURL(), '/view');
 
-    let $items = find('[data-test-ticket]');
-    assert.equal($items.length, 7, 'by default showing open tickets');
-  });
+  let $items = find('[data-test-ticket]');
+  assert.equal($items.length, 7, 'by default showing open tickets');
 
-  click('[data-test-status-tab="closed"]');
+  await click('[data-test-status-tab="closed"]');
 
-  andThen(() => {
-    assert.equal(currentURL(), `/view?status=${encodeURIComponent('["closed","cancelled"]')}`);
+  assert.equal(currentURL(), `/view?status=${encodeURIComponent('["closed","cancelled"]')}`);
 
-    let $items = find('[data-test-ticket]');
-    assert.equal($items.length, 3, 'showing closed tickets');
-  });
+  $items = find('[data-test-ticket]');
+  assert.equal($items.length, 3, 'showing closed tickets');
 });
 
 
-test('tickets can be paged', function(assert) {
+test('tickets can be paged', async function(assert) {
   assert.expect(4);
 
   server.createList('ticket', 70, {
@@ -45,28 +41,24 @@ test('tickets can be paged', function(assert) {
     lastName(i) { return `Doe ${i + 1}`; },
   });
 
-  visit('/view');
+  await visit('/view');
 
-  andThen(() => {
-    let $items = find('[data-test-ticket]');
-    assert.equal($items.length, 25, 'showing first page tickets');
-  });
+  let $items = find('[data-test-ticket]');
+  assert.equal($items.length, 25, 'showing first page tickets');
 
-  click('[data-test-pagination="next"]');
+  await click('[data-test-pagination="next"]');
 
-  andThen(() => {
-    assert.equal(currentURL(), '/view?page=2');
+  assert.equal(currentURL(), '/view?page=2');
 
-    let $items = find('[data-test-ticket]');
-    assert.equal($items.length, 15, 'showing 2nd page tickets');
+  $items = find('[data-test-ticket]');
+  assert.equal($items.length, 15, 'showing 2nd page tickets');
 
-    let $firstItemName = $items.eq(0).find('[data-test-ticket-name]');
-    assert.equal($firstItemName.text().trim(), 'John Doe 26');
-  });
+  let $firstItemName = $items.eq(0).find('[data-test-ticket-name]');
+  assert.equal($firstItemName.text().trim(), 'John Doe 26');
 });
 
 
-test('tickets can be filtered by kind', function(assert) {
+test('tickets can be filtered by kind', async function(assert) {
   assert.expect(3);
 
   server.createList('ticket', 10, {
@@ -84,26 +76,22 @@ test('tickets can be filtered by kind', function(assert) {
     return schema.tickets.all();
   });
 
-  visit('/view');
+  await visit('/view');
 
-  andThen(() => {
-    let $items = find('[data-test-ticket]');
-    assert.equal($items.length, 10, 'showing unfiltered tickets');
-  });
+  let $items = find('[data-test-ticket]');
+  assert.equal($items.length, 10, 'showing unfiltered tickets');
 
-  click('[data-test-dd="filter-kind"] [data-test-dd-trigger]');
-  click('[data-test-kind-option="person_ownership"]');
+  await click('[data-test-dd="filter-kind"] [data-test-dd-trigger]');
+  await click('[data-test-kind-option="person_ownership"]');
 
-  andThen(() => {
-    assert.equal(currentURL(), '/view?kind=person_ownership');
+  assert.equal(currentURL(), '/view?kind=person_ownership');
 
-    let $items = find('[data-test-ticket]');
-    assert.equal($items.length, 4, 'showing person ownership tickets');
-  });
+  $items = find('[data-test-ticket]');
+  assert.equal($items.length, 4, 'showing person ownership tickets');
 });
 
 
-test('tickets can be filtered by requester', function(assert) {
+test('tickets can be filtered by requester', async function(assert) {
   assert.expect(5);
 
   server.createList('profile', 5, {
@@ -139,34 +127,28 @@ test('tickets can be filtered by requester', function(assert) {
     return schema.tickets.all();
   });
 
-  visit('/view');
+  await visit('/view');
 
-  andThen(() => {
-    let $items = find('[data-test-ticket]');
-    assert.equal($items.length, 10, 'showing unfiltered tickets');
-  });
+  let $items = find('[data-test-ticket]');
+  assert.equal($items.length, 10, 'showing unfiltered tickets');
 
-  click('[data-test-dd="filter-requester"] [data-test-dd-trigger]');
-  fillIn('[data-test-filter-search]', 'User #4');
+  await click('[data-test-dd="filter-requester"] [data-test-dd-trigger]');
+  await fillIn('[data-test-filter-search]', 'User #4');
 
-  andThen(() => {
-    assert.equal(find('[data-test-filter-option]:first').text(), 'User #4 Doe');
-  });
+  assert.equal(find('[data-test-filter-option]:first').text(), 'User #4 Doe');
 
-  click('[data-test-filter-option]:first');
+  await click('[data-test-filter-option]:first');
 
-  andThen(() => {
-    assert.equal(currentURL(), '/view?requester=4');
+  assert.equal(currentURL(), '/view?requester=4');
 
-    let $items = find('[data-test-ticket]');
-    assert.equal($items.length, 8, 'showing user #4 tickets');
+  $items = find('[data-test-ticket]');
+  assert.equal($items.length, 8, 'showing user #4 tickets');
 
-    assert.equal(find('[data-test-active-filter="requester"]').text(), 'User #4 Doe');
-  });
+  assert.equal(find('[data-test-active-filter="requester"]').text(), 'User #4 Doe');
 });
 
 
-test('tickets can be filtered by responder', function(assert) {
+test('tickets can be filtered by responder', async function(assert) {
   assert.expect(8);
 
   server.createList('profile', 5, 'staff', {
@@ -206,46 +188,38 @@ test('tickets can be filtered by responder', function(assert) {
     return schema.tickets.all();
   });
 
-  visit('/view');
+  await visit('/view');
 
-  andThen(() => {
-    let $items = find('[data-test-ticket]');
-    assert.equal($items.length, 10, 'showing unfiltered tickets');
-  });
+  let $items = find('[data-test-ticket]');
+  assert.equal($items.length, 10, 'showing unfiltered tickets');
 
-  click('[data-test-dd="filter-responder"] [data-test-dd-trigger]');
-  click('[data-test-filter-static-option="none"]');
+  await click('[data-test-dd="filter-responder"] [data-test-dd-trigger]');
+  await click('[data-test-filter-static-option="none"]');
 
-  andThen(() => {
-    assert.equal(currentURL(), '/view?responder=none');
+  assert.equal(currentURL(), '/view?responder=none');
 
-    let $items = find('[data-test-ticket]');
-    assert.equal($items.length, 6, 'showing unassigned tickets');
+  $items = find('[data-test-ticket]');
+  assert.equal($items.length, 6, 'showing unassigned tickets');
 
-    assert.equal(find('[data-test-active-filter="responder"]').text().trim(), 'No one assigned');
-  });
+  assert.equal(find('[data-test-active-filter="responder"]').text().trim(), 'No one assigned');
 
-  click('[data-test-dd="filter-responder"] [data-test-dd-trigger]');
-  fillIn('[data-test-filter-search]', 'Staff #2');
+  await click('[data-test-dd="filter-responder"] [data-test-dd-trigger]');
+  await fillIn('[data-test-filter-search]', 'Staff #2');
 
-  andThen(() => {
-    assert.equal(find('[data-test-filter-option]:first').text(), 'Staff #2 Doe');
-  });
+  assert.equal(find('[data-test-filter-option]:first').text(), 'Staff #2 Doe');
 
-  click('[data-test-filter-option]:first');
+  await click('[data-test-filter-option]:first');
 
-  andThen(() => {
-    assert.equal(currentURL(), '/view?responder=2');
+  assert.equal(currentURL(), '/view?responder=2');
 
-    let $items = find('[data-test-ticket]');
-    assert.equal($items.length, 4, 'showing tickets assigned to user #2');
+  $items = find('[data-test-ticket]');
+  assert.equal($items.length, 4, 'showing tickets assigned to user #2');
 
-    assert.equal(find('[data-test-active-filter="responder"]').text(), 'Staff #2 Doe');
-  });
+  assert.equal(find('[data-test-active-filter="responder"]').text(), 'Staff #2 Doe');
 });
 
 
-test('tickets can sorted', function(assert) {
+test('tickets can sorted', async function(assert) {
   assert.expect(1);
 
   server.createList('ticket', 10, {
@@ -255,18 +229,16 @@ test('tickets can sorted', function(assert) {
     lastName: 'Doe'
   });
 
-  visit('/view');
+  await visit('/view');
 
-  click('[data-test-dd="sort"] [data-test-dd-trigger]');
-  click('[data-test-sort-option="-deadline-at"]');
+  await click('[data-test-dd="sort"] [data-test-dd-trigger]');
+  await click('[data-test-sort-option="-deadline-at"]');
 
-  andThen(() => {
-    assert.equal(currentURL(), '/view?sort=-deadline-at');
-  });
+  assert.equal(currentURL(), '/view?sort=-deadline-at');
 });
 
 
-test('ticket filtering or sorting should reset pagination', function(assert) {
+test('ticket filtering or sorting should reset pagination', async function(assert) {
   assert.expect(8);
 
   server.createList('profile', 5, {
@@ -282,57 +254,41 @@ test('ticket filtering or sorting should reset pagination', function(assert) {
     responderId: null
   });
 
-  visit('/view?size=3');
+  await visit('/view?size=3');
 
-  click('[data-test-pagination="next"]');
+  await click('[data-test-pagination="next"]');
 
-  andThen(() => {
-    assert.equal(currentURL(), '/view?page=2&size=3');
-  });
+  assert.equal(currentURL(), '/view?page=2&size=3');
 
-  click('[data-test-dd="filter-requester"] [data-test-dd-trigger]');
-  click('[data-test-filter-option="4"]');
+  await click('[data-test-dd="filter-requester"] [data-test-dd-trigger]');
+  await click('[data-test-filter-option="4"]');
 
-  andThen(() => {
-    assert.equal(currentURL(), '/view?requester=4&size=3');
-  });
+  assert.equal(currentURL(), '/view?requester=4&size=3');
 
-  click('[data-test-pagination="next"]');
+  await click('[data-test-pagination="next"]');
 
-  andThen(() => {
-    assert.equal(currentURL(), '/view?page=2&requester=4&size=3');
-  });
+  assert.equal(currentURL(), '/view?page=2&requester=4&size=3');
 
-  click('[data-test-dd="filter-responder"] [data-test-dd-trigger]');
-  click('[data-test-filter-static-option="none"]');
+  await click('[data-test-dd="filter-responder"] [data-test-dd-trigger]');
+  await click('[data-test-filter-static-option="none"]');
 
-  andThen(() => {
-    assert.equal(currentURL(), '/view?requester=4&responder=none&size=3');
-  });
+  assert.equal(currentURL(), '/view?requester=4&responder=none&size=3');
 
-  click('[data-test-pagination="next"]');
+  await click('[data-test-pagination="next"]');
 
-  andThen(() => {
-    assert.equal(currentURL(), '/view?page=2&requester=4&responder=none&size=3');
-  });
+  assert.equal(currentURL(), '/view?page=2&requester=4&responder=none&size=3');
 
-  click('[data-test-dd="filter-kind"] [data-test-dd-trigger]');
-  click('[data-test-kind-option="person_ownership"]');
+  await click('[data-test-dd="filter-kind"] [data-test-dd-trigger]');
+  await click('[data-test-kind-option="person_ownership"]');
 
-  andThen(() => {
-    assert.equal(currentURL(), '/view?kind=person_ownership&requester=4&responder=none&size=3');
-  });
+  assert.equal(currentURL(), '/view?kind=person_ownership&requester=4&responder=none&size=3');
 
-  click('[data-test-pagination="next"]');
+  await click('[data-test-pagination="next"]');
 
-  andThen(() => {
-    assert.equal(currentURL(), '/view?kind=person_ownership&page=2&requester=4&responder=none&size=3');
-  });
+  assert.equal(currentURL(), '/view?kind=person_ownership&page=2&requester=4&responder=none&size=3');
 
-  click('[data-test-dd="sort"] [data-test-dd-trigger]');
-  click('[data-test-sort-option="-deadline-at"]');
+  await click('[data-test-dd="sort"] [data-test-dd-trigger]');
+  await click('[data-test-sort-option="-deadline-at"]');
 
-  andThen(() => {
-    assert.equal(currentURL(), '/view?kind=person_ownership&requester=4&responder=none&size=3&sort=-deadline-at');
-  });
+  assert.equal(currentURL(), '/view?kind=person_ownership&requester=4&responder=none&size=3&sort=-deadline-at');
 });

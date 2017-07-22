@@ -38,7 +38,7 @@ export default Ember.Component.extend({
       this.get('store').pushPayload('attachment', response.body);
       this.get('model').hasMany('activities').reload();
     } catch (e) {
-      console.log('CATCH', e)
+      // console.log('CATCH', e)
     }
   }).maxConcurrency(3).enqueue(),
 
