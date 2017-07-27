@@ -20,7 +20,7 @@ export default function() {
 
 
   this.get('/tickets', (schema, request) => {
-    let status = request.queryParams['filter[status__in]'];
+    let status = request.queryParams['filter[status__in]'].split(',');
 
     let collection = schema.tickets.where(function(ticket) {
       return status.includes(ticket.status);
