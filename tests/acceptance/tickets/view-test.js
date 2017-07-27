@@ -130,7 +130,7 @@ test('cancelling a ticket', async function(assert) {
   assert.equal(find('.ember-modal-dialog').length, 0);
 });
 
-test('closing a ticket', async function(assert) {
+test('(staff) closing a ticket', async function(assert) {
   assert.expect(6);
   initSession({ isStaff: true });
 

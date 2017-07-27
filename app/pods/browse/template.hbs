@@ -1,17 +1,15 @@
 <div class="cover cover--header">
-<div class="wrapper">
-
-  {{#link-to "new" class="button button--bordered pull-right"}}
-    <i class="fa fa-plus"></i>
-    {{t 'pods.browse.newButton'}}
-  {{/link-to}}
-  <h1 class="cover-title">{{t 'pods.browse.title'}}</h1>
-
-</div>
+  <div class="wrapper">
+    {{#link-to "new" class="button button--bordered pull-right"}}
+      <i class="fa fa-plus"></i>
+      {{t 'pods.browse.newButton'}}
+    {{/link-to}}
+    <h1 class="cover-title">{{t 'ticket' count=model.meta.total}}</h1>
+  </div>
 </div>
 
+<div class="cover cover--content">
 <div class="wrapper">
-
   <div class="section">
 
     {{#filter-nav
@@ -45,6 +43,6 @@
     {{ui-pagination meta=model.meta route='browse'}}
 
   </div>
-
+</div>
 </div>
 

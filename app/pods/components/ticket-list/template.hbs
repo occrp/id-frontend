@@ -11,21 +11,23 @@
       <h4 class="ticket-name" data-test-ticket-name>
         {{#link-to "view" item.id}}{{item.displayName}}{{/link-to}}
       </h4>
+      
       <p>
         {{t 'ticket.updatedAt.prefix'}}
         <time datetime={{item.updatedAt}} title={{moment-format item.updatedAt 'LLL'}}>
           {{moment-from-now item.updatedAt}}
         </time>
-
-        {{#unless requester}}
+        {{#if (can "manage tickets")}}
           &bull;
           {{#link-to 'browse' (query-params requester=item.requester.id page=1) class="t-darkLink"}}
             {{item.requester.displayName}}
           {{/link-to}}
-        {{/unless}}
+        {{/if}}
       </p>
+      
     </div>
 
+    
     <div class="ticket-cell ticket-addon text-right">
       {{#if (and updateResponder.isRunning (eq updateResponder.last.args.[0] item))}}
         {{ui-spinner}}
@@ -33,12 +35,13 @@
         <p class="ticket-status">
           {{status-label item.status data-test-ticket-status}}
         </p>
-        {{#if item.responders.length}}
+        {{#if (and (can "manage tickets") item.responders.length)}}
           {{ticket-responders class="ticket-responders" data=item.responders}}
         {{/if}}
       {{/if}}
     </div>
 
+    {{#if (can "manage tickets")}}
     <div class="ticket-cell ticket-actions">
       {{#ui-dropdown as |dd|}}
         {{#dd.trigger}}
@@ -53,11 +56,12 @@
         {{/dd.body}}
       {{/ui-dropdown}}
     </div>
+    {{/if}}
 
     <div class="ticket-cell ticket-dates">
       <p>
         <time datetime={{item.createdAt}} title={{moment-format item.createdAt 'LLL'}}>
-          {{moment-format item.createdAt 'DD MMM YYYY'}}
+          {{moment-format item.createdAt}}
         </time>
       </p>
       {{#if item.deadlineAt}}

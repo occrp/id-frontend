@@ -25,7 +25,7 @@ module.exports = function(environment) {
     },
 
     moment: {
-      outputFormat: 'LLL'
+      outputFormat: 'MMM DD YYYY'
     },
 
     i18n: {

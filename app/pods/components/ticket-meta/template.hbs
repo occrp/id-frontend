@@ -9,7 +9,7 @@
   {{#if model.deadlineAt}}
     <dt><i class="fa fa-calendar-check-o" /> {{t 'ticket.deadline.label'}}</dt>
     <dd>
-      <time datetime={{model.deadlineAt}} title={{moment-format model.deadlineAt 'LLL'}}>{{moment-format model.deadlineAt 'LL'}} ({{moment-from-now model.deadlineAt}})</time>
+      <time datetime={{model.deadlineAt}} title={{moment-format model.deadlineAt 'LLL'}}>{{moment-format model.deadlineAt}} ({{moment-from-now model.deadlineAt}})</time>
     </dd>
   {{/if}}
 
@@ -38,11 +38,21 @@
   <dd class="with-padding">
     {{#if model.responders.length}}
       <ul class="editableList">
-      {{#each model.responders as |responder|}}
-        {{#editable-list-item class=(concat "editableList-item " (if responder.isSaving "is-dimmed")) onRemove=(action 'removeUser' responder)}}
-          {{responder.user.displayName}}
-        {{/editable-list-item}}
-      {{/each}}
+      {{#if (can 'manage tickets')}}
+        {{#each model.responders as |responder|}}
+          {{#editable-list-item class=(concat "editableList-item " (if responder.isSaving "is-dimmed")) onRemove=(action 'removeUser' responder)}}
+            {{responder.user.displayName}}
+          {{/editable-list-item}}
+        {{/each}}
+      {{else}}
+        {{#each model.responders as |responder|}}
+          <div class="editableList-item">
+          <div class="editableList-content">
+            {{responder.user.displayName}}
+          </div>
+          </div>
+        {{/each}}
+      {{/if}}
       </ul>
     {{else}}
       <div class="editableList">{{t 'ticket.responder.empty'}}</div>

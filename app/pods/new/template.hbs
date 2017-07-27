@@ -1,15 +1,11 @@
 <div class="cover cover--header">
-<div class="wrapper">
-
-  <h1 class="cover-title">{{t 'pods.new.title'}}</h1>
-
-</div>
+  <div class="wrapper">
+    <h1 class="cover-title text-center">{{t 'pods.new.title'}}</h1>
+  </div>
 </div>
 
 <div class="cover cover--content">
-<div class="wrapper">
-
-{{form-create-ticket model=model afterSave=(action "goToTicketPage")}}
-
-</div>
+  <div class="wrapper">
+    {{form-create-ticket model=model afterSave=(action "goToTicketPage")}}
+  </div>
 </div>

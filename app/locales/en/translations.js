@@ -1,5 +1,8 @@
 export default {
   ticket: {
+    'one': 'Request',
+    'other': '{{count}} Requests',
+
     kind: {
       'one': 'Type',
 

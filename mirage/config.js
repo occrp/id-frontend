@@ -53,6 +53,7 @@ export default function() {
     request.mirageMeta = {
       'total-open': totalOpen,
       'total-closed': totalClosed,
+      total: schema.tickets.all().length,
       filters
     };
 

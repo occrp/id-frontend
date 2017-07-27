@@ -60,9 +60,9 @@ test('tickets can be paged', async function(assert) {
 });
 
 
-test('tickets can be filtered by kind', async function(assert) {
+test('(staff) tickets can be filtered by kind', async function(assert) {
   assert.expect(3);
-  initSession();
+  initSession({ isStaff: true});
 
   server.createList('ticket', 10, {
     status: 'new',
@@ -94,7 +94,7 @@ test('tickets can be filtered by kind', async function(assert) {
 });
 
 
-test('tickets can be filtered by requester', async function(assert) {
+test('(staff) tickets can be filtered by requester', async function(assert) {
   assert.expect(6);
 
   server.createList('profile', 5, {
@@ -158,7 +158,7 @@ test('tickets can be filtered by requester', async function(assert) {
 });
 
 
-test('tickets can be filtered by responder', async function(assert) {
+test('(staff) tickets can be filtered by responder', async function(assert) {
   assert.expect(9);
 
   server.createList('profile', 5, 'staff', {
@@ -256,7 +256,7 @@ test('tickets can sorted', async function(assert) {
 });
 
 
-test('ticket filtering or sorting should reset pagination', async function(assert) {
+test('(staff) ticket filtering or sorting should reset pagination', async function(assert) {
   assert.expect(8);
 
   server.createList('profile', 5, {

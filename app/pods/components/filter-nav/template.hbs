@@ -3,6 +3,7 @@
     {{yield}}
   </div>
   <div class="filters-secondary">
+    {{#if (can "manage tickets")}}
     <div class="filters-item">
       {{#ui-dropdown data-test-dd="filter-kind" as |dd|}}
         {{#dd.trigger}}
@@ -24,7 +25,6 @@
         {{/dd.body}}
       {{/ui-dropdown}}
     </div>
-    {{#if (can "manage tickets")}}
     <div class="filters-item">
       {{#ui-dropdown data-test-dd="filter-requester" as |dd|}}
         {{#dd.trigger}}
