@@ -25,7 +25,7 @@ test('rendering tickets index', async function(assert) {
 
   await click('[data-test-status-tab="closed"]');
 
-  assert.equal(currentURL(), `/view?status=${encodeURIComponent('["closed","cancelled"]')}`);
+  assert.equal(currentURL(), `/view?status=${encodeURIComponent('closed,cancelled')}`);
 
   $items = find('[data-test-ticket]');
   assert.equal($items.length, 3, 'showing closed tickets');
