@@ -54,9 +54,10 @@ module.exports = function(environment) {
 
   if (environment === 'production') {
     ENV.exportApplicationGlobal = true;
+    ENV.rootURL = '/tickets';
     ENV['ember-cli-mirage'] = {
       enabled: false
-    }
+    };
   }
 
   return ENV;
