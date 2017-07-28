@@ -6,16 +6,16 @@ return n||a(e,t),r&&"pending"!==n.state&&"finalized"!==n.state&&(n.findDeps(r),r
 for(var r=e.split("/"),n=t.split("/"),i=n.slice(0,-1),o=0,a=r.length;o<a;o++){var s=r[o]
 if(".."===s){if(0===i.length)throw new Error("Cannot access parent module of root")
 i.pop()}else{if("."===s)continue
-i.push(s)}}return i.join("/")}function l(e){return!(!d[e]&&!d[e+"/index"])}var c=(e.heimdall,{loader:loader,define:define,requireModule:requireModule,require:require,requirejs:requirejs})
+i.push(s)}}return i.join("/")}function l(e){return!(!d[e]&&!d[e+"/index"])}var c={loader:loader,define:define,requireModule:requireModule,require:require,requirejs:requirejs}
 requirejs=require=requireModule=function(e){for(var t=[],r=s(e,"(require)",t),n=t.length-1;n>=0;n--)t[n].exports()
 return r.module.exports},loader={noConflict:function(t){var r,n
-for(r in t)t.hasOwnProperty(r)&&c.hasOwnProperty(r)&&(n=t[r],e[n]=e[r],e[r]=c[r])}}
+for(r in t)t.hasOwnProperty(r)&&c.hasOwnProperty(r)&&(n=t[r],e[n]=e[r],e[r]=c[r])},makeDefaultExport:!0}
 var d=t(),f=t(),p=0,h=["require","exports","module"]
 n.prototype.makeDefaultExport=function(){var e=this.module.exports
 null===e||"object"!=typeof e&&"function"!=typeof e||void 0!==e.default||!Object.isExtensible(e)||(e.default=e)},n.prototype.exports=function(){if("finalized"===this.state||"reifying"===this.state)return this.module.exports
 loader.wrapModules&&(this.callback=loader.wrapModules(this.id,this.callback)),this.reify()
 var e=this.callback.apply(this,this.reified)
-return this.reified.length=0,this.state="finalized",this.hasExportsAsDep&&void 0===e||(this.module.exports=e),this.makeDefaultExport(),this.module.exports},n.prototype.unsee=function(){this.state="new",this.module={exports:{}}},n.prototype.reify=function(){if("reified"!==this.state){this.state="reifying"
+return this.reified.length=0,this.state="finalized",this.hasExportsAsDep&&void 0===e||(this.module.exports=e),loader.makeDefaultExport&&this.makeDefaultExport(),this.module.exports},n.prototype.unsee=function(){this.state="new",this.module={exports:{}}},n.prototype.reify=function(){if("reified"!==this.state){this.state="reifying"
 try{this.reified=this._reify(),this.state="reified"}finally{"reifying"===this.state&&(this.state="errored")}}},n.prototype._reify=function(){for(var e=this.reified.slice(),t=0;t<e.length;t++){var r=e[t]
 e[t]=r.exports?r.exports:r.module.exports()}return e},n.prototype.findDeps=function(e){if("new"===this.state){this.state="pending"
 for(var t=this.deps,r=0;r<t.length;r++){var n=t[r],i=this.reified[r]={exports:void 0,module:void 0}
