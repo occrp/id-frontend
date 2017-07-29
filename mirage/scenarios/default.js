@@ -18,7 +18,11 @@ export default function(server) {
   });
 
   server.createList('profile', 7);
-  server.createList('profile', 5, 'staff');
+  server.createList('profile', 4, 'staff');
+  server.create('profile', 'staff', {
+    firstName: null,
+    lastName: null
+  });
   server.createList('profile', 2, 'superuser');
 
   server.createList('ticket', 3, 'isPerson', 'withActivities', 'withAttachments', {

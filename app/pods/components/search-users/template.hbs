@@ -11,7 +11,7 @@
   {{#if task.lastSuccessful.value.length}}
     <div class="list">
       {{#each task.lastSuccessful.value as |user|}}
-        <a href class="list-item {{if (contains user.id current) "is-active"}}" {{action onSelect user}} data-test-filter-option={{user.id}}>{{user.firstName}} {{user.lastName}}</a>
+        <a href class="list-item {{if (contains user.id current) "is-active"}}" {{action onSelect user}} data-test-filter-option={{user.id}}>{{user.displayName}}</a>
       {{/each}}
     </div>
   {{else if task.lastSuccessful}}

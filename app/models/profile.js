@@ -13,7 +13,14 @@ export default DS.Model.extend({
   isSuperuser: attr('boolean'),
 
   displayName: Ember.computed('firstName', 'lastName', function () {
-    return `${this.get('firstName')} ${this.get('lastName')}`;
+    const firstName = this.get('firstName');
+    const lastName = this.get('lastName');
+
+    if (!firstName && !lastName) {
+      return this.get('email');
+    }
+
+    return `${firstName} ${lastName}`.trim();
   })
 });
 
