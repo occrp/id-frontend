@@ -20,6 +20,17 @@ export default Ember.Controller.extend(Pageable, {
     return meta.filters ? meta.filters : { responder: null, requester: null };
   }),
 
+  total: Ember.computed('model.meta', function () {
+    let total = this.get('model.meta.total');
+
+    // camelCased because serializers/application
+    return total && {
+      all: total.new + total.inProgress + total.closed + total.cancelled,
+      open: total.new + total.inProgress,
+      closed: total.closed + total.cancelled
+    };
+  }),
+
   actions: {
     updateFilter(key, value, meta) {
       let hash = {};

@@ -8,12 +8,10 @@ export default Ember.Controller.extend({
 
   title: Ember.computed('model.kind', function () {
     switch (this.get('model.kind')) {
-      case kindList[0]:
-        return this.get('model.displayName');
-      case kindList[1]:
-        return this.get('model.companyName');
       case kindList[2]:
         return 'Request';
+      default:
+        return this.get('model.displayName');
     }
   })
 

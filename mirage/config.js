@@ -26,9 +26,6 @@ export default function() {
       return status.includes(ticket.status);
     });
 
-    let totalOpen = schema.tickets.where({status: 'new'}).length + schema.tickets.where({status: 'in-progress'}).length;
-    let totalClosed = schema.tickets.all().length - totalOpen;
-
     let filters = {};
 
     let requester = request.queryParams['filter[requester]'];
@@ -38,7 +35,8 @@ export default function() {
       let profile = schema.profiles.find(requester);
       filters.requester = {
         'first-name': profile.firstName,
-        'last-name': profile.lastName
+        'last-name': profile.lastName,
+        'email': profile.email
       };
     }
 
@@ -46,14 +44,18 @@ export default function() {
       let profile = schema.profiles.find(responder);
       filters.responder = {
         'first-name': profile.firstName,
-        'last-name': profile.lastName
+        'last-name': profile.lastName,
+        'email': profile.email
       };
     }
 
     request.mirageMeta = {
-      'total-open': totalOpen,
-      'total-closed': totalClosed,
-      total: schema.tickets.all().length,
+      total: {
+        'new': schema.tickets.where({status: 'new'}).length,
+        'in-progress': schema.tickets.where({status: 'in-progress'}).length,
+        'closed': schema.tickets.where({status: 'closed'}).length,
+        'cancelled': schema.tickets.where({status: 'cancelled'}).length
+      },
       filters
     };
 

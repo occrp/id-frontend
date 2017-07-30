@@ -4,7 +4,7 @@
       <i class="fa fa-plus"></i>
       {{t 'pods.browse.newButton'}}
     {{/link-to}}
-    <h1 class="cover-title">{{t 'ticket' count=model.meta.total}}</h1>
+    <h1 class="cover-title">{{t 'ticket' count=total.all}}</h1>
   </div>
 </div>
 
@@ -20,12 +20,13 @@
       updateFilter=(action 'updateFilter')}}
       <div class="innerNav">
         {{#link-to 'browse' (query-params status=statusPairs.open page=1) class=(if (eq status statusPairs.open) "active") data-test-status-tab="open"}}
-          <i class="fa fa-exclamation-circle" /> {{model.meta.totalOpen}}
+          <i class="fa fa-exclamation-circle" />
+          {{total.open}}
           {{t 'ticket.status.groups.open'}}
         {{/link-to}}
         {{#link-to 'browse' (query-params status=statusPairs.closed page=1) class=(if (eq status statusPairs.closed) "active") data-test-status-tab="closed"}}
           <i class="fa fa-check" />
-          {{model.meta.totalClosed}}
+          {{total.closed}}
           {{t 'ticket.status.groups.closed'}}
         {{/link-to}}
       </div>

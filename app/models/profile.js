@@ -1,27 +1,17 @@
 import Ember from 'ember';
 import DS from 'ember-data';
 import { timeout } from 'ember-concurrency';
+import ProfileDecorator from 'id2-frontend/mixins/profile-decorator';
 
 const { attr } = DS;
 
-export default DS.Model.extend({
+export default DS.Model.extend(ProfileDecorator, {
   firstName: attr('string'),
   lastName: attr('string'),
   email: attr('string'),
 
   isStaff: attr('boolean'),
   isSuperuser: attr('boolean'),
-
-  displayName: Ember.computed('firstName', 'lastName', function () {
-    const firstName = this.get('firstName');
-    const lastName = this.get('lastName');
-
-    if (!firstName && !lastName) {
-      return this.get('email');
-    }
-
-    return `${firstName} ${lastName}`.trim();
-  })
 });
 
 export const getSearchGenerator = function({ isStaff }) {

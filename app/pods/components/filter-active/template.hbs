@@ -12,13 +12,13 @@
     {{#if currentRequester}}
       <span class="chip">
         <span class="chip-label">{{t 'ticket.requester' count=1}}</span>
-        <span class="chip-value" data-test-active-filter="requester">{{currentRequester.firstName}} {{currentRequester.lastName}}</span>
+        <span class="chip-value" data-test-active-filter="requester">{{currentRequester.displayName}}</span>
       </span>
     {{/if}}
     {{#if currentResponder}}
       <span class="chip">
         <span class="chip-label">{{t 'ticket.responder' count=1}}</span>
-        <span class="chip-value" data-test-active-filter="responder">{{currentResponder.firstName}} {{currentResponder.lastName}}</span>
+        <span class="chip-value" data-test-active-filter="responder">{{currentResponder.displayName}}</span>
       </span>
     {{/if}}
     <a href class="activeFilters-clear" {{action resetFilters}}>
