@@ -29,7 +29,7 @@ export default function() {
     let filters = {};
 
     let requester = request.queryParams['filter[requester]'];
-    let responder = request.queryParams['filter[responder]'];
+    let responder = request.queryParams['filter[responders]'];
 
     if (requester) {
       let profile = schema.profiles.find(requester);
@@ -42,7 +42,7 @@ export default function() {
 
     if (responder && responder !== 'none') {
       let profile = schema.profiles.find(responder);
-      filters.responder = {
+      filters.responders = {
         'first-name': profile.firstName,
         'last-name': profile.lastName,
         'email': profile.email

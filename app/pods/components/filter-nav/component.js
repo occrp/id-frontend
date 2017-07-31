@@ -26,9 +26,9 @@ export default Ember.Component.extend({
 
     applyResponder(user) {
       if (user === 'none') {
-        this.get('updateFilter')('responder', 'none');
+        this.get('updateFilter')('responders', 'none');
       } else {
-        this.get('updateFilter')('responder', user.get('id'), {
+        this.get('updateFilter')('responders', user.get('id'), {
           firstName: user.get('firstName'),
           lastName: user.get('lastName')
         });

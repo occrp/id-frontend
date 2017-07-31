@@ -177,7 +177,7 @@ test('(staff) tickets can be filtered by responder', async function(assert) {
   });
 
   server.get('/tickets', (schema, request) => {
-    let responderId = request.queryParams['filter[responder]'];
+    let responderId = request.queryParams['filter[responders]'];
 
     if (responderId === 'none') {
       return schema.tickets.where({ responderId: null });
@@ -188,7 +188,7 @@ test('(staff) tickets can be filtered by responder', async function(assert) {
 
       request.mirageMeta = {
         filters: {
-          responder: {
+          responders: {
             'first-name': profile.firstName,
             'last-name': profile.lastName
           }
@@ -209,7 +209,7 @@ test('(staff) tickets can be filtered by responder', async function(assert) {
   await click('[data-test-dd="filter-responder"] [data-test-dd-trigger]');
   await click('[data-test-filter-static-option="none"]');
 
-  assert.equal(currentURL(), '/view?responder=none');
+  assert.equal(currentURL(), '/view?responders=none');
 
   $items = find('[data-test-ticket]');
   assert.equal($items.length, 6, 'showing unassigned tickets');
@@ -223,7 +223,7 @@ test('(staff) tickets can be filtered by responder', async function(assert) {
 
   await click('[data-test-filter-option]:first');
 
-  assert.equal(currentURL(), '/view?responder=2');
+  assert.equal(currentURL(), '/view?responders=2');
 
   $items = find('[data-test-ticket]');
   assert.equal($items.length, 4, 'showing tickets assigned to user #2');
@@ -293,23 +293,23 @@ test('(staff) ticket filtering or sorting should reset pagination', async functi
   await click('[data-test-dd="filter-responder"] [data-test-dd-trigger]');
   await click('[data-test-filter-static-option="none"]');
 
-  assert.equal(currentURL(), '/view?requester=4&responder=none&size=3');
+  assert.equal(currentURL(), '/view?requester=4&responders=none&size=3');
 
   await click('[data-test-pagination="next"]');
 
-  assert.equal(currentURL(), '/view?page=2&requester=4&responder=none&size=3');
+  assert.equal(currentURL(), '/view?page=2&requester=4&responders=none&size=3');
 
   await click('[data-test-dd="filter-kind"] [data-test-dd-trigger]');
   await click('[data-test-kind-option="person_ownership"]');
 
-  assert.equal(currentURL(), '/view?kind=person_ownership&requester=4&responder=none&size=3');
+  assert.equal(currentURL(), '/view?kind=person_ownership&requester=4&responders=none&size=3');
 
   await click('[data-test-pagination="next"]');
 
-  assert.equal(currentURL(), '/view?kind=person_ownership&page=2&requester=4&responder=none&size=3');
+  assert.equal(currentURL(), '/view?kind=person_ownership&page=2&requester=4&responders=none&size=3');
 
   await click('[data-test-dd="sort"] [data-test-dd-trigger]');
   await click('[data-test-sort-option="-deadline-at"]');
 
-  assert.equal(currentURL(), '/view?kind=person_ownership&requester=4&responder=none&size=3&sort=-deadline-at');
+  assert.equal(currentURL(), '/view?kind=person_ownership&requester=4&responders=none&size=3&sort=-deadline-at');
 });
