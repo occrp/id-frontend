@@ -229,7 +229,7 @@
     <div class="form-group">
       <label for="ticket-deadline">{{t 'ticket.deadline.label'}}</label>
       <p class="info-block">{{t 'ticket.deadline.desc'}}</p>
-      {{input-date value=buffer.deadlineAt onSelect=(action (mut buffer.deadlineAt) value="date") inputId="ticket-deadline" minDate=today}}
+      {{input-date value=buffer.deadlineAt onSelect=(action (mut buffer.deadlineAt) value="date") inputId="ticket-deadline" minDate=minimumDeadline center=minimumDeadline}}
     </div>
 
     <div class="form-group">

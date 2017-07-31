@@ -9,6 +9,7 @@ export default Ember.Component.extend({
   countries,
 
   today: moment(),
+  minimumDeadline: moment().add(3, 'days'),
 
   buffer: Ember.computed('model', function() {
     let model = this.get('model');
