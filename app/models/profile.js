@@ -14,7 +14,7 @@ export default DS.Model.extend(ProfileDecorator, {
   isSuperuser: attr('boolean'),
 });
 
-export const getSearchGenerator = function({ isStaff }) {
+export const getSearchGenerator = function({ isStaff = false, isSuperuser = false }) {
   return function * (term) {
     yield timeout(250);
 
@@ -23,7 +23,8 @@ export const getSearchGenerator = function({ isStaff }) {
     let items = yield store.query('profile', {
       filter: {
         name: term,
-        'is-staff': isStaff
+        'is-staff': isStaff,
+        'is-superuser': isSuperuser
       },
       page: {
         number: 1,

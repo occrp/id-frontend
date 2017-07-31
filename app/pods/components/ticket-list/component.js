@@ -4,7 +4,7 @@ import { getSearchGenerator } from 'id2-frontend/models/profile';
 
 export default Ember.Component.extend({
   store: Ember.inject.service(),
-  searchStaff: task(getSearchGenerator({isStaff: true})).restartable(),
+  searchStaff: task(getSearchGenerator({ isStaff: true })).restartable(),
 
   updateResponder: task(function * (model, user) {
     let record = this.get('store').createRecord('responder', {
