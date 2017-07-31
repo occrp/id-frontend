@@ -141,9 +141,9 @@ test('(staff) tickets can be filtered by requester', async function(assert) {
   await click('[data-test-dd="filter-requester"] [data-test-dd-trigger]');
   await fillIn('[data-test-filter-search]', 'User #4');
 
-  assert.equal(find('[data-test-filter-option]:first').text(), 'User #4 Doe');
+  assert.equal(find('[data-test-search-result]:first').text(), 'User #4 Doe');
 
-  await click('[data-test-filter-option]:first');
+  await click('[data-test-search-result]:first');
 
   assert.equal(currentURL(), '/view?requester=4');
 
@@ -154,7 +154,7 @@ test('(staff) tickets can be filtered by requester', async function(assert) {
 
   await click('[data-test-dd="filter-requester"] [data-test-dd-trigger]');
 
-  assert.ok(find('[data-test-filter-option]:contains("User #4 Doe")').hasClass('is-active'));
+  assert.ok(find('[data-test-search-result]:contains("User #4 Doe")').hasClass('is-active'));
 });
 
 
@@ -219,9 +219,9 @@ test('(staff) tickets can be filtered by responder', async function(assert) {
   await click('[data-test-dd="filter-responder"] [data-test-dd-trigger]');
   await fillIn('[data-test-filter-search]', 'Staff #2');
 
-  assert.equal(find('[data-test-filter-option]:first').text(), 'Staff #2 Doe');
+  assert.equal(find('[data-test-search-result]:first').text(), 'Staff #2 Doe');
 
-  await click('[data-test-filter-option]:first');
+  await click('[data-test-search-result]:first');
 
   assert.equal(currentURL(), '/view?responders=2');
 
@@ -232,7 +232,7 @@ test('(staff) tickets can be filtered by responder', async function(assert) {
 
   await click('[data-test-dd="filter-responder"] [data-test-dd-trigger]');
 
-  assert.ok(find('[data-test-filter-option]:contains("Staff #2 Doe")').hasClass('is-active'));
+  assert.ok(find('[data-test-search-result]:contains("Staff #2 Doe")').hasClass('is-active'));
 });
 
 
@@ -282,7 +282,7 @@ test('(staff) ticket filtering or sorting should reset pagination', async functi
   assert.equal(currentURL(), '/view?page=2&size=3');
 
   await click('[data-test-dd="filter-requester"] [data-test-dd-trigger]');
-  await click('[data-test-filter-option="4"]');
+  await click('[data-test-search-result="4"]');
 
   assert.equal(currentURL(), '/view?requester=4&size=3');
 
@@ -312,4 +312,99 @@ test('(staff) ticket filtering or sorting should reset pagination', async functi
   await click('[data-test-sort-option="-deadline-at"]');
 
   assert.equal(currentURL(), '/view?kind=person_ownership&requester=4&responders=none&size=3&sort=-deadline-at');
+});
+
+test('(staff) can assign responders from the ticket list', async function(assert) {
+  assert.expect(9);
+
+  server.createList('profile', 5, {
+    firstName(i) { return `Staff #${i+1}`; },
+    lastName: 'Doe',
+    isStaff: true
+  });
+
+  server.create('profile', {
+    firstName: 'Author',
+    lastName: 'Doe',
+    isStaff: false
+  });
+
+  initSession({ isStaff: true });
+
+  server.createList('ticket', 5, {
+    status: 'new',
+    kind: 'company_ownership',
+    companyName(i) { return `Company #${i+1}`; },
+    requesterId: 6,
+    responderId: null
+  });
+
+  await visit('/view');
+
+  let $item = find('[data-test-ticket="2"]');
+  assert.equal($item.find('[data-test-ticket-name]').text().trim(), 'Company #2');
+
+  // Status should change to in-progress after the first assignment
+  // Not implemented in the UI yet
+  let $status = $item.find('[data-test-ticket-status]');
+  assert.equal($status.text().toLowerCase(), 'new');
+
+  let $responders = $item.find('[data-test-ticket-responders]');
+  assert.equal($responders.length, 0);
+
+  let $ddTrigger = $item.find('[data-test-dd="quick-assign-responder"] [data-test-dd-trigger]');
+
+  await click($ddTrigger);
+  await fillIn('[data-test-filter-search]', 'Staff #3');
+  
+  assert.equal(find('[data-test-search-result]:first').text(), 'Staff #3 Doe');
+  await click('[data-test-search-result]:first');
+
+  $responders = $item.find('[data-test-ticket-responders]');
+  assert.ok($responders.length);
+  assert.equal($responders.text(), 'Staff #3 Doe');
+
+  await click($ddTrigger);
+  await click('[data-test-search-result="4"]');
+
+  $responders = $item.find('[data-test-ticket-responders]');
+  assert.equal($responders.text().trim(), 'Staff #3 Doe, +1');  
+
+  let done = assert.async();
+  server.post('/responders', (schema, request) => {
+    let attrs = JSON.parse(request.requestBody);
+
+    assert.deepEqual(attrs, {
+      "data": {
+        "attributes": {
+          "created-at": null,
+          "updated-at": null
+        },
+        "relationships": {
+          "ticket": {
+            "data": {
+              "id": "2",
+              "type": "tickets"
+            }
+          },
+          "user": {
+            "data": {
+              "id": "5",
+              "type": "profiles"
+            }
+          }
+        },
+        "type": "responders"
+      }
+    });
+
+    done();
+    return schema.responders.create(attrs);
+  });
+
+  await click($ddTrigger);
+  await click('[data-test-search-result="5"]');
+
+  $responders = $item.find('[data-test-ticket-responders]');
+  assert.equal($responders.text().trim(), 'Staff #3 Doe, +2');  
 });
