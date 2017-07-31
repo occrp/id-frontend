@@ -67,7 +67,7 @@ export default function() {
     return schema.tickets.find(id);
   });
 
-  this.post('/tickets', (schema) => {
+  this.post('/tickets', function (schema) {
     let attrs = this.normalizedRequestAttrs();
 
     attrs.createdAt = (new Date()).toISOString();

@@ -24,6 +24,7 @@ export default Ember.Component.extend({
   actions: {
 
     changeKind(value) {
+      this.get('buffer').discardBufferedChanges();
       this.set('buffer.kind', value);
       this.set('didValidate', false);
     },
