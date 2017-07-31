@@ -104,7 +104,7 @@ export default function() {
 
   this.get('/profiles', (schema, request) => {
     let search = request.queryParams['filter[name]'];
-    let isStaff = JSON.parse(request.queryParams['filter[is-staff]']);
+    let isStaff = JSON.parse(request.queryParams['filter[is_staff]']);
 
     let collection = null;
 
