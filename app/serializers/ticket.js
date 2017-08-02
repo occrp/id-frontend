@@ -2,9 +2,9 @@ import Ember from 'ember';
 import ApplicationSerializer from './application';
 
 export default ApplicationSerializer.extend({
-  normalizeFindRecordResponse(store, type, payload) {
+  normalizeSingleResponse(store, primaryModelClass, payload, id, requestType) {
     payload.data = this.addLinks(payload.data);
-    return this._super(store, type, payload);
+    return this._super(store, primaryModelClass, payload, id, requestType);
   },
 
   addLinks(ticket) {
