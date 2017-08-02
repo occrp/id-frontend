@@ -103,8 +103,9 @@ export default function() {
   });
 
   this.get('/profiles', (schema, request) => {
-    let search = request.queryParams['filter[name]'];
-    let isStaff = JSON.parse(request.queryParams['filter[is_staff]']);
+    const qp = request.queryParams;
+    const search = qp['filter[name]'];
+    const isStaff = qp['filter[is_staff]'] ? JSON.parse(qp['filter[is_staff]']) : undefined;
 
     let collection = null;
 

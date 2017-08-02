@@ -13,7 +13,7 @@ export default Ember.Component.extend({
     '-deadline-at': 'Furthest deadline'
   },
 
-  searchRequesters: task(getSearchGenerator({ isStaff: false, isSuperuser: false })).restartable(),
+  searchRequesters: task(getSearchGenerator()).restartable(),
   searchStaff: task(getSearchGenerator({ isStaff: true })).restartable(),
 
   actions: {

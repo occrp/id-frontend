@@ -14,25 +14,35 @@ export default DS.Model.extend(ProfileDecorator, {
   isSuperuser: attr('boolean'),
 });
 
-export const getSearchGenerator = function({ isStaff = false, isSuperuser = false }) {
+export const getSearchGenerator = function(opts) {
   return function * (term) {
     yield timeout(250);
 
-    let owner = Ember.getOwner(this);
-    let store = owner.lookup('service:store');
-    let items = yield store.query('profile', {
+    let flags = {};
+
+    if (opts) {
+      flags = {
+        'is-staff': opts.isStaff,
+        'is-superuser': opts.isSuperuser
+      };
+    }
+
+    let params = {
       filter: {
-        name: term,
-        'is-staff': isStaff,
-        'is-superuser': isSuperuser
+        name: term
       },
       page: {
         number: 1,
         size: 6
-      },
-    });
+      }
+    };
 
-    return items;
+    Object.assign(params.filter, flags);
+
+    const owner = Ember.getOwner(this);
+    const store = owner.lookup('service:store');
+
+    return yield store.query('profile', params);
   };
 };
 
