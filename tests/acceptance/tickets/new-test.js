@@ -32,7 +32,8 @@ test('creating a new ticket (person)', async function(assert) {
           "updated-at": null,
           "last-name": "Doe",
           "kind": "person_ownership",
-          "why-sensitive": "It just is."
+          "why-sensitive": "It just is.",
+          "reopen-reason": null
         },
         "relationships": {
           "requester": {
@@ -105,7 +106,8 @@ test('creating a new ticket (company)', async function(assert) {
           "updated-at": null,
           "last-name": null,
           "kind": "company_ownership",
-          "why-sensitive": null
+          "why-sensitive": null,
+          "reopen-reason": null
         },
         "relationships": {
           "requester": {
@@ -171,7 +173,8 @@ test('creating a new ticket (other)', async function(assert) {
           "updated-at": null,
           "last-name": null,
           "kind": "other",
-          "why-sensitive": null
+          "why-sensitive": null,
+          "reopen-reason": null
         },
         "relationships": {
           "requester": {

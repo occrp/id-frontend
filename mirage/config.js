@@ -81,20 +81,30 @@ export default function() {
     let attrs = this.normalizedRequestAttrs();
 
     let ticket = schema.tickets.find(id);
-
-    // if (attrs.responderId && attrs.status === 'new') {
-    //   attrs.status = 'in-progress';
-    // }
-
     let oldStatus = ticket.status;
 
     if (oldStatus !== attrs.status) {
-      schema.activities.create({
+      let activityAttrs = {
         verb: `ticket:update:status_${attrs.status}`,
         createdAt: (new Date()).toISOString(),
         ticket,
         user: schema.profiles.find(42)
-      });
+      }
+
+      if (attrs.reopenReason) {
+        activityAttrs.verb = 'ticket:update:reopen';
+
+        let comment = schema.comments.create({
+          body: attrs.reopenReason,
+          createdAt: (new Date()).toISOString(),
+          ticket,
+          user: schema.profiles.find(42),
+        });
+
+        activityAttrs.comment = comment;
+      }
+
+      schema.activities.create(activityAttrs);
     }
     
     ticket.update(attrs);

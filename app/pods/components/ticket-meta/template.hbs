@@ -63,5 +63,5 @@
 {{#if model.isOpen}}
   {{ticket-close model=model activityType=(if (can "manage tickets") 'close' 'cancel') onSave=(action 'saveStatus')}}
 {{else}}
-  {{ticket-reopen model=model}}
+  {{ticket-reopen model=model onSave=(action 'saveStatus' 'reopen')}}
 {{/if}}

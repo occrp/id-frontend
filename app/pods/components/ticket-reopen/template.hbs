@@ -3,7 +3,7 @@
 </a>
 
 {{#if isShowingModal}}
-{{#ui-modal close=(action (mut isShowingModal) false)}}
+{{#ui-modal onClose=(action (mut isShowingModal) false)}}
   <div class="modal-content">
   <div class="modal-body">
 
@@ -18,7 +18,7 @@
         {{textarea value=body class="form-control" id="ticket-reopen" rows="5"}}
 
         {{#if field.showErrors}}
-          <div class="help-block">{{v-get this "comment" "message"}}</div>
+          <div class="help-block">{{v-get this "body" "message"}}</div>
         {{/if}}
 
       {{/validated-field}}

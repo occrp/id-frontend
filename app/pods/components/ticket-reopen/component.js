@@ -1,5 +1,4 @@
 import Ember from 'ember';
-import { task } from 'ember-concurrency';
 import { Validations } from 'id2-frontend/models/comment';
 
 export default Ember.Component.extend(Validations, {
@@ -8,18 +7,8 @@ export default Ember.Component.extend(Validations, {
 
   isShowingModal: false,
 
-  comment: null,
+  body: null,
   didValidate: false,
-
-  publishActivity: task(function * () {
-    let record = this.get('store').createRecord('activity', {
-      type: 'reopen',
-      comment: this.get('comment'),
-      ticket: this.get('model'),
-      user: this.get('session.currentUser')
-    });
-    yield record.save();
-  }),
 
   actions: {
     save() {
@@ -27,12 +16,8 @@ export default Ember.Component.extend(Validations, {
         this.set('didValidate', true);
 
         if (validations.get('isValid')) {
-          this.get('publishActivity').perform().then(() => {
-            this.set('comment', null);
-            this.set('didValidate', false);
-            this.set('isShowingModal', false);
-            this.get('model').reload();
-          });
+          this.get('onSave')(this.get('body'));
+          this.set('isShowingModal', false);
         }
       });
     }

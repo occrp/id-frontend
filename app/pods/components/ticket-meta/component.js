@@ -18,10 +18,13 @@ export default Ember.Component.extend({
     yield record.destroyRecord();
   }),
 
-  updateStatus: task(function * (newStatus) {
+  updateStatus: task(function * (newStatus, comment) {
     let model = this.get('model');
 
     model.set('status', newStatus);
+    if (comment) {
+      model.set('reopenReason', comment);
+    }
     yield model.save();
   }),
 
@@ -38,12 +41,13 @@ export default Ember.Component.extend({
       });
     },
 
-    saveStatus(activityType) {
+    saveStatus(activityType, comment) {
       let mapToStatus = {
         'close': 'closed',
-        'cancel': 'cancelled'
+        'cancel': 'cancelled',
+        'reopen': 'in-progress'
       };
-      this.get('updateStatus').perform(mapToStatus[activityType]).then(() => {
+      this.get('updateStatus').perform(mapToStatus[activityType], comment).then(() => {
         this.get('model').hasMany('activities').reload();
       });
     }

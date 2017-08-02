@@ -27,6 +27,7 @@ export default DS.Model.extend({
   createdAt: attr('date'),
   updatedAt: attr('date'),
   deadlineAt: attr('date'),
+  reopenReason: attr('string'),
 
   requester: belongsTo('profile'),
   responders: hasMany('responder'),
