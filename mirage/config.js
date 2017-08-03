@@ -29,7 +29,7 @@ export default function() {
     let filters = {};
 
     let requester = request.queryParams['filter[requester]'];
-    let responder = request.queryParams['filter[users]'];
+    let responder = request.queryParams['filter[users__in]'];
 
     if (requester) {
       let profile = schema.profiles.find(requester);
