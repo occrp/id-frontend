@@ -20,7 +20,7 @@ export default Ember.Route.extend({
     requester: {
       refreshModel: true
     },
-    responders: {
+    responder: {
       refreshModel: true
     }
   },
@@ -31,7 +31,7 @@ export default Ember.Route.extend({
         status: params.status,
         kind: params.kind,
         requester: params.requester,
-        responders: params.responders
+        responder: params.responder
       },
       page: {
         number: params.page,

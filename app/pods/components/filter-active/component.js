@@ -5,7 +5,7 @@ const wrapper = Ember.Object.extend(ProfileDecorator);
 
 export default Ember.Component.extend({
   i18n: Ember.inject.service(),
-  hasFilters: Ember.computed.or('requester', 'responders', 'kind'),
+  hasFilters: Ember.computed.or('requester', 'responder', 'kind'),
 
   // fyi, these CPs will get triggered twice per change.
   // first when we manually update filterMeta.${key} in the controller
@@ -15,14 +15,14 @@ export default Ember.Component.extend({
     return this.get('requester') && wrapper.create(this.get('filterMeta.requester'));
   }),
 
-  currentResponder: Ember.computed('responders', 'filterMeta.responders', function() {
-    if (this.get('responders') === 'none') {
+  currentResponder: Ember.computed('responder', 'filterMeta.responder', function() {
+    if (this.get('responder') === 'none') {
       return wrapper.create({
         email: this.get('i18n').t('ticket.responder.empty')
       });
     }
 
-    return this.get('responders') && wrapper.create(this.get('filterMeta.responders'));
+    return this.get('responder') && wrapper.create(this.get('filterMeta.responder'));
   })
 
 });
