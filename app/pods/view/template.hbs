@@ -72,11 +72,13 @@
         </div>
       {{/if}}
 
-      <hr class="l-fixedColumn-separator" />
+      {{#if isOpen}}
+        <hr class="l-fixedColumn-separator" />
 
-      <h3 class="t-accent">{{t 'attachment' count=2}}</h3>
+        <h3 class="t-accent">{{t 'attachment' count=2}}</h3>
 
-      {{attachment-manager model=model}}
+        {{attachment-manager model=model}}
+      {{/if}}
 
       <hr class="l-fixedColumn-separator" />
 
@@ -85,11 +87,11 @@
         {{#unless model.activities.length}}{{ui-spinner}}{{/unless}}
       </h3>
 
-      {{activity-list data=model.activities model=model}}
+      {{activity-list data=model.activities model=model showForm=isOpen}}
     </div>
 
     <div class="l-fixedColumn-column">
-      {{ticket-meta model=model class="ticketMeta"}}
+      {{ticket-meta model=model class="ticketMeta" showControls=isOpen}}
     </div>
 
   </div>

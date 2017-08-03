@@ -14,7 +14,7 @@
   {{/if}}
 
   <dt>
-    {{#if (can 'manage tickets')}}
+    {{#if (and (can 'manage tickets') showControls)}}
       <div class="responderControls">
         {{#if (or updateResponder.isRunning removeResponder.isRunning)}}
           {{ui-spinner}}
@@ -38,7 +38,7 @@
   <dd class="with-padding">
     {{#if model.responders.length}}
       <ul class="editableList">
-      {{#if (can 'manage tickets')}}
+      {{#if (and (can 'manage tickets') showControls)}}
         {{#each model.responders as |responder|}}
           {{#editable-list-item class=(concat "editableList-item " (if responder.isSaving "is-dimmed")) onRemove=(action 'removeUser' responder)}}
             {{responder.user.displayName}}
