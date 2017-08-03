@@ -177,7 +177,7 @@ test('(admins) tickets can be filtered by responder', async function(assert) {
   });
 
   server.get('/tickets', (schema, request) => {
-    let responderId = request.queryParams['filter[users__in]'];
+    let responderId = request.queryParams['filter[responders__user]'];
 
     if (responderId === 'none') {
       return schema.tickets.where({ responderId: null });
