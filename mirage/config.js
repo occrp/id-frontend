@@ -174,7 +174,7 @@ export default function() {
     let meta = JSON.parse(request.requestBody.ticket);
 
     let attachment = schema.attachments.create({
-      url: file.url,
+      upload: file.url,
       fileName: file.name,
       fileSize: file.size,
       mimeType: file.type,

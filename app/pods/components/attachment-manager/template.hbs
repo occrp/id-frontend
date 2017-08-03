@@ -3,7 +3,7 @@
   {{#if model.attachments.length}}
     <div class="attachments-list">
       {{#each model.attachments as |item|}}
-        <a href={{item.url}} target="_blank" class="file">
+        <a href={{item.upload}} target="_blank" class="file">
           <span class="tag">{{format-filesize item.fileSize}}</span> {{item.fileName}}
         </a>
       {{/each}}
