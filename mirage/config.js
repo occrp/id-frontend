@@ -40,7 +40,9 @@ export default function() {
       };
     }
 
-    if (responder && responder !== 'none') {
+    // not covering responder = 'none' anymore
+    // since the adapter moves it on a separate key
+    if (responder) {
       let profile = schema.profiles.find(responder);
       filters.responder = {
         'first-name': profile.firstName,
