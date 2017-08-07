@@ -1,6 +1,6 @@
 import Ember from 'ember';
 import { task } from 'ember-concurrency';
-import { Validations } from 'id2-frontend/models/comment';
+import { Validations } from 'id-frontend/models/comment';
 
 export default Ember.Component.extend(Validations, {
   store: Ember.inject.service(),

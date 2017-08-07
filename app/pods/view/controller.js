@@ -1,5 +1,5 @@
 import Ember from 'ember';
-import { kindList } from 'id2-frontend/models/ticket';
+import { kindList } from 'id-frontend/models/ticket';
 import countries from 'ember-i18n-iso-countries/langs/en';
 
 export default Ember.Controller.extend({

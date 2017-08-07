@@ -1,5 +1,5 @@
 import Ember from 'ember';
-import Pageable from 'id2-frontend/mixins/pageable';
+import Pageable from 'id-frontend/mixins/pageable';
 
 export default Ember.Controller.extend(Pageable, {
   queryParams: ['status', 'kind', 'requester', 'responder', 'sort'],

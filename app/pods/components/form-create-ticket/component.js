@@ -1,5 +1,5 @@
 import Ember from 'ember';
-import { kindList, Validations } from 'id2-frontend/models/ticket';
+import { kindList, Validations } from 'id-frontend/models/ticket';
 import countries from 'ember-i18n-iso-countries/langs/en';
 import BufferedProxy from 'ember-buffered-proxy/proxy';
 import moment from 'moment';

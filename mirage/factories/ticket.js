@@ -1,5 +1,5 @@
 import { Factory, faker, trait } from 'ember-cli-mirage';
-import { kindList, statusList } from 'id2-frontend/models/ticket';
+import { kindList, statusList } from 'id-frontend/models/ticket';
 
 const random = faker.random.arrayElement;
 const t = kindList.length;

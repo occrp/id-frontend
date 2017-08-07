@@ -1,5 +1,5 @@
 import Ember from 'ember';
-import ProfileDecorator from 'id2-frontend/mixins/profile-decorator';
+import ProfileDecorator from 'id-frontend/mixins/profile-decorator';
 
 const wrapper = Ember.Object.extend(ProfileDecorator);
 

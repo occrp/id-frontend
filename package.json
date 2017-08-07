@@ -1,9 +1,8 @@
 {
-  "name": "id2-frontend",
-  "version": "0.0.0",
-  "description": "Small description for id2-frontend goes here",
-  "license": "MIT",
-  "author": "",
+  "name": "id-frontend",
+  "version": "2.5.0",
+  "description": "Research desk ticket software",
+  "author": "OCCRP Technology Team <tech@occrp.org>",
   "directories": {
     "doc": "doc",
     "test": "tests"

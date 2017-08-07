@@ -12,9 +12,10 @@ module.exports = function(defaults) {
     outputPaths: {
       app: {
         css: {
-          'app': '/assets/id2-frontend.css',
-          'id': '/assets/id.css'
-        }
+          'app': '/assets/id.css',
+          'id': '/assets/id-with-bootstrap.css'
+        },
+        js: '/assets/id.js',
       }
     },
 

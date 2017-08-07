@@ -1,7 +1,7 @@
 import Ember from 'ember';
 import DS from 'ember-data';
 import { timeout } from 'ember-concurrency';
-import ProfileDecorator from 'id2-frontend/mixins/profile-decorator';
+import ProfileDecorator from 'id-frontend/mixins/profile-decorator';
 
 const { attr } = DS;
 

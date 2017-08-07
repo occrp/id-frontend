@@ -1,7 +1,7 @@
 import Ember from 'ember';
 import { task } from 'ember-concurrency';
-import { kindList } from 'id2-frontend/models/ticket';
-import { getSearchGenerator } from 'id2-frontend/models/profile';
+import { kindList } from 'id-frontend/models/ticket';
+import { getSearchGenerator } from 'id-frontend/models/profile';
 
 export default Ember.Component.extend({
   kindList,
