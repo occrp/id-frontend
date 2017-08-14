@@ -21,3 +21,18 @@
     margin: 0 0 10px 0;
   }
 }
+
+.fieldGroup-actions {
+  @include cf;
+
+  .button {
+    float: left;
+  }
+
+  .spinner {
+    float: left;
+    margin-left: 20px;
+    margin-top: 15px;
+  }
+}
+

@@ -253,12 +253,21 @@
 
   <div class="fieldGroup">
     <div class="l-constrain">
+
       {{#if (and didValidate buffer.validations.isInvalid)}}
         <div class="alert alert-danger" data-test-validation-errors>
           {{t 'pods.new.form.invalidMessage'}}
         </div>
       {{/if}}
-      <button type="submit" class="button button--primary" data-test-save>{{t 'pods.new.form.submitButton'}}</button>
+
+      <div class="fieldGroup-actions">
+        <button type="submit" disabled={{saveRecord.isRunning}} class="button button--primary" data-test-save>{{t 'pods.new.form.submitButton'}}</button>
+
+         {{#if saveRecord.isRunning}} 
+          {{ui-spinner}}
+         {{/if}} 
+      </div>
+
     </div>
   </div>
 </form>

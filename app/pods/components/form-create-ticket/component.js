@@ -3,6 +3,7 @@ import { kindList, Validations } from 'id-frontend/models/ticket';
 import countries from 'ember-i18n-iso-countries/langs/en';
 import BufferedProxy from 'ember-buffered-proxy/proxy';
 import moment from 'moment';
+import { task } from 'ember-concurrency';
 
 export default Ember.Component.extend({
   kindList,
@@ -22,6 +23,10 @@ export default Ember.Component.extend({
 
   didValidate: false,
 
+  saveRecord: task(function * () {
+    yield this.get('model').save();
+  }),
+
   actions: {
 
     changeKind(value) {
@@ -31,16 +36,16 @@ export default Ember.Component.extend({
     },
 
     save() {
-      let afterSave = this.get('afterSave');
-      let buffer = this.get('buffer');
-      let model = this.get('model');
+      const buffer = this.get('buffer');
+      const model = this.get('model');
+      const afterSave = this.get('afterSave');
 
       buffer.validate().then(({ validations }) => {
         this.set('didValidate', true);
 
         if (validations.get('isValid')) {
           buffer.applyChanges();
-          model.save().then(model => {
+          this.get('saveRecord').perform().then(() => {
             afterSave(model);
           });
         }
