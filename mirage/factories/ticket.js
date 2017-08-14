@@ -18,7 +18,7 @@ export default Factory.extend({
   deadlineAt()            { return faker.date.future(); },
 
   sensitive(i)            { return i % 2 === 0 ? true : false; },
-  whySensitive()          { return faker.lorem.sentences(); },
+  whysensitive()          { return faker.lorem.sentences(); },
   background()            { return paragraphs; },
 
   // Attributes based on kind. Override with traits

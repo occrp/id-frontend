@@ -1,5 +1,5 @@
 import { test } from 'qunit';
-import moduleForAcceptance from 'id2-frontend/tests/helpers/module-for-acceptance';
+import moduleForAcceptance from 'id-frontend/tests/helpers/module-for-acceptance';
 
 moduleForAcceptance('Acceptance | tickets/view');
 
@@ -78,7 +78,7 @@ test('cancelling a ticket', async function(assert) {
     connections: 'Family',
     businessActivities: 'Bizniss',
     sensitive: false,
-    whySensitive: null,
+    whysensitive: null,
     bornAt: '2004-12-01T22:00:00.000Z',
     createdAt: '2016-12-01T22:00:00.000Z',
     deadlineAt: '2018-12-01T22:00:00.000Z',
@@ -146,7 +146,7 @@ test('(staff) closing a ticket', async function(assert) {
     connections: 'Family',
     businessActivities: 'Bizniss',
     sensitive: false,
-    whySensitive: null,
+    whysensitive: null,
     bornAt: '2004-12-01T22:00:00.000Z',
     createdAt: '2016-12-01T22:00:00.000Z',
     deadlineAt: '2018-12-01T22:00:00.000Z',

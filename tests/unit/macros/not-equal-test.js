@@ -1,4 +1,4 @@
-import notEqual from 'id2-frontend/macros/not-equal';
+import notEqual from 'id-frontend/macros/not-equal';
 import compute from 'ember-macro-test-helpers/compute';
 import { module, test } from 'qunit';
 

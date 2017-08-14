@@ -1,5 +1,5 @@
 import { test } from 'qunit';
-import moduleForAcceptance from 'id2-frontend/tests/helpers/module-for-acceptance';
+import moduleForAcceptance from 'id-frontend/tests/helpers/module-for-acceptance';
 
 moduleForAcceptance('Acceptance | tickets/new');
 
@@ -67,7 +67,7 @@ test('creating a new ticket (person)', async function(assert) {
 
   await fillIn('#ticket-deadline', '05/01/2100');
   await click('#ticket-sensitive');
-  await fillIn('#ticket-whySensitive', 'It just is.');
+  await fillIn('#ticket-whysensitive', 'It just is.');
 
   await click('[data-test-save]');
 

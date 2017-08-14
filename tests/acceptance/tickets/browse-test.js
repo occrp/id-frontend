@@ -1,5 +1,5 @@
 import { test } from 'qunit';
-import moduleForAcceptance from 'id2-frontend/tests/helpers/module-for-acceptance';
+import moduleForAcceptance from 'id-frontend/tests/helpers/module-for-acceptance';
 
 import { faker } from 'ember-cli-mirage';
 const random = faker.random.arrayElement;

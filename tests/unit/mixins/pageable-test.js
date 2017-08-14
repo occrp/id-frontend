@@ -1,5 +1,5 @@
 import Ember from 'ember';
-import PageableMixin from 'id2-frontend/mixins/pageable';
+import PageableMixin from 'id-frontend/mixins/pageable';
 import { module, test } from 'qunit';
 
 module('Unit | Mixin | pageable');
