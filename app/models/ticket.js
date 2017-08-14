@@ -37,7 +37,7 @@ export default DS.Model.extend({
   // Common
   background: attr('string'),
   sensitive: attr('boolean', { defaultValue: false }),
-  whySensitive: attr('string'),
+  whysensitive: attr('string'),
 
   // Person
   firstName: attr('string'),

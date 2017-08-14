@@ -106,7 +106,7 @@ test('cancelling a ticket', async function(assert) {
       "updated-at": "2017-01-01T22:00:00.000Z",
       "last-name": "Doe",
       "kind": "person_ownership",
-      "why-sensitive": null,
+      "whysensitive": null,
       "reopen-reason": null
     });
 
@@ -174,7 +174,7 @@ test('(staff) closing a ticket', async function(assert) {
       "updated-at": "2017-01-01T22:00:00.000Z",
       "last-name": "Doe",
       "kind": "person_ownership",
-      "why-sensitive": null,
+      "whysensitive": null,
       "reopen-reason": null
     });
 

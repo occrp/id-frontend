@@ -47,7 +47,7 @@ export default {
       label: 'Is it sensitive?',
       trueLabel: 'Sensitive request'
     },
-    whySensitive: {
+    whysensitive: {
       label: 'Why is it sensitive?'
     },
     updatedAt: {
