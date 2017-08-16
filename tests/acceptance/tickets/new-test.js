@@ -20,7 +20,7 @@ test('creating a new ticket (person)', async function(assert) {
           "business-activities": "Bizniss",
           "company-name": null,
           "connections": "Family",
-          "country": null,
+          "country": "AD",
           "created-at": null,
           "deadline-at": "2100-01-05T00:00:00.000Z",
           "born-at": "2004-12-02T00:00:00.000Z",
@@ -57,6 +57,7 @@ test('creating a new ticket (person)', async function(assert) {
 
   await fillIn('#ticket-first-name', 'John');
   await fillIn('#ticket-last-name', 'Doe');
+  await fillIn('#ticket-nationality', 'AD');
   await fillIn('#ticket-background', 'Lorem ipsum some background.');
   await fillIn('#ticket-initialInformation', 'Initial lorem ipsum.');
 

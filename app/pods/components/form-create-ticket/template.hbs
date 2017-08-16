@@ -67,6 +67,16 @@
 
       {{/validated-field}}
 
+      <div class="form-group">
+        <label for="ticket-nationality">{{t 'ticket.countryPerson.label'}}</label>
+        <select onchange={{action (mut buffer.country) value="target.value"}} class="form-control" id="ticket-nationality">
+          <option value="">- Choose -</option>
+          {{#each-in countries as |code name|}}
+            <option value={{code}} selected={{eq buffer.country code}}>{{name}}</option>
+          {{/each-in}}
+        </select>
+      </div>
+
       {{#validated-field
         class="form-group"
         validation=buffer.validations.attrs.background

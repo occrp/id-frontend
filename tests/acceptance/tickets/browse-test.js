@@ -98,8 +98,6 @@ test('(admins) certain tickets can be filtered by country', async function(asser
   assert.expect(9);
   initSession({ isSuperuser: true });
 
-  server.logging = true;
-
   server.createList('ticket', 3, 'isPerson', {
     status: 'new',
   });

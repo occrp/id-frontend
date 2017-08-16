@@ -101,6 +101,9 @@ export default {
     businessActivities: {
       label: 'Business Activities'
     },
+    countryPerson: {
+      label: 'Nationality',
+    },
 
     // Company
     companyName: {

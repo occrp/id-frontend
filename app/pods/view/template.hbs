@@ -24,23 +24,36 @@
 
       {{#if (eq model.kind kindList.[0])}}
         <dl class="ticketDetails">
+          {{#if model.country}}
+            <dt>{{t 'ticket.countryPerson.label'}}</dt>
+            <dd data-test-countryPerson>{{country-name model.country}}</dd>
+          {{/if}}
+
           <dt>{{t 'ticket.background.label'}}</dt>
           <dd class="formatted" data-test-background>{{model.background}}</dd>
 
           <dt>{{t 'ticket.initialInformation.label'}}</dt>
           <dd class="formatted">{{model.initialInformation}}</dd>
 
-          <dt>{{t 'ticket.bornAt.label'}}</dt>
-          <dd data-test-born-at>{{moment-format model.bornAt 'LL'}}</dd>
+          {{#if model.bornAt}}
+            <dt>{{t 'ticket.bornAt.label'}}</dt>
+            <dd data-test-born-at>{{moment-format model.bornAt 'LL'}}</dd>
+          {{/if}}
 
-          <dt>{{t 'ticket.sourcesPerson.label'}}</dt>
-          <dd class="formatted">{{model.sources}}</dd>
+          {{#if model.sources}}
+            <dt>{{t 'ticket.sourcesPerson.label'}}</dt>
+            <dd class="formatted">{{model.sources}}</dd>
+          {{/if}}
 
-          <dt>{{t 'ticket.connectionsPerson.label'}}</dt>
-          <dd class="formatted">{{model.connections}}</dd>
+          {{#if model.connections}}
+            <dt>{{t 'ticket.connectionsPerson.label'}}</dt>
+            <dd class="formatted">{{model.connections}}</dd>
+          {{/if}}
 
-          <dt>{{t 'ticket.businessActivities.label'}}</dt>
-          <dd class="formatted">{{model.businessActivities}}</dd>
+          {{#if model.businessActivities}}
+            <dt>{{t 'ticket.businessActivities.label'}}</dt>
+            <dd class="formatted">{{model.businessActivities}}</dd>
+          {{/if}}
         </dl>
       {{else if (eq model.kind kindList.[1])}}
         <dl class="ticketDetails">
@@ -53,8 +66,10 @@
           <dt>{{t 'ticket.sources.label'}}</dt>
           <dd class="formatted">{{model.sources}}</dd>
 
-          <dt>{{t 'ticket.connections.label'}}</dt>
-          <dd class="formatted">{{model.connections}}</dd>
+          {{#if model.connections}}
+            <dt>{{t 'ticket.connections.label'}}</dt>
+            <dd class="formatted">{{model.connections}}</dd>
+          {{/if}}
         </dl>
       {{else}}
         <dl class="ticketDetails">
