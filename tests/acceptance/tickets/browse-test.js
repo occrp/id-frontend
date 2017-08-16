@@ -94,6 +94,81 @@ test('(admins) tickets can be filtered by kind', async function(assert) {
 });
 
 
+test('(admins) certain tickets can be filtered by country', async function(assert) {
+  assert.expect(9);
+  initSession({ isSuperuser: true });
+
+  server.logging = true;
+
+  server.createList('ticket', 3, 'isPerson', {
+    status: 'new',
+  });
+  server.createList('ticket', 2, 'isCompany', {
+    status: 'new',
+    country: 'GB'
+  });
+  server.createList('ticket', 2, 'isCompany', {
+    status: 'new',
+    country: 'AD'
+  });
+  server.createList('ticket', 5, 'isOther', {
+    status: 'new',
+  });
+
+  server.get('/tickets', (schema, request) => {
+    let kind = request.queryParams['filter[kind]'];
+    let country = request.queryParams['filter[country]'];
+    let filters = {};
+
+    if (kind) {
+      filters.kind = kind;
+    }
+
+    if (country) {
+      filters.country = country;
+    }
+
+    return schema.tickets.where(filters);
+  });
+
+  await visit('/view');
+
+  let $items = find('[data-test-ticket]');
+  assert.equal($items.length, 12, 'showing unfiltered tickets');
+
+  assert.equal(find('[data-test-dd="filter-country"]').length, 0);
+
+  await click('[data-test-dd="filter-kind"] [data-test-dd-trigger]');
+  await click('[data-test-kind-option="company_ownership"]');
+
+  assert.equal(currentURL(), '/view?kind=company_ownership');
+
+  $items = find('[data-test-ticket]');
+  assert.equal($items.length, 4, 'showing company ownership tickets');
+
+  findWithAssert('[data-test-dd="filter-country"]');
+
+  await click('[data-test-dd="filter-country"] [data-test-dd-trigger]');
+  await fillIn('[data-test-filter-search]', 'and');
+
+  assert.equal(find('[data-test-search-result]:first').attr('data-test-search-result'), 'AD');
+
+  await click('[data-test-search-result]:first');
+
+  assert.equal(currentURL(), '/view?country=AD&kind=company_ownership');
+
+  $items = find('[data-test-ticket]');
+  assert.equal($items.length, 2, 'showing companies registered in Andorra');
+
+  assert.equal(find('[data-test-active-filter="country"]').text(), 'AD');
+
+  await click('[data-test-dd="filter-country"] [data-test-dd-trigger]');
+  await fillIn('[data-test-filter-search]', 'and');
+
+  assert.ok(find('[data-test-search-result="AD"]').hasClass('is-active'));
+});
+
+
 test('(admins) tickets can be filtered by requester', async function(assert) {
   assert.expect(6);
 

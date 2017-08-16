@@ -9,6 +9,12 @@
         <span class="chip-value" data-test-active-filter="kind">{{t (concat 'ticket.kind.' kind '.shortName')}}</span>
       </span>
     {{/if}}
+    {{#if country}}
+      <span class="chip">
+        <span class="chip-label">{{t 'ticket.country' count=1}}</span>
+        <span class="chip-value" data-test-active-filter="country" title="{{country-name country}}">{{country}}</span>
+      </span>
+    {{/if}}
     {{#if currentRequester}}
       <span class="chip">
         <span class="chip-label">{{t 'ticket.requester' count=1}}</span>

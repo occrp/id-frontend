@@ -2,9 +2,10 @@ import Ember from 'ember';
 import Pageable from 'id-frontend/mixins/pageable';
 
 export default Ember.Controller.extend(Pageable, {
-  queryParams: ['status', 'kind', 'requester', 'responder', 'sort'],
+  queryParams: ['status', 'country', 'kind', 'requester', 'responder', 'sort'],
 
   status: 'new,in-progress',
+  country: null,
   kind: null,
   requester: null,
   responder: null,
@@ -51,6 +52,7 @@ export default Ember.Controller.extend(Pageable, {
     resetFilters() {
       this.setProperties({
         kind: null,
+        country: null,
         requester: null,
         responder: null
       });

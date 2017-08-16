@@ -5,7 +5,7 @@ const wrapper = Ember.Object.extend(ProfileDecorator);
 
 export default Ember.Component.extend({
   i18n: Ember.inject.service(),
-  hasFilters: Ember.computed.or('requester', 'responder', 'kind'),
+  hasFilters: Ember.computed.or('requester', 'responder', 'kind', 'country'),
 
   // fyi, these CPs will get triggered twice per change.
   // first when we manually update filterMeta.${key} in the controller

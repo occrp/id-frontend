@@ -24,7 +24,8 @@ module.exports = function(defaults) {
     },
 
     nodeModulesToVendor: [
-      'node_modules/filesize/lib'
+      'node_modules/filesize/lib',
+      'node_modules/fuse.js/dist'
     ]
   });
 
@@ -46,5 +47,8 @@ module.exports = function(defaults) {
       { transformation: 'amd', as: 'filesize' }
     ]
   });
+  app.import('vendor/fuse.js');
+  app.import('vendor/shims/fuse.js');
+  
   return app.toTree();
 };

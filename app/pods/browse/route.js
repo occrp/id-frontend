@@ -5,6 +5,9 @@ export default Ember.Route.extend({
     status: {
       refreshModel: true
     },
+    country: {
+      refreshModel: true
+    },
     kind: {
       refreshModel: true
     },
@@ -29,6 +32,7 @@ export default Ember.Route.extend({
     return this.get('store').query('ticket', {
       filter: {
         status: params.status,
+        country: params.country,
         kind: params.kind,
         requester: params.requester,
         responder: params.responder

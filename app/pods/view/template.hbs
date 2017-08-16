@@ -45,7 +45,7 @@
       {{else if (eq model.kind kindList.[1])}}
         <dl class="ticketDetails">
           <dt>{{t 'ticket.country.label'}}</dt>
-          <dd data-test-country>{{get countries model.country}}</dd>
+          <dd data-test-country>{{country-name model.country}}</dd>
 
           <dt>{{t 'ticket.backgroundCompany.label'}}</dt>
           <dd class="formatted" data-test-background>{{model.background}}</dd>

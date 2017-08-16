@@ -55,6 +55,15 @@
     text-align: center;
     margin-right: 10px;
   }
+
+  .tagContainer {
+    display: inline-block;
+    width: 2em;
+    float: left;
+    text-align: center;
+    margin-right: 10px;
+    font-weight: bold;
+  }
 }
 
 .list-item--special {

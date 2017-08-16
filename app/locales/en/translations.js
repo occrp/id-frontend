@@ -107,7 +107,15 @@ export default {
       label: 'Company name'
     },
     country: {
-      label: 'Country registered'
+      'one': 'Country',
+      'other': 'Countries',
+
+      label: 'Country registered',
+
+      search: {
+        placeholder: 'Search countries by name or code',
+        noResults: 'No countries found'
+      }
     },
     backgroundCompany: {
       label: 'Company background',
@@ -211,6 +219,9 @@ export default {
       all: 'All'
     },
 
+    country: {
+      title: 'Filter by country/nationality',
+    },
     kind: {
       title: 'Filter by type',
     },
