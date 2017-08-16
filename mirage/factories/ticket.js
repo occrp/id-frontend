@@ -37,6 +37,7 @@ export default Factory.extend({
     kind:                 kindList[0],
     firstName()           { return faker.name.firstName(); },
     lastName()            { return faker.name.lastName(); },
+    country()             { return faker.address.countryCode(); },
     initialInformation()  { return faker.lorem.sentences(); },
     bornAt()              { return faker.date.past(); },
     sources()             { return faker.lorem.sentences(); },

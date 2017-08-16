@@ -94,12 +94,16 @@ test('(admins) tickets can be filtered by kind', async function(assert) {
 });
 
 
-test('(admins) certain tickets can be filtered by country', async function(assert) {
-  assert.expect(9);
+test('(admins) tickets can be filtered by country', async function(assert) {
+  assert.expect(6);
   initSession({ isSuperuser: true });
 
-  server.createList('ticket', 3, 'isPerson', {
+  server.createList('ticket', 2, 'isPerson', {
     status: 'new',
+  });
+  server.createList('ticket', 1, 'isPerson', {
+    status: 'new',
+    country: 'AD'
   });
   server.createList('ticket', 2, 'isCompany', {
     status: 'new',
@@ -134,18 +138,6 @@ test('(admins) certain tickets can be filtered by country', async function(asser
   let $items = find('[data-test-ticket]');
   assert.equal($items.length, 12, 'showing unfiltered tickets');
 
-  assert.equal(find('[data-test-dd="filter-country"]').length, 0);
-
-  await click('[data-test-dd="filter-kind"] [data-test-dd-trigger]');
-  await click('[data-test-kind-option="company_ownership"]');
-
-  assert.equal(currentURL(), '/view?kind=company_ownership');
-
-  $items = find('[data-test-ticket]');
-  assert.equal($items.length, 4, 'showing company ownership tickets');
-
-  findWithAssert('[data-test-dd="filter-country"]');
-
   await click('[data-test-dd="filter-country"] [data-test-dd-trigger]');
   await fillIn('[data-test-filter-search]', 'and');
 
@@ -153,10 +145,10 @@ test('(admins) certain tickets can be filtered by country', async function(asser
 
   await click('[data-test-search-result]:first');
 
-  assert.equal(currentURL(), '/view?country=AD&kind=company_ownership');
+  assert.equal(currentURL(), '/view?country=AD');
 
   $items = find('[data-test-ticket]');
-  assert.equal($items.length, 2, 'showing companies registered in Andorra');
+  assert.equal($items.length, 3, 'showing companies registered in Andorra');
 
   assert.equal(find('[data-test-active-filter="country"]').text(), 'AD');
 

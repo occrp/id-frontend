@@ -25,20 +25,18 @@
         {{/dd.body}}
       {{/ui-dropdown}}
     </div>
-    {{#if (eq kind kindList.[1])}}
-      <div class="filters-item">
-        {{#ui-dropdown data-test-dd="filter-country" as |dd|}}
-          {{#dd.trigger}}
-            {{t 'ticket.country' count=1}} <b class="arrow"></b>
-          {{/dd.trigger}}
-          {{#dd.body headerText=(t 'filters.country.title')}}
-            {{search-countries
-              current=country
-              onSelect=(pipe-action (action updateFilter 'country') dd.close)}}
-          {{/dd.body}}
-        {{/ui-dropdown}}
-      </div>
-    {{/if}}
+    <div class="filters-item">
+      {{#ui-dropdown data-test-dd="filter-country" as |dd|}}
+        {{#dd.trigger}}
+          {{t 'ticket.country' count=1}} <b class="arrow"></b>
+        {{/dd.trigger}}
+        {{#dd.body headerText=(t 'filters.country.title')}}
+          {{search-countries
+            current=country
+            onSelect=(pipe-action (action updateFilter 'country') dd.close)}}
+        {{/dd.body}}
+      {{/ui-dropdown}}
+    </div>
     <div class="filters-item">
       {{#ui-dropdown data-test-dd="filter-requester" as |dd|}}
         {{#dd.trigger}}

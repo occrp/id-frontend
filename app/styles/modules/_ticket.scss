@@ -50,6 +50,17 @@
   }
 }
 
+.ticket-country {
+  text-align: center;
+  font-weight: bold;
+  font-size: 11px;
+  line-height: 16px;
+  padding: 1px 0.5em;
+  margin: 0 0.75em 0 0;
+  border: 1px solid $pal-gray85;
+  border-radius: $borderRadius-small;
+}
+
 .ticket-addon {
   width: 180px;
   font-size: 13px;
