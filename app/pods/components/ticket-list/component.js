@@ -6,17 +6,21 @@ export default Ember.Component.extend({
   store: Ember.inject.service(),
   searchStaff: task(getSearchGenerator({ isStaff: true })).restartable(),
 
-  updateResponder: task(function * (model, user) {
+  updateResponder: task(function * (ticket, user) {
     let record = this.get('store').createRecord('responder', {
-      ticket: model,
-      user: user
+      ticket,
+      user
     });
     yield record.save();
+
+    if (ticket.get('status') === 'new') {
+      yield this.get('data').update();
+    }
   }),
 
   actions: {
-    selectUser(model, user) {
-      this.get('updateResponder').perform(model, user);
+    selectUser(ticket, user) {
+      this.get('updateResponder').perform(ticket, user);
     }
   }
 });

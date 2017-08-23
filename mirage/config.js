@@ -210,6 +210,10 @@ export default function() {
     let ticket = schema.tickets.find(attrs.ticketId);
     let profile = schema.profiles.find(attrs.userId);
 
+    if (ticket.status === 'new') {
+      ticket.status = 'in-progress';
+    }
+
     let responder = schema.responders.create(attrs);
 
     schema.activities.create({
