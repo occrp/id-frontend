@@ -9,12 +9,12 @@
   border-radius: $borderRadius-base;
 
   &:hover {
-    background: mix(black, $pal-gray50, 15%);
+    background: mix(black, $pal-gray50, 20%);
     color: white;
   }
 
   &:active {
-    background: mix(black, $pal-gray50, 25%);
+    background: mix(black, $pal-gray50, 30%);
   }
 
   &:active:focus {
@@ -34,11 +34,11 @@
   background: $pal-primary;
 
   &:hover {
-    background: mix(black, $pal-primary, 15%);
+    background: mix(black, $pal-primary, 20%);
   }
 
   &:active {
-    background: mix(black, $pal-primary, 25%);
+    background: mix(black, $pal-primary, 30%);
   }
 }
 
@@ -46,11 +46,11 @@
   background: $pal-accent;
 
   &:hover {
-    background: mix(black, $pal-accent, 15%);
+    background: mix(black, $pal-accent, 20%);
   }
 
   &:active {
-    background: mix(black, $pal-accent, 25%);
+    background: mix(black, $pal-accent, 30%);
   }
 }
 
@@ -88,25 +88,25 @@
 
   &:hover,
   &:active {
-    background: mix(black, $pal-primary, 15%);
+    background: mix(black, $pal-primary, 20%);
     color: white;
-    border-color: mix(black, $pal-primary, 15%);;
+    border-color: mix(black, $pal-primary, 20%);;
   }
 
   &:active {
-    background: mix(black, $pal-primary, 25%);
-    border-color: mix(black, $pal-primary, 25%);
+    background: mix(black, $pal-primary, 30%);
+    border-color: mix(black, $pal-primary, 30%);
   }
 }
 
 .button--bordered.button--accent {
   &:hover {
-    background: $pal-accent;
-    border-color: $pal-accent;
+    background: mix(black, $pal-accent, 20%);
+    border-color: mix(black, $pal-accent, 20%);
   }
   &:active {
-    background: mix(black, $pal-accent, 25%);
-    border-color: mix(black, $pal-accent, 25%);
+    background: mix(black, $pal-accent, 30%);
+    border-color: mix(black, $pal-accent, 30%);
   }
 }
 

@@ -1,5 +1,5 @@
-<a class="button button--primary" {{action (mut isShowingModal) true}} data-test-reopen>
-  {{t 'pods.view.reopen.button'}}
+<a class="button button--bordered button--accent" {{action (mut isShowingModal) true}} data-test-mark-pending>
+  {{t 'pods.view.pending.button'}}
 </a>
 
 {{#if isShowingModal}}
@@ -12,7 +12,7 @@
 
     <form class="activity-form" {{action "save" on="submit"}}>
       <div class="modal-title">
-        <h4>{{t 'pods.view.reopen.button'}}</h4>
+        <h4>{{t 'pods.view.pending.button'}}</h4>
       </div>
 
       <div class="modal-innerContent">
@@ -20,8 +20,8 @@
         class="form-group"
         validation=this.validations.attrs.body
         didValidate=didValidate as |field|}}
-
-        {{textarea value=body class="form-control" id="ticket-reopen" rows="5" placeholder=(t 'pods.view.reopen.title')}}
+        
+        {{textarea value=body class="form-control" id="ticket-pending" rows="5" placeholder=(t 'activity.comment.title')}}
 
         {{#if field.showErrors}}
           <div class="help-block">{{v-get this "body" "message"}}</div>
@@ -32,7 +32,7 @@
 
       <div class="modal-actions modal-actions--right">
         <button type="submit" class="button button--primary">
-          {{t 'actions.reopen'}}
+          {{t 'actions.save'}}
         </button>
         <button class="button button--bordered button--accent" {{action (mut isShowingModal) false}}>
           {{t 'actions.cancel'}}

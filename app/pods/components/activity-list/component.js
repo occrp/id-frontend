@@ -10,6 +10,7 @@ export default Ember.Component.extend(Validations, {
     'comment:create': 'comment',
     'ticket:update:status_closed': 'close',
     'ticket:update:status_cancelled': 'cancel',
+    'ticket:update:pending': 'pending',
     'ticket:update:reopen': 'reopen',
     'attachment:create': 'attachment',
     'responder:create': 'assign',

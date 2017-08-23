@@ -45,7 +45,22 @@ export default Factory.extend({
   }),
 
   isReopen: trait({
-    verb: 'ticket:update:status_new',
+    verb: 'ticket:update:reopen',
+
+    afterCreate(activity, server) {
+      let regulars = server.schema.profiles.where({ isStaff: false });
+
+      let comment = server.create('comment', { ticket: activity.ticket });
+
+      activity.update({
+        user: random(regulars.models),
+        comment
+      });
+    }
+  }),
+
+  isPending: trait({
+    verb: 'ticket:update:pending',
 
     afterCreate(activity, server) {
       let regulars = server.schema.profiles.where({ isStaff: false });

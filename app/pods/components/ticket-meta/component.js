@@ -22,9 +22,12 @@ export default Ember.Component.extend({
     let model = this.get('model');
 
     model.set('status', newStatus);
+
     if (comment) {
-      model.set('reopenReason', comment);
+      const attr = newStatus === 'pending' ? 'pendingReason' : 'reopenReason';
+      model.set(attr, comment);
     }
+
     yield model.save();
   }),
 
@@ -42,10 +45,11 @@ export default Ember.Component.extend({
     },
 
     saveStatus(activityType, comment) {
-      let mapToStatus = {
+      const mapToStatus = {
         'close': 'closed',
         'cancel': 'cancelled',
-        'reopen': 'in-progress'
+        'reopen': 'in-progress',
+        'pending': 'pending'
       };
       this.get('updateStatus').perform(mapToStatus[activityType], comment).then(() => {
         this.get('model').hasMany('activities').reload();

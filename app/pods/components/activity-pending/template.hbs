@@ -1,9 +1,12 @@
-<div class="activity-headline">
-  <span class="iconContainer"><i class="fa fa-cloud-upload" /></span>
+<div class="activity-author">
+  <span class="tag tag--pending">{{t 'ticket.status.pending.name'}}</span>
+  {{t 'prefixes.by'}}
   <strong>{{data.user.displayName}}</strong>
-  {{t 'activity.attachment.action'}}
   {{t 'prefixes.at'}}
   <time datetime={{data.createdAt}} title={{moment-format data.createdAt 'LLL'}}>
     {{moment-format data.createdAt 'h:mm A, MMM DD YYYY'}}
   </time>
+</div>
+<div class="activity-body formatted">
+  {{~data.comment.body~}}
 </div>

@@ -8,6 +8,7 @@ export default Ember.Component.extend({
   classByStatus: {
     'new': 'tag--new',
     'in-progress': 'tag--progress',
+    'pending': 'tag--pending',
     'closed': 'tag--closed',
     'cancelled': 'tag--cancelled'
   },

@@ -1,4 +1,10 @@
-<p>{{status-label model.status data-test-status}}</p>
+<div>
+  {{#if updateStatus.isRunning}}
+    {{ui-spinner class="spinner--tag"}}
+  {{else}}
+    {{status-label model.status data-test-status}}
+  {{/if}}
+</div>
 
 <dl class="requestDetails">
   <dt><i class="fa fa-refresh" /> {{t 'ticket.updatedAt.label'}}</dt>
@@ -59,6 +65,10 @@
     {{/if}}
   </dd>
 </dl>
+
+{{#if (and model.isOpen (not model.isPending) (can "resolve tickets"))}}
+  {{ticket-mark-pending model=model onSave=(action 'saveStatus' 'pending') class="mb-20"}}
+{{/if}}
 
 {{#if model.isOpen}}
   {{ticket-close model=model activityType=(if (can "resolve tickets") 'close' 'cancel') onSave=(action 'saveStatus')}}

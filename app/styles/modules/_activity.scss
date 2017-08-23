@@ -31,7 +31,8 @@
 }
 
 .activity--comment,
-.activity--reopen {
+.activity--reopen,
+.activity--pending {
   @include cf;
   clear: both;
   border: 1px solid $pal-gray85;

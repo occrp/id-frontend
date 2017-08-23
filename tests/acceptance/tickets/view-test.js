@@ -107,6 +107,7 @@ test('cancelling a ticket', async function(assert) {
       "last-name": "Doe",
       "kind": "person_ownership",
       "whysensitive": null,
+      "pending-reason": null,
       "reopen-reason": null
     });
 
@@ -175,6 +176,7 @@ test('(staff) closing a ticket', async function(assert) {
       "last-name": "Doe",
       "kind": "person_ownership",
       "whysensitive": null,
+      "pending-reason": null,
       "reopen-reason": null
     });
 

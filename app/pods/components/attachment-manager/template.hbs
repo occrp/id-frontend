@@ -43,7 +43,10 @@
 
 {{#with (file-queue name="ticket-attachments") as |queue|}}
   {{#if isShowingModal}}
-  {{#ui-modal containerClass="modal--uploader"}}
+  {{#ui-modal 
+    containerClass="modal--uploader" 
+    onClose=(pipe (action (mut isShowingModal) false) (action 'flushQueue' queue))
+  }}
     <div class="modal-content">
     <div class="modal-body">
 
@@ -52,7 +55,7 @@
           <h4>{{t 'attachment.filesSelected' count=queue.files.length}}</h4>
         </div>
 
-        <div class="modal-innerContent">
+        <div class="modal-attachmentsList">
           {{#each queue.files as |file|}}
             <div class="file">
               <span class="tag">{{format-filesize file.size}}</span>{{file.name}}

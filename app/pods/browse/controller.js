@@ -4,7 +4,7 @@ import Pageable from 'id-frontend/mixins/pageable';
 export default Ember.Controller.extend(Pageable, {
   queryParams: ['status', 'country', 'kind', 'requester', 'responder', 'sort'],
 
-  status: 'new,in-progress',
+  status: 'new,in-progress,pending',
   country: null,
   kind: null,
   requester: null,
@@ -12,7 +12,7 @@ export default Ember.Controller.extend(Pageable, {
   sort: '-created-at',
 
   statusPairs: {
-    open: 'new,in-progress',
+    open: 'new,in-progress,pending',
     closed: 'closed,cancelled'
   },
 

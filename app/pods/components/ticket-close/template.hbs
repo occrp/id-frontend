@@ -11,11 +11,11 @@
       <h4>{{t 'pods.view.close.title' verb=activityType}}</h4>
     </div>
     <div class="modal-actions modal-actions--center">
+      <button class="button button--bordered button--accent" {{action (mut isShowingModal) false}} data-test-modal-dontCancel>
+        {{t 'pods.view.close.cancel'}}
+      </button>
       <button class="button button--primary" {{action 'save'}} data-test-modal-confirmCancel>
         {{t 'pods.view.close.confirm' verb=activityType}}
-      </button>
-      <button class="button button--accent" {{action (mut isShowingModal) false}} data-test-modal-dontCancel>
-        {{t 'pods.view.close.cancel'}}
       </button>
     </div>
 

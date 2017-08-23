@@ -31,6 +31,9 @@ export default {
       'in-progress': {
         name: 'In progress',
       },
+      'pending': {
+        name: 'Pending',
+      },
       'closed': {
         name: 'Closed',
       },
@@ -208,6 +211,9 @@ export default {
       reopen: {
         button: 'Reopen request',
         title: 'Reason for reopening',
+      },
+      pending: {
+        button: 'Mark as pending'
       }
     }
   },
@@ -254,7 +260,8 @@ export default {
       longForm: 'Assign to staff',
     },
     remove: 'Remove',
-    reopen: 'Reopen'
+    reopen: 'Reopen',
+    save: 'Save'
   },
 
   prefixes: {

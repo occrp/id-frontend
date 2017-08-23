@@ -31,6 +31,9 @@ export default function(server) {
   server.createList('ticket', 3, 'isPerson', 'withResponder', 'withComments', {
     status: 'in-progress',
   });
+  server.create('ticket', 'isPerson', 'withComments', {
+    status: 'pending',
+  });
 
   server.createList('ticket', 3, 'isPerson', 'withResponder', 'withAttachments', {
     status: 'closed',

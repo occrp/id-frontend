@@ -15,18 +15,22 @@
   color: $pal-gray30;
   text-align: center;
   margin: 0 auto;
-  padding: 10px 20px 20px 20px;
+  padding: 10px 20px 19px 20px;
 }
 
 .modal-title {
   h4 {
     font-weight: bold;
     color: $pal-accent;
-    margin: 10px 0 0 14px;
+    margin: 10px 0 0 10px;
   }
 }
 
 .modal-innerContent {
+  margin: 20px 0;
+}
+
+.modal-attachmentsList {
   margin: 30px 0;
   margin-bottom: 31px;
 }

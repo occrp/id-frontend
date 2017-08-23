@@ -28,6 +28,7 @@ export default DS.Model.extend({
   updatedAt: attr('date'),
   deadlineAt: attr('date'),
   reopenReason: attr('string'),
+  pendingReason: attr('string'),
 
   requester: belongsTo('profile'),
   responders: hasMany('responder'),
@@ -71,15 +72,12 @@ export default DS.Model.extend({
   }),
 
   isOpen: Ember.computed('status', function() {
-    let status = this.get('status');
-    return status === statusList[0] || status === statusList[1];
+    return ['closed', 'cancelled'].indexOf(this.get('status')) === -1;
   }),
 
-  isClosed: Ember.computed('status', function() {
-    let status = this.get('status');
-    return status === statusList[2] || status === statusList[3];
-  })
+  isClosed: Ember.computed.not('isOpen'),
 
+  isPending: Ember.computed.equal('status', 'pending')
 });
 
 

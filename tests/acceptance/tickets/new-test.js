@@ -33,6 +33,7 @@ test('creating a new ticket (person)', async function(assert) {
           "last-name": "Doe",
           "kind": "person_ownership",
           "whysensitive": "It just is.",
+          "pending-reason": null,
           "reopen-reason": null
         },
         "relationships": {
@@ -108,6 +109,7 @@ test('creating a new ticket (company)', async function(assert) {
           "last-name": null,
           "kind": "company_ownership",
           "whysensitive": null,
+          "pending-reason": null,
           "reopen-reason": null
         },
         "relationships": {
@@ -175,6 +177,7 @@ test('creating a new ticket (other)', async function(assert) {
           "last-name": null,
           "kind": "other",
           "whysensitive": null,
+          "pending-reason": null,
           "reopen-reason": null
         },
         "relationships": {
