@@ -10,6 +10,7 @@
     </div>
   {{/if}}
 
+  {{#if canUpload}}
   <div class="attachments-dropzone">
     {{#ui-dropzone class="dropzone" name="ticket-attachments" as |dropzone queue|}}
       <div>
@@ -36,7 +37,7 @@
       </div>
   {{/ui-dropzone}}
   </div>
-
+  {{/if}}
 
 </div>
 

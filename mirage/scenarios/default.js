@@ -32,7 +32,7 @@ export default function(server) {
     status: 'in-progress',
   });
 
-  server.createList('ticket', 3, 'isPerson', 'withResponder', 'withComments', {
+  server.createList('ticket', 3, 'isPerson', 'withResponder', 'withAttachments', {
     status: 'closed',
   });
   server.createList('ticket', 3, 'isPerson', 'withResponder', 'withComments', {

@@ -87,22 +87,23 @@
         </div>
       {{/if}}
 
-      {{#if isOpen}}
+      {{#if (or isOpen model.attachments.length)}}
         <hr class="l-fixedColumn-separator" />
 
         <h3 class="t-accent">{{t 'attachment' count=2}}</h3>
 
-        {{attachment-manager model=model}}
+        {{attachment-manager model=model canUpload=isOpen}}
       {{/if}}
 
       <hr class="l-fixedColumn-separator" />
 
       <h3 class="t-accent activityHeading">
         {{t 'activity' count=1}}
-        {{#unless model.activities.length}}{{ui-spinner}}{{/unless}}
+        {{#if model.activities.isPending}}{{ui-spinner}}{{/if}}
       </h3>
 
-      {{activity-list data=model.activities model=model showForm=isOpen}}
+      {{activity-list data=model.activities model=model showForm=(and isOpen model.activities.isFulfilled)}}
+
     </div>
 
     <div class="l-fixedColumn-column">
