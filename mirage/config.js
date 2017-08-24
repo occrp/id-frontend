@@ -55,6 +55,7 @@ export default function() {
       total: {
         'new': schema.tickets.where({status: 'new'}).length,
         'in-progress': schema.tickets.where({status: 'in-progress'}).length,
+        'pending': schema.tickets.where({status: 'pending'}).length,
         'closed': schema.tickets.where({status: 'closed'}).length,
         'cancelled': schema.tickets.where({status: 'cancelled'}).length
       },

@@ -26,8 +26,8 @@ export default Ember.Controller.extend(Pageable, {
 
     // camelCased because serializers/application
     return total && {
-      all: total.new + total.inProgress + total.closed + total.cancelled,
-      open: total.new + total.inProgress,
+      all: total.new + total.inProgress + total.pending + total.closed + total.cancelled,
+      open: total.new + total.inProgress + total.pending,
       closed: total.closed + total.cancelled
     };
   }),
