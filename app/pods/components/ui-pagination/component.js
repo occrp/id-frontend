@@ -11,8 +11,10 @@ export default Ember.Component.extend({
   // Ex: total = 25; current = 9; padding = 2;
   // => [1, 2, false, 7, 8, 9, 10, 11, false, 24, 25]
 
+  total: Ember.computed.or('meta.pagination.last.number', 'current'),
+
   items: Ember.computed('meta.pagination', function() {
-    const total = this.get('meta.pagination.last.number') || this.get('current');
+    const total = this.get('total');
     const current = this.get('current');
 
     if (!total) {
