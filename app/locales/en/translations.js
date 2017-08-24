@@ -171,6 +171,9 @@ export default {
     },
     reopen: {
       action: 'reopened'
+    },
+    resume: {
+      action: 'resumed'
     }
   },
 

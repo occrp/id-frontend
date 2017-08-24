@@ -1,4 +1,4 @@
-<a class="button button--bordered button--accent" {{action (mut isShowingModal) true}}>
+<a class="button button--bordered" {{action (mut isShowingModal) true}}>
   {{t 'pods.view.close.button' verb=activityType}}
 </a>
 
@@ -12,7 +12,7 @@
     </div>
     <div class="modal-actions modal-actions--center">
       <button class="button button--bordered button--accent" {{action (mut isShowingModal) false}}>
-        {{t 'pods.view.close.cancel'}}
+        {{t 'actions.cancel'}}
       </button>
       <button class="button button--primary" {{action 'save'}}>
         {{t 'pods.view.close.confirm' verb=activityType}}

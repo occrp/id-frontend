@@ -88,6 +88,7 @@ export default Factory.extend({
       server.create('activity', 'isCancel', { ticket });
       server.create('activity', 'isReopen', { ticket });
       server.create('activity', 'isPending', { ticket });
+      server.create('activity', 'isResume', { ticket });
       server.create('activity', 'isComment', { ticket });
       server.create('activity', 'isClose', { ticket });
       server.create('activity', 'isAttachment', { ticket });

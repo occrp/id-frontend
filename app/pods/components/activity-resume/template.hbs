@@ -1,0 +1,9 @@
+<div class="activity-headline">
+  <span class="tag tag--progress">{{t 'activity.resume.action'}}</span>
+  {{t 'prefixes.by'}}
+  <strong>{{data.user.displayName}}</strong>
+  {{t 'prefixes.at'}}
+  <time datetime={{data.createdAt}} title={{moment-format data.createdAt 'LLL'}}>
+    {{moment-format data.createdAt 'h:mm A, MMM DD YYYY'}}
+  </time>
+</div>

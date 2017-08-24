@@ -74,6 +74,18 @@ export default Factory.extend({
     }
   }),
 
+  isResume: trait({
+    verb: 'ticket:update:status_in-progress',
+
+    afterCreate(activity, server) {
+      let regulars = server.schema.profiles.where({ isStaff: false });
+
+      activity.update({
+        user: random(regulars.models)
+      });
+    }
+  }),
+
   isAttachment: trait({
     verb: 'attachment:create',
 
