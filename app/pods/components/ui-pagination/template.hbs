@@ -13,7 +13,7 @@
 
   {{#each items as |number|}}
     {{#if number}}
-      <li class="pg-item {{if (eq number meta.pagination.self.number) "is-active"}}">
+      <li class="pg-item {{if (eq number current) "is-active"}}">
         {{#link-to route (query-params page=number)}}{{number}}{{/link-to}}
       </li>
     {{else}}
