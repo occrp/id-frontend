@@ -26,7 +26,7 @@ export default DS.JSONAPISerializer.extend({
     result.meta = camelCaseKeys(result.meta);
 
     if (payload.links) {
-      result.meta.pagination = this.createPageMeta(payload.links);
+      result.meta.pagination = Object.assign({}, result.meta.pagination, this.createPageMeta(payload.links));
     }
 
     return result;

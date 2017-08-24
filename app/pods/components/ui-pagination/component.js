@@ -11,9 +11,9 @@ export default Ember.Component.extend({
   // Ex: total = 25; current = 9; padding = 2;
   // => [1, 2, false, 7, 8, 9, 10, 11, false, 24, 25]
 
-  items: Ember.computed('meta.pagination.last.number', 'meta.pagination.self.number', function() {
-    const total = this.get('meta.pagination.last.number') || this.get('meta.pagination.self.number');
-    const current = this.get('meta.pagination.self.number');
+  items: Ember.computed('meta.pagination', function() {
+    const total = this.get('meta.pagination.last.number') || this.get('current');
+    const current = this.get('current');
 
     if (!total) {
       return [];
@@ -23,7 +23,10 @@ export default Ember.Component.extend({
     let padding = 2;
 
     for (var n = 1; n <= total; n++) {
-      if ((n > padding && n < current - padding) || (n > current + padding && n <= total - padding)) {
+      if (
+        (n > padding && n < current - padding && padding + 1 !== current - padding - 1)
+        || (n > current + padding && n <= total - padding && current + padding + 1 !== total - padding)
+      ) {
         if (collection[collection.length - 1] !== false) {
           collection.push(false);
         }

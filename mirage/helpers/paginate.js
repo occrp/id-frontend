@@ -3,15 +3,15 @@ import Ember from 'ember';
 const { pluralize } = Ember.String;
 
 export default function(collection, request, namespace) {
-  var pageSize = parseInt(request.queryParams['page[size]'], 10);
-  var pageNumber = parseInt(request.queryParams['page[number]'], 10);
+  const pageSize = parseInt(request.queryParams['page[size]'], 10);
+  const pageNumber = parseInt(request.queryParams['page[number]'], 10);
 
   if (!pageNumber) {
     return collection;
   }
 
-  var totalPages = Math.ceil(collection.models.length / pageSize);
-  var model  = pluralize(collection.modelName);
+  const totalPages = Math.ceil(collection.models.length / pageSize);
+  const model  = pluralize(collection.modelName);
 
   request.mirageLinks = {
     self: `${namespace}/${model}?page[number]=${pageNumber}&page[size]=${pageSize}`,
@@ -29,7 +29,15 @@ export default function(collection, request, namespace) {
     request.mirageLinks.prev = `${namespace}/${model}?page[number]=${pageNumber - 1}&page[size]=${pageSize}`;
   }
 
-  var start = 0 + (pageNumber-1) * pageSize;
+  // Add "classic" meta. Not used tho
+  request.mirageMeta = request.mirageMeta || {};
+  request.mirageMeta.pagination = {
+    page: pageNumber,
+    pages: totalPages,
+    count: collection.models.length
+  };
+
+  const start = 0 + (pageNumber-1) * pageSize;
 
   collection.models = collection.models.slice(start, start + pageSize);
 
