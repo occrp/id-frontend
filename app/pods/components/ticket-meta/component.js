@@ -52,6 +52,7 @@ export default Ember.Component.extend({
         'close': 'closed',
         'cancel': 'cancelled',
         'reopen': 'in-progress',
+        'unmark': 'in-progress',
         'pending': 'pending'
       };
       this.get('updateStatus').perform(mapToStatus[activityType], comment).then(() => {

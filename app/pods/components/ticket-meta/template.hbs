@@ -66,8 +66,12 @@
   </dd>
 </dl>
 
-{{#if (and model.isOpen (not model.isPending) (can "resolve tickets"))}}
-  {{ticket-mark-pending model=model onSave=(action 'saveStatus' 'pending') class="mb-20"}}
+{{#if (and model.isOpen (can "resolve tickets"))}}
+  {{#if model.isPending}}
+    {{ticket-unmark-pending model=model activityType='unmark' onSave=(action 'saveStatus') class="mb-20"}}
+  {{else}}
+    {{ticket-mark-pending model=model onSave=(action 'saveStatus' 'pending') class="mb-20"}}
+  {{/if}}
 {{/if}}
 
 {{#if model.isOpen}}
