@@ -2,8 +2,6 @@ import Ember from 'ember';
 import { Validations } from 'id-frontend/models/comment';
 
 export default Ember.Component.extend(Validations, {
-  store: Ember.inject.service(),
-
   isShowingModal: false,
 
   body: null,
