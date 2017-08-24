@@ -383,7 +383,7 @@ test('(admins) ticket filtering or sorting should reset pagination', async funct
 });
 
 test('(admins) can assign responders from the ticket list', async function(assert) {
-  assert.expect(9);
+  assert.expect(8);
 
   server.createList('profile', 5, {
     firstName(i) { return `Staff #${i+1}`; },
@@ -407,39 +407,8 @@ test('(admins) can assign responders from the ticket list', async function(asser
     responderId: null
   });
 
-  await visit('/view');
-
-  let $item = find('[data-test-ticket="2"]');
-  assert.equal($item.find('[data-test-ticket-name]').text().trim(), 'Company #2');
-
-  // Status should change to in-progress after the first assignment
-  // Not implemented in the UI yet
-  let $status = $item.find('[data-test-ticket-status]');
-  assert.equal($status.text().toLowerCase(), 'new');
-
-  let $responders = $item.find('[data-test-ticket-responders]');
-  assert.equal($responders.length, 0);
-
-  let $ddTrigger = $item.find('[data-test-dd="quick-assign-responder"] [data-test-dd-trigger]');
-
-  await click($ddTrigger);
-  await fillIn('[data-test-filter-search]', 'Staff #3');
-  
-  assert.equal(find('[data-test-search-result]:first').text(), 'Staff #3 Doe');
-  await click('[data-test-search-result]:first');
-
-  $responders = $item.find('[data-test-ticket-responders]');
-  assert.ok($responders.length);
-  assert.equal($responders.text(), 'Staff #3 Doe');
-
-  await click($ddTrigger);
-  await click('[data-test-search-result="4"]');
-
-  $responders = $item.find('[data-test-ticket-responders]');
-  assert.equal($responders.text().trim(), 'Staff #3 Doe, +1');  
-
   let done = assert.async();
-  server.post('/responders', (schema, request) => {
+  server.post('/responders', function (schema, request) {
     let attrs = JSON.parse(request.requestBody);
 
     assert.deepEqual(attrs, {
@@ -457,7 +426,7 @@ test('(admins) can assign responders from the ticket list', async function(asser
           },
           "user": {
             "data": {
-              "id": "5",
+              "id": "3",
               "type": "profiles"
             }
           }
@@ -467,12 +436,38 @@ test('(admins) can assign responders from the ticket list', async function(asser
     });
 
     done();
-    return schema.responders.create(attrs);
+ 
+    let ticket = schema.tickets.find(2);
+    ticket.update('status', 'in-progress');
+
+    let normieAttrs = this.normalizedRequestAttrs();
+    return schema.responders.create(normieAttrs);
   });
 
+  await visit('/view');
+
+  let $item = find('[data-test-ticket="2"]');
+  assert.equal($item.find('[data-test-ticket-name]').text().trim(), 'Company #2');
+
+  // Status should change to in-progress after the first assignment
+  let $status = $item.find('[data-test-ticket-status]');
+  assert.equal($status.text().toLowerCase(), 'new');
+
+  let $responders = $item.find('[data-test-ticket-responders]');
+  assert.equal($responders.length, 0);
+
+  let $ddTrigger = $item.find('[data-test-dd="quick-assign-responder"] [data-test-dd-trigger]');
+
   await click($ddTrigger);
-  await click('[data-test-search-result="5"]');
+  await fillIn('[data-test-filter-search]', 'Staff #3');
+  
+  assert.equal(find('[data-test-search-result]:first').text(), 'Staff #3 Doe');
+  await click('[data-test-search-result]:first');
 
   $responders = $item.find('[data-test-ticket-responders]');
-  assert.equal($responders.text().trim(), 'Staff #3 Doe, +2');  
+  assert.ok($responders.length);
+  assert.equal($responders.text(), 'Staff #3 Doe');
+  
+  $status = $item.find('[data-test-ticket-status]');
+  assert.equal($status.text().toLowerCase(), 'in progress');
 });

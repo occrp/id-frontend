@@ -14,7 +14,7 @@ export default Ember.Component.extend({
     yield record.save();
 
     if (ticket.get('status') === 'new') {
-      yield this.get('data').update();
+      yield ticket.reload();
     }
   }),
 

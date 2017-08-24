@@ -211,7 +211,7 @@ export default function() {
     let profile = schema.profiles.find(attrs.userId);
 
     if (ticket.status === 'new') {
-      ticket.status = 'in-progress';
+      ticket.update('status', 'in-progress');
     }
 
     let responder = schema.responders.create(attrs);
