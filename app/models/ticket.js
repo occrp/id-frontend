@@ -82,8 +82,22 @@ export default DS.Model.extend({
 
 
 export const Validations = buildValidations({
-  background: validator('presence', {
-    presence: true,
+  background: [
+    validator('presence', {
+      presence: true,
+    }),
+    validator('length', {
+      max: 1000
+    })
+  ],
+  connections: validator('length', {
+    max: 1000
+  }),
+  businessActivities: validator('length', {
+    max: 1000
+  }),
+  whysensitive: validator('length', {
+    max: 1000
   }),
 
   // Person
@@ -95,10 +109,15 @@ export const Validations = buildValidations({
     presence: true,
     disabled: notEqual('model.kind', raw(kindList[0]))
   }),
-  initialInformation: validator('presence', {
-    presence: true,
-    disabled: notEqual('model.kind', raw(kindList[0]))
-  }),
+  initialInformation: [
+    validator('presence', {
+      presence: true,
+      disabled: notEqual('model.kind', raw(kindList[0]))
+    }),
+    validator('length', {
+      max: 1000
+    })
+  ],
 
   // Company
   companyName: validator('presence', {
@@ -109,11 +128,15 @@ export const Validations = buildValidations({
     presence: true,
     disabled: notEqual('model.kind', raw(kindList[1]))
   }),
-  sources: validator('presence', {
-    presence: true,
-    disabled: notEqual('model.kind', raw(kindList[1]))
-  })
+  sources: [
+    validator('presence', {
+      presence: true,
+      disabled: notEqual('model.kind', raw(kindList[1]))
+    }),
+    validator('length', {
+      max: 1000
+    })
+  ]
 }, {
-  debounce: 100,
-  messageKey: 'errors.genericInvalid'
+  debounce: 100
 });

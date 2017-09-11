@@ -196,7 +196,7 @@ export default {
       form: {
         otherDetails: 'Other details',
         requestDetails: 'Request details',
-        invalidMessage: 'Please fill in the fields marked above before continuing.',
+        invalidMessage: 'Please review the fields marked above before continuing.',
         submitButton: 'Submit your request',
       }
     },

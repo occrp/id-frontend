@@ -115,22 +115,49 @@
         {{input-date value=buffer.bornAt onSelect=(action (mut buffer.bornAt) value="date") inputId="ticket-born-at" maxDate=today}}
       </div>
 
-      <div class="form-group">
-        <label for="ticket-sources-person">{{t 'ticket.sourcesPerson.label'}}</label>
+      {{#validated-field 
+       class="form-group"
+       validation=buffer.validations.attrs.sources
+       didValidate=didValidate as |field|}}
+       
+       <label for="ticket-sources-person">{{t 'ticket.sourcesPerson.label'}}</label>
         <p class="info-block">{{t 'ticket.sourcesPerson.desc'}}</p>
-        {{textarea rows=3 value=buffer.sources class="form-control" id="ticket-sources-person"}}
-      </div>
+        {{textarea rows=3 value=buffer.sources class="form-control" id="ticket-sources-person" focus-out=field.triggerValidations}}
 
-      <div class="form-group">
+        {{#if field.showErrors}}
+          <div class="help-block">{{v-get buffer "sources" "message"}}</div>
+        {{/if}}
+
+      {{/validated-field}}
+
+      {{#validated-field 
+       class="form-group"
+       validation=buffer.validations.attrs.connections
+       didValidate=didValidate as |field|}}
+
         <label for="ticket-connections-person">{{t 'ticket.connectionsPerson.label'}}</label>
         <p class="info-block">{{t 'ticket.connectionsPerson.desc'}}</p>
-        {{textarea rows=3 value=buffer.connections class="form-control" id="ticket-connections-person"}} 
-      </div>
+        {{textarea rows=3 value=buffer.connections class="form-control" id="ticket-connections-person" focus-out=field.triggerValidations}} 
+        
+        {{#if field.showErrors}}
+          <div class="help-block">{{v-get buffer "connections" "message"}}</div>
+        {{/if}}
 
-      <div class="form-group">
+      {{/validated-field}}
+
+      {{#validated-field 
+       class="form-group"
+       validation=buffer.validations.attrs.businessActivities
+       didValidate=didValidate as |field|}}
+      
         <label for="ticket-businessActivities">{{t 'ticket.businessActivities.label'}}</label>
-        {{textarea rows=3 value=buffer.businessActivities class="form-control" id="ticket-businessActivities"}}
-      </div>
+        {{textarea rows=3 value=buffer.businessActivities class="form-control" id="ticket-businessActivities" focus-out=field.triggerValidations}}
+
+        {{#if field.showErrors}}
+          <div class="help-block">{{v-get buffer "businessActivities" "message"}}</div>
+        {{/if}}
+
+      {{/validated-field}}
 
     {{else if (eq buffer.kind kindList.[1])}}
 
@@ -201,10 +228,19 @@
 
       <h2 class="fieldGroup-title">{{t 'pods.new.form.otherDetails'}}</h2>
 
-      <div class="form-group">
+      {{#validated-field 
+       class="form-group"
+       validation=buffer.validations.attrs.connections
+       didValidate=didValidate as |field|}}
+
         <label for="ticket-connections">{{t 'ticket.connections.formLabel'}}</label>
         {{textarea rows=3 value=buffer.connections class="form-control" id="ticket-connections" focus-out=field.triggerValidations}}
-      </div>
+        
+        {{#if field.showErrors}}
+          <div class="help-block">{{v-get buffer "connections" "message"}}</div>
+        {{/if}}
+              
+      {{/validated-field}}
 
     {{else}}
 
@@ -218,7 +254,7 @@
 
         <label for="ticket-background-other">{{t 'ticket.backgroundOther.formLabel'}} <span class="text-danger">*</span></label>
         <p class="info-block">{{t 'ticket.backgroundOther.desc'}}</p>
-        {{textarea rows=7 value=buffer.background class="form-control" id="ticket-background-other"}}
+        {{textarea rows=7 value=buffer.background class="form-control" id="ticket-background-other" focus-out=field.triggerValidations}}
 
         {{#if field.showErrors}}
           <div class="help-block">{{v-get buffer "background" "message"}}</div>
@@ -252,10 +288,20 @@
     </div>
 
     {{#if buffer.sensitive}}
-      <div class="form-group">
+      {{#validated-field
+        class="form-group"
+        validation=buffer.validations.attrs.whysensitive
+        didValidate=didValidate 
+        as |field|}}
+
         <label for="ticket-whysensitive">{{t 'ticket.whysensitive.label'}}</label>
-        {{textarea rows=3 value=buffer.whysensitive class="form-control" id="ticket-whysensitive"}}
-      </div>
+        {{textarea rows=3 value=buffer.whysensitive class="form-control" id="ticket-whysensitive" focus-out=field.triggerValidations}}
+
+        {{#if field.showErrors}}
+          <div class="help-block">{{v-get buffer "whysensitive" "message"}}</div>
+        {{/if}}
+
+      {{/validated-field}}
     {{/if}}
 
     </div>
