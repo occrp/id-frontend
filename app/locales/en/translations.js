@@ -252,7 +252,9 @@ export default {
 
   pagination: {
     prev: 'Prev',
-    next: 'Next'
+    next: 'Next',
+    newer: 'Newer',
+    older: 'Older'
   },
 
   actions: {

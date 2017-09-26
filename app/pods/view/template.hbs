@@ -97,12 +97,7 @@
 
       <hr class="l-fixedColumn-separator" />
 
-      <h3 class="t-accent activityHeading">
-        {{t 'activity' count=1}}
-        {{#if model.activities.isPending}}{{ui-spinner}}{{/if}}
-      </h3>
-
-      {{activity-list data=model.activities model=model showForm=(and model.isOpen model.activities.isFulfilled)}}
+      {{activity-list model=model showForm=model.isOpen}}
 
     </div>
 

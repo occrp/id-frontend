@@ -8,7 +8,7 @@
       {{/link-to}}
     </li>
   {{else}}
-    <li class="pg-prev is-disabled"><span> <b>Prev</b> </span></li>
+    <li class="pg-prev is-disabled"><span> <b>{{t 'pagination.prev'}}</b> </span></li>
   {{/if}}
 
   {{#each items as |number|}}
@@ -28,7 +28,7 @@
       {{/link-to}}
     </li>
   {{else}}
-    <li class="pg-next is-disabled"><span> <b>Next</b> </span></li>
+    <li class="pg-next is-disabled"><span> <b>{{t 'pagination.next'}}</b> </span></li>
   {{/if}}
 
 </ul>

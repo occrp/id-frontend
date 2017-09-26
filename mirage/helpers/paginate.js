@@ -2,7 +2,7 @@ import Ember from 'ember';
 
 const { pluralize } = Ember.String;
 
-export default function(collection, request, namespace) {
+export default function(collection, request, namespace, opts = {}) {
   const pageSize = parseInt(request.queryParams['page[size]'], 10);
   const pageNumber = parseInt(request.queryParams['page[number]'], 10);
 
@@ -29,17 +29,13 @@ export default function(collection, request, namespace) {
     request.mirageLinks.prev = `${namespace}/${model}?page[number]=${pageNumber - 1}&page[size]=${pageSize}`;
   }
 
-  // Add "classic" meta. Not used tho
-  request.mirageMeta = request.mirageMeta || {};
-  request.mirageMeta.pagination = {
-    page: pageNumber,
-    pages: totalPages,
-    count: collection.models.length
-  };
-
-  const start = 0 + (pageNumber-1) * pageSize;
-
-  collection.models = collection.models.slice(start, start + pageSize);
+  const start = (pageNumber-1) * pageSize;
+  
+  if (opts.reverse) {
+    collection.models = collection.models.reverse().slice(start, start + pageSize).reverse();
+  } else {
+    collection.models = collection.models.slice(start, start + pageSize);
+  }
 
   return collection;
 }

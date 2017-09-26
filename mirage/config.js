@@ -146,7 +146,9 @@ export default function() {
   this.get('/activities', (schema, request) => {
     // not a standard endpoint. used in place of a ticket.activities relationship
     let ticketId = request.queryParams['filter[target_object_id]'];
-    return schema.activities.where({ ticketId: ticketId });
+    let collection = schema.activities.where({ ticketId });
+
+    return paginate(collection, request, this.namespace, { reverse: true });
   });
 
 

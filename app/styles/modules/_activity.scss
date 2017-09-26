@@ -1,12 +1,26 @@
-.activityHeading {
-  .spinner {
-    font-size: 14px;
-    display: inline-block;
+.activityHeader {
+  @include cf;
+
+  h3 {
+    float: left;
+    margin: 0;
+  
+    .spinner {
+      font-size: 14px;
+      display: inline-block;
+      margin-left: 1em;
+    }
+  } 
+  
+  .pg {
+    float: right;
     margin-left: 1em;
+    margin: 0 !important;
   }
-} 
+}
 
 .activityList {
+  clear: both;
   position: relative;
   margin: 25px 0 40px 0;
 

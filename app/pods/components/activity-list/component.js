@@ -30,7 +30,41 @@ export default Ember.Component.extend(Validations, {
     yield record.save();
   }),
 
+  currentPage: null,
+  pageSize: 50,
+  activityCache: null,
+
+  loadActivities: task(function * (pageNumber) {
+    let records = yield this.get('store').query('activity', {
+      filter: {
+        'target_object_id': this.get('model.id')
+      },
+      page: {
+        number: pageNumber,
+        size: this.get('pageSize')
+      },
+      sort: 'timestamp',
+      include: 'comment,responder-user,user'
+    });
+
+    return records;
+  }),
+
+  didReceiveAttrs() {
+    this.get('loadActivities').perform(1).then((records) => {
+      this.set('currentPage', 1);
+      this.set('activityCache', records);
+    });
+  },
+
   actions: {
+    switchPage(pageNumber) {
+      this.get('loadActivities').perform(pageNumber).then((records) => {
+        this.set('currentPage', pageNumber);
+        this.set('activityCache', records);
+      });
+    },
+
     save() {
       this.validate().then(({ validations }) => {
         this.set('didValidate', true);
@@ -39,7 +73,7 @@ export default Ember.Component.extend(Validations, {
           this.get('publishComment').perform().then(() => {
             this.set('body', null);
             this.set('didValidate', false);
-            this.get('model').hasMany('activities').reload();
+            this.send('switchPage', 1);
           });
         }
       });
