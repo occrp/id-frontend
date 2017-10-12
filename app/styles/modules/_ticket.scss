@@ -2,137 +2,56 @@
   display: table;
   table-layout: fixed;
   width: 100%;
-  border-left: 1px solid $pal-gray90;
-  border-right: 1px solid $pal-gray90;
 }
 
 .ticket {
   display: table-row;
-  color: $pal-gray40;
-
-  &:hover {
-    background: mix($pal-gray100, white, 70%);
-  }
+  color: $gray-600;
+  font-size: $font-size-xs;
 }
 
 .ticket-cell {
   display: table-cell;
-  padding: 10px 10px;
-  border-bottom: 1px solid $pal-gray90;
+  padding: 1rem .625rem;
+  border-bottom: 1px solid $gray-300;
   vertical-align: middle;
 
   & > .spinner {
-    display: inline-block;
+    float: right;
   }
 }
 
 .ticket-icon {
-  width: 55px;
-  text-align: center;
-  vertical-align: middle;
-  padding-left: 15px;
-  padding-right: 10px;
+  width: calc(24px + 1rem + .625rem);
+  padding-left: 1rem;
 
-  i {
-    font-size: 24px;
-    color: $pal-accent;
+  .icon {
+    vertical-align: middle;
+  }
+
+  [class^="icon-"] {
+    fill: theme-color("secondary");
   }
 }
 
 .ticket-body {
-  font-size: 13px;
-  line-height: 20px;
-
-  padding-right: 20px;
-
-  p {
-    margin: 0;
-  }
-}
-
-.ticket-country {
-  text-align: center;
-  font-weight: bold;
-  font-size: 11px;
-  line-height: 16px;
-  padding: 1px 0.5em;
-  margin: 0 0.75em 0 0;
-  border: 1px solid $pal-gray85;
-  border-radius: $borderRadius-small;
-}
-
-.ticket-addon {
-  width: 180px;
-  font-size: 13px;
-
-  p {
-    margin: 0;
-    line-height: 20px;
-  }
-
-  .ticket-status {
-    margin-bottom: 4px;
-  }
-}
-
-
-.ticket-actions {
-  width: 45px;
-  padding-left: 0;
-  padding-right: 0;
-
-  .iconButton--dimmed {
-    width: 25px;
-    line-height: 1;
-    padding: 10px 10px;
-
-    i {
-      font-size: 24px;
-    }
-  }
-}
-
-.ticket-dates {
-  width: 130px;
-  font-size: 13px;
-
-  p {
-    margin: 0;
-    line-height: 20px;
-  }
-
-  .ticket-deadline {
-    color: $pal-gray50;
-    margin-top: 2px;
-  }
-
-  i {
-    margin: 0 0.25em 0 0;
-  }
 }
 
 
 .ticket-name {
-  font-size: 16px;
-  font-weight: bold;
-  line-height: 20px;
-  margin: 0 0 2px 0;
-  padding: 4px 0;
+  font-size: $font-size-base;
+  font-weight: $font-weight-bold;
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
 
   a {
-    color: $pal-gray20;
+    color: $gray-900;
 
     &:hover {
-      color: $pal-primary;
+      color: theme-color("primary");
     }
   }
-}
-
-.ticket-updated {
-  color: $pal-gray50;
 }
 
 .ticket--other {
@@ -140,3 +59,54 @@
     font-weight: normal;
   }
 }
+
+.ticket-updated {
+  color: $gray-600;
+  margin-top: $spacer;
+
+  .icon {
+    vertical-align: -3px;
+  }
+
+}
+
+.ticket-addon {
+  width: 12em;
+}
+
+.ticket-responders {
+  margin-top: $spacer;
+  display: flex;
+  justify-content: flex-end;
+  white-space: nowrap;
+}
+
+.userTag {
+  min-width: 0;
+  white-space: nowrap;
+  overflow-x: hidden;
+  text-overflow: ellipsis;
+}
+
+
+.ticket-actions {
+  width: 24px + 20px;
+  padding-left: 0;
+  padding-right: 0;
+  vertical-align: middle;
+
+  .dd-trigger.button--icon {
+    padding: 10px;
+  }
+}
+
+.ticket-dates {
+  width: 10em;
+
+  .ticket-deadline {
+    color: $gray-500;
+    margin-top: $spacer-1;
+  }
+}
+
+

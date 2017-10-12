@@ -10,9 +10,7 @@
     {{content-for "head"}}
 
     <!-- wrapper assets -->
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:400,600,700&subset=cyrillic">
-    <link rel="stylesheet" href="{{rootURL}}assets/id-with-bootstrap.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700&subset=cyrillic">
 
     <!-- standard assets -->
     <link rel="stylesheet" href="{{rootURL}}assets/vendor.css">
@@ -56,7 +54,7 @@
                 <i class="fa fa-database"></i> External Databases
               </a>
             </li>
-            <li>
+            <li  class="active">
               <a href="/" id="nav-id-app">
                 <i class="fa fa-comments-o"></i> Research Requests
               </a>
@@ -86,18 +84,6 @@
               </ul>
             </li>
 
-            <li class="dropdown">
-              <a class="dropdown-toggle" href="#" data-toggle="dropdown">
-                <i class="fa fa-language"></i>
-                <b class="caret"></b>
-              </a>
-              <ul class="dropdown-menu" role="menu">
-                <li><a href="#locale-1">locale.1</a></li>
-                <li><a href="#locale-2">locale.2</a></li>
-                <li><a href="#locale-3">locale.3</a></li>
-              </ul>
-            </li>
-
           </ul>
 
         </div>
@@ -110,8 +96,6 @@
     <script src="{{rootURL}}assets/vendor.js"></script>
     <script src="{{rootURL}}assets/id.js"></script>
 
-    {{content-for "body-footer"}}
-
     <script type="text/javascript">
       var navLink = document.getElementById('nav-id-app');
       navLink.addEventListener('click', function (e) {
@@ -119,5 +103,8 @@
         IdFrontend.__container__.lookup('router:main').transitionTo('index');
       });
     </script>
+
+    {{content-for "body-footer"}}
+
   </body>
 </html>

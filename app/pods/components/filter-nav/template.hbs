@@ -3,33 +3,25 @@
     {{yield}}
   </div>
   <div class="filters-secondary">
-    {{#if (can "manage tickets")}}
     <div class="filters-item">
       {{#ui-dropdown data-test-dd="filter-kind" as |dd|}}
-        {{#dd.trigger}}
-          {{t 'ticket.kind' count=1}} <b class="arrow"></b>
-        {{/dd.trigger}}
+        {{#dd.trigger}}{{t 'ticket.kind' count=1}}{{/dd.trigger}}
         {{#dd.body headerText=(t 'filters.kind.title')}}
           <div class="list">
-            <a href {{action (pipe (action updateFilter 'kind' null) dd.close)}} class="list-item {{if (eq kind null) "is-active"}}">
-              {{t 'filters.options.all'}}
-            </a>
-
             {{#each kindList as |value|}}
               <a href {{action (pipe (action updateFilter 'kind' value) dd.close)}} class="list-item {{if (eq kind value) "is-active"}}" data-test-kind-option={{value}}>
-                <span class="iconContainer">{{ticket-icon value}}</span>
-                <span class="iconText">{{t (concat 'ticket.kind.' value '.name')}}</span>
+                {{~icon-by-kind value class="icon--lg"}}
+                {{t (concat 'ticket.kind.' value '.name')}}
               </a>
             {{/each}}
           </div>
         {{/dd.body}}
       {{/ui-dropdown}}
     </div>
+    {{#if (can "manage tickets")}}
     <div class="filters-item">
       {{#ui-dropdown data-test-dd="filter-country" as |dd|}}
-        {{#dd.trigger}}
-          {{t 'ticket.country' count=1}} <b class="arrow"></b>
-        {{/dd.trigger}}
+        {{#dd.trigger}}{{t 'ticket.country' count=1}}{{/dd.trigger}}
         {{#dd.body headerText=(t 'filters.country.title')}}
           {{search-countries
             current=country
@@ -39,9 +31,7 @@
     </div>
     <div class="filters-item">
       {{#ui-dropdown data-test-dd="filter-requester" as |dd|}}
-        {{#dd.trigger}}
-          {{t 'ticket.requester' count=1}} <b class="arrow"></b>
-        {{/dd.trigger}}
+        {{#dd.trigger}}{{t 'ticket.requester' count=1}}{{/dd.trigger}}
         {{#dd.body headerText=(t 'filters.requester.title')}}
           {{search-users
             task=searchRequesters
@@ -52,9 +42,7 @@
     </div>
     <div class="filters-item">
       {{#ui-dropdown data-test-dd="filter-responder" as |dd|}}
-        {{#dd.trigger}}
-          {{t 'ticket.responder' count=1}} <b class="arrow"></b>
-        {{/dd.trigger}}
+        {{#dd.trigger}}{{t 'ticket.responder' count=1}}{{/dd.trigger}}
         {{#dd.body headerText=(t 'filters.responder.title')}}
           {{#search-users
             task=searchStaff
@@ -71,9 +59,7 @@
     {{/if}}
     <div class="filters-item">
       {{#ui-dropdown data-test-dd="sort" as |dd|}}
-        {{#dd.trigger}}
-          {{t 'filters.sort.label'}} <b class="arrow"></b>
-        {{/dd.trigger}}
+        {{#dd.trigger}}{{t 'filters.sort.label'}}{{/dd.trigger}}
         {{#dd.body headerText=(t 'filters.sort.title')}}
           <div class="list">
             {{#each-in sortFields as |key label|}}

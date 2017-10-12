@@ -12,7 +12,7 @@
       {{#if headerText}}
         <div class="dd-header">
           <span>{{headerText}}</span>
-          <button class="iconButton" {{action close}}><i class="fa fa-close"></i></button>
+          <button class="button button--icon button--dark" {{action close}}>{{icon "x"}}</button>
         </div>
       {{/if}}
       {{yield}}

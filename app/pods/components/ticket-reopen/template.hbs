@@ -1,46 +1,47 @@
-<a class="button button--primary" {{action (mut isShowingModal) true}} data-test-reopen>
+{{#ui-modal-container as |m|}}
+
+<button class="button button--primary" {{action m.toggle}} data-test-reopen>
   {{t 'pods.view.reopen.button'}}
-</a>
+</button>
 
-{{#if isShowingModal}}
-{{#ui-modal 
-  containerClass="modal--uploader" 
-  onClose=(action (mut isShowingModal) false)
-}}
-  <div class="modal-content">
-  <div class="modal-body">
+{{#if m.isShowing}}
+{{#ui-modal modifiers="modal--lg" onClose=(action m.toggle)}}
+  <form class="modal-content" {{action "save" m.toggle on="submit"}}>
 
-    <form class="activity-form" {{action "save" on="submit"}}>
-      <div class="modal-title">
-        <h4>{{t 'pods.view.reopen.button'}}</h4>
-      </div>
+    <div class="modal-header">
+      <h4 class="modal-title t-primary">{{t 'pods.view.reopen.button'}}</h4>
+      <button class="button button--icon button--dark" {{action m.toggle}} aria-label="Close">
+        {{~icon "x"~}}
+      </button>
+    </div>
 
-      <div class="modal-innerContent">
+    <div class="modal-body">
+
       {{#validated-field
-        class="form-group"
+        class="formGroup"
         validation=this.validations.attrs.body
         didValidate=didValidate as |field|}}
 
-        {{textarea value=body class="form-control" id="ticket-reopen" rows="5" placeholder=(t 'pods.view.reopen.title')}}
+        {{textarea value=body class="formControl formControl--sm" id="ticket-reopen" rows="6" placeholder=(t 'pods.view.reopen.title')}}
 
         {{#if field.showErrors}}
-          <div class="help-block">{{v-get this "body" "message"}}</div>
+          <div class="formFeedback t-right">{{v-get this "body" "message"}}</div>
         {{/if}}
 
       {{/validated-field}}
-      </div>
+    </div>
 
-      <div class="modal-actions modal-actions--right">
-        <button type="submit" class="button button--primary">
-          {{t 'actions.reopen'}}
-        </button>
-        <button class="button button--bordered button--accent" {{action (mut isShowingModal) false}}>
-          {{t 'actions.cancel'}}
-        </button>
-      </div>
-    </form>
+    <div class="modal-footer">
+      <button class="button buttonOutlined--secondary" {{action m.toggle}}>
+        {{~t 'actions.cancel'~}}
+      </button>
+      <button type="submit" class="button button--primary">
+        {{~t 'actions.reopen'~}}
+      </button>
+    </div>
 
-  </div>
-  </div>
+  </form>
 {{/ui-modal}}
 {{/if}}
+
+{{/ui-modal-container}}

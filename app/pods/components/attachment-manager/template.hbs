@@ -1,27 +1,18 @@
+{{#ui-modal-container as |m|}}
 <div class="attachments">
 
-  {{#if model.attachments.length}}
-    <div class="attachments-list">
-      {{#each model.attachments as |item|}}
-        <a href={{item.upload}} target="_blank" class="file">
-          <span class="tag">{{format-filesize item.fileSize}}</span> {{item.fileName}}
-        </a>
-      {{/each}}
-    </div>
-  {{/if}}
-
   {{#if canUpload}}
-  <div class="attachments-dropzone">
+  <div class="attachments-dropzone mb-4">
     {{#ui-dropzone class="dropzone" name="ticket-attachments" as |dropzone queue|}}
       <div>
         {{#if dropzone.active}}
           {{#if dropzone.valid}}
-            <h4 class="dropzone-title">{{t 'attachment.dropzone.activeTitle'}}</h4>
+            <h3 class="dropzone-title">{{t 'attachment.dropzone.activeTitle'}}</h3>
           {{else}}
-            Invalid
+            {{t 'attachment.dropzone.invalidTitle'}}
           {{/if}}
         {{else}}
-          <h4 class="dropzone-title">{{t 'attachment.dropzone.title'}}</h4>
+          <h3 class="dropzone-title">{{t 'attachment.dropzone.title'}}</h3>
           <div class="dropzone-body">
             {{#if dropzone.supported}}
               <p>{{t 'attachment.dropzone.desc'}}</p>
@@ -29,54 +20,81 @@
             {{#file-upload
               name="ticket-attachments"
               multiple=true
-              onfileadd=(action (mut isShowingModal) true) class="dropzone-trigger button button--accent"}}
+              onfileadd=(action m.open) class="dropzone-trigger button button--primary"}}
               {{t 'attachment.dropzone.select'}}
             {{/file-upload}}
           </div>
         {{/if}}
       </div>
-  {{/ui-dropzone}}
+    {{/ui-dropzone}}
   </div>
+  {{/if}}
+
+  {{#if model.attachments.length}}
+    <h3 class="t-light mb-3">{{t 'attachment' count=2}}</h3>
+
+    <ul class="attachments-list">
+      {{#each model.attachments as |item|}}
+        <li>
+          <a href={{item.upload}} title={{item.fileName}} target="_blank" class="file">
+            <span class="file-size">{{format-filesize item.fileSize}}</span>
+            {{~icon "file"~}}
+            {{item.fileName}}
+          </a>
+        </li>
+      {{/each}}
+    </ul>
+  {{else if (not canUpload)}}
+    <h3 class="t-light mb-3">{{t 'attachment' count=0}}</h3>
   {{/if}}
 
 </div>
 
 {{#with (file-queue name="ticket-attachments") as |queue|}}
-  {{#if isShowingModal}}
-  {{#ui-modal 
-    containerClass="modal--uploader" 
-    onClose=(pipe (action (mut isShowingModal) false) (action 'flushQueue' queue))
-  }}
+
+  {{#if m.isShowing}}
+  {{#ui-modal modifiers="modal--lg" onClose=(pipe m.toggle (action 'flushQueue' queue))}}
     <div class="modal-content">
-    <div class="modal-body">
 
-      <form>
-        <div class="modal-title">
-          <h4>{{t 'attachment.filesSelected' count=queue.files.length}}</h4>
-        </div>
+      <div class="modal-header">
+        <h4 class="modal-title t-primary">
+          {{~t 'attachment.filesSelected' count=queue.files.length~}}
+        </h4>
+        <button class="button button--icon button--dark" {{action (pipe m.toggle (action 'flushQueue' queue))}} aria-label="Close">
+          {{~icon "x"~}}
+        </button>
+      </div>
 
+      <div class="modal-body modal-body--grayed">
         <div class="modal-attachmentsList">
           {{#each queue.files as |file|}}
-            <div class="file">
-              <span class="tag">{{format-filesize file.size}}</span>{{file.name}}
+            <div class="file" title={{file.name}}>
+              <span class="file-size">{{format-filesize file.size}}</span>
+              {{~icon "file"~}}
+              {{file.name}}
             </div>
           {{/each}}
         </div>
+      </div>
 
-        <div class="modal-actions modal-actions--right">
-          <button class="button button--primary" {{action 'startUploads' queue}} disabled={{batchUpload.isRunning}}>{{t 'actions.upload'}}</button>
-          <button class="button button--bordered" {{action (pipe (action (mut isShowingModal) false) (action 'flushQueue' queue))}}>{{t 'actions.cancel'}}</button>
+      <div class="modal-footer">
+        {{#if batchUpload.isRunning}}
+          <div class="modal-progress">
+            {{queue.progress}}% {{ui-spinner}}
+          </div>
+        {{/if}}
 
-          {{#if batchUpload.isRunning}}
-            <div class="modal-progress">
-              {{queue.progress}}% {{ui-spinner}}
-            </div>
-          {{/if}}
-        </div>
-      </form>
+        <button class="button buttonOutlined--secondary" {{action (pipe m.toggle (action 'flushQueue' queue))}}>
+          {{~t 'actions.cancel'~}}
+        </button>
+        <button class="button button--primary" {{action 'startUploads' queue m.toggle}} disabled={{batchUpload.isRunning}}>
+          {{~t 'actions.upload'~}}
+        </button>
+      </div>
 
-    </div>
     </div>
   {{/ui-modal}}
   {{/if}}
+
 {{/with}}
+{{/ui-modal-container}}

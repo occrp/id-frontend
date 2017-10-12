@@ -3,10 +3,9 @@ import { task, all } from 'ember-concurrency';
 const { get, set } = Ember;
 
 export default Ember.Component.extend({
+  tagName: '',
   store: Ember.inject.service(),
   session: Ember.inject.service(),
-
-  isShowingModal: false,
 
   batchUpload: task(function * (queue) {
     let childTasks = [];
@@ -43,9 +42,9 @@ export default Ember.Component.extend({
   }).maxConcurrency(3).enqueue(),
 
   actions: {
-    startUploads(queue) {
+    startUploads(queue, triggerClose) {
       this.get('batchUpload').perform(queue).then(() => {
-        this.set('isShowingModal', false);
+        triggerClose();
       });
     },
 

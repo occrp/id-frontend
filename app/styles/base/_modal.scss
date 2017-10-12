@@ -1,0 +1,175 @@
+// .modal-open      - body class for killing the scroll
+// .modal           - container to scroll within
+// .modal-dialog    - positioning shell for the actual modal
+// .modal-content   - actual modal w/ bg and corners and stuff
+
+
+// Kill the scroll on the body
+.modal-open {
+  overflow: hidden;
+}
+
+// Container that the modal scrolls within
+.modal {
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  z-index: $zindex-modal;
+  overflow: hidden;
+  // Prevent Chrome on Windows from adding a focus outline. For details, see
+  // https://github.com/twbs/bootstrap/pull/10951.
+  outline: 0;
+  // We deliberately don't use `-webkit-overflow-scrolling: touch;` due to a
+  // gnarly iOS Safari bug: https://bugs.webkit.org/show_bug.cgi?id=158342
+  // See also https://github.com/twbs/bootstrap/issues/17695
+}
+
+.modal-open .modal {
+  overflow-x: hidden;
+  overflow-y: auto;
+}
+
+// Modal background
+.modal-backdrop {
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  background-color: $modal-backdrop-bg;
+  opacity: $modal-backdrop-opacity;
+
+  // this is a direct descendant of .modal so no need for z-index
+}
+
+// Shell div to position the modal with padding on edges
+.modal-dialog {
+  position: relative;
+  width: auto;
+  margin: $modal-dialog-margin;
+  padding: $modal-dialog-padding;
+
+  // Center the content but also support vertical scrolling on overflow
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+
+  // allow clicks to pass through for custom click handling to close modal
+  pointer-events: none;
+}
+
+// Actual modal
+.modal-content {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  // counteract the pointer-events: none; in the .modal-dialog
+  pointer-events: auto;
+  background-color: $modal-content-bg;
+  background-clip: padding-box;
+  border: $modal-content-border-width solid $modal-content-border-color;
+  border-radius: $border-radius-lg;
+  box-shadow: $modal-content-box-shadow-xs;
+  // Remove focus outline from opened modal
+  outline: 0;
+}
+
+// Measure scrollbar width for padding body during modal show/hide
+.modal-scrollbarMeasure {
+  position: absolute;
+  top: -9999px;
+  width: 50px;
+  height: 50px;
+  overflow: scroll;
+}
+
+// Scale up the modal
+@include respond(sm) {
+  // Automatically set modal's width for larger viewports
+  .modal-dialog {
+    max-width: $modal-sm;
+    margin: $modal-dialog-margin-sm-up;
+    padding: $modal-dialog-padding-sm-up;
+  }
+
+  .modal-content {
+    box-shadow: $modal-content-box-shadow-sm-up;
+  }
+}
+
+@include respond(lg) {
+  .modal--lg {
+    max-width: $modal-lg;
+  }
+}
+
+
+
+
+
+
+// Modal header
+// Top section of the modal w/ title and dismiss
+.modal-header {
+  display: flex;
+  align-items: flex-start; // so the close btn always stays on the upper right corner
+  justify-content: space-between; // Put modal header elements (title and dismiss) on opposite ends
+  padding: $modal-inner-padding;
+  padding-bottom: 0;
+}
+
+// Title text within header
+.modal-title {
+}
+
+// Modal body
+// Where all modal content resides (sibling of .modal-header and .modal-footer)
+.modal-body {
+  position: relative;
+  // Enable `flex-grow: 1` so that the body take up as much space as possible
+  // when should there be a fixed height on `.modal-dialog`.
+  flex: 1 1 auto;
+  padding: $modal-inner-padding;
+}
+
+.modal-body--grayed {
+  background: $gray-100;
+  margin: $modal-inner-padding 0;
+}
+
+// Footer (for actions)
+.modal-footer {
+  display: flex;
+  align-items: center; // vertically center
+  justify-content: flex-end; // Right align buttons with flex property because text-align doesn't work on flex items
+  padding: $modal-inner-padding;
+  padding-top: 0;
+
+  // Easily place margin between footer elements
+  > :not(:first-child) { margin-left: .25rem; }
+  > :not(:last-child) { margin-right: .25rem; }
+}
+
+.modal-footer--center {
+  justify-content: center;
+  padding-bottom: $modal-inner-padding * 2;
+
+  > :not(:first-child) { margin-left: .5rem; }
+  > :not(:last-child) { margin-right: .5rem; }
+}
+
+.modal-progress {
+  display: flex;
+  align-items: center;
+  color: theme-color("secondary");
+  font-size: $font-size-lg;
+  margin-right: $spacer-4 !important;
+
+  .spinner {
+    margin-left: 1rem
+  }
+}
+

@@ -158,7 +158,8 @@ export default {
 
     comment: {
       title: 'Leave a comment',
-      submitButton: 'Post comment'
+      submitButton: 'Post comment',
+      action: '{{user}} commented {{relativeTime}}'
     },
     attachment: {
       action: '{{user}} attached files'
@@ -179,10 +180,12 @@ export default {
 
   attachment: {
     'other': 'Attachments',
+    'zero': 'No attachments',
 
     dropzone: {
       title: 'Upload files',
       activeTitle: 'Drop to upload',
+      invalidTitle: 'Invalid',
       desc: 'Drag and drop files onto this area or {{select}}',
       select: 'Select a file'
     },

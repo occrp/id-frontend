@@ -4,26 +4,33 @@
   <div class="ticket ticket--{{item.kind}}" data-test-ticket={{item.id}}>
 
     <div class="ticket-cell ticket-icon">
-      {{ticket-icon item.kind}}
+      {{icon-by-kind item.kind class="icon--lg"}}
     </div>
 
     <div class="ticket-cell ticket-body">
       <h4 class="ticket-name" data-test-ticket-name>
         {{#link-to "view" item.id}}{{item.displayName}}{{/link-to}}
       </h4>
-      
+
       <p class="ticket-updated">
-        {{#if (and (can "resolve tickets") item.country)}}
-          <span class="ticket-country" title="{{item.country}}">{{country-name item.country}}</span>
+        {{#if (can "manage tickets")}}
+          {{#link-to 'browse' (query-params requester=item.requester.id page=1) class="link-muted t-bold"}}
+            {{~item.requester.displayName~}}
+          {{/link-to}}
+        {{else}}
+          {{t 'ticket.updatedAt.prefix'}}
+          <time datetime={{item.updatedAt}} title={{moment-format item.updatedAt 'LLL'}}>
+            {{moment-from-now item.updatedAt}}
+          </time>
         {{/if}}
-        {{t 'ticket.updatedAt.prefix'}}
-        <time datetime={{item.updatedAt}} title={{moment-format item.updatedAt 'LLL'}}>
-          {{moment-from-now item.updatedAt}}
-        </time>
+        {{#if (and (can "resolve tickets") item.country)}}
+          {{icon 'location' class="ml-2"}}
+          <span title="{{item.country}}">{{country-name item.country}}</span>
+        {{/if}}
       </p>
     </div>
 
-    <div class="ticket-cell ticket-addon text-right">
+    <div class="ticket-cell ticket-addon t-right">
       {{#if (and updateResponder.isRunning (eq updateResponder.last.args.[0] item))}}
         {{ui-spinner}}
       {{else}}
@@ -39,15 +46,15 @@
     {{#if (can "manage tickets")}}
     <div class="ticket-cell ticket-actions">
       {{#ui-dropdown data-test-dd="quick-assign-responder" as |dd|}}
-        {{#dd.trigger}}
-          <button class="iconButton iconButton--dimmed"><i class="fa fa-user-plus" /></button>
+        {{#dd.trigger class="button button--icon button--dark"}}
+          {{~icon "clippy" class="icon--lg"~}}
         {{/dd.trigger}}
         {{#dd.body headerText=(t 'actions.assign.longForm')}}
           {{search-users
             task=searchStaff
             current=item.responderIds
             onSelect=(pipe-action (action 'selectUser' item) dd.close)
-            class="text-left"}}
+          }}
         {{/dd.body}}
       {{/ui-dropdown}}
     </div>

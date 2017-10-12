@@ -1,14 +1,4 @@
-// .pager and .pagination are used by BS
-
 .pg {
-  font-size: 15px;
-  line-height: (20px / 15px);
-  margin: 20px 0 20px 0;
-}
-
-.pg-container {
-  margin: 0; // Bootstrap
-  padding: 0; // lack of reset
   @include cf;
 }
 
@@ -18,88 +8,65 @@
 .pg-next {
   display: block;
   float: left;
-  list-style: none;
-  margin-left: 5px;
+  margin-left: to-rem(6px);
+
+  color: $gray-600;
+  font-weight: $font-weight-bold;
+  padding: .125rem .55rem;
+  border-radius: $border-radius;
+  border: 1px solid transparent;
 }
 
 .pg-prev {
   margin-left: 0;
 }
 
-.pg-container a,
-.pg-container span {
-  display: block;
-  box-sizing: border-box;
-  color: $pal-gray50;
-  font-weight: bold;
-  padding: 3px / 15px * 1em 8px;
-  min-width: 26px;
-  border-radius: 3px;
-  text-align: center;
-  vertical-align: middle;
-  border: 1px solid transparent;
-}
 
-.pg-sep {
-  color: $pal-gray70;
-}
-
-.pg-prev a,
-.pg-next a,
-.pg-item a {
-
-  &:hover {
+.pg-prev:not(.is-disabled),
+.pg-next:not(.is-disabled),
+.pg-item:not(.is-disabled) {
+  @include hover {
+    color: theme-color("primary");
     text-decoration: none;
-    color: $pal-primary;
-  }
-
-  &:focus {
-    text-decoration: none;
+    border-color: theme-color("primary");
   }
 }
 
-.pg-item a:hover {
-  border-color: $pal-primary;
-}
-
-.pg-item {
-
-  &.is-active a {
-    color: $pal-gray20;
-    border-color: $pal-accent;
+.pg-item:not(.is-disabled) {
+  &.is-active {
+    color: $gray-900;
+    border-color: theme-color("secondary");
   }
 }
 
-.pg-prev a:before,
-.pg-prev span:before,
-.pg-next a:after,
-.pg-next span:after {
-  content: '';
-  display: inline-block;
-  width: 0;
-  height: 0;
-  border: 6px solid transparent;
-  border-right-color: $pal-accent;
-  vertical-align: baseline;
-  position: relative;
-  left: -4px;
-}
 
-.pg-next a:after,
-.pg-next span:after  {
-  border-right-color: transparent;
-  border-left-color: $pal-accent;
-  left: auto;
-  right: -4px;
+.pg-prev {
+  @include caret(left, theme-color("secondary"))
+  &::before {
+    vertical-align: baseline;
+  }
+}
+.pg-next {
+  @include caret(right, theme-color("secondary"))
+  &::after {
+    vertical-align: baseline;
+  }
 }
 
 .pg-prev.is-disabled {
-   span:before {
-    border-right-color: $pal-gray70;
+  color: $gray-500;
+  &::before {
+    border-right-color: $gray-500;
   }
 }
 .pg-next.is-disabled {
-  span:after {
-    border-left-color: $pal-gray70;
+  color: $gray-500;
+  &::after {
+    border-left-color: $gray-500;
   }
+}
+
+
+.pg-sep {
+  color: $gray-500;
 }

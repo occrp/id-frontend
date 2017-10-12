@@ -4,6 +4,7 @@ import ProfileDecorator from 'id-frontend/mixins/profile-decorator';
 const wrapper = Ember.Object.extend(ProfileDecorator);
 
 export default Ember.Component.extend({
+  tagName: '',
   i18n: Ember.inject.service(),
   hasFilters: Ember.computed.or('requester', 'responder', 'kind', 'country'),
 

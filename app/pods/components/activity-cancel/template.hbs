@@ -1,9 +1,11 @@
 <div class="activity-headline">
-  {{status-label 'cancelled'}}
-  {{t 'prefixes.by'}}
-  <strong>{{data.user.displayName}}</strong>
-  {{t 'prefixes.at'}}
-  <time datetime={{data.createdAt}} title={{moment-format data.createdAt 'LLL'}}>
-    {{moment-format data.createdAt 'h:mm A, MMM DD YYYY'}}
-  </time>
+  {{icon "circle-slash"}}
+  <div>
+    {{status-label 'cancelled'}}
+    {{t 'prefixes.by'}}
+    <strong>{{data.user.displayName}}</strong>
+    <time datetime={{data.createdAt}} title={{moment-format data.createdAt 'LLL'}}>
+      {{moment-from-now data.createdAt}}
+    </time>
+  </div>
 </div>

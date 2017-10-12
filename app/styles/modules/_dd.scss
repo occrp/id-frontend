@@ -2,61 +2,41 @@
 }
 
 .dd-trigger {
-  display: block;
-
-  &:hover,
-  &:focus {
-    text-decoration: none;
-    color: $pal-primary;
-  }
-
-  &.is-active {
-    color: $pal-gray20;
-  }
+  display: inline-block;
 }
 
 .dd-header {
-  @include cf;
-  background: $pal-gray95;
-  font-size: 13px;
-  color: $pal-gray30;
-  line-height: 20px;
-  border-bottom: 1px solid $pal-gray70;
-  padding: 5px 10px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: $gray-200;
+  font-size: $font-size-xs;
+  color: $gray-700;
+  border-bottom: 1px solid $gray-500;
+  padding: to-rem(7px) $spacer-3;
 
-  .iconButton {
-    float: right;
-    margin-right: -5px;
-  }
-
-  span {
-    float: left;
+  .button--icon {
+    padding: 2px;
+    margin-right: -1*$spacer;
   }
 }
 
 .dd-content {
-  box-sizing: border-box;
   background-color: white;
-  width: 280px;
-  margin: 0 -1px 0 0;
-  border: 1px solid $pal-gray70;
-  box-shadow: 0 6px 12px rgba(0,0,0,.25);
-  border-radius: $borderRadius-large;
+  width: to-rem(290px);
+  border: 1px solid $gray-500;
+  box-shadow: $dropdown-box-shadow;
+  border-radius: $border-radius;
   background-clip: padding-box;
   overflow: hidden;
 
-  .ember-tether-target-attached-left & {
-    margin-right: 0;
-    margin-left: -1px;
-  }
-
   .spinner {
-    margin: 15px auto 16px auto;
+    margin: 1rem auto 1rem auto;
   }
 }
 
 .searchBox {
   padding: 7px;
-  border-bottom: 1px solid $pal-gray70;
-  background: $pal-gray95;
+  border-bottom: 1px solid $gray-500;
+  background: $gray-200;
 }

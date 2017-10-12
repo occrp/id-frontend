@@ -1,25 +1,28 @@
-<a class="button button--bordered" {{action (mut isShowingModal) true}} data-test-cancel>
+{{#ui-modal-container as |m|}}
+
+<button class="button buttonOutlined--primary" {{action m.toggle}} data-test-cancel>
   {{t 'pods.view.close.button' verb=activityType}}
-</a>
+</button>
 
-{{#if isShowingModal}}
-{{#ui-modal onClose=(action (mut isShowingModal) false)}}
+{{#if m.isShowing}}
+{{#ui-modal onClose=(action m.toggle)}}
   <div class="modal-content">
-  <div class="modal-body">
 
-    <div class="modal-message">
-      <h4>{{t 'pods.view.close.title' verb=activityType}}</h4>
-    </div>
-    <div class="modal-actions modal-actions--center">
-      <button class="button button--bordered button--accent" {{action (mut isShowingModal) false}} data-test-modal-dontCancel>
-        {{t 'pods.view.close.cancel'}}
-      </button>
-      <button class="button button--primary" {{action 'save'}} data-test-modal-confirmCancel>
-        {{t 'pods.view.close.confirm' verb=activityType}}
-      </button>
+    <div class="modal-body t-center">
+      <h4 class="t-normal my-3 t-muted">{{t 'pods.view.close.title' verb=activityType}}</h4>
     </div>
 
-  </div>
+    <div class="modal-footer modal-footer--center">
+      <button class="button buttonOutlined--secondary" {{action m.toggle}} data-test-modal-dontCancel>
+        {{~t 'pods.view.close.cancel'~}}
+      </button>
+      <button class="button button--primary" {{action 'save' m.toggle}} data-test-modal-confirmCancel>
+        {{~t 'pods.view.close.confirm' verb=activityType~}}
+      </button>
+    </div>
+
   </div>
 {{/ui-modal}}
 {{/if}}
+
+{{/ui-modal-container}}

@@ -1,36 +1,29 @@
 .tag {
   background: white;
   display: inline-block;
-  font-size: 13px;
+  font-size: $font-size-xs;
+  line-height: (13px * 1.5 - 2px) / 13px;
   text-transform: uppercase;
-  font-weight: bold;
-  color: $pal-gray60;
-  border: 1px solid $pal-gray60;
-  border-radius: $borderRadius-small;
-  padding: 1px 0.5em;
+  font-weight: $font-weight-bold;
+  color: $gray-650;
+  border: 1px solid $gray-650;
+  border-radius: $border-radius-sm;
+  padding: 1px to-rem(6px);
+  margin-bottom: -1px;
 }
 
-.tag--new {
-  color: mix(black, $pal-green, 15%);
-  border-color: $pal-green;
-}
+$tag-colors: (
+  "new": theme-color("success"),
+  "progress": $pal-materialCyan,
+  "pending": $pal-orange,
+  "closed": theme-color("danger"),
+  "cancelled": theme-color("danger")
+);
 
-.tag--progress {
-  color: $pal-cyan;
-  border-color: $pal-cyan;
-}
 
-.tag--pending {
-  color: $pal-orange;
-  border-color: $pal-orange;
-}
-
-.tag--closed {
-  color: $pal-materialRed;
-  border-color: $pal-materialRed;
-}
-
-.tag--cancelled {
-  color: $pal-materialRed;
-  border-color: $pal-materialRed;
+@each $color, $value in $tag-colors {
+  .tag--#{$color} {
+    color: $value;
+    border-color: $value;
+  }
 }

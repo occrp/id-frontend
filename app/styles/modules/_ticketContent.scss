@@ -1,128 +1,56 @@
-.ticketTitle {
-  margin: 0 0 15px 0;
-}
-
 .ticketSubtitle {
-  clear: both;
-  color: $pal-gray50;
-  margin: 0 0 -20px 0;
+  display: flex;
+  justify-content: space-between;
+  color: $gray-600;
+  padding: $spacer-3 $spacer-4;
+  border-bottom: 1px solid $gray-300;
+  margin: 0 -1*$spacer-4 $spacer-4 -1*$spacer-4;
+  font-size: $font-size-sm;
 
   strong {
-    color: $pal-gray30;
+    color: $gray-650;
+  }
+
+  // TODO: abstract this stuff
+  strong, .link-muted {
     margin: 0 0.1em;
   }
 }
 
-.ticketType {
-  font-size: 16px;
-  font-weight: bold;
-  color: $pal-gray30;
-  float: right;
-  margin-top: 10px;
+.statusBar {
+  font-size: $font-size-sm;
+  padding: $spacer-3 $spacer-4;
+  border-bottom: 1px solid $gray-300;
+  margin: 0 -1*$spacer-4;
+  display: flex;
+  justify-content: space-between;
+  color: $text-muted;
+  align-items: center;
+  box-sizing: content-box;
+  min-height: $font-size-sm * 1.5;
 
-  i {
-    font-size: 24px;
-    float: left;
-    padding-right: 12px;
-    color: $pal-accent;
-  }
-
-  span {
-    display: block;
-    overflow: hidden;
+  .spinner {
+    margin: 0 auto;
   }
 }
 
 .ticketDetails {
-  font-size: 16px;
-  margin: 20px 0 40px 0;
-  clear: both;
-
   &:first-child {
     margin-top: 0;
   }
 
   dt {
-    font-weight: bold;
-    color: $pal-primary;
-    margin-bottom: 0.5em;
+    font-weight: $font-weight-bold;
+    color: theme-color("primary");
+    margin-bottom: 0.5rem;
   }
 
   dd + dt {
-    margin-top: 1.75em;
-  }
-}
-
-.alert--custom {
-  font-size: 16px;
-
-  h4 {
-    font-size: 16px;
-    font-weight: bold;
-
-    i {
-      margin-right: 0.25em;
-    }
-
-    &:last-child {
-      margin-bottom: 0;
-    }
+    margin-top: 1.75rem;
   }
 }
 
 
 .ticketMeta {
-  margin-top: 10px;
-}
-
-.requestDetails {
-  margin: 30px 0;
-
-  dt {
-    line-height: 20px;
-    font-weight: normal;
-    margin-top: 1em;
-    margin-bottom: 0.25em;
-    color: $pal-gray50;
-
-    & > i {
-      font-size: 14px;
-      margin-right: 0.25em;
-    }
-  }
-
-  dd {
-    line-height: 20px;
-    padding-bottom: 1em;
-    border-bottom: 1px solid $pal-gray90;
-
-    &.with-accent {
-      border-bottom-color: $pal-accent;
-    }
-
-    .spinner {
-      height: 10px;
-      padding: 5px 0;
-    }
-
-    &.with-padding {
-      padding: 1em 0;
-    }
-  }
-
-  // the dropdown >_>
-  .responderControls {
-    float: right;
-
-    & > .spinner {
-      margin-top: 5px;
-    }
-  }
-
-  .dd-trigger {
-    &.is-active .button {
-      @extend .button--accent:active
-    }
-  }
-
+  background: $gray-100;
 }

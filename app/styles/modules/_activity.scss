@@ -1,17 +1,17 @@
 .activityHeader {
   @include cf;
 
-  h3 {
+  h2 {
     float: left;
     margin: 0;
-  
+
     .spinner {
-      font-size: 14px;
-      display: inline-block;
-      margin-left: 1em;
+      display: inline-flex;
+      vertical-align: middle;
+      margin-left: .75rem;
     }
-  } 
-  
+  }
+
   .pg {
     float: right;
     margin-left: 1em;
@@ -20,28 +20,26 @@
 }
 
 .activityList {
-  clear: both;
   position: relative;
-  margin: 25px 0 40px 0;
+  margin: $spacer-4 0 $spacer-8 0;
 
+  // vertical line in the background
   &:before {
     content: '';
-    width: 2px;
+    width: 1px;
     height: 100%;
     position: absolute;
     top: 0;
-    left: 30px;
-    background: $pal-gray95;
+    left: calc(1rem + 14px);
+    background: $gray-300;
   }
 }
 
 .activity {
   position: relative;
-  & + & {
-    margin-top: 30px;
-  }
+  margin: $spacer-3 0;
 
-  box-shadow: 0 0 0 3px white;
+  // box-shadow: 0 0 0 3px white;
 }
 
 .activity--comment,
@@ -49,23 +47,25 @@
 .activity--pending {
   @include cf;
   clear: both;
-  border: 1px solid $pal-gray85;
-  border-radius: $borderRadius-large;
+  border: 1px solid $gray-400;
+  border-radius: $border-radius;
   background-clip: padding-box;
   background: white;
+  margin: $spacer-4 0;
 }
 
 .activity-author {
-  color: $pal-gray50;
-  background: $pal-gray100;
-  padding: 12px 20px;
-
+  color: $gray-600;
+  background: $gray-100;
+  padding: to-rem(9px) 1rem;
   background-clip: padding-box;
-  border-radius: $borderRadius-large;
+  border-radius: $border-radius;
+  border-bottom-left-radius: 0;
+  border-bottom-left-radius: 0;
+  font-size: $font-size-sm;
 
   strong {
-    font-size: 15px;
-    color: $pal-gray30;
+    color: $gray-650;
     margin: 0 0.1em;
 
     &:first-child {
@@ -79,66 +79,66 @@
 }
 
 .activity-headline {
-  color: $pal-gray50;
+  color: $gray-600;
   background: white;
-  border: 1px solid $pal-gray85;
-  border-radius: $borderRadius-large;
-  padding: 13px 20px;
+  padding: 0 calc(1rem + 1px);
+  font-size: $font-size-sm;
+  display: flex;
+  align-items: center;
+
+  .icon {
+    background: $gray-100;
+    padding: 5px;
+    box-sizing: content-box;
+    border-radius: 50%;
+    border: 1px solid $gray-400;
+    margin-right: .5rem;
+  }
+
+  [class^="icon-"] {
+    fill: $gray-600;
+  }
 
   strong {
-    font-size: 15px;
-    color: $pal-gray30;
+    color: $gray-650;
     margin: 0 0.1em;
   }
 
   .tag {
     margin-right: 0.35em;
-  }
-
-  .iconContainer {
-    width: 24px;
-    height: 20px;
-    float: left;
-    margin-right: 1em;
-
-    i {
-      font-size: 20px;
-      color: $pal-gray70;
-    }
+    vertical-align: top;
   }
 
 }
 
 
 .activity-body {
-  font-size: 15px;
-  padding: 15px 20px;
+  font-size: $font-size-sm;
+  padding: .8rem 1rem;
 
   &.activity-form {
-    padding: 10px 10px;
-    font-size: 14px;
+    padding: to-rem(7px);
+    padding-bottom: $spacer;
   }
 }
 
 .activity-form {
   @include cf;
 
-  .form-control {
-    font-size: 15px;
-  }
+  .formGroup--actions {
+    margin-top: $spacer;
+    @include cf;
 
-  .help-block {
-    text-align: right;
-  }
+    .button {
+      float: right;
+    }
 
-  .spinner {
-    float: right;
-    margin-right: 20px;
-    margin-top: 15px;
-  }
+    .spinner {
+      float: right;
+      margin-right: 1.25rem;
+      margin-top: 1rem;
+    }
 
-  .form-actions {
-    margin-top: 10px;
   }
 }
 

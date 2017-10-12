@@ -1,26 +1,58 @@
-<div class="cover cover--content">
 <div class="wrapper">
+
+  <div class="titleBar">
+    <h1 class="titleBar-title t-light" data-test-name>
+      {{~icon-by-kind model.kind class="icon--xl"~}}
+      {{~title~}}
+    </h1>
+    <div class="titleBar-action">
+      {{#if (and (can "resolve tickets") model.isOpen model.responders.length)}}
+        <div class="mr-3">
+          {{#if model.isPending}}
+            {{ticket-unmark-pending model=model activityType='unmark' onSave=(action 'saveStatus')}}
+          {{else}}
+            {{ticket-mark-pending model=model onSave=(action 'saveStatus' 'pending')}}
+          {{/if}}
+        </div>
+      {{/if}}
+
+      {{#if model.isOpen}}
+        {{ticket-close model=model activityType=(if (can "resolve tickets") 'close' 'cancel') onSave=(action 'saveStatus')}}
+      {{else}}
+        {{ticket-reopen model=model onSave=(action 'saveStatus' 'reopen')}}
+      {{/if}}
+    </div>
+  </div>
 
   <div class="l-fixedColumn">
     <div class="l-fixedColumn-main">
 
-      <div class="ticketType">
-        {{ticket-icon model.kind}}
-        <span>{{t (concat 'ticket.kind.' model.kind '.shortName')}}</span>
+      <div class="ticketSubtitle">
+        <div class="ticketSubtitle-main">
+          {{t 'ticket.requester.prefix'}}
+          {{#if (can 'manage tickets')}}
+            {{#link-to 'browse' (query-params requester=model.requester.id page=1) class="link-muted t-bold"~}}
+              {{model.requester.displayName}}
+            {{~/link-to}}
+          {{else}}
+            <strong>{{model.requester.displayName}}</strong>
+          {{/if}}
+          {{t 'prefixes.on'}}
+          <time datetime={{model.createdAt}} title={{moment-format model.createdAt 'LLL'}}>
+            {{moment-format model.createdAt}}
+          </time>
+        </div>
+
+        {{#if model.deadlineAt}}
+          <div class="ticketSubtitle-secondary">
+            {{t 'ticket.deadline.label'}}
+            <time datetime={{model.deadlineAt}} title={{moment-format model.deadlineAt 'LLL'}}>
+              {{moment-format model.deadlineAt}}
+            </time>
+          </div>
+        {{/if}}
       </div>
 
-      <h1 class="ticketTitle t-dark t-flush" data-test-name>{{title}}</h1>
-
-      <p class="ticketSubtitle">
-        {{t 'ticket.requester.prefix'}}
-        <strong>{{model.requester.displayName}}</strong>
-        {{t 'prefixes.on'}}
-        <time datetime={{model.createdAt}} title={{moment-format model.createdAt 'LLL'}}>
-          {{moment-format model.createdAt}}
-        </time>
-      </p>
-
-      <hr class="l-fixedColumn-separator" />
 
       {{#if (eq model.kind kindList.[0])}}
         <dl class="ticketDetails">
@@ -79,33 +111,36 @@
       {{/if}}
 
       {{#if model.sensitive}}
-        <div class="alert alert-warning alert--custom">
-          <h4><i class="fa fa-exclamation-triangle" /> {{t 'ticket.sensitive.trueLabel'}}</h4>
+        <div class="alert alert--warning mt-5">
+          <h4 class="t5 alert-heading">{{icon "alert" class="icon--lg"}} {{t 'ticket.sensitive.trueLabel'}}</h4>
           {{#if model.whysensitive}}
             <div class="formatted">{{model.whysensitive}}</div>
           {{/if}}
         </div>
       {{/if}}
 
-      {{#if (or model.isOpen model.attachments.length)}}
-        <hr class="l-fixedColumn-separator" />
-
-        <h3 class="t-accent">{{t 'attachment' count=2}}</h3>
-
-        {{attachment-manager model=model canUpload=model.isOpen}}
-      {{/if}}
-
-      <hr class="l-fixedColumn-separator" />
+      <hr />
 
       {{activity-list model=model showForm=model.isOpen}}
 
     </div>
 
-    <div class="l-fixedColumn-column">
-      {{ticket-meta model=model class="ticketMeta" showControls=model.isOpen}}
+    <div class="l-fixedColumn-column ticketMeta">
+      <div class="statusBar">
+        {{#if updateStatus.isRunning}}
+          {{ui-spinner}}
+        {{else}}
+          {{status-label model.status data-test-status class="mr-2"}}
+          <div>
+            {{t 'ticket.updatedAt.prefix'}}
+            <time datetime={{model.updatedAt}} title={{moment-format model.updatedAt 'LLL'}}>{{moment-from-now model.updatedAt}}</time>
+          </div>
+        {{/if}}
+      </div>
+
+      {{ticket-meta class="mt-4" model=model}}
     </div>
 
   </div>
 
-</div>
 </div>

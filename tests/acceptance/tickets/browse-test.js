@@ -243,7 +243,7 @@ test('(admins) tickets can be filtered by responder', async function(assert) {
 
   server.get('/tickets', (schema, request) => {
     let responderId = request.queryParams['filter[responders__user]'];
-    
+
     // used to be on responderId. see adapter
     let isNone = request.queryParams['filter[responders__user__isnull]'];
 
@@ -436,7 +436,7 @@ test('(admins) can assign responders from the ticket list', async function(asser
     });
 
     done();
- 
+
     let ticket = schema.tickets.find(2);
     ticket.update('status', 'in-progress');
 
@@ -460,14 +460,14 @@ test('(admins) can assign responders from the ticket list', async function(asser
 
   await click($ddTrigger);
   await fillIn('[data-test-filter-search]', 'Staff #3');
-  
+
   assert.equal(find('[data-test-search-result]:first').text(), 'Staff #3 Doe');
   await click('[data-test-search-result]:first');
 
   $responders = $item.find('[data-test-ticket-responders]');
   assert.ok($responders.length);
   assert.equal($responders.text(), 'Staff #3 Doe');
-  
+
   $status = $item.find('[data-test-ticket-status]');
   assert.equal($status.text().toLowerCase(), 'in progress');
 });

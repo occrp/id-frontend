@@ -1,5 +1,5 @@
-{{firstItem.user.displayName}}
+<span class="userTag">{{firstItem.user.displayName}}</span>
 
-{{~#if (gt data.length 1)}}
-, +{{dec data.length}}
-{{/if}}
+{{~#if (gt data.length 1)~}}
+<span>, +{{dec data.length}}</span>
+{{~/if}}

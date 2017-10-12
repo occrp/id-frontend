@@ -13,4 +13,10 @@ export default {
   //   if (count >= 5) { return 'many'; }
   //   return 'other';
   // }
+
+  pluralForm: function englishWithZero(n) {
+    if (n === 0) { return 'zero'; }
+    if (n === 1) { return 'one'; }
+    return 'other';
+  }
 };

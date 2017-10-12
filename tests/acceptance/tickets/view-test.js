@@ -120,16 +120,16 @@ test('cancelling a ticket', async function(assert) {
   assert.equal(currentURL(), `/view/${ticket.id}`);
 
   assert.equal(find('[data-test-status]').text().trim(), 'New');
-  assert.equal(find('.ember-modal-dialog').length, 0);
+  assert.equal(find('.modal').length, 0);
 
   await click('[data-test-cancel]');
 
-  findWithAssert('.ember-modal-dialog');
+  findWithAssert('.modal');
 
   await click('[data-test-modal-confirmCancel]');
 
   assert.equal(find('[data-test-status]').text().trim(), 'Cancelled');
-  assert.equal(find('.ember-modal-dialog').length, 0);
+  assert.equal(find('.modal').length, 0);
 });
 
 test('(staff) closing a ticket', async function(assert) {
@@ -189,14 +189,14 @@ test('(staff) closing a ticket', async function(assert) {
   assert.equal(currentURL(), `/view/${ticket.id}`);
 
   assert.equal(find('[data-test-status]').text().trim(), 'New');
-  assert.equal(find('.ember-modal-dialog').length, 0);
+  assert.equal(find('.modal').length, 0);
 
   await click('[data-test-cancel]');
 
-  findWithAssert('.ember-modal-dialog');
+  findWithAssert('.modal');
 
   await click('[data-test-modal-confirmCancel]');
 
   assert.equal(find('[data-test-status]').text().trim(), 'Closed');
-  assert.equal(find('.ember-modal-dialog').length, 0);
+  assert.equal(find('.modal').length, 0);
 });

@@ -1,6 +1,6 @@
 <div class="editableList-controls {{if isExpanded 'is-expanded'}}">
-  <button class="iconButton iconButton--dimmed" {{action (toggle "isExpanded" this)}}>
-    <i class="fa fa-times" />
+  <button class="button button--icon" {{action (toggle "isExpanded" this)}}>
+    {{~icon "x"~}}
   </button>
   <button class="button button--micro button--primary" tabindex="{{unless isExpanded -1}}" {{action onRemove}}>{{t 'actions.remove'}}</button>
 </div>

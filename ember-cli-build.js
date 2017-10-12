@@ -2,7 +2,7 @@
 const EmberApp = require('ember-cli/lib/broccoli/ember-app');
 
 module.exports = function(defaults) {
-  var app = new EmberApp(defaults, {
+  let buildOptions = {
     storeConfigInMeta: false,
 
     fingerprint: {
@@ -12,8 +12,7 @@ module.exports = function(defaults) {
     outputPaths: {
       app: {
         css: {
-          'app': '/assets/id.css',
-          'id': '/assets/id-with-bootstrap.css'
+          'app': '/assets/id.css'
         },
         js: '/assets/id.js',
       }
@@ -26,8 +25,22 @@ module.exports = function(defaults) {
     nodeModulesToVendor: [
       'node_modules/filesize/lib',
       'node_modules/fuse.js/dist'
-    ]
-  });
+    ],
+
+    svgJar: {
+      sourceDirs: [
+        'node_modules/octicons/build/svg',
+      ],
+      strategy: 'symbol'
+    }
+  };
+
+  if ( process.env.EMBER_ENV === 'development') {
+    buildOptions.tests = false;
+  }
+
+  let app = new EmberApp(defaults, buildOptions);
+
 
   // Use `app.import` to add additional libraries to the generated
   // output files.
@@ -49,6 +62,6 @@ module.exports = function(defaults) {
   });
   app.import('vendor/fuse.js');
   app.import('vendor/shims/fuse.js');
-  
+
   return app.toTree();
 };

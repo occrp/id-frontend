@@ -1,11 +1,12 @@
 .activeFilters {
   box-sizing: content-box;
-  min-height: 24px;
-  background: $pal-gray100;
+  min-height: $font-size-sm * $line-height-base;
+  background: $gray-100;
   padding: 8px 20px;
-  border: 1px solid $pal-gray70;
-  border-top: 0;
+  border-bottom: 1px solid $gray-400;
   @include cf;
+  margin: 0 0 0 0;
+  font-size: $font-size-sm;
 
   .spinner {
     margin-top: 8px;
@@ -14,29 +15,27 @@
 
 .activeFilters-label {
   float: left;
-  // font-weight: bold;
   line-height: 20px;
   margin: 2px 0;
   margin-right: 13px;
-  color: $pal-gray30;
+  color: $gray-700;
 }
 
 .activeFilters-clear {
   float: right;
-  margin: 2px 0;
-  font-weight: bold;
+  font-weight: $font-weight-bold;
 }
 
 
 .chip {
   float: left;
-  border: 1px solid $pal-accent;
+  border: 1px solid theme-color("secondary");
   padding: 0 0;
-  font-size: 13px;
+  font-size: $font-size-xs;
   line-height: 20px;
   border-radius: 12px;
   overflow: hidden;
-  background: $pal-accent;
+  background: theme-color("secondary");
   color: white;
 
   & + & {
@@ -47,13 +46,12 @@
 .chip-label {
   float: left;
   padding: 1px 8px 1px 10px;
-  font-weight: bold;
 }
 
 .chip-value {
   float: left;
-  font-weight: bold;
+
   padding: 1px 10px 1px 8px;
   background: white;
-  color: $pal-gray20;
+  color: $gray-700;
 }
