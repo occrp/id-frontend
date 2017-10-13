@@ -18,7 +18,7 @@
         {{/dd.body}}
       {{/ui-dropdown}}
     </div>
-    {{#if (can "manage tickets")}}
+    {{#if (can "resolve tickets")}}
     <div class="filters-item">
       {{#ui-dropdown data-test-dd="filter-country" as |dd|}}
         {{#dd.trigger}}{{t 'ticket.country' count=1}}{{/dd.trigger}}
@@ -29,6 +29,8 @@
         {{/dd.body}}
       {{/ui-dropdown}}
     </div>
+    {{/if}}
+    {{#if (can "manage tickets")}}
     <div class="filters-item">
       {{#ui-dropdown data-test-dd="filter-requester" as |dd|}}
         {{#dd.trigger}}{{t 'ticket.requester' count=1}}{{/dd.trigger}}

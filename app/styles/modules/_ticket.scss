@@ -8,6 +8,11 @@
   display: table-row;
   color: $gray-600;
   font-size: $font-size-xs;
+  transition: background .1s ease-in-out;
+
+  @include hover {
+    background: $gray-100;
+  }
 }
 
 .ticket-cell {
