@@ -13,20 +13,25 @@
       </h4>
 
       <p class="ticket-updated">
-        {{#if (can "manage tickets")}}
-          {{#link-to 'browse' (query-params requester=item.requester.id page=1) class="link-muted t-bold"}}
-            {{~item.requester.displayName~}}
-          {{/link-to}}
+        {{#if (can "resolve tickets")}}
+          {{#if (can "manage tickets")}}
+            {{#link-to 'browse' (query-params requester=item.requester.id page=1) class="link-muted t-bold"}}
+              {{~item.requester.displayName~}}
+            {{/link-to}}
+          {{else}}
+            <strong class="t-muted">{{~item.requester.displayName~}}</strong>
+          {{/if}}
+          {{#if item.country}}
+            {{icon 'location' class="ml-2"}}
+            <span title="{{item.country}}">{{country-name item.country}}</span>
+          {{/if}}
         {{else}}
           {{t 'ticket.updatedAt.prefix'}}
           <time datetime={{item.updatedAt}} title={{moment-format item.updatedAt 'LLL'}}>
             {{moment-from-now item.updatedAt}}
           </time>
         {{/if}}
-        {{#if (and (can "resolve tickets") item.country)}}
-          {{icon 'location' class="ml-2"}}
-          <span title="{{item.country}}">{{country-name item.country}}</span>
-        {{/if}}
+
       </p>
     </div>
 
