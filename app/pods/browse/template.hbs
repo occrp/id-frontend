@@ -43,7 +43,21 @@
       filterMeta=filterMeta
       resetFilters=(action 'resetFilters')}}
 
-    {{ticket-list data=model}}
+    {{#unless ticketCount}}
+      {{#no-results title=(t 'empty.noTickets.title')}}
+        {{#link-to "new" class="button buttonOutlined--primary"}}
+          {{~t 'empty.noTickets.button'~}}
+        {{/link-to}}
+      {{/no-results}}
+    {{else}}
+      {{#unless model.length}}
+        {{#no-results title=(t 'empty.noResults.title')}}
+          {{t 'empty.noResults.body'}}
+        {{/no-results}}
+      {{else}}
+        {{ticket-list data=model}}
+      {{/unless}}
+    {{/unless}}
 
     {{ui-pagination class="mt-4" meta=model.meta current=page route='browse'}}
 

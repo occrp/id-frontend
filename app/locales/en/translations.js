@@ -280,5 +280,16 @@ export default {
 
   errors: {
     genericInvalid: 'Please fill in this field'
+  },
+
+  empty: {
+    noTickets: {
+      title: "Looks like you haven't submitted any requests yet.",
+      button: 'Submit a request'
+    },
+    noResults: {
+      title: 'No results matched your search.',
+      body: 'Use the menu above to easily filter requests.'
+    }
   }
 };

@@ -21,7 +21,8 @@ export default Ember.Service.extend({
             lastName: payload.last_name,
             email: payload.email,
             isStaff: payload.is_staff,
-            isSuperuser: payload.is_superuser
+            isSuperuser: payload.is_superuser,
+            ticketCount: payload.ticket_count
           }
         }
       });

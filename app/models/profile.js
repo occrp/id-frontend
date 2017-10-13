@@ -12,6 +12,8 @@ export default DS.Model.extend(ProfileDecorator, {
 
   isStaff: attr('boolean'),
   isSuperuser: attr('boolean'),
+
+  ticketCount: attr('number')
 });
 
 export const getSearchGenerator = function(opts) {

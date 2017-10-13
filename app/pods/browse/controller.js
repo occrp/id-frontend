@@ -2,6 +2,9 @@ import Ember from 'ember';
 import Pageable from 'id-frontend/mixins/pageable';
 
 export default Ember.Controller.extend(Pageable, {
+  session: Ember.inject.service(),
+  ticketCount: Ember.computed.reads('session.currentUser.ticketCount'),
+
   queryParams: ['status', 'country', 'kind', 'requester', 'responder', 'sort'],
 
   status: 'new,in-progress,pending',
