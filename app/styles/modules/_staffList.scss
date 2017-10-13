@@ -1,0 +1,19 @@
+.staffList {
+  font-size: $font-size-sm;
+  font-weight: $font-weight-bold;
+  color: $gray-650;
+  line-height: $line-height-lg;
+
+  li {
+    display: inline-block;
+
+    &:not(:last-child) {
+      margin-right: .25em;
+    }
+
+    &:not(:last-child)::after {
+      content: ',';
+      font-weight: $font-weight-normal;
+    }
+  }
+}
