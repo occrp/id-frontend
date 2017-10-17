@@ -52,13 +52,17 @@ export default Ember.Controller.extend(Pageable, {
       this.set('page', 1);
     },
 
-    resetFilters() {
+    resetAllFilters() {
       this.setProperties({
         kind: null,
         country: null,
         requester: null,
         responder: null
       });
+    },
+
+    resetFilter(prop) {
+      this.set(prop, null);
     }
   }
 });

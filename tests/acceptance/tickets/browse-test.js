@@ -304,6 +304,62 @@ test('(admins) tickets can be filtered by responder', async function(assert) {
 });
 
 
+test('(staff) ticket filters can be removed', async function(assert) {
+  assert.expect(9);
+  initSession({ isStaff: true });
+
+  server.createList('ticket', 10, {
+    status: 'new',
+    kind(i) { return i < 4 ? 'person_ownership' : random(['company_ownership'], ['other']); },
+    country(i) { return i === 1 ? 'GB' : 'AD' }
+  });
+
+  server.get('/tickets', (schema, request) => {
+    let kind = request.queryParams['filter[kind]'];
+    let country = request.queryParams['filter[country]'];
+    let filters = {};
+
+    if (kind) {
+      filters.kind = kind;
+    }
+
+    if (country) {
+      filters.country = country;
+    }
+
+    return schema.tickets.where(filters);
+  });
+
+  await visit('/view');
+
+  let $items = find('[data-test-ticket]');
+  assert.equal($items.length, 10, 'showing unfiltered tickets');
+
+  await click('[data-test-dd="filter-kind"] [data-test-dd-trigger]');
+  await click('[data-test-kind-option="person_ownership"]');
+  await click('[data-test-dd="filter-country"] [data-test-dd-trigger]');
+  await fillIn('[data-test-filter-search]', 'and');
+  await click('[data-test-search-result]:first');
+
+  assert.equal(currentURL(), '/view?country=AD&kind=person_ownership');
+
+  $items = find('[data-test-ticket]');
+  assert.equal($items.length, 3, 'showing filtered tickets');
+
+  assert.ok(find('[data-test-active-filter="kind"]').length);
+  assert.ok(find('[data-test-active-filter="country"]').length);
+
+  await click('[data-test-remove-filter="kind"]');
+
+  $items = find('[data-test-ticket]');
+  assert.equal(currentURL(), '/view?country=AD');
+  assert.equal($items.length, 9, 'showing tickets filtered only by country');
+
+  assert.equal(find('[data-test-active-filter="kind"]').length, 0);
+  assert.ok(find('[data-test-active-filter="country"]').length);
+});
+
+
 test('tickets can sorted', async function(assert) {
   assert.expect(1);
   initSession();

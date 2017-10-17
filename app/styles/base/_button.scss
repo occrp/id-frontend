@@ -172,6 +172,7 @@ fieldset[disabled] a.button {
   font-weight: $font-weight-normal;
   color: $link-color;
   background-color: transparent;
+  text-transform: none;
 
   @include hover {
     color: $link-hover-color;

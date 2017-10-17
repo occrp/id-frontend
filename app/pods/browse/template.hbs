@@ -20,7 +20,8 @@
       requester=requester
       responder=responder
       sort=sort
-      updateFilter=(action 'updateFilter')}}
+      updateFilter=(action 'updateFilter')
+    }}
       <div class="statusTabs">
         {{#link-to 'browse' (query-params status=statusPairs.open page=1) class=(if (eq status statusPairs.open) "active") data-test-status-tab="open"}}
           {{icon "issue-opened"~}}
@@ -41,7 +42,9 @@
       requester=requester
       responder=responder
       filterMeta=filterMeta
-      resetFilters=(action 'resetFilters')}}
+      resetAllFilters=(action 'resetAllFilters')
+      resetFilter=(action 'resetFilter')
+    }}
 
     {{#unless ticketCount}}
       {{#no-results title=(t 'empty.noTickets.title')}}
