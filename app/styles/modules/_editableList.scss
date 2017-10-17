@@ -34,8 +34,13 @@
   margin: -2px 0;
 
   .button--icon {
+    color: $gray-600;
     padding: 4px 4px;
     margin-right: 6px;
+
+    @include hover {
+      color: $link-hover-color;
+    }
   }
 
   &.is-expanded {
