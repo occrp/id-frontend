@@ -231,7 +231,7 @@ fieldset[disabled] a.button {
   color: $gray-600;
 
   @include hover {
-    color: $gray-800;
+    color: $link-hover-color;
     background-color: transparent;
   }
 }

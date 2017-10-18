@@ -4,6 +4,7 @@ import moment from 'moment';
 export default Ember.Component.extend({
   tagName: '',
   currentValue: Ember.computed.readOnly('value'),
+  theCenter: Ember.computed.oneWay('center'),
 
   isShowingPopup: false,
   constraints: [
@@ -26,6 +27,11 @@ export default Ember.Component.extend({
     },
 
     updateDatepicker(val) {
+      if (Ember.isBlank(val)) {
+        this.get('onSelect')({date: null});
+        return;
+      }
+
       if (val.length < 10) {
         return;
       }
@@ -38,7 +44,7 @@ export default Ember.Component.extend({
       }
 
       if (date.isValid()) {
-        this.set('center', date);
+        this.set('theCenter', date);
         this.get('onSelect')({date: date.toDate()});
       }
     }

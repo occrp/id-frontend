@@ -44,7 +44,8 @@ export default {
     deadline: {
       label: 'Deadline',
       desc: 'We will try to meet your deadline, but please note that our researchers are quite busy.<br /> Give them as much time as you possibly can!',
-      prefix: 'due {{relativeTime}}'
+      prefix: 'due {{relativeTime}}',
+      empty: 'No deadline'
     },
     sensitive: {
       label: 'Is it sensitive?',

@@ -141,10 +141,15 @@ export const Validations = buildValidations({
 
   deadlineAt: validator('date', {
     value(model, attribute) {
-      return moment.utc(model.get(attribute)).format('DD/MM/YYYY');
+      const val = model.get(attribute);
+      if (Ember.isEmpty(val)) {
+        return val;
+      }
+      return moment.utc(val).format('DD/MM/YYYY');
     },
+    allowBlank: true,
     format: 'DD/MM/YYYY',
-    onOrAfter: Ember.computed(function() {
+    after: Ember.computed(function() {
       return moment.utc().add(3, 'days').format('DD/MM/YYYY');
     }).volatile()
   })

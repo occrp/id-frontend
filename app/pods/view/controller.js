@@ -1,10 +1,11 @@
 import Ember from 'ember';
 import { task } from 'ember-concurrency';
-import { kindList } from 'id-frontend/models/ticket';
-// import countries from 'ember-i18n-iso-countries/langs/en';
+import { kindList, Validations } from 'id-frontend/models/ticket';
+import moment from 'moment';
 
 export default Ember.Controller.extend({
   kindList,
+  Validations,
 
   title: Ember.computed('model.kind', function () {
     switch (this.get('model.kind')) {
@@ -26,6 +27,16 @@ export default Ember.Controller.extend({
     }
 
     yield model.save();
+  }),
+
+  minimumDeadline: moment.utc().add(3, 'days'),
+  center: Ember.computed('model.deadlineAt', 'minimumDeadline', function() {
+    const deadline = this.get('model.deadlineAt');
+    if (Ember.isBlank(deadline)) {
+      return this.get('minimumDeadline');
+    }
+
+    return deadline;
   }),
 
   actions: {

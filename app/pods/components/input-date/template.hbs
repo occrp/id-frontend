@@ -1,6 +1,6 @@
 <input type="text"
   id="{{id}}"
-  class="formControl"
+  class="formControl {{class}}"
   value={{if currentValue (moment-format currentValue 'DD/MM/YYYY')}}
   onkeyup={{action 'updateDatepicker' value="target.value"}}
   onclick={{action 'open'}}
@@ -22,8 +22,8 @@
 
   <div class="datepickerContainer">
     {{#power-calendar class="datepicker"
-      center=center
-      onCenterChange=(action (mut center) value="date")
+      center=theCenter
+      onCenterChange=(action (mut theCenter) value="date")
       selected=currentValue
       onSelect=onSelect as |calendar|}}
       {{calendar.nav}}
