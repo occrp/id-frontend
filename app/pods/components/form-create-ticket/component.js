@@ -9,8 +9,8 @@ export default Ember.Component.extend({
   kindList,
   countries,
 
-  today: moment(),
-  minimumDeadline: moment().add(3, 'days'),
+  today: moment.utc(),
+  minimumDeadline: moment.utc().add(3, 'days'),
 
   buffer: Ember.computed('model', function() {
     let model = this.get('model');
@@ -52,6 +52,5 @@ export default Ember.Component.extend({
 
       });
     }
-
   }
 });

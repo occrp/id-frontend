@@ -110,7 +110,7 @@
       <div class="formGroup">
         <label for="ticket-born-at">{{t 'ticket.bornAt.label'}}</label>
 
-        {{input-date value=buffer.bornAt onSelect=(action (mut buffer.bornAt) value="date") inputId="ticket-born-at" maxDate=today}}
+        {{input-date value=buffer.bornAt onSelect=(action (mut buffer.bornAt) value="date") id="ticket-born-at" maxDate=today}}
       </div>
 
       {{#validated-field
@@ -270,11 +270,27 @@
 
     <h2 class="fieldGroup-title">{{t 'pods.new.form.requestDetails'}}</h2>
 
-    <div class="formGroup">
+    {{#validated-field
+      class="formGroup"
+      validation=buffer.validations.attrs.deadlineAt
+      didValidate=didValidate
+      as |field|}}
+
       <label for="ticket-deadline">{{t 'ticket.deadline.label'}}</label>
       <small class="formText t-muted">{{t 'ticket.deadline.desc'}}</small>
-      {{input-date value=buffer.deadlineAt onSelect=(action (mut buffer.deadlineAt) value="date") inputId="ticket-deadline" minDate=minimumDeadline center=minimumDeadline}}
-    </div>
+      {{input-date
+        value=buffer.deadlineAt
+        onSelect=(queue (action (mut buffer.deadlineAt) value="date") field.triggerValidations)
+        id="ticket-deadline"
+        center=minimumDeadline
+        minDate=minimumDeadline
+      }}
+
+      {{#if field.showErrors}}
+        <div class="formFeedback">{{v-get buffer "deadlineAt" "message"}}</div>
+      {{/if}}
+
+    {{/validated-field}}
 
     <div class="formGroup">
       <label class="customControl customControl--checkbox">

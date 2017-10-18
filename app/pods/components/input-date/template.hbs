@@ -1,19 +1,19 @@
 <input type="text"
-  id="{{inputId}}"
+  id="{{id}}"
   class="formControl"
   value={{if currentValue (moment-format currentValue 'DD/MM/YYYY')}}
   onkeyup={{action 'updateDatepicker' value="target.value"}}
   onclick={{action 'open'}}
   onfocus={{action (mut isFocused) true}}
   onblur={{action (mut isFocused) false}}
-  onchange={{action 'updateValue' value="target.value"}}
+  onchange={{action 'updateDatepicker' value="target.value"}}
   placeholder="dd/mm/yyyy" />
 
 {{#if isShowingPopup}}
 {{#modal-dialog
   containerClass="datepickerPopup"
   onClose='close'
-  tetherTarget=(concat '#' inputId)
+  tetherTarget=(concat '#' id)
   targetAttachment="top left"
   attachment="bottom left"
   constraints=constraints
