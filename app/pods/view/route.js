@@ -3,7 +3,7 @@ import Ember from 'ember';
 export default Ember.Route.extend({
   model(params) {
     return this.get('store').findRecord('ticket', params.ticket_id, {
-      include: 'requester,responders,responders.user,attachments',
+      include: 'requester,responders,responders.user,attachments,attachments.user',
       reload: true
     });
   },

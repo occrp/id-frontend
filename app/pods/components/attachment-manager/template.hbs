@@ -1,8 +1,8 @@
 {{#ui-modal-container as |m|}}
-<div class="attachments">
+<div>
 
   {{#if canUpload}}
-  <div class="attachments-dropzone mb-4">
+  <div class="mb-4">
     {{#ui-dropzone class="dropzone" name="ticket-attachments" as |dropzone queue|}}
       <div>
         {{#if dropzone.active}}
@@ -33,17 +33,25 @@
   {{#if model.attachments.length}}
     <h3 class="t-light mb-3">{{t 'attachment' count=2}}</h3>
 
-    <ul class="attachments-list">
-      {{#each model.attachments as |item|}}
-        <li>
-          <a href={{item.upload}} title={{item.fileName}} target="_blank" class="file">
-            <span class="file-size">{{format-filesize item.fileSize}}</span>
-            {{~icon "file"~}}
-            {{item.fileName}}
-          </a>
-        </li>
-      {{/each}}
-    </ul>
+    <div class="fileTimeline">
+    {{#each processedAttachments as |group|}}
+      <div class="fileGroup">
+        <p class="fileGroup-title">{{group.user.displayName}}</p>
+        <ul class="fileGroup-body">
+          {{#each group.models as |item|}}
+            <li>
+              <a href={{item.upload}} title={{item.fileName}} target="_blank" class="file">
+                <span class="file-size">{{format-filesize item.fileSize}}</span>
+                {{~icon "file"~}}
+                {{item.fileName}}
+              </a>
+            </li>
+          {{/each}}
+        </ul>
+      </div>
+    {{/each}}
+    </div>
+
   {{else if (not canUpload)}}
     <h3 class="t-light mb-3">{{t 'attachment' count=0}}</h3>
   {{/if}}
