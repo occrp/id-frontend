@@ -32,10 +32,7 @@
 
   .icon {
     vertical-align: middle;
-  }
-
-  [class^="icon-"] {
-    fill: theme-color("secondary");
+    color: theme-color("secondary");
   }
 }
 
@@ -102,6 +99,10 @@
 
   .dd-trigger.button--icon {
     padding: 10px;
+
+    &.is-active {
+      color: theme-color("primary");
+    }
   }
 }
 

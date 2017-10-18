@@ -25,14 +25,14 @@
       {{ui-spinner class="spinner--mimicButton mx-auto"}}
     {{else}}
       {{#ui-dropdown class="t-center" as |dd|}}
-        {{#dd.trigger class="button button--primary with-caret"}}
+        {{#dd.trigger class="button button--sm button--primary with-caret"}}
           Add responders
         {{/dd.trigger}}
         {{#dd.body
           class="t-left mt-1"
           headerText=(t 'actions.assign.longForm')
-          attachment="top center"
-          targetAttachment="bottom center"
+          attachment="top right"
+          targetAttachment="bottom right"
         }}
           {{search-users
             task=searchStaff
