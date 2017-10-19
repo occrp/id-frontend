@@ -12,10 +12,8 @@
     float: left;
     padding: .8rem 0;
 
-
-    &:hover,
-    &:active {
-      color: $gray-900;
+    @include hover {
+      color: $link-hover-color;
       text-decoration: none;
     }
 

@@ -12,8 +12,10 @@
   }
 
   // TODO: abstract this stuff
-  strong, .link-muted {
-    margin: 0 0.1em;
+  .ticketSubtitle-main {
+    strong, a {
+      margin: 0 0.1em;
+    }
   }
 
   .button--icon {

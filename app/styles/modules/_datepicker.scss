@@ -8,10 +8,10 @@
   position: relative;
   padding: 4px;
   padding-bottom: 2px;
-  border: 1px solid $gray-700;
+  border: 1px solid $gray-600;
   border-radius: $border-radius-lg;
   background: white;
-  box-shadow: 0 5px 15px -5px rgba(black ,.5);
+  box-shadow: $dropdown-box-shadow;
 
   // The joy of arrow tips
   &:before,
@@ -24,7 +24,7 @@
     width: 0;
     height: 0;
     border: 6px solid transparent;
-    border-top-color: $gray-700;
+    border-top-color: $gray-600;
   }
 
   &:after {
@@ -35,7 +35,7 @@
   .ember-tether-target-attached-bottom & {
     &:before {
       border-top-color: transparent;
-      border-bottom-color: $gray-700;
+      border-bottom-color: $gray-600;
       top: -12px;
       bottom: auto;
     }

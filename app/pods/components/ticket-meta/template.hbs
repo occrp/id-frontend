@@ -20,19 +20,18 @@
     {{/if}}
   </div>
 
-  <div class="mb-7">
+  <div class="mb-8">
     {{#if (or updateResponder.isRunning removeResponder.isRunning)}}
-      {{ui-spinner class="spinner--mimicButton mx-auto"}}
+      {{ui-spinner class="spinner--mimicButton"}}
     {{else}}
-      {{#ui-dropdown class="t-center" as |dd|}}
+      {{#ui-dropdown as |dd|}}
         {{#dd.trigger class="button button--sm button--primary with-caret"}}
           Add responders
         {{/dd.trigger}}
         {{#dd.body
-          class="t-left mt-1"
           headerText=(t 'actions.assign.longForm')
-          attachment="top right"
-          targetAttachment="bottom right"
+          attachment="top left"
+          targetAttachment="bottom left"
         }}
           {{search-users
             task=searchStaff
