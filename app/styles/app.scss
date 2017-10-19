@@ -49,6 +49,15 @@
 @import "modules/blankSlate";
 @import "modules/editZone";
 
+.loading-slider {
+  // render over the old nav
+  z-index: $zindex-loading-slider;
+
+  span {
+    background-color: lighten(theme-color("primary"), 5%);
+  }
+}
+
 // Old navbar >_>
 
 @import "meh";
