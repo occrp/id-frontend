@@ -1,0 +1,49 @@
+.appNav {
+  background: theme-color("primary");
+
+  .wrapper {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+}
+
+.appNav-links {
+  display: flex;
+
+  > a {
+    display: block;
+    padding: $spacer-2 $spacer-3;
+    color: white;
+
+    @include hover {
+      color: rgba(white, 0.85);
+      text-decoration: none;
+    }
+
+    // &.active {
+      background: rgba(black, 0.1);
+    // }
+  }
+}
+
+.appNav-switcher {
+  // flex: 0 1 auto;
+
+  .dd-trigger {
+    font-size: $font-size-sm;
+    color: white;
+    @include caret;
+    padding: $spacer-2 0;
+
+    .icon {
+      vertical-align: -3px;
+      margin-right: .5em;
+    }
+
+    @include hover {
+      color: rgba(white, 0.85);
+      text-decoration: none;
+    }
+  }
+}

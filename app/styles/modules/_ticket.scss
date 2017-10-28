@@ -100,6 +100,10 @@
   .dd-trigger.button--icon {
     padding: 10px;
 
+    @include hover {
+      color: theme-color("primary");
+    }
+
     &.is-active {
       color: theme-color("primary");
     }

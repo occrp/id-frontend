@@ -279,10 +279,6 @@ export default {
     by: 'by {{user}}'
   },
 
-  errors: {
-    genericInvalid: 'Please fill in this field'
-  },
-
   empty: {
     noTickets: {
       title: "Looks like you haven't submitted any requests yet.",
@@ -292,5 +288,18 @@ export default {
       title: 'No results matched your search.',
       body: 'Use the menu above to easily filter requests.'
     }
+  },
+
+  locales: {
+    en: 'English',
+    ru: 'Russian',
+    bs: 'Bosnian'
+  },
+
+  validationErrors: {
+    description: "This field",
+    blank: "{{description}} can't be blank",
+    onOrAfter: '{{description}} must be on or after {{onOrAfter}}'
   }
+
 };

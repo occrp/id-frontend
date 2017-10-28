@@ -49,6 +49,8 @@
 @import "modules/blankSlate";
 @import "modules/editZone";
 
+@import "modules/appNav";
+
 .loading-slider {
   // render over the old nav
   z-index: $zindex-loading-slider;

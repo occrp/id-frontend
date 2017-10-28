@@ -101,8 +101,8 @@ fieldset[disabled] a.button {
   background-color: $background-color;
   border-color: $gray-500;
 
-  [class^="icon-"] {
-    fill: theme-color("secondary");
+  .icon {
+    color: theme-color("primary");
   }
 
   @include hover {
@@ -110,8 +110,8 @@ fieldset[disabled] a.button {
     background-color: $color;
     border-color: $color;
 
-    [class^="icon-"] {
-      fill: $color-hover;
+    .icon {
+      color: $color-hover;
     }
   }
 

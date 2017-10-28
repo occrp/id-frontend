@@ -22,7 +22,7 @@
     color: $gray-700;
 
     @include hover {
-      color: $link-hover-color;
+      color: theme-color("primary");
       text-decoration: none;
     }
 

@@ -13,7 +13,7 @@
     padding: .8rem 0;
 
     @include hover {
-      color: $link-hover-color;
+      color: theme-color("primary");
       text-decoration: none;
     }
 
