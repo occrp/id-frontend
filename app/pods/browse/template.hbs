@@ -45,7 +45,7 @@
       resetFilter=(action 'resetFilter')
     }}
 
-    {{#unless ticketCount}}
+    {{#unless total.all}}
       {{#no-results title=(t 'empty.noTickets.title')}}
         {{#link-to "new" class="button buttonOutlined--primary"}}
           {{~t 'empty.noTickets.button'~}}

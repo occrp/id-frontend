@@ -22,7 +22,7 @@ export default Ember.Service.extend({
             email: payload.email,
             isStaff: payload.is_staff,
             isSuperuser: payload.is_superuser,
-            ticketCount: payload.ticket_count
+            ticketsCount: payload.tickets_count
           }
         }
       });

@@ -3,7 +3,6 @@ import Pageable from 'id-frontend/mixins/pageable';
 
 export default Ember.Controller.extend(Pageable, {
   session: Ember.inject.service(),
-  ticketCount: Ember.computed.reads('session.currentUser.ticketCount'),
 
   queryParams: ['status', 'country', 'kind', 'requester', 'responder', 'sort'],
 
@@ -29,7 +28,7 @@ export default Ember.Controller.extend(Pageable, {
 
     // camelCased because serializers/application
     return total && {
-      all: total.new + total.inProgress + total.pending + total.closed + total.cancelled,
+      all: total.all,
       open: total.new + total.inProgress + total.pending,
       closed: total.closed + total.cancelled
     };
