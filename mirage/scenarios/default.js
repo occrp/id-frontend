@@ -14,7 +14,8 @@ export default function(server) {
     firstName: 'John',
     lastName: 'Appleseed',
     isStaff: true,
-    isSuperuser: true
+    isSuperuser: true,
+    ticketCount: 10
   });
 
   server.createList('profile', 7);
@@ -25,27 +26,27 @@ export default function(server) {
   });
   server.createList('profile', 2, 'superuser');
 
-  server.createList('ticket', 3, 'isPerson', 'withActivities', 'withAttachments', {
+  server.createList('ticket', 1, 'isPerson', 'withActivities', 'withAttachments', {
     status: 'new',
   });
-  server.createList('ticket', 3, 'isPerson', 'withResponder', 'withComments', {
+  server.createList('ticket', 1, 'isPerson', 'withResponder', 'withComments', {
     status: 'in-progress',
   });
   server.create('ticket', 'isPerson', 'withComments', {
     status: 'pending',
   });
 
-  server.createList('ticket', 3, 'isPerson', 'withResponder', 'withAttachments', {
+  server.createList('ticket', 3, 'isPerson', 'withResponder', {
     status: 'closed',
   });
-  server.createList('ticket', 3, 'isPerson', 'withResponder', 'withComments', {
+  server.createList('ticket', 3, 'isPerson', 'withResponder', {
     status: 'cancelled',
   });
 
-  server.createList('ticket', 3, 'isCompany', 'withComments', {
+  server.createList('ticket', 3, 'isCompany', {
     status: 'new',
   });
-  server.createList('ticket', 3, 'isOther', 'withComments', {
+  server.createList('ticket', 3, 'isOther', {
     status: 'new',
   });
 

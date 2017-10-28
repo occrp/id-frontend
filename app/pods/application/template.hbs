@@ -1,0 +1,12 @@
+{{loading-slider isLoading=loading duration=250}}
+<nav class="appNav">
+  <div class="wrapper">
+    <div class="appNav-links">
+      {{#link-to 'browse' class="appNav-item"}}Requests{{/link-to}}
+    </div>
+    <div class="appNav-switcher">
+      {{i18n-switch currentLocale=lang switchLocale=(action 'switchLocale')}}
+    </div>
+  </div>
+</nav>
+{{outlet}}

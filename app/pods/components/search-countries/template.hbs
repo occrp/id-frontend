@@ -1,5 +1,5 @@
 <div class="searchBox">
-  <input type="text" class="form-control" oninput={{perform task value="target.value" }} placeholder={{t 'ticket.country.search.placeholder'}} autocomplete="off" data-test-filter-search />
+  <input type="text" class="formControl formControl--sm" oninput={{perform task value="target.value" }} placeholder={{t 'ticket.country.search.placeholder'}} autocomplete="off" data-test-filter-search />
 </div>
 
 {{yield}}
@@ -11,7 +11,10 @@
   {{#if task.lastSuccessful.value.length}}
     <div class="list">
       {{#each task.lastSuccessful.value as |country|}}
-        <a href class="list-item {{if (eq country current) "is-active"}}" {{action onSelect country}} data-test-search-result={{country}}><span class="tagContainer">{{country}}</span> {{country-name country}}</a>
+        <a href class="list-item {{if (eq country current) "is-active"}}" {{action onSelect country}} data-test-search-result={{country}}>
+          <span class="tagContainer">{{country}}</span>
+          {{country-name country}}
+        </a>
       {{/each}}
     </div>
   {{else if task.lastSuccessful}}

@@ -44,7 +44,8 @@ export default {
     deadline: {
       label: 'Deadline',
       desc: 'We will try to meet your deadline, but please note that our researchers are quite busy.<br /> Give them as much time as you possibly can!',
-      prefix: 'due {{relativeTime}}'
+      prefix: 'due {{relativeTime}}',
+      empty: 'No deadline'
     },
     sensitive: {
       label: 'Is it sensitive?',
@@ -158,7 +159,8 @@ export default {
 
     comment: {
       title: 'Leave a comment',
-      submitButton: 'Post comment'
+      submitButton: 'Post comment',
+      action: '{{user}} commented {{relativeTime}}'
     },
     attachment: {
       action: '{{user}} attached files'
@@ -179,10 +181,12 @@ export default {
 
   attachment: {
     'other': 'Attachments',
+    'zero': 'No attachments',
 
     dropzone: {
       title: 'Upload files',
       activeTitle: 'Drop to upload',
+      invalidTitle: 'Invalid',
       desc: 'Drag and drop files onto this area or {{select}}',
       select: 'Select a file'
     },
@@ -275,7 +279,27 @@ export default {
     by: 'by {{user}}'
   },
 
-  errors: {
-    genericInvalid: 'Please fill in this field'
+  empty: {
+    noTickets: {
+      title: "Looks like you haven't submitted any requests yet.",
+      button: 'Submit a request'
+    },
+    noResults: {
+      title: 'No results matched your search.',
+      body: 'Use the menu above to easily filter requests.'
+    }
+  },
+
+  locales: {
+    en: 'English',
+    ru: 'Russian',
+    bs: 'Bosnian'
+  },
+
+  validationErrors: {
+    description: "This field",
+    blank: "{{description}} can't be blank",
+    onOrAfter: '{{description}} must be on or after {{onOrAfter}}'
   }
+
 };

@@ -1,75 +1,279 @@
-/* ==========================================================================
-   Buttons
-   Derived from https://github.com/necolas/suit-button
-   ========================================================================== */
-
-/**
- * The button classes are best applied to links, buttons, and submit inputs.
- * These components can be used in forms, as calls to action, or as part of the
- * general UI of the site/app.
- *
- * Recommended use:
- *
- * <a class="btn [btn--modifier]" role="button" href="[url]">button text</a>
- * <button class="btn [btn--modifier]" type="submit">button text</button>
- * <input class="btn [btn--modifier]" type="submit" value="button text">
- */
-
-/**
- * Button template
- *
- * Build on this component using rulesets in your application-level CSS.
- *
- * 1. Normalize `box-sizing` across all elements that this component could be
- *    applied to.
- * 2. Inherit font styles from ancestor.
- * 3. Normalize `line-height`. Cannot be changed from `normal` in Firefox 4+.
- * 4. Inherit text color from ancestor.
- * 5. Prevent wrapping across multiple lines.
- * 6. Corrects inability to style clickable `input` types in iOS
- */
+//
+// Base styles
+//
 
 .button {
-  position: relative;
-  box-sizing: border-box; /* 1 */
   display: inline-block;
-
-  margin: 0;
-  padding: 0.25em 0.75em;
-  // border: 1px solid;
-  border: none;
-
-  font: inherit; /* 2 */
-  line-height: normal; /* 3 */
-
-  background: transparent;
-  color: inherit; /* 4*/
-
-  text-decoration: none;
+  font-weight: $btn-font-weight;
   text-align: center;
+  white-space: nowrap;
   vertical-align: middle;
-  white-space: nowrap; /* 5 */
-  -webkit-appearance: none; /* 6 */
-  cursor: pointer;
+  user-select: none;
+  border: $btn-border-width solid transparent;
+  padding: $btn-padding-y $btn-padding-x;
+  font-size: $font-size-sm;
+  line-height: $btn-line-height;
+  border-radius: $border-radius;
+  transition: $btn-transition;
+  text-transform: uppercase;
 
-  &:hover,
-  &:focus,
-  &:active {
+  // Share hover and focus styles
+  @include hover-focus {
     text-decoration: none;
   }
+  &:focus,
+  &.focus {
+    outline: 0;
+    box-shadow: $btn-focus-box-shadow;
+  }
 
-  /* Remove excess padding and border in Firefox 4+ */
-  &::-moz-focus-inner {
-    border: 0;
-    padding: 0;
+  // Disabled comes first so active can properly restyle
+  &.disabled,
+  &:disabled {
+    opacity: .65;
+    box-shadow: none;
+  }
+
+  &:active,
+  &.active {
+    box-shadow: $btn-focus-box-shadow/*, $btn-active-box-shadow*/;
   }
 }
 
-/**
- * Modifier: full-width buttons
- */
+// Future-proof disabling of clicks on `<a>` elements
+a.button.disabled,
+fieldset[disabled] a.button {
+  pointer-events: none;
+}
 
-.button--full {
+
+// Button variants
+//
+// Easily pump out default styles, as well as :hover, :focus, :active,
+// and disabled options for all buttons
+
+@mixin button-variant(
+  $background,
+  $border,
+  $active-background: darken($background, 7.5%),
+  $active-border: darken($border, 10%)
+) {
+  color: color-yiq($background);
+  background-color: $background;
+  border-color: $border;
+
+  &:not(.button--icon) [class^="icon-"] {
+    fill: color-yiq($active-background);
+  }
+
+  @include hover {
+    color: color-yiq($active-background);
+    background-color: $active-background;
+    border-color: $active-border;
+  }
+
+  &:focus,
+  &.focus {
+    box-shadow: 0 0 0 3px rgba($border, .5);
+  }
+
+  // Disabled comes first so active can properly restyle
+  &.disabled,
+  &:disabled {
+    background-color: $background;
+    border-color: $border;
+  }
+
+  &:active,
+  &.active {
+    background-color: $active-background;
+    border-color: $active-border;
+    //box-shadow: $btn-active-box-shadow;
+  }
+}
+
+@mixin button-outline-variant(
+  $color,
+  $color-hover: #fff,
+  $background-color: transparent
+) {
+  color: $gray-700;
+  background-color: $background-color;
+  border-color: $gray-500;
+
+  .icon {
+    color: theme-color("primary");
+  }
+
+  @include hover {
+    color: $color-hover;
+    background-color: $color;
+    border-color: $color;
+
+    .icon {
+      color: $color-hover;
+    }
+  }
+
+  &:focus,
+  &.focus {
+    box-shadow: 0 0 0 3px rgba($color, .5);
+  }
+
+  &.disabled,
+  &:disabled {
+    color: $color;
+    background-color: $background-color;
+  }
+
+  &:active,
+  &.active {
+    color: $color-hover;
+    background-color: $color;
+    border-color: $color;
+
+    [class^="icon-"] {
+      fill: $color-hover;
+    }
+  }
+
+}
+
+.with-caret {
+  @include caret;
+}
+
+
+
+//
+// Alternate buttons
+//
+
+@each $color, $value in $theme-colors {
+  .button--#{$color} {
+    @include button-variant($value, $value);
+  }
+}
+
+@each $color, $value in $theme-colors {
+  .buttonOutlined--#{$color} {
+    @include button-outline-variant($value, white, white);
+  }
+}
+
+
+
+//
+// Link buttons
+//
+
+// Make a button look and behave like a link
+.button--link {
+  font-weight: $font-weight-normal;
+  color: $link-color;
+  background-color: transparent;
+  text-transform: none;
+
+  @include hover {
+    color: $link-hover-color;
+    text-decoration: $link-hover-decoration;
+    background-color: transparent;
+    border-color: transparent;
+  }
+
+  &:focus,
+  &.focus {
+    border-color: transparent;
+    box-shadow: none;
+  }
+
+  &:disabled,
+  &.disabled {
+    color: $btn-link-disabled-color;
+  }
+
+  // No need for an active state here
+}
+
+
+.button--icon {
+  color: $link-color;
+  background-color: transparent;
+  border: 0;
+  // width: 24px;
+  // height: 24px;
+  padding: 0;
+  line-height: 1;
+  box-sizing: content-box;
+
+  @include hover {
+    color: $link-hover-color;
+    background-color: transparent;
+  }
+
+  &:focus,
+  &.focus {
+    // box-shadow: none;
+  }
+
+  &:disabled,
+  &.disabled {
+    color: $btn-link-disabled-color;
+  }
+
+  .icon {
+    vertical-align: middle;
+    margin: 0 !important;
+  }
+}
+
+.button--icon.button--dark {
+  color: $gray-600;
+
+  @include hover {
+    color: $link-hover-color;
+    background-color: transparent;
+  }
+}
+
+.button--icon.button--secondary {
+  color: theme-color("secondary");
+
+    @include hover {
+      color: $link-hover-color;
+    }
+}
+
+
+
+//
+// Button Sizes
+//
+
+@mixin button-size($padding-y, $padding-x, $font-size, $line-height, $border-radius) {
+  padding: $padding-y $padding-x;
+  font-size: $font-size;
+  line-height: $line-height;
+  border-radius: $border-radius;
+}
+
+.button--sm {
+  @include button-size($btn-padding-y-sm, $btn-padding-x-sm, $font-size-xs, $btn-line-height-sm, $border-radius);
+}
+
+// TODO: old. remake
+.button--micro {
+  font-size: 11px;
+  line-height: 16px;
+  padding: 2px 8px;
+}
+
+
+//
+// Block button
+//
+
+.button--block {
   display: block;
   width: 100%;
 }

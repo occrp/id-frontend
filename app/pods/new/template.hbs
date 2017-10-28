@@ -1,11 +1,9 @@
-<div class="cover cover--header">
-  <div class="wrapper">
-    <h1 class="cover-title text-center">{{t 'pods.new.title'}}</h1>
-  </div>
-</div>
+<div class="wrapper">
+  <div class="t-center mt-5 mb-8">
+    <h1 class="t-primary t-light mb-3">{{t 'pods.new.title'}}</h1>
 
-<div class="cover cover--content">
-  <div class="wrapper">
-    {{form-create-ticket model=model afterSave=(action "goToTicketPage")}}
+    <p class="t4 t-muted">Your request will be routed to our professional researchers, who will try to help.</p>
   </div>
+
+  {{form-create-ticket model=model afterSave=(action "goToTicketPage")}}
 </div>

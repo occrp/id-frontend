@@ -1,83 +1,150 @@
-.attachments {
-  display: flex;
-  margin-top: 20px;
-  width: 100%;
-}
-
-.attachments-list {
-  flex: 1 1 50%;
-  min-width: 0; // arcane flexbox bug https://css-tricks.com/flexbox-truncated-text/
-  margin-right: 10px;
-}
-
-.attachments-dropzone {
-  flex: 1 1 50%;
-  display: flex;
-  flex-direction: column;
-
-  .attachments-list + & {
-    margin-left: 10px;
-  }
-}
-
 .dropzone {
-  flex: 1 0 100%;
-  min-height: 160px;
-  border: 2px dashed $pal-gray70;
-  border-radius: $borderRadius-large;
-  padding: 20px;
-  text-align: center;
   display: flex;
   justify-content: center;
   flex-direction: column;
+  border: 2px dashed $gray-500;
+  border-radius: $border-radius-lg;
+  padding: 20px;
+  text-align: center;
+  min-height: 12rem;
+
+  &.is-active {
+    background: white;
+  }
 
   &.is-active.is-valid {
-    border-color: $pal-accent;
+    border-color: theme-color("secondary");
     border-style: solid;
   }
 
   &.is-active.is-invalid {
-    border-color: $pal-materialRed;
+    border-color: theme-color("danger");
   }
 }
 
+.dropzone-trigger {
+  cursor: pointer;
+}
+
 .dropzone-title {
-  font-weight: bold;
-  color: $pal-accent;
+  color: theme-color("primary");
   margin: 0;
 }
 
 .dropzone-body {
+  font-size: $font-size-sm;
   p {
     margin: 1em;
   }
 }
+
+
+.fileTimeline {
+  position: relative;
+  margin-left: $spacer-3;
+
+  // timeline on the left
+  &::after {
+    content: '';
+    display: block;
+    position: absolute;
+    top: 0;
+    left: -1 * $spacer-3;
+    width: 1px;
+    height: 100%;
+    background: $gray-400;
+  }
+}
+
+
+.fileGroup {
+  position: relative;
+
+  & + & {
+    margin-top: $spacer-3;
+  }
+}
+
+.fileGroup-title {
+  position: relative;
+  font-size: $font-size-sm;
+  color: $gray-600;
+  margin-bottom: $spacer-1;
+
+  // dots on the timeline
+  &::after {
+    z-index: 2;
+    content: '';
+    display: block;
+    position: absolute;
+    top: calc(-5px + #{$line-height-base/2 * $font-size-sm});
+    left: calc(#{-1 * $spacer-3} - 4px);
+    width: 9px;
+    height: 9px;
+    border-radius: 50%;
+    background: $gray-400;
+  }
+}
+
+.fileGroup-body {
+  position: relative;
+}
+
+// fancy line masking AYY
+.fileGroup:last-child .fileGroup-body::after {
+  z-index: 1;
+  content: '';
+  display: block;
+  position: absolute;
+  top: -1 * ($line-height-base/2 * $font-size-sm + $spacer-1);
+  left: -1 * $spacer-3;
+  width: 1px;
+  height: calc(100% + #{$line-height-base/2 * $font-size-sm + $spacer-1});
+  background: $gray-100;
+}
+
+.fileGroup:first-child .fileGroup-title::before {
+  z-index: 1;
+  content: '';
+  display: block;
+  position: absolute;
+  top: 0;
+  left: -1 * $spacer-3;
+  width: 1px;
+  height: $line-height-base/2 * $font-size-sm;
+  background: $gray-100;
+}
+
+
 
 .file {
   display: block;
   width: 100%;
   white-space: nowrap;
   overflow-x: hidden;
-  text-overflow: ellipsis;  
-  color: $pal-gray30;
-  font-weight: bold;
-  border: 1px solid $pal-gray90;
-  border-radius: $borderRadius-large;
-  padding: 7px;
-  padding-left: 13px;
+  text-overflow: ellipsis;
+  font-size: $font-size-sm;
+  color: $gray-700;
+  font-weight: $font-weight-normal;
+  border: 1px solid transparent;
+  border-bottom-color: $gray-300;
+  background: white;
+  padding: .4rem .75rem;
 
-  .tag {
+  .file-size {
     float: right;
-    margin: -1px 0;
-    margin-left: 1em;
+    margin-left: 1rem;
+    color: $gray-500;
+    font-weight: $font-weight-normal;
   }
 
-  & + & {
-    margin-top: 10px;
+  .icon {
+    vertical-align: -2px;
+    margin-right: 0.5rem;
   }
 }
 
 a.file:hover {
   text-decoration: none;
-  border-color: $pal-primary;
+  color: theme-color("primary");
 }

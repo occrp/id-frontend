@@ -1,59 +1,62 @@
 .activeFilters {
-  box-sizing: content-box;
-  min-height: 24px;
-  background: $pal-gray100;
-  padding: 8px 20px;
-  border: 1px solid $pal-gray70;
-  border-top: 0;
-  @include cf;
-
-  .spinner {
-    margin-top: 8px;
-  }
+  display: flex;
+  align-items: center;
+  font-size: $font-size-sm;
+  background: $gray-100;
+  color: $gray-700;
+  padding: 2px $spacer-3;
+  border-bottom: 1px solid $gray-400;
 }
 
 .activeFilters-label {
-  float: left;
-  // font-weight: bold;
-  line-height: 20px;
-  margin: 2px 0;
-  margin-right: 13px;
-  color: $pal-gray30;
+  flex: 0 0 auto;
+  margin-right: $spacer-1;
+}
+
+.activeFilters-list {
+  flex: 1 1 auto;
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  padding: $spacer-1 to-rem(5px);
 }
 
 .activeFilters-clear {
-  float: right;
-  margin: 2px 0;
-  font-weight: bold;
+  flex: 0 0 auto;
+  font-weight: $font-weight-bold;
+  line-height: $line-height-base;
+  margin-left: $spacer;
+  padding: 0;
+  border: 0;
 }
 
 
 .chip {
-  float: left;
-  border: 1px solid $pal-accent;
-  padding: 0 0;
-  font-size: 13px;
-  line-height: 20px;
-  border-radius: 12px;
+  flex: 0 1 auto;
+  display: inline-flex;
+  align-items: center;
+  border: 1px solid theme-color("primary");
+  font-size: $font-size-xs;
+  border-radius: $border-radius-lg;
+  background: white;
+  margin: $spacer-1 to-rem(5px);
+  background-clip: padding-box;
   overflow: hidden;
-  background: $pal-accent;
-  color: white;
-
-  & + & {
-    margin-left: 10px;
-  }
 }
 
 .chip-label {
-  float: left;
-  padding: 1px 8px 1px 10px;
-  font-weight: bold;
+  background: theme-color("primary");
+  color: white;
+  padding: 1px $spacer;
 }
 
 .chip-value {
-  float: left;
-  font-weight: bold;
-  padding: 1px 10px 1px 8px;
+  padding: 1px $spacer-1 1px $spacer;
   background: white;
-  color: $pal-gray20;
+  // color: $gray-650;
+}
+
+.chip-action {
+  color: $gray-600;
+  padding: 0 3px;
 }

@@ -1,0 +1,25 @@
+.titleBar {
+  padding: $spacer-4 0;
+  border-bottom: 2px solid $gray-700;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  min-height: to-rem(50px);
+  box-sizing: content-box;
+}
+
+.titleBar-title {
+
+  .icon {
+    margin-right: .75rem;
+    vertical-align: -4px;
+  }
+
+  [class^="icon-"] {
+    fill: theme-color("secondary");
+  }
+}
+
+.titleBar-action {
+  display: flex;
+}

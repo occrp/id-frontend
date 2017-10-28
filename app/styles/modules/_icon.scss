@@ -1,0 +1,40 @@
+.icon {
+  display: inline-block;
+  width: 16px;
+  height: 16px;
+}
+
+.icon--lg {
+  width: 24px;
+  height: 24px;
+},
+
+.icon--xl {
+  width: 32px;
+  height: 32px;
+}
+
+.icon--xxl {
+  width: 40px;
+  height: 40px;
+}
+
+[class^="icon-"] {
+  fill: currentColor;
+}
+
+.button {
+  .icon {
+    margin-left: .5rem;
+    vertical-align: -3px;
+  }
+
+  .icon--lg {
+    vertical-align: -7px;
+  }
+
+  .icon:first-child {
+    margin-left: -.5rem;
+    margin-right: .5rem;
+  }
+}

@@ -1,35 +1,29 @@
 {{#if (gt total 1)}}
-<ul class="pg-container">
 
   {{#if meta.pagination.prev.number}}
-    <li class="pg-prev">
-      <a href {{action onSwitch meta.pagination.prev.number}} data-test-pagination="prev">
-        <b>{{t 'pagination.newer'}}</b>
-      </a>
-    </li>
+    <a href {{action onSwitch meta.pagination.prev.number}} class="pg-prev" data-test-pagination="prev">
+      {{~t 'pagination.newer'~}}
+    </a>
   {{else}}
-    <li class="pg-prev is-disabled"><span> <b>{{t 'pagination.newer'}}</b> </span></li>
+    <span class="pg-prev is-disabled">{{t 'pagination.newer'}}</span>
   {{/if}}
 
   {{#each items as |number|}}
     {{#if number}}
-      <li class="pg-item {{if (eq number current) "is-active"}}">
-        <a href {{action onSwitch number}}>{{number}}</a>
-      </li>
+      <a href {{action onSwitch number}} class="pg-item {{if (eq number current) "is-active"}}">
+        {{~number~}}
+      </a>
     {{else}}
-      <li class="pg-sep"><span>&hellip;</span></li>
+      <span class="pg-sep">&hellip;</span>
     {{/if}}
   {{/each}}
 
   {{#if meta.pagination.next.number}}
-    <li class="pg-next">
-      <a href {{action onSwitch meta.pagination.next.number}} data-test-pagination="next">
-        <b>{{t 'pagination.older'}}</b>
-      </a>
-    </li>
+    <a href {{action onSwitch meta.pagination.next.number}} class="pg-next" data-test-pagination="next">
+      {{~t 'pagination.older'~}}
+    </a>
   {{else}}
-    <li class="pg-next is-disabled"><span> <b>{{t 'pagination.older'}}</b> </span></li>
+    <span class="pg-next is-disabled">{{t 'pagination.older'}}</span>
   {{/if}}
 
-</ul>
 {{/if}}

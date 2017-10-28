@@ -1,64 +1,61 @@
-@import 'settings';
-@import 'mixins/utils';
-@import 'mixins/responsive';
+@import "functions";
 
-@import 'overrides';
+@import "settings";
 
-@import 'ember-power-calendar';
-@import "ember-modal-dialog/ember-modal-structure";
+@import "mixins/hover";
+@import "mixins/caret";
+@import "mixins/responsive";
+@import "mixins/utils";
 
-@import 'base/typography';
-@import 'base/button';
+@import "reboot";
 
-@import 'layout';
+@import "type";
 
-@import 'modules/datepicker';
-@import 'modules/button';
-@import 'modules/cover';
-@import 'modules/fieldGroup';
-@import 'modules/tabs';
-@import 'modules/innerNav';
-@import 'modules/filters';
-@import 'modules/ticket';
-@import 'modules/grid';
-@import 'modules/activity';
-@import 'modules/ticketContent';
-@import 'modules/editableList';
-@import 'modules/pg';
-@import 'modules/modal';
-@import 'modules/dd';
-@import 'modules/list';
-@import 'modules/activeFilters';
-@import 'modules/tag';
-@import 'modules/attachments';
+@import "addons/ember-basic-dropdown";
+@import "ember-power-calendar";
 
-@import 'modules/spinner';
+@import "base/button";
+@import "base/forms";
+@import "base/forms-custom";
+@import "base/forms-validation";
+// @import "base/dropdown";
+@import "base/modal";
+@import "base/utilities";
+@import "base/alert";
 
-// should probably encapsulate, keeping it simple for now
-body {
-  background: white;
-  color: $pal-gray25;
-}
+@import "layout";
 
-// alternative to BS' .container
-.wrapper {
-  box-sizing: border-box;
-  width: 100%;
-  max-width: 1170px;
-  margin: 0 auto;
-  padding: 0 15px;
-}
+@import "modules/icon";
+@import "modules/datepicker";
+@import "modules/fieldGroup";
+@import "modules/tabs";
+@import "modules/statusTabs";
+@import "modules/filters";
+@import "modules/ticket";
+// @import "modules/grid";
+@import "modules/activity";
+@import "modules/ticketContent";
+@import "modules/editableList";
+@import "modules/pg";
+@import "modules/dd";
+@import "modules/list";
+@import "modules/activeFilters";
+@import "modules/tag";
+@import "modules/attachments";
+@import "modules/titleBar";
+@import "modules/staffList";
 
-.formatted {
-  white-space: pre-wrap;
-}
+@import "modules/spinner";
+@import "modules/blankSlate";
+@import "modules/editZone";
 
-.section {
-  & + & {
-    margin-top: 30px;
+@import "modules/appNav";
+
+.loading-slider {
+  // render over the old nav
+  z-index: $zindex-loading-slider;
+
+  span {
+    background-color: lighten(theme-color("primary"), 5%);
   }
-}
-
-.subtitle {
-  margin: 0 0 20px 0;
 }

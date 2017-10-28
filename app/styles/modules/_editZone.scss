@@ -1,0 +1,23 @@
+$hue: hue(theme-color("secondary"));
+$sat: saturation($gray-100) + 30;
+$lit: lightness($gray-100) - 3;
+
+$gray-secondary: hsl($hue, $sat, $lit);
+
+.editZone {
+  background-color: $gray-secondary;
+  padding: $spacer-3 $spacer-4;
+  border-bottom: 1px solid $gray-300;
+
+
+  .l-fixedColumn & {
+    margin-left: -1*$spacer-4;
+    margin-right: -1*$spacer-4;
+    padding-left: $spacer-4;
+    padding-right: $spacer-4;
+  }
+}
+
+.b-editing {
+  background-color: $gray-secondary;
+}

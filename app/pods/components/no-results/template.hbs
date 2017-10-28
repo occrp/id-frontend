@@ -1,0 +1,10 @@
+<div class="blankSlate">
+  {{icon "issue-opened" class="icon--xxl blankSlate-icon"}}
+
+  {{#if title}}
+    <h3 class="t4 blankSlate-title">{{title}}</h3>
+  {{/if}}
+  <div class="blankSlate-body">
+    {{yield}}
+  </div>
+</div>

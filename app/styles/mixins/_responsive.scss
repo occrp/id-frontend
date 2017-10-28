@@ -4,83 +4,34 @@
 
 // Width media queries
 // ==========================================================================
-
-// Use these mixins to respond to various widths in your layout.
-//
-// $flatten-at - Used to generate <=IE8 compatible stylesheets
-//
-// Override $flatten-at within a seperate controller to flatten all media-queries.
-// A width must be given in order to keep only the relevant queries.
-//
-// Ex:
-// $flatten-at: 960px; // Assumes most <=IE8 visitiors are fine at that width
-
-$flatten-at: false !default;
-
-@if ($flatten-at) and (type-of($flatten-at) != number) {
-    @warn "$flatten-at must either be false or express a width in your unit of choice";
-}
+// A $breakpoints map is expected from which to pull the actual values
 
 
 // Respond to min-width
 
-@mixin respond-min ($width) {
-
-    @if $flatten-at {
-        @if $flatten-at >= $width {
-            @content;
-        }
-    } @else {
-        @media (min-width: $width) {
-            @content;
-        }
-    }
+@mixin respond-min ($key) {
+  @media (min-width: map-get($breakpoints, $key)) {
+    @content;
+  }
 }
 
 
 // Respond to max-width
 
-@mixin respond-max ($width) {
-
-    @if $flatten-at {
-        @if $flatten-at <= $width {
-            @content;
-        }
-    } @else {
-        @media (max-width: $width) {
-            @content;
-        }
-    }
+@mixin respond-max ($key) {
+  @media (max-width: map-get($breakpoints, $key)) {
+    @content;
+  }
 }
 
 
 // Respond between a min & max width
 
 @mixin respond-between ($min, $max) {
-
-    @if $flatten-at {
-        @if ($flatten-at >= $min) and ($flatten-at <= $max) {
-            @content;
-        }
-    } @else {
-        @media (min-width: $min) and (max-width: $max) {
-            @content;
-        }
-    }
+  @media (min-width: map-get($breakpoints, $min)) and (max-width: map-get($breakpoints, $max)) {
+    @content;
+  }
 }
-
-
-@mixin respond-sq ($label) {
-
-    @if (type-of($label) != string) {
-        @warn "$query must be passed as an unquoted string";
-    }
-
-    .#{unquote($label)} {
-        @content;
-    }
-}
-
 
 
 // Shorthand for min/max width media queries
@@ -93,25 +44,25 @@ $flatten-at: false !default;
 
 @mixin respond ($min: false, $max: false) {
 
-    @if ($min == false) and ($max == false) {
-        @warn "Either $min or $max must be specified.";
-    }
+  @if ($min == false) and ($max == false) {
+    @warn "Either $min or $max must be specified.";
+  }
 
-    @if $min and $max {
-        @include respond-between($min, $max) {
-            @content;
-        }
-    } @else {
-        @if $min {
-            @include respond-min($min) {
-                @content;
-            }
-        } @else {
-            @include respond-max($max) {
-                @content;
-            }
-        }
+  @if $min and $max {
+    @include respond-between($min, $max) {
+      @content;
     }
+  } @else {
+    @if $min {
+      @include respond-min($min) {
+        @content;
+      }
+    } @else {
+      @include respond-max($max) {
+        @content;
+      }
+    }
+  }
 
 }
 
@@ -120,21 +71,17 @@ $flatten-at: false !default;
 // Retina/HiDPI media queries
 // ==========================================================================
 
-// $retina-pixel-ratio - ratio to be labeled as "retina"
-//
-// Typical values
-// iOS: 2;
-// Older Androids?: 1.5;
-
 $retina-pixel-ratio: 2 !default;
 
-
-// Based on http://www.brettjankord.com/2012/11/28/cross-browser-retinahigh-resolution-media-queries/
-
-@mixin retina ($ratio: $retina-pixel-ratio) {
-    @media
-    (-webkit-min-device-pixel-ratio: $ratio),
-    (min-resolution: $ratio * 96dpi) {
-        @content;
-    }
+@mixin retina-media-query {
+  @media
+    only screen and (-webkit-min-device-pixel-ratio: $ratio),
+    only screen and (min--moz-device-pixel-ratio: $ratio),
+    only screen and (-moz-min-device-pixel-ratio: $ratio),
+    only screen and (-o-min-device-pixel-ratio: $ratio/1),
+    only screen and (min-device-pixel-ratio: $ratio),
+    only screen and (min-resolution: $ratio * 96dpi),
+    only screen and (min-resolution: $ratio * 1dppx) {
+    @content;
+  }
 }

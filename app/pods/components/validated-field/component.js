@@ -3,7 +3,7 @@ import Ember from 'ember';
 const { computed } = Ember;
 
 export default Ember.Component.extend({
-  classNameBindings: ['showErrors:has-error'],
+  classNameBindings: ['showErrors:is-invalid'],
 
   showValidations: false,
   showMessages: computed.or('didValidate', 'showValidations'),

@@ -3,6 +3,7 @@ import DS from 'ember-data';
 import { validator, buildValidations } from 'ember-cp-validations';
 import notEqual from '../macros/not-equal';
 import raw from 'ember-macro-helpers/raw';
+import moment from 'moment';
 
 const { attr, belongsTo, hasMany } = DS;
 
@@ -33,7 +34,7 @@ export default DS.Model.extend({
   requester: belongsTo('profile'),
   responders: hasMany('responder'),
   activities: hasMany('activity'),
-  attachments: hasMany('attachment'), 
+  attachments: hasMany('attachment'),
 
   // Common
   background: attr('string'),
@@ -53,7 +54,7 @@ export default DS.Model.extend({
   sources: attr('string'), // reused on Person, labeled "Aliases"
   connections: attr('string'), // reused on Person, labeled "Family info"
 
-  
+
   displayName: Ember.computed('kind', 'firstName', 'lastName', 'companyName', 'background', function () {
     switch (this.get('kind')) {
       case kindList[0]:
@@ -136,7 +137,22 @@ export const Validations = buildValidations({
     validator('length', {
       max: 1000
     })
-  ]
+  ],
+
+  deadlineAt: validator('date', {
+    value(model, attribute) {
+      const val = model.get(attribute);
+      if (Ember.isEmpty(val)) {
+        return val;
+      }
+      return moment.utc(val).format('DD/MM/YYYY');
+    },
+    allowBlank: true,
+    format: 'DD/MM/YYYY',
+    after: Ember.computed(function() {
+      return moment.utc().add(3, 'days').format('DD/MM/YYYY');
+    }).volatile()
+  })
 }, {
   debounce: 100
 });

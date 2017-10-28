@@ -4,6 +4,7 @@ import { kindList } from 'id-frontend/models/ticket';
 import { getSearchGenerator } from 'id-frontend/models/profile';
 
 export default Ember.Component.extend({
+  tagName: '',
   kindList,
 
   sortFields: {

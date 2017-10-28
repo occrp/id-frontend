@@ -1,0 +1,28 @@
+.statusTabs {
+  @include cf;
+  margin: 0 0 0 $spacer-3;
+
+  .icon {
+    vertical-align: -2px;
+    margin-right: .5rem;
+  }
+
+  a {
+    color: $gray-700;
+    float: left;
+    padding: .8rem 0;
+
+    @include hover {
+      color: theme-color("primary");
+      text-decoration: none;
+    }
+
+    &.active {
+      color: theme-color("primary");
+    }
+  }
+
+  a + a {
+    margin-left: 1rem;
+  }
+}

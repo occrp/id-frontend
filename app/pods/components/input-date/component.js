@@ -2,7 +2,9 @@ import Ember from 'ember';
 import moment from 'moment';
 
 export default Ember.Component.extend({
-  currentValue: Ember.computed.oneWay('value'),
+  tagName: '',
+  currentValue: Ember.computed.readOnly('value'),
+  theCenter: Ember.computed.oneWay('center'),
 
   isShowingPopup: false,
   constraints: [
@@ -25,25 +27,26 @@ export default Ember.Component.extend({
     },
 
     updateDatepicker(val) {
+      if (Ember.isBlank(val)) {
+        this.get('onSelect')({date: null});
+        return;
+      }
+
       if (val.length < 10) {
         return;
       }
 
+      let current = moment.utc(this.get('currentValue'));
       let date = moment.utc(val, 'DD/MM/YYYY');
 
-      if (date._isValid) {
-        this.set('center', date._d);
-        this.set('currentValue', date._d);
+      if (current.toDate().getTime() === date.toDate().getTime()) {
+        return;
       }
-    },
 
-    updateValue(val) {
-      let date = moment.utc(val, 'DD/MM/YYYY');
-
-      if (date._isValid) {
-        this.get('onSelect')({date: date._d});
+      if (date.isValid()) {
+        this.set('theCenter', date);
+        this.get('onSelect')({date: date.toDate()});
       }
     }
-
   }
 });

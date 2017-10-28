@@ -20,7 +20,7 @@
     margin-bottom: 30px;
   }
 
-  @include respond(to-em(300px)) {
+  @include respond(sm) {
 
     & > .grid-unit--half {
       width: 50%;

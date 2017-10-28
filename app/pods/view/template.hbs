@@ -1,29 +1,115 @@
-<div class="cover cover--content">
 <div class="wrapper">
+
+  <div class="titleBar">
+    <h1 class="titleBar-title t-light" data-test-name>
+      {{~icon-by-kind model.kind class="icon--xl"~}}
+      {{~title~}}
+    </h1>
+    <div class="titleBar-action">
+      {{#if (and (can "resolve tickets") model.isOpen model.responders.length)}}
+        <div class="mr-3">
+          {{#if model.isPending}}
+            {{ticket-unmark-pending model=model activityType='unmark' onSave=(action 'saveStatus')}}
+          {{else}}
+            {{ticket-mark-pending model=model onSave=(action 'saveStatus' 'pending')}}
+          {{/if}}
+        </div>
+      {{/if}}
+
+      {{#if model.isOpen}}
+        {{ticket-close model=model activityType=(if (can "resolve tickets") 'close' 'cancel') onSave=(action 'saveStatus')}}
+      {{else}}
+        {{ticket-reopen model=model onSave=(action 'saveStatus' 'reopen')}}
+      {{/if}}
+    </div>
+  </div>
 
   <div class="l-fixedColumn">
     <div class="l-fixedColumn-main">
 
-      <div class="ticketType">
-        {{ticket-icon model.kind}}
-        <span>{{t (concat 'ticket.kind.' model.kind '.shortName')}}</span>
+      {{#editable-area model=model keys=(array 'deadlineAt') validations=Validations as |buffer ea|}}
+
+      <div class="ticketSubtitle {{if ea.isEditing "b-editing"}}">
+        <div class="ticketSubtitle-main">
+          {{t 'ticket.requester.prefix'}}
+          {{#if (can 'manage tickets')}}
+            {{#link-to 'browse' (query-params requester=model.requester.id page=1) class="t-bold"~}}
+              {{model.requester.displayName}}
+            {{~/link-to}}
+          {{else}}
+            <strong>{{model.requester.displayName}}</strong>
+          {{/if}}
+          {{t 'prefixes.on'}}
+          <time datetime={{model.createdAt}} title={{moment-format model.createdAt 'LLL'}}>
+            {{moment-format model.createdAt}}
+          </time>
+        </div>
+
+        <div class="ticketSubtitle-secondary">
+          {{#unless ea.isEditing}}
+            {{#if buffer.deadlineAt}}
+              {{t 'ticket.deadline.label'}}
+              <time datetime={{buffer.deadlineAt}} title={{moment-format buffer.deadlineAt 'LLL'}}>
+                {{moment-format buffer.deadlineAt}}
+              </time>
+            {{else}}
+              {{t 'ticket.deadline.empty'}}
+            {{/if}}
+
+            {{#if (can 'manage tickets')}}
+              <button class="button button--icon" {{action ea.actions.toggleEdit}} aria-label="Edit">
+                {{icon "pencil"}}
+              </button>
+            {{/if}}
+          {{else}}
+            <button class="button button--icon" {{action ea.actions.toggleEdit}} aria-label="Remove">
+              {{icon "x"}}
+            </button>
+          {{/unless}}
+        </div>
       </div>
 
-      <h1 class="ticketTitle t-dark t-flush" data-test-name>{{title}}</h1>
+      {{#if ea.isEditing}}
+        <div class="editZone">
+          {{#validated-field
+            class="formGroup"
+            validation=buffer.validations.attrs.deadlineAt
+            didValidate=didValidate
+            as |field|}}
 
-      <p class="ticketSubtitle">
-        {{t 'ticket.requester.prefix'}}
-        <strong>{{model.requester.displayName}}</strong>
-        {{t 'prefixes.on'}}
-        <time datetime={{model.createdAt}} title={{moment-format model.createdAt 'LLL'}}>
-          {{moment-format model.createdAt}}
-        </time>
-      </p>
+            <label for="ticket-deadline">{{t 'ticket.deadline.label'}}</label>
+            {{input-date
+              value=buffer.deadlineAt
+              onSelect=(queue (action (mut buffer.deadlineAt) value="date") field.triggerValidations)
+              id="ticket-deadline"
+              center=center
+              minDate=minimumDeadline
+            }}
 
-      <hr class="l-fixedColumn-separator" />
+            {{#if field.showErrors}}
+              <div class="formFeedback">{{v-get buffer "deadlineAt" "message"}}</div>
+            {{/if}}
+          {{/validated-field}}
 
-      {{#if (eq model.kind kindList.[0])}}
-        <dl class="ticketDetails">
+          <div class="mt-3 fieldGroup-actions">
+            <button class="button button--sm button--primary mr-2" disabled={{ea.task.isRunning}} {{action ea.actions.save}}>
+              {{t 'actions.save'}}
+            </button>
+            <button class="button button--sm buttonOutlined--secondary" {{action ea.actions.toggleEdit}}>
+              {{t 'actions.cancel'}}
+            </button>
+
+            {{#if ea.task.isRunning}}
+              {{ui-spinner}}
+            {{/if}}
+          </div>
+        </div>
+      {{/if}}
+
+      {{/editable-area}}
+
+      <dl class="ticketDetails mt-4">
+        {{#if (eq model.kind kindList.[0])}}
           {{#if model.country}}
             <dt>{{t 'ticket.countryPerson.label'}}</dt>
             <dd data-test-countryPerson>{{country-name model.country}}</dd>
@@ -54,9 +140,7 @@
             <dt>{{t 'ticket.businessActivities.label'}}</dt>
             <dd class="formatted">{{model.businessActivities}}</dd>
           {{/if}}
-        </dl>
-      {{else if (eq model.kind kindList.[1])}}
-        <dl class="ticketDetails">
+        {{else if (eq model.kind kindList.[1])}}
           <dt>{{t 'ticket.country.label'}}</dt>
           <dd data-test-country>{{country-name model.country}}</dd>
 
@@ -70,42 +154,55 @@
             <dt>{{t 'ticket.connections.label'}}</dt>
             <dd class="formatted">{{model.connections}}</dd>
           {{/if}}
-        </dl>
-      {{else}}
-        <dl class="ticketDetails">
+        {{else}}
           <dt>{{t 'ticket.backgroundOther.label'}}</dt>
           <dd class="formatted" data-test-background>{{model.background}}</dd>
-        </dl>
-      {{/if}}
+        {{/if}}
+      </dl>
 
       {{#if model.sensitive}}
-        <div class="alert alert-warning alert--custom">
-          <h4><i class="fa fa-exclamation-triangle" /> {{t 'ticket.sensitive.trueLabel'}}</h4>
+        <div class="alert alert--warning mt-5">
+          <h4 class="t5 alert-heading">{{icon "alert" class="icon--lg"}} {{t 'ticket.sensitive.trueLabel'}}</h4>
           {{#if model.whysensitive}}
             <div class="formatted">{{model.whysensitive}}</div>
           {{/if}}
         </div>
       {{/if}}
 
-      {{#if (or model.isOpen model.attachments.length)}}
-        <hr class="l-fixedColumn-separator" />
+      {{#if (and (not (can 'manage tickets')) model.responders.length)}}
+      <div class="mt-5">
+        <h3 class="t-light t-primary mb-3">{{t 'ticket.responder.label'}}</h3>
 
-        <h3 class="t-accent">{{t 'attachment' count=2}}</h3>
-
-        {{attachment-manager model=model canUpload=model.isOpen}}
+        <ul class="staffList">
+        {{#each model.responders as |responder|}}
+          <li>{{responder.user.displayName}}</li>
+        {{/each}}
+        </ul>
+      </div>
       {{/if}}
 
-      <hr class="l-fixedColumn-separator" />
+      <hr />
 
       {{activity-list model=model showForm=model.isOpen}}
 
     </div>
 
-    <div class="l-fixedColumn-column">
-      {{ticket-meta model=model class="ticketMeta" showControls=model.isOpen}}
+    <div class="l-fixedColumn-column ticketMeta">
+      <div class="statusBar">
+        {{#if updateStatus.isRunning}}
+          {{ui-spinner}}
+        {{else}}
+          {{status-label model.status data-test-status class="mr-2"}}
+          <div>
+            {{t 'ticket.updatedAt.prefix'}}
+            <time datetime={{model.updatedAt}} title={{moment-format model.updatedAt 'LLL'}}>{{moment-from-now model.updatedAt}}</time>
+          </div>
+        {{/if}}
+      </div>
+
+      {{ticket-meta class="mt-4" model=model}}
     </div>
 
   </div>
 
-</div>
 </div>

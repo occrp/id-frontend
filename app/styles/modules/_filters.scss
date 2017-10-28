@@ -1,14 +1,13 @@
 .filters {
+  background: $gray-100;
+  border-bottom: 1px solid $gray-400;
   @include cf;
-  background: $pal-gray95;
-  border: 1px solid $pal-gray70;
-  border-top-left-radius: $borderRadius-large;
-  border-top-right-radius: $borderRadius-large;
+  font-size: $font-size-sm;
 }
 
 .filters-main {
   float: left;
-  margin-right: 25px;
+  margin-right: $spacer-4;
 }
 
 .filters-secondary {
@@ -18,41 +17,22 @@
 .filters-item {
   float: left;
 
-  &+& {
-    margin-left: -10px;
-  }
-
   .dd-trigger {
-    color: $pal-gray30;
-    font-weight: bold;
-    line-height: 20px;
-    padding: 15px 20px;
+    padding: .8rem 1rem;
+    color: $gray-700;
+
+    @include hover {
+      color: theme-color("primary");
+      text-decoration: none;
+    }
+
+    @include caret;
+
+    &.is-active {
+      color: theme-color("primary");
+    }
   }
 }
 
-.arrow {
-  position: relative;
-  display: inline-block;
-  width: 12px;
-  height: 6px;
-  margin-left: 2px;
-  top: -1px;
 
-  &:before,
-  &:after {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 0;
-    height: 0;
-    border: 6px solid transparent;
-    border-top-color: $pal-gray30;
-  }
-
-  &:after {
-    border-top-color: $pal-gray100;
-    top: -2px;
-  }
-}
 

@@ -3,10 +3,33 @@ import { task, all } from 'ember-concurrency';
 const { get, set } = Ember;
 
 export default Ember.Component.extend({
+  tagName: '',
   store: Ember.inject.service(),
   session: Ember.inject.service(),
 
-  isShowingModal: false,
+  processedAttachments: Ember.computed('model.attachments.[]', function() {
+    const attachments = this.get('model.attachments');
+    let groups = [];
+    let prevItem = null;
+
+    attachments.forEach((item) => {
+      const userId = item.get('user.id');
+      let currentGroup = groups.length ? groups[groups.length - 1] : null;
+
+      if (!groups.length || prevItem.get('user.id') !== userId) {
+        currentGroup = {
+          user: item.get('user'),
+          models: []
+        };
+        groups.push(currentGroup)
+      }
+
+      currentGroup.models.push(item);
+      prevItem = item;
+    })
+
+    return groups;
+  }),
 
   batchUpload: task(function * (queue) {
     let childTasks = [];
@@ -43,9 +66,9 @@ export default Ember.Component.extend({
   }).maxConcurrency(3).enqueue(),
 
   actions: {
-    startUploads(queue) {
+    startUploads(queue, triggerClose) {
       this.get('batchUpload').perform(queue).then(() => {
-        this.set('isShowingModal', false);
+        triggerClose();
       });
     },
 

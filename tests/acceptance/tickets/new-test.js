@@ -221,10 +221,10 @@ test('creating a new ticket (person) - validations', async function(assert) {
 
   assert.equal(currentURL(), '/new');
 
-  assert.ok(find('#ticket-first-name').closest('.form-group').hasClass('has-error'));
-  assert.ok(find('#ticket-last-name').closest('.form-group').hasClass('has-error'));
-  assert.ok(find('#ticket-background').closest('.form-group').hasClass('has-error'));
-  assert.ok(find('#ticket-initialInformation').closest('.form-group').hasClass('has-error'));
+  assert.ok(find('#ticket-first-name').closest('.formGroup').hasClass('is-invalid'));
+  assert.ok(find('#ticket-last-name').closest('.formGroup').hasClass('is-invalid'));
+  assert.ok(find('#ticket-background').closest('.formGroup').hasClass('is-invalid'));
+  assert.ok(find('#ticket-initialInformation').closest('.formGroup').hasClass('is-invalid'));
 
   findWithAssert('[data-test-validation-errors]');
 });
@@ -242,10 +242,10 @@ test('creating a new ticket (company) - validations', async function(assert) {
 
   assert.equal(currentURL(), '/new');
 
-  assert.ok(find('#ticket-companyName').closest('.form-group').hasClass('has-error'));
-  assert.ok(find('#ticket-country').closest('.form-group').hasClass('has-error'));
-  assert.ok(find('#ticket-background-company').closest('.form-group').hasClass('has-error'));
-  assert.ok(find('#ticket-sources').closest('.form-group').hasClass('has-error'));
+  assert.ok(find('#ticket-companyName').closest('.formGroup').hasClass('is-invalid'));
+  assert.ok(find('#ticket-country').closest('.formGroup').hasClass('is-invalid'));
+  assert.ok(find('#ticket-background-company').closest('.formGroup').hasClass('is-invalid'));
+  assert.ok(find('#ticket-sources').closest('.formGroup').hasClass('is-invalid'));
 
   findWithAssert('[data-test-validation-errors]');
 });
@@ -260,7 +260,7 @@ test('creating a new ticket - switching tabs resets validations', async function
 
   await click('[data-test-save]');
 
-  assert.ok(find('#ticket-first-name').closest('.form-group').hasClass('has-error'));
+  assert.ok(find('#ticket-first-name').closest('.formGroup').hasClass('is-invalid'));
   findWithAssert('[data-test-validation-errors]');
 
   await click('[data-test-kind-tab="company"]');
@@ -269,14 +269,14 @@ test('creating a new ticket - switching tabs resets validations', async function
 
   await click('[data-test-save]');
 
-  assert.ok(find('#ticket-companyName').closest('.form-group').hasClass('has-error'));
+  assert.ok(find('#ticket-companyName').closest('.formGroup').hasClass('is-invalid'));
 
   await click('[data-test-kind-tab="person"]');
 
-  assert.ok(!find('#ticket-first-name').closest('.form-group').hasClass('has-error'));
+  assert.ok(!find('#ticket-first-name').closest('.formGroup').hasClass('is-invalid'));
   assert.equal(find('[data-test-validation-errors]').length, 0);
 
   await click('[data-test-kind-tab="company"]');
 
-  assert.ok(!find('#ticket-companyName').closest('.form-group').hasClass('has-error'));
+  assert.ok(!find('#ticket-companyName').closest('.formGroup').hasClass('is-invalid'));
 });

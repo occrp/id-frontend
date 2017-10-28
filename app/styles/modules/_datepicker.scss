@@ -8,10 +8,10 @@
   position: relative;
   padding: 4px;
   padding-bottom: 2px;
-  border: 1px solid $pal-gray30;
-  border-radius: $borderRadius-large;
+  border: 1px solid $gray-600;
+  border-radius: $border-radius-lg;
   background: white;
-  box-shadow: 0 5px 15px -5px rgba(0,0,0,.5);
+  box-shadow: $dropdown-box-shadow;
 
   // The joy of arrow tips
   &:before,
@@ -24,7 +24,7 @@
     width: 0;
     height: 0;
     border: 6px solid transparent;
-    border-top-color: $pal-gray30;
+    border-top-color: $gray-600;
   }
 
   &:after {
@@ -35,7 +35,7 @@
   .ember-tether-target-attached-bottom & {
     &:before {
       border-top-color: transparent;
-      border-bottom-color: $pal-gray30;
+      border-bottom-color: $gray-600;
       top: -12px;
       bottom: auto;
     }
@@ -59,14 +59,14 @@
 
 
 .ember-power-calendar-nav-control {
-  color: $pal-primary;
+  color: theme-color("primary");
   padding: 3px 10px;
   padding-top: 0;
   line-height: 20px;
 
   &:focus {
     transform: none;
-    color: mix(black, $pal-primary, 25%);
+    color: mix(black, theme-color("primary"), 25%);
   }
 
   &:hover {
@@ -75,28 +75,28 @@
 }
 
 .ember-power-calendar-day {
-  color: $pal-gray70;
+  color: $gray-500;
 }
 
 .ember-power-calendar-day--current-month {
-  color: $pal-gray40;
-  background-color: $pal-gray100;
+  color: $gray-650;
+  background-color: $gray-200;
 }
 
 .ember-power-calendar-day--today {
-  color: $pal-accent;
+  color: theme-color("secondary");
 }
 .ember-power-calendar-day:not([disabled]):hover {
-  background-color: $pal-gray90;
+  background-color: $gray-400;
 }
 .ember-power-calendar-day--other-month:not([disabled]):hover {
-  color: $pal-gray60;
+  color: $gray-650;
 }
 
 .ember-power-calendar-day--selected,
 .ember-power-calendar-day--selected:not([disabled]):hover {
-  background-color: lighten($pal-accent, 50%);
-  color: $pal-accent;
+  background-color: lighten(theme-color("secondary"), 50%);
+  color: theme-color("secondary");
 }
 .ember-power-calendar-day--selected.ember-power-calendar-day--range-start,
 .ember-power-calendar-day--selected.ember-power-calendar-day--range-end {
@@ -106,6 +106,12 @@
   }
 }
 
-.ember-power-calendar-day--focused {
-  box-shadow: inset 0px -2px 0px 0px $pal-accent;
+.ember-power-calendar-day--focused,
+.ember-power-calendar-day:focus {
+  box-shadow: inset 0px -2px 0px 0px theme-color("secondary");
+  outline: 0;
+}
+
+.ember-power-calendar-nav-control {
+  padding-bottom: 0; // fixes focus outline
 }

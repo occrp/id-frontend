@@ -1,12 +1,12 @@
 import Ember from 'ember';
 
 export default Ember.Component.extend({
-  isShowingModal: false,
+  tagName: '',
 
   actions: {
-    save() {
+    save(triggerClose) {
       this.get('onSave')(this.get('activityType'));
-      this.set('isShowingModal', false);
+      triggerClose();
     }
   }
 

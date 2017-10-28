@@ -1,14 +1,15 @@
-<div class="cover cover--header">
-  <div class="wrapper">
-    {{#link-to "new" class="button button--bordered pull-right"}}
-      <i class="fa fa-plus"></i>
-      {{t 'pods.browse.newButton'}}
-    {{/link-to}}
-    <h1 class="cover-title">{{t 'ticket' count=total.all}}</h1>
+<div class="wrapper">
+
+  <div class="titleBar">
+    <h1 class="t2 t-light titleBar-title">{{t 'ticket' count=total.all}}</h1>
+    <div class="titleBar-action">
+      {{#link-to "new" class="button button--primary"}}
+        {{~t 'pods.browse.newButton'~}}
+      {{/link-to}}
+    </div>
   </div>
 </div>
 
-<div class="cover cover--content">
 <div class="wrapper">
   <div class="section">
 
@@ -18,15 +19,16 @@
       requester=requester
       responder=responder
       sort=sort
-      updateFilter=(action 'updateFilter')}}
-      <div class="innerNav">
+      updateFilter=(action 'updateFilter')
+    }}
+      <div class="statusTabs">
         {{#link-to 'browse' (query-params status=statusPairs.open page=1) class=(if (eq status statusPairs.open) "active") data-test-status-tab="open"}}
-          <i class="fa fa-exclamation-circle" />
+          {{icon "issue-opened"~}}
           {{total.open}}
           {{t 'ticket.status.groups.open'}}
         {{/link-to}}
         {{#link-to 'browse' (query-params status=statusPairs.closed page=1) class=(if (eq status statusPairs.closed) "active") data-test-status-tab="closed"}}
-          <i class="fa fa-check" />
+          {{icon "check"~}}
           {{total.closed}}
           {{t 'ticket.status.groups.closed'}}
         {{/link-to}}
@@ -39,13 +41,29 @@
       requester=requester
       responder=responder
       filterMeta=filterMeta
-      resetFilters=(action 'resetFilters')}}
+      resetAllFilters=(action 'resetAllFilters')
+      resetFilter=(action 'resetFilter')
+    }}
 
-    {{ticket-list data=model}}
+    {{#unless ticketCount}}
+      {{#no-results title=(t 'empty.noTickets.title')}}
+        {{#link-to "new" class="button buttonOutlined--primary"}}
+          {{~t 'empty.noTickets.button'~}}
+        {{/link-to}}
+      {{/no-results}}
+    {{else}}
+      {{#unless model.length}}
+        {{#no-results title=(t 'empty.noResults.title')}}
+          {{t 'empty.noResults.body'}}
+        {{/no-results}}
+      {{else}}
+        {{ticket-list data=model}}
+      {{/unless}}
+    {{/unless}}
 
-    {{ui-pagination meta=model.meta current=page route='browse'}}
+    {{ui-pagination class="mt-4" meta=model.meta current=page route='browse'}}
 
   </div>
 </div>
-</div>
+
 

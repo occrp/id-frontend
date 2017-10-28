@@ -1,6 +1,7 @@
 import Ember from 'ember';
+import LoadingSliderMixin from 'id-frontend/mixins/loading-slider';
 
-export default Ember.Route.extend({
+export default Ember.Route.extend(LoadingSliderMixin, {
   session: Ember.inject.service(),
 
   beforeModel() {

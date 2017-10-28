@@ -1,0 +1,23 @@
+.alert {
+  position: relative;
+  padding: .75rem 1.25rem;
+  border: 1px solid transparent;
+  border-radius: $border-radius;
+}
+
+.alert-heading {
+  margin-bottom: $spacer;
+
+  .icon {
+    vertical-align: -.25em;
+    margin-right: $spacer;
+  }
+}
+
+@each $color, $value in $theme-colors {
+  .alert--#{$color} {
+    color: theme-color-level($color, 3);
+    background-color: theme-color-level($color, -11);
+    border-color: theme-color-level($color, -9);
+  }
+}

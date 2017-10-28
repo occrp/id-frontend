@@ -1,44 +1,46 @@
+.wrapper {
+  box-sizing: border-box;
+  width: 100%;
+  max-width: 1170px;
+  margin: 0 auto;
+  padding: 0 15px;
+}
+
+.section {
+  margin-bottom: $spacer-4;
+  & + & {
+    margin-top: 30px;
+  }
+}
+
+
 .l-constrain {
   max-width: 600px;
   margin: 0 auto;
 }
 
 .l-fixedColumn {
-  @include cf;
-
-  @include respond(to-em(800px)) {
+  width: 100%;
+  @include respond(lg) {
+    display: flex;
 
     .l-fixedColumn-main {
-      box-sizing: border-box;
-      float: left;
-      width: calc(100% - 300px);
-      margin-right: 300px;
-      padding-right: 30px;
-      padding-left: 20px;
-      border-right: 1px solid $pal-gray90;
+      flex: 1 1 auto;
+      padding-left: $spacer-4;
+      padding-right: $spacer-4;
+      min-width: 0;
     }
 
     .l-fixedColumn-column {
-      box-sizing: border-box;
-      width: 300px;
-      float: left;
-      margin-left: -301px;
-      padding-left: 30px;
-      border-left: 1px solid $pal-gray90;
+      flex: 0 0 auto;
+      width: 400px;
+      padding-left: $spacer-4;
+      padding-right: $spacer-4;
     }
-
   }
 }
 
-.l-fixedColumn-separator {
-  margin: 35px -30px 35px -20px;
-  border-top: 1px solid $pal-gray90;
-}
-
-.mt-5 {
-  margin-top: 5px;
-}
-
-.mb-20 {
-  margin-bottom: 20px;
+.l-fixedColumn hr {
+  margin: $spacer-5 -1*$spacer-4 $spacer-5 -1*$spacer-4;
+  border-top-color: 1px solid $gray-300;
 }

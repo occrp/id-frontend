@@ -1,15 +1,15 @@
 <div class="activityHeader">
-  <h3 class="t-accent">
+  <h2 class="t3 t-primary t-light">
     {{t 'activity' count=1}}
 
     {{#if loadActivities.isRunning}}
       {{ui-spinner}}
     {{/if}}
-  </h3>
+  </h2>
 
   {{activity-pagination
-    meta=activityCache.meta 
-    current=currentPage 
+    meta=activityCache.meta
+    current=currentPage
     onSwitch=(action 'switchPage')}}
 </div>
 
@@ -26,27 +26,28 @@
     <form class="activity-body activity-form" {{action "save" on="submit"}}>
 
       {{#validated-field
-        class="form-group"
-        validation=this.validations.attrs.body 
+        class="formGroup"
+        validation=this.validations.attrs.body
         didValidate=didValidate as |field|}}
 
-        {{textarea value=body class="form-control" rows="5"}}
+        {{textarea value=body class="formControl formControl--sm" rows="6"}}
 
         {{#if field.showErrors}}
-          <div class="help-block">{{v-get this "body" "message"}}</div>
+          <div class="formFeedback t-right">{{v-get this "body" "message"}}</div>
         {{/if}}
-        
+
       {{/validated-field}}
 
-      <div class="form-actions">
-        <button disabled={{publishComment.isRunning}} type="submit" class="button button--primary pull-right">
+      <div class="formGroup formGroup--actions">
+        <button disabled={{publishComment.isRunning}} type="submit" class="button button--primary">
           {{t 'activity.comment.submitButton'}}
         </button>
+
+        {{#if publishComment.isRunning}}
+          {{ui-spinner}}
+        {{/if}}
       </div>
 
-      {{#if publishComment.isRunning}}
-        {{ui-spinner}}
-      {{/if}}
 
     </form>
   </div>

@@ -1,35 +1,29 @@
 {{#if (gt total 1)}}
-<ul class="pg-container">
 
   {{#if meta.pagination.prev.number}}
-    <li class="pg-prev">
-      {{#link-to route (query-params page=meta.pagination.prev.number) data-test-pagination="prev"}}
-        <b>{{t 'pagination.prev'}}</b>
-      {{/link-to}}
-    </li>
+    {{#link-to route (query-params page=meta.pagination.prev.number) class="pg-prev" data-test-pagination="prev"}}
+      {{~t 'pagination.prev'~}}
+    {{/link-to}}
   {{else}}
-    <li class="pg-prev is-disabled"><span> <b>{{t 'pagination.prev'}}</b> </span></li>
+    <span class="pg-prev is-disabled">{{t 'pagination.prev'}}</span>
   {{/if}}
 
   {{#each items as |number|}}
     {{#if number}}
-      <li class="pg-item {{if (eq number current) "is-active"}}">
-        {{#link-to route (query-params page=number)}}{{number}}{{/link-to}}
-      </li>
+      {{#link-to route (query-params page=number) class=(concat "pg-item " (if (eq number current) "is-active"))}}
+        {{~number~}}
+      {{/link-to}}
     {{else}}
-      <li class="pg-sep"><span>&hellip;</span></li>
+      <span class="pg-sep">&hellip;</span>
     {{/if}}
   {{/each}}
 
   {{#if meta.pagination.next.number}}
-    <li class="pg-next">
-      {{#link-to route (query-params page=meta.pagination.next.number) data-test-pagination="next"}}
-        <b>{{t 'pagination.next'}}</b>
-      {{/link-to}}
-    </li>
+    {{#link-to route (query-params page=meta.pagination.next.number) class="pg-next" data-test-pagination="next"}}
+      {{~t 'pagination.next'~}}
+    {{/link-to}}
   {{else}}
-    <li class="pg-next is-disabled"><span> <b>{{t 'pagination.next'}}</b> </span></li>
+    <span class="pg-next is-disabled">{{t 'pagination.next'}}</span>
   {{/if}}
 
-</ul>
 {{/if}}
