@@ -10,9 +10,8 @@
     
 
     <!-- wrapper assets -->
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:400,600,700&subset=cyrillic">
-    <link rel="stylesheet" href="/tickets/assets/id-with-bootstrap.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,700&subset=cyrillic">
+    <link rel="stylesheet" href="/tickets/spa-id.css">
 
     <!-- standard assets -->
     <link rel="stylesheet" href="/tickets/assets/vendor.css">
@@ -21,7 +20,20 @@
     
   </head>
   <body>
-    
+    <script>
+  var ajax = new XMLHttpRequest();
+  ajax.open('GET', '/assets/symbols.svg', true);
+  ajax.send();
+  ajax.onload = function(e) {
+    if (this.status === 404) {
+       return;
+    }
+    var div = document.createElement('div');
+    div.innerHTML = ajax.responseText;
+    document.body.insertBefore(div, document.body.childNodes[0]);
+  };
+</script>
+
 
     <nav class="navbar navbar-default navbar-static-top">
       <div class="container-fluid">
@@ -56,7 +68,7 @@
                 <i class="fa fa-database"></i> External Databases
               </a>
             </li>
-            <li>
+            <li  class="active">
               <a href="/" id="nav-id-app">
                 <i class="fa fa-comments-o"></i> Research Requests
               </a>
@@ -86,18 +98,6 @@
               </ul>
             </li>
 
-            <li class="dropdown">
-              <a class="dropdown-toggle" href="#" data-toggle="dropdown">
-                <i class="fa fa-language"></i>
-                <b class="caret"></b>
-              </a>
-              <ul class="dropdown-menu" role="menu">
-                <li><a href="#locale-1">locale.1</a></li>
-                <li><a href="#locale-2">locale.2</a></li>
-                <li><a href="#locale-3">locale.3</a></li>
-              </ul>
-            </li>
-
           </ul>
 
         </div>
@@ -110,8 +110,6 @@
     <script src="/tickets/assets/vendor.js"></script>
     <script src="/tickets/assets/id.js"></script>
 
-    
-
     <script type="text/javascript">
       var navLink = document.getElementById('nav-id-app');
       navLink.addEventListener('click', function (e) {
@@ -119,5 +117,8 @@
         IdFrontend.__container__.lookup('router:main').transitionTo('index');
       });
     </script>
+
+    
+
   </body>
 </html>
