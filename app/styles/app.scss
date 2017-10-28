@@ -59,23 +59,3 @@
     background-color: lighten(theme-color("primary"), 5%);
   }
 }
-
-// Old navbar >_>
-
-@import "meh";
-
-.navbar {
-  position: relative;
-  min-height: 50px;
-  border-bottom: 1px solid #d0d8dd !important;
-  background-color: white;
-  margin-bottom: 0;
-  box-shadow: none !important;
-
-  // -webkit-font-smoothing: antialiased;
-  // -moz-osx-font-smoothing: grayscale;
-}
-
-.nav {
-  font-size: $font-size-sm;
-}
