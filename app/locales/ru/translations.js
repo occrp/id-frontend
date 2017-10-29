@@ -263,5 +263,13 @@ export default {
       "button": "Отправить запрос",
       "title": "У вас пока нету запроса пока"
     }
+  },
+  locales: {
+    en: 'English',
+    ru: 'Русский',
+    bs: 'Srpskohrvatski',
+    es: 'Español',
+    fr: 'Français',
+    ar: 'العربية'
   }
 }

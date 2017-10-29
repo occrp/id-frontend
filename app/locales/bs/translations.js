@@ -263,5 +263,13 @@ export default {
       "button": "Novi zahtjev",
       "title": "Izgleda da još niste ostavili nijedan zahtjev"
     }
+  },
+  locales: {
+    en: 'English',
+    ru: 'Русский',
+    bs: 'Srpskohrvatski',
+    es: 'Español',
+    fr: 'Français',
+    ar: 'العربية'
   }
 }

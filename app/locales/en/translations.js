@@ -292,8 +292,11 @@ export default {
 
   locales: {
     en: 'English',
-    ru: 'Russian',
-    bs: 'Bosnian'
+    ru: 'Русский',
+    bs: 'Srpskohrvatski',
+    es: 'Español',
+    fr: 'Français',
+    ar: 'العربية'
   },
 
   validationErrors: {
