@@ -293,7 +293,7 @@ export default {
   locales: {
     en: 'English',
     ru: 'Русский',
-    bs: 'Srpskohrvatski',
+    bs: 'Bos/Hrv/Srp',
     es: 'Español',
     fr: 'Français',
     ar: 'العربية'
