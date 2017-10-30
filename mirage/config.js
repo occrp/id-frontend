@@ -53,6 +53,7 @@ export default function() {
 
     request.mirageMeta = {
       total: {
+        'all': schema.tickets.all().length,
         'new': schema.tickets.where({status: 'new'}).length,
         'in-progress': schema.tickets.where({status: 'in-progress'}).length,
         'pending': schema.tickets.where({status: 'pending'}).length,
@@ -109,7 +110,7 @@ export default function() {
 
       schema.activities.create(activityAttrs);
     }
-    
+
     ticket.update(attrs);
 
     return ticket;

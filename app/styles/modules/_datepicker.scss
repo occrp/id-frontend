@@ -2,6 +2,7 @@
 .datepickerPopup {
   // Tether offset
   padding: 8px 0;
+  z-index: $zindex-dropdown;
 }
 
 .datepickerContainer {

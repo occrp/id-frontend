@@ -7,6 +7,8 @@ export default Ember.Component.extend({
   theCenter: Ember.computed.oneWay('center'),
 
   isShowingPopup: false,
+  attachment: 'bottom left',
+  targetAttachment: 'top left',
   constraints: [
     {
       to: 'window',
