@@ -26,7 +26,7 @@ module.exports = function(environment) {
 
     moment: {
       outputFormat: 'MMM DD YYYY',
-      includeLocales: ['bs', 'ru']
+      includeLocales: ['bs', 'ru', 'fr', 'es', 'ar']
     },
 
     i18n: {
