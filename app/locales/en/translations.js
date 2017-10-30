@@ -300,9 +300,9 @@ export default {
   },
 
   validationErrors: {
-    description: "This field",
-    blank: "{{description}} can't be blank",
-    onOrAfter: '{{description}} must be on or after {{onOrAfter}}'
+    blank: "This field can't be blank",
+    before: "This date must be before {{before}}",
+    after: "This date must be after {{after}}",
   }
 
 };
