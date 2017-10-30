@@ -2,7 +2,7 @@
   <div class="t-center mt-5 mb-8">
     <h1 class="t-primary t-light mb-3">{{t 'pods.new.title'}}</h1>
 
-    <p class="t4 t-muted">Your request will be routed to our professional researchers, who will try to help.</p>
+    <p class="t4 t-muted">{{t 'pods.new.headline'}}</p>
   </div>
 
   {{form-create-ticket model=model afterSave=(action "goToTicketPage")}}
