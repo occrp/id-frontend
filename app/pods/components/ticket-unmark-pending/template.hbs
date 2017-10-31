@@ -1,7 +1,7 @@
 {{#ui-modal-container as |m|}}
 
 <button class="button buttonOutlined--primary" {{action m.toggle}}>
-  {{t 'pods.view.close.button' verb=activityType}}
+  {{t 'pods.view.close.button' verb=activityLabel}}
 </button>
 
 {{#if m.isShowing}}
@@ -9,7 +9,7 @@
   <div class="modal-content">
 
     <div class="modal-body t-center">
-      <h4 class="t-normal my-3 t-muted">{{t 'pods.view.close.title' verb=activityType}}</h4>
+      <h4 class="t-normal my-3 t-muted">{{t 'pods.view.close.title' verb=activityLabel}}</h4>
     </div>
 
     <div class="modal-footer modal-footer--center">
@@ -17,7 +17,7 @@
         {{t 'actions.cancel'}}
       </button>
       <button class="button button--primary" {{action 'save' m.toggle}}>
-        {{t 'pods.view.close.confirm' verb=activityType}}
+        {{t 'pods.view.close.confirm' verb=activityLabel}}
       </button>
     </div>
 

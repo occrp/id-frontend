@@ -4,15 +4,20 @@ import { kindList } from 'id-frontend/models/ticket';
 import { getSearchGenerator } from 'id-frontend/models/profile';
 
 export default Ember.Component.extend({
+  i18n: Ember.inject.service(),
+
   tagName: '',
   kindList,
 
-  sortFields: {
-    '-created-at': 'Newest',
-    'created-at': 'Oldest',
-    'deadline-at': 'Closest deadline',
-    '-deadline-at': 'Furthest deadline'
-  },
+  sortFields: Ember.computed('i18n', function() {
+    let i18n = this.get('i18n');
+    return {
+      '-created-at': i18n.t('filters.sort.createdAt.desc'),
+      'created-at': i18n.t('filters.sort.createdAt.asc'),
+      'deadline-at': i18n.t('filters.sort.deadlineAt.desc'),
+      '-deadline-at': i18n.t('filters.sort.deadlineAt.asc')
+    }
+  }),
 
   searchRequesters: task(getSearchGenerator()).restartable(),
   searchStaff: task(getSearchGenerator({ isStaff: true })).restartable(),

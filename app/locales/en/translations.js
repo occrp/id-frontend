@@ -250,7 +250,15 @@ export default {
     },
     sort: {
       label: 'Sort',
-      title: 'Sort by'
+      title: 'Sort by',
+      "createdAt": {
+        "desc": "Newest",
+        "asc": "Oldest"
+      },
+      "deadlineAt": {
+        "desc": "Closest deadline",
+        "asc": "Furthest deadline"
+      },
     }
   },
 
@@ -264,6 +272,8 @@ export default {
   actions: {
     upload: 'Upload',
     cancel: 'Cancel',
+    close: 'Close',
+    unmark: 'Unmark',
     assign: {
       shortForm: 'Assign',
       longForm: 'Assign to staff',

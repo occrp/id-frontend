@@ -9,7 +9,7 @@
       {{#if (and (can "resolve tickets") model.isOpen model.responders.length)}}
         <div class="mr-3">
           {{#if model.isPending}}
-            {{ticket-unmark-pending model=model activityType='unmark' onSave=(action 'saveStatus')}}
+            {{ticket-unmark-pending model=model activityType='unmark' activityLabel=(t 'actions.unmark') onSave=(action 'saveStatus')}}
           {{else}}
             {{ticket-mark-pending model=model onSave=(action 'saveStatus' 'pending')}}
           {{/if}}
@@ -17,7 +17,11 @@
       {{/if}}
 
       {{#if model.isOpen}}
-        {{ticket-close model=model activityType=(if (can "resolve tickets") 'close' 'cancel') onSave=(action 'saveStatus')}}
+        {{ticket-close model=model
+          activityType=(if (can "resolve tickets") 'close' 'cancel')
+          activityLabel=(if (can "resolve tickets") (t 'actions.close') (t 'actions.cancel'))
+          onSave=(action 'saveStatus')
+        }}
       {{else}}
         {{ticket-reopen model=model onSave=(action 'saveStatus' 'reopen')}}
       {{/if}}
