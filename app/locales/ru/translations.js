@@ -11,18 +11,17 @@ export default {
     "newer": "Новые",
     "older": "Старые"
   },
-  "errors": {
-    "genericInvalid": "Пожалуйста заполните это поле"
-  },
   "actions": {
-    "upload": "Загрузить",
-    "remove": "Удалить",
-    "reopen": "Открыть заново",
-    "cancel": "Отменить",
-    "save": "Сохранить",
+    "upload": "загрузить",
+    "close": "закрыть",
+    "remove": "удалить",
+    "reopen": "oткрыть заново",
+    "cancel": "oтменить",
+    "unmark": "отпустить",
+    "save": "сохранить",
     "assign": {
       "longForm": "Назначить сотрудника",
-      "shortForm": "Назначить"
+      "shortForm": "назначить"
     }
   },
   "prefixes": {
@@ -45,7 +44,15 @@ export default {
   "filters": {
     "sort": {
       "title": "Сортировать по",
-      "label": "Сортировка"
+      "label": "Сортировка",
+      "createdAt": {
+        "desc": "Самые новые",
+        "asc": "Самые старые",
+      },
+      "deadlineAt": {
+        "desc": "Выполнить раньше",
+        "asc": "Выполнить позже"
+      },
     },
     "kind": {
       "title": "Отфильтровать по типу"
@@ -59,7 +66,7 @@ export default {
     },
     "current": {
       "clear": "Очистить все фильтры",
-      "title": "Отфильтровано по"
+      "title": "Фильтры"
     },
     "requester": {
       "title": "Отфильтровать по автору запроса"
@@ -75,7 +82,7 @@ export default {
       "title": "Оставить комментарий"
     },
     "resume": {
-      "action": "Открыт повторно"
+      "action": "придержан"
     },
     "one": "Деятельность",
     "reopen": {
@@ -133,7 +140,7 @@ export default {
       "formLabel": "Что вы хотите узнать?",
       "desc": "Любая информация, которая у вас уже есть"
     },
-    "other": "{{count}} Запросов",
+    "other": "{{count}} запросов",
     "status": {
       "closed": {
         "name": "Закрыт"
@@ -152,7 +159,7 @@ export default {
         "name": "Новый"
       },
       "pending": {
-        "name": "В ожидании ответа"
+        "name": "В ожидании"
       }
     },
     "companyName": {
@@ -246,7 +253,7 @@ export default {
         "confirm": "Да"
       },
       "pending": {
-        "button": "Поставить в ожидании ответа"
+        "button": "Придержать в ожидании ответа"
       },
       "reopen": {
         "button": "Открыть запрос заново",
@@ -271,5 +278,10 @@ export default {
     es: 'Español',
     fr: 'Français',
     ar: 'العربية'
+  },
+  validationErrors: {
+    blank: "Это поле не может быть пустым",
+    before: "Тут дата должна быть раньше {{before}}",
+    after: "Эта дата должна быть позже {{after}}",
   }
 }
