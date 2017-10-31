@@ -77,7 +77,7 @@ export default {
   },
   "activity": {
     "comment": {
-      "action": "{{user}} Оставил/а комментарий {{relativeTime}}",
+      "action": "Сотрудник {{user}} оставил комментарий {{relativeTime}}",
       "submitButton": "Опубликовать",
       "title": "Оставить комментарий"
     },
@@ -89,13 +89,13 @@ export default {
       "action": "открыт заново"
     },
     "attachment": {
-      "action": "{{user}} прикрепил файлы"
+      "action": "Сотрудник {{user}} прикрепил файлы"
     },
     "unassign": {
-      "action": "{{user}} больше не назначен"
+      "action": "Сотрудник {{user}} больше не назначен"
     },
     "assign": {
-      "action": "{{user}} был назначен"
+      "action": "Сотрудник {{user}} был назначен"
     }
   },
   "ticket": {
