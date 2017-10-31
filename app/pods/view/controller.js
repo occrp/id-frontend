@@ -29,7 +29,7 @@ export default Ember.Controller.extend({
     yield model.save();
   }),
 
-  minimumDeadline: moment.utc().add(3, 'days'),
+  minimumDeadline: moment.utc(),
   center: Ember.computed('model.deadlineAt', 'minimumDeadline', function() {
     const deadline = this.get('model.deadlineAt');
     if (Ember.isBlank(deadline)) {

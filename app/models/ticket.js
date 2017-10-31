@@ -150,7 +150,7 @@ export const Validations = buildValidations({
     allowBlank: true,
     format: 'DD/MM/YYYY',
     after: Ember.computed(function() {
-      return moment.utc().add(3, 'days').format('DD/MM/YYYY');
+      return moment.utc().format('DD/MM/YYYY');
     }).volatile()
   })
 }, {
