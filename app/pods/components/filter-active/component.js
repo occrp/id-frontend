@@ -16,7 +16,7 @@ export default Ember.Component.extend({
     return this.get('requester') && wrapper.create(this.get('filterMeta.requester'));
   }),
 
-  currentResponder: Ember.computed('responder', 'filterMeta.responder', function() {
+  currentResponder: Ember.computed('responder', 'filterMeta.responder', 'i18n.locale', function() {
     if (this.get('responder') === 'none') {
       return wrapper.create({
         email: this.get('i18n').t('ticket.responder.empty')

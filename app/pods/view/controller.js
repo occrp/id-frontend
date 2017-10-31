@@ -6,11 +6,14 @@ import moment from 'moment';
 export default Ember.Controller.extend({
   kindList,
   Validations,
+  i18n: Ember.inject.service(),
 
-  title: Ember.computed('model.kind', function () {
+  title: Ember.computed('model.kind', 'i18n.locale', function () {
+    let i18n = this.get('i18n');
+
     switch (this.get('model.kind')) {
       case kindList[2]:
-        return 'Request';
+        return i18n.t('ticket.one');
       default:
         return this.get('model.displayName');
     }

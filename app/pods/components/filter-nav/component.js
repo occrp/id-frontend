@@ -9,7 +9,7 @@ export default Ember.Component.extend({
   tagName: '',
   kindList,
 
-  sortFields: Ember.computed('i18n', function() {
+  sortFields: Ember.computed('i18n.locale', function() {
     let i18n = this.get('i18n');
     return {
       '-created-at': i18n.t('filters.sort.createdAt.desc'),
