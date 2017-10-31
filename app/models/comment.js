@@ -8,7 +8,7 @@ export default DS.Model.extend({
   createdAt: attr('date'),
 
   user: belongsTo('profile'),
-  ticket: belongsTo()  
+  ticket: belongsTo()
 });
 
 export const Validations = buildValidations({
@@ -17,5 +17,5 @@ export const Validations = buildValidations({
   })
 }, {
   debounce: 100,
-  messageKey: 'errors.genericInvalid'
+  messageKey: 'validationErrors.blank'
 });
