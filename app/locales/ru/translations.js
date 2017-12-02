@@ -25,8 +25,8 @@ export default {
     }
   },
   "prefixes": {
-    "on": "К {{date}}",
-    "at": "В {{time}}",
+    "on": "{{date}}",
+    "at": "{{time}}",
     "by": "Пользователем {{user}}"
   },
   "attachment": {
@@ -43,8 +43,8 @@ export default {
   },
   "filters": {
     "sort": {
-      "title": "Сортировать по",
-      "label": "Сортировка",
+      "title": "Отсортировать",
+      "label": "По датам",
       "createdAt": {
         "desc": "Самые новые",
         "asc": "Самые старые",
@@ -77,29 +77,29 @@ export default {
   },
   "activity": {
     "comment": {
-      "action": "Сотрудник {{user}} оставил комментарий {{relativeTime}}",
+      "action": "{{user}} оставил/а комментарий {{relativeTime}}",
       "submitButton": "Опубликовать",
-      "title": "Оставить комментарий"
+      "title": "Добавить комментарий"
     },
     "resume": {
       "action": "придержан"
     },
-    "one": "Деятельность",
+    "one": "Лента изменений",
     "reopen": {
       "action": "открыт заново"
     },
     "attachment": {
-      "action": "Сотрудник {{user}} прикрепил файлы"
+      "action": "{{user}} прикрепил/а файлы"
     },
     "unassign": {
-      "action": "Сотрудник {{user}} больше не назначен"
+      "action": "{{user}} больше не назначен/а"
     },
     "assign": {
-      "action": "Сотрудник {{user}} был назначен"
+      "action": "{{user}} был назначен/а"
     }
   },
   "ticket": {
-    "one": "Запрос",
+    "one": "{{count}} запрос",
     "connections": {
       "formLabel": "Связи с другими компаниями и людьми",
       "label": "Связи"
@@ -140,7 +140,8 @@ export default {
       "formLabel": "Что вы хотите узнать?",
       "desc": "Любая информация, которая у вас уже есть"
     },
-    "other": "Всего запросов: {{count}}",
+    "other": "{{count}} запросa",
+    "zero": "{{count}} запросов",
     "status": {
       "closed": {
         "name": "Закрыт"
@@ -149,8 +150,16 @@ export default {
         "name": "В процессе"
       },
       "groups": {
-        "open": "Открыт",
-        "closed": "Закрыт"
+        "open": {
+          "zero": "Открыто",
+          "one": "Открыт",
+          "other": "Открыто",
+        },
+        "closed": {
+          "zero": "Закрыто",
+          "one": "Закрыт",
+          "other": "Закрыто",
+        },
       },
       "cancelled": {
         "name": "Отменен"
@@ -176,7 +185,8 @@ export default {
     "requester": {
       "prefix": "Отправитель {{requester}}",
       "other": "Авторы запроса",
-      "one": "Автор запроса"
+      "one": "Автор запроса",
+      "zero": "Авторов запроса"
     },
     "connectionsPerson": {
       "label": "Семья и партнеры",
@@ -188,7 +198,7 @@ export default {
     "kind": {
       "person_ownership": {
         "shortName": "Человек",
-        "name": "Определить, что принадлжит человеку"
+        "name": "Определить, что принадлежит человеку"
       },
       "other": {
         "shortName": "Другое",
@@ -214,11 +224,13 @@ export default {
       },
       "other": "Страны",
       "label": "Страна регистрации",
-      "one": "Страна"
+      "one": "Страна",
+      "zero": "Стран"
     },
     "responder": {
       "one": "Исполнитель",
       "other": "Исполнители",
+      "zero": "Исполнителя",
       "empty": "Никто не назначен",
       "label": "Назначеные исполнители"
     },
