@@ -7,7 +7,7 @@ export default Ember.Component.extend({
     'ru',
     'bs',
     // 'fr',
-    // 'es',
+    'es',
     // 'ar'
   ]
 });
