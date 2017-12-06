@@ -13,6 +13,11 @@
   .icon {
     margin-right: .75rem;
     vertical-align: -4px;
+
+    @include rtl {
+      margin-left: .75rem;
+      margin-right: 0;
+    }
   }
 
   [class^="icon-"] {

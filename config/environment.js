@@ -30,7 +30,24 @@ module.exports = function(environment) {
     },
 
     i18n: {
-      defaultLocale: 'en'
+      defaultLocale: 'en',
+
+      // These next 2 props are used in the app, not coming from the addon
+      activeLocales: [
+        'en',
+        'ru',
+        'bs',
+        // 'fr',
+        // 'es',
+        'ar'
+      ],
+
+      // Keeping this array updated manually for now
+      // Ideally: https://github.com/jamesarosen/ember-i18n/issues/375
+      // Used by the extended i18n service
+      rtlLocales: [
+        'ar'
+      ],
     }
   };
 

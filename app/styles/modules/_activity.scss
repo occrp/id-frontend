@@ -13,8 +13,22 @@
 
   .pg {
     float: right;
-    margin-left: 1em;
-    margin: 0 !important;
+    margin: 0 !important; // ??
+  }
+
+  @include rtl {
+    h2 {
+      float: right;
+    }
+
+    .spinner {
+      margin-right: .75rem;
+      margin-left: 0;
+    }
+
+    .pg {
+      float: left;
+    }
   }
 }
 
@@ -31,14 +45,17 @@
     top: 0;
     left: calc(1rem + 14px);
     background: $gray-300;
+
+    @include rtl {
+      left: auto;
+      right: calc(1rem + 14px);
+    }
   }
 }
 
 .activity {
   position: relative;
   margin: $spacer-3 0;
-
-  // box-shadow: 0 0 0 3px white;
 }
 
 .activity--comment,
@@ -60,7 +77,7 @@
   background-clip: padding-box;
   border-radius: $border-radius;
   border-bottom-left-radius: 0;
-  border-bottom-left-radius: 0;
+  border-bottom-right-radius: 0;
   font-size: $font-size-sm;
 
   strong {
@@ -74,6 +91,20 @@
 
   .tag {
     margin-right: 0.35em;
+  }
+
+  @include rtl {
+    strong {
+      &:first-child {
+        margin-left: 0.1em;
+        margin-right: 0;
+      }
+    }
+
+    .tag {
+      margin-left: 0.35em;
+      margin-right: 0;
+    }
   }
 }
 
@@ -108,6 +139,18 @@
     vertical-align: top;
   }
 
+  @include rtl {
+    .icon {
+      margin-left: .5rem;
+      margin-right: 0;
+    }
+
+    .tag {
+      margin-left: 0.35em;
+      margin-right: 0;
+    }
+  }
+
 }
 
 
@@ -138,6 +181,17 @@
       margin-top: 1rem;
     }
 
+    @include rtl {
+      .button {
+        float: left;
+      }
+
+      .spinner {
+        float: left;
+        margin-left: 1.25rem;
+        margin-right: 0;
+      }
+    }
   }
 }
 

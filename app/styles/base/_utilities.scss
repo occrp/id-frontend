@@ -36,6 +36,11 @@
     margin-top: #{$size} !important;
     margin-bottom: #{$size} !important;
   }
+
+  @include rtl(true) {
+    .mr-#{$scale} { margin-right: 0 !important; margin-left: #{$size} !important; }
+    .ml-#{$scale} { margin-left: 0 !important; margin-right: #{$size} !important; }
+  }
 }
 
 // Set an auto margin on left & right
@@ -62,6 +67,11 @@
 .t-right { text-align: right !important; }
 .t-left { text-align: left !important; }
 .t-center { text-align: center !important; }
+
+@include rtl(true) {
+  .t-right { text-align: left !important; }
+  .t-left { text-align: right !important; }
+}
 
 .t-light { font-weight: $font-weight-light !important; }
 .t-normal { font-weight: $font-weight-normal !important; }

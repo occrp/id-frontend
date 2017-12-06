@@ -40,7 +40,12 @@
   .icon {
     float: left;
     margin-right: .75rem;
-    // margin-left: 5px;
+
+    @include rtl {
+      float: right;
+      margin-left: .75rem;
+      margin-right: 0;
+    }
   }
 
   [class^="icon-"] {

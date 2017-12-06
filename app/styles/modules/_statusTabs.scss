@@ -25,4 +25,23 @@
   a + a {
     margin-left: 1rem;
   }
+
+  @include rtl {
+    margin-left: 0;
+    margin-right: $spacer-3;
+
+    .icon {
+      margin-right: 0;
+      margin-left: .5rem;
+    }
+
+    a {
+      float: right;
+    }
+
+    a + a {
+      margin-left: 0;
+      margin-right: 1rem;
+    }
+  }
 }

@@ -13,6 +13,13 @@
   min-height: (1rem * $line-height-base);
   padding-left: $custom-control-gutter;
   margin-right: $custom-control-spacer-x;
+
+  @include rtl {
+    padding-left: 0;
+    margin-right: 0;
+    padding-right: $custom-control-gutter;
+    margin-left: $custom-control-spacer-x;
+  }
 }
 
 .customControl-input {
@@ -66,6 +73,11 @@
   background-position: center center;
   background-size: $custom-control-indicator-bg-size;
   box-shadow: $custom-control-indicator-box-shadow;
+
+  @include rtl {
+    left: auto;
+    right: 0;
+  }
 }
 
 // Checkboxes

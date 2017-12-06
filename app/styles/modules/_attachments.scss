@@ -54,6 +54,16 @@
     height: 100%;
     background: $gray-400;
   }
+
+  @include rtl {
+    margin-right: $spacer-3;
+    margin-left: 0;
+
+    &::after {
+      right: -1 * $spacer-3;
+      left: auto;
+    }
+  }
 }
 
 
@@ -83,6 +93,11 @@
     height: 9px;
     border-radius: 50%;
     background: $gray-400;
+
+    @include rtl {
+      right: calc(#{-1 * $spacer-3} - 4px);
+      left: auto;
+    }
   }
 }
 
@@ -101,6 +116,11 @@
   width: 1px;
   height: calc(100% + #{$line-height-base/2 * $font-size-sm + $spacer-1});
   background: $gray-100;
+
+  @include rtl {
+    right: -1 * $spacer-3;
+    left: auto;
+  }
 }
 
 .fileGroup:first-child .fileGroup-title::before {
@@ -113,6 +133,11 @@
   width: 1px;
   height: $line-height-base/2 * $font-size-sm;
   background: $gray-100;
+
+  @include rtl {
+    right: -1 * $spacer-3;
+    left: auto;
+  }
 }
 
 
@@ -141,6 +166,20 @@
   .icon {
     vertical-align: -2px;
     margin-right: 0.5rem;
+  }
+
+  @include rtl {
+    .file-size {
+      direction: ltr;
+      float: left;
+      margin-right: 1rem;
+      margin-left: 0;
+    }
+
+    .icon {
+      margin-left: 0.5rem;
+      margin-right: 0;
+    }
   }
 }
 

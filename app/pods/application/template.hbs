@@ -5,7 +5,11 @@
       <!-- {{#link-to 'browse' class="appNav-item" hidden=true}}Requests{{/link-to}} -->
     </div>
     <div class="appNav-switcher">
-      {{i18n-switch currentLocale=lang switchLocale=(action 'switchLocale')}}
+      {{i18n-switch
+        locales=activeLocales
+        currentLocale=lang
+        switchLocale=(action 'switchLocale')
+      }}
     </div>
   </div>
 </nav>
