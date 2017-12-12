@@ -1,0 +1,143 @@
+<div class="mt-5">
+
+  <div class="reportCard mb-5">
+    <div class="reportCard-title">
+      {{~icon "issue-opened" class="icon--lg"~}}
+      <div>
+        <h2 class="t4 t-light">{{processedStats.byStatus.open.count}} Open requests</h2>
+        <p class="t-sm t-danger mt-2">{{processedStats.byStatus.open.pastDeadlineCount}} past deadline</p>
+      </div>
+    </div>
+
+    <div class="reportCard-body mt-3">
+      <div class="reportCard-details">
+        <h3 class="t5 mb-4 mt-3">By status</h3>
+        <table class="labelTable">
+          <tbody>
+            <tr>
+              <td>{{status-label 'new'}}</td>
+              <td>{{processedStats.byStatus.new.count}}</td>
+            </tr>
+            <tr>
+              <td>{{status-label 'in-progress'}}</td>
+              <td>{{processedStats.byStatus.in-progress.count}}</td>
+            </tr>
+            <tr>
+              <td>{{status-label 'pending'}}</td>
+              <td>{{processedStats.byStatus.pending.count}}</td>
+            </tr>
+          </tbody>
+        </table>
+
+      </div>
+      <div class="reportCard-chart">
+        <table class="statsTable">
+          <thead>
+            <tr>
+              <th class="statsTable-month">Month</th>
+              <th class="t-right statsTable-status">{{status-label 'new'}}</th>
+              <th class="t-right statsTable-status">{{status-label 'in-progress'}}</th>
+              <th class="t-right statsTable-status">{{status-label 'pending'}}</th>
+              <th class="t-right statsTable-total">Total<p class="t-sm t-muted t-normal">Avg. resolution time</p></th>
+            </tr>
+          </thead>
+          <tbody>
+            {{#each processedStats.byDate as |month|}}
+              <tr>
+                <td>{{moment-format month.date 'MMMM Y'}}</td>
+                {{#with month.new as |item|}}
+                  <td class="t-right">
+                    {{item.count}}
+                    {{#if item.count}}<p class="t-sm t-muted">{{item.avgTime}}s</p>{{/if}}
+                  </td>
+                {{/with}}
+                {{#with month.in-progress as |item|}}
+                  <td class="t-right">
+                    {{item.count}}
+                    {{#if item.count}}<p class="t-sm t-muted">{{item.avgTime}}s</p>{{/if}}
+                  </td>
+                {{/with}}
+                {{#with month.pending as |item|}}
+                  <td class="t-right">
+                    {{item.count}}
+                    {{#if item.count}}<p class="t-sm t-muted">{{item.avgTime}}s</p>{{/if}}
+                  </td>
+                {{/with}}
+                {{#with month.open as |item|}}
+                  <td class="t-right"><strong>{{item.count}}</strong> <p class="t-sm t-muted">{{item.avgTime}}s</p></td>
+                {{/with}}
+              </tr>
+            {{/each}}
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+
+
+  <div class="reportCard mt-5">
+    <div class="reportCard-title">
+      {{~icon "check" class="icon--lg"~}}
+      <div>
+        <h2 class="t4 t-light">{{processedStats.byStatus.resolved.count}} Closed requests</h2>
+        <p class="t-sm t-danger mt-2">{{processedStats.byStatus.resolved.pastDeadlineCount}} past deadline</p>
+      </div>
+    </div>
+
+    <div class="reportCard-body mt-3">
+      <div class="reportCard-details">
+        <h3 class="t5 mb-4 mt-3">By status</h3>
+        <table class="labelTable">
+          <tbody>
+            <tr>
+              <td>{{status-label 'closed'}}</td>
+              <td>{{processedStats.byStatus.closed.count}}</td>
+            </tr>
+            <tr>
+              <td>{{status-label 'cancelled'}}</td>
+              <td>{{processedStats.byStatus.cancelled.count}}</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="reportCard-chart">
+        <table class="statsTable">
+          <thead>
+            <tr>
+              <th class="statsTable-month">Month</th>
+              <th class="t-right statsTable-status">{{status-label 'closed'}}</th>
+              <th class="t-right statsTable-status">{{status-label 'cancelled'}}</th>
+              <th class="t-right statsTable-total">Total<p class="t-sm t-muted t-normal">Avg. resolution time</p></th>
+            </tr>
+          </thead>
+          <tbody>
+            {{#each processedStats.byDate as |month|}}
+              <tr>
+                <td>{{moment-format month.date 'MMMM Y'}}</td>
+                {{#with month.closed as |item|}}
+                  <td class="t-right">
+                    {{item.count}}
+                    {{#if item.count}}<p class="t-sm t-muted">{{item.avgTime}}s</p>{{/if}}
+                  </td>
+                {{/with}}
+                {{#with month.cancelled as |item|}}
+                  <td class="t-right">
+                    {{item.count}}
+                    {{#if item.count}}<p class="t-sm t-muted">{{item.avgTime}}s</p>{{/if}}
+                  </td>
+                {{/with}}
+                {{#with month.resolved as |item|}}
+                  <td class="t-right">
+                    {{item.count}}
+                    {{#if item.count}}<p class="t-sm t-muted">{{item.avgTime}}s</p>{{/if}}
+                  </td>
+                {{/with}}
+              </tr>
+            {{/each}}
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+
+</div>

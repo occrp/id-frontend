@@ -1,0 +1,22 @@
+{{#unless loadStats.isRunning}}
+  <td class="userStats-user">
+    {{#link-to 'browse' (query-params requester=user.id page=1) class="link-muted"~}}
+      {{user.displayName}}
+    {{~/link-to}}
+  </td>
+  <td class="t-right">
+    {{processedStats.byStatus.open.count}}
+  </td>
+  <td class="t-right">
+    {{#if processedStats.byStatus.open.pastDeadlineCount}}
+      <span class="t-danger">{{processedStats.byStatus.open.pastDeadlineCount}}</span>
+    {{else}}
+      {{processedStats.byStatus.open.pastDeadlineCount}}
+    {{/if}}
+  </td>
+
+  <td class="t-right">
+    {{processedStats.byStatus.resolved.count}}
+  </td>
+{{/unless}}
+

@@ -10,6 +10,9 @@ Router.map(function() {
   this.route('browse', { path: '/view' });
   this.route('new');
   this.route('view', { path: '/view/:ticket_id' });
+  this.route('reporting', function() {
+    this.route('staff');
+  });
 });
 
 export default Router;

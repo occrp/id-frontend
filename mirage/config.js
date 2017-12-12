@@ -250,4 +250,22 @@ export default function() {
     responder.destroy();
   });
 
+
+  this.get('/ticket-stats', (schema, request) => {
+    let profileId = request.queryParams['filter[respoders__user]'];
+
+    let filters = {};
+
+    if (profileId) {
+      filters.profileId = profileId
+    }
+
+    request.mirageMeta = {
+      'staff-profile-ids': [51, 52, 53]
+    };
+
+    return schema.ticketStats.where(filters);
+  });
+
+
 }

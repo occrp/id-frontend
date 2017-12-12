@@ -1,0 +1,20 @@
+<div class="mt-5">
+  <h2 class="t4 t-light mb-3">{{model.meta.staffProfileIds.length}} Staff members</h2>
+
+  <table class="userStats">
+    <thead>
+      <th>Name</th>
+      <th class="t-right userStats-cell">{{icon "issue-opened" class="icon--lg"}} Open</th>
+      <th class="t-right userStats-cell">Past deadline</th>
+      <th class="t-right userStats-cell">{{icon "check" class="icon--lg"}} Closed</th>
+    </thead>
+    <tbody>
+      {{#if statsTaskGroup.isRunning}}
+        <tr><td class="userStats-spinner" colspan="4">{{ui-spinner}}</td></tr>
+      {{/if}}
+      {{#each model.meta.staffProfileIds as |profile|}}
+        {{stats-staff profile=profile group=statsTaskGroup}}
+      {{/each}}
+    </tbody>
+  </table>
+</div>
