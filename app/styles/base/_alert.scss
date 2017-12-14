@@ -11,6 +11,11 @@
   .icon {
     vertical-align: -.25em;
     margin-right: $spacer;
+
+    @include rtl {
+      margin-left: $spacer;
+      margin-right: 0;
+    }
   }
 }
 

@@ -20,8 +20,11 @@
 
   .button--icon {
     padding: to-rem(6px);
-    margin: -6px -6px -4px 0;
-    margin-left: .25rem;
+    margin: -6px -6px -4px .25rem;
+
+    @include rtl {
+      margin: -6px .25rem -4px -6px;
+    }
   }
 }
 

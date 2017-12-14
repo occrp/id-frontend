@@ -3,7 +3,7 @@
 // for a locale or define behavior for a locale that Ember-I18n
 // doesn't know about.
 export default {
-  // rtl: [true|FALSE],
+  rtl: false,
   //
   // pluralForm: function(count) {
   //   if (count === 0) { return 'zero'; }

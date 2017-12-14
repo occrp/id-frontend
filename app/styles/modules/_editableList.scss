@@ -41,6 +41,22 @@
   &.is-expanded {
     transform: translateX(28px - 4px)
   }
+
+  @include rtl {
+    float: left;
+    transform: translateX(-100%);
+    left: auto;
+    right: -28px;
+
+    .button--icon {
+      margin-left: 6px;
+      margin-right: 0;
+    }
+
+    &.is-expanded {
+      transform: translateX(28px - 4px)
+    }
+  }
 }
 
 .editableList-content {

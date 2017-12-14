@@ -48,6 +48,19 @@
     vertical-align: -7px;
     margin-right: $spacer;
   }
+
+  @include rtl {
+    .tagContainer {
+      float: right;
+      margin-left: $spacer;
+      margin-right: 0;
+    }
+
+    .icon {
+      margin-left: $spacer;
+      margin-right: 0;
+    }
+  }
 }
 
 .list-item--special {

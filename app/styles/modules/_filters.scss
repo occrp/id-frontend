@@ -34,5 +34,21 @@
   }
 }
 
+@include rtl(true) {
+  .filters-main {
+    float: right;
+    margin-right: 0;
+    margin-left: $spacer-4;
+  }
+
+  .filters-secondary {
+    float: left;
+  }
+
+  .filters-item {
+    float: right;
+  }
+}
+
 
 

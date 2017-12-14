@@ -34,6 +34,11 @@
     vertical-align: middle;
     color: theme-color("secondary");
   }
+
+  @include rtl {
+    padding-left: .625rem; // .ticket-cell
+    padding-right: 1rem;
+  }
 }
 
 .ticket-body {
@@ -65,6 +70,8 @@
 .ticket-updated {
   color: $gray-600;
   margin-top: $spacer;
+  display: flex;
+
 
   .icon {
     vertical-align: -3px;

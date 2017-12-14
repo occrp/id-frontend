@@ -151,6 +151,11 @@
   // Easily place margin between footer elements
   > :not(:first-child) { margin-left: .25rem; }
   > :not(:last-child) { margin-right: .25rem; }
+
+  @include rtl {
+    > :not(:first-child) { margin-right: .25rem; margin-left: 0; }
+    > :not(:last-child) { margin-left: .25rem; margin-right: 0; }
+  }
 }
 
 .modal-footer--center {
@@ -159,6 +164,11 @@
 
   > :not(:first-child) { margin-left: .5rem; }
   > :not(:last-child) { margin-right: .5rem; }
+
+  @include rtl {
+    > :not(:first-child) { margin-right: .5rem; margin-left: 0; }
+    > :not(:last-child) { margin-left: .5rem; margin-right: 0; }
+  }
 }
 
 .modal-progress {
@@ -169,7 +179,17 @@
   margin-right: $spacer-4 !important;
 
   .spinner {
-    margin-left: 1rem
+    margin-left: 1rem;
   }
+
+  @include rtl {
+    margin-left: $spacer-4 !important;
+
+    .spinner {
+      margin-right: 1rem;
+      margin-left: 0;
+    }
+  }
+
 }
 

@@ -22,14 +22,18 @@
             <strong class="t-muted">{{~item.requester.displayName~}}</strong>
           {{/if}}
           {{#if item.country}}
-            {{icon 'location' class="ml-2"}}
-            <span title="{{item.country}}">{{country-name item.country}}</span>
+            <span class="ml-2">
+              {{icon 'location'}}
+              <span title="{{item.country}}">{{country-name item.country}}</span>
+            </span>
           {{/if}}
         {{else}}
-          {{t 'ticket.updatedAt.prefix'}}
-          <time datetime={{item.updatedAt}} title={{moment-format item.updatedAt 'LLL'}}>
-            {{moment-from-now item.updatedAt}}
-          </time>
+          <span>
+            {{t 'ticket.updatedAt.prefix'}}
+            <time datetime={{item.updatedAt}} title={{moment-format item.updatedAt 'LLL'}}>
+              {{moment-from-now item.updatedAt}}
+            </time>
+          </span>
         {{/if}}
 
       </p>

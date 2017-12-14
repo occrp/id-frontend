@@ -3,6 +3,7 @@ import { task } from 'ember-concurrency';
 import { getSearchGenerator } from 'id-frontend/models/profile';
 
 export default Ember.Component.extend({
+  i18n: Ember.inject.service(),
   store: Ember.inject.service(),
   searchStaff: task(getSearchGenerator({ isStaff: true })).restartable(),
 

@@ -18,6 +18,11 @@
   .button--icon {
     padding: 2px;
     margin-right: -1*$spacer;
+
+    @include rtl {
+      margin-right: 0;
+      margin-left: -1*$spacer;
+    }
   }
 }
 

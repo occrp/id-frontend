@@ -9,6 +9,11 @@
 
     &:not(:last-child) {
       margin-right: .25em;
+
+      @include rtl {
+        margin-left: .25em;
+        margin-right: 0;
+      }
     }
 
     &:not(:last-child)::after {

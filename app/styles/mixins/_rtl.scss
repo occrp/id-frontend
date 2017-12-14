@@ -1,0 +1,23 @@
+@mixin rtl($at-root: false) {
+  @if ($at-root) {
+    .is-rtl {
+      @content;
+    }
+  } @else {
+    .is-rtl & {
+      @content;
+    }
+  }
+}
+
+@mixin not-rtl($at-root: false) {
+  @if ($at-root) {
+    :not(.is-rtl) {
+      @content;
+    }
+  } @else {
+    :not(.is-rtl #{&}) {
+      @content;
+    }
+  }
+}

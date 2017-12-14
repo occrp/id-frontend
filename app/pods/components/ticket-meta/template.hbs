@@ -30,8 +30,8 @@
         {{/dd.trigger}}
         {{#dd.body
           headerText=(t 'actions.assign.longForm')
-          attachment="top left"
-          targetAttachment="bottom left"
+          attachment=(if i18n.isRtl "top right" "top left")
+          targetAttachment=(if i18n.isRtl "bottom right" "bottom left")
         }}
           {{search-users
             task=searchStaff

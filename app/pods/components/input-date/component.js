@@ -3,12 +3,19 @@ import moment from 'moment';
 
 export default Ember.Component.extend({
   tagName: '',
+  i18n: Ember.inject.service(),
+
   currentValue: Ember.computed.readOnly('value'),
   theCenter: Ember.computed.oneWay('center'),
 
   isShowingPopup: false,
-  attachment: 'bottom left',
-  targetAttachment: 'top left',
+
+  attachment: Ember.computed('i18n.isRtl', function() {
+    return this.get('i18n.isRtl') ? 'bottom right' : 'bottom left';
+  }),
+  targetAttachment: Ember.computed('i18n.isRtl', function() {
+    return this.get('i18n.isRtl') ? 'top right' : 'top left';
+  }),
   constraints: [
     {
       to: 'window',

@@ -1,3 +1,5 @@
+import moment from 'moment';
+
 export default function(server) {
 
   /*
@@ -51,5 +53,43 @@ export default function(server) {
   });
 
   // Just for pagination
-  server.createList('ticket', 20, 'isPerson');
+  // server.createList('ticket', 20, 'isPerson');
+
+
+  server.createList('ticket-stats', 4, {
+    status: 'new',
+    date(i) {
+      return moment.utc().startOf('month').subtract(i % 4, 'months').toISOString();
+    },
+    profileId: 52
+  });
+  server.createList('ticket-stats', 4, {
+    status: 'in-progress',
+    date(i) {
+      return moment.utc().startOf('month').subtract(i % 4, 'months').toISOString();
+    },
+    profileId: 52
+  });
+  // server.createList('ticket-stats', 4, {
+  //   status: 'pending',
+  //   date(i) {
+  //     return moment.utc().startOf('month').subtract(i % 4, 'months').toISOString();
+  //   },
+  //   profileId: 53
+  // });
+  server.createList('ticket-stats', 4, {
+    status: 'closed',
+    date(i) {
+      return moment.utc().startOf('month').subtract(i % 4, 'months').toISOString();
+    },
+    profileId: 53
+  });
+  server.createList('ticket-stats', 4, {
+    status: 'cancelled',
+    date(i) {
+      return moment.utc().startOf('month').subtract(i % 4, 'months').toISOString();
+    },
+    profileId: 51
+  });
+
 }

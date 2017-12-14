@@ -21,6 +21,21 @@
   margin-left: 0;
 }
 
+@include rtl(true) {
+  .pg-item,
+  .pg-sep,
+  .pg-prev,
+  .pg-next {
+    float: right;
+    margin-left: 0;
+    margin-right: to-rem(6px);
+  }
+
+  .pg-prev {
+    margin-right: 0;
+  }
+}
+
 
 .pg-prev:not(.is-disabled),
 .pg-next:not(.is-disabled),
@@ -57,12 +72,20 @@
   color: $gray-500;
   &::before {
     border-right-color: $gray-500;
+
+    @include rtl {
+      border-left-color: $gray-500;
+    }
   }
 }
 .pg-next.is-disabled {
   color: $gray-500;
   &::after {
     border-left-color: $gray-500;
+
+    @include rtl {
+      border-right-color: $gray-500;
+    }
   }
 }
 

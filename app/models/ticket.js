@@ -16,6 +16,7 @@ export const kindList = [
 export const statusList = [
   'new',
   'in-progress',
+  'pending',
   'closed',
   'cancelled'
 ];

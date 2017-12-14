@@ -37,9 +37,21 @@
       content: '';
       @include caret-left($color);
     }
-    &:empty::after {
+    &:empty::before {
       margin-right: 0;
     }
+
+    @include rtl {
+      &::before {
+        margin-right: 0;
+        margin-left: $caret-width * 1.25;
+        @include caret-right($color);
+      }
+      &:empty::before {
+        margin-left: 0;
+      }
+    }
+
   } @else {
     &::after {
       display: inline-block;
@@ -59,6 +71,20 @@
     }
     &:empty::after {
       margin-left: 0;
+    }
+
+    @include rtl {
+      &::after {
+        margin-left: 0;
+        margin-right: $caret-width * 1.25;
+
+        @if $direction == right {
+          @include caret-left($color);
+        }
+      }
+      &:empty::after {
+        margin-right: 0;
+      }
     }
   }
 
