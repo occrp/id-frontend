@@ -1,10 +1,11 @@
 <div class="wrapper">
-  <div class="filters">
-    <div class="filters-main">
-      <div class="statusTabs">
-        {{#link-to "reporting.index"}}Overview{{/link-to}}
-        {{#link-to "reporting.staff"}}Staff{{/link-to}}
-      </div>
+  <div class="subNav mb-5">
+    <div class="subNav-main">
+      {{#link-to "reporting.index"}}Overview{{/link-to}}
+      {{#link-to "reporting.staff"}}Staff{{/link-to}}
+    </div>
+    <div class="subNav-secondary">
+      {{moment-format model.meta.startDate 'MMMM Y'}} &mdash; {{moment-format model.meta.endDate 'MMMM Y'}}
     </div>
   </div>
 

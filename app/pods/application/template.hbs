@@ -2,8 +2,10 @@
 <nav class="appNav">
   <div class="wrapper">
     <div class="appNav-links">
-      {{#link-to 'browse' class="appNav-item"}}Index{{/link-to}}
-      {{#link-to 'reporting' class="appNav-item"}}Reporting{{/link-to}}
+      {{#if (can "manage tickets")}}
+        {{#link-to 'browse' class="appNav-item"}}Index{{/link-to}}
+        {{#link-to 'reporting' class="appNav-item"}}Reporting{{/link-to}}
+      {{/if}}
     </div>
     <div class="appNav-switcher">
       {{i18n-switch

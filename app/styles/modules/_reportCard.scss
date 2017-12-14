@@ -2,6 +2,20 @@
 
 }
 
+.reportCard-header {
+  display: flex;
+
+  & > div {
+    flex: 0 0 auto;
+    width: 50%;
+    padding: 0 $spacer-3;
+
+    &:nth-child(2n) {
+      border-left: 1px solid $gray-300;
+    }
+  }
+}
+
 .reportCard-title {
   display: flex;
   align-items: flex-start;
@@ -11,137 +25,72 @@
     vertical-align: middle;
     margin-right: $spacer-2;
   }
-
-}
-
-.reportCard-body {
-  display: flex;
-  background: $gray-100;
-  border-top: 2px solid $gray-700;
-  border-bottom: 1px solid $gray-300;
-}
-
-.reportCard-details {
-  flex: 0 0 240px;
-  padding: 0 $spacer-4 0 $spacer-3;
-}
-
-.reportCard-chart {
-  flex: 1 1 auto;
-  min-width: 0;
 }
 
 .statsTable {
   width: 100%;
   background: white;
+  border-top: 2px solid $gray-700;
+  border-bottom: 1px solid $gray-300;
 
   td, th {
     padding: .4rem $spacer-3;
   }
 
   th {
-    border-bottom: 1px solid $gray-300;
-  }
-
-  td:not(:first-child) {
-    vertical-align: top;
-  }
-
-  tr:not(:first-child) td {
-    border-top: 1px solid $gray-300;
-  }
-
-  tr {
-    transition: background .1s ease-in-out;
-  }
-
-  tbody tr:hover {
     background: $gray-100;
-  }
-}
-
-.statsTable-month {
-  // width: 100%;
-}
-
-.statsTable-status {
-  width: 18%;
-}
-
-.statsTable-total {
-  width: 20%;
-  white-space: nowrap;
-}
-
-// lizard wizard
-.labelTable {
-  width: 100%;
-
-  td {
-    padding: $spacer-1 0;
+    padding: $spacer-2 $spacer-3;
+    white-space: nowrap;
   }
 
   .tag {
-    float: left; // for vertical alignment :/
+    vertical-align: 1px;
   }
 
-  td:last-child {
-    text-align: right;
-  }
 
-  @include rtl {
-    .tag {
-      float: right;
-    }
-
-    td:last-child {
-      text-align: left;
-    }
-
-  }
-}
-
-.userStats {
-  width: 100%;
-
-  .icon {
-    vertical-align: -6px;
-  }
-
-  td, th {
-    padding: .4rem $spacer-3;
-  }
-
-  th {
-    border-bottom: 1px solid $gray-300;
-  }
-
-  td:not(:first-child) {
+  td {
     vertical-align: top;
   }
 
-  tr:not(:first-child) td {
+  tbody  td {
     border-top: 1px solid $gray-300;
   }
 
-  tr {
+  tfoot td {
+    border-top: 2px solid $gray-700;
+  }
+
+  td {
     transition: background .1s ease-in-out;
   }
 
-  tbody tr:hover {
+  tbody tr:hover td {
     background: $gray-100;
   }
 }
 
-.userStats-cell {
-  width: 18%;
+.statsTable-status {
+  width: 14%;
 }
 
-.userStats-spinner {
+.statsTable-total {
+  width: 14%;
+  white-space: nowrap;
+}
+
+.statsTable-cell {
+  width: 14%;
+}
+
+.statsTable-spinner {
+  background: none !important;
   padding-top: $spacer-3 !important;
+  padding-bottom: $spacer-3 !important;
 }
 
-.userStats-user {
+.statsTable-user {
+  width: 20%;
+
   a {
     color: $gray-900;
 
@@ -149,4 +98,57 @@
       color: theme-color("primary");
     }
   }
+}
+
+// lizard wizard
+.labelTable {
+  width: 200px;
+
+  td {
+    padding: $spacer-1 0;
+  }
+
+  td:last-child {
+    width: 100%;
+  }
+
+  td:first-child {
+    padding-right: $spacer-2;
+  }
+}
+
+
+.subNav {
+  font-size: $font-size-sm;
+  background: $gray-100;
+  border-bottom: 1px solid $gray-400;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: .8rem $spacer-3;
+
+  a {
+    color: $gray-700;
+
+    @include hover {
+      color: theme-color("primary");
+      text-decoration: none;
+    }
+
+    &.active {
+      color: theme-color("primary");
+    }
+  }
+}
+
+.subNav-main {
+  display: flex;
+
+  > a + a {
+    margin-left: $spacer-3;
+  }
+}
+
+.subNav-secondary {
+  font-weight: $font-weight-bold;
 }

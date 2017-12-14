@@ -252,7 +252,7 @@ export default function() {
 
 
   this.get('/ticket-stats', (schema, request) => {
-    let profileId = request.queryParams['filter[respoders__user]'];
+    let profileId = request.queryParams['filter[responders__user]'];
 
     let filters = {};
 
@@ -261,7 +261,20 @@ export default function() {
     }
 
     request.mirageMeta = {
-      'staff-profile-ids': [51, 52, 53]
+      'staff-profile-ids': [51, 52, 53],
+      total: {
+        'all': schema.tickets.all().length,
+        'new': 12,
+        'in-progress': 143,
+        'pending': 3,
+        'closed': 20,
+        'cancelled':42,
+        'past-deadline': 80,
+        'open': 42,
+        'resolved': 66
+      },
+      startDate: '2017-09-01T00:00:00.000Z',
+      endDate: '2017-12-01T00:00:00.000Z'
     };
 
     return schema.ticketStats.where(filters);
