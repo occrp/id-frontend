@@ -1,47 +1,17 @@
 export default {
-  "profile": {
-    "search": {
-      "placeholder": "Buscar usuarios",
-      "noResults": "No se encontraron usuarios"
-    }
-  },
-  "pagination": {
-    "prev": "Anterior",
-    "next": "Siguiente",
-    "newer": "",
-    "older": ""
-  },
-  "errors": {
-    "genericInvalid": "Por favor, rellene este campo"
-  },
   "actions": {
     "upload": "Subir",
     "remove": "Remover",
     "reopen": "Reabrir",
     "cancel": "Cancelar",
-    "save": "",
+    "close": "Cerrar",
+    "save": "Guardar",
     "assign": {
       "longForm": "Asignar al equipo",
       "shortForm": "Asignar"
     }
   },
-  "prefixes": {
-    "on": "El {{fecha}}",
-    "at": "A (time)",
-    "by": "Por"
-  },
-  "attachment": {
-    "zero": "",
-    "other": "Adjuntos",
-    "dropzone": {
-      "title": "Subir archivos",
-      "desc": "Arrastre y suelte archivos en esta área o {{seleccione}}",
-      "invalidTitle": "",
-      "select": "Selecciona un archivo",
-      "activeTitle": "Eliminar para subir"
-    },
-    "filesSelected": "Archivos seleccionados"
-  },
+  "filters.sort.createdBy.asc": "Más reciente",
   "filters": {
     "sort": {
       "title": "Ordenar por",
@@ -51,10 +21,10 @@ export default {
       "title": "Filtrar por tipo"
     },
     "country": {
-      "title": ""
+      "title": "Filtrar por país / nacionalidad"
     },
     "responder": {
-      "emptyOption": "Asignado a nadie",
+      "emptyOption": "Sin asignar a nadie",
       "title": "Filtrar por quién asignó"
     },
     "current": {
@@ -68,31 +38,48 @@ export default {
       "all": "Todo"
     }
   },
-  "activity": {
-    "comment": {
-      "action": "",
-      "submitButton": "Comentar",
-      "title": "Deje un comentario"
+  "locales.bs": "Bos/Hrv/Srp",
+  "locales.fr": "Français",
+  "prefixes": {
+    "on": "El {{fecha}}",
+    "at": "A (time)",
+    "by": "Por {{user}}"
+  },
+  "attachment": {
+    "zero": "Sin documentos adjuntos",
+    "other": "Adjuntos",
+    "dropzone": {
+      "title": "Subir archivos",
+      "desc": "Arrastre y suelte archivos en esta área o {{seleccione}}",
+      "invalidTitle": "Inválido",
+      "select": "Selecciona un archivo",
+      "activeTitle": "Suelte para subir"
     },
-    "resume": {
-      "action": ""
+    "filesSelected": "Archivos seleccionados"
+  },
+  "validationErrors.before": "Esta fecha debe ser anterior a {{antes}}",
+  "empty": {
+    "noResults": {
+      "body": "Use el menú de arriba para filtrar fácilmente las solicitudes.",
+      "title": "No hay resultados que coincidan con tu búsqueda."
     },
-    "one": "Actividad",
-    "reopen": {
-      "action": "Reabrir"
-    },
-    "attachment": {
-      "action": "Archivos adjuntos"
-    },
-    "unassign": {
-      "action": "Sin asignar"
-    },
-    "assign": {
-      "action": "{{user}} Fue asignado a"
+    "noTickets": {
+      "button": "Presentar una solicitud",
+      "title": "Parece que aún no has enviado ninguna solicitud."
     }
   },
+  "profile": {
+    "search": {
+      "placeholder": "Buscar usuarios",
+      "noResults": "No se encontraron usuarios"
+    }
+  },
+  "filters.sort.deadlineBy.desc": "Fecha límite más lejana ",
+  "filters.sort.createdBy.desc": "Más antiguo",
+  "locales.ar": "العربية",
+  "validationErrors.after": "Esta fecha debe ser posterior a {{after}}",
   "ticket": {
-    "one": "",
+    "one": "Solicitud",
     "connections": {
       "formLabel": "Conexiones con otras compañías y personas",
       "label": "Conexiones"
@@ -103,10 +90,10 @@ export default {
       "desc": "¿Qué fuentes tienes hasta ahora?"
     },
     "deadline": {
-      "prefix": "Relativo",
+      "prefix": "Fecha límite  {{relative time}}",
       "label": "Fecha límite",
-      "empty": "",
-      "desc": "Intentaremos cumplir con su fecha límite"
+      "empty": "No hay fecha límite",
+      "desc": "Intentaremos cumplir con tu fecha límite"
     },
     "whysensitive": {
       "label": "¿Por qué es sensible?"
@@ -117,11 +104,11 @@ export default {
     },
     "initialInformation": {
       "label": "Información inicial",
-      "formLabel": "¿Dónde has estado?",
+      "formLabel": "¿Dónde has buscado?",
       "desc": "Alguna información que ya tienes"
     },
     "businessActivities": {
-      "label": "Actividades de negocio"
+      "label": "Actividades del negocio"
     },
     "backgroundCompany": {
       "label": "Antecedentes de la empresa",
@@ -133,7 +120,7 @@ export default {
       "formLabel": "¿Qué quieres saber?",
       "desc": "Alguna información que ya tienes"
     },
-    "other": "",
+    "other": "Solicitudes",
     "status": {
       "closed": {
         "name": "Cerrado"
@@ -152,7 +139,7 @@ export default {
         "name": "Nuevo"
       },
       "pending": {
-        "name": ""
+        "name": "Pendiente"
       }
     },
     "companyName": {
@@ -173,15 +160,15 @@ export default {
     },
     "connectionsPerson": {
       "label": "Familia y asociados",
-      "desc": "Conocer la srelaciones familiares"
+      "desc": "Relaciones familiares conocidas"
     },
     "countryPerson": {
-      "label": ""
+      "label": "Nacionalidad"
     },
     "kind": {
       "person_ownership": {
         "shortName": "Persona",
-        "name": "Identificar el dueño"
+        "name": "identificar lo que una persona posee"
       },
       "other": {
         "shortName": "Otro",
@@ -202,12 +189,12 @@ export default {
     },
     "country": {
       "search": {
-        "placeholder": "",
-        "noResults": ""
+        "placeholder": "Hacer búsqueda de países por nombre o código",
+        "noResults": "No se encontraron ningun país"
       },
-      "other": "",
+      "other": "Países",
       "label": "País de registro",
-      "one": ""
+      "one": "País"
     },
     "responder": {
       "one": "Persona de primer contacto",
@@ -223,53 +210,70 @@ export default {
       "label": "Apellido"
     }
   },
+  "pagination": {
+    "prev": "Anterior",
+    "next": "Siguiente",
+    "newer": "Más reciente",
+    "older": "Una versión anterior"
+  },
+  "locales.es": "Español",
+  "locales.ru": "Русский",
+  "filters.sort.deadlineBy.asc": "Fecha límite más próxima",
+  "activity": {
+    "comment": {
+      "action": "Comentó",
+      "submitButton": "Publicar un comentario",
+      "title": "Dejar un comentario"
+    },
+    "resume": {
+      "action": "Reanudó"
+    },
+    "one": "Actividad",
+    "reopen": {
+      "action": "Reabierto"
+    },
+    "attachment": {
+      "action": "Archivos adjuntos"
+    },
+    "unassign": {
+      "action": "Sin asignar"
+    },
+    "assign": {
+      "action": "{{user}} Fue asignado "
+    }
+  },
+  "locales.en": "English",
   "pods": {
     "browse": {
       "newButton": "Nueva solicitud",
       "title": "Mis solicitudes "
     },
     "new": {
-      "headline": "Su solicitud será dirigida a nuestros investigadores profesionales",
+      "headline": "Tu solicitud será dirigida a nuestros investigadores profesionales",
       "form": {
-        "invalidMessage": "",
+        "invalidMessage": "Por favor complete los campos marcados arriba antes de continuar.",
         "submitButton": "Enviar tu solicitud",
         "otherDetails": "Otros detalles",
         "requestDetails": "Detalles de la solicitud"
       },
-      "title": "Información requerida"
+      "title": "Pedir información"
     },
     "view": {
       "close": {
         "cancel": "No",
         "button": "Solicitud {{verb}}",
-        "title": "¿Está seguro que quiere {{verb}} esta solicitud?",
+        "title": "¿Estás seguro que quiere {{verb}} esta solicitud?",
         "confirm": "Sí "
       },
       "pending": {
-        "button": ""
+        "button": "Marcar como pendiente"
       },
       "reopen": {
-        "button": "Reabrir a solicitud",
+        "button": "Reabrir la solicitud",
         "title": "Razón para reabrir"
       }
     }
   },
-  "empty": {
-    "noResults": {
-      "body": "",
-      "title": ""
-    },
-    "noTickets": {
-      "button": "",
-      "title": ""
-    }
-  },
-  locales: {
-    en: 'English',
-    ru: 'Русский',
-    bs: 'Bos/Hrv/Srp',
-    es: 'Español',
-    fr: 'Français',
-    ar: 'العربية'
-  }
+  "validationErrors.blank": "Este campo no puede estar en blanco",
+  "actions.unmark": "Desmarcar"
 }
