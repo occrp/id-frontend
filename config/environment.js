@@ -38,8 +38,8 @@ module.exports = function(environment) {
         'ru',
         'bs',
         // 'fr',
-        // 'es',
-        'ar'
+        'es',
+        // 'ar'
       ],
 
       // Keeping this array updated manually for now
