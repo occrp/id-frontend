@@ -1,7 +1,7 @@
 {{#unless loadStats.isRunning}}
 {{#with statsCache.meta.total as |total|}}
   <td class="userStats-user">
-    {{#link-to 'browse' (query-params requester=user.id page=1) class="link-muted"~}}
+    {{#link-to 'browse' (query-params responder=user.id page=1) class="link-muted"~}}
       {{user.displayName}}
     {{~/link-to}}
   </td>
