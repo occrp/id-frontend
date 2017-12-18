@@ -24,7 +24,8 @@ module.exports = function(defaults) {
 
     nodeModulesToVendor: [
       'node_modules/filesize/lib',
-      'node_modules/fuse.js/dist'
+      'node_modules/fuse.js/dist',
+      'node_modules/moment-duration-format/lib'
     ],
 
     svgJar: {
@@ -62,6 +63,11 @@ module.exports = function(defaults) {
   });
   app.import('vendor/fuse.js');
   app.import('vendor/shims/fuse.js');
+  app.import('vendor/moment-duration-format.js', {
+    using: [
+      { transformation: 'amd', as: 'moment-duration-format' }
+    ]
+  });
 
   return app.toTree();
 };

@@ -63,6 +63,7 @@
     "filesize": "^3.5.10",
     "fuse.js": "^3.0.5",
     "loader.js": "^4.2.3",
+    "moment-duration-format": "^2.0.1",
     "octicons": "^6.0.1"
   },
   "engines": {
