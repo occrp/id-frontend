@@ -1,12 +1,12 @@
-<h2 class="t4 t-light mb-3 mx-3">{{model.meta.staffProfileIds.length}} Staff members</h2>
+<h2 class="t4 t-light mb-3 mx-3">{{t 'pods.reporting.staffTitle' count=model.meta.staffProfileIds.length}}</h2>
 
 <table class="statsTable">
   <thead>
-    <th class="statsTable-user">Name</th>
+    <th class="statsTable-user">{{t 'pods.reporting.columns.name'}}</th>
     <th class="t-right statsTable-cell">{{status-label 'new'}}</th>
     <th class="t-right statsTable-cell">{{status-label 'in-progress'}}</th>
     <th class="t-right statsTable-cell">{{status-label 'pending'}}</th>
-    <th class="t-right statsTable-cell">Past deadline</th>
+    <th class="t-right statsTable-cell">{{t 'pods.reporting.columns.pastDeadline'}}</th>
     <th class="t-right statsTable-cell">{{status-label 'closed'}}</th>
     <th class="t-right statsTable-cell">{{status-label 'cancelled'}}</th>
   </thead>

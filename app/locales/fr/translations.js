@@ -252,6 +252,32 @@ export default {
         "button": "Réouvrir la demande",
         "title": "Raisons de réouvrir "
       }
+    },
+    "reporting": {
+      "openTickets": {
+        "one": "{{count}} Open request",
+        "other": "{{count}} Open requests"
+      },
+      "closedTickets": {
+        "one": "{{count}} Closed request",
+        "other": "{{count}} Closed requests"
+      },
+      "pastDeadline": "{{count}} past deadline",
+      "columns": {
+        "avgTime": "Avg. resolution time",
+        "month": "Month",
+        "pastDeadline": "Past deadline",
+        "name": "Name",
+        "total": "Total"
+      },
+      "staffTitle": {
+        "one": "{{count}} Staff member",
+        "other": "{{count}} Staff members",
+      },
+      "countriesTitle": {
+        "one": "{{count}} Country",
+        "other": "{{count}} Countries",
+      }
     }
   },
   "empty": {

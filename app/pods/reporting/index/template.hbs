@@ -2,8 +2,8 @@
   <div class="reportCard-title">
     {{~icon "issue-opened" class="icon--lg"~}}
     <div>
-      <h2 class="t4 t-light">{{total.open}} Open requests </h2>
-      <p class="t5 t-light t-danger mt-2">{{total.pastDeadline}} past deadline</p>
+      <h2 class="t4 t-light">{{t 'pods.reporting.openTickets' count=total.open}}</h2>
+      <p class="t5 t-light t-danger mt-2">{{t 'pods.reporting.pastDeadline' count=total.pastDeadline}}</p>
 
       <table class="labelTable mt-3">
         <tbody>
@@ -27,7 +27,7 @@
   <div class="reportCard-title">
     {{~icon "check" class="icon--lg"~}}
     <div>
-      <h2 class="t4 t-light">{{total.resolved}} Closed requests</h2>
+      <h2 class="t4 t-light">{{t 'pods.reporting.closedTickets' count=total.resolved}}</h2>
 
       <table class="labelTable mt-3">
         <tbody>
@@ -48,13 +48,13 @@
 <table class="statsTable mt-5">
   <thead>
     <tr>
-      <th>Month</th>
+      <th>{{t 'pods.reporting.columns.month'}}</th>
       <th class="t-right statsTable-status">{{status-label 'new'}}</th>
       <th class="t-right statsTable-status">{{status-label 'in-progress'}}</th>
       <th class="t-right statsTable-status">{{status-label 'pending'}}</th>
       <th class="t-right statsTable-status">{{status-label 'closed'}}</th>
       <th class="t-right statsTable-status">{{status-label 'cancelled'}}</th>
-      <th class="t-right statsTable-total">Total</th>
+      <th class="t-right statsTable-total">{{t 'pods.reporting.columns.total'}}</th>
     </tr>
   </thead>
   <tbody>
@@ -62,7 +62,7 @@
       <tr>
         <td>
           {{moment-format month.date 'MMMM Y'}}
-          {{#if (eq index 0)}}<br /><p class="t-sm t-muted">Avg. resolution time </p>{{/if}}
+          {{#if (eq index 0)}}<br /><p class="t-sm t-muted">{{t 'pods.reporting.columns.avgTime'}}</p>{{/if}}
         </td>
         {{#with month.new as |item|}}
           <td class="t-right">

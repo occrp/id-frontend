@@ -272,6 +272,32 @@ export default {
         "button": "Reabrir la solicitud",
         "title": "Razón para reabrir"
       }
+    },
+    "reporting": {
+      "openTickets": {
+        "one": "{{count}} Open request",
+        "other": "{{count}} Open requests"
+      },
+      "closedTickets": {
+        "one": "{{count}} Closed request",
+        "other": "{{count}} Closed requests"
+      },
+      "pastDeadline": "{{count}} past deadline",
+      "columns": {
+        "avgTime": "Avg. resolution time",
+        "month": "Month",
+        "pastDeadline": "Past deadline",
+        "name": "Name",
+        "total": "Total"
+      },
+      "staffTitle": {
+        "one": "{{count}} Staff member",
+        "other": "{{count}} Staff members",
+      },
+      "countriesTitle": {
+        "one": "{{count}} Country",
+        "other": "{{count}} Countries",
+      }
     }
   },
   "validationErrors.blank": "Este campo no puede estar en blanco",
