@@ -12,10 +12,12 @@ export default Ember.Component.extend({
   processedStats: null,
 
   loadStats: task(function * (countryId) {
-    let records = yield this.get('store').query('ticket-stats', {
-      filter: {
-        'country': countryId
-      }
+    const filter = Object.assign({
+      'country': countryId
+    }, this.get('filter'));
+
+    const records = yield this.get('store').query('ticket-stats', {
+      filter
     });
 
     return records;

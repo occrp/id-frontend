@@ -139,7 +139,7 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: .8rem $spacer-3;
+  padding: .4rem $spacer-3;
 
   a {
     color: $gray-700;
@@ -158,11 +158,20 @@
 .subNav-main {
   display: flex;
 
+  a {
+    padding: .4rem 0;
+  }
+
   > a + a {
     margin-left: $spacer-3;
   }
 }
 
 .subNav-secondary {
-  font-weight: $font-weight-bold;
+  .dd-trigger {
+    font-weight: $font-weight-bold;
+    color: $gray-900;
+    padding: .4rem 0;
+    @include caret;
+  }
 }

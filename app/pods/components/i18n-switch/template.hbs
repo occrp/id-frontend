@@ -1,6 +1,6 @@
 {{#ui-dropdown data-test-dd="i18n-switch" as |dd|}}
   {{#dd.trigger}}{{~icon "globe"~}}{{t (concat 'locales.' currentLocale)}}{{/dd.trigger}}
-  {{#dd.body}}
+  {{#dd.body class="dd--sm"}}
     <div class="list">
       {{#each locales as |locale|}}
         <a href {{action (pipe (action switchLocale locale) dd.close)}} class="list-item {{if (eq currentLocale locale) "is-active"}}" data-test-kind-option={{locale}}>

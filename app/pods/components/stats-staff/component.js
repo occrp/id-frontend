@@ -13,10 +13,12 @@ export default Ember.Component.extend({
   processedStats: null,
 
   loadStats: task(function * (profileId) {
-    let records = yield this.get('store').query('ticket-stats', {
-      filter: {
-        'profile': profileId
-      },
+    const filter = Object.assign({
+      'profile': profileId
+    }, this.get('filter'));
+
+    const records = yield this.get('store').query('ticket-stats', {
+      filter,
       include: 'profile'
     });
 

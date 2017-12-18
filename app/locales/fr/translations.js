@@ -281,6 +281,11 @@ export default {
         "one": "{{count}} Country",
         "other": "{{count}} Countries",
         "zero": "{{count}} Countries"
+      },
+      "dateRange": {
+        "lastQuarter": "Last 3 months",
+        "lastHalf": "Last 6 months",
+        "lastYear": "Last year"
       }
     }
   },

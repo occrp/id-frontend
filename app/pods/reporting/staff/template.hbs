@@ -17,7 +17,11 @@
       <tr><td class="statsTable-spinner" colspan="9">{{ui-spinner}}</td></tr>
     {{/if}}
     {{#each model.meta.staffProfileIds as |profile|}}
-      {{stats-staff profile=profile group=statsTaskGroup}}
+      {{stats-staff
+        profile=profile
+        group=statsTaskGroup
+        filter=model.query.filter
+      }}
     {{/each}}
   </tbody>
 </table>

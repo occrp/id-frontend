@@ -2,6 +2,12 @@ import Ember from 'ember';
 import { CanMixin } from 'ember-can';
 
 export default Ember.Route.extend(CanMixin, {
+  queryParams: {
+    startAt: {
+      refreshModel: true
+    }
+  },
+
   beforeModel() {
     let result = this._super(...arguments);
 
@@ -13,6 +19,10 @@ export default Ember.Route.extend(CanMixin, {
   },
 
   model(params) {
-    return this.get('store').query('ticket-stats', {});
+    return this.get('store').query('ticket-stats', {
+      filter: {
+        startAt: params.startAt
+      },
+    });
   }
 });

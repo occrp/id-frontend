@@ -4,10 +4,13 @@ export default ApplicationAdapter.extend({
   urlForQuery (query) {
     if (query.filter) {
       if (query.filter.profile) {
-        const value = query.filter.profile;
-        query.filter['responders__user'] = value;
+        query.filter['responders__user'] = query.filter.profile;
 
         delete query.filter.profile;
+      }
+      if (query.filter.startAt) {
+        query.filter['created_at__gte'] = query.filter.startAt;
+        delete query.filter.startAt;
       }
     }
 

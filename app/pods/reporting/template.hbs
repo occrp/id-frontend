@@ -6,7 +6,20 @@
       {{#link-to "reporting.countries"}}Countries{{/link-to}}
     </div>
     <div class="subNav-secondary">
-      {{moment-format model.meta.startDate 'MMMM Y'}} &mdash; {{moment-format model.meta.endDate 'MMMM Y'}}
+      {{#ui-dropdown as |dd|}}
+        {{#dd.trigger}}
+          {{~moment-format model.meta.startDate 'MMM Y'}} &mdash; {{moment-format model.meta.endDate 'MMM Y'~}}
+        {{/dd.trigger}}
+        {{#dd.body class="dd--sm"}}
+          <div class="list">
+            {{#each startAtOptions as |option|}}
+              <a href class="list-item {{if (eq startAt option.value) 'is-active'}}" {{action (queue (action (mut startAt) option.value) dd.close)}}>
+                {{option.label}}
+              </a>
+            {{/each}}
+          </div>
+        {{/dd.body}}
+      {{/ui-dropdown}}
     </div>
   </div>
 

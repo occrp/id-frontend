@@ -17,7 +17,11 @@
       <tr><td class="statsTable-spinner" colspan="9">{{ui-spinner}}</td></tr>
     {{/if}}
     {{#each model.meta.countries as |country|}}
-      {{stats-countries country=country group=countriesTaskGroup}}
+      {{stats-countries
+        country=country
+        group=countriesTaskGroup
+        filter=model.query.filter
+      }}
     {{/each}}
   </tbody>
 </table>
