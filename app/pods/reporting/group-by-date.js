@@ -9,7 +9,7 @@ export default function groupByDate (items) {
   // Need to account for items not being present if the count is 0
   const emptyStats = {
     count: 0,
-    pastDeadlineCount: 0,
+    pastDeadline: 0,
     avgTime: 0
   };
 
@@ -24,7 +24,7 @@ export default function groupByDate (items) {
     let date = get(item, 'date');
     let status = get(item, 'status');
     let count = get(item, 'count');
-    let pastDeadline = get(item, 'pastDeadlineCount');
+    let pastDeadline = get(item, 'pastDeadline');
 
     let group = groups.findBy('date', date);
 

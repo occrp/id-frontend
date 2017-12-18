@@ -12,7 +12,7 @@ export default DS.Model.extend({
   count: attr('number'),
   status: attr('string'),
   avgTime: attr('number'),
-  pastDeadlineCount: attr('number'),
+  pastDeadline: attr('number'),
 
   profile: belongsTo('profile')
 });
