@@ -253,6 +253,7 @@ export default function() {
 
   this.get('/ticket-stats', (schema, request) => {
     let profileId = request.queryParams['filter[responders__user]'];
+    let countryId = request.queryParams['filter[country]'];
 
     let filters = {};
 
@@ -260,8 +261,14 @@ export default function() {
       filters.profileId = profileId
     }
 
+    // Doesn't really filter, returns no items since we're only using meta
+    if (countryId) {
+      filters.avgTime = 0
+    }
+
     request.mirageMeta = {
       'staff-profile-ids': [51, 52, 53],
+      countries: ['AU', 'AT', 'BM', 'BA', 'RU'],
       total: {
         'all': schema.tickets.all().length,
         'new': 12,

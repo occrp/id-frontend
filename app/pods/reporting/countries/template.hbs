@@ -1,0 +1,21 @@
+<h2 class="t4 t-light mb-3 mx-3">{{model.meta.countries.length}} Countries</h2>
+
+<table class="statsTable">
+  <thead>
+    <th class="statsTable-user">Name</th>
+    <th class="t-right statsTable-cell">{{status-label 'new'}}</th>
+    <th class="t-right statsTable-cell">{{status-label 'in-progress'}}</th>
+    <th class="t-right statsTable-cell">{{status-label 'pending'}}</th>
+    <th class="t-right statsTable-cell">Past deadline</th>
+    <th class="t-right statsTable-cell">{{status-label 'closed'}}</th>
+    <th class="t-right statsTable-cell">{{status-label 'cancelled'}}</th>
+  </thead>
+  <tbody>
+    {{#if countriesTaskGroup.isRunning}}
+      <tr><td class="statsTable-spinner" colspan="7">{{ui-spinner}}</td></tr>
+    {{/if}}
+    {{#each model.meta.countries as |country|}}
+      {{stats-countries country=country group=countriesTaskGroup}}
+    {{/each}}
+  </tbody>
+</table>

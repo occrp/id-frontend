@@ -1,0 +1,33 @@
+{{#unless loadStats.isRunning}}
+{{#with statsCache.meta.total as |total|}}
+  <td class="userStats-user">
+    {{#link-to 'browse' (query-params country=country page=1) class="link-muted"~}}
+      {{country-name country}}
+    {{~/link-to}}
+  </td>
+  <td class="t-right">
+    {{total.new}}
+  </td>
+  <td class="t-right">
+    {{total.inProgress}}
+  </td>
+  <td class="t-right">
+    {{total.pending}}
+  </td>
+  <td class="t-right">
+    {{#if total.pastDeadline}}
+      <span class="t-danger">{{total.pastDeadline}}</span>
+    {{else}}
+      0
+    {{/if}}
+  </td>
+  <td class="t-right">
+    {{total.closed}}
+  </td>
+  <td class="t-right">
+    {{total.cancelled}}
+  </td>
+
+{{/with}}
+{{/unless}}
+

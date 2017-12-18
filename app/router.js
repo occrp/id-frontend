@@ -12,6 +12,7 @@ Router.map(function() {
   this.route('view', { path: '/view/:ticket_id' });
   this.route('reporting', function() {
     this.route('staff');
+    this.route('countries');
   });
 });
 
