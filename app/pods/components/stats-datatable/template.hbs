@@ -1,0 +1,86 @@
+<tr class="{{if isShowingStats 'is-expanded'}}">
+  <td class="statsTable-expand">
+    <button class="button button--icon button--dark" {{action (toggle 'isShowingStats' this)}}>
+      {{#if isShowingStats}}
+        {{~icon "chevron-up" class="icon--lg"~}}
+      {{else}}
+        {{~icon "chevron-down" class="icon--lg"~}}
+      {{/if}}
+    </button>
+  </td>
+  <td class="statsTable-main">
+    {{yield}}
+  </td>
+  <td class="t-right">
+    {{total.new}}
+  </td>
+  <td class="t-right">
+    {{total.inProgress}}
+  </td>
+  <td class="t-right">
+    {{total.pending}}
+  </td>
+  <td class="t-right">
+    {{total.closed}}
+  </td>
+  <td class="t-right">
+    {{total.cancelled}}
+  </td>
+  <td class="t-right"><strong>{{total.all}}</strong></td>
+  <td class="t-right">
+    {{#if total.pastDeadline}}
+      <span class="t-danger">{{total.pastDeadline}}</span>
+    {{else}}
+      0
+    {{/if}}
+  </td>
+</tr>
+
+{{#if isShowingStats}}
+{{#each processedStats as |month index|}}
+  <tr class="statsTable-inner">
+    <td class="statsTable-expand"></td>
+    <td class="statsTable-main">
+      {{moment-format month.date 'MMMM Y'}}
+      {{#if (eq index 0)}}<br /><p class="t-sm t-muted">{{t 'pods.reporting.columns.avgTime'}}</p>{{/if}}
+    </td>
+    {{#with month.new as |item|}}
+      <td class="t-right">
+        {{item.count}}
+      </td>
+    {{/with}}
+    {{#with month.in-progress as |item|}}
+      <td class="t-right">
+        {{item.count}}
+        {{#if item.avgTime}}<br /><p class="t-sm t-muted">{{moment-duration-format item.avgTime 'hours'}}</p>{{/if}}
+      </td>
+    {{/with}}
+    {{#with month.pending as |item|}}
+      <td class="t-right">
+        {{item.count}}
+        {{#if item.avgTime}}<br /><p class="t-sm t-muted">{{moment-duration-format item.avgTime 'hours'}}</p>{{/if}}
+      </td>
+    {{/with}}
+    {{#with month.closed as |item|}}
+      <td class="t-right">
+        {{item.count}}
+        {{#if item.avgTime}}<br /><p class="t-sm t-muted">{{moment-duration-format item.avgTime 'hours'}}</p>{{/if}}
+      </td>
+    {{/with}}
+    {{#with month.cancelled as |item|}}
+      <td class="t-right">
+        {{item.count}}
+        {{#if item.avgTime}}<br /><p class="t-sm t-muted">{{moment-duration-format item.avgTime 'hours'}}</p>{{/if}}
+      </td>
+    {{/with}}
+    <td class="t-right"><strong>{{month.totalCount}}</strong></td>
+    <td class="t-right">
+      {{#if month.totalPastDeadline}}
+        <span class="t-danger">{{month.totalPastDeadline}}</span>
+      {{else}}
+        0
+      {{/if}}
+    </td>
+  </tr>
+{{/each}}
+{{/if}}

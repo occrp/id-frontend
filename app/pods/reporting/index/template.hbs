@@ -3,7 +3,7 @@
     {{~icon "issue-opened" class="icon--lg"~}}
     <div>
       <h2 class="t4 t-light">{{t 'pods.reporting.openTickets' count=total.open}}</h2>
-      <p class="t5 t-light t-danger mt-2">{{t 'pods.reporting.pastDeadline' count=total.pastDeadline}}</p>
+      <p class="t5 t-danger mt-2">{{t 'pods.reporting.pastDeadline' count=total.pastDeadline}}</p>
 
       <table class="labelTable mt-3">
         <tbody>
@@ -48,13 +48,14 @@
 <table class="statsTable mt-5">
   <thead>
     <tr>
-      <th>{{t 'pods.reporting.columns.month'}}</th>
-      <th class="t-right statsTable-status">{{status-label 'new'}}</th>
-      <th class="t-right statsTable-status">{{status-label 'in-progress'}}</th>
-      <th class="t-right statsTable-status">{{status-label 'pending'}}</th>
-      <th class="t-right statsTable-status">{{status-label 'closed'}}</th>
-      <th class="t-right statsTable-status">{{status-label 'cancelled'}}</th>
-      <th class="t-right statsTable-total">{{t 'pods.reporting.columns.total'}}</th>
+      <th class="statsTable-main">{{t 'pods.reporting.columns.month'}}</th>
+      <th class="t-right statsTable-cell">{{status-label 'new'}}</th>
+      <th class="t-right statsTable-cell">{{status-label 'in-progress'}}</th>
+      <th class="t-right statsTable-cell">{{status-label 'pending'}}</th>
+      <th class="t-right statsTable-cell">{{status-label 'closed'}}</th>
+      <th class="t-right statsTable-cell">{{status-label 'cancelled'}}</th>
+      <th class="t-right statsTable-cell">{{t 'pods.reporting.columns.total'}}</th>
+      <th class="t-right statsTable-cell">{{t 'pods.reporting.columns.pastDeadline'}}</th>
     </tr>
   </thead>
   <tbody>
@@ -94,6 +95,13 @@
           </td>
         {{/with}}
         <td class="t-right"><strong>{{month.totalCount}}</strong></td>
+        <td class="t-right">
+          {{#if month.pastDeadline}}
+            <span class="t-danger">{{month.pastDeadline}}</span>
+          {{else}}
+            0
+          {{/if}}
+        </td>
       </tr>
     {{/each}}
   </tbody>

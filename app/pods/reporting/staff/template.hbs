@@ -2,17 +2,19 @@
 
 <table class="statsTable">
   <thead>
-    <th class="statsTable-user">{{t 'pods.reporting.columns.name'}}</th>
+    <th class="statsTable-expand"></th>
+    <th class="statsTable-main">{{t 'pods.reporting.columns.name'}}</th>
     <th class="t-right statsTable-cell">{{status-label 'new'}}</th>
     <th class="t-right statsTable-cell">{{status-label 'in-progress'}}</th>
     <th class="t-right statsTable-cell">{{status-label 'pending'}}</th>
-    <th class="t-right statsTable-cell">{{t 'pods.reporting.columns.pastDeadline'}}</th>
     <th class="t-right statsTable-cell">{{status-label 'closed'}}</th>
     <th class="t-right statsTable-cell">{{status-label 'cancelled'}}</th>
+    <th class="t-right statsTable-cell">{{t 'pods.reporting.columns.total'}}</th>
+    <th class="t-right statsTable-cell">{{t 'pods.reporting.columns.pastDeadline'}}</th>
   </thead>
   <tbody>
     {{#if statsTaskGroup.isRunning}}
-      <tr><td class="statsTable-spinner" colspan="7">{{ui-spinner}}</td></tr>
+      <tr><td class="statsTable-spinner" colspan="9">{{ui-spinner}}</td></tr>
     {{/if}}
     {{#each model.meta.staffProfileIds as |profile|}}
       {{stats-staff profile=profile group=statsTaskGroup}}
