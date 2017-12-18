@@ -256,11 +256,13 @@ export default {
     "reporting": {
       "openTickets": {
         "one": "{{count}} Open request",
-        "other": "{{count}} Open requests"
+        "other": "{{count}} Open requests",
+        "zero": "{{count}} Open requests"
       },
       "closedTickets": {
         "one": "{{count}} Closed request",
-        "other": "{{count}} Closed requests"
+        "other": "{{count}} Closed requests",
+        "zero": "{{count}} Closed requests"
       },
       "pastDeadline": "{{count}} past deadline",
       "columns": {
@@ -273,10 +275,12 @@ export default {
       "staffTitle": {
         "one": "{{count}} Staff member",
         "other": "{{count}} Staff members",
+        "zero": "{{count}} Staff members"
       },
       "countriesTitle": {
         "one": "{{count}} Country",
         "other": "{{count}} Countries",
+        "zero": "{{count}} Countries"
       }
     }
   },
