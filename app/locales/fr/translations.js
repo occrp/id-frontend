@@ -23,7 +23,8 @@ export default {
     "assign": {
       "longForm": "Assigner à l'équipe",
       "shortForm": "Attribuer à l'équipe"
-    }
+    },
+    "delete": "Delete"
   },
   "prefixes": {
     "on": "Le {{date}}",
@@ -40,7 +41,8 @@ export default {
       "select": "Sélectionner un fichier",
       "activeTitle": "Déposer pour télécharger"
     },
-    "filesSelected": "{{count}} fichiers sélectionnés "
+    "filesSelected": "{{count}} fichiers sélectionnés ",
+    "removalPrompt": "Are you sure you want to delete this file?"
   },
   "filters": {
     "sort": {
@@ -82,7 +84,8 @@ export default {
       "action": "Réouvert"
     },
     "attachment": {
-      "action": "{{user}} fichiers joints"
+      "action": "{{user}} fichiers joints",
+      "removed": "{{user}} removed file"
     },
     "unassign": {
       "action": "N'a pas été assigné à {{user}} "

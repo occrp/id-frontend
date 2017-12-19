@@ -9,7 +9,8 @@ export default {
     "assign": {
       "longForm": "Asignar al equipo",
       "shortForm": "Asignar"
-    }
+    },
+    "delete": "Delete"
   },
   "filters.sort.createdBy.asc": "Más reciente",
   "filters": {
@@ -55,7 +56,8 @@ export default {
       "select": "Selecciona un archivo",
       "activeTitle": "Suelte para subir"
     },
-    "filesSelected": "Archivos seleccionados"
+    "filesSelected": "Archivos seleccionados",
+    "removalPrompt": "Are you sure you want to delete this file?"
   },
   "validationErrors.before": "Esta fecha debe ser anterior a {{antes}}",
   "empty": {
@@ -233,7 +235,8 @@ export default {
       "action": "Reabierto"
     },
     "attachment": {
-      "action": "Archivos adjuntos"
+      "action": "Archivos adjuntos",
+      "removed": "{{user}} removed file"
     },
     "unassign": {
       "action": "Sin asignar"

@@ -1,7 +1,6 @@
-{{#ui-modal-container as |m|}}
-<div>
+{{#if canUpload}}
+  {{#ui-modal-container as |m|}}
 
-  {{#if canUpload}}
   <div class="mb-4">
     {{#ui-dropzone class="dropzone" name="ticket-attachments" as |dropzone queue|}}
       <div>
@@ -28,38 +27,8 @@
       </div>
     {{/ui-dropzone}}
   </div>
-  {{/if}}
 
-  {{#if model.attachments.length}}
-    <h3 class="t-light mb-3">{{t 'attachment' count=2}}</h3>
-
-    <div class="fileTimeline">
-    {{#each processedAttachments as |group|}}
-      <div class="fileGroup">
-        <p class="fileGroup-title">{{group.user.displayName}}</p>
-        <ul class="fileGroup-body">
-          {{#each group.models as |item|}}
-            <li>
-              <a href={{item.upload}} title={{item.fileName}} target="_blank" class="file">
-                <span class="file-size">{{format-filesize item.fileSize}}</span>
-                {{~icon "file"~}}
-                {{item.fileName}}
-              </a>
-            </li>
-          {{/each}}
-        </ul>
-      </div>
-    {{/each}}
-    </div>
-
-  {{else if (not canUpload)}}
-    <h3 class="t-light mb-3">{{t 'attachment' count=0}}</h3>
-  {{/if}}
-
-</div>
-
-{{#with (file-queue name="ticket-attachments") as |queue|}}
-
+  {{#with (file-queue name="ticket-attachments") as |queue|}}
   {{#if m.isShowing}}
   {{#ui-modal modifiers="modal--lg" onClose=(pipe m.toggle (action 'flushQueue' queue))}}
     <div class="modal-content">
@@ -77,9 +46,9 @@
         <div class="modal-attachmentsList">
           {{#each queue.files as |file|}}
             <div class="file" title={{file.name}}>
+              {{~icon "file" class="file-icon"~}}
+              <span class="file-name">{{file.name}}</span>
               <span class="file-size">{{format-filesize file.size}}</span>
-              {{~icon "file"~}}
-              {{file.name}}
             </div>
           {{/each}}
         </div>
@@ -103,6 +72,73 @@
     </div>
   {{/ui-modal}}
   {{/if}}
+  {{/with}}
 
-{{/with}}
-{{/ui-modal-container}}
+  {{/ui-modal-container}}
+{{/if}}
+
+{{#if model.attachments.length}}
+  <h3 class="t-light mb-3">{{t 'attachment' count=2}}</h3>
+
+  {{#ui-modal-container as |m2|}}
+
+  <div class="fileTimeline">
+  {{#each processedAttachments as |group|}}
+    <div class="fileGroup">
+      <p class="fileGroup-title">{{group.user.displayName}}</p>
+      <ul class="fileGroup-body">
+        {{#each group.models as |item|}}
+          <li>
+            <a href={{item.upload}} title={{item.fileName}} target="_blank" class="file">
+              {{~icon "file" class="file-icon"~}}
+              <span class="file-name">{{item.fileName}}</span>
+              <span class="file-size">{{format-filesize item.fileSize}}</span>
+              {{#if (can 'resolve tickets')}}
+                <button class="file-remove button button--icon button--dark" {{action (queue (action 'addToRemovalBin' item) m2.toggle)}}>
+                  {{~icon "trashcan"~}}
+                </button>
+              {{/if}}
+            </a>
+          </li>
+        {{/each}}
+      </ul>
+    </div>
+  {{/each}}
+  </div>
+
+  {{#if m2.isShowing}}
+  {{#ui-modal onClose=(queue m2.toggle (action 'emptyRemovalBin'))}}
+    <div class="modal-content">
+
+      <div class="modal-body t-center">
+        <h4 class="t-normal mt-2 mb-n2 t-muted">{{t 'attachment.removalPrompt'}}</h4>
+      </div>
+
+      <div class="modal-body modal-body--grayed">
+        <div class="modal-attachmentsList">
+          <div class="file" title={{removalBin.fileName}}>
+            {{~icon "file" class="file-icon"~}}
+            <span class="file-name">{{removalBin.fileName}}</span>
+            <span class="file-size">{{format-filesize removalBin.fileSize}}</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="modal-footer modal-footer--center">
+        <button class="button buttonOutlined--secondary" {{action (queue m2.toggle (action 'emptyRemovalBin'))}}>
+          {{~t 'actions.cancel'~}}
+        </button>
+        <button class="button button--primary" {{action 'removeFile' m2.toggle}}>
+          {{~t 'actions.delete'~}}
+        </button>
+      </div>
+
+    </div>
+  {{/ui-modal}}
+  {{/if}}
+
+  {{/ui-modal-container}}
+
+{{else if (not canUpload)}}
+  <h3 class="t-light mb-3">{{t 'attachment' count=0}}</h3>
+{{/if}}

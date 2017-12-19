@@ -101,6 +101,18 @@ export default Factory.extend({
     }
   }),
 
+  isAttachmentRemoval: trait({
+    verb: 'attachment:destroy',
+
+    afterCreate(activity, server) {
+      let regulars = server.schema.profiles.where({ isStaff: false });
+
+      activity.update({
+        user: random(regulars.models)
+      });
+    }
+  }),
+
   isAssignment: trait({
     verb: 'responder:create',
 

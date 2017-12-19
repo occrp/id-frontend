@@ -143,42 +143,61 @@
 
 
 .file {
-  display: block;
+  display: flex;
+  align-items: center;
   width: 100%;
-  white-space: nowrap;
-  overflow-x: hidden;
-  text-overflow: ellipsis;
   font-size: $font-size-sm;
   color: $gray-700;
   font-weight: $font-weight-normal;
   border: 1px solid transparent;
   border-bottom-color: $gray-300;
   background: white;
-  padding: .4rem .75rem;
+  padding: .4rem .6rem;
+
+  .file-name {
+    flex: 1 1 auto;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
 
   .file-size {
-    float: right;
+    flex: 0 0 auto;
+    white-space: nowrap;
     margin-left: 1rem;
     color: $gray-500;
     font-weight: $font-weight-normal;
   }
 
-  .icon {
-    vertical-align: -2px;
-    margin-right: 0.5rem;
+  .file-icon {
+    flex: 0 0 auto;
+    margin-right: .4rem;
+  }
+
+  .file-remove {
+    flex: 0 0 auto;
+    width: 16px;
+    height: 21px;
+    padding: .4rem .6rem;
+    margin: -1*.4rem -1*.6rem;
+    margin-left: 0
   }
 
   @include rtl {
     .file-size {
       direction: ltr;
-      float: left;
       margin-right: 1rem;
       margin-left: 0;
     }
 
-    .icon {
-      margin-left: 0.5rem;
+    .file-icon {
+      margin-left: .4rem;
       margin-right: 0;
+    }
+
+    .file-remove {
+      margin-right: 0;
+      margin-left: -1*.6rem;
     }
   }
 }

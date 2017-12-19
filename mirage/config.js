@@ -205,6 +205,23 @@ export default function() {
   }, { network: '3g' }));
 
 
+  this.del('/attachments/:id', function (schema, request) {
+    let attachmentId = request.params.id;
+
+    let attachment = schema.attachments.find(attachmentId);
+    let ticket = schema.tickets.find(attachment.ticketId);
+
+    schema.activities.create({
+      verb: 'attachment:destroy',
+      createdAt: (new Date()).toISOString(),
+      ticket,
+      user: schema.profiles.find(42)
+    });
+
+    attachment.destroy();
+  });
+
+
   this.post('/responders', function (schema) {
     let attrs = this.normalizedRequestAttrs();
 

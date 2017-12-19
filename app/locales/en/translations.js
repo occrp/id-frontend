@@ -163,7 +163,8 @@ export default {
       action: '{{user}} commented {{relativeTime}}'
     },
     attachment: {
-      action: '{{user}} attached files'
+      action: '{{user}} attached files',
+      removed: '{{user}} removed file'
     },
     assign: {
       action: '{{user}} was assigned'
@@ -190,7 +191,9 @@ export default {
       desc: 'Drag and drop files onto this area or {{select}}',
       select: 'Select a file'
     },
-    filesSelected: '{{count}} files selected'
+    filesSelected: '{{count}} files selected',
+
+    removalPrompt: 'Are you sure you want to delete this file?'
   },
 
   pods: {
@@ -321,7 +324,8 @@ export default {
     },
     remove: 'Remove',
     reopen: 'Reopen',
-    save: 'Save'
+    save: 'Save',
+    delete: 'Delete'
   },
 
   prefixes: {
