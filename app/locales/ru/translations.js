@@ -308,6 +308,10 @@ export default {
       }
     }
   },
+  "userCard": {
+    "viewRequests": "View requests",
+    "adminProfile": "Admin profile"
+  },
   "empty": {
     "noResults": {
       "body": "Используйте меню, чтобы отфильтровать запросы",

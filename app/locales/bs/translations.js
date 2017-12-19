@@ -289,6 +289,10 @@ export default {
       }
     }
   },
+  "userCard": {
+    "viewRequests": "View requests",
+    "adminProfile": "Admin profile"
+  },
   "empty": {
     "noResults": {
       "body": "Koristite menu iznad da odaberete željene zahtjeve",

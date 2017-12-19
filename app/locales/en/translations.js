@@ -297,6 +297,11 @@ export default {
     }
   },
 
+  userCard: {
+    viewRequests: 'View requests',
+    adminProfile: 'Admin profile'
+  },
+
   pagination: {
     prev: 'Prev',
     next: 'Next',

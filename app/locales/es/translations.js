@@ -309,6 +309,10 @@ export default {
       }
     }
   },
+  "userCard": {
+    "viewRequests": "View requests",
+    "adminProfile": "Admin profile"
+  },
   "validationErrors.blank": "Este campo no puede estar en blanco",
   "actions.unmark": "Desmarcar"
 }

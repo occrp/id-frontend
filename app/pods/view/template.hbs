@@ -36,12 +36,12 @@
       <div class="ticketSubtitle {{if ea.isEditing "b-editing"}}">
         <div class="ticketSubtitle-main">
           {{t 'ticket.requester.prefix'}}
-          {{#if (can 'manage tickets')}}
-            {{#link-to 'browse' (query-params requester=model.requester.id page=1) class="t-bold"~}}
-              {{model.requester.displayName}}
-            {{~/link-to}}
+          {{#if (can 'resolve tickets')}}
+            {{#user-card user=model.requester}}
+              <span>{{model.requester.displayName}}</span>
+            {{/user-card}}
           {{else}}
-            <strong>{{model.requester.displayName}}</strong>
+            <span class="ticketRequester">{{model.requester.displayName}}</span>
           {{/if}}
           {{t 'prefixes.on'}}
           <time datetime={{model.createdAt}} title={{moment-format model.createdAt 'LLL'}}>

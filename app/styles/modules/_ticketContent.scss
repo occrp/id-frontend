@@ -7,15 +7,42 @@
   margin: 0 -1*$spacer-4;
   font-size: $font-size-sm;
 
-  strong {
-    color: $gray-650;
+  .dd {
+    display: inline-block;
   }
 
-  // TODO: abstract this stuff
-  .ticketSubtitle-main {
-    strong, a {
-      margin: 0 0.1em;
+  .dd-trigger {
+    font-weight: $font-weight-bold;
+    margin: 0 .1rem;
+  }
+
+  .dd-container {
+    margin: $spacer-2 0;
+
+    // The joy of arrow tips
+    &:before,
+    &:after {
+      content: '';
+      position: absolute;
+      top: -12px;
+      left: 50%;
+      margin-left: -6px;
+      width: 0;
+      height: 0;
+      border: 6px solid transparent;
+      border-bottom-color: $gray-600;
     }
+
+    &:after {
+      border-bottom-color: white;
+      top: -11px;
+    }
+  }
+
+  .ticketRequester {
+    color: $gray-650;
+    font-weight: $font-weight-bold;
+    margin: 0 .1rem;
   }
 
   .button--icon {
@@ -27,6 +54,27 @@
     }
   }
 }
+
+.userCard {
+  color: $gray-700;
+  padding: $spacer-3 $spacer-3;
+  font-size: $font-size-sm;
+
+  .icon {
+    vertical-align: -3px;
+    margin-right: .4rem;
+  }
+}
+
+.userCard-title {
+  color: $gray-900;
+}
+
+
+.userCard-email {
+  word-break: break-all;
+}
+
 
 .statusBar {
   font-size: $font-size-sm;
@@ -65,3 +113,4 @@
 .ticketMeta {
   background: $gray-100;
 }
+
