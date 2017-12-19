@@ -234,7 +234,8 @@ export default {
         "invalidMessage": "",
         "submitButton": "Soumettre sa demande",
         "otherDetails": "Autres informations ",
-        "requestDetails": "Demander des précisions"
+        "requestDetails": "Demander des précisions",
+        "uploadInfo": "You will be able attach documents after submitting the request."
       },
       "title": "Demander des informations "
     },

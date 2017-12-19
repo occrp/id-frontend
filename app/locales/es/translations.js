@@ -254,7 +254,8 @@ export default {
         "invalidMessage": "Por favor complete los campos marcados arriba antes de continuar.",
         "submitButton": "Enviar tu solicitud",
         "otherDetails": "Otros detalles",
-        "requestDetails": "Detalles de la solicitud"
+        "requestDetails": "Detalles de la solicitud",
+        "uploadInfo": "You will be able attach documents after submitting the request."
       },
       "title": "Pedir información"
     },

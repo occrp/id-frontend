@@ -253,7 +253,8 @@ export default {
         "invalidMessage": "Пожалуйста заполните все отмеченные поля прежде чем продолжить",
         "submitButton": "Отправить запрос",
         "otherDetails": "Другие детали",
-        "requestDetails": "Детали зароса"
+        "requestDetails": "Детали зароса",
+        "uploadInfo": "You will be able attach documents after submitting the request."
       },
       "title": "Информация о запросе"
     },

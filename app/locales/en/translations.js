@@ -202,6 +202,7 @@ export default {
         requestDetails: 'Request details',
         invalidMessage: 'Please review the fields marked above before continuing.',
         submitButton: 'Submit your request',
+        uploadInfo: 'You will be able attach documents after submitting the request.'
       }
     },
     browse: {

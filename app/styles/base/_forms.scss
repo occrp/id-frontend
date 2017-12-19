@@ -176,6 +176,11 @@ select.formControl--lg {
   .formControl + & {
     margin-top: $form-text-margin-y;
   }
+
+  .icon--lg {
+    vertical-align: -7px;
+    margin-right: $spacer;
+  }
 }
 
 

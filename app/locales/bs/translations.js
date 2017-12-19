@@ -234,7 +234,8 @@ export default {
         "invalidMessage": "Molimo da popunite naznačena polja",
         "submitButton": "Pošaljite svoj zahtjev",
         "otherDetails": "Drugi detalji",
-        "requestDetails": "Detalji zahtjeva"
+        "requestDetails": "Detalji zahtjeva",
+        "uploadInfo": "You will be able attach documents after submitting the request."
       },
       "title": "Podaci o zahtjevu"
     },

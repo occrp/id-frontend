@@ -234,7 +234,8 @@ export default {
         "invalidMessage": "",
         "submitButton": "أرسل طلبك",
         "otherDetails": "تفاصيل أخرى",
-        "requestDetails": "تفاصيل الطلب"
+        "requestDetails": "تفاصيل الطلب",
+        "uploadInfo": "You will be able attach documents after submitting the request."
       },
       "title": "اطلب معلومات"
     },
