@@ -1,0 +1,10 @@
+<div class="activity-headline">
+  {{icon "trashcan"}}
+  <div>
+    <strong>{{data.user.displayName}}</strong>
+    {{t 'activity.attachment.removed'}}
+    <time datetime={{data.createdAt}} title={{moment-format data.createdAt 'LLL'}}>
+      {{moment-from-now data.createdAt}}
+    </time>
+  </div>
+</div>

@@ -69,7 +69,7 @@ export default Factory.extend({
     afterCreate(ticket, server) {
       let staff = server.schema.profiles.where({ isStaff: true });
 
-      server.createList('responder', 3, { 
+      server.createList('responder', 3, {
         ticket,
         user() { return random(staff.models); }
       });
@@ -94,6 +94,7 @@ export default Factory.extend({
       server.create('activity', 'isAttachment', { ticket });
       server.create('activity', 'isAssignment', { ticket });
       server.create('activity', 'isUnassignment', { ticket });
+      server.create('activity', 'isAttachmentRemoval', { ticket });
     }
   }),
 

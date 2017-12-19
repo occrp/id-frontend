@@ -7,6 +7,8 @@ export default Ember.Component.extend({
   store: Ember.inject.service(),
   session: Ember.inject.service(),
 
+  removalBin: null,
+
   processedAttachments: Ember.computed('model.attachments.[]', function() {
     const attachments = this.get('model.attachments');
     let groups = [];
@@ -65,6 +67,11 @@ export default Ember.Component.extend({
     }
   }).maxConcurrency(3).enqueue(),
 
+  removeAttachment: task(function * (file) {
+    yield file.destroyRecord();
+    this.get('model').hasMany('activities').reload();
+  }),
+
   actions: {
     startUploads(queue, triggerClose) {
       this.get('batchUpload').perform(queue).then(() => {
@@ -75,6 +82,20 @@ export default Ember.Component.extend({
     flushQueue(queue) {
       get(queue, 'files').forEach((file) => set(file, 'queue', null));
       set(queue, 'files', Ember.A());
+    },
+
+    addToRemovalBin(file) {
+      this.set('removalBin', file);
+    },
+
+    emptyRemovalBin() {
+      this.set('removalBin', null);
+    },
+
+    removeFile(triggerClose) {
+      this.get('removeAttachment').perform(this.get('removalBin')).then(() => {
+        triggerClose();
+      });
     }
   }
 

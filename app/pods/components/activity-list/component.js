@@ -14,6 +14,7 @@ export default Ember.Component.extend(Validations, {
     'ticket:update:status_in-progress': 'resume',
     'ticket:update:reopen': 'reopen',
     'attachment:create': 'attachment',
+    'attachment:destroy': 'attachment-deleted',
     'responder:create': 'assign',
     'responder:destroy': 'unassign'
   },

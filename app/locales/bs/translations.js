@@ -23,7 +23,8 @@ export default {
     "assign": {
       "longForm": "Dodijelite istraživaču",
       "shortForm": "Dodijeliti"
-    }
+    },
+    "delete": "Delete"
   },
   "prefixes": {
     "on": "dana {{date}}",
@@ -40,7 +41,8 @@ export default {
       "select": "Odaberite dokument",
       "activeTitle": "Dokumenti za upload"
     },
-    "filesSelected": "{{count}} odabran(a)"
+    "filesSelected": "{{count}} odabran(a)",
+    "removalPrompt": "Are you sure you want to delete this file?"
   },
   "filters": {
     "sort": {
@@ -82,7 +84,8 @@ export default {
       "action": "ponovo otvoren"
     },
     "attachment": {
-      "action": "Istraživač {{user}} je dodao dokumente"
+      "action": "Istraživač {{user}} je dodao dokumente",
+      "removed": "{{user}} removed file"
     },
     "unassign": {
       "action": "Istraživač {{user}} je napustio zahtjev"

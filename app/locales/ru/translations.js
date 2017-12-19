@@ -22,7 +22,8 @@ export default {
     "assign": {
       "longForm": "Назначить сотрудника",
       "shortForm": "назначить"
-    }
+    },
+    "delete": "Delete"
   },
   "prefixes": {
     "on": "{{date}}",
@@ -39,7 +40,8 @@ export default {
       "select": "Выбрать файл",
       "activeTitle": "Отпустите для загрузки"
     },
-    "filesSelected": "{{count}} файлов выбраны"
+    "filesSelected": "{{count}} файлов выбраны",
+    "removalPrompt": "Are you sure you want to delete this file?"
   },
   "filters": {
     "sort": {
@@ -89,7 +91,8 @@ export default {
       "action": "открыт заново"
     },
     "attachment": {
-      "action": "{{user}} прикрепил/а файлы"
+      "action": "{{user}} прикрепил/а файлы",
+      "removed": "{{user}} removed file"
     },
     "unassign": {
       "action": "{{user}} больше не назначен/а"

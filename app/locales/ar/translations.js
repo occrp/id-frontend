@@ -23,7 +23,8 @@ export default {
     "assign": {
       "longForm": "تعيين لموظف",
       "shortForm": "تعيين"
-    }
+    },
+    "delete": "Delete"
   },
   "prefixes": {
     "on": "في (تاريخ محدد)",
@@ -40,7 +41,8 @@ export default {
       "select": "اختر ملف",
       "activeTitle": "اسقط للتحميل"
     },
-    "filesSelected": "((اعتمد)) الملفات المختارة"
+    "filesSelected": "((اعتمد)) الملفات المختارة",
+    "removalPrompt": "Are you sure you want to delete this file?"
   },
   "filters": {
     "sort": {
@@ -82,7 +84,8 @@ export default {
       "action": "اعيد فتحه"
     },
     "attachment": {
-      "action": "((المستخدم)) ارفق الملفات"
+      "action": "((المستخدم)) ارفق الملفات",
+      "removed": "{{user}} removed file"
     },
     "unassign": {
       "action": "(المستخدم) غير معين"

@@ -160,7 +160,6 @@
 
 .modal-footer--center {
   justify-content: center;
-  padding-bottom: $modal-inner-padding * 2;
 
   > :not(:first-child) { margin-left: .5rem; }
   > :not(:last-child) { margin-right: .5rem; }
@@ -169,6 +168,10 @@
     > :not(:first-child) { margin-right: .5rem; margin-left: 0; }
     > :not(:last-child) { margin-left: .5rem; margin-right: 0; }
   }
+}
+
+.modal-footer--padded {
+  padding-bottom: $modal-inner-padding * 2;
 }
 
 .modal-progress {
