@@ -70,6 +70,12 @@ test('(admins) tickets can be filtered by kind', async function(assert) {
   });
 
   server.get('/tickets', (schema, request) => {
+    request.mirageMeta = {
+      total: {
+        'all': schema.tickets.all().length,
+      },
+    };
+
     let kind = request.queryParams['filter[kind]'];
 
     if (kind) {
@@ -118,6 +124,12 @@ test('(admins) tickets can be filtered by country', async function(assert) {
   });
 
   server.get('/tickets', (schema, request) => {
+    request.mirageMeta = {
+      total: {
+        'all': schema.tickets.all().length,
+      },
+    };
+
     let kind = request.queryParams['filter[kind]'];
     let country = request.queryParams['filter[country]'];
     let filters = {};
@@ -178,17 +190,21 @@ test('(admins) tickets can be filtered by requester', async function(assert) {
   });
 
   server.get('/tickets', (schema, request) => {
+    request.mirageMeta = {
+      total: {
+        'all': schema.tickets.all().length,
+      },
+    };
+
     let requesterId = request.queryParams['filter[requester]'];
 
     if (requesterId) {
       let profile = schema.profiles.find(requesterId);
 
-      request.mirageMeta = {
-        filters: {
-          requester: {
-            'first-name': profile.firstName,
-            'last-name': profile.lastName
-          }
+      request.mirageMeta.filters = {
+        requester: {
+          'first-name': profile.firstName,
+          'last-name': profile.lastName
         }
       };
 
@@ -242,6 +258,12 @@ test('(admins) tickets can be filtered by responder', async function(assert) {
   });
 
   server.get('/tickets', (schema, request) => {
+    request.mirageMeta = {
+      total: {
+        'all': schema.tickets.all().length,
+      },
+    };
+
     let responderId = request.queryParams['filter[responders__user]'];
 
     // used to be on responderId. see adapter
@@ -254,12 +276,10 @@ test('(admins) tickets can be filtered by responder', async function(assert) {
     if (responderId) {
       let profile = schema.profiles.find(responderId);
 
-      request.mirageMeta = {
-        filters: {
-          responder: {
-            'first-name': profile.firstName,
-            'last-name': profile.lastName
-          }
+      request.mirageMeta.filters = {
+        responder: {
+          'first-name': profile.firstName,
+          'last-name': profile.lastName
         }
       };
 
@@ -315,6 +335,12 @@ test('(staff) ticket filters can be removed', async function(assert) {
   });
 
   server.get('/tickets', (schema, request) => {
+    request.mirageMeta = {
+      total: {
+        'all': schema.tickets.all().length,
+      },
+    };
+
     let kind = request.queryParams['filter[kind]'];
     let country = request.queryParams['filter[country]'];
     let filters = {};
