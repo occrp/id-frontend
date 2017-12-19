@@ -63,7 +63,7 @@
       <tr>
         <td>
           {{moment-format month.date 'MMMM Y'}}
-          {{#if (eq index 0)}}<br /><p class="t-sm t-muted">{{t 'pods.reporting.columns.avgTime'}}</p>{{/if}}
+          {{#if (eq index 0)}}<p class="t-sm t-muted">{{t 'pods.reporting.columns.avgTime'}}</p>{{/if}}
         </td>
         {{#with month.new as |item|}}
           <td class="t-right">
@@ -73,25 +73,25 @@
         {{#with month.in-progress as |item|}}
           <td class="t-right">
             {{item.count}}
-            {{#if item.avgTime}}<br /><p class="t-sm t-muted">{{moment-duration-format item.avgTime 'hours'}}</p>{{/if}}
+            {{#if item.avgTime}}<p class="t-sm t-muted">{{moment-duration-format item.avgTime 'hours'}}</p>{{/if}}
           </td>
         {{/with}}
         {{#with month.pending as |item|}}
           <td class="t-right">
             {{item.count}}
-            {{#if item.avgTime}}<br /><p class="t-sm t-muted">{{moment-duration-format item.avgTime 'hours'}}</p>{{/if}}
+            {{#if item.avgTime}}<p class="t-sm t-muted">{{moment-duration-format item.avgTime 'hours'}}</p>{{/if}}
           </td>
         {{/with}}
         {{#with month.closed as |item|}}
           <td class="t-right">
             {{item.count}}
-            {{#if item.avgTime}}<br /><p class="t-sm t-muted">{{moment-duration-format item.avgTime 'hours'}}</p>{{/if}}
+            {{#if item.avgTime}}<p class="t-sm t-muted">{{moment-duration-format item.avgTime 'hours'}}</p>{{/if}}
           </td>
         {{/with}}
         {{#with month.cancelled as |item|}}
           <td class="t-right">
             {{item.count}}
-            {{#if item.avgTime}}<br /><p class="t-sm t-muted">{{moment-duration-format item.avgTime 'hours'}}</p>{{/if}}
+            {{#if item.avgTime}}<p class="t-sm t-muted">{{moment-duration-format item.avgTime 'hours'}}</p>{{/if}}
           </td>
         {{/with}}
         <td class="t-right"><strong>{{month.totalCount}}</strong></td>
