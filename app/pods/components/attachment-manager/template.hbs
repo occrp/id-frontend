@@ -93,7 +93,7 @@
               {{~icon "file" class="file-icon"~}}
               <span class="file-name">{{item.fileName}}</span>
               <span class="file-size">{{format-filesize item.fileSize}}</span>
-              {{#if (can 'resolve tickets')}}
+              {{#if (or (can 'manage tickets') (eq model.requester.id item.user.id))}}
                 <button class="file-remove button button--icon button--dark" {{action (queue (action 'addToRemovalBin' item) m2.toggle)}}>
                   {{~icon "trashcan"~}}
                 </button>
@@ -116,11 +116,11 @@
 
       <div class="modal-body modal-body--grayed">
         <div class="modal-attachmentsList">
-          <div class="file" title={{removalBin.fileName}}>
+          <a href={{removalBin.upload}} title={{removalBin.fileName}} target="_blank" class="file">
             {{~icon "file" class="file-icon"~}}
             <span class="file-name">{{removalBin.fileName}}</span>
             <span class="file-size">{{format-filesize removalBin.fileSize}}</span>
-          </div>
+          </a>
         </div>
       </div>
 
