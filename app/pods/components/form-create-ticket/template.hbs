@@ -39,28 +39,32 @@
 
       {{#validated-field
         class="formGroup"
-        validation=buffer.validations.attrs.firstName
+        errors=buffer.displayErrors.firstName
         didValidate=didValidate as |field|}}
 
         <label for="ticket-first-name">{{t 'ticket.firstName.label'}} <span class="t-danger">*</span></label>
         {{input value=buffer.firstName class="formControl" id="ticket-first-name" focus-out=field.triggerValidations}}
 
         {{#if field.showErrors}}
-          <div class="formFeedback">{{v-get buffer "firstName" "message"}}</div>
+          {{#each field.errors as |error|}}
+            <div class="formFeedback">{{error}}</div>
+          {{/each}}
         {{/if}}
 
       {{/validated-field}}
 
       {{#validated-field
         class="formGroup"
-        validation=buffer.validations.attrs.lastName
+        errors=buffer.displayErrors.lastName
         didValidate=didValidate as |field|}}
 
         <label for="ticket-last-name">{{t 'ticket.lastName.label'}} <span class="t-danger">*</span></label>
         {{input value=buffer.lastName class="formControl" id="ticket-last-name" focus-out=field.triggerValidations}}
 
         {{#if field.showErrors}}
-          <div class="formFeedback">{{v-get buffer "lastName" "message"}}</div>
+          {{#each field.errors as |error|}}
+            <div class="formFeedback">{{error}}</div>
+          {{/each}}
         {{/if}}
 
       {{/validated-field}}
@@ -77,7 +81,7 @@
 
       {{#validated-field
         class="formGroup"
-        validation=buffer.validations.attrs.background
+        errors=buffer.displayErrors.background
         didValidate=didValidate as |field|}}
 
         <label for="ticket-background">{{t 'ticket.background.formLabel'}} <span class="t-danger">*</span></label>
@@ -85,14 +89,15 @@
         {{textarea rows=5 value=buffer.background class="formControl" id="ticket-background" focus-out=field.triggerValidations}}
 
         {{#if field.showErrors}}
-          <div class="formFeedback">{{v-get buffer "background" "message"}}</div>
+          {{#each field.errors as |error|}}
+            <div class="formFeedback">{{error}}</div>
+          {{/each}}
         {{/if}}
-
       {{/validated-field}}
 
       {{#validated-field
        class="formGroup"
-       validation=buffer.validations.attrs.initialInformation
+       errors=buffer.displayErrors.initialInformation
        didValidate=didValidate as |field|}}
 
         <label for="ticket-initialInformation">{{t 'ticket.initialInformation.formLabel'}} <span class="t-danger">*</span></label>
@@ -100,7 +105,9 @@
         {{textarea rows=5 value=buffer.initialInformation class="formControl" id="ticket-initialInformation" focus-out=field.triggerValidations}}
 
         {{#if field.showErrors}}
-          <div class="formFeedback">{{v-get buffer "initialInformation" "message"}}</div>
+          {{#each field.errors as |error|}}
+            <div class="formFeedback">{{error}}</div>
+          {{/each}}
         {{/if}}
 
       {{/validated-field}}
@@ -115,7 +122,7 @@
 
       {{#validated-field
        class="formGroup"
-       validation=buffer.validations.attrs.sources
+       errors=buffer.displayErrors.sources
        didValidate=didValidate as |field|}}
 
        <label for="ticket-sources-person">{{t 'ticket.sourcesPerson.label'}}</label>
@@ -123,14 +130,16 @@
         {{textarea rows=3 value=buffer.sources class="formControl" id="ticket-sources-person" focus-out=field.triggerValidations}}
 
         {{#if field.showErrors}}
-          <div class="formFeedback">{{v-get buffer "sources" "message"}}</div>
+          {{#each field.errors as |error|}}
+            <div class="formFeedback">{{error}}</div>
+          {{/each}}
         {{/if}}
 
       {{/validated-field}}
 
       {{#validated-field
        class="formGroup"
-       validation=buffer.validations.attrs.connections
+       errors=buffer.displayErrors.connections
        didValidate=didValidate as |field|}}
 
         <label for="ticket-connections-person">{{t 'ticket.connectionsPerson.label'}}</label>
@@ -138,21 +147,24 @@
         {{textarea rows=3 value=buffer.connections class="formControl" id="ticket-connections-person" focus-out=field.triggerValidations}}
 
         {{#if field.showErrors}}
-          <div class="formFeedback">{{v-get buffer "connections" "message"}}</div>
+          {{#each field.errors as |error|}}
+            <div class="formFeedback">{{error}}</div>
+          {{/each}}
         {{/if}}
-
       {{/validated-field}}
 
       {{#validated-field
        class="formGroup"
-       validation=buffer.validations.attrs.businessActivities
+       errors=buffer.displayErrors.businessActivities
        didValidate=didValidate as |field|}}
 
         <label for="ticket-businessActivities">{{t 'ticket.businessActivities.label'}}</label>
         {{textarea rows=3 value=buffer.businessActivities class="formControl" id="ticket-businessActivities" focus-out=field.triggerValidations}}
 
         {{#if field.showErrors}}
-          <div class="formFeedback">{{v-get buffer "businessActivities" "message"}}</div>
+          {{#each field.errors as |error|}}
+            <div class="formFeedback">{{error}}</div>
+          {{/each}}
         {{/if}}
 
       {{/validated-field}}
@@ -163,21 +175,23 @@
 
       {{#validated-field
         class="formGroup"
-        validation=buffer.validations.attrs.companyName
+        errors=buffer.displayErrors.companyName
         didValidate=didValidate as |field|}}
 
         <label for="ticket-companyName">{{t 'ticket.companyName.label'}} <span class="t-danger">*</span></label>
         {{input value=buffer.companyName class="formControl" id="ticket-companyName" focus-out=field.triggerValidations}}
 
         {{#if field.showErrors}}
-          <div class="formFeedback">{{v-get buffer "companyName" "message"}}</div>
+          {{#each field.errors as |error|}}
+            <div class="formFeedback">{{error}}</div>
+          {{/each}}
         {{/if}}
 
       {{/validated-field}}
 
       {{#validated-field
         class="formGroup"
-        validation=buffer.validations.attrs.country
+        errors=buffer.displayErrors.country
         didValidate=didValidate as |field|}}
 
         <label for="ticket-country">{{t 'ticket.country.label'}} <span class="t-danger">*</span></label>
@@ -189,14 +203,16 @@
         </select>
 
         {{#if field.showErrors}}
-          <div class="formFeedback">{{v-get buffer "country" "message"}}</div>
+          {{#each field.errors as |error|}}
+            <div class="formFeedback">{{error}}</div>
+          {{/each}}
         {{/if}}
 
       {{/validated-field}}
 
       {{#validated-field
         class="formGroup"
-        validation=buffer.validations.attrs.background
+        errors=buffer.displayErrors.background
         didValidate=didValidate as |field|}}
 
         <label for="ticket-background-company">{{t 'ticket.backgroundCompany.formLabel'}} <span class="t-danger">*</span></label>
@@ -204,14 +220,15 @@
         {{textarea rows=5 value=buffer.background class="formControl" id="ticket-background-company" focus-out=field.triggerValidations}}
 
         {{#if field.showErrors}}
-          <div class="formFeedback">{{v-get buffer "background" "message"}}</div>
+          {{#each field.errors as |error|}}
+            <div class="formFeedback">{{error}}</div>
+          {{/each}}
         {{/if}}
-
       {{/validated-field}}
 
       {{#validated-field
         class="formGroup"
-        validation=buffer.validations.attrs.sources
+        errors=buffer.displayErrors.sources
         didValidate=didValidate as |field|}}
 
         <label for="ticket-sources">{{t 'ticket.sources.formLabel'}} <span class="t-danger">*</span></label>
@@ -219,7 +236,9 @@
         {{textarea rows=5 value=buffer.sources class="formControl" id="ticket-sources" focus-out=field.triggerValidations}}
 
         {{#if field.showErrors}}
-          <div class="formFeedback">{{v-get buffer "sources" "message"}}</div>
+          {{#each field.errors as |error|}}
+            <div class="formFeedback">{{error}}</div>
+          {{/each}}
         {{/if}}
 
       {{/validated-field}}
@@ -228,14 +247,16 @@
 
       {{#validated-field
        class="formGroup"
-       validation=buffer.validations.attrs.connections
+       errors=buffer.displayErrors.connections
        didValidate=didValidate as |field|}}
 
         <label for="ticket-connections">{{t 'ticket.connections.formLabel'}}</label>
         {{textarea rows=3 value=buffer.connections class="formControl" id="ticket-connections" focus-out=field.triggerValidations}}
 
         {{#if field.showErrors}}
-          <div class="formFeedback">{{v-get buffer "connections" "message"}}</div>
+          {{#each field.errors as |error|}}
+            <div class="formFeedback">{{error}}</div>
+          {{/each}}
         {{/if}}
 
       {{/validated-field}}
@@ -246,7 +267,7 @@
 
       {{#validated-field
         class="formGroup"
-        validation=buffer.validations.attrs.background
+        errors=buffer.displayErrors.background
         didValidate=didValidate
         as |field|}}
 
@@ -255,7 +276,9 @@
         {{textarea rows=7 value=buffer.background class="formControl" id="ticket-background-other" focus-out=field.triggerValidations}}
 
         {{#if field.showErrors}}
-          <div class="formFeedback">{{v-get buffer "background" "message"}}</div>
+          {{#each field.errors as |error|}}
+            <div class="formFeedback">{{error}}</div>
+          {{/each}}
         {{/if}}
 
       {{/validated-field}}
@@ -272,7 +295,7 @@
 
     {{#validated-field
       class="formGroup"
-      validation=buffer.validations.attrs.deadlineAt
+      errors=buffer.displayErrors.deadlineAt
       didValidate=didValidate
       as |field|}}
 
@@ -287,7 +310,9 @@
       }}
 
       {{#if field.showErrors}}
-        <div class="formFeedback">{{v-get buffer "deadlineAt" "message"}}</div>
+        {{#each field.errors as |error|}}
+          <div class="formFeedback">{{error}}</div>
+        {{/each}}
       {{/if}}
 
     {{/validated-field}}
@@ -302,7 +327,7 @@
       {{#if buffer.sensitive}}
         {{#validated-field
           class="mt-2 ml-5"
-          validation=buffer.validations.attrs.whysensitive
+          errors=buffer.displayErrors.whysensitive
           didValidate=didValidate
           as |field|}}
 
@@ -310,7 +335,9 @@
           {{textarea rows=5 value=buffer.whysensitive class="formControl" id="ticket-whysensitive" focus-out=field.triggerValidations}}
 
           {{#if field.showErrors}}
-            <div class="formFeedback">{{v-get buffer "whysensitive" "message"}}</div>
+            {{#each field.errors as |error|}}
+              <div class="formFeedback">{{error}}</div>
+            {{/each}}
           {{/if}}
 
         {{/validated-field}}
@@ -323,7 +350,7 @@
   <div class="fieldGroup">
     <div class="l-constrain">
 
-      {{#if (and didValidate buffer.validations.isInvalid)}}
+      {{#if (and didValidate buffer.hasDisplayErrors)}}
         <div class="alert alert--danger mb-4" data-test-validation-errors>
           {{t 'pods.new.form.invalidMessage'}}
         </div>

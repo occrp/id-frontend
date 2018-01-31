@@ -87,20 +87,8 @@ export const Validations = buildValidations({
   background: [
     validator('presence', {
       presence: true,
-    }),
-    validator('length', {
-      max: 1000
     })
   ],
-  connections: validator('length', {
-    max: 1000
-  }),
-  businessActivities: validator('length', {
-    max: 1000
-  }),
-  whysensitive: validator('length', {
-    max: 1000
-  }),
 
   // Person
   firstName: validator('presence', {
@@ -115,9 +103,6 @@ export const Validations = buildValidations({
     validator('presence', {
       presence: true,
       disabled: notEqual('model.kind', raw(kindList[0]))
-    }),
-    validator('length', {
-      max: 1000
     })
   ],
 
@@ -134,9 +119,6 @@ export const Validations = buildValidations({
     validator('presence', {
       presence: true,
       disabled: notEqual('model.kind', raw(kindList[1]))
-    }),
-    validator('length', {
-      max: 1000
     })
   ],
 

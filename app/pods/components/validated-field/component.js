@@ -7,7 +7,7 @@ export default Ember.Component.extend({
 
   showValidations: false,
   showMessages: computed.or('didValidate', 'showValidations'),
-  showErrors: computed.and('showMessages', 'validation.isInvalid'),
+  showErrors: computed.and('showMessages', 'errors.length'),
 
   actions: {
     triggerValidations() {

@@ -27,13 +27,15 @@
 
       {{#validated-field
         class="formGroup"
-        validation=this.validations.attrs.body
+        errors=this.validations.attrs.body.messages
         didValidate=didValidate as |field|}}
 
         {{textarea value=body class="formControl formControl--sm" rows="6"}}
 
         {{#if field.showErrors}}
-          <div class="formFeedback t-right">{{v-get this "body" "message"}}</div>
+          {{#each field.errors as |error|}}
+            <div class="formFeedback t-right">{{error}}</div>
+          {{/each}}
         {{/if}}
 
       {{/validated-field}}

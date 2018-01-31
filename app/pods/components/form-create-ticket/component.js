@@ -1,7 +1,7 @@
 import Ember from 'ember';
 import { kindList, Validations } from 'id-frontend/models/ticket';
+import formBufferProperty from 'ember-validated-form-buffer';
 import countries from 'ember-i18n-iso-countries/langs/en';
-import BufferedProxy from 'ember-buffered-proxy/proxy';
 import moment from 'moment';
 import { task } from 'ember-concurrency';
 
@@ -12,14 +12,7 @@ export default Ember.Component.extend({
   today: moment.utc(),
   minimumDeadline: moment.utc().add(3, 'days'),
 
-  buffer: Ember.computed('model', function() {
-    let model = this.get('model');
-    let injection = Ember.getOwner(this).ownerInjection();
-
-    return BufferedProxy.extend(Validations).create(injection, {
-      content: model
-    });
-  }),
+  buffer: formBufferProperty('model', Validations),
 
   didValidate: false,
 

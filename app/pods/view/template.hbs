@@ -77,7 +77,7 @@
         <div class="editZone">
           {{#validated-field
             class="formGroup"
-            validation=buffer.validations.attrs.deadlineAt
+            errors=buffer.displayErrors.deadlineAt
             didValidate=didValidate
             as |field|}}
 
@@ -91,7 +91,9 @@
             }}
 
             {{#if field.showErrors}}
-              <div class="formFeedback">{{v-get buffer "deadlineAt" "message"}}</div>
+              {{#each field.errors as |error|}}
+                <div class="formFeedback">{{error}}</div>
+              {{/each}}
             {{/if}}
           {{/validated-field}}
 
