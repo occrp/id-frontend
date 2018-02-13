@@ -78,7 +78,7 @@
 {{/if}}
 
 {{#if model.attachments.length}}
-  <h3 class="t-light mb-3">{{t 'attachment' count=2}}</h3>
+  <h4 class="t-light mb-3">{{t 'attachment' count=2}}</h4>
 
   {{#ui-modal-container as |m2|}}
 
@@ -140,5 +140,5 @@
   {{/ui-modal-container}}
 
 {{else if (not canUpload)}}
-  <h3 class="t-light mb-3">{{t 'attachment' count=0}}</h3>
+  <h4 class="t-light mb-3">{{t 'attachment' count=0}}</h4>
 {{/if}}

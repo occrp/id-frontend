@@ -2,6 +2,7 @@
   margin: 0;
   display: block;
   overflow: hidden; // hides "remove" buttons
+  border-top: 1px solid $gray-300;
 }
 
 .editableList-item {
@@ -21,7 +22,8 @@
 .editableList-item--empty {
   background: $gray-200;
   font-weight: $font-weight-normal;
-  padding: to-rem(6px) $spacer;
+  padding-left: $spacer;
+  padding-right: $spacer;
 }
 
 .editableList-controls {
@@ -31,7 +33,7 @@
   position: relative;
   transition: transform .2s ease-in-out;
   display: flex;
-  margin: -2px 0;
+  margin: -1px 0 -2px 0;
 
   .button--icon {
     padding: 4px 4px;

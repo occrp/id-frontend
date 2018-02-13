@@ -184,6 +184,21 @@ select.formControl--lg {
 }
 
 
+.formGroup--inline {
+  display: flex;
+  align-items: center;
+
+  .formControl {
+    flex: 1 0 auto;
+    width: auto;
+  }
+
+  .button {
+    margin-left: $spacer-2;
+  }
+}
+
+
 
 // Checkboxes and radios
 //

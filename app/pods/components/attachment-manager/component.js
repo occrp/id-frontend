@@ -3,7 +3,6 @@ import { task, all } from 'ember-concurrency';
 const { get, set } = Ember;
 
 export default Ember.Component.extend({
-  tagName: '',
   store: Ember.inject.service(),
   session: Ember.inject.service(),
 

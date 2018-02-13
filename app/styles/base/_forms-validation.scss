@@ -22,7 +22,7 @@
 
   .formControl,
   .customSelect {
-    .is-#{$state} > &,
+    .is-#{$state} &,
     &.is-#{$state} {
       border-color: $color;
 
@@ -47,7 +47,7 @@
 
   // custom radios and checks
   .customControl {
-    .is-#{$state} > &,
+    .is-#{$state} &,
     &.is-#{$state} {
       .customControl-indicator {
         background-color: rgba($color, .25);

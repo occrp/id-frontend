@@ -72,6 +72,18 @@ export default {
 
       label: 'Staff responders',
       empty: 'No one assigned',
+
+      selfNotice: 'You are assigned to this request.',
+      selfRemove: 'Unassign?'
+    },
+    subscriber: {
+      'one': 'Subscriber',
+      'other': 'Subscribers',
+
+      emailPlaceholder: 'User email',
+
+      selfNotice: 'You are subscribed to this request.',
+      selfRemove: 'Unsubscribe?'
     },
 
     // Person
@@ -318,6 +330,7 @@ export default {
     cancel: 'Cancel',
     close: 'Close',
     unmark: 'Unmark',
+    addSubscriber: 'Add subscriber',
     assign: {
       shortForm: 'Assign',
       longForm: 'Assign to staff',
@@ -358,6 +371,7 @@ export default {
     blank: "This field can't be blank",
     before: "This date must be before {{before}}",
     after: "This date must be after {{after}}",
+    email: "This field must be a valid email address"
   }
 
 };

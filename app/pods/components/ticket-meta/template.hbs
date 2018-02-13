@@ -1,47 +1,109 @@
-{{#if (and (can 'manage tickets') model.isOpen)}}
-
-  <h3 class="t-light mb-3">{{t 'ticket.responder.label'}}</h3>
-
-  <div class="mb-3">
-    {{#if model.responders.length}}
-      <ul class="editableList">
-        {{#each model.responders as |responder|}}
-          {{#editable-list-item class=(concat "editableList-item " (if responder.isSaving "t-muted")) onRemove=(action 'removeUser' responder)}}
-            {{responder.user.displayName}}
-          {{/editable-list-item}}
-        {{/each}}
-      </ul>
+{{#if responderForCurrentUser}}
+  <div class="alert alert--sm alert--info alert--segmented mb-4">
+    <p>{{t 'ticket.responder.selfNotice'}}</p>
+    {{#unless unassignSelf.isRunning}}
+      <p><a href {{action 'unassignSelf'}}>{{t 'ticket.responder.selfRemove'}}</a></p>
     {{else}}
-      <div class="editableList">
-        <div class="editableList-item editableList-item--empty">
-          {{~t 'ticket.responder.empty'~}}
-        </div>
-      </div>
-    {{/if}}
+      {{ui-spinner}}
+    {{/unless}}
   </div>
-
-  <div class="mb-8">
-    {{#if (or updateResponder.isRunning removeResponder.isRunning)}}
-      {{ui-spinner class="spinner--mimicButton"}}
-    {{else}}
-      {{#ui-dropdown as |dd|}}
-        {{#dd.trigger class="button button--sm button--primary with-caret"}}
-          {{t 'actions.assign.longForm'}}
-        {{/dd.trigger}}
-        {{#dd.body
-          headerText=(t 'actions.assign.longForm')
-          attachment=(if i18n.isRtl "top right" "top left")
-          targetAttachment=(if i18n.isRtl "bottom right" "bottom left")
-        }}
-          {{search-users
-            task=searchStaff
-            current=model.responderIds
-            onSelect=(pipe-action (action 'selectUser' model) dd.close)}}
-        {{/dd.body}}
-      {{/ui-dropdown}}
-    {{/if}}
-  </div>
-
 {{/if}}
 
-{{attachment-manager model=model canUpload=model.isOpen}}
+{{#if subscriberForCurrentUser}}
+  <div class="alert alert--sm alert--info alert--segmented mb-4">
+    <p>{{t 'ticket.subscriber.selfNotice'}}</p>
+    {{#unless unsubscribeSelf.isRunning}}
+      <p><a href {{action 'unsubscribeSelf'}}>{{t 'ticket.subscriber.selfRemove'}}</a></p>
+    {{else}}
+      {{ui-spinner}}
+    {{/unless}}
+  </div>
+{{/if}}
+
+
+{{! Responders}}
+
+{{#if (and (can 'manage tickets') model.isOpen)}}
+  <h4 class="t-light mb-3">{{t 'ticket.responder.label'}}</h4>
+
+  <ul class="editableList mb-3">
+    {{#if model.responders.length}}
+      {{#each model.responders as |responder|}}
+        {{#unless responder.isSaving}}
+        {{#editable-list-item class="editableList-item" onRemove=(action 'removeResponder' responder)}}
+          {{responder.user.displayName}}
+        {{/editable-list-item}}
+        {{/unless}}
+      {{/each}}
+    {{else}}
+      <li class="editableList-item editableList-item--empty">
+        {{~t 'ticket.responder.empty'~}}
+      </li>
+    {{/if}}
+  </ul>
+
+  {{#if (or updateResponder.isRunning removeResponder.isRunning)}}
+    {{ui-spinner class="spinner--mimicButton"}}
+  {{else}}
+    {{#ui-dropdown as |dd|}}
+      {{#dd.trigger class="button button--sm button--primary t-right with-caret"}}
+        {{t 'actions.assign.longForm'}}
+      {{/dd.trigger}}
+      {{#dd.body
+        attachment=(if i18n.isRtl "top right" "top left")
+        targetAttachment=(if i18n.isRtl "bottom right" "bottom left")
+      }}
+        {{search-users
+          task=searchStaff
+          current=model.responderIds
+          onSelect=(pipe-action (action 'addResponder') dd.close)}}
+      {{/dd.body}}
+    {{/ui-dropdown}}
+  {{/if}}
+{{else if model.responders.length}}
+  <h4 class="t-light mb-3">{{t 'ticket.responder.label'}}</h4>
+
+  <ul class="editableList">
+    {{#each model.responders as |responder|}}
+      <li class="editableList-item">{{responder.user.displayName}}</li>
+    {{/each}}
+  </ul>
+{{/if}}
+
+
+{{! Subscribers}}
+
+{{#if (can 'resolve tickets')}}
+  {{#if model.isOpen}}
+    <h4 class="t-light mb-3 mt-5">{{t 'ticket.subscriber' count=2}}</h4>
+
+    <ul class="editableList mb-3">
+      {{#if model.subscribers.length}}
+        {{#each model.subscribers as |subscriber|}}
+          {{#unless subscriber.isSaving}}
+          {{#editable-list-item class="editableList-item" onRemove=(action 'removeSubscriber' subscriber)}}
+            {{subscriber.user.displayName}}
+          {{/editable-list-item}}
+          {{/unless}}
+        {{/each}}
+      {{/if}}
+    </ul>
+
+    {{ticket-add-subscriber
+      ticket=model
+      afterSave=(action 'afterAddSubscriber')
+      disable=removeSubscriber.isRunning}}
+  {{else if model.subscribers.length}}
+    <h4 class="t-light mb-3 mt-5">{{t 'ticket.subscriber' count=2}}</h4>
+    <ul class="editableList">
+      {{#each model.subscribers as |subscriber|}}
+        <li class="editableList-item">{{subscriber.user.displayName}}</li>
+      {{/each}}
+    </ul>
+  {{/if}}
+{{/if}}
+
+
+{{! Attachments}}
+
+{{attachment-manager class="attachments" model=model canUpload=model.isOpen}}

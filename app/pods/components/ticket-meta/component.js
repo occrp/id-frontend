@@ -2,12 +2,17 @@ import Ember from 'ember';
 import { task } from 'ember-concurrency';
 import { getSearchGenerator } from 'id-frontend/models/profile';
 
+const relRemovalGenerator = function * (rel) {
+  yield rel.destroyRecord();
+};
+
 export default Ember.Component.extend({
   i18n: Ember.inject.service(),
   store: Ember.inject.service(),
+  session: Ember.inject.service(),
   searchStaff: task(getSearchGenerator({ isStaff: true })).restartable(),
 
-  updateResponder: task(function * (ticket, user) {
+  addResponder: task(function * (ticket, user) {
     let record = this.get('store').createRecord('responder', {
       ticket,
       user
@@ -15,14 +20,45 @@ export default Ember.Component.extend({
     yield record.save();
   }),
 
-  removeResponder: task(function * (responder) {
-    yield responder.destroyRecord();
+  removeResponder: task(relRemovalGenerator),
+  removeSubscriber: task(relRemovalGenerator),
+
+  // duplicate tasks for handiling currentUser (mainly to separate UI spinners)
+  unassignSelf: task(relRemovalGenerator),
+  unsubscribeSelf: task(relRemovalGenerator),
+
+  // using just 'model.subscribers.[]' won't work because it triggers
+  // the recalculation before a POST /subscribers/ responds succesfully
+  subscriberForCurrentUser: Ember.computed('model.subscribers.@each.id', function() {
+    const userId = this.get('session.currentUser.id');
+    let subscriber = null;
+
+    this.get('model.subscribers').forEach(item => {
+      if (item.belongsTo('user').id() === userId) {
+        subscriber = item;
+      }
+    });
+
+    return subscriber;
   }),
 
+  responderForCurrentUser: Ember.computed('model.responders.@each.id', function() {
+    const userId = this.get('session.currentUser.id');
+    let responder = null;
+
+    this.get('model.responders').forEach(item => {
+      if (item.belongsTo('user').id() === userId) {
+        responder = item;
+      }
+    });
+
+    return responder;
+  }),
 
   actions: {
-    selectUser(ticket, user) {
-      this.get('updateResponder').perform(ticket, user).then(() => {
+    addResponder(user) {
+      const ticket = this.get('model');
+      this.get('addResponder').perform(ticket, user).then(() => {
         // Reloading the model too since the status will change
         // when adding the first responder
         ticket.reload();
@@ -30,11 +66,34 @@ export default Ember.Component.extend({
       });
     },
 
-    removeUser(responder) {
+    removeResponder(responder) {
       this.get('removeResponder').perform(responder).then(() => {
         this.get('model').hasMany('activities').reload();
       });
+    },
+
+    // task handled inside the dedicated component
+    afterAddSubscriber() {
+      this.get('model').hasMany('activities').reload();
+    },
+
+    removeSubscriber(subscriber) {
+      this.get('removeSubscriber').perform(subscriber).then(() => {
+        this.get('model').hasMany('activities').reload();
+      });
+    },
+
+    unassignSelf() {
+      this.get('unassignSelf').perform(this.get('responderForCurrentUser')).then(() => {
+        this.get('model').hasMany('activities').reload();
+      });
+    },
+    unsubscribeSelf() {
+      this.get('unsubscribeSelf').perform(this.get('subscriberForCurrentUser')).then(() => {
+        this.get('model').hasMany('activities').reload();
+      });
     }
+
   }
 
 });

@@ -175,18 +175,6 @@
         </div>
       {{/if}}
 
-      {{#if (and (not (can 'manage tickets')) model.responders.length)}}
-      <div class="mt-5">
-        <h3 class="t-light t-primary mb-3">{{t 'ticket.responder.label'}}</h3>
-
-        <ul class="staffList">
-        {{#each model.responders as |responder|}}
-          <li>{{responder.user.displayName}}</li>
-        {{/each}}
-        </ul>
-      </div>
-      {{/if}}
-
       <hr />
 
       {{activity-list model=model showForm=model.isOpen}}

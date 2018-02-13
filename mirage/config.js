@@ -267,6 +267,48 @@ export default function() {
     responder.destroy();
   });
 
+  this.post('/subscribers', function (schema) {
+    let attrs = this.normalizedRequestAttrs();
+
+    attrs.createdAt = (new Date()).toISOString();
+    attrs.updatedAt = (new Date()).toISOString();
+
+    // let ticket = schema.tickets.find(attrs.ticketId);
+    let profile = schema.profiles.findBy({ email: attrs.userEmail });
+
+    let subscriber = schema.subscribers.create(Object.assign({}, attrs, {
+      user: profile
+    }));
+
+    // schema.activities.create({
+    //   verb: 'subscriber:create',
+    //   createdAt: (new Date()).toISOString(),
+    //   ticket,
+    //   user: schema.profiles.find(42),
+    //   subscriberUser: profile
+    // });
+
+    return subscriber;
+  });
+
+  this.del('/subscribers/:id', function (schema, request) {
+    let subscriberId = request.params.id;
+
+    let subscriber = schema.subscribers.find(subscriberId);
+    // let ticket = schema.tickets.find(subscriber.ticketId);
+    // let profile = schema.profiles.find(subscriber.userId);
+
+    // schema.activities.create({
+    //   verb: 'subscriber:destroy',
+    //   createdAt: (new Date()).toISOString(),
+    //   ticket,
+    //   user: schema.profiles.find(42),
+    //   subscriberUser: profile
+    // });
+
+    subscriber.destroy();
+  });
+
 
   this.get('/ticket-stats', (schema, request) => {
     let profileId = request.queryParams['filter[responders__user]'];

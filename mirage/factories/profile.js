@@ -6,10 +6,11 @@ export default Factory.extend({
   email()         { return faker.internet.email(); },
   isStaff()       { return false; },
   isSuperuser()   { return false; },
-  ticketsCount()   { return faker.random.number(100); },
+  ticketsCount()  { return faker.random.number(100); },
 
   staff: trait({
-    isStaff: true
+    isStaff: true,
+    email(i) { return `staffmail${i}@mail.com`; }
   }),
   superuser: trait({
     isStaff: true,

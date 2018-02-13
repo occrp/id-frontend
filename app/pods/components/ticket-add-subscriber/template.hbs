@@ -1,0 +1,23 @@
+{{#if (or addSubscriber.isRunning disable)}}
+  {{ui-spinner class="spinner--mimicButton"}}
+{{else}}
+  <form {{action "save" on="submit"}}>
+    {{#validated-field
+      class="formGroup"
+      errors=buffer.validations.attrs.userEmail.messages
+      didValidate=didValidate as |field|}}
+
+      <div class="formGroup--inline">
+        {{input value=buffer.userEmail class="formControl formControl--sm" id="ticket-add-subscriber" placeholder=(t 'ticket.subscriber.emailPlaceholder')}}
+
+        <button type="submit" disabled={{addSubscriber.isRunning}} class="button button--primary button--sm">{{t 'actions.addSubscriber'}}</button>
+      </div>
+
+      {{#if field.showErrors}}
+        {{#each field.errors as |error|}}
+          <div class="formFeedback">{{error}}</div>
+        {{/each}}
+      {{/if}}
+    {{/validated-field}}
+  </form>
+{{/if}}

@@ -76,6 +76,17 @@ export default Factory.extend({
     }
   }),
 
+  withSubscriber: trait({
+    afterCreate(ticket, server) {
+      let staff = server.schema.profiles.where({ isStaff: true });
+
+      server.createList('subscriber', 3, {
+        ticket,
+        user() { return random(staff.models); }
+      });
+    }
+  }),
+
   withComments: trait({
     afterCreate(ticket, server) {
       server.createList('activity', 3, 'isComment', { ticket });

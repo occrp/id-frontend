@@ -34,6 +34,7 @@ export default DS.Model.extend({
 
   requester: belongsTo('profile'),
   responders: hasMany('responder'),
+  subscribers: hasMany('subscriber'),
   activities: hasMany('activity'),
   attachments: hasMany('attachment'),
 
