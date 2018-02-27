@@ -1,6 +1,8 @@
 import Ember from 'ember';
 
 export default Ember.Route.extend({
+  flashMessages: Ember.inject.service(),
+
   model(params) {
     return this.get('store').findRecord('ticket', params.ticket_id, {
       include: 'requester,responders,responders.user,subscribers,subscribers.user,attachments,attachments.user',
@@ -15,5 +17,9 @@ export default Ember.Route.extend({
     if (ref.value() !== null) {
       ref.reload();
     }
+  },
+
+  deactivate() {
+    this.get('flashMessages').clearMessages();
   }
 });

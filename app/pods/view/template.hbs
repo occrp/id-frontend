@@ -1,10 +1,18 @@
 <div class="wrapper">
 
+  {{#each flashMessages.queue as |flash|}}
+    {{#ui-flash flash=flash class="t-sm"}}
+      {{icon "alert"}}
+      {{t flash.message}}
+    {{/ui-flash}}
+  {{/each}}
+
   <div class="titleBar">
     <h1 class="titleBar-title t-light" data-test-name>
       {{~icon-by-kind model.kind class="icon--xl"~}}
       {{~title~}}
     </h1>
+    {{#unless updateStatus.isRunning}}
     <div class="titleBar-action">
       {{#if (and (can "resolve tickets") model.isOpen model.responders.length)}}
         <div class="mr-3">
@@ -26,6 +34,7 @@
         {{ticket-reopen model=model onSave=(action 'saveStatus' 'reopen')}}
       {{/if}}
     </div>
+    {{/unless}}
   </div>
 
   <div class="l-fixedColumn">
@@ -51,22 +60,22 @@
 
         <div class="ticketSubtitle-secondary">
           {{#unless ea.isEditing}}
-            {{#if buffer.deadlineAt}}
+            {{#if model.deadlineAt}}
               {{t 'ticket.deadline.label'}}
-              <time datetime={{buffer.deadlineAt}} title={{moment-format buffer.deadlineAt 'LLL'}}>
-                {{moment-format buffer.deadlineAt}}
+              <time datetime={{moment-iso model.deadlineAt}} title={{moment-format model.deadlineAt 'LLL'}} data-test-deadline-at>
+                {{~moment-format model.deadlineAt~}}
               </time>
             {{else}}
               {{t 'ticket.deadline.empty'}}
             {{/if}}
 
             {{#if (can 'manage tickets')}}
-              <button class="button button--icon" {{action ea.actions.toggleEdit}} aria-label="Edit">
+              <button class="button button--icon" {{action ea.actions.toggleEdit}} aria-label="Edit" data-test-ea-open>
                 {{icon "pencil"}}
               </button>
             {{/if}}
           {{else}}
-            <button class="button button--icon" {{action ea.actions.toggleEdit}} aria-label="Remove">
+            <button class="button button--icon" {{action ea.actions.toggleEdit}} aria-label="Remove" data-test-ea-close>
               {{icon "x"}}
             </button>
           {{/unless}}
@@ -98,10 +107,10 @@
           {{/validated-field}}
 
           <div class="mt-3 fieldGroup-actions">
-            <button class="button button--sm button--primary mr-2" disabled={{ea.task.isRunning}} {{action ea.actions.save}}>
+            <button class="button button--sm button--primary mr-2" disabled={{ea.task.isRunning}} {{action ea.actions.save}} data-test-ea-save>
               {{t 'actions.save'}}
             </button>
-            <button class="button button--sm buttonOutlined--secondary" {{action ea.actions.toggleEdit}}>
+            <button class="button button--sm buttonOutlined--secondary" {{action ea.actions.toggleEdit}}  data-test-ea-cancel>
               {{t 'actions.cancel'}}
             </button>
 
@@ -168,7 +177,7 @@
 
       {{#if model.sensitive}}
         <div class="alert alert--warning mt-5">
-          <h4 class="t5 alert-heading">{{icon "alert" class="icon--lg"}} {{t 'ticket.sensitive.trueLabel'}}</h4>
+          <h4 class="t5 alert-heading">{{icon "alert" class="icon--lg"}}{{t 'ticket.sensitive.trueLabel'}}</h4>
           {{#if model.whysensitive}}
             <div class="formatted">{{model.whysensitive}}</div>
           {{/if}}
@@ -177,7 +186,11 @@
 
       <hr />
 
-      {{activity-list model=model showForm=model.isOpen}}
+      {{#activity-list id=model.id items=model.activities as |list|}}
+        {{#if model.isOpen}}
+          {{activity-form model=model}}
+        {{/if}}
+      {{/activity-list}}
 
     </div>
 

@@ -111,7 +111,12 @@ export default Factory.extend({
 
   withAttachments: trait({
     afterCreate(ticket, server) {
-      server.createList('attachment', 3, { ticket });
+      let regulars = server.schema.profiles.where({ isStaff: false });
+
+      server.createList('attachment', 3, {
+        ticket,
+        user() { return random(regulars.models); }
+      });
     }
   }),
 

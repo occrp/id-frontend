@@ -3,13 +3,18 @@ import { task } from 'ember-concurrency';
 import { getSearchGenerator } from 'id-frontend/models/profile';
 
 const relRemovalGenerator = function * (rel) {
-  yield rel.destroyRecord();
+  try {
+    yield rel.destroyRecord();
+  } catch (e) {
+    this.get('flashMessages').danger('errors.genericRequest');
+  }
 };
 
 export default Ember.Component.extend({
   i18n: Ember.inject.service(),
   store: Ember.inject.service(),
   session: Ember.inject.service(),
+  flashMessages: Ember.inject.service(),
   searchStaff: task(getSearchGenerator({ isStaff: true })).restartable(),
 
   addResponder: task(function * (ticket, user) {
@@ -17,7 +22,12 @@ export default Ember.Component.extend({
       ticket,
       user
     });
-    yield record.save();
+    try {
+      yield record.save();
+    } catch (e) {
+      record.rollbackAttributes();
+      this.get('flashMessages').danger('errors.genericRequest');
+    }
   }),
 
   removeResponder: task(relRemovalGenerator),

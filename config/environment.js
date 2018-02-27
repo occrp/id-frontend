@@ -48,6 +48,11 @@ module.exports = function(environment) {
       rtlLocales: [
         'ar'
       ],
+    },
+
+    flashMessageDefaults: {
+      sticky: true,
+      preventDuplicates: true
     }
   };
 

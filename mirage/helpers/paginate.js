@@ -1,6 +1,4 @@
-import Ember from 'ember';
-
-const { pluralize } = Ember.String;
+import { pluralize } from 'ember-inflector';
 
 export default function(collection, request, namespace, opts = {}) {
   const pageSize = parseInt(request.queryParams['page[size]'], 10);
@@ -30,7 +28,7 @@ export default function(collection, request, namespace, opts = {}) {
   }
 
   const start = (pageNumber-1) * pageSize;
-  
+
   if (opts.reverse) {
     collection.models = collection.models.reverse().slice(start, start + pageSize).reverse();
   } else {

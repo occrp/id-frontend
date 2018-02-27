@@ -1,5 +1,6 @@
 import paginate from './helpers/paginate';
 import { upload } from 'ember-file-upload/mirage';
+import Response from 'ember-cli-mirage/response';
 
 import Ember from 'ember';
 const { underscore } = Ember.String;
@@ -21,7 +22,6 @@ export default function() {
 
   this.get('/tickets', (schema, request) => {
     let status = request.queryParams['filter[status__in]'].split(',');
-
     let collection = schema.tickets.where(function(ticket) {
       return status.includes(ticket.status);
     });
@@ -106,6 +106,21 @@ export default function() {
         });
 
         activityAttrs.comment = comment;
+        attrs.reopenReason = null;
+      }
+
+      if (attrs.pendingReason) {
+        activityAttrs.verb = 'ticket:update:pending';
+
+        let comment = schema.comments.create({
+          body: attrs.pendingReason,
+          createdAt: (new Date()).toISOString(),
+          ticket,
+          user: schema.profiles.find(42),
+        });
+
+        activityAttrs.comment = comment;
+        attrs.pendingReason = null;
       }
 
       schema.activities.create(activityAttrs);
@@ -190,7 +205,7 @@ export default function() {
       ticketId: meta.id
     });
 
-    let ticket = schema.tickets.find(request.requestBody.ticket);
+    let ticket = schema.tickets.find(meta.id);
     let profile = schema.profiles.find(42);
 
     schema.activities.create({
@@ -201,7 +216,13 @@ export default function() {
       attachment
     });
 
-    return attachment;
+    if (Math.random() < 0.75) {
+      return attachment;
+    }
+
+    return new Response(500, {}, {
+      errors: [{ detail: file.name }]
+    });
   }, { network: '3g' }));
 
 

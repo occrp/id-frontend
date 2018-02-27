@@ -8,9 +8,11 @@
       didValidate=didValidate as |field|}}
 
       <div class="formGroup--inline">
-        {{input value=buffer.userEmail class="formControl formControl--sm" id="ticket-add-subscriber" placeholder=(t 'ticket.subscriber.emailPlaceholder')}}
+        {{input value=buffer.userEmail class="formControl formControl--sm" id="subscriber-email" placeholder=(t 'ticket.subscriber.emailPlaceholder')}}
 
-        <button type="submit" disabled={{addSubscriber.isRunning}} class="button button--primary button--sm">{{t 'actions.addSubscriber'}}</button>
+        <button type="submit" disabled={{addSubscriber.isRunning}} class="button button--primary button--sm" data-test-add-subscriber>
+          {{~t 'actions.addSubscriber'~}}
+        </button>
       </div>
 
       {{#if field.showErrors}}

@@ -1,0 +1,31 @@
+<div class="activity activity--comment">
+  <div class="activity-author"><strong>{{t 'activity.comment.title'}}</strong></div>
+  <form class="activity-body activity-form" {{action "save" on="submit"}}>
+
+    {{#validated-field
+      class="formGroup"
+      errors=this.validations.attrs.body.messages
+      didValidate=didValidate as |field|}}
+
+      {{textarea value=body class="formControl formControl--sm" rows="6"}}
+
+      {{#if field.showErrors}}
+        {{#each field.errors as |error|}}
+          <div class="formFeedback t-right">{{error}}</div>
+        {{/each}}
+      {{/if}}
+
+    {{/validated-field}}
+
+    <div class="formGroup formGroup--actions">
+      <button disabled={{publishComment.isRunning}} type="submit" class="button button--primary">
+        {{t 'activity.comment.submitButton'}}
+      </button>
+
+      {{#if publishComment.isRunning}}
+        {{ui-spinner}}
+      {{/if}}
+    </div>
+
+  </form>
+</div>

@@ -33,10 +33,10 @@
     </div>
 
     <div class="modal-footer">
-      <button class="button buttonOutlined--secondary" {{action m.toggle}}>
+      <button class="button buttonOutlined--secondary" {{action m.toggle}} data-test-modal-cancel>
         {{~t 'actions.cancel'~}}
       </button>
-      <button type="submit" class="button button--primary">
+      <button type="submit" class="button button--primary" data-test-modal-confirm>
         {{~t 'actions.save'~}}
       </button>
     </div>

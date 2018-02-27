@@ -19,7 +19,8 @@
             {{#file-upload
               name="ticket-attachments"
               multiple=true
-              onfileadd=(action m.open) class="dropzone-trigger button button--primary"}}
+              onfileadd=(action m.open) class="dropzone-trigger button button--primary"
+              data-test-file-upload=true}}
               {{t 'attachment.dropzone.select'}}
             {{/file-upload}}
           </div>
@@ -30,14 +31,14 @@
 
   {{#with (file-queue name="ticket-attachments") as |queue|}}
   {{#if m.isShowing}}
-  {{#ui-modal modifiers="modal--lg" onClose=(pipe m.toggle (action 'flushQueue' queue))}}
+  {{#ui-modal modifiers="modal--lg" onClose=(pipe m.close (action 'flushQueue' queue))}}
     <div class="modal-content">
 
       <div class="modal-header">
         <h4 class="modal-title t-primary">
           {{~t 'attachment.filesSelected' count=queue.files.length~}}
         </h4>
-        <button class="button button--icon button--dark" {{action (pipe m.toggle (action 'flushQueue' queue))}} aria-label="Close">
+        <button class="button button--icon button--dark" {{action (pipe m.close (action 'flushQueue' queue))}} aria-label="Close">
           {{~icon "x"~}}
         </button>
       </div>
@@ -48,7 +49,15 @@
             <div class="file" title={{file.name}}>
               {{~icon "file" class="file-icon"~}}
               <span class="file-name">{{file.name}}</span>
-              <span class="file-size">{{format-filesize file.size}}</span>
+              <span class="file-size">
+                {{#if firstBatch}}
+                  {{format-filesize file.size}}
+                {{else if (eq file.state 'uploaded')}}
+                  {{icon "check"}}
+                {{else}}
+                  {{t (concat 'attachment.state.' file.state)}}
+                {{/if}}
+              </span>
             </div>
           {{/each}}
         </div>
@@ -61,10 +70,10 @@
           </div>
         {{/if}}
 
-        <button class="button buttonOutlined--secondary" {{action (pipe m.toggle (action 'flushQueue' queue))}}>
+        <button class="button buttonOutlined--secondary" {{action (pipe m.close (action 'flushQueue' queue))}} data-test-modal-cancel>
           {{~t 'actions.cancel'~}}
         </button>
-        <button class="button button--primary" {{action 'startUploads' queue m.toggle}} disabled={{batchUpload.isRunning}}>
+        <button class="button button--primary" {{action 'startUploads' queue m.close}} disabled={{batchUpload.isRunning}} data-test-modal-confirm>
           {{~t 'actions.upload'~}}
         </button>
       </div>
@@ -89,12 +98,12 @@
       <ul class="fileGroup-body">
         {{#each group.models as |item|}}
           <li>
-            <a href={{item.upload}} title={{item.fileName}} target="_blank" class="file">
+            <a href={{item.upload}} title={{item.fileName}} target="_blank" class="file" data-test-attachment={{item.id}}>
               {{~icon "file" class="file-icon"~}}
               <span class="file-name">{{item.fileName}}</span>
               <span class="file-size">{{format-filesize item.fileSize}}</span>
               {{#if (or (can 'manage tickets') (eq model.requester.id item.user.id))}}
-                <button class="file-remove button button--icon button--dark" {{action (queue (action 'addToRemovalBin' item) m2.toggle)}}>
+                <button class="file-remove button button--icon button--dark" {{action (queue (action 'addToRemovalBin' item) m2.toggle)}} data-test-remove-attachment>
                   {{~icon "trashcan"~}}
                 </button>
               {{/if}}
@@ -125,10 +134,10 @@
       </div>
 
       <div class="modal-footer modal-footer--center">
-        <button class="button buttonOutlined--secondary" {{action (queue m2.toggle (action 'emptyRemovalBin'))}}>
+        <button class="button buttonOutlined--secondary" {{action (queue m2.toggle (action 'emptyRemovalBin'))}} data-test-modal-cancel>
           {{~t 'actions.cancel'~}}
         </button>
-        <button class="button button--primary" {{action 'removeFile' m2.toggle}}>
+        <button class="button button--primary" {{action 'removeFile' m2.toggle}} data-test-modal-confirm>
           {{~t 'actions.delete'~}}
         </button>
       </div>

@@ -1,19 +1,23 @@
-{{#if responderForCurrentUser}}
+{{#if (and responderForCurrentUser (not responderForCurrentUser.isNew))}}
   <div class="alert alert--sm alert--info alert--segmented mb-4">
     <p>{{t 'ticket.responder.selfNotice'}}</p>
     {{#unless unassignSelf.isRunning}}
-      <p><a href {{action 'unassignSelf'}}>{{t 'ticket.responder.selfRemove'}}</a></p>
+      <p><a href {{action 'unassignSelf'}} data-test-unassign-self>
+        {{~t 'ticket.responder.selfRemove'~}}
+      </a></p>
     {{else}}
       {{ui-spinner}}
     {{/unless}}
   </div>
 {{/if}}
 
-{{#if subscriberForCurrentUser}}
+{{#if (and subscriberForCurrentUser (not subscriberForCurrentUser.isNew))}}
   <div class="alert alert--sm alert--info alert--segmented mb-4">
     <p>{{t 'ticket.subscriber.selfNotice'}}</p>
     {{#unless unsubscribeSelf.isRunning}}
-      <p><a href {{action 'unsubscribeSelf'}}>{{t 'ticket.subscriber.selfRemove'}}</a></p>
+      <p><a href {{action 'unsubscribeSelf'}} data-test-unsubscribe-self>
+        {{~t 'ticket.subscriber.selfRemove'~}}
+      </a></p>
     {{else}}
       {{ui-spinner}}
     {{/unless}}
@@ -29,8 +33,8 @@
   <ul class="editableList mb-3">
     {{#if model.responders.length}}
       {{#each model.responders as |responder|}}
-        {{#unless responder.isSaving}}
-        {{#editable-list-item class="editableList-item" onRemove=(action 'removeResponder' responder)}}
+        {{#unless responder.isNew}}
+        {{#editable-list-item class="editableList-item" onRemove=(action 'removeResponder' responder) data-test-responder=responder.user.id}}
           {{responder.user.displayName}}
         {{/editable-list-item}}
         {{/unless}}
@@ -42,10 +46,10 @@
     {{/if}}
   </ul>
 
-  {{#if (or updateResponder.isRunning removeResponder.isRunning)}}
+  {{#if (or addResponder.isRunning removeResponder.isRunning)}}
     {{ui-spinner class="spinner--mimicButton"}}
   {{else}}
-    {{#ui-dropdown as |dd|}}
+    {{#ui-dropdown data-test-dd="assign-responder" as |dd|}}
       {{#dd.trigger class="button button--sm button--primary t-right with-caret"}}
         {{t 'actions.assign.longForm'}}
       {{/dd.trigger}}
@@ -65,7 +69,7 @@
 
   <ul class="editableList">
     {{#each model.responders as |responder|}}
-      <li class="editableList-item">{{responder.user.displayName}}</li>
+      <li class="editableList-item" data-test-responder={{responder.user.id}}>{{responder.user.displayName}}</li>
     {{/each}}
   </ul>
 {{/if}}
@@ -80,8 +84,8 @@
     <ul class="editableList mb-3">
       {{#if model.subscribers.length}}
         {{#each model.subscribers as |subscriber|}}
-          {{#unless subscriber.isSaving}}
-          {{#editable-list-item class="editableList-item" onRemove=(action 'removeSubscriber' subscriber)}}
+          {{#unless subscriber.isNew}}
+          {{#editable-list-item class="editableList-item" onRemove=(action 'removeSubscriber' subscriber) data-test-subscriber=subscriber.user.id}}
             {{subscriber.user.displayName}}
           {{/editable-list-item}}
           {{/unless}}
@@ -97,7 +101,7 @@
     <h4 class="t-light mb-3 mt-5">{{t 'ticket.subscriber' count=2}}</h4>
     <ul class="editableList">
       {{#each model.subscribers as |subscriber|}}
-        <li class="editableList-item">{{subscriber.user.displayName}}</li>
+        <li class="editableList-item" data-test-subscriber={{subscriber.user.id}}>{{subscriber.user.displayName}}</li>
       {{/each}}
     </ul>
   {{/if}}

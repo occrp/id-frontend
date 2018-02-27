@@ -6,6 +6,7 @@ import formBufferProperty from 'ember-validated-form-buffer';
 export default Ember.Component.extend({
   tagName: '',
   store: Ember.inject.service(),
+  flashMessages: Ember.inject.service(),
   didValidate: false,
 
   init() {
@@ -18,7 +19,13 @@ export default Ember.Component.extend({
   addSubscriber: task(function * () {
     let record = this.get('record');
     record.set('ticket', this.get('ticket'));
-    yield record.save();
+
+    try {
+      yield record.save();
+    } catch (e) {
+      record.rollbackAttributes();
+      this.get('flashMessages').danger('errors.genericRequest');
+    }
   }),
 
   actions: {

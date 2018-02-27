@@ -1,10 +1,8 @@
 import Ember from 'ember';
 import { task } from 'ember-concurrency';
-import { Validations } from 'id-frontend/models/comment';
 
-export default Ember.Component.extend(Validations, {
+export default Ember.Component.extend({
   store: Ember.inject.service(),
-  session: Ember.inject.service(),
 
   componentsByType: {
     'comment:create': 'comment',
@@ -19,26 +17,10 @@ export default Ember.Component.extend(Validations, {
     'responder:destroy': 'unassign'
   },
 
-  body: null,
-  didValidate: false,
-
-  publishComment: task(function * () {
-    let record = this.get('store').createRecord('comment', {
-      body: this.get('body'),
-      ticket: this.get('model'),
-      user: this.get('session.currentUser')
-    });
-    yield record.save();
-  }),
-
-  currentPage: null,
-  pageSize: 50,
-  activityCache: null,
-
-  loadActivities: task(function * (pageNumber) {
+  loadItems: task(function * (pageNumber) {
     let records = yield this.get('store').query('activity', {
       filter: {
-        'target_object_id': this.get('model.id')
+        'target_object_id': this.get('id')
       },
       page: {
         number: pageNumber,
@@ -51,32 +33,21 @@ export default Ember.Component.extend(Validations, {
     return records;
   }),
 
-  didReceiveAttrs() {
-    this.get('loadActivities').perform(1).then((records) => {
-      this.set('currentPage', 1);
-      this.set('activityCache', records);
-    });
+  currentPage: null,
+  pageSize: 40, // must match the one in /serializers/ticket
+  activityCache: null,
+
+  // cache the initial load and any other outside reloads via DS.references
+  didUpdateAttrs() {
+    this.set('currentPage', 1);
+    this.set('activityCache', this.get('items'));
   },
 
   actions: {
     switchPage(pageNumber) {
-      this.get('loadActivities').perform(pageNumber).then((records) => {
+      this.get('loadItems').perform(pageNumber).then((records) => {
         this.set('currentPage', pageNumber);
         this.set('activityCache', records);
-      });
-    },
-
-    save() {
-      this.validate().then(({ validations }) => {
-        this.set('didValidate', true);
-
-        if (validations.get('isValid')) {
-          this.get('publishComment').perform().then(() => {
-            this.set('body', null);
-            this.set('didValidate', false);
-            this.send('switchPage', 1);
-          });
-        }
       });
     }
   }

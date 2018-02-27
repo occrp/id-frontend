@@ -1,6 +1,6 @@
 {{#ui-modal-container as |m|}}
 
-<button class="button buttonOutlined--primary" {{action m.toggle}}>
+<button class="button buttonOutlined--primary" {{action m.toggle}} data-test-unmark-pending>
   {{t 'pods.view.close.button' verb=activityLabel}}
 </button>
 
@@ -13,10 +13,10 @@
     </div>
 
     <div class="modal-footer modal-footer--center modal-footer--padded">
-      <button class="button buttonOutlined--secondary" {{action m.toggle}}>
+      <button class="button buttonOutlined--secondary" {{action m.toggle}} data-test-modal-cancel>
         {{t 'actions.cancel'}}
       </button>
-      <button class="button button--primary" {{action 'save' m.toggle}}>
+      <button class="button button--primary" {{action 'save' m.toggle}} data-test-modal-confirm>
         {{t 'pods.view.close.confirm' verb=activityLabel}}
       </button>
     </div>

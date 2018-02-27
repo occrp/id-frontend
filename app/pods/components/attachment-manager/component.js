@@ -1,10 +1,13 @@
 import Ember from 'ember';
-import { task, all } from 'ember-concurrency';
+import { task, taskGroup } from 'ember-concurrency';
 const { get, set } = Ember;
+import RSVP from 'rsvp';
 
 export default Ember.Component.extend({
   store: Ember.inject.service(),
   session: Ember.inject.service(),
+  flashMessages: Ember.inject.service(),
+  i18n: Ember.inject.service(),
 
   removalBin: null,
 
@@ -32,55 +35,61 @@ export default Ember.Component.extend({
     return groups;
   }),
 
-  batchUpload: task(function * (queue) {
-    let childTasks = [];
+  firstBatch: true,
 
-    queue.files.forEach(file => {
-      childTasks.push(this.get('uploadFile').perform(file));
-    });
-
-    yield all(childTasks);
-  }).restartable(),
+  batchUpload: taskGroup().maxConcurrency(3).enqueue(),
 
   uploadFile: task(function * (file) {
     let adapter = Ember.getOwner(this).lookup('adapter:application');
     let namespace = adapter.get('namespace');
 
-    try {
-      let response = yield file.upload(`/${namespace}/attachments`, {
-        fileKey: 'upload',
-        accepts: [
-          '*/*',
-        ],
-        data: {
-          ticket: JSON.stringify(
-            {id: this.get('model.id'), type: 'tickets'}
-          ),
-        }
-      });
+    let response = yield file.upload(`/${namespace}/attachments`, {
+      fileKey: 'upload',
+      accepts: [
+        '*/*',
+      ],
+      data: {
+        ticket: JSON.stringify(
+          {id: this.get('model.id'), type: 'tickets'}
+        ),
+      }
+    });
 
-      this.get('store').pushPayload('attachment', response.body);
-      this.get('model').hasMany('activities').reload();
-    } catch (e) {
-      // console.log('CATCH', e)
-    }
-  }).maxConcurrency(3).enqueue(),
+    this.get('store').pushPayload('attachment', response.body);
+    this.get('model').hasMany('activities').reload();
+  }).group('batchUpload'),
 
   removeAttachment: task(function * (file) {
-    yield file.destroyRecord();
-    this.get('model').hasMany('activities').reload();
+    try {
+      yield file.destroyRecord();
+      this.get('model').hasMany('activities').reload();
+    } catch (error) {
+      this.get('flashMessages').danger('errors.genericRequest');
+    }
   }),
 
   actions: {
     startUploads(queue, triggerClose) {
-      this.get('batchUpload').perform(queue).then(() => {
-        triggerClose();
+      let childTasks = [];
+      this.set('firstBatch', false);
+
+      queue.files.filter(file => ['uploaded', 'aborted'].indexOf(file.state) === -1).forEach(file => {
+        childTasks.push(this.get('uploadFile').perform(file));
+      });
+
+      RSVP.allSettled(childTasks).then(() => {
+        if(queue.files.length === 0) {
+          triggerClose();
+          this.set('firstBatch', true);
+        }
       });
     },
 
     flushQueue(queue) {
+      this.get('batchUpload').cancelAll();
       get(queue, 'files').forEach((file) => set(file, 'queue', null));
       set(queue, 'files', Ember.A());
+      this.set('firstBatch', true)
     },
 
     addToRemovalBin(file) {

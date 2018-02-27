@@ -1,7 +1,7 @@
 import Ember from 'ember';
 
 export default Ember.Test.registerHelper('initSession', function(app, overrides = {}) {
-  server.create('profile', Object.assign({
+  return server.create('profile', Object.assign({
     id: 42,
     email: "user@mail.com",
     firstName: 'John',

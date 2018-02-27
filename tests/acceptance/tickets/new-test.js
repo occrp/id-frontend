@@ -36,11 +36,6 @@ test('creating a new ticket (person)', async function(assert) {
           "pending-reason": null,
           "reopen-reason": null
         },
-        "relationships": {
-          "requester": {
-            "data": null
-          }
-        },
         "type": "tickets"
       }
     });
@@ -112,11 +107,6 @@ test('creating a new ticket (company)', async function(assert) {
           "pending-reason": null,
           "reopen-reason": null
         },
-        "relationships": {
-          "requester": {
-            "data": null
-          }
-        },
         "type": "tickets"
       }
     });
@@ -179,11 +169,6 @@ test('creating a new ticket (other)', async function(assert) {
           "whysensitive": null,
           "pending-reason": null,
           "reopen-reason": null
-        },
-        "relationships": {
-          "requester": {
-            "data": null
-          }
         },
         "type": "tickets"
       }

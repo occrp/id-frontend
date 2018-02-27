@@ -205,7 +205,15 @@ export default {
     },
     filesSelected: '{{count}} files selected',
 
-    removalPrompt: 'Are you sure you want to delete this file?'
+    removalPrompt: 'Are you sure you want to delete this file?',
+
+    state: {
+      uploaded: 'Uploaded',
+      uploading: 'Uploading',
+      failed: 'Failed',
+      aborted: 'Aborted',
+      timed_out: 'Timed out'
+    }
   },
 
   pods: {
@@ -372,6 +380,14 @@ export default {
     before: "This date must be before {{before}}",
     after: "This date must be after {{after}}",
     email: "This field must be a valid email address"
+  },
+
+  errors: {
+    genericRequest: 'An error has occured while processing your request.',
+    routeError: {
+      title: 'An error has occured while processing your request.',
+      body: 'We have been automatically notified and we need better copy for this.'
+    }
   }
 
 };

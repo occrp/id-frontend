@@ -171,6 +171,11 @@
     margin-left: 1rem;
     color: $gray-500;
     font-weight: $font-weight-normal;
+
+    .icon {
+      color: theme-color("secondary");
+      vertical-align: -3px;
+    }
   }
 
   .file-icon {

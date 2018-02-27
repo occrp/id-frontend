@@ -73,6 +73,18 @@ export default Component.extend({
       this.set('isShowing', true);
 
       $('body').addClass('modal-open');
+    },
+
+    close() {
+      if (this.get('isShowing') === false) {
+        return;
+      }
+
+      this._resetScrollbar();
+
+      this.set('isShowing', false);
+
+      $('body').removeClass('modal-open');
     }
   }
 });

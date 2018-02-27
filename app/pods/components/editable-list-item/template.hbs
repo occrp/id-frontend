@@ -2,8 +2,10 @@
   <button class="button button--icon button--dark" {{action (toggle "isExpanded" this)}}>
     {{~icon "x"~}}
   </button>
-  <button class="button button--micro button--primary" tabindex="{{unless isExpanded -1}}" {{action onRemove}}>{{t 'actions.remove'}}</button>
+  <button class="button button--micro button--primary" tabindex="{{unless isExpanded -1}}" {{action onRemove}} data-test-el-remove>
+    {{~t 'actions.remove'~}}
+  </button>
 </div>
-<div class="editableList-content">
+<div class="editableList-content" data-test-el-item>
   {{yield}}
 </div>

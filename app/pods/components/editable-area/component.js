@@ -6,6 +6,7 @@ import { task } from 'ember-concurrency';
 export default Ember.Component.extend({
   isEditing: false,
   didValidate: false,
+  flashMessages: Ember.inject.service(),
 
   init() {
     this._super();
@@ -28,6 +29,8 @@ export default Ember.Component.extend({
           data.applyBufferedChanges(this.get('keys'));
           this.get('saveRecord').perform().then(() => {
             this.toggleProperty('isEditing');
+          }, (error) => {
+            this.get('flashMessages').danger('errors.genericRequest');
           });
         }
       });
@@ -35,7 +38,10 @@ export default Ember.Component.extend({
 
     toggleEdit() {
       if (this.get('isEditing') === true) {
-        this.get('data').discardBufferedChanges();
+        // to be replaced with .rollbackAttribute which is under a feature flag :/
+        this.get('model').rollbackAttributes();
+      } else {
+        this.get('data').discardBufferedChanges(this.get('keys'));
       }
       this.toggleProperty('isEditing');
     }
