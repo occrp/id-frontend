@@ -3,6 +3,7 @@ import { task } from 'ember-concurrency';
 
 export default Ember.Component.extend({
   store: Ember.inject.service(),
+  activityBus: Ember.inject.service(),
 
   componentsByType: {
     'comment:create': 'comment',
@@ -20,7 +21,7 @@ export default Ember.Component.extend({
   loadItems: task(function * (pageNumber) {
     let records = yield this.get('store').query('activity', {
       filter: {
-        'target_object_id': this.get('id')
+        'target_object_id': this.get('model.id')
       },
       page: {
         number: pageNumber,
@@ -30,25 +31,33 @@ export default Ember.Component.extend({
       include: 'comment,responder-user,user'
     });
 
-    return records;
+    this.set('activityCache', records);
+    this.set('currentPage', pageNumber);
   }),
 
   currentPage: null,
-  pageSize: 40, // must match the one in /serializers/ticket
+  pageSize: 50, // must match the one in /serializers/ticket
+
   activityCache: null,
 
-  // cache the initial load and any other outside reloads via DS.references
-  didUpdateAttrs() {
-    this.set('currentPage', 1);
-    this.set('activityCache', this.get('items'));
+  reloadActivitites() {
+    this.get('loadItems').perform(1);
+  },
+
+  init() {
+    this._super(...arguments);
+
+    this.reloadActivitites();
+    this.get('activityBus').on('reload', this, 'reloadActivitites');
+  },
+
+  willDestroyElement() {
+    this.get('activityBus').off('reload', this, 'reloadActivitites');
   },
 
   actions: {
     switchPage(pageNumber) {
-      this.get('loadItems').perform(pageNumber).then((records) => {
-        this.set('currentPage', pageNumber);
-        this.set('activityCache', records);
-      });
+      this.get('loadItems').perform(pageNumber);
     }
   }
 

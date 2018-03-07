@@ -66,10 +66,12 @@ export default function() {
     return paginate(collection, request, this.namespace);
   });
 
+
   this.get('/tickets/:id', (schema, request) => {
     let id = request.params.id;
     return schema.tickets.find(id);
   });
+
 
   this.post('/tickets', function (schema) {
     let attrs = this.normalizedRequestAttrs();
@@ -163,6 +165,8 @@ export default function() {
     // not a standard endpoint. used in place of a ticket.activities relationship
     let ticketId = request.queryParams['filter[target_object_id]'];
     let collection = schema.activities.where({ ticketId });
+
+    collection.models.sort((a, b) => new Date(a.createdAt) - new Date(b.createdAt));
 
     return paginate(collection, request, this.namespace, { reverse: true });
   });

@@ -61,3 +61,25 @@ test('rendering ticket details (other)', async function(assert) {
 
   assert.equal(find('[data-test-background]').text(), 'My question.');
 });
+
+test('on route errors, the error template is shown', async function(assert) {
+  assert.expect(2);
+  initSession();
+
+  // still need something in the db apparently
+  server.create('ticket', {
+    id: 1,
+    kind: 'other',
+    background: 'My question.'
+  });
+
+  server.get('/tickets/:id', {
+    errors: [{ detail: "Main model error." }]
+  }, 500);
+
+  await assert.asyncThrows(() => {
+    return visit(`/view/1`);
+  }, `GET ${server.namespace}/tickets/1 returned a 500`);
+
+  assert.ok(find('[data-test-error-template]').length > 0);
+});

@@ -8,6 +8,7 @@ export default Ember.Component.extend({
   session: Ember.inject.service(),
   flashMessages: Ember.inject.service(),
   i18n: Ember.inject.service(),
+  activityBus: Ember.inject.service(),
 
   removalBin: null,
 
@@ -56,13 +57,12 @@ export default Ember.Component.extend({
     });
 
     this.get('store').pushPayload('attachment', response.body);
-    this.get('model').hasMany('activities').reload();
   }).group('batchUpload'),
 
   removeAttachment: task(function * (file) {
     try {
       yield file.destroyRecord();
-      this.get('model').hasMany('activities').reload();
+      this.get('activityBus').trigger('reload');
     } catch (error) {
       this.get('flashMessages').danger('errors.genericRequest');
     }
@@ -78,6 +78,8 @@ export default Ember.Component.extend({
       });
 
       RSVP.allSettled(childTasks).then(() => {
+        this.get('activityBus').trigger('reload');
+
         if(queue.files.length === 0) {
           triggerClose();
           this.set('firstBatch', true);

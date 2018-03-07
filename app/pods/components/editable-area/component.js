@@ -29,7 +29,7 @@ export default Ember.Component.extend({
           data.applyBufferedChanges(this.get('keys'));
           this.get('saveRecord').perform().then(() => {
             this.toggleProperty('isEditing');
-          }, (error) => {
+          }, () => {
             this.get('flashMessages').danger('errors.genericRequest');
           });
         }

@@ -464,6 +464,7 @@ test('(admins) ticket filtering or sorting should reset pagination', async funct
   assert.equal(currentURL(), '/view?kind=person_ownership&requester=4&responder=none&size=3&sort=-deadline-at');
 });
 
+
 test('(admins) can assign responders from the ticket list', async function(assert) {
   assert.expect(8);
 
@@ -552,4 +553,62 @@ test('(admins) can assign responders from the ticket list', async function(asser
 
   $status = $item.find('[data-test-ticket-status]');
   assert.equal($status.text().toLowerCase(), 'in progress');
+});
+
+
+test('(admins) if assigning responders errors, a message is displayed', async function(assert) {
+  assert.expect(3);
+
+  server.createList('profile', 5, {
+    firstName(i) { return `Staff #${i+1}`; },
+    lastName: 'Doe',
+    isStaff: true
+  });
+
+  initSession({ isSuperuser: true });
+
+  server.createList('ticket', 5, {
+    status: 'new',
+    kind: 'company_ownership',
+    companyName(i) { return `Company #${i+1}`; },
+  });
+
+  server.post('/responders', {
+    errors: [{ detail: "Unable to add responder." }]
+  }, 500);
+
+  await visit('/view');
+
+  let $item = find('[data-test-ticket="2"]');
+  assert.equal($item.find('[data-test-ticket-responders]').length, 0);
+
+  let $ddTrigger = $item.find('[data-test-dd="quick-assign-responder"] [data-test-dd-trigger]');
+
+  await click($ddTrigger);
+  await fillIn('[data-test-filter-search]', 'Staff #3');
+  await click('[data-test-search-result]:first');
+
+  assert.equal($item.find('[data-test-ticket-responders]').length, 0);
+  assert.ok(find('.flash-message').length > 0, 'showing alert');
+});
+
+
+test('on route errors, the error template is shown', async function(assert) {
+  assert.expect(2);
+  initSession();
+
+  server.createList('ticket', 2, {
+    kind: 'other',
+    background: 'My question.'
+  });
+
+  server.get('/tickets', {
+    errors: [{ detail: "Main model error." }]
+  }, 500);
+
+  await assert.asyncThrows(() => {
+    return visit(`/view`);
+  }, `GET ${server.namespace}/tickets returned a 500`);
+
+  assert.ok(find('[data-test-error-template]').length > 0);
 });

@@ -13,12 +13,22 @@
     onSwitch=(action 'switchPage')}}
 </div>
 
-<div class="activityList">
-  {{#each activityCache as |item|}}
-    {{#with (get componentsByType item.verb) as |type|}}
-      {{component (concat 'activity-' type) data=item class=(concat "activity activity--" type) data-test-activity=type}}
-    {{/with}}
-  {{/each}}
+{{#if loadItems.last.error}}
+  <div class="alert alert--danger t-sm mt-4 mb-8" data-test-activity-error>
+    {{icon "alert"}}
+    {{t 'errors.activities'}}
+  </div>
+{{else}}
+  <div class="activityList">
+    {{#each activityCache as |item|}}
+      {{#with (get componentsByType item.verb) as |type|}}
+        {{component (concat 'activity-' type)
+          data=item
+          class=(concat "activity activity--" type)
+          data-test-activity=type}}
+      {{/with}}
+    {{/each}}
 
-  {{yield (hash reset=(action 'switchPage' 1))}}
-</div>
+    {{yield}}
+  </div>
+{{/if}}

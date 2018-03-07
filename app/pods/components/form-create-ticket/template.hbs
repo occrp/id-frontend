@@ -350,15 +350,22 @@
   <div class="fieldGroup">
     <div class="l-constrain">
 
+      <p class="formText mb-4">
+        {{icon "info" class="icon--lg "}}<span class="t-muted">{{t 'pods.new.form.uploadInfo'}}</span>
+      </p>
+
       {{#if (and didValidate buffer.hasDisplayErrors)}}
-        <div class="alert alert--danger mb-4" data-test-validation-errors>
+        <div class="alert alert--danger t-sm mb-4" data-test-validation-errors>
           {{t 'pods.new.form.invalidMessage'}}
         </div>
       {{/if}}
 
-      <p class="formText mb-4">
-        {{icon "info" class="icon--lg "}}<span class="t-muted">{{t 'pods.new.form.uploadInfo'}}</span>
-      </p>
+      {{#if saveRecord.last.error}}
+        <div class="alert alert--danger t-sm mb-4" data-test-submit-error>
+          {{icon "alert"}}
+          {{t 'errors.genericRequest'}}
+        </div>
+      {{/if}}
 
       <div class="fieldGroup-actions">
         <button type="submit" disabled={{saveRecord.isRunning}} class="button button--primary" data-test-save>{{t 'pods.new.form.submitButton'}}</button>

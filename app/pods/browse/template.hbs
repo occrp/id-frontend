@@ -1,4 +1,10 @@
 <div class="wrapper">
+  {{#each flashMessages.queue as |flash|}}
+    {{#ui-flash flash=flash class="t-sm"}}
+      {{icon "alert"}}
+      {{t flash.message}}
+    {{/ui-flash}}
+  {{/each}}
 
   <div class="titleBar">
     <h1 class="t2 t-light titleBar-title">{{t 'ticket' count=total.all}}</h1>

@@ -15,6 +15,8 @@ export default Ember.Component.extend({
   store: Ember.inject.service(),
   session: Ember.inject.service(),
   flashMessages: Ember.inject.service(),
+  activityBus: Ember.inject.service(),
+
   searchStaff: task(getSearchGenerator({ isStaff: true })).restartable(),
 
   addResponder: task(function * (ticket, user) {
@@ -72,35 +74,35 @@ export default Ember.Component.extend({
         // Reloading the model too since the status will change
         // when adding the first responder
         ticket.reload();
-        ticket.hasMany('activities').reload();
+        this.get('activityBus').trigger('reload');
       });
     },
 
     removeResponder(responder) {
       this.get('removeResponder').perform(responder).then(() => {
-        this.get('model').hasMany('activities').reload();
+        this.get('activityBus').trigger('reload');
       });
     },
 
     // task handled inside the dedicated component
     afterAddSubscriber() {
-      this.get('model').hasMany('activities').reload();
+      this.get('activityBus').trigger('reload');
     },
 
     removeSubscriber(subscriber) {
       this.get('removeSubscriber').perform(subscriber).then(() => {
-        this.get('model').hasMany('activities').reload();
+        this.get('activityBus').trigger('reload');
       });
     },
 
     unassignSelf() {
       this.get('unassignSelf').perform(this.get('responderForCurrentUser')).then(() => {
-        this.get('model').hasMany('activities').reload();
+        this.get('activityBus').trigger('reload');
       });
     },
     unsubscribeSelf() {
       this.get('unsubscribeSelf').perform(this.get('subscriberForCurrentUser')).then(() => {
-        this.get('model').hasMany('activities').reload();
+        this.get('activityBus').trigger('reload');
       });
     }
 

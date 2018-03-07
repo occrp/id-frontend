@@ -208,6 +208,7 @@ export default {
     removalPrompt: 'Are you sure you want to delete this file?',
 
     state: {
+      queued: 'Queued',
       uploaded: 'Uploaded',
       uploading: 'Uploading',
       failed: 'Failed',
@@ -387,7 +388,8 @@ export default {
     routeError: {
       title: 'An error has occured while processing your request.',
       body: 'We have been automatically notified and we need better copy for this.'
-    }
+    },
+    activities: 'An error has occured while loading the activity feed.'
   }
 
 };

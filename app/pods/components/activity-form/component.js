@@ -5,6 +5,7 @@ import { Validations } from 'id-frontend/models/comment';
 export default Ember.Component.extend(Validations, {
   store: Ember.inject.service(),
   session: Ember.inject.service(),
+  activityBus: Ember.inject.service(),
 
   body: null,
   didValidate: false,
@@ -20,8 +21,6 @@ export default Ember.Component.extend(Validations, {
 
   actions: {
     save() {
-
-
       this.validate().then(({ validations }) => {
         this.set('didValidate', true);
 
@@ -29,7 +28,7 @@ export default Ember.Component.extend(Validations, {
           this.get('publishComment').perform().then(() => {
             this.set('body', null);
             this.set('didValidate', false);
-            this.get('model').hasMany('activities').reload();
+            this.get('activityBus').trigger('reload');
           });
         }
       });

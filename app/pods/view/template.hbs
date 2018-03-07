@@ -186,7 +186,7 @@
 
       <hr />
 
-      {{#activity-list id=model.id items=model.activities as |list|}}
+      {{#activity-list model=model as |list|}}
         {{#if model.isOpen}}
           {{activity-form model=model}}
         {{/if}}

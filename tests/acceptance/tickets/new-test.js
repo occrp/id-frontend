@@ -194,6 +194,7 @@ test('creating a new ticket (other)', async function(assert) {
   assert.equal(find('[data-test-background]').text(), 'My question.');
 });
 
+
 test('creating a new ticket (person) - validations', async function(assert) {
   assert.expect(6);
   initSession();
@@ -213,6 +214,7 @@ test('creating a new ticket (person) - validations', async function(assert) {
 
   findWithAssert('[data-test-validation-errors]');
 });
+
 
 test('creating a new ticket (company) - validations', async function(assert) {
   assert.expect(6);
@@ -234,6 +236,7 @@ test('creating a new ticket (company) - validations', async function(assert) {
 
   findWithAssert('[data-test-validation-errors]');
 });
+
 
 test('creating a new ticket - switching tabs resets validations', async function(assert) {
   assert.expect(7);
@@ -264,4 +267,25 @@ test('creating a new ticket - switching tabs resets validations', async function
   await click('[data-test-kind-tab="company"]');
 
   assert.ok(!find('#ticket-companyName').closest('.formGroup').hasClass('is-invalid'));
+});
+
+
+test('if creating a ticket errors, a message is displayed', async function(assert) {
+  assert.expect(2);
+  initSession();
+
+  server.post('/tickets', {
+    errors: [{ detail: "Ticket creation error." }]
+  }, 500);
+
+  await visit('/new');
+
+  await click('[data-test-kind-tab="other"]');
+  await fillIn('#ticket-background-other', 'My question.');
+
+  await assert.asyncThrows(() => {
+    return click('[data-test-save]');
+  }, `POST ${server.namespace}/tickets returned a 500`);
+
+  assert.ok(find('[data-test-submit-error]').length > 0);
 });

@@ -7,6 +7,7 @@ export default Ember.Controller.extend({
   kindList,
   Validations,
   i18n: Ember.inject.service(),
+  activityBus: Ember.inject.service(),
   flashMessages: Ember.inject.service(),
 
   title: Ember.computed('model.kind', 'i18n.locale', function () {
@@ -53,8 +54,8 @@ export default Ember.Controller.extend({
         'pending': 'pending'
       };
       this.get('updateStatus').perform(mapToStatus[activityType], comment).then(() => {
-        this.get('model').hasMany('activities').reload();
-      }, (error) => {
+        this.get('activityBus').trigger('reload');
+      }, () => {
         this.get('model').rollbackAttributes();
         this.get('flashMessages').danger('errors.genericRequest');
       });

@@ -3,6 +3,7 @@ import Pageable from 'id-frontend/mixins/pageable';
 
 export default Ember.Controller.extend(Pageable, {
   session: Ember.inject.service(),
+  flashMessages: Ember.inject.service(),
 
   queryParams: ['status', 'country', 'kind', 'requester', 'responder', 'sort'],
 
