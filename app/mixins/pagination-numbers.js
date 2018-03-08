@@ -1,14 +1,16 @@
-import Ember from 'ember';
+import { computed } from '@ember/object';
+import { or } from '@ember/object/computed';
+import Mixin from '@ember/object/mixin';
 
-export default Ember.Mixin.create({
+export default Mixin.create({
   // Generate the page numbers and separators to be used in the template.
   //
   // Ex: total = 25; current = 9; padding = 2;
   // => [1, 2, false, 7, 8, 9, 10, 11, false, 24, 25]
 
-  total: Ember.computed.or('meta.pagination.last.number', 'current'),
+  total: or('meta.pagination.last.number', 'current'),
   
-  items: Ember.computed('meta.pagination', function() {
+  items: computed('meta.pagination', function() {
     const total = this.get('total');
     const current = this.get('current');
 

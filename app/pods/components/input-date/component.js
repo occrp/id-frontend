@@ -1,19 +1,23 @@
-import Ember from 'ember';
+import { isBlank } from '@ember/utils';
+import { computed } from '@ember/object';
+import { readOnly, oneWay } from '@ember/object/computed';
+import { inject as service } from '@ember/service';
+import Component from '@ember/component';
 import moment from 'moment';
 
-export default Ember.Component.extend({
+export default Component.extend({
   tagName: '',
-  i18n: Ember.inject.service(),
+  i18n: service(),
 
-  currentValue: Ember.computed.readOnly('value'),
-  theCenter: Ember.computed.oneWay('center'),
+  currentValue: readOnly('value'),
+  theCenter: oneWay('center'),
 
   isShowingPopup: false,
 
-  attachment: Ember.computed('i18n.isRtl', function() {
+  attachment: computed('i18n.isRtl', function() {
     return this.get('i18n.isRtl') ? 'bottom right' : 'bottom left';
   }),
-  targetAttachment: Ember.computed('i18n.isRtl', function() {
+  targetAttachment: computed('i18n.isRtl', function() {
     return this.get('i18n.isRtl') ? 'top right' : 'top left';
   }),
   constraints: [
@@ -36,7 +40,7 @@ export default Ember.Component.extend({
     },
 
     updateDatepicker(val) {
-      if (Ember.isBlank(val)) {
+      if (isBlank(val)) {
         this.get('onSelect')({date: null});
         return;
       }

@@ -1,9 +1,10 @@
-import Ember from 'ember';
+import { reads } from '@ember/object/computed';
+import { inject as service } from '@ember/service';
 import { Ability } from 'ember-can';
 
 export default Ability.extend({
-  session: Ember.inject.service(),
+  session: service(),
 
-  canManage: Ember.computed.reads('session.currentUser.isSuperuser'),
-  canResolve: Ember.computed.reads('session.currentUser.isStaff')
+  canManage: reads('session.currentUser.isSuperuser'),
+  canResolve: reads('session.currentUser.isStaff')
 });

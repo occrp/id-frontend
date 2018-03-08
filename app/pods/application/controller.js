@@ -1,10 +1,12 @@
-import Ember from 'ember';
+import { computed } from '@ember/object';
+import { inject as service } from '@ember/service';
+import Controller from '@ember/controller';
 import $ from 'jquery';
 import ENV from 'id-frontend/config/environment';
 
-export default Ember.Controller.extend({
-  i18n: Ember.inject.service(),
-  moment: Ember.inject.service(),
+export default Controller.extend({
+  i18n: service(),
+  moment: service(),
 
   queryParams: ['lang'],
 
@@ -22,7 +24,7 @@ export default Ember.Controller.extend({
     }
   },
 
-  lang: Ember.computed('i18n.locale', {
+  lang: computed('i18n.locale', {
     get() {
       return this.get('i18n.locale');
     },

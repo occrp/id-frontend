@@ -1,4 +1,6 @@
-import Ember from 'ember';
+import { computed } from '@ember/object';
+import { inject as service } from '@ember/service';
+import Component from '@ember/component';
 import { task } from 'ember-concurrency';
 import { getSearchGenerator } from 'id-frontend/models/profile';
 
@@ -10,12 +12,12 @@ const relRemovalGenerator = function * (rel) {
   }
 };
 
-export default Ember.Component.extend({
-  i18n: Ember.inject.service(),
-  store: Ember.inject.service(),
-  session: Ember.inject.service(),
-  flashMessages: Ember.inject.service(),
-  activityBus: Ember.inject.service(),
+export default Component.extend({
+  i18n: service(),
+  store: service(),
+  session: service(),
+  flashMessages: service(),
+  activityBus: service(),
 
   searchStaff: task(getSearchGenerator({ isStaff: true })).restartable(),
 
@@ -41,7 +43,7 @@ export default Ember.Component.extend({
 
   // using just 'model.subscribers.[]' won't work because it triggers
   // the recalculation before a POST /subscribers/ responds succesfully
-  subscriberForCurrentUser: Ember.computed('model.subscribers.@each.id', function() {
+  subscriberForCurrentUser: computed('model.subscribers.@each.id', function() {
     const userId = this.get('session.currentUser.id');
     let subscriber = null;
 
@@ -54,7 +56,7 @@ export default Ember.Component.extend({
     return subscriber;
   }),
 
-  responderForCurrentUser: Ember.computed('model.responders.@each.id', function() {
+  responderForCurrentUser: computed('model.responders.@each.id', function() {
     const userId = this.get('session.currentUser.id');
     let responder = null;
 

@@ -1,7 +1,7 @@
-import Ember from 'ember';
+import { A } from '@ember/array';
+import { isPresent } from '@ember/utils';
+import { get } from '@ember/object';
 import { statusList } from 'id-frontend/models/ticket';
-
-const { isPresent, get } = Ember;
 
 // Group items by date and also as a status hash
 export default function groupByDate (items) {
@@ -18,7 +18,7 @@ export default function groupByDate (items) {
     emptyDataset[status] = Object.assign({}, emptyStats)
   })
 
-  let groups = new Ember.A();
+  let groups = new A();
 
   items.forEach((item) => {
     let date = get(item, 'date');

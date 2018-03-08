@@ -1,12 +1,13 @@
-import Ember from 'ember';
+import { inject as service } from '@ember/service';
+import Component from '@ember/component';
 import { Validations } from 'id-frontend/models/subscriber';
 import { task } from 'ember-concurrency';
 import formBufferProperty from 'ember-validated-form-buffer';
 
-export default Ember.Component.extend({
+export default Component.extend({
   tagName: '',
-  store: Ember.inject.service(),
-  flashMessages: Ember.inject.service(),
+  store: service(),
+  flashMessages: service(),
   didValidate: false,
 
   init() {

@@ -1,4 +1,5 @@
-import Ember from 'ember';
+import { camelize } from '@ember/string';
+import { typeOf } from '@ember/utils';
 import DS from 'ember-data';
 
 let camelCaseKeys = function(hash) {
@@ -6,10 +7,10 @@ let camelCaseKeys = function(hash) {
 
   for (let prop in hash) {
     if (hash.hasOwnProperty(prop)) {
-      if (hash[prop] !== null && Ember.typeOf(hash[prop]) === 'object') {
-        json[Ember.String.camelize(prop)] = camelCaseKeys(hash[prop]);
+      if (hash[prop] !== null && typeOf(hash[prop]) === 'object') {
+        json[camelize(prop)] = camelCaseKeys(hash[prop]);
       } else {
-        json[Ember.String.camelize(prop)] = hash[prop];
+        json[camelize(prop)] = hash[prop];
       }
     }
   }

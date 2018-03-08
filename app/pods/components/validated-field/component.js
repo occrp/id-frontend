@@ -1,13 +1,12 @@
-import Ember from 'ember';
+import { or, and } from '@ember/object/computed';
+import Component from '@ember/component';
 
-const { computed } = Ember;
-
-export default Ember.Component.extend({
+export default Component.extend({
   classNameBindings: ['showErrors:is-invalid'],
 
   showValidations: false,
-  showMessages: computed.or('didValidate', 'showValidations'),
-  showErrors: computed.and('showMessages', 'errors.length'),
+  showMessages: or('didValidate', 'showValidations'),
+  showErrors: and('showMessages', 'errors.length'),
 
   actions: {
     triggerValidations() {

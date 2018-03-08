@@ -1,9 +1,10 @@
-import Ember from 'ember';
+import { inject as service } from '@ember/service';
+import Component from '@ember/component';
 import { task } from 'ember-concurrency';
 
-export default Ember.Component.extend({
-  store: Ember.inject.service(),
-  activityBus: Ember.inject.service(),
+export default Component.extend({
+  store: service(),
+  activityBus: service(),
 
   componentsByType: {
     'comment:create': 'comment',

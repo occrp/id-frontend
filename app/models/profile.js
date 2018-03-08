@@ -1,4 +1,4 @@
-import Ember from 'ember';
+import { getOwner } from '@ember/application';
 import DS from 'ember-data';
 import { timeout } from 'ember-concurrency';
 import ProfileDecorator from 'id-frontend/mixins/profile-decorator';
@@ -42,7 +42,7 @@ export const getSearchGenerator = function(opts) {
 
     Object.assign(params.filter, flags);
 
-    const owner = Ember.getOwner(this);
+    const owner = getOwner(this);
     const store = owner.lookup('service:store');
 
     return yield store.query('profile', params);

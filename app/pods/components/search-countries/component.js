@@ -1,9 +1,10 @@
-import Ember from 'ember';
+import { isBlank } from '@ember/utils';
+import Component from '@ember/component';
 import { task } from 'ember-concurrency';
 import countries from 'ember-i18n-iso-countries/langs/en';
 import Fuse from 'fuse';
 
-export default Ember.Component.extend({
+export default Component.extend({
   preloadEmpty: true,
 
   countriesList: Object.keys(countries).map(function(code) {
@@ -13,7 +14,7 @@ export default Ember.Component.extend({
   suggestedCountries: ['US', 'GB', 'FR', 'ES', 'BA', 'AU'],
 
   task: task(function * (term) {
-    if (Ember.isBlank(term)) {
+    if (isBlank(term)) {
       return this.get('suggestedCountries');
     }
 

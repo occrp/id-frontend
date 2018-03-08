@@ -1,10 +1,11 @@
-import Ember from 'ember';
+import { inject as service } from '@ember/service';
+import Component from '@ember/component';
 import { task } from 'ember-concurrency';
 import groupByDate from 'id-frontend/pods/reporting/group-by-date';
 
-export default Ember.Component.extend({
+export default Component.extend({
   tagName: '',
-  store: Ember.inject.service(),
+  store: service(),
 
   statsCache: null,
   user: null,

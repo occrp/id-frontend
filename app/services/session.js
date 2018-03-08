@@ -1,13 +1,14 @@
-import Ember from 'ember';
+import { getOwner } from '@ember/application';
+import Service, { inject as service } from '@ember/service';
 
-export default Ember.Service.extend({
-  store: Ember.inject.service(),
-  ajax: Ember.inject.service(),
+export default Service.extend({
+  store: service(),
+  ajax: service(),
 
   currentUser: null,
 
   getCurrentSession: function() {
-    let adapter = Ember.getOwner(this).lookup('adapter:application');
+    let adapter = getOwner(this).lookup('adapter:application');
     let url = adapter.get('namespace') + '/me';
     let store = this.get('store');
 

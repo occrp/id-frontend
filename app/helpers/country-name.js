@@ -1,8 +1,8 @@
-import Ember from 'ember';
+import { helper } from '@ember/component/helper';
 import { getName } from 'ember-i18n-iso-countries';
 
 export function countryName([code]) {
   return getName(code, 'en');
 }
 
-export default Ember.Helper.helper(countryName);
+export default helper(countryName);

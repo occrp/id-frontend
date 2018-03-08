@@ -1,4 +1,4 @@
-import Ember from 'ember';
+import { helper } from '@ember/component/helper';
 import filesize from 'filesize';
 
 export function formatFilesize([value]) {
@@ -7,4 +7,4 @@ export function formatFilesize([value]) {
     return processed.join(' ');
 }
 
-export default Ember.Helper.helper(formatFilesize);
+export default helper(formatFilesize);

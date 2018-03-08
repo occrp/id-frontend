@@ -1,7 +1,7 @@
-import Ember from 'ember';
+import Component from '@ember/component';
 import { Validations } from 'id-frontend/models/comment';
 
-export default Ember.Component.extend(Validations, {
+export default Component.extend(Validations, {
   tagName: '',
 
   body: null,

@@ -1,18 +1,21 @@
-import Ember from 'ember';
+import { A } from '@ember/array';
+import { getOwner } from '@ember/application';
+import { inject as service } from '@ember/service';
+import Component from '@ember/component';
+import { set, get, computed } from '@ember/object';
 import { task, taskGroup } from 'ember-concurrency';
-const { get, set } = Ember;
 import RSVP from 'rsvp';
 
-export default Ember.Component.extend({
-  store: Ember.inject.service(),
-  session: Ember.inject.service(),
-  flashMessages: Ember.inject.service(),
-  i18n: Ember.inject.service(),
-  activityBus: Ember.inject.service(),
+export default Component.extend({
+  store: service(),
+  session: service(),
+  flashMessages: service(),
+  i18n: service(),
+  activityBus: service(),
 
   removalBin: null,
 
-  processedAttachments: Ember.computed('model.attachments.[]', function() {
+  processedAttachments: computed('model.attachments.[]', function() {
     const attachments = this.get('model.attachments');
     let groups = [];
     let prevItem = null;
@@ -41,7 +44,7 @@ export default Ember.Component.extend({
   batchUpload: taskGroup().maxConcurrency(3).enqueue(),
 
   uploadFile: task(function * (file) {
-    let adapter = Ember.getOwner(this).lookup('adapter:application');
+    let adapter = getOwner(this).lookup('adapter:application');
     let namespace = adapter.get('namespace');
 
     let response = yield file.upload(`/${namespace}/attachments`, {
@@ -90,7 +93,7 @@ export default Ember.Component.extend({
     flushQueue(queue) {
       this.get('batchUpload').cancelAll();
       get(queue, 'files').forEach((file) => set(file, 'queue', null));
-      set(queue, 'files', Ember.A());
+      set(queue, 'files', A());
       this.set('firstBatch', true)
     },
 

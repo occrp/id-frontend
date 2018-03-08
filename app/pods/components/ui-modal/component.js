@@ -1,4 +1,4 @@
-import Ember from 'ember';
+import { computed } from '@ember/object';
 import ModalDialog from 'ember-modal-dialog/components/modal-dialog';
 
 export default ModalDialog.extend({
@@ -7,7 +7,7 @@ export default ModalDialog.extend({
   targetAttachment: 'none',
   translucentOverlay: true,
   wrapperClassNames: 'modal',
-  containerClassNames: Ember.computed('modifiers', function() {
+  containerClassNames: computed('modifiers', function() {
     return `modal-dialog ${this.get('modifiers')}`;
   }),
   overlayClassNames: 'modal-backdrop',

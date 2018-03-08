@@ -1,7 +1,7 @@
-import Ember from 'ember';
+import Component from '@ember/component';
 import PaginationMixin from 'id-frontend/mixins/pagination-numbers';
 
-export default Ember.Component.extend(PaginationMixin, {
+export default Component.extend(PaginationMixin, {
   tagName: 'nav',
   classNames: ['pg'],
 });

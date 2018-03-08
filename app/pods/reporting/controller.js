@@ -1,10 +1,11 @@
-import Ember from 'ember';
+import { reads } from '@ember/object/computed';
+import { inject as service } from '@ember/service';
+import Controller from '@ember/controller';
+import { computed } from '@ember/object';
 import moment from 'moment';
 
-const { computed } = Ember;
-
-export default Ember.Controller.extend({
-  i18n: Ember.inject.service(),
+export default Controller.extend({
+  i18n: service(),
 
   queryParams: ['startAt'],
 
@@ -26,5 +27,5 @@ export default Ember.Controller.extend({
     ];
   }),
 
-  startAt: computed.reads('startAtOptions.firstObject.value'),
+  startAt: reads('startAtOptions.firstObject.value'),
 });

@@ -1,9 +1,11 @@
-import Ember from 'ember';
+import { computed } from '@ember/object';
+import { inject as service } from '@ember/service';
+import Controller from '@ember/controller';
 import Pageable from 'id-frontend/mixins/pageable';
 
-export default Ember.Controller.extend(Pageable, {
-  session: Ember.inject.service(),
-  flashMessages: Ember.inject.service(),
+export default Controller.extend(Pageable, {
+  session: service(),
+  flashMessages: service(),
 
   queryParams: ['status', 'country', 'kind', 'requester', 'responder', 'sort'],
 
@@ -19,12 +21,12 @@ export default Ember.Controller.extend(Pageable, {
     closed: 'closed,cancelled'
   },
 
-  filterMeta: Ember.computed('model.meta', function () {
+  filterMeta: computed('model.meta', function () {
     let meta = this.get('model.meta');
     return meta.filters ? meta.filters : { responder: null, requester: null };
   }),
 
-  total: Ember.computed('model.meta', function () {
+  total: computed('model.meta', function () {
     let total = this.get('model.meta.total');
 
     // camelCased because serializers/application

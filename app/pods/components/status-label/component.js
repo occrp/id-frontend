@@ -1,6 +1,7 @@
-import Ember from 'ember';
+import { computed } from '@ember/object';
+import Component from '@ember/component';
 
-export default Ember.Component.extend({
+export default Component.extend({
   tagName: 'span',
   classNames: ['tag', 'tag--status'],
   classNameBindings: ['statusClass'],
@@ -13,7 +14,7 @@ export default Ember.Component.extend({
     'cancelled': 'tag--cancelled'
   },
 
-  statusClass: Ember.computed('status', function() {
+  statusClass: computed('status', function() {
     return this.get('classByStatus')[this.get('status')];
   })
 }).reopenClass({

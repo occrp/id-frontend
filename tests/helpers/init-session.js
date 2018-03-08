@@ -1,6 +1,6 @@
-import Ember from 'ember';
+import { registerHelper } from '@ember/test';
 
-export default Ember.Test.registerHelper('initSession', function(app, overrides = {}) {
+export default registerHelper('initSession', function(app, overrides = {}) {
   return server.create('profile', Object.assign({
     id: 42,
     email: "user@mail.com",

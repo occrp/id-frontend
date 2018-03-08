@@ -1,6 +1,6 @@
-import Ember from 'ember';
+import Controller from '@ember/controller';
 import { taskGroup } from 'ember-concurrency';
 
-export default Ember.Controller.extend({
+export default Controller.extend({
   statsTaskGroup: taskGroup(),
 });

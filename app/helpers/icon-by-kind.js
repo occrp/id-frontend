@@ -1,4 +1,4 @@
-import Ember from 'ember';
+import { helper } from '@ember/component/helper';
 import { icon } from 'id-frontend/helpers/icon';
 
 export function iconByKind([assetId], namedArgs) {
@@ -11,4 +11,4 @@ export function iconByKind([assetId], namedArgs) {
   return icon([mapKindToIcon[assetId]], namedArgs);
 }
 
-export default Ember.Helper.helper(iconByKind);
+export default helper(iconByKind);

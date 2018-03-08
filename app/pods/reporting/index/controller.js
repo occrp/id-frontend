@@ -1,14 +1,14 @@
-import Ember from 'ember';
+import { reads } from '@ember/object/computed';
+import Controller from '@ember/controller';
+import { computed } from '@ember/object';
 import groupByDate from 'id-frontend/pods/reporting/group-by-date';
 
-const { computed } = Ember;
-
-export default Ember.Controller.extend({
+export default Controller.extend({
   processedStats: computed('model.@each.count', function() {
     let items = this.get('model');
 
     return groupByDate(items);
   }),
 
-  total: Ember.computed.reads('model.meta.total')
+  total: reads('model.meta.total')
 });

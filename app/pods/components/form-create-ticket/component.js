@@ -1,11 +1,11 @@
-import Ember from 'ember';
+import Component from '@ember/component';
 import { kindList, Validations } from 'id-frontend/models/ticket';
 import formBufferProperty from 'ember-validated-form-buffer';
 import countries from 'ember-i18n-iso-countries/langs/en';
 import moment from 'moment';
 import { task } from 'ember-concurrency';
 
-export default Ember.Component.extend({
+export default Component.extend({
   kindList,
   countries,
 

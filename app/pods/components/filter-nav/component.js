@@ -1,15 +1,17 @@
-import Ember from 'ember';
+import { computed } from '@ember/object';
+import { inject as service } from '@ember/service';
+import Component from '@ember/component';
 import { task } from 'ember-concurrency';
 import { kindList } from 'id-frontend/models/ticket';
 import { getSearchGenerator } from 'id-frontend/models/profile';
 
-export default Ember.Component.extend({
-  i18n: Ember.inject.service(),
+export default Component.extend({
+  i18n: service(),
 
   tagName: '',
   kindList,
 
-  sortFields: Ember.computed('i18n.locale', function() {
+  sortFields: computed('i18n.locale', function() {
     let i18n = this.get('i18n');
     return {
       '-created-at': i18n.t('filters.sort.createdAt.desc'),

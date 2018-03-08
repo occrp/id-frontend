@@ -1,11 +1,12 @@
-import Ember from 'ember';
+import { inject as service } from '@ember/service';
+import Component from '@ember/component';
 import { task } from 'ember-concurrency';
 import { Validations } from 'id-frontend/models/comment';
 
-export default Ember.Component.extend(Validations, {
-  store: Ember.inject.service(),
-  session: Ember.inject.service(),
-  activityBus: Ember.inject.service(),
+export default Component.extend(Validations, {
+  store: service(),
+  session: service(),
+  activityBus: service(),
 
   body: null,
   didValidate: false,

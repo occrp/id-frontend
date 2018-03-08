@@ -1,16 +1,19 @@
-import Ember from 'ember';
+import { isBlank } from '@ember/utils';
+import { computed } from '@ember/object';
+import { inject as service } from '@ember/service';
+import Controller from '@ember/controller';
 import { task } from 'ember-concurrency';
 import { kindList, Validations } from 'id-frontend/models/ticket';
 import moment from 'moment';
 
-export default Ember.Controller.extend({
+export default Controller.extend({
   kindList,
   Validations,
-  i18n: Ember.inject.service(),
-  activityBus: Ember.inject.service(),
-  flashMessages: Ember.inject.service(),
+  i18n: service(),
+  activityBus: service(),
+  flashMessages: service(),
 
-  title: Ember.computed('model.kind', 'i18n.locale', function () {
+  title: computed('model.kind', 'i18n.locale', function () {
     let i18n = this.get('i18n');
 
     switch (this.get('model.kind')) {
@@ -35,9 +38,9 @@ export default Ember.Controller.extend({
   }),
 
   minimumDeadline: moment.utc(),
-  center: Ember.computed('model.deadlineAt', 'minimumDeadline', function() {
+  center: computed('model.deadlineAt', 'minimumDeadline', function() {
     const deadline = this.get('model.deadlineAt');
-    if (Ember.isBlank(deadline)) {
+    if (isBlank(deadline)) {
       return this.get('minimumDeadline');
     }
 

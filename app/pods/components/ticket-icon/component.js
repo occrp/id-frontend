@@ -1,6 +1,7 @@
-import Ember from 'ember';
+import { computed } from '@ember/object';
+import Component from '@ember/component';
 
-export default Ember.Component.extend({
+export default Component.extend({
   tagName: 'i',
   classNames: ['fa'],
   classNameBindings: ['kindIcon'],
@@ -11,7 +12,7 @@ export default Ember.Component.extend({
     'other': 'fa-question'
   },
 
-  kindIcon: Ember.computed('kind', function() {
+  kindIcon: computed('kind', function() {
     return this.get('iconByKind')[this.get('kind')];
   })
 }).reopenClass({

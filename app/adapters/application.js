@@ -1,7 +1,5 @@
+import { underscore } from '@ember/string';
 import DS from 'ember-data';
-import Ember from "ember";
-
-const { underscore } = Ember.String;
 
 export default DS.JSONAPIAdapter.extend({
   namespace: 'api/v3',

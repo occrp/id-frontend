@@ -1,7 +1,8 @@
-import Ember from 'ember';
+import { computed } from '@ember/object';
+import Component from '@ember/component';
 
-export default Ember.Component.extend({
-  firstItem: Ember.computed('data.[]', function () {
+export default Component.extend({
+  firstItem: computed('data.[]', function () {
     return this.get('data').get('firstObject');
   })
 });

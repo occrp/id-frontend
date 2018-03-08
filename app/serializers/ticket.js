@@ -1,4 +1,4 @@
-import Ember from 'ember';
+import { getOwner } from '@ember/application';
 import ApplicationSerializer from './application';
 
 export default ApplicationSerializer.extend({
@@ -8,7 +8,7 @@ export default ApplicationSerializer.extend({
   },
 
   addLinks(ticket) {
-    let adapter = Ember.getOwner(this).lookup('adapter:application');
+    let adapter = getOwner(this).lookup('adapter:application');
     let namespace = adapter.get('namespace');
 
     ticket.relationships.activities = {

@@ -1,12 +1,13 @@
-import Ember from 'ember';
+import { inject as service } from '@ember/service';
+import Component from '@ember/component';
 import formBufferProperty from 'ember-validated-form-buffer';
 import { task } from 'ember-concurrency';
 
 
-export default Ember.Component.extend({
+export default Component.extend({
   isEditing: false,
   didValidate: false,
-  flashMessages: Ember.inject.service(),
+  flashMessages: service(),
 
   init() {
     this._super();

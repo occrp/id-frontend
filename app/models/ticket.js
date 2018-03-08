@@ -1,4 +1,6 @@
-import Ember from 'ember';
+import { isEmpty } from '@ember/utils';
+import { not, equal } from '@ember/object/computed';
+import { computed } from '@ember/object';
 import DS from 'ember-data';
 import { validator, buildValidations } from 'ember-cp-validations';
 import notEqual from '../macros/not-equal';
@@ -57,7 +59,7 @@ export default DS.Model.extend({
   connections: attr('string'), // reused on Person, labeled "Family info"
 
 
-  displayName: Ember.computed('kind', 'firstName', 'lastName', 'companyName', 'background', function () {
+  displayName: computed('kind', 'firstName', 'lastName', 'companyName', 'background', function () {
     switch (this.get('kind')) {
       case kindList[0]:
         return `${this.get('firstName')} ${this.get('lastName')}`;
@@ -68,19 +70,19 @@ export default DS.Model.extend({
     }
   }),
 
-  responderIds: Ember.computed('responders.[]', function () {
+  responderIds: computed('responders.[]', function () {
     let responders = this.get('responders');
     let userIds = responders.map(resp => resp.belongsTo('user').id())
     return userIds;
   }),
 
-  isOpen: Ember.computed('status', function() {
+  isOpen: computed('status', function() {
     return ['closed', 'cancelled'].indexOf(this.get('status')) === -1;
   }),
 
-  isClosed: Ember.computed.not('isOpen'),
+  isClosed: not('isOpen'),
 
-  isPending: Ember.computed.equal('status', 'pending')
+  isPending: equal('status', 'pending')
 });
 
 
@@ -126,14 +128,14 @@ export const Validations = buildValidations({
   deadlineAt: validator('date', {
     value(model, attribute) {
       const val = model.get(attribute);
-      if (Ember.isEmpty(val)) {
+      if (isEmpty(val)) {
         return val;
       }
       return moment.utc(val).format('DD/MM/YYYY');
     },
     allowBlank: true,
     format: 'DD/MM/YYYY',
-    after: Ember.computed(function() {
+    after: computed(function() {
       return moment.utc().format('DD/MM/YYYY');
     }).volatile()
   })

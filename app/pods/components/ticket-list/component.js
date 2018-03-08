@@ -1,10 +1,11 @@
-import Ember from 'ember';
+import { inject as service } from '@ember/service';
+import Component from '@ember/component';
 import { task } from 'ember-concurrency';
 import { getSearchGenerator } from 'id-frontend/models/profile';
 
-export default Ember.Component.extend({
-  store: Ember.inject.service(),
-  flashMessages: Ember.inject.service(),
+export default Component.extend({
+  store: service(),
+  flashMessages: service(),
   searchStaff: task(getSearchGenerator({ isStaff: true })).restartable(),
 
   updateResponder: task(function * (ticket, user) {
