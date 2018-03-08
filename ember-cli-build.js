@@ -5,6 +5,10 @@ const EmberApp = require('ember-cli/lib/broccoli/ember-app');
 
 module.exports = function(defaults) {
   let buildOptions = {
+    babel: {
+      plugins: ['transform-object-rest-spread']
+    },
+
     storeConfigInMeta: false,
 
     fingerprint: {
