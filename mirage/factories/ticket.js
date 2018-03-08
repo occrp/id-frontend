@@ -1,4 +1,4 @@
-import { Factory, faker, trait } from 'ember-cli-mirage';
+import { Factory, faker, trait, association } from 'ember-cli-mirage';
 import { kindList, statusList } from 'id-frontend/models/ticket';
 
 const random = faker.random.arrayElement;
@@ -57,13 +57,7 @@ export default Factory.extend({
     kind:                 kindList[2],
   }),
 
-  afterCreate(ticket, server) {
-    let regulars = server.schema.profiles.where({ isStaff: false });
-
-    ticket.update({
-      requester: random(regulars.models),
-    });
-  },
+  requester: association(),
 
   withResponder: trait({
     afterCreate(ticket, server) {

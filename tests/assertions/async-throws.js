@@ -10,7 +10,7 @@ function intercept(f = () => {}) {
   originalTestAdapterException = Ember.Test.adapter.exception;
   originalWindowOnError = window.onerror;
   originalEmberOnError = Ember.onerror;
-  Ember.Logger.error = () => {};
+  Ember.Logger.error = f;
   Ember.Test.adapter.exception = () => {};
   Ember.onerror = f;
   window.onerror = () => {};

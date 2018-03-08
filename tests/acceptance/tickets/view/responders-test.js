@@ -124,7 +124,7 @@ test('(admin) remove responders from ticket', async function(assert) {
 
   profiles.forEach(profile => {
     server.create('responder', {
-      id(i) { return 20 + i },
+      id() { return parseInt(profile.id) + 10 },
       ticket,
       user: profile
     });

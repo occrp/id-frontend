@@ -109,7 +109,7 @@ test('if submitting a comment errors, a message is displayed', async function(as
   });
 
   server.createList('activity', 2, {
-    'isComment',
+    verb: 'comment:create',
     ticket
   });
 

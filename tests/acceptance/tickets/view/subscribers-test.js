@@ -110,7 +110,7 @@ test('(staff) remove subscribers from ticket', async function(assert) {
 
   profiles.forEach(profile => {
     server.create('subscriber', {
-      id(i) { return 20 + i },
+      id() { return parseInt(profile.id) + 10 },
       ticket,
       user: profile
     });
