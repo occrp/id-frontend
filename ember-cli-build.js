@@ -24,7 +24,7 @@ module.exports = function(defaults) {
     },
 
     'ember-composable-helpers': {
-      only: ['pipe', 'pipe-action', 'toggle', 'contains']
+      only: ['pipe', 'pipe-action', 'queue', 'dec', 'toggle', 'contains', 'array']
     },
 
     nodeModulesToVendor: [
