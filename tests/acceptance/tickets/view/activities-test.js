@@ -12,7 +12,10 @@ test('rendering activities & submitting a comment', async function(assert) {
     kind: 'company_ownership',
   });
 
-  server.createList('activity', 8, 'isComment', { ticket });
+  server.createList('activity', 8, {
+    verb: 'comment:create',
+    ticket
+  });
 
   let done = assert.async();
   server.post('/comments', function (schema, request) {
@@ -105,7 +108,10 @@ test('if submitting a comment errors, a message is displayed', async function(as
     kind: 'company_ownership',
   });
 
-  server.createList('activity', 2, 'isComment', { ticket });
+  server.createList('activity', 2, {
+    'isComment',
+    ticket
+  });
 
   server.post('/comments', {
     errors: [{ detail: "Unable to post comment." }]
@@ -137,7 +143,10 @@ test('activities can be paged, new activity resets pagination', async function(a
   });
 
   // 50 is the hardcoded pagesize
-  server.createList('activity', 70, 'isComment', { ticket });
+  server.createList('activity', 70, {
+    verb: 'comment:create',
+    ticket
+  });
 
   await visit(`/view/${ticket.id}`);
 
