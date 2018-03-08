@@ -27,12 +27,6 @@ module.exports = function(defaults) {
       only: ['pipe', 'pipe-action', 'queue', 'dec', 'toggle', 'contains', 'array']
     },
 
-    nodeModulesToVendor: [
-      'node_modules/filesize/lib',
-      'node_modules/fuse.js/dist',
-      'node_modules/moment-duration-format/lib'
-    ],
-
     svgJar: {
       sourceDirs: [
         'node_modules/octicons/build/svg',
@@ -61,14 +55,14 @@ module.exports = function(defaults) {
   // please specify an object with the list of modules as keys
   // along with the exports of each module as its value.
 
-  app.import('vendor/filesize.js', {
+  app.import('node_modules/filesize/lib/filesize.js', {
     using: [
       { transformation: 'amd', as: 'filesize' }
     ]
   });
-  app.import('vendor/fuse.js');
+  app.import('node_modules/fuse.js/dist/fuse.js');
   app.import('vendor/shims/fuse.js');
-  app.import('vendor/moment-duration-format.js', {
+  app.import('node_modules/moment-duration-format/lib/moment-duration-format.js', {
     using: [
       { transformation: 'amd', as: 'moment-duration-format' }
     ]
