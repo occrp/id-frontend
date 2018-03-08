@@ -2,20 +2,28 @@ import Ember from 'ember';
 
 let originalLoggerError;
 let originalTestAdapterException;
+let originalEmberOnError;
+let originalWindowOnError;
 
 function intercept(f = () => {}) {
   originalLoggerError = Ember.Logger.error;
   originalTestAdapterException = Ember.Test.adapter.exception;
-  Ember.Logger.error = f;
+  originalWindowOnError = window.onerror;
+  originalEmberOnError = Ember.onerror;
+  Ember.Logger.error = () => {};
   Ember.Test.adapter.exception = () => {};
+  Ember.onerror = f;
+  window.onerror = () => {};
 }
 
 function restore() {
   Ember.Logger.error = originalLoggerError;
   Ember.Test.adapter.exception = originalTestAdapterException;
+  Ember.onerror = originalEmberOnError;
+  window.onerror = originalWindowOnError;
 }
 
-export default function asyncThrows(context, f, expectedText) {
+export default function asyncThrows(context, f, text) {
   let done = this.async();
   let loggedErrorArgs;
 
@@ -25,19 +33,18 @@ export default function asyncThrows(context, f, expectedText) {
 
   return f()
     .then(() => {
-      let errorText = loggedErrorArgs.join(' ');
+      let errorText = (loggedErrorArgs || []).join(' ');
 
-      if (expectedText) {
-        let result = errorText.match(expectedText);
+      if (text) {
+        let result = errorText.match(text);
 
         this.pushResult({
           result,
-          expected: expectedText,
+          expected: text,
           actual: errorText,
-          message: `Expected to see error '${expectedText}'`
+          message: `Expected to see error '${text}'`
         });
       } else {
-
         this.pushResult({
           result: false,
           expected: '',
