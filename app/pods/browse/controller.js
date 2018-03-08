@@ -16,17 +16,17 @@ export default Controller.extend(Pageable, {
   responder: null,
   sort: '-created-at',
 
-  statusPairs: {
+  statusPairs: Object.freeze({
     open: 'new,in-progress,pending',
     closed: 'closed,cancelled'
-  },
+  }),
 
-  filterMeta: computed('model.meta', function () {
+  filterMeta: computed('model.meta', function() {
     let meta = this.get('model.meta');
     return meta.filters ? meta.filters : { responder: null, requester: null };
   }),
 
-  total: computed('model.meta', function () {
+  total: computed('model.meta', function() {
     let total = this.get('model.meta.total');
 
     // camelCased because serializers/application

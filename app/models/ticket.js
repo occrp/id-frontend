@@ -59,7 +59,7 @@ export default DS.Model.extend({
   connections: attr('string'), // reused on Person, labeled "Family info"
 
 
-  displayName: computed('kind', 'firstName', 'lastName', 'companyName', 'background', function () {
+  displayName: computed('kind', 'firstName', 'lastName', 'companyName', 'background', function() {
     switch (this.get('kind')) {
       case kindList[0]:
         return `${this.get('firstName')} ${this.get('lastName')}`;
@@ -70,7 +70,7 @@ export default DS.Model.extend({
     }
   }),
 
-  responderIds: computed('responders.[]', function () {
+  responderIds: computed('responders.[]', function() {
     let responders = this.get('responders');
     let userIds = responders.map(resp => resp.belongsTo('user').id())
     return userIds;

@@ -13,7 +13,7 @@ export default Controller.extend({
   activityBus: service(),
   flashMessages: service(),
 
-  title: computed('model.kind', 'i18n.locale', function () {
+  title: computed('model.kind', 'i18n.locale', function() {
     let i18n = this.get('i18n');
 
     switch (this.get('model.kind')) {

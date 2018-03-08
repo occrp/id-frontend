@@ -11,7 +11,7 @@ export default Component.extend({
     return { code: code, name: countries[code] };
   }),
 
-  suggestedCountries: ['US', 'GB', 'FR', 'ES', 'BA', 'AU'],
+  suggestedCountries: Object.freeze(['US', 'GB', 'FR', 'ES', 'BA', 'AU']),
 
   task: task(function * (term) {
     if (isBlank(term)) {

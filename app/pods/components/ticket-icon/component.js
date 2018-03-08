@@ -6,11 +6,11 @@ export default Component.extend({
   classNames: ['fa'],
   classNameBindings: ['kindIcon'],
 
-  iconByKind: {
+  iconByKind: Object.freeze({
     'person_ownership': 'fa-user',
     'company_ownership': 'fa-building',
     'other': 'fa-question'
-  },
+  }),
 
   kindIcon: computed('kind', function() {
     return this.get('iconByKind')[this.get('kind')];

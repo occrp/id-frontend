@@ -20,12 +20,12 @@ export default Component.extend({
   targetAttachment: computed('i18n.isRtl', function() {
     return this.get('i18n.isRtl') ? 'top right' : 'top left';
   }),
-  constraints: [
+  constraints: Object.freeze([
     {
       to: 'window',
       attachment: 'together'
     }
-  ],
+  ]),
 
   actions: {
 

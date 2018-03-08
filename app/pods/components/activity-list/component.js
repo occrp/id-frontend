@@ -6,7 +6,7 @@ export default Component.extend({
   store: service(),
   activityBus: service(),
 
-  componentsByType: {
+  componentsByType: Object.freeze({
     'comment:create': 'comment',
     'ticket:update:status_closed': 'close',
     'ticket:update:status_cancelled': 'cancel',
@@ -17,7 +17,7 @@ export default Component.extend({
     'attachment:destroy': 'attachment-deleted',
     'responder:create': 'assign',
     'responder:destroy': 'unassign'
-  },
+  }),
 
   loadItems: task(function * (pageNumber) {
     let records = yield this.get('store').query('activity', {

@@ -6,13 +6,13 @@ export default Component.extend({
   classNames: ['tag', 'tag--status'],
   classNameBindings: ['statusClass'],
 
-  classByStatus: {
+  classByStatus: Object.freeze({
     'new': 'tag--new',
     'in-progress': 'tag--progress',
     'pending': 'tag--pending',
     'closed': 'tag--closed',
     'cancelled': 'tag--cancelled'
-  },
+  }),
 
   statusClass: computed('status', function() {
     return this.get('classByStatus')[this.get('status')];
