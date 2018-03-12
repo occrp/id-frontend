@@ -14,5 +14,15 @@ export default ApplicationAdapter.extend({
     }
 
     return this._super(...arguments);
+  },
+
+  urlForQueryRecord(query) {
+    if (query.me) {
+      delete query.me;
+      const namespace = this.get('namespace');
+      return `/${namespace}/me`;
+    }
+
+    return this._super(...arguments);
   }
 });
