@@ -1,4 +1,4 @@
-export default {
+{
   "profile": {
     "search": {
       "placeholder": "Rechercher des utilisateurs",
@@ -307,13 +307,12 @@ export default {
       "title": ""
     }
   },
-  locales: {
-    en: 'English',
-    ru: 'Русский',
-    bs: 'Bos/Hrv/Srp',
-    es: 'Español',
-    fr: 'Français',
-    ar: 'العربية'
+  "locales": {
+    "en": "English",
+    "ru": "Русский",
+    "bs": "Bos/Hrv/Srp",
+    "es": "Español",
+    "fr": "Français",
+    "ar": "العربية"
   }
-
 }

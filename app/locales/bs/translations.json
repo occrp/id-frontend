@@ -1,4 +1,4 @@
-export default {
+{
   "profile": {
     "search": {
       "placeholder": "Pretražite korisnike",
@@ -307,12 +307,12 @@ export default {
       "title": "Izgleda da još niste ostavili nijedan zahtjev"
     }
   },
-  locales: {
-    en: 'English',
-    ru: 'Русский',
-    bs: 'Bos/Hrv/Srp',
-    es: 'Español',
-    fr: 'Français',
-    ar: 'العربية'
+  "locales": {
+    "en": "English",
+    "ru": "Русский",
+    "bs": "Bos/Hrv/Srp",
+    "es": "Español",
+    "fr": "Français",
+    "ar": "العربية"
   }
 }
