@@ -1,0 +1,77 @@
+.mainNav {
+  padding: $spacer-2 0;
+
+  .wrapper {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  .dd-trigger {
+    color: $gray-700;
+    @include caret;
+    padding: $spacer-2 0;
+    margin: -1 * $spacer-2 0;
+
+    .avatar {
+      margin-right: $spacer-2;
+      vertical-align: top;
+    }
+
+    @include hover {
+      color: theme-color("primary");
+      text-decoration: none;
+    }
+    &.is-active {
+      color: theme-color("primary");
+    }
+
+    @include rtl {
+      .avatar {
+        margin-right: 0;
+        margin-left: $spacer-2;
+      }
+    }
+
+  }
+}
+
+.mainNav-logo {
+  position: relative;
+  display: flex;
+  align-items: center;
+  color: inherit;
+
+  img {
+    display: inline-block;
+    margin-right: $spacer-1;
+  }
+
+  .icon {
+    visibility: hidden;
+    position: absolute;
+    left: 4px;
+    top: 4px;
+  }
+
+  @include hover {
+    color: theme-color("primary");
+    text-decoration: none;
+
+    img {
+      visibility: hidden;
+    }
+
+    .icon {
+      visibility: visible;
+    }
+  }
+
+  @include rtl {
+    img {
+      margin-left: $spacer-1;
+      margin-right: 0;
+    }
+  }
+
+}

@@ -317,11 +317,6 @@
     "save": "Save",
     "delete": "Delete"
   },
-  "prefixes": {
-    "on": "on {{date}}",
-    "at": "at {{time}}",
-    "by": "by {{user}}"
-  },
   "empty": {
     "noTickets": {
       "title": "Looks like you haven't submitted any requests yet.",
@@ -330,6 +325,14 @@
     "noResults": {
       "title": "No results matched your search.",
       "body": "Use the menu above to easily filter requests."
+    }
+  },
+  "nav": {
+    "requests": "Requests",
+    "reports": "Reports",
+    "account": {
+      "profile": "Profile",
+      "logout": "Logout"
     }
   },
   "locales": {

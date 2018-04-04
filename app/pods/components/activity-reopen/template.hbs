@@ -1,7 +1,7 @@
+<div class="activity-avatar">{{user-avatar user=data.user preset="large"}}</div>
 <div class="activity-author">
-  <span class="tag tag--new">{{t 'activity.reopen.action'}}</span>
-  {{t 'prefixes.by'}}
   <strong>{{data.user.displayName}}</strong>
+  <span class="tag tag--new">{{t 'activity.reopen.action'}}</span>
   <time datetime={{data.createdAt}} title={{moment-format data.createdAt 'LLL'}}>
     {{moment-from-now data.createdAt}}
   </time>

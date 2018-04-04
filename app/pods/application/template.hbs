@@ -1,10 +1,34 @@
 {{loading-slider isLoading=loading duration=250}}
+
+<nav class="mainNav t-sm t-muted">
+  <div class="wrapper">
+    <a href="{{parentMeta.rootURL}}" class="mainNav-logo t4 t-light">
+      <img width="32" height="32" src="{{parentMeta.rootLogo}}" />
+      <span>{{parentMeta.rootName}}</span>
+      {{icon "arrow-left" class="icon--lg"}}
+    </a>
+    <div>
+      {{#ui-dropdown as |dd|}}
+      {{#dd.trigger}}
+        {{~user-avatar user=session.currentUser}}{{session.currentUser.displayName~}}
+      {{/dd.trigger}}
+      {{#dd.body class="dd--xs"}}
+        <div class="list">
+          <a href={{parentMeta.profileURL}} target="_blank" class="list-item">{{t 'nav.account.profile'}}</a>
+          <a href="{{parentMeta.logoutURL}}" class="list-item">{{t 'nav.account.logout'}}</a>
+        </div>
+      {{/dd.body}}
+    {{/ui-dropdown}}
+    </div>
+  </div>
+</nav>
+
 <nav class="appNav">
   <div class="wrapper">
     <div class="appNav-links">
+      {{#link-to 'browse' class="appNav-item"}}{{t 'nav.requests'}}{{/link-to}}
       {{#if (can "manage tickets")}}
-        {{#link-to 'browse' class="appNav-item"}}Index{{/link-to}}
-        {{#link-to 'reporting' class="appNav-item"}}Reporting{{/link-to}}
+        {{#link-to 'reporting' class="appNav-item"}}{{t 'nav.reports'}}{{/link-to}}
       {{/if}}
     </div>
     <div class="appNav-switcher">

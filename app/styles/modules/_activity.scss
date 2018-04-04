@@ -34,7 +34,7 @@
 
 .activityList {
   position: relative;
-  margin: $spacer-4 0 $spacer-8 0;
+  margin: $spacer-4 0 $spacer-8 50px;
 
   // vertical line in the background
   &:before {
@@ -43,12 +43,12 @@
     height: 100%;
     position: absolute;
     top: 0;
-    left: calc(1rem + 14px);
+    left: 14px;
     background: $gray-300;
 
     @include rtl {
       left: auto;
-      right: calc(1rem + 14px);
+      right: 14px;
     }
   }
 }
@@ -56,6 +56,7 @@
 .activity {
   position: relative;
   margin: $spacer-3 0;
+  clear: both;
 }
 
 .activity--comment,
@@ -82,42 +83,45 @@
 
   strong {
     color: $gray-650;
-    margin: 0 0.1em;
-
-    &:first-child {
-      margin-left: 0;
-    }
+    margin-right: 0 0.1em;
   }
 
   .tag {
-    margin-right: 0.35em;
+    margin: 0 0.35em;
   }
 
   @include rtl {
     strong {
-      &:first-child {
-        margin-left: 0.1em;
-        margin-right: 0;
-      }
-    }
-
-    .tag {
-      margin-left: 0.35em;
+      margin-left: 0.1em;
       margin-right: 0;
     }
   }
 }
 
+
+.activity-avatar {
+  float: left;
+  margin-left: -50px;
+  margin-top: -1px;
+
+  @include rtl {
+    float: right;
+    margin-left: 0;
+    margin-right: -50px;
+  }
+}
+
 .activity-headline {
-  color: $gray-600;
-  background: white;
-  padding: 0 calc(1rem + 1px);
-  font-size: $font-size-sm;
   display: flex;
   align-items: center;
+  color: $gray-600;
+  background: white;
+  font-size: $font-size-sm;
+  padding: 0 1px;
 
   .icon {
     background: $gray-100;
+    color: $gray-600;
     padding: 5px;
     box-sizing: content-box;
     border-radius: 50%;
@@ -125,17 +129,17 @@
     margin-right: .5rem;
   }
 
-  [class^="icon-"] {
-    fill: $gray-600;
-  }
-
   strong {
     color: $gray-650;
-    margin: 0 0.1em;
+    margin-right: 0 0.1em;
+  }
+
+  .avatar {
+    vertical-align: top;
   }
 
   .tag {
-    margin-right: 0.35em;
+    margin: 0 0.35em;
     vertical-align: top;
   }
 
@@ -145,8 +149,8 @@
       margin-right: 0;
     }
 
-    .tag {
-      margin-left: 0.35em;
+    strong {
+      margin-left: .1em;
       margin-right: 0;
     }
   }

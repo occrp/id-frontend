@@ -19,10 +19,6 @@
 
   color: $gray-650;
 
-  [class^="icon-"] {
-    fill: theme-color("secondary");
-  }
-
   &:hover {
     text-decoration: none;
     color: theme-color("primary");
@@ -45,8 +41,14 @@
   }
 
   .icon {
+    color: theme-color("secondary");
     vertical-align: -7px;
     margin-right: $spacer;
+  }
+
+  .avatar {
+    margin-right: $spacer;
+    vertical-align: top;
   }
 
   @include rtl {
@@ -56,7 +58,8 @@
       margin-right: 0;
     }
 
-    .icon {
+    .icon,
+    .avatar {
       margin-left: $spacer;
       margin-right: 0;
     }

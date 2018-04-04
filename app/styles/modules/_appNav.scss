@@ -10,8 +10,9 @@
 
 .appNav-links {
   display: flex;
+  background: rgba(black, 0.1);
 
-  > a {
+  a {
     display: block;
     padding: $spacer-2 $spacer-3;
     color: white;

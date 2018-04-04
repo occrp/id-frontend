@@ -1,9 +1,8 @@
 <div class="activity-headline">
   {{icon "check"}}
   <div>
+    <strong>{{user-avatar user=data.user}} {{data.user.displayName}}</strong>
     {{status-label 'closed'}}
-    {{t 'prefixes.by'}}
-    <strong>{{data.user.displayName}}</strong>
     <time datetime={{data.createdAt}} title={{moment-format data.createdAt 'LLL'}}>
       {{moment-from-now data.createdAt}}
     </time>
