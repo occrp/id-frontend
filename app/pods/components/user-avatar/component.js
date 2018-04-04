@@ -6,9 +6,9 @@ export default EmberInitials.extend({
   size: 20,
   fontSize: 50,
   fontFamily: 'sans-serif',
-  textStyles: {
+  textStyles: Object.freeze({
     'letter-spacing': '0.05em'
-  },
+  }),
 
   init() {
     this.setProperties({

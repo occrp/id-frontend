@@ -2,21 +2,11 @@ import paginate from './helpers/paginate';
 import { upload } from 'ember-file-upload/mirage';
 import Response from 'ember-cli-mirage/response';
 
-import Ember from 'ember';
-const { underscore } = Ember.String;
-
 export default function() {
   this.namespace = '/api/v3';
 
   this.get('/me', function (schema) {
-    let attrs = schema.profiles.find(42).attrs;
-    let processedAttrs = {};
-
-    Object.keys(attrs).forEach(function(key) {
-      processedAttrs[underscore(key)] = attrs[key];
-    });
-
-    return processedAttrs;
+    return schema.profiles.find(42);
   }, { timing: 0 });
 
 

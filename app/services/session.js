@@ -1,4 +1,3 @@
-import { getOwner } from '@ember/application';
 import Service, { inject as service } from '@ember/service';
 
 export default Service.extend({
@@ -7,7 +6,6 @@ export default Service.extend({
   currentUser: null,
 
   getCurrentSession: function() {
-
     return this.get('store').queryRecord('profile', { me: true }).then((payload) => {
       this.set('currentUser', payload);
     });
