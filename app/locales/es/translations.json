@@ -1,4 +1,4 @@
-export default {
+{
   "actions": {
     "upload": "Subir",
     "remove": "Remover",

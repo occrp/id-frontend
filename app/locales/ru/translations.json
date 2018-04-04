@@ -1,4 +1,4 @@
-export default {
+{
   "profile": {
     "search": {
       "placeholder": "Найти пользователя",
@@ -49,12 +49,12 @@ export default {
       "label": "По датам",
       "createdAt": {
         "desc": "Самые новые",
-        "asc": "Самые старые",
+        "asc": "Самые старые"
       },
       "deadlineAt": {
         "desc": "Выполнить раньше",
         "asc": "Выполнить позже"
-      },
+      }
     },
     "kind": {
       "title": "Отфильтровать по типу"
@@ -156,13 +156,13 @@ export default {
         "open": {
           "zero": "Открыто",
           "one": "Открыт",
-          "other": "Открыто",
+          "other": "Открыто"
         },
         "closed": {
           "zero": "Закрыто",
           "one": "Закрыт",
-          "other": "Закрыто",
-        },
+          "other": "Закрыто"
+        }
       },
       "cancelled": {
         "name": "Отменен"
@@ -326,17 +326,17 @@ export default {
       "title": "У вас пока нету запроса пока"
     }
   },
-  locales: {
-    en: 'English',
-    ru: 'Русский',
-    bs: 'Bos/Hrv/Srp',
-    es: 'Español',
-    fr: 'Français',
-    ar: 'العربية'
+  "locales": {
+    "en": "English",
+    "ru": "Русский",
+    "bs": "Bos/Hrv/Srp",
+    "es": "Español",
+    "fr": "Français",
+    "ar": "العربية"
   },
-  validationErrors: {
-    blank: "Это поле не может быть пустым",
-    before: "Тут дата должна быть раньше {{before}}",
-    after: "Эта дата должна быть позже {{after}}",
+  "validationErrors": {
+    "blank": "Это поле не может быть пустым",
+    "before": "Тут дата должна быть раньше {{before}}",
+    "after": "Эта дата должна быть позже {{after}}"
   }
 }
