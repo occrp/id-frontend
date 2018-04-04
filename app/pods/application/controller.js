@@ -7,10 +7,12 @@ import ENV from 'id-frontend/config/environment';
 export default Controller.extend({
   i18n: service(),
   moment: service(),
+  session: service(),
 
   queryParams: ['lang'],
 
   activeLocales: ENV.i18n.activeLocales,
+  parentMeta: ENV.options,
 
   // no other way to add classes/attrs to the root element afaict
   manageRtlAttrs(locale) {

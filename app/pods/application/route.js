@@ -16,7 +16,7 @@ export default Route.extend(LoadingSliderMixin, {
   actions: {
     error(error) {
       if (error instanceof UnauthorizedError) {
-        window.location.replace(ENV.options.loginLink);
+        window.location.replace(ENV.options.loginURL);
         return;
       }
 

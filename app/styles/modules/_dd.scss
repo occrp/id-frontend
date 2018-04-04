@@ -49,6 +49,10 @@
   width: to-rem(240px);
 }
 
+.dd--xs .dd-content {
+  width: to-rem(180px);
+}
+
 .searchBox {
   padding: 7px;
   border-bottom: 1px solid $gray-500;
