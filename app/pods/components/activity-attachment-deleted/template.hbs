@@ -1,7 +1,7 @@
 <div class="activity-headline">
   {{icon "trashcan"}}
   <div>
-    <strong>{{data.user.displayName}}</strong>
+    <strong>{{user-avatar user=data.user}} {{data.user.displayName}}</strong>
     {{t 'activity.attachment.removed'}}
     <time datetime={{data.createdAt}} title={{moment-format data.createdAt 'LLL'}}>
       {{moment-from-now data.createdAt}}

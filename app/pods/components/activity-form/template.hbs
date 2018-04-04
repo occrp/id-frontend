@@ -6,6 +6,8 @@
 {{/if}}
 
 <div class="activity activity--comment">
+  <div class="activity-avatar">{{user-avatar user=session.currentUser preset="large"}}</div>
+
   <div class="activity-author"><strong>{{t 'activity.comment.title'}}</strong></div>
   <form class="activity-body activity-form" {{action "save" on="submit"}}>
 

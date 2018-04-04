@@ -1,9 +1,8 @@
 <div class="activity-headline">
   {{icon "issue-reopened"}}
   <div>
+    <strong>{{user-avatar user=data.user}} {{data.user.displayName}}</strong>
     <span class="tag tag--progress">{{t 'activity.resume.action'}}</span>
-    {{t 'prefixes.by'}}
-    <strong>{{data.user.displayName}}</strong>
     <time datetime={{data.createdAt}} title={{moment-format data.createdAt 'LLL'}}>
       {{moment-from-now data.createdAt}}
     </time>
