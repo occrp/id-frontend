@@ -1,5 +1,5 @@
 // Based on Bootstrap 4's reboot
-// https://github.com/twbs/bootstrap/blob/27a015ba15fa63d5c311c644c5c0efc2a2868fe7/scss/_reboot.scss
+// https://github.com/twbs/bootstrap/blob/27f553c9651dbe81a8aaf821aa2bf15670d9adb8/scss/_reboot.scss
 
 // MODDED
 //
@@ -46,7 +46,9 @@ html {
 
 // IE10+ doesn't honor `<meta name="viewport">` in some cases.
 @at-root {
-  @-ms-viewport { width: device-width; }
+  @-ms-viewport {
+    width: device-width;
+  }
 }
 
 // Shim for "new" HTML5 structural elements to display correctly (IE10, older browsers)
@@ -78,7 +80,7 @@ body {
 //
 // Credit: https://github.com/suitcss/base
 [tabindex="-1"]:focus {
-  outline: none !important;
+  outline: 0 !important;
 }
 
 
@@ -283,29 +285,6 @@ svg:not(:root) {
 }
 
 
-// Avoid 300ms click delay on touch devices that support the `touch-action` CSS property.
-//
-// In particular, unlike most other browsers, IE11+Edge on Windows 10 on touch devices and IE Mobile 10-11
-// DON'T remove the click delay when `<meta name="viewport" content="width=device-width">` is present.
-// However, they DO support removing the click delay via `touch-action: manipulation`.
-// See:
-// * https://getbootstrap.com/docs/4.0/content/reboot/#click-delay-optimization-for-touch
-// * https://caniuse.com/#feat=css-touch-action
-// * https://patrickhlauke.github.io/touch/tests/results/#suppressing-300ms-delay
-
-a,
-area,
-button,
-[role="button"],
-input:not([type=range]),
-label,
-select,
-summary,
-textarea {
-  touch-action: manipulation;
-}
-
-
 //
 // Tables
 //
@@ -493,6 +472,7 @@ output {
 
 summary {
   display: list-item; // Add the correct display in all browsers
+  cursor: pointer;
 }
 
 template {
