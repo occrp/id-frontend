@@ -338,5 +338,11 @@
     "blank": "Это поле не может быть пустым",
     "before": "Тут дата должна быть раньше {{before}}",
     "after": "Эта дата должна быть позже {{after}}"
+  },
+  "time": {
+    "default": "MMM D YYYY",
+    "defaultCurrentYear": "MMM D",
+    "full": "MMM D YYYY, HH:mm",
+    "fullCurrentYear": "MMM D, HH:mm"
   }
 }

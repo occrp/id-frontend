@@ -58,14 +58,14 @@ test('(admin) editing the ticket deadline', async function(assert) {
 
   await visit(`/view/${ticket.id}`);
 
-  assert.equal(find('[data-test-deadline-at]').attr('datetime'), '2018-12-01T22:00:00.000Z', 'initial deadline');
+  assert.equal(find('[data-test-deadline-at] time').attr('datetime'), '2018-12-01T22:00:00.000Z', 'initial deadline');
 
   await click('[data-test-ea-open]');
   await fillIn('#ticket-deadline', '20/03/2100');
 
   await click('[data-test-ea-save]');
 
-  assert.equal(find('[data-test-deadline-at]').attr('datetime'), '2100-03-20T00:00:00.000Z');
+  assert.equal(find('[data-test-deadline-at] time').attr('datetime'), '2100-03-20T00:00:00.000Z');
 });
 
 test('(admin) if editing the ticket deadline errors, a message is displayed', async function(assert) {
@@ -96,7 +96,7 @@ test('(admin) if editing the ticket deadline errors, a message is displayed', as
 
   await visit(`/view/${ticket.id}`);
 
-  assert.equal(find('[data-test-deadline-at]').attr('datetime'), '2018-12-01T22:00:00.000Z', 'initial deadline');
+  assert.equal(find('[data-test-deadline-at] time').attr('datetime'), '2018-12-01T22:00:00.000Z', 'initial deadline');
 
   await click('[data-test-ea-open]');
   await fillIn('#ticket-deadline', '20/03/2100');
@@ -104,5 +104,5 @@ test('(admin) if editing the ticket deadline errors, a message is displayed', as
   assert.ok(find('.flash-message').length > 0, 'showing alert');
 
   await click('[data-test-ea-cancel]');
-  assert.equal(find('[data-test-deadline-at]').attr('datetime'), '2018-12-01T22:00:00.000Z',  'deadline is rolled back');
+  assert.equal(find('[data-test-deadline-at] time').attr('datetime'), '2018-12-01T22:00:00.000Z',  'deadline is rolled back');
 });

@@ -55,7 +55,7 @@
 
 .activity {
   position: relative;
-  margin: $spacer-3 0;
+  margin: $spacer-2 0;
   clear: both;
 }
 
@@ -83,7 +83,7 @@
 
   strong {
     color: $gray-650;
-    margin-right: 0 0.1em;
+    margin-right: 0.1em;
   }
 
   .tag {
@@ -131,15 +131,16 @@
 
   strong {
     color: $gray-650;
-    margin-right: 0 0.1em;
+    margin-right: .1em;
   }
 
   .avatar {
     vertical-align: top;
+    margin-right: .4rem;
   }
 
   .tag {
-    margin: 0 0.35em;
+    margin: 0 .35em;
     vertical-align: top;
   }
 
@@ -151,6 +152,11 @@
 
     strong {
       margin-left: .1em;
+      margin-right: 0;
+    }
+
+    .avatar {
+      margin-left: .4rem;
       margin-right: 0;
     }
   }

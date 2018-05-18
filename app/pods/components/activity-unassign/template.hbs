@@ -1,10 +1,8 @@
 <div class="activity-headline">
   {{icon "person"}}
   <div>
-    <strong>{{user-avatar user=data.responderUser}} {{data.responderUser.displayName}}</strong>
-    {{t 'activity.unassign.action'}}
-    <time datetime={{data.createdAt}} title={{moment-format data.createdAt 'LLL'}}>
-      {{moment-from-now data.createdAt}}
-    </time>
+    <strong>{{user-avatar user=data.responderUser}}{{data.responderUser.displayName}}</strong>
+    {{t 'activity.unassign.action'}} &bull;
+    {{timestamp-full data.createdAt}}
   </div>
 </div>

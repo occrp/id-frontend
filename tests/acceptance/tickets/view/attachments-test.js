@@ -40,6 +40,7 @@ test('uploading a file', async function(assert) {
 
     schema.activities.create({
       verb: 'attachment:create',
+      createdAt: (new Date()).toISOString(),
       ticket,
       user: currentUser,
       attachment

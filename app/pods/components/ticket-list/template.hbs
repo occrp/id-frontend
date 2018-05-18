@@ -30,9 +30,7 @@
         {{else}}
           <span>
             {{t 'ticket.updatedAt.prefix'}}
-            <time datetime={{item.updatedAt}} title={{moment-format item.updatedAt 'LLL'}}>
-              {{moment-from-now item.updatedAt}}
-            </time>
+            {{timestamp-full item.updatedAt}}
           </span>
         {{/if}}
 
@@ -70,17 +68,11 @@
     {{/if}}
 
     <div class="ticket-cell ticket-dates">
-      <p>
-        <time datetime={{item.createdAt}} title={{moment-format item.createdAt 'LLL'}}>
-          {{moment-format item.createdAt}}
-        </time>
-      </p>
+      <p>{{timestamp-date item.createdAt}}</p>
       {{#if item.deadlineAt}}
         <p class="ticket-deadline">
           {{t 'ticket.deadline.prefix'}}
-          <time datetime={{item.deadlineAt}} title={{moment-format item.deadlineAt 'LLL'}}>
-            {{moment-from-now item.deadlineAt}}
-          </time>
+          {{timestamp-rel item.deadlineAt}}
         </p>
       {{/if}}
     </div>

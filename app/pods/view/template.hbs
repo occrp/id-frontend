@@ -52,18 +52,14 @@
           {{else}}
             <span class="ticketRequester">{{model.requester.displayName}}</span>
           {{/if}}
-          <time datetime={{model.createdAt}} title={{moment-format model.createdAt 'LLL'}}>
-            {{moment-format model.createdAt}}
-          </time>
+          {{timestamp-date model.createdAt}}
         </div>
 
-        <div class="ticketSubtitle-secondary">
+        <div class="ticketSubtitle-secondary" data-test-deadline-at>
           {{#unless ea.isEditing}}
             {{#if model.deadlineAt}}
               {{t 'ticket.deadline.label'}}
-              <time datetime={{moment-iso model.deadlineAt}} title={{moment-format model.deadlineAt 'LLL'}} data-test-deadline-at>
-                {{~moment-format model.deadlineAt~}}
-              </time>
+              {{timestamp-date model.deadlineAt}}
             {{else}}
               {{t 'ticket.deadline.empty'}}
             {{/if}}
@@ -201,7 +197,7 @@
           {{status-label model.status data-test-status class="mr-2"}}
           <div>
             {{t 'ticket.updatedAt.prefix'}}
-            <time datetime={{model.updatedAt}} title={{moment-format model.updatedAt 'LLL'}}>{{moment-from-now model.updatedAt}}</time>
+            {{timestamp-full model.updatedAt}}
           </div>
         {{/if}}
       </div>

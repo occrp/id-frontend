@@ -150,8 +150,7 @@
     "one": "Activity",
     "comment": {
       "title": "Leave a comment",
-      "submitButton": "Post comment",
-      "action": "{{user}} commented {{relativeTime}}"
+      "submitButton": "Post comment"
     },
     "attachment": {
       "action": "{{user}} attached files",
@@ -356,5 +355,11 @@
       "body": "We have been automatically notified and we need better copy for this."
     },
     "activities": "An error has occured while loading the activity feed."
+  },
+  "time": {
+    "default": "MMM D YYYY",
+    "defaultCurrentYear": "MMM D",
+    "full": "MMM D YYYY, HH:mm",
+    "fullCurrentYear": "MMM D, HH:mm"
   }
 }

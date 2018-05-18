@@ -2,9 +2,7 @@
 <div class="activity-author">
   <strong>{{data.user.displayName}}</strong>
   <span class="tag tag--new">{{t 'activity.reopen.action'}}</span>
-  <time datetime={{data.createdAt}} title={{moment-format data.createdAt 'LLL'}}>
-    {{moment-from-now data.createdAt}}
-  </time>
+  {{timestamp-full data.createdAt}}
 </div>
 <div class="activity-body formatted" data-test-activity-body>
   {{~data.comment.body~}}

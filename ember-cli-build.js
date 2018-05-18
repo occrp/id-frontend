@@ -37,6 +37,9 @@ module.exports = function(defaults) {
 
   if ( process.env.EMBER_ENV === 'development') {
     buildOptions.tests = false;
+    buildOptions.babel = {
+      sourceMaps: 'inline'
+    }
   }
 
   let app = new EmberApp(defaults, buildOptions);

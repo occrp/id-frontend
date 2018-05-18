@@ -35,7 +35,7 @@
     "ember-cli-json-module": "0.0.3",
     "ember-cli-loading-slider": "^1.3.3",
     "ember-cli-meta-options": "0.0.7",
-    "ember-cli-mirage": "0.4.2",
+    "ember-cli-mirage": "0.4.7",
     "ember-cli-moment-shim": "^3.5.3",
     "ember-cli-qunit": "^4.1.1",
     "ember-cli-sass": "^7.1.7",

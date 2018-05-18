@@ -318,5 +318,11 @@
     "adminProfile": "Admin profile"
   },
   "validationErrors.blank": "Este campo no puede estar en blanco",
-  "actions.unmark": "Desmarcar"
+  "actions.unmark": "Desmarcar",
+  "time": {
+    "default": "MMM D YYYY",
+    "defaultCurrentYear": "MMM D",
+    "full": "MMM D YYYY, HH:mm",
+    "fullCurrentYear": "MMM D, HH:mm"
+  }
 }

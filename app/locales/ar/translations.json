@@ -314,5 +314,11 @@
     "es": "Español",
     "fr": "Français",
     "ar": "العربية"
+  },
+  "time": {
+    "default": "MMM D YYYY",
+    "defaultCurrentYear": "MMM D",
+    "full": "MMM D YYYY, HH:mm",
+    "fullCurrentYear": "MMM D, HH:mm"
   }
 }
