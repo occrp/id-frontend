@@ -154,9 +154,23 @@ export default function() {
   this.get('/activities', (schema, request) => {
     // not a standard endpoint. used in place of a ticket.activities relationship
     let ticketId = request.queryParams['filter[target_object_id]'];
+    let cursor = request.queryParams['filter[start_after]'];
+
     let collection = schema.activities.where({ ticketId });
 
-    collection.models.sort((a, b) => new Date(a.createdAt) - new Date(b.createdAt));
+    collection = collection.sort((a, b) => {
+      return new Date(a.attrs.createdAt) - new Date(b.attrs.createdAt)
+    });
+
+    if (cursor) {
+      let last = schema.activities.find(cursor);
+
+      collection = collection.filter((model) => {
+        return new Date(model.createdAt) < new Date(last.createdAt);
+      })
+    }
+
+    request.queryParams['page[number]'] = 1;
 
     return paginate(collection, request, this.namespace, { reverse: true });
   });

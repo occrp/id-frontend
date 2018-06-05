@@ -7,10 +7,9 @@
     {{/if}}
   </h2>
 
-  {{activity-pagination
-    meta=activityCache.meta
-    current=currentPage
-    onSwitch=(action 'switchPage')}}
+  <button {{action 'loadMore'}} class="button" data-load-more>
+    {{~t 'pagination.older'~}}
+  </button>
 </div>
 
 {{#if loadItems.last.error}}
@@ -20,7 +19,7 @@
   </div>
 {{else}}
   <div class="activityList">
-    {{#each activityCache as |item|}}
+    {{#each sortedActivities as |item|}}
       {{#with (get componentsByType item.verb) as |type|}}
         {{component (concat 'activity-' type)
           data=item

@@ -89,7 +89,7 @@ export default Factory.extend({
 
   withActivities: trait({
     afterCreate(ticket, server) {
-      server.createList('activity', 2, 'isComment', { ticket });
+      server.createList('activity', 10, 'isComment', { ticket });
       server.create('activity', 'isCancel', { ticket });
       server.create('activity', 'isReopen', { ticket });
       server.create('activity', 'isPending', { ticket });

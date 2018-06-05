@@ -1,6 +1,8 @@
 import { inject as service } from '@ember/service';
 import Component from '@ember/component';
 import { task } from 'ember-concurrency';
+import { A } from '@ember/array';
+import { computed } from '@ember/object';
 
 export default Component.extend({
   store: service(),
@@ -19,36 +21,42 @@ export default Component.extend({
     'responder:destroy': 'unassign'
   }),
 
-  loadItems: task(function * (pageNumber) {
-    let records = yield this.get('store').query('activity', {
-      filter: {
-        'target_object_id': this.get('model.id')
-      },
+  activityCache: null,
+  cursor: null,
+  pageSize: 5, // must match the one in /serializers/ticket
+
+  loadItems: task(function * () {
+    let filter =  {
+      'target_object_id': this.get('model.id')
+    };
+
+    if (this.get('cursor')) {
+      filter.startAfter = this.get('cursor');
+    }
+
+    yield this.get('store').query('activity', {
+      filter,
       page: {
-        number: pageNumber,
         size: this.get('pageSize')
       },
       sort: 'timestamp',
       include: 'comment,responder-user,user'
+    }).then((records) => {
+      this.get('activityCache').addObjects(records.toArray());
+      this.set('cursor', records.get('firstObject.id'));
     });
-
-    this.set('activityCache', records);
-    this.set('currentPage', pageNumber);
   }),
 
-  currentPage: null,
-  pageSize: 50, // must match the one in /serializers/ticket
-
-  activityCache: null,
-
-  reloadActivitites() {
-    this.get('loadItems').perform(1);
-  },
+  sortedActivities: computed('activityCache.[]', function() {
+    return this.get('activityCache').sortBy('createdAt');
+  }),
 
   init() {
     this._super(...arguments);
 
+    this.set('activityCache', new A());
     this.reloadActivitites();
+
     this.get('activityBus').on('reload', this, 'reloadActivitites');
   },
 
@@ -56,9 +64,14 @@ export default Component.extend({
     this.get('activityBus').off('reload', this, 'reloadActivitites');
   },
 
+  reloadActivitites() {
+    this.set('cursor', null);
+    this.get('loadItems').perform();
+  },
+
   actions: {
-    switchPage(pageNumber) {
-      this.get('loadItems').perform(pageNumber);
+    loadMore() {
+      this.get('loadItems').perform();
     }
   }
 
