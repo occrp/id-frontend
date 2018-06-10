@@ -1,15 +1,15 @@
 {
     "profile": {
         "search": {
-            "noResults": "Ни один пользователь не найден",
-            "placeholder": "Найти пользователя"
+            "placeholder": "Найти пользователя",
+            "noResults": "Ни один пользователь не найден"
         }
     },
     "pagination": {
-        "older": "Старые",
+        "next": "Далее",
         "prev": "Назад",
         "newer": "Новые",
-        "next": "Далее"
+        "older": "Старые"
     },
     "actions": {
         "addSubscriber": "Добавить подписчика",
@@ -32,9 +32,8 @@
         "by": "Пользователем {{user}}"
     },
     "attachment": {
-        "removalPrompt": "Are you sure you want to delete this file?",
         "filesSelected": "{{count}} файлов выбраны",
-        "zero": "Без приложений",
+        "removalPrompt": "Вы уверены, что хотите удалить файл?",
         "state": {
             "uploaded": "Загружен",
             "uploading": "Загружается",
@@ -43,13 +42,14 @@
             "aborted": "Отменена",
             "queued": "В ожидании"
         },
+        "zero": "Без приложений",
         "other": "Приложения",
         "dropzone": {
-            "desc": "Перетащите файл в это поле или {{select}}",
+            "title": "Загрузить файлы",
             "activeTitle": "Отпустите для загрузки",
             "invalidTitle": "Недоступно",
             "select": "Выбрать файл",
-            "title": "Загрузить файлы"
+            "desc": "Перетащите файл в это поле или {{select}}"
         }
     },
     "filters": {
@@ -58,12 +58,12 @@
                 "asc": "Выполнить позже",
                 "desc": "Выполнить раньше"
             },
-            "label": "По датам",
+            "title": "Отсортировать",
             "createdAt": {
                 "asc": "Самые старые",
                 "desc": "Самые новые"
             },
-            "title": "Отсортировать"
+            "label": "По датам"
         },
         "kind": {
             "title": "Отфильтровать по типу"
@@ -101,7 +101,7 @@
         },
         "attachment": {
             "action": "{{user}} прикрепил/а файлы",
-            "removed": "{{user}} removed file"
+            "removed": "{{user}} удалил(а) файл"
         },
         "unassign": {
             "action": "{{user}} больше не назначен/а"
@@ -116,16 +116,16 @@
             "label": "Национальность"
         },
         "sources": {
-            "desc": "Какие источники вы уже проверили?",
+            "label": "Источники",
             "formLabel": "Где вы искали?",
-            "label": "Источники"
+            "desc": "Какие источники вы уже проверили?"
         },
         "zero": "{{count}} запросов",
         "deadline": {
             "prefix": "Выполнить до {{relativeTime}}",
-            "desc": "Мы постараемся соблюсти ваши сроки",
+            "label": "Срок исполнения",
             "empty": "Без дедлайна",
-            "label": "Срок исполнения"
+            "desc": "Мы постараемся удовлетворить ваши сроки, но, пожалуйста, обратите внимание, что наш персонал довольно занят.<br />Дайте им как можно больше времени!"
         },
         "whysensitive": {
             "label": "Почему он критичен?"
@@ -135,29 +135,29 @@
             "label": "Последнее обновление"
         },
         "initialInformation": {
-            "desc": "Любая информация, которая у вас уже есть",
+            "label": "Исходная информация",
             "formLabel": "Где вы уже искали?",
-            "label": "Исходная информация"
+            "desc": "Любая информация, которая у вас уже есть."
         },
         "businessActivities": {
             "label": "Предпринимательская деятельность"
         },
         "backgroundCompany": {
-            "desc": "Что вам уже удалось узнать?",
+            "label": "Предыстория компании",
             "formLabel": "Ваша история",
-            "label": "Предыстория компании"
+            "desc": "Что вам уже удалось узнать?"
         },
         "backgroundOther": {
-            "desc": "Любая информация, которая у вас уже есть",
+            "label": "Вопрос",
             "formLabel": "Что вы хотите узнать?",
-            "label": "Вопрос"
+            "desc": "Любая информация, которая у вас уже есть."
         },
         "subscriber": {
-            "emailPlaceholder": "Почта пользователя",
             "selfRemove": "Отказываться от подписки?",
             "other": "Подписчики",
             "selfNotice": "Вы подписаны на этот вопрос.",
-            "one": "Подписчик"
+            "one": "Подписчик",
+            "emailPlaceholder": "Почта пользователя"
         },
         "other": "{{count}} запросa",
         "status": {
@@ -188,9 +188,9 @@
             "label": "Дата рождения"
         },
         "background": {
-            "desc": "Что вам уже удалось узнать?",
+            "label": "Предыстория",
             "formLabel": "Ваша история",
-            "label": "Предыстория"
+            "desc": "Что вам уже удалось узнать?"
         },
         "requester": {
             "prefix": "Отправитель {{requester}}",
@@ -199,8 +199,8 @@
             "one": "Автор запроса"
         },
         "connectionsPerson": {
-            "desc": "Известные родственные связи",
-            "label": "Семья и партнеры"
+            "label": "Семья и партнеры",
+            "desc": "Известные родственные связи."
         },
         "connections": {
             "formLabel": "Связи с другими компаниями и людьми",
@@ -225,26 +225,26 @@
             "label": "Имя"
         },
         "sourcesPerson": {
-            "desc": "Другое написание имени или псевдонимы",
-            "label": "Псевдонимы"
+            "label": "Псевдонимы",
+            "desc": "Другие прозвище, клички и псевдонимы."
         },
         "country": {
-            "one": "Страна",
+            "label": "Страна регистрации",
             "search": {
-                "noResults": "Не найдено ни одной страны",
-                "placeholder": "Поиск страны по названию или коду"
+                "placeholder": "Поиск страны по названию или коду",
+                "noResults": "Не найдено ни одной страны"
             },
             "other": "Страны",
             "zero": "Стран",
-            "label": "Страна регистрации"
+            "one": "Страна"
         },
         "responder": {
             "selfRemove": "Удалить назначение?",
             "selfNotice": "Этот запрос назначен вам.",
-            "label": "Назначеные исполнители",
+            "one": "Исполнитель",
             "zero": "Исполнителя",
             "other": "Исполнители",
-            "one": "Исполнитель",
+            "label": "Назначеные исполнители",
             "empty": "Никто не назначен"
         },
         "sensitive": {
@@ -261,57 +261,57 @@
             "title": "Мои запросы"
         },
         "new": {
-            "headline": "Ваш запрос будет направлен нашим профессиональным расследователям",
+            "headline": "Ваш запрос будет направлен нашему профессиональному персоналу.",
             "form": {
-                "invalidMessage": "Пожалуйста заполните все отмеченные поля прежде чем продолжить",
+                "invalidMessage": "Пожалуйста заполните все отмеченные поля прежде чем продолжить.",
                 "submitButton": "Отправить запрос",
                 "otherDetails": "Другие детали",
                 "requestDetails": "Детали зароса",
-                "uploadInfo": "You will be able attach documents after submitting the request."
+                "uploadInfo": "Вы сможете загрузить файлы после подачи запроса."
             },
             "title": "Информация о запросе"
         },
         "reporting": {
             "staffTitle": {
-                "zero": "{{count}} Staff members",
-                "other": "{{count}} Staff members",
-                "one": "{{count}} Staff member"
+                "zero": "{{count}} Сотрудника",
+                "other": "{{count}} Сотрудники",
+                "one": "{{count}} Сотрудник"
             },
             "openTickets": {
-                "zero": "{{count}} Open requests",
-                "other": "{{count}} Open requests",
-                "one": "{{count}} Open request"
+                "zero": "{{count}} Открытых запросов",
+                "other": "{{count}} Открытых запросов",
+                "one": "{{count}} Открытый запрос"
             },
-            "countriesTitle": {
-                "zero": "{{count}} Countries",
-                "other": "{{count}} Countries",
-                "one": "{{count}} Country"
+            "dateRange": {
+                "lastHalf": "Последние 6 месяцев",
+                "lastYear": "В прошлом году",
+                "lastQuarter": "Последние 3 месяца"
             },
             "closedTickets": {
-                "zero": "{{count}} Closed requests",
-                "other": "{{count}} Closed requests",
-                "one": "{{count}} Closed request"
+                "zero": "{{count}}  Закрытых запросов",
+                "other": "{{count}}  Закрытых запросов",
+                "one": "{{count}} Закрытый запрос"
             },
-            "pastDeadline": "{{count}} past deadline",
-            "dateRange": {
-                "lastHalf": "Last 6 months",
-                "lastYear": "Last year",
-                "lastQuarter": "Last 3 months"
+            "pastDeadline": "{{count}} истекшие",
+            "countriesTitle": {
+                "zero": "{{count}} Стран",
+                "other": "{{count}} Страны",
+                "one": "{{count}} Страна"
             },
             "columns": {
-                "pastDeadline": "Past deadline",
+                "avgTime": "Среднее время разрешения",
                 "total": "Total",
-                "avgTime": "Avg. resolution time",
+                "pastDeadline": "Истекшие",
                 "name": "Name",
-                "month": "Month"
+                "month": "Месяц"
             }
         },
         "view": {
             "close": {
                 "cancel": "Нет",
                 "button": "{{verb}} запрос",
-                "confirm": "Да",
-                "title": "Вы уверены, что хотите {{verb}} этот запрос?"
+                "title": "Вы уверены, что хотите {{verb}} этот запрос?",
+                "confirm": "Да"
             },
             "pending": {
                 "button": "Придержать в ожидании ответа"
@@ -323,17 +323,17 @@
         }
     },
     "userCard": {
-        "viewRequests": "View requests",
-        "adminProfile": "Admin profile"
+        "viewRequests": "Запросы",
+        "adminProfile": "Профиль администратора"
     },
     "empty": {
         "noResults": {
-            "body": "Используйте меню, чтобы отфильтровать запросы",
-            "title": "Нет результатов по вашему поиску"
+            "body": "Используйте меню для фильтрации запросов.",
+            "title": "Нет результатов по вашему поиску."
         },
         "noTickets": {
             "button": "Отправить запрос",
-            "title": "У вас пока нету запроса пока"
+            "title": "У вас нету запросов пока."
         }
     },
     "locales": {
@@ -345,10 +345,10 @@
         "es": "Español"
     },
     "validationErrors": {
-        "before": "Тут дата должна быть раньше {{before}}",
-        "email": "В этом поле должен быть адрес электронной почты",
+        "blank": "Это поле не может быть пустым",
         "after": "Эта дата должна быть позже {{after}}",
-        "blank": "Это поле не может быть пустым"
+        "email": "В этом поле должен быть адрес электронной почты",
+        "before": "Тут дата должна быть раньше {{before}}"
     },
     "time": {
         "default": "MMM D YYYY",
@@ -370,6 +370,6 @@
             "body": "Мы получили уведомление и постараемся как можно скорее решить проблему.",
             "title": "Произошла ошибка."
         },
-        "activities": "Произошла ошибка при загрузки ленты новостей."
+        "activities": "Произошла ошибка при загрузки ленты изменений."
     }
 }
