@@ -1,7 +1,9 @@
-# id-frontend
+# The Investigative Dashboard Project Client 🕵️
 
-This README outlines the details of collaborating on this Ember application.
-A short introduction of this app could easily go here.
+[![Build Status](https://travis-ci.org/occrp/id-frontend.svg?branch=master)](https://travis-ci.org/occrp/id-frontend)
+ [![Translation status](https://hosted.weblate.org/widgets/occrp/-/investigative-dashboard/svg-badge.svg)](https://hosted.weblate.org/engage/occrp/?utm_source=widget)
+
+[OCCRP](https://tech.occrp.org/projects/) research desk application front-end.
 
 ## Prerequisites
 
@@ -41,6 +43,18 @@ Make use of the many generators for code, try `ember help generate` for more det
 ### Deploying
 
 Specify what it takes to deploy your app.
+
+#### Translations
+
+Translations are managed on [Weblate](https://hosted.weblate.org/projects/occrp/investigative-dashboard/).
+
+To sync the translations add the git repository and rebase Weblate commits:
+
+```
+$ git remote add weblate https://hosted.weblate.org/git/occrp/investigative-dashboard/
+$ git fetch -all
+$ git rebase weblate/master
+```
 
 ## Further Reading / Useful Links
 
