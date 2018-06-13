@@ -27,6 +27,7 @@
       "submitButton": "Legg inn kommentar",
       "title": "Kommenter"
     },
+    "loadOlder": "Last inn eldre",
     "one": "Aktivitet",
     "reopen": {
       "action": "gjenåpnet"
@@ -34,6 +35,7 @@
     "resume": {
       "action": "fortsatte"
     },
+    "showOnlyComments": "Kun vis kommentarer",
     "unassign": {
       "action": "{{user}} fikk sin tildelning opphevet"
     }
