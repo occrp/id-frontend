@@ -75,7 +75,7 @@
   position: relative;
 
   & + & {
-    margin-top: $spacer-4;
+    margin-top: $spacer-3;
   }
 }
 
@@ -108,8 +108,8 @@
 .fileGroup-timestamp {
   font-size: $font-size-xs;
   color: $gray-500;
-  padding-top: $spacer * 1.5;
-  padding-bottom: $spacer/2;
+  padding-top: $spacer * 1;
+  padding-bottom: $spacer/4;
 }
 
 
