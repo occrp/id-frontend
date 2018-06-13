@@ -168,10 +168,12 @@ export default function() {
       return new Date(a.attrs.createdAt) - new Date(b.attrs.createdAt)
     });
 
-    request.mirageMeta = {
-      'first-id': collection.models[0].id,
-      'last-id': collection.models[collection.length - 1].id
-    };
+    if (collection.length) {
+      request.mirageMeta = {
+        'first-id': collection.models[0].id,
+        'last-id': collection.models[collection.length - 1].id
+      };
+    }
 
     if (cursor) {
       let last = schema.activities.find(cursor);
