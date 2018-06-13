@@ -1,15 +1,25 @@
-<div class="activityHeader">
-  <h2 class="t3 t-light">
-    {{t 'activity' count=1}}
 
+<div class="activityHeader">
+
+  <div class="activityHeader-controls">
+    <h2 class="t3 t-light">{{t 'activity' count=1}}</h2>
+
+     <div class="formGroup">
+      <label class="customControl customControl--checkbox">
+        <input type="checkbox" class="customControl-input" checked={{showOnlyComments}} onchange={{action 'changeKind' value="target.checked"}} id="show-only-comments"/>
+        <span class="customControl-indicator"></span>
+        <span class="customControl-description">{{t 'activity.showOnlyComments'}}</span>
+      </label>
+    </div>
+  </div>
+
+  <div class="activityHeader-loader">
     {{#if loadItems.isRunning}}
       {{ui-spinner}}
+    {{else}}
+      <a href class="button button--link" {{action 'loadMore'}} data-load-more>{{t 'activity.loadOlder'}}</a>
     {{/if}}
-  </h2>
-
-  <button {{action 'loadMore'}} class="button" data-load-more>
-    {{~t 'pagination.older'~}}
-  </button>
+  </div>
 </div>
 
 {{#if loadItems.last.error}}

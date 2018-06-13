@@ -1,7 +1,7 @@
 <div class="activity-headline">
   {{icon "check"}}
   <div>
-    <strong>{{user-avatar user=data.user}}{{data.user.displayName}}</strong>
+    <strong>{{user-avatar user=data.user preset="small"}}{{data.user.displayName}}</strong>
     {{status-label 'closed'}}
     {{timestamp-full data.createdAt}}
   </div>

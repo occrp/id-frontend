@@ -1,40 +1,49 @@
 .activityHeader {
-  @include cf;
+  margin-top: $spacer-4;
+}
 
-  h2 {
-    float: left;
+.activityHeader-controls {
+  border-bottom: 1px solid $gray-300;
+  padding: $spacer 0;
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
 
-    .spinner {
-      display: inline-flex;
-      vertical-align: middle;
-      margin-left: .75rem;
+  .customControl {
+    font-size: $font-size-sm;
+    padding-left: 1.6rem;
+    margin-bottom: 0;
+
+    @include rtl {
+      padding-left: 0;
+      padding-right: 1.6rem;
     }
   }
 
-  .pg {
-    float: right;
-    margin: 0 !important; // ??
+  .customControl-indicator {
+    top: .2rem;
   }
+}
 
-  @include rtl {
-    h2 {
-      float: right;
-    }
+.activityHeader-loader {
+  text-align: center;
+  border-bottom: 1px dashed $gray-300;
 
-    .spinner {
-      margin-right: .75rem;
-      margin-left: 0;
-    }
+ .button {
+   @include caret('up');
+   font-weight: $font-weight-bold;
+ }
 
-    .pg {
-      float: left;
-    }
+  .spinner {
+    padding: (40px - 8px)/2 0;
+    margin: 0 auto;
   }
 }
 
 .activityList {
   position: relative;
-  margin: $spacer-4 0 $spacer-8 50px;
+  margin: 0 0 $spacer-8 50px;
+  padding-top: $spacer-2;
 
   // vertical line in the background
   &:before {
@@ -68,7 +77,7 @@
   border-radius: $border-radius;
   background-clip: padding-box;
   background: white;
-  margin: $spacer-4 0;
+  margin: ($spacer * 2.5) 0;
 }
 
 .activity-author {
@@ -135,8 +144,8 @@
   }
 
   .avatar {
-    vertical-align: top;
-    margin-right: .4rem;
+    vertical-align: -2px;
+    margin-right: .3rem;
   }
 
   .tag {

@@ -1,7 +1,7 @@
 <div class="activity-headline">
   {{icon "circle-slash"}}
   <div>
-    <strong>{{user-avatar user=data.user}}{{data.user.displayName}}</strong>
+    <strong>{{user-avatar user=data.user preset="small"}}{{data.user.displayName}}</strong>
     {{status-label 'cancelled'}}
     {{timestamp-full data.createdAt}}
   </div>

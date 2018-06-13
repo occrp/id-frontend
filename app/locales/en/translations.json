@@ -148,6 +148,8 @@
   },
   "activity": {
     "one": "Activity",
+    "showOnlyComments": "Show only comments",
+    "loadOlder": "Older",
     "comment": {
       "title": "Leave a comment",
       "submitButton": "Post comment"

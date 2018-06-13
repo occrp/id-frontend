@@ -1,7 +1,7 @@
 <div class="activity-headline">
   {{icon "file"}}
   <div>
-    <strong>{{user-avatar user=data.user}}{{data.user.displayName}}</strong>
+    <strong>{{user-avatar user=data.user preset="small"}}{{data.user.displayName}}</strong>
     {{t 'activity.attachment.action'}} &bull;
     {{timestamp-full data.createdAt}}
   </div>

@@ -23,7 +23,7 @@ export default Component.extend({
 
   activityCache: null,
   cursor: null,
-  pageSize: 5, // must match the one in /serializers/ticket
+  pageSize: 50, // must match the one in /serializers/ticket
 
   loadItems: task(function * () {
     let filter =  {
@@ -31,8 +31,13 @@ export default Component.extend({
     };
 
     if (this.get('cursor')) {
-      filter.startAfter = this.get('cursor');
+      filter['id__lt'] = this.get('cursor');
     }
+
+    if (this.get('showOnlyComments') === true) {
+      filter.verb = 'comment:create';
+    }
+
 
     yield this.get('store').query('activity', {
       filter,
@@ -69,10 +74,18 @@ export default Component.extend({
     this.get('loadItems').perform();
   },
 
+  showOnlyComments: false,
+
   actions: {
     loadMore() {
       this.get('loadItems').perform();
-    }
+    },
+
+    changeKind(value) {
+      this.set('showOnlyComments', value);
+      this.set('activityCache', new A());
+      this.reloadActivitites();
+    },
   }
 
 });
