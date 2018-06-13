@@ -1,360 +1,366 @@
 {
-    "ticket": {
-        "one": "Forespørsel",
-        "countryPerson": {
-            "label": "Nasjonalitet"
-        },
-        "sources": {
-            "desc": "Hvilke kilder har du så langt?",
-            "formLabel": "Hvor har du kikket?",
-            "label": "Kilder"
-        },
-        "deadline": {
-            "prefix": "frist {{relativeTime}}",
-            "desc": "Vi prøver å overholde tidsfristen, men ha i minnet vi er travle.<br /> Gi dem som mye tid du kan!",
-            "empty": "Ingen tidsfrist",
-            "label": "Tidsfrist"
-        },
-        "whysensitive": {
-            "label": "Hvorfor er det sensitivt?"
-        },
-        "updatedAt": {
-            "prefix": "oppdatert {{relativeTime}}",
-            "label": "Siste oppdatering"
-        },
-        "initialInformation": {
-            "desc": "All informasjon du allerede har.",
-            "formLabel": "Hvor har du kikket?",
-            "label": "Innledende informasjon"
-        },
-        "businessActivities": {
-            "label": "Forretningsvirksomheter"
-        },
-        "backgroundCompany": {
-            "desc": "Hva vet du så langt?",
-            "formLabel": "Din historie",
-            "label": "Selskapsbakgrunn"
-        },
-        "backgroundOther": {
-            "desc": "All informasjon du allerede har.",
-            "formLabel": "Hva ønsker du å vite?",
-            "label": "Spørsmål"
-        },
-        "subscriber": {
-            "emailPlaceholder": "Bruker-e-post",
-            "selfRemove": "Opphev abonnement?",
-            "other": "Abonnenter",
-            "selfNotice": "Du abonnerer på denne forespørselen.",
-            "one": "Abonnent"
-        },
-        "other": "{{count}} forespørsler",
-        "status": {
-            "closed": {
-                "name": "Lukket"
-            },
-            "in-progress": {
-                "name": "Underveis"
-            },
-            "groups": {
-                "open": "Åpen",
-                "closed": "Lukket"
-            },
-            "cancelled": {
-                "name": "Avbrutt"
-            },
-            "new": {
-                "name": "Ny"
-            },
-            "pending": {
-                "name": "Ventende"
-            }
-        },
-        "companyName": {
-            "label": "Selskapsnavn"
-        },
-        "bornAt": {
-            "label": "Fødselsdato"
-        },
-        "background": {
-            "desc": "Hva vet du så langt?",
-            "formLabel": "Din historie",
-            "label": "Bakgrunn"
-        },
-        "requester": {
-            "prefix": "Innsendt av {{requester}}",
-            "other": "Forespørrere",
-            "one": "Forespørrer"
-        },
-        "connectionsPerson": {
-            "desc": "Kjente familieforhold.",
-            "label": "Familie og tilknyttede"
-        },
-        "connections": {
-            "formLabel": "Tilknytninger til andre selskaper og folk",
-            "label": "Tilknytninger"
-        },
-        "kind": {
-            "person_ownership": {
-                "shortName": "Person",
-                "name": "Identifiser hva en person eier"
-            },
-            "other": {
-                "shortName": "Annen",
-                "name": "Enhver annen person"
-            },
-            "company_ownership": {
-                "shortName": "Selskap",
-                "name": "Fastsett bedriftseierskap"
-            },
-            "one": "Type"
-        },
-        "firstName": {
-            "label": "Fornavn"
-        },
-        "sourcesPerson": {
-            "desc": "Andre stavingsmåter eller dekknavn.",
-            "label": "Alias"
-        },
-        "lastName": {
-            "label": "Etternavn"
-        },
-        "responder": {
-            "selfRemove": "Opphev tildeling?",
-            "selfNotice": "Du er tildelt denne forespørselen.",
-            "label": "Stabssvarere",
-            "other": "Svarere",
-            "one": "Svarer",
-            "empty": "Ingen tildelt"
-        },
-        "sensitive": {
-            "trueLabel": "Sensitiv forespørsel",
-            "label": "Er det sensitivt?"
-        },
-        "country": {
-            "search": {
-                "noResults": "Fant ikke noen land",
-                "placeholder": "Søk etter land ved navn eller kode"
-            },
-            "other": "Land",
-            "label": "Registreringsland",
-            "one": "Land"
-        }
+  "actions": {
+    "addSubscriber": "Legg til abonnent",
+    "assign": {
+      "longForm": "Tildel stab",
+      "shortForm": "Tildel"
     },
-    "profile": {
-        "search": {
-            "noResults": "Fant ikke noen brukere",
-            "placeholder": "Søk etter brukere"
-        }
-    },
-    "activity": {
-        "comment": {
-            "submitButton": "Legg inn kommentar",
-            "action": "{{user}} kommenterte {{relativeTime}}",
-            "title": "Kommenter"
-        },
-        "resume": {
-            "action": "fortsatte"
-        },
-        "one": "Aktivitet",
-        "reopen": {
-            "action": "gjenåpnet"
-        },
-        "attachment": {
-            "action": "{{user}} la til filer",
-            "removed": "{{user}} fjernet ei fil"
-        },
-        "unassign": {
-            "action": "{{user}} fikk sin tildelning opphevet"
-        },
-        "assign": {
-            "action": "{{user}} ble tildelt"
-        }
+    "cancel": "Avbryt",
+    "close": "Lukk",
+    "delete": "Slett",
+    "remove": "Fjern",
+    "reopen": "Gjenåpne",
+    "save": "Lagre",
+    "unmark": "Fjern markering",
+    "upload": "Last opp"
+  },
+  "activity": {
+    "assign": {
+      "action": "{{user}} ble tildelt"
     },
     "attachment": {
-        "removalPrompt": "Er du sikker på at du ønsker å slette denne fila?",
-        "filesSelected": "{{count}} filer valgt",
-        "zero": "Ingen vedlegg",
-        "state": {
-            "uploaded": "Opplastet",
-            "uploading": "Laster opp",
-            "timed_out": "Tidsavbrudd",
-            "failed": "Mislykket",
-            "aborted": "Kansellert",
-            "queued": "I kø"
-        },
-        "other": "Vedlegg",
-        "dropzone": {
-            "desc": "Dra og slipp filer til dette området eller {{select}}",
-            "activeTitle": "Slipp for å laste opp",
-            "invalidTitle": "Ugyldig",
-            "select": "Velg ei fil",
-            "title": "Last opp filer"
-        }
+      "action": "{{user}} la til filer",
+      "removed": "{{user}} fjernet ei fil"
     },
-    "pods": {
-        "browse": {
-            "newButton": "Ny forespørsel",
-            "title": "Mine forespørsler"
-        },
-        "new": {
-            "headline": "Din forespørsel vil bli videresendt til våre profesjonelle granskere, som vil forsøke å hjelpe.",
-            "form": {
-                "invalidMessage": "Gjennomse feltene markert ovenfor før du fortsetter.",
-                "submitButton": "Send inn din forespørsel",
-                "otherDetails": "Andre detaljer",
-                "requestDetails": "Forespør detaljer",
-                "uploadInfo": "Du vil kunne legge ved dokumenter etter å ha sendt inn forespørselen."
-            },
-            "title": "Forespør informasjon"
-        },
-        "reporting": {
-            "staffTitle": {
-                "zero": "{{count}} stabsmedlemmer",
-                "other": "{{count}} stabsmedlemmer",
-                "one": "{{count}} stabsmedlem"
-            },
-            "openTickets": {
-                "zero": "{{count}} åpne forespørsler",
-                "other": "{{count}} åpne forespørsler",
-                "one": "{{count}} åpen forespørsel"
-            },
-            "countriesTitle": {
-                "zero": "{{count}} land",
-                "other": "{{count}} land",
-                "one": "{{count}} land"
-            },
-            "closedTickets": {
-                "zero": "{{count}} lukkede forespørsler",
-                "other": "{{count}} lukkede forespørsler",
-                "one": "{{count}} lukket forespørsel"
-            },
-            "pastDeadline": "{{count}} med utløpt tidsfrist",
-            "dateRange": {
-                "lastHalf": "Siste 6 måneder",
-                "lastYear": "Siste år",
-                "lastQuarter": "Siste 3 måneder"
-            },
-            "columns": {
-                "pastDeadline": "Utløpt tidsfrist",
-                "total": "Totalt",
-                "avgTime": "Gjen. løsningstid",
-                "name": "Navn",
-                "month": "Måned"
-            }
-        },
-        "view": {
-            "close": {
-                "cancel": "Nei, la den forbli åpen",
-                "button": "{{verb}} forespørsel",
-                "confirm": "Ja, {{verb}} forespørselen",
-                "title": "Er du sikker på at du vil {{verb}} denne forespørselen?"
-            },
-            "pending": {
-                "button": "Merk som ventende"
-            },
-            "reopen": {
-                "button": "Gjenåpne forespørselen",
-                "title": "Grunn til gjenåpning"
-            }
-        }
+    "comment": {
+      "action": "{{user}} kommenterte {{relativeTime}}",
+      "submitButton": "Legg inn kommentar",
+      "title": "Kommenter"
     },
-    "filters": {
-        "sort": {
-            "deadlineAt": {
-                "asc": "Lengst tidsfrist",
-                "desc": "Kortest tidsfrist"
-            },
-            "title": "Sorter etter",
-            "createdAt": {
-                "asc": "Eldste",
-                "desc": "Nyeste"
-            },
-            "label": "Sorter"
-        },
-        "kind": {
-            "title": "Filtrer etter type"
-        },
-        "country": {
-            "title": "Filtrer etter land/nasjonalitet"
-        },
-        "responder": {
-            "emptyOption": "Ikke tildelt noen",
-            "title": "Filtrer etter tildeldning"
-        },
-        "current": {
-            "clear": "Tøm alle filter",
-            "title": "Filtrert etter"
-        },
-        "requester": {
-            "title": "Filtrer etter hvem som åpnet forespørselen"
-        },
-        "options": {
-            "all": "Alle"
-        }
+    "one": "Aktivitet",
+    "reopen": {
+      "action": "gjenåpnet"
     },
-    "userCard": {
-        "viewRequests": "Vis forespørsler",
-        "adminProfile": "Administrasjonsprofil"
+    "resume": {
+      "action": "fortsatte"
     },
-    "pagination": {
-        "older": "Eldre",
-        "prev": "Forrige",
-        "newer": "Nyere",
-        "next": "Neste"
-    },
-    "actions": {
-        "addSubscriber": "Legg til abonnent",
-        "unmark": "Fjern markering",
-        "upload": "Last opp",
-        "remove": "Fjern",
-        "reopen": "Gjenåpne",
-        "cancel": "Avbryt",
-        "close": "Lukk",
-        "save": "Lagre",
-        "assign": {
-            "longForm": "Tildel stab",
-            "shortForm": "Tildel"
-        },
-        "delete": "Slett"
-    },
-    "empty": {
-        "noResults": {
-            "body": "Bruk menyen ovenfor til å filtrere forespørsler.",
-            "title": "Resultatløst søk."
-        },
-        "noTickets": {
-            "button": "Sendt inn en forespørsel",
-            "title": "Det ser ikke ut til at du har innsendt noen forespørsler enda."
-        }
-    },
-    "nav": {
-        "requests": "Forespørsler",
-        "account": {
-            "profile": "Profil",
-            "logout": "Logg ut"
-        },
-        "reports": "Rapporter"
-    },
-    "locales": {
-        "ru": "Russisk",
-        "fr": "Fransk",
-        "en": "Engelsk",
-        "ar": "Arabisk",
-        "bs": "Bsn/Hrz/Srb",
-        "es": "Spansk"
-    },
-    "validationErrors": {
-        "before": "Denne datoen må være før {{before}}",
-        "email": "Dette feltet må være en gyldig e-postadresse",
-        "after": "Denne datoen må være etter {{after}}",
-        "blank": "Dette feltet kan ikke stå tomt"
-    },
-    "errors": {
-        "genericRequest": "En feil har inntruffet under behandling av forespørselen din.",
-        "routeError": {
-            "body": "Vi har blitt varslet automatisk, og trenger bedre oversikt.",
-            "title": "En feil har inntruffet under behandling av forespørselen din."
-        },
-        "activities": "En feil har inntruffet under innlasting av aktivetsstrømmen."
+    "unassign": {
+      "action": "{{user}} fikk sin tildelning opphevet"
     }
+  },
+  "attachment": {
+    "dropzone": {
+      "activeTitle": "Slipp for å laste opp",
+      "desc": "Dra og slipp filer til dette området eller {{select}}",
+      "invalidTitle": "Ugyldig",
+      "select": "Velg ei fil",
+      "title": "Last opp filer"
+    },
+    "filesSelected": "{{count}} filer valgt",
+    "other": "Vedlegg",
+    "removalPrompt": "Er du sikker på at du ønsker å slette denne fila?",
+    "state": {
+      "aborted": "Kansellert",
+      "failed": "Mislykket",
+      "queued": "I kø",
+      "timed_out": "Tidsavbrudd",
+      "uploaded": "Opplastet",
+      "uploading": "Laster opp"
+    },
+    "zero": "Ingen vedlegg"
+  },
+  "empty": {
+    "noResults": {
+      "body": "Bruk menyen ovenfor til å filtrere forespørsler.",
+      "title": "Resultatløst søk."
+    },
+    "noTickets": {
+      "button": "Sendt inn en forespørsel",
+      "title": "Det ser ikke ut til at du har innsendt noen forespørsler enda."
+    }
+  },
+  "errors": {
+    "activities": "En feil har inntruffet under innlasting av aktivetsstrømmen.",
+    "genericRequest": "En feil har inntruffet under behandling av forespørselen din.",
+    "routeError": {
+      "body": "Vi har blitt varslet automatisk, og trenger bedre oversikt.",
+      "title": "En feil har inntruffet under behandling av forespørselen din."
+    }
+  },
+  "filters": {
+    "country": {
+      "title": "Filtrer etter land/nasjonalitet"
+    },
+    "current": {
+      "clear": "Tøm alle filter",
+      "title": "Filtrert etter"
+    },
+    "kind": {
+      "title": "Filtrer etter type"
+    },
+    "options": {
+      "all": "Alle"
+    },
+    "requester": {
+      "title": "Filtrer etter hvem som åpnet forespørselen"
+    },
+    "responder": {
+      "emptyOption": "Ikke tildelt noen",
+      "title": "Filtrer etter tildeldning"
+    },
+    "sort": {
+      "createdAt": {
+        "asc": "Eldste",
+        "desc": "Nyeste"
+      },
+      "deadlineAt": {
+        "asc": "Lengst tidsfrist",
+        "desc": "Kortest tidsfrist"
+      },
+      "label": "Sorter",
+      "title": "Sorter etter"
+    }
+  },
+  "locales": {
+    "ar": "Arabisk",
+    "bs": "Bsn/Hrz/Srb",
+    "en": "Engelsk",
+    "es": "Spansk",
+    "fr": "Fransk",
+    "ru": "Russisk"
+  },
+  "nav": {
+    "account": {
+      "logout": "Logg ut",
+      "profile": "Profil"
+    },
+    "reports": "Rapporter",
+    "requests": "Forespørsler"
+  },
+  "pagination": {
+    "newer": "Nyere",
+    "next": "Neste",
+    "older": "Eldre",
+    "prev": "Forrige"
+  },
+  "pods": {
+    "browse": {
+      "newButton": "Ny forespørsel",
+      "title": "Mine forespørsler"
+    },
+    "new": {
+      "form": {
+        "invalidMessage": "Gjennomse feltene markert ovenfor før du fortsetter.",
+        "otherDetails": "Andre detaljer",
+        "requestDetails": "Forespør detaljer",
+        "submitButton": "Send inn din forespørsel",
+        "uploadInfo": "Du vil kunne legge ved dokumenter etter å ha sendt inn forespørselen."
+      },
+      "headline": "Din forespørsel vil bli videresendt til våre profesjonelle granskere, som vil forsøke å hjelpe.",
+      "title": "Forespør informasjon"
+    },
+    "reporting": {
+      "closedTickets": {
+        "one": "{{count}} lukket forespørsel",
+        "other": "{{count}} lukkede forespørsler",
+        "zero": "{{count}} lukkede forespørsler"
+      },
+      "columns": {
+        "avgTime": "Gjen. løsningstid",
+        "month": "Måned",
+        "name": "Navn",
+        "pastDeadline": "Utløpt tidsfrist",
+        "total": "Totalt"
+      },
+      "countriesTitle": {
+        "one": "{{count}} land",
+        "other": "{{count}} land",
+        "zero": "{{count}} land"
+      },
+      "dateRange": {
+        "lastHalf": "Siste 6 måneder",
+        "lastQuarter": "Siste 3 måneder",
+        "lastYear": "Siste år"
+      },
+      "openTickets": {
+        "one": "{{count}} åpen forespørsel",
+        "other": "{{count}} åpne forespørsler",
+        "zero": "{{count}} åpne forespørsler"
+      },
+      "pastDeadline": "{{count}} med utløpt tidsfrist",
+      "staffTitle": {
+        "one": "{{count}} stabsmedlem",
+        "other": "{{count}} stabsmedlemmer",
+        "zero": "{{count}} stabsmedlemmer"
+      }
+    },
+    "view": {
+      "close": {
+        "button": "{{verb}} forespørsel",
+        "cancel": "Nei, la den forbli åpen",
+        "confirm": "Ja, {{verb}} forespørselen",
+        "title": "Er du sikker på at du vil {{verb}} denne forespørselen?"
+      },
+      "pending": {
+        "button": "Merk som ventende"
+      },
+      "reopen": {
+        "button": "Gjenåpne forespørselen",
+        "title": "Grunn til gjenåpning"
+      }
+    }
+  },
+  "profile": {
+    "search": {
+      "noResults": "Fant ikke noen brukere",
+      "placeholder": "Søk etter brukere"
+    }
+  },
+  "ticket": {
+    "background": {
+      "desc": "Hva vet du så langt?",
+      "formLabel": "Din historie",
+      "label": "Bakgrunn"
+    },
+    "backgroundCompany": {
+      "desc": "Hva vet du så langt?",
+      "formLabel": "Din historie",
+      "label": "Selskapsbakgrunn"
+    },
+    "backgroundOther": {
+      "desc": "All informasjon du allerede har.",
+      "formLabel": "Hva ønsker du å vite?",
+      "label": "Spørsmål"
+    },
+    "bornAt": {
+      "label": "Fødselsdato"
+    },
+    "businessActivities": {
+      "label": "Forretningsvirksomheter"
+    },
+    "companyName": {
+      "label": "Selskapsnavn"
+    },
+    "connections": {
+      "formLabel": "Tilknytninger til andre selskaper og folk",
+      "label": "Tilknytninger"
+    },
+    "connectionsPerson": {
+      "desc": "Kjente familieforhold.",
+      "label": "Familie og tilknyttede"
+    },
+    "country": {
+      "label": "Registreringsland",
+      "one": "Land",
+      "other": "Land",
+      "search": {
+        "noResults": "Fant ikke noen land",
+        "placeholder": "Søk etter land ved navn eller kode"
+      }
+    },
+    "countryPerson": {
+      "label": "Nasjonalitet"
+    },
+    "deadline": {
+      "desc": "Vi prøver å overholde tidsfristen, men ha i minnet vi er travle.<br /> Gi dem som mye tid du kan!",
+      "empty": "Ingen tidsfrist",
+      "label": "Tidsfrist",
+      "prefix": "frist {{relativeTime}}"
+    },
+    "firstName": {
+      "label": "Fornavn"
+    },
+    "initialInformation": {
+      "desc": "All informasjon du allerede har.",
+      "formLabel": "Hvor har du kikket?",
+      "label": "Innledende informasjon"
+    },
+    "kind": {
+      "company_ownership": {
+        "name": "Fastsett bedriftseierskap",
+        "shortName": "Selskap"
+      },
+      "one": "Type",
+      "other": {
+        "name": "Enhver annen person",
+        "shortName": "Annen"
+      },
+      "person_ownership": {
+        "name": "Identifiser hva en person eier",
+        "shortName": "Person"
+      }
+    },
+    "lastName": {
+      "label": "Etternavn"
+    },
+    "one": "Forespørsel",
+    "other": "{{count}} forespørsler",
+    "requester": {
+      "one": "Forespørrer",
+      "other": "Forespørrere",
+      "prefix": "Innsendt av {{requester}}"
+    },
+    "responder": {
+      "empty": "Ingen tildelt",
+      "label": "Stabssvarere",
+      "one": "Svarer",
+      "other": "Svarere",
+      "selfNotice": "Du er tildelt denne forespørselen.",
+      "selfRemove": "Opphev tildeling?"
+    },
+    "sensitive": {
+      "label": "Er det sensitivt?",
+      "trueLabel": "Sensitiv forespørsel"
+    },
+    "sources": {
+      "desc": "Hvilke kilder har du så langt?",
+      "formLabel": "Hvor har du kikket?",
+      "label": "Kilder"
+    },
+    "sourcesPerson": {
+      "desc": "Andre stavingsmåter eller dekknavn.",
+      "label": "Alias"
+    },
+    "status": {
+      "cancelled": {
+        "name": "Avbrutt"
+      },
+      "closed": {
+        "name": "Lukket"
+      },
+      "groups": {
+        "closed": "Lukket",
+        "open": "Åpen"
+      },
+      "in-progress": {
+        "name": "Underveis"
+      },
+      "new": {
+        "name": "Ny"
+      },
+      "pending": {
+        "name": "Ventende"
+      }
+    },
+    "subscriber": {
+      "emailPlaceholder": "Bruker-e-post",
+      "one": "Abonnent",
+      "other": "Abonnenter",
+      "selfNotice": "Du abonnerer på denne forespørselen.",
+      "selfRemove": "Opphev abonnement?"
+    },
+    "updatedAt": {
+      "label": "Siste oppdatering",
+      "prefix": "oppdatert {{relativeTime}}"
+    },
+    "whysensitive": {
+      "label": "Hvorfor er det sensitivt?"
+    }
+  },
+  "time": {
+    "default": "D MMM YYYY",
+    "defaultCurrentYear": "D MMM",
+    "full": "D MMM TTT, HH:mm",
+    "fullCurrentYear": "MMM D, HH:mm"
+  },
+  "userCard": {
+    "adminProfile": "Administrasjonsprofil",
+    "viewRequests": "Vis forespørsler"
+  },
+  "validationErrors": {
+    "after": "Denne datoen må være etter {{after}}",
+    "before": "Denne datoen må være før {{before}}",
+    "blank": "Dette feltet kan ikke stå tomt",
+    "email": "Dette feltet må være en gyldig e-postadresse"
+  }
 }
