@@ -24,6 +24,7 @@ export default Component.extend({
   activityCache: null,
   cursor: null,
   pageSize: 50, // must match the one in /serializers/ticket
+  meta: null,
 
   loadItems: task(function * () {
     let filter =  {
@@ -49,6 +50,7 @@ export default Component.extend({
     }).then((records) => {
       this.get('activityCache').addObjects(records.toArray());
       this.set('cursor', records.get('firstObject.id'));
+      this.set('meta', records.get('meta'));
     });
   }),
 

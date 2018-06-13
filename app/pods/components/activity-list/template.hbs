@@ -14,11 +14,13 @@
   </div>
 
   <div class="activityHeader-loader">
-    {{#if loadItems.isRunning}}
+    {{~#if loadItems.isRunning}}
       {{ui-spinner}}
     {{else}}
-      <a href class="button button--link" {{action 'loadMore'}} data-load-more>{{t 'activity.loadOlder'}}</a>
-    {{/if}}
+      {{#unless (eq meta.earliestId cursor)}}
+      <button class="button button--link" {{action 'loadMore'}} data-load-more>{{t 'activity.loadOlder'}}</button>
+      {{/unless}}
+    {{/if~}}
   </div>
 </div>
 
@@ -28,7 +30,7 @@
     {{t 'errors.activities'}}
   </div>
 {{else}}
-  <div class="activityList">
+  <div class="activityList {{if (eq meta.earliestId cursor) "activityList--full"}}">
     {{#each sortedActivities as |item|}}
       {{#with (get componentsByType item.verb) as |type|}}
         {{component (concat 'activity-' type)

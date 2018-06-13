@@ -149,7 +149,7 @@
   "activity": {
     "one": "Activity",
     "showOnlyComments": "Show only comments",
-    "loadOlder": "Older",
+    "loadOlder": "Load older",
     "comment": {
       "title": "Leave a comment",
       "submitButton": "Post comment"

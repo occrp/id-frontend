@@ -168,6 +168,11 @@ export default function() {
       return new Date(a.attrs.createdAt) - new Date(b.attrs.createdAt)
     });
 
+    request.mirageMeta = {
+      'latest-id': collection.models[collection.length - 1].id,
+      'earliest-id': collection.models[0].id
+    };
+
     if (cursor) {
       let last = schema.activities.find(cursor);
 
