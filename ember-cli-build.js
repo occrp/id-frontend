@@ -37,8 +37,9 @@ module.exports = function(defaults) {
 
   if ( process.env.EMBER_ENV === 'development') {
     buildOptions.tests = false;
-    buildOptions.babel = {
-      sourceMaps: 'inline'
+    buildOptions.babel.sourceMaps = 'inline';
+    buildOptions.autoprefixer = {
+      enabled: false
     }
   }
 

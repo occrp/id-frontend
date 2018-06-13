@@ -35,7 +35,7 @@
       {{#each model.responders as |responder|}}
         {{#unless responder.isNew}}
         {{#editable-list-item class="editableList-item" onRemove=(action 'removeResponder' responder) data-test-responder=responder.user.id}}
-          {{responder.user.displayName}}
+          {{user-avatar user=responder.user}}{{responder.user.displayName}}
         {{/editable-list-item}}
         {{/unless}}
       {{/each}}
@@ -86,7 +86,7 @@
         {{#each model.subscribers as |subscriber|}}
           {{#unless subscriber.isNew}}
           {{#editable-list-item class="editableList-item" onRemove=(action 'removeSubscriber' subscriber) data-test-subscriber=subscriber.user.id}}
-            {{subscriber.user.displayName}}
+            {{user-avatar user=subscriber.user}}{{subscriber.user.displayName}}
           {{/editable-list-item}}
           {{/unless}}
         {{/each}}

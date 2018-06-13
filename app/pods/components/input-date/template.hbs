@@ -12,7 +12,7 @@
 {{#if isShowingPopup}}
 {{#modal-dialog
   containerClass="datepickerPopup"
-  onClose='close'
+  onClose=(action 'close')
   tetherTarget=(concat '#' id)
   attachment=attachment
   targetAttachment=targetAttachment

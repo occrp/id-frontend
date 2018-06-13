@@ -4,7 +4,7 @@ export default EmberInitials.extend({
   classNames: ['avatar'],
 
   size: 20,
-  fontSize: 50,
+  fontSize: 42,
   fontFamily: 'sans-serif',
   textStyles: Object.freeze({
     'letter-spacing': '0.05em'
@@ -16,10 +16,15 @@ export default EmberInitials.extend({
       seedText: this.get('user.email')
     });
 
+    if (this.get('preset') === 'small') {
+      this.setProperties({
+        size: 16
+      });
+    }
+
     if (this.get('preset') === 'large') {
       this.setProperties({
-        size: 40,
-        fontSize: 42
+        size: 40
       });
     }
 

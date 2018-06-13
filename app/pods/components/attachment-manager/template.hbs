@@ -94,10 +94,11 @@
   <div class="fileTimeline">
   {{#each processedAttachments as |group|}}
     <div class="fileGroup">
-      <p class="fileGroup-title">{{group.user.displayName}}</p>
+      <p class="fileGroup-title">{{user-avatar user=group.user preset="small"}}{{group.user.displayName}}</p>
       <ul class="fileGroup-body">
         {{#each group.models as |item|}}
           <li>
+            <p class="fileGroup-timestamp">{{timestamp-full item.createdAt}}</p>
             <a href={{item.upload}} title={{item.fileName}} target="_blank" class="file" data-test-attachment={{item.id}}>
               {{~icon "file" class="file-icon"~}}
               <span class="file-name">{{item.fileName}}</span>

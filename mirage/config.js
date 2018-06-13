@@ -154,9 +154,34 @@ export default function() {
   this.get('/activities', (schema, request) => {
     // not a standard endpoint. used in place of a ticket.activities relationship
     let ticketId = request.queryParams['filter[target_object_id]'];
-    let collection = schema.activities.where({ ticketId });
+    let verb = request.queryParams['filter[verb]'];
+    let cursor = request.queryParams['filter[id__lt]'];
 
-    collection.models.sort((a, b) => new Date(a.createdAt) - new Date(b.createdAt));
+    let filters = { ticketId };
+    if (verb) {
+      filters.verb = verb;
+    }
+
+    let collection = schema.activities.where(filters);
+
+    collection = collection.sort((a, b) => {
+      return new Date(a.attrs.createdAt) - new Date(b.attrs.createdAt)
+    });
+
+    request.mirageMeta = {
+      'latest-id': collection.models[collection.length - 1].id,
+      'earliest-id': collection.models[0].id
+    };
+
+    if (cursor) {
+      let last = schema.activities.find(cursor);
+
+      collection = collection.filter((model) => {
+        return new Date(model.createdAt) < new Date(last.createdAt);
+      })
+    }
+
+    request.queryParams['page[number]'] = 1;
 
     return paginate(collection, request, this.namespace, { reverse: true });
   });

@@ -56,7 +56,7 @@
     left: -1 * $spacer-3;
     width: 1px;
     height: 100%;
-    background: $gray-400;
+    background: $gray-300;
   }
 
   @include rtl {
@@ -82,24 +82,19 @@
 .fileGroup-title {
   position: relative;
   font-size: $font-size-sm;
-  color: $gray-600;
-  margin-bottom: $spacer-1;
+  font-weight: $font-weight-bold;
+  color: $gray-650;
 
-  // dots on the timeline
-  &::after {
-    z-index: 2;
-    content: '';
+  .avatar {
     display: block;
     position: absolute;
-    top: calc(-5px + #{$line-height-base/2 * $font-size-sm});
-    left: calc(#{-1 * $spacer-3} - 4px);
-    width: 9px;
-    height: 9px;
-    border-radius: 50%;
-    background: $gray-400;
+    top: calc(-8px + #{$line-height-base/2 * $font-size-sm});
+    left: calc(#{-1 * $spacer-3} - 7px);
+    z-index: 2;
+    box-shadow: 0 0 0 3px $gray-100;
 
     @include rtl {
-      right: calc(#{-1 * $spacer-3} - 4px);
+      right: calc(#{-1 * $spacer-3} - 7px);
       left: auto;
     }
   }
@@ -109,23 +104,33 @@
   position: relative;
 }
 
-// fancy line masking AYY
-.fileGroup:last-child .fileGroup-body::after {
-  z-index: 1;
-  content: '';
-  display: block;
-  position: absolute;
-  top: -1 * ($line-height-base/2 * $font-size-sm + $spacer-1);
-  left: -1 * $spacer-3;
-  width: 1px;
-  height: calc(100% + #{$line-height-base/2 * $font-size-sm + $spacer-1});
-  background: $gray-100;
 
-  @include rtl {
-    right: -1 * $spacer-3;
-    left: auto;
-  }
+.fileGroup-timestamp {
+  font-size: $font-size-xs;
+  color: $gray-500;
+  padding-top: $spacer * 1;
+  padding-bottom: $spacer/4;
 }
+
+
+
+// fancy line masking AYY
+// .fileGroup:last-child .fileGroup-body::after {
+//   z-index: 1;
+//   content: '';
+//   display: block;
+//   position: absolute;
+//   top: -1 * ($line-height-base/2 * $font-size-sm + $spacer-1);
+//   left: -1 * $spacer-3;
+//   width: 1px;
+//   height: calc(100% + #{$line-height-base/2 * $font-size-sm + $spacer-1});
+//   background: $gray-100;
+
+//   @include rtl {
+//     right: -1 * $spacer-3;
+//     left: auto;
+//   }
+// }
 
 .fileGroup:first-child .fileGroup-title::before {
   z-index: 1;

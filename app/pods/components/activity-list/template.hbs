@@ -1,16 +1,27 @@
+
 <div class="activityHeader">
-  <h2 class="t3 t-light">
-    {{t 'activity' count=1}}
 
-    {{#if loadItems.isRunning}}
+  <div class="activityHeader-controls">
+    <h2 class="t3 t-light">{{t 'activity' count=1}}</h2>
+
+     <div class="formGroup">
+      <label class="customControl customControl--checkbox">
+        <input type="checkbox" class="customControl-input" checked={{showOnlyComments}} onchange={{action 'changeKind' value="target.checked"}} id="show-only-comments"/>
+        <span class="customControl-indicator"></span>
+        <span class="customControl-description">{{t 'activity.showOnlyComments'}}</span>
+      </label>
+    </div>
+  </div>
+
+  <div class="activityHeader-loader">
+    {{~#if loadItems.isRunning}}
       {{ui-spinner}}
-    {{/if}}
-  </h2>
-
-  {{activity-pagination
-    meta=activityCache.meta
-    current=currentPage
-    onSwitch=(action 'switchPage')}}
+    {{else}}
+      {{#unless (eq meta.earliestId cursor)}}
+      <button class="button button--link" {{action 'loadMore'}} data-load-more>{{t 'activity.loadOlder'}}</button>
+      {{/unless}}
+    {{/if~}}
+  </div>
 </div>
 
 {{#if loadItems.last.error}}
@@ -19,8 +30,8 @@
     {{t 'errors.activities'}}
   </div>
 {{else}}
-  <div class="activityList">
-    {{#each activityCache as |item|}}
+  <div class="activityList {{if (eq meta.earliestId cursor) "activityList--full"}}">
+    {{#each sortedActivities as |item|}}
       {{#with (get componentsByType item.verb) as |type|}}
         {{component (concat 'activity-' type)
           data=item
