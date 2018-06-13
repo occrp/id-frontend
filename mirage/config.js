@@ -169,8 +169,8 @@ export default function() {
     });
 
     request.mirageMeta = {
-      'latest-id': collection.models[collection.length - 1].id,
-      'earliest-id': collection.models[0].id
+      'first-id': collection.models[0].id,
+      'last-id': collection.models[collection.length - 1].id
     };
 
     if (cursor) {

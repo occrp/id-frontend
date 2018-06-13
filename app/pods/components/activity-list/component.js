@@ -39,7 +39,6 @@ export default Component.extend({
       filter.verb = 'comment:create';
     }
 
-
     yield this.get('store').query('activity', {
       filter,
       page: {
