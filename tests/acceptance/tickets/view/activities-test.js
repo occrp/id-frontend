@@ -152,14 +152,14 @@ test('activities can be paged, new activity resets pagination', async function(a
 
   assert.equal(find('[data-test-activity]').length, 50, 'rendering page 1');
 
-  await click('[data-test-pagination="next"]');
+  await click('[data-test-load-more]');
 
-  assert.equal(find('[data-test-activity]').length, 20, 'rendering page 2');
+  assert.equal(find('[data-test-activity]').length, 70, 'rendering page 1+2');
 
   await fillIn('#new-comment', 'This is my new comment');
   await click('[data-test-publish-comment]');
 
-  assert.equal(find('[data-test-activity]').length, 50, 'rendering updated activities');
+  assert.equal(find('[data-test-activity]').length, 71, 'rendering updated activities');
 
   let $latest = find('[data-test-activity]:last [data-test-activity-body]');
   assert.equal($latest.text().trim(), 'This is my new comment', 'last activity is the new comment');
