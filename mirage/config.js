@@ -165,13 +165,13 @@ export default function() {
     let collection = schema.activities.where(filters);
 
     collection = collection.sort((a, b) => {
-      return new Date(a.attrs.createdAt) - new Date(b.attrs.createdAt)
+      return (new Date(a.attrs.createdAt) - new Date(b.attrs.createdAt)) * -1;
     });
 
     if (collection.length) {
       request.mirageMeta = {
-        'first-id': collection.models[0].id,
-        'last-id': collection.models[collection.length - 1].id
+        'first-id': collection.models[collection.length - 1].id,
+        'last-id': collection.models[0].id
       };
     }
 
@@ -185,7 +185,7 @@ export default function() {
 
     request.queryParams['page[number]'] = 1;
 
-    return paginate(collection, request, this.namespace, { reverse: true });
+    return paginate(collection, request, this.namespace);
   });
 
 

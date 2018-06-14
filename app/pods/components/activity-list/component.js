@@ -44,11 +44,11 @@ export default Component.extend({
       page: {
         size: this.get('pageSize')
       },
-      sort: 'timestamp',
+      sort: '-timestamp',
       include: 'comment,responder-user,user'
     }).then((records) => {
       this.get('activityCache').addObjects(records.toArray());
-      this.set('cursor', records.get('firstObject.id'));
+      this.set('cursor', records.get('lastObject.id'));
       this.set('meta', records.get('meta'));
     });
   }),
