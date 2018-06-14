@@ -7,9 +7,10 @@ export default Controller.extend(Pageable, {
   session: service(),
   flashMessages: service(),
 
-  queryParams: ['status', 'country', 'kind', 'requester', 'responder', 'sort'],
+  queryParams: ['status', 'search', 'country', 'kind', 'requester', 'responder', 'sort'],
 
   status: 'new,in-progress,pending',
+  search: null,
   country: null,
   kind: null,
   requester: null,
@@ -59,12 +60,18 @@ export default Controller.extend(Pageable, {
         kind: null,
         country: null,
         requester: null,
-        responder: null
+        responder: null,
+        page: 1
       });
     },
 
     resetFilter(prop) {
-      this.set(prop, null);
+      let hash = {
+        page: 1
+      };
+      hash[prop] = null;
+
+      this.setProperties(hash);
     }
   }
 });

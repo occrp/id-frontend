@@ -10,7 +10,6 @@
 
 .appNav-links {
   display: flex;
-  background: rgba(black, 0.1);
 
   a {
     display: block;
@@ -23,8 +22,12 @@
     }
 
     &.active {
-      background: rgba(black, 0.1);
+      background: darken(theme-color("primary"), 7.5%);
     }
+  }
+
+  .badge {
+    margin-left: $spacer;
   }
 }
 

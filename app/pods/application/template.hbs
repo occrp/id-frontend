@@ -26,7 +26,10 @@
 <nav class="appNav">
   <div class="wrapper">
     <div class="appNav-links">
-      {{#link-to 'browse' class="appNav-item"}}{{t 'nav.requests'}}{{/link-to}}
+      {{#link-to 'browse' class="appNav-item"}}
+        {{~t 'nav.requests'~}}
+        <span class="badge">{{session.currentUser.ticketsCount}}</span>
+      {{/link-to}}
       {{#if (can "manage tickets")}}
         {{#link-to 'reporting' class="appNav-item"}}{{t 'nav.reports'}}{{/link-to}}
       {{/if}}

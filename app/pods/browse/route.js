@@ -5,6 +5,9 @@ export default Route.extend({
     status: {
       refreshModel: true
     },
+    search: {
+      refreshModel: true
+    },
     country: {
       refreshModel: true
     },
