@@ -170,8 +170,8 @@ export default function() {
 
     if (collection.length) {
       request.mirageMeta = {
-        'first-id': collection.models[collection.length - 1].id,
-        'last-id': collection.models[0].id
+        'first-id': collection.models[0].id,
+        'last-id': collection.models[collection.length - 1].id
       };
     }
 
