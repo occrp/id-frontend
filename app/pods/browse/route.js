@@ -5,6 +5,9 @@ export default Route.extend({
     status: {
       refreshModel: true
     },
+    search: {
+      refreshModel: true
+    },
     country: {
       refreshModel: true
     },
@@ -35,7 +38,8 @@ export default Route.extend({
         country: params.country,
         kind: params.kind,
         requester: params.requester,
-        responder: params.responder
+        responder: params.responder,
+        name: params.search
       },
       page: {
         number: params.page,

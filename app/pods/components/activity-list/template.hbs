@@ -18,7 +18,7 @@
       {{ui-spinner}}
     {{else}}
       {{#unless (eq meta.lastId cursor)}}
-      <button class="button button--link" {{action 'loadMore'}} data-load-more>{{t 'activity.loadOlder'}}</button>
+      <button class="button button--link" {{action 'loadMore'}} data-test-load-more>{{t 'activity.loadOlder'}}</button>
       {{/unless}}
     {{/if~}}
   </div>

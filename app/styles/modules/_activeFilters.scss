@@ -34,7 +34,7 @@
 .chip {
   flex: 0 1 auto;
   display: inline-flex;
-  align-items: center;
+  align-items: stretch;
   border: 1px solid theme-color("primary");
   font-size: $font-size-xs;
   border-radius: $border-radius-lg;
@@ -46,8 +46,12 @@
 
 .chip-label {
   background: theme-color("primary");
+  min-height: 100%;
   color: white;
   padding: 1px $spacer;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
 }
 
 .chip-value {

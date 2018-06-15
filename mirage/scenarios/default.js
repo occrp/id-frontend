@@ -17,7 +17,7 @@ export default function(server) {
     lastName: 'Appleseed',
     isStaff: true,
     isSuperuser: true,
-    ticketsCount: 10
+    ticketsCount: 72
   });
 
   server.createList('profile', 7);

@@ -10,12 +10,13 @@
 
 .appNav-links {
   display: flex;
-  background: rgba(black, 0.1);
+  flex-wrap: wrap;
 
   a {
     display: block;
     padding: $spacer-2 $spacer-3;
     color: white;
+    white-space: nowrap;
 
     @include hover {
       color: rgba(white, 0.85);
@@ -23,8 +24,12 @@
     }
 
     &.active {
-      background: rgba(black, 0.1);
+      background: darken(theme-color("primary"), 7.5%);
     }
+  }
+
+  .badge {
+    margin-left: $spacer;
   }
 }
 
@@ -35,6 +40,8 @@
     color: white;
     @include caret;
     padding: $spacer-2 0;
+    text-transform: uppercase;
+    white-space: nowrap;
 
     .icon {
       vertical-align: -3px;
