@@ -1,17 +1,16 @@
-<div class="titleBar">
-  <div class="titleBar-search">
-    <div class="ticketSearch">
-      <input type="text" class="formControl" oninput={{perform searchTickets value="target.value" }} placeholder={{t 'ticket.search.placeholder'}} value={{search}} data-test-ticket-search />
-      {{#if search}}
-      <button class="button button--link" {{action resetFilter 'search'}}>
-        {{t 'ticket.search.clear'}}
-      </button>
-      {{/if}}
-    </div>
-  </div>
-  <div class="titleBar-action">
+<div class="ticketNav">
+  <div class="ticketNav-action">
     {{#link-to "new" class="button button--primary"}}
       {{~t 'pods.browse.newButton'~}}
     {{/link-to}}
   </div>
+  <div class="ticketNav-search">
+    <input type="text" class="formControl" oninput={{perform searchTickets value="target.value" }} placeholder={{t 'ticket.search.placeholder'}} value={{search}} data-test-ticket-search />
+    {{#if search}}
+    <button class="button button--link" {{action resetFilter 'search'}}>
+      {{t 'ticket.search.clear'}}
+    </button>
+    {{/if}}
+  </div>
+
 </div>

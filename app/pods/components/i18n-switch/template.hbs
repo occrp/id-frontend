@@ -1,5 +1,5 @@
 {{#ui-dropdown data-test-dd="i18n-switch" as |dd|}}
-  {{#dd.trigger}}{{~icon "globe"~}}{{t (concat 'locales.' currentLocale)}}{{/dd.trigger}}
+  {{#dd.trigger}}{{~icon "globe"~}}{{currentLocale}}{{/dd.trigger}}
   {{#dd.body class="dd--xs"}}
     <div class="list">
       {{#each locales as |locale|}}

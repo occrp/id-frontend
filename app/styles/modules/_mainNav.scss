@@ -1,4 +1,5 @@
 .mainNav {
+  background: white;
   padding: $spacer-2 0;
 
   .wrapper {
@@ -46,27 +47,23 @@
     display: inline-block;
     margin-right: $spacer-1;
   }
-
-  .icon {
-    visibility: hidden;
-    position: absolute;
-    left: 4px;
-    top: 4px;
+  abbr {
+    display: none;
   }
 
-  @include hover {
+  &:hover {
     color: theme-color("primary");
     text-decoration: none;
-
-    img {
-      visibility: hidden;
-    }
-
-    .icon {
-      visibility: visible;
-    }
   }
 
+  @include respond($max: sm) {
+    span {
+      @include squish-text;
+    }
+    abbr {
+      display: inline;
+    }
+  }
   @include rtl {
     img {
       margin-left: $spacer-1;

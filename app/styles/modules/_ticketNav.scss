@@ -1,0 +1,52 @@
+.ticketNav {
+  padding: $spacer-4 0;
+  border-bottom: 2px solid $gray-700;
+}
+
+.ticketNav-search {
+  display: flex;
+  align-items: center;
+
+  input {
+    flex: 1 1 auto;
+    min-width: 200px;
+  }
+
+  .button--link {
+    flex: 0 0 auto;
+    font-weight: $font-weight-bold;
+    padding-left: $spacer;
+    padding-right: $spacer;
+    margin-left: $spacer;
+    border: 0;
+  }
+}
+
+.ticketNav-action {
+  margin-bottom: $spacer-4;
+  text-align: center;
+}
+
+@include respond(sm) {
+  .ticketNav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-direction: row-reverse;
+  }
+
+  .ticketNav-search {
+    flex: 0 1 500px;
+    margin-right: 20px;
+
+    @include rtl {
+      margin-right: 0;
+      margin-left: 20px;
+    }
+  }
+
+  .ticketNav-action {
+    margin-bottom: 0;
+  }
+}
+

@@ -10,11 +10,13 @@
 
 .appNav-links {
   display: flex;
+  flex-wrap: wrap;
 
   a {
     display: block;
     padding: $spacer-2 $spacer-3;
     color: white;
+    white-space: nowrap;
 
     @include hover {
       color: rgba(white, 0.85);
@@ -38,6 +40,8 @@
     color: white;
     @include caret;
     padding: $spacer-2 0;
+    text-transform: uppercase;
+    white-space: nowrap;
 
     .icon {
       vertical-align: -3px;

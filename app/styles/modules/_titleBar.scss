@@ -4,8 +4,6 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  min-height: to-rem(50px);
-  box-sizing: content-box;
 }
 
 .titleBar-title {
@@ -27,25 +25,4 @@
 
 .titleBar-action {
   display: flex;
-}
-
-.titleBar-search {
-  flex: 0 1 500px;
-}
-
-.ticketSearch {
-  display: flex;
-  align-items: center;
-
-  input {
-    flex: 1 1 auto;
-  }
-
-  .button--link {
-    flex: 0 0 auto;
-    font-weight: $font-weight-bold;
-    padding-left: $spacer;
-    padding-right: $spacer;
-    margin-left: $spacer;
-  }
 }
