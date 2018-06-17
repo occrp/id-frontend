@@ -1,301 +1,53 @@
 {
-  "profile": {
-    "search": {
-      "placeholder": "ابحث عن المستخدمين",
-      "noResults": "لم يتم العثور على مستخدمين"
-    }
-  },
-  "pagination": {
-    "prev": "السابق",
-    "next": "التالي",
-    "newer": "",
-    "older": ""
-  },
-  "errors": {
-    "genericInvalid": "ارجو تعبئة هذا الحقل"
-  },
   "actions": {
-    "upload": "تحميل",
-    "remove": "احذف",
-    "reopen": "اعادة فتح",
-    "cancel": "الغاء",
-    "save": "",
     "assign": {
       "longForm": "تعيين لموظف",
       "shortForm": "تعيين"
     },
-    "delete": "Delete"
-  },
-  "prefixes": {
-    "on": "في (تاريخ محدد)",
-    "at": "في تمام (الوقت)",
-    "by": "من قبل (المستخدم)"
-  },
-  "attachment": {
-    "zero": "",
-    "other": "المرفقات",
-    "dropzone": {
-      "title": "تحميل ملف",
-      "desc": "اسحب واسقط الملفات هنا",
-      "invalidTitle": "",
-      "select": "اختر ملف",
-      "activeTitle": "اسقط للتحميل"
-    },
-    "filesSelected": "((اعتمد)) الملفات المختارة",
-    "removalPrompt": "Are you sure you want to delete this file?"
-  },
-  "filters": {
-    "sort": {
-      "title": "تصنيف حسب",
-      "label": "تصنيف"
-    },
-    "kind": {
-      "title": "تصنيف حسب النوع"
-    },
-    "country": {
-      "title": ""
-    },
-    "responder": {
-      "emptyOption": "غير معيّن لأحد",
-      "title": "تصفية حسب من هو المعين"
-    },
-    "current": {
-      "clear": "امسح جميع الفلاتر",
-      "title": "تمت تصفيتها بواسطة"
-    },
-    "requester": {
-      "title": "تصنيف حسب المتقدم بالطلب"
-    },
-    "options": {
-      "all": "الجميع"
-    }
+    "cancel": "الغاء",
+    "delete": "Delete",
+    "remove": "احذف",
+    "reopen": "اعادة فتح",
+    "save": "",
+    "upload": "تحميل"
   },
   "activity": {
-    "comment": {
-      "action": "",
-      "submitButton": "أضف تعليقاً",
-      "title": "اترك تعليق"
-    },
-    "resume": {
-      "action": ""
-    },
-    "one": "نشاط",
-    "reopen": {
-      "action": "اعيد فتحه"
+    "assign": {
+      "action": "تم تعيين {{user}}"
     },
     "attachment": {
       "action": "((المستخدم)) ارفق الملفات",
       "removed": "{{user}} removed file"
     },
+    "comment": {
+      "action": "",
+      "submitButton": "أضف تعليقاً",
+      "title": "اترك تعليق"
+    },
+    "one": "نشاط",
+    "reopen": {
+      "action": "اعيد فتحه"
+    },
+    "resume": {
+      "action": ""
+    },
+    "showOnlyComments": "إظهار التعليقات فقط",
     "unassign": {
       "action": "(المستخدم) غير معين"
-    },
-    "assign": {
-      "action": "تم تعيينه (المستخدم) "
     }
   },
-  "ticket": {
-    "one": "",
-    "connections": {
-      "formLabel": "ارتباطات بشركات وأشخاص اخرين",
-      "label": "روابط"
+  "attachment": {
+    "dropzone": {
+      "activeTitle": "اسقط للتحميل",
+      "desc": "اسحب واسقط الملفات هنا",
+      "invalidTitle": "",
+      "select": "اختر ملف",
+      "title": "تحميل ملف"
     },
-    "sources": {
-      "label": "مصادر",
-      "formLabel": "اين بحثت؟",
-      "desc": "ما هي مصادرك؟"
-    },
-    "deadline": {
-      "prefix": "الاستحقاق ((في تاريخ))",
-      "label": "الموعد النهائي",
-      "empty": "",
-      "desc": "سنحاول تلبية الموعد النهائي الخاص بك"
-    },
-    "whysensitive": {
-      "label": "لماذا هذه المعلومات حساسة؟"
-    },
-    "updatedAt": {
-      "prefix": "محدثة",
-      "label": "آخر تحديث"
-    },
-    "initialInformation": {
-      "label": "المعلومات الأولية",
-      "formLabel": "اين بحثت من قبل؟",
-      "desc": "اي معلومة بحوزتك."
-    },
-    "businessActivities": {
-      "label": "الأنشطة التجارية\n"
-    },
-    "backgroundCompany": {
-      "label": "خلفبة الشركة",
-      "formLabel": "قصتك",
-      "desc": "ما الذي تعرفه حتى الان؟"
-    },
-    "backgroundOther": {
-      "label": "سؤال",
-      "formLabel": "ماذا تريد ان تعرف؟",
-      "desc": "أي معلومة بحوزتك"
-    },
-    "other": "",
-    "status": {
-      "closed": {
-        "name": "مغلقة"
-      },
-      "in-progress": {
-        "name": "جاري العمل عليه"
-      },
-      "groups": {
-        "open": "مفتوح",
-        "closed": "مغلق\n"
-      },
-      "cancelled": {
-        "name": "ملغاة"
-      },
-      "new": {
-        "name": "جديد"
-      },
-      "pending": {
-        "name": ""
-      }
-    },
-    "companyName": {
-      "label": "اسم الشركة"
-    },
-    "bornAt": {
-      "label": "تاريخ الميلاد"
-    },
-    "background": {
-      "label": "الخلفية",
-      "formLabel": "قصتك",
-      "desc": "ما الذي تعرفه حتى الان؟"
-    },
-    "requester": {
-      "prefix": "مقدم من قبل (اسم المتقدم بالطلب)",
-      "other": "المتقدمون بالطلبات",
-      "one": "المتقدم بالطلب"
-    },
-    "connectionsPerson": {
-      "label": "الأسرة والمرتبطين",
-      "desc": "العلاقات الأسرية المعروفة"
-    },
-    "countryPerson": {
-      "label": ""
-    },
-    "kind": {
-      "person_ownership": {
-        "shortName": "شخص",
-        "name": "حدد ممتلكات شخص"
-      },
-      "other": {
-        "shortName": "أخرى",
-        "name": "أي أسئلة أخرى"
-      },
-      "company_ownership": {
-        "shortName": "الشركة",
-        "name": "تحديد ملكية الشركة"
-      },
-      "one": "نوع"
-    },
-    "firstName": {
-      "label": "الاسم الأول"
-    },
-    "sourcesPerson": {
-      "label": "أسماء مستعارة",
-      "desc": "تهجئات أو أسماء وهمية أخرى"
-    },
-    "country": {
-      "search": {
-        "placeholder": "",
-        "noResults": ""
-      },
-      "other": "",
-      "label": "البلد المسجل",
-      "one": ""
-    },
-    "responder": {
-      "one": "المستجيب\n",
-      "other": "المستجيبين\n",
-      "empty": "لم يتم تعيين أحد",
-      "label": "الموظفون المستجيبون"
-    },
-    "sensitive": {
-      "trueLabel": "طلب معلومات حساسة\n",
-      "label": "هل ذلك حساس؟"
-    },
-    "lastName": {
-      "label": "اسم العائلة"
-    }
-  },
-  "pods": {
-    "browse": {
-      "newButton": "طلب جديد",
-      "title": "طلباتي"
-    },
-    "new": {
-      "headline": "سيتم توجيه طلبك إلى باحثينا المحترفين",
-      "form": {
-        "invalidMessage": "",
-        "submitButton": "أرسل طلبك",
-        "otherDetails": "تفاصيل أخرى",
-        "requestDetails": "تفاصيل الطلب",
-        "uploadInfo": "You will be able attach documents after submitting the request."
-      },
-      "title": "اطلب معلومات"
-    },
-    "view": {
-      "close": {
-        "cancel": "لا",
-        "button": " (إجراء) الطلب",
-        "title": "هل انت متأكد انك تريد (إرسال) هذا الطلب؟",
-        "confirm": "نعم"
-      },
-      "pending": {
-        "button": ""
-      },
-      "reopen": {
-        "button": "اعد فتح طلب",
-        "title": "سبب إعادة الفتح"
-      }
-    },
-    "reporting": {
-      "openTickets": {
-        "one": "{{count}} Open request",
-        "other": "{{count}} Open requests",
-        "zero": "{{count}} Open requests"
-      },
-      "closedTickets": {
-        "one": "{{count}} Closed request",
-        "other": "{{count}} Closed requests",
-        "zero": "{{count}} Closed requests"
-      },
-      "pastDeadline": "{{count}} past deadline",
-      "columns": {
-        "avgTime": "Avg. resolution time",
-        "month": "Month",
-        "pastDeadline": "Past deadline",
-        "name": "Name",
-        "total": "Total"
-      },
-      "staffTitle": {
-        "one": "{{count}} Staff member",
-        "other": "{{count}} Staff members",
-        "zero": "{{count}} Staff members"
-      },
-      "countriesTitle": {
-        "one": "{{count}} Country",
-        "other": "{{count}} Countries",
-        "zero": "{{count}} Countries"
-      },
-      "dateRange": {
-        "lastQuarter": "Last 3 months",
-        "lastHalf": "Last 6 months",
-        "lastYear": "Last year"
-      }
-    }
-  },
-  "userCard": {
-    "viewRequests": "View requests",
-    "adminProfile": "Admin profile"
+    "filesSelected": "((اعتمد)) الملفات المختارة",
+    "other": "المرفقات",
+    "removalPrompt": "Are you sure you want to delete this file?",
+    "zero": ""
   },
   "empty": {
     "noResults": {
@@ -307,18 +59,274 @@
       "title": ""
     }
   },
+  "errors": {
+    "genericInvalid": "ارجو تعبئة هذا الحقل"
+  },
+  "filters": {
+    "country": {
+      "title": ""
+    },
+    "current": {
+      "clear": "امسح جميع الفلاتر",
+      "title": "تمت تصفيتها بواسطة"
+    },
+    "kind": {
+      "title": "تصنيف حسب النوع"
+    },
+    "options": {
+      "all": "الجميع"
+    },
+    "requester": {
+      "title": "تصنيف حسب المتقدم بالطلب"
+    },
+    "responder": {
+      "emptyOption": "غير معيّن لأحد",
+      "title": "تصفية حسب من هو المعين"
+    },
+    "sort": {
+      "label": "تصنيف",
+      "title": "تصنيف حسب"
+    }
+  },
   "locales": {
-    "en": "English",
-    "ru": "Русский",
+    "ar": "العربية",
     "bs": "Bos/Hrv/Srp",
+    "en": "English",
     "es": "Español",
     "fr": "Français",
-    "ar": "العربية"
+    "ru": "Русский"
+  },
+  "pagination": {
+    "newer": "",
+    "next": "التالي",
+    "older": "",
+    "prev": "السابق"
+  },
+  "pods": {
+    "browse": {
+      "newButton": "طلب جديد",
+      "title": "طلباتي"
+    },
+    "new": {
+      "form": {
+        "invalidMessage": "",
+        "otherDetails": "تفاصيل أخرى",
+        "requestDetails": "تفاصيل الطلب",
+        "submitButton": "أرسل طلبك",
+        "uploadInfo": "You will be able attach documents after submitting the request."
+      },
+      "headline": "سيتم توجيه طلبك إلى باحثينا المحترفين و سيحاولون المساعدة.",
+      "title": "اطلب معلومات"
+    },
+    "reporting": {
+      "closedTickets": {
+        "one": "{{count}} Closed request",
+        "other": "{{count}} Closed requests",
+        "zero": "{{count}} Closed requests"
+      },
+      "columns": {
+        "avgTime": "Avg. resolution time",
+        "month": "Month",
+        "name": "Name",
+        "pastDeadline": "Past deadline",
+        "total": "Total"
+      },
+      "countriesTitle": {
+        "one": "{{count}} Country",
+        "other": "{{count}} Countries",
+        "zero": "{{count}} Countries"
+      },
+      "dateRange": {
+        "lastHalf": "Last 6 months",
+        "lastQuarter": "Last 3 months",
+        "lastYear": "Last year"
+      },
+      "openTickets": {
+        "one": "{{count}} Open request",
+        "other": "{{count}} Open requests",
+        "zero": "{{count}} Open requests"
+      },
+      "pastDeadline": "{{count}} past deadline",
+      "staffTitle": {
+        "one": "{{count}} Staff member",
+        "other": "{{count}} Staff members",
+        "zero": "{{count}} Staff members"
+      }
+    },
+    "view": {
+      "close": {
+        "button": " (إجراء) الطلب",
+        "cancel": "لا",
+        "confirm": "نعم",
+        "title": "هل انت متأكد انك تريد (إرسال) هذا الطلب؟"
+      },
+      "pending": {
+        "button": ""
+      },
+      "reopen": {
+        "button": "اعد فتح طلب",
+        "title": "سبب إعادة الفتح"
+      }
+    }
+  },
+  "prefixes": {
+    "at": "في تمام (الوقت)",
+    "by": "من قبل (المستخدم)",
+    "on": "في (تاريخ محدد)"
+  },
+  "profile": {
+    "search": {
+      "noResults": "لم يتم العثور على مستخدمين",
+      "placeholder": "ابحث عن المستخدمين"
+    }
+  },
+  "ticket": {
+    "background": {
+      "desc": "ما الذي تعرفه حتى الان؟",
+      "formLabel": "قصتك",
+      "label": "الخلفية"
+    },
+    "backgroundCompany": {
+      "desc": "ما الذي تعرفه حتى الان؟",
+      "formLabel": "قصتك",
+      "label": "خلفبة الشركة"
+    },
+    "backgroundOther": {
+      "desc": "أي معلومة بحوزتك.",
+      "formLabel": "ماذا تريد ان تعرف؟",
+      "label": "سؤال"
+    },
+    "bornAt": {
+      "label": "تاريخ الميلاد"
+    },
+    "businessActivities": {
+      "label": "الأنشطة التجارية"
+    },
+    "companyName": {
+      "label": "اسم الشركة"
+    },
+    "connections": {
+      "formLabel": "ارتباطات بشركات وأشخاص اخرين",
+      "label": "روابط"
+    },
+    "connectionsPerson": {
+      "desc": "العلاقات الأسرية المعروفة.",
+      "label": "الأسرة والمرتبطين"
+    },
+    "country": {
+      "label": "البلد المسجل",
+      "one": "البلد",
+      "other": "الدول",
+      "search": {
+        "noResults": "لم يتم العثور على أي بلد",
+        "placeholder": "البحث عن البلدان حسب الاسم أو الرمز"
+      }
+    },
+    "countryPerson": {
+      "label": "الجنسية"
+    },
+    "deadline": {
+      "desc": "سنحاول احترام الآجال المحددة ، غير أنه تحيطكم علما أن باحثينا مشغولون للغاية.<br /> امنحوهم القدر الكافي من الوقت !",
+      "empty": "",
+      "label": "الموعد النهائي",
+      "prefix": "الاستحقاق ((في تاريخ))"
+    },
+    "firstName": {
+      "label": "الاسم الأول"
+    },
+    "initialInformation": {
+      "desc": "اي معلومة بحوزتك.",
+      "formLabel": "اين بحثت من قبل؟",
+      "label": "المعلومات الأولية"
+    },
+    "kind": {
+      "company_ownership": {
+        "name": "تحديد ملكية الشركة",
+        "shortName": "الشركة"
+      },
+      "one": "نوع",
+      "other": {
+        "name": "أي أسئلة أخرى",
+        "shortName": "أخرى"
+      },
+      "person_ownership": {
+        "name": "حدد ممتلكات شخص",
+        "shortName": "شخص"
+      }
+    },
+    "lastName": {
+      "label": "اسم العائلة"
+    },
+    "one": "طلب",
+    "other": "{{count}} طلبات",
+    "requester": {
+      "one": "المتقدم بالطلب",
+      "other": "المتقدمون بالطلبات",
+      "prefix": "مقدم من قبل (اسم المتقدم بالطلب)"
+    },
+    "responder": {
+      "empty": "لم يتم تعيين أحد",
+      "label": "الموظفون المستجيبون",
+      "one": "المستجيب",
+      "other": "المستجيبين"
+    },
+    "sensitive": {
+      "label": "هل ذلك حساس؟",
+      "trueLabel": "طلب حساس"
+    },
+    "sources": {
+      "desc": "ما هي مصادرك؟",
+      "formLabel": "اين بحثت؟",
+      "label": "مصادر"
+    },
+    "sourcesPerson": {
+      "desc": "تهجئات أو أسماء وهمية أخرى.",
+      "label": "أسماء مستعارة"
+    },
+    "status": {
+      "cancelled": {
+        "name": "ملغاة"
+      },
+      "closed": {
+        "name": "مغلقة"
+      },
+      "groups": {
+        "closed": "مغلق",
+        "open": "مفتوح"
+      },
+      "in-progress": {
+        "name": "جاري العمل عليه"
+      },
+      "new": {
+        "name": "جديد"
+      },
+      "pending": {
+        "name": "مُعلَّقة"
+      }
+    },
+    "subscriber": {
+      "emailPlaceholder": "البريد الإلكتروني للمستخدم",
+      "one": "مشترك",
+      "other": "المشتركون",
+      "selfNotice": "أنت مشترك في هذا الطلب.",
+      "selfRemove": "إلغاء الإشتراك ؟"
+    },
+    "updatedAt": {
+      "label": "آخر تحديث",
+      "prefix": "محدثة"
+    },
+    "whysensitive": {
+      "label": "لماذا هذه المعلومات حساسة؟"
+    }
   },
   "time": {
     "default": "MMM D YYYY",
     "defaultCurrentYear": "MMM D",
     "full": "MMM D YYYY, HH:mm",
     "fullCurrentYear": "MMM D, HH:mm"
+  },
+  "userCard": {
+    "adminProfile": "Admin profile",
+    "viewRequests": "View requests"
   }
 }
