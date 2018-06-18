@@ -1,5 +1,4 @@
 import Route from '@ember/routing/route';
-import LoadingSliderMixin from 'id-frontend/mixins/loading-slider';
 import DS from 'ember-data';
 import ENV from 'id-frontend/config/environment';
 import { inject as service } from '@ember/service';

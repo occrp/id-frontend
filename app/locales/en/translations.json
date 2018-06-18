@@ -138,6 +138,10 @@
       "label": "Question",
       "formLabel": "What Do You Want To Know?",
       "desc": "Any information you already have."
+    },
+    "search": {
+      "placeholder": "Search requests",
+      "clear": "Clear search"
     }
   },
   "profile": {

@@ -1,24 +1,28 @@
 .filters {
   background: $gray-100;
   border-bottom: 1px solid $gray-400;
-  @include cf;
   font-size: $font-size-sm;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+
 }
 
 .filters-main {
-  float: left;
-  margin-right: $spacer-4;
+  padding: 0 0.5rem;
 }
 
 .filters-secondary {
-  float: right;
+  padding: 0 0.25rem;
 }
 
 .filters-item {
   float: left;
+  margin: 0 0.75rem;
 
   .dd-trigger {
-    padding: .8rem 1rem;
+    padding: .8rem 0;
     color: $gray-700;
 
     @include hover {
@@ -34,21 +38,6 @@
   }
 }
 
-@include rtl(true) {
-  .filters-main {
-    float: right;
-    margin-right: 0;
-    margin-left: $spacer-4;
-  }
-
-  .filters-secondary {
-    float: left;
-  }
-
-  .filters-item {
-    float: right;
-  }
-}
 
 
 

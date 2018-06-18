@@ -290,7 +290,7 @@
     "requester": {
       "one": "Forespørrer",
       "other": "Forespørrere",
-      "prefix": "Innsendt av {{requester}}"
+      "prefix": "Innsendt av {{requester}}"
     },
     "responder": {
       "empty": "Ingen tildelt",
@@ -347,6 +347,10 @@
     },
     "whysensitive": {
       "label": "Hvorfor er det sensitivt?"
+    },
+    "search": {
+      "placeholder": "Search requests",
+      "clear": "Clear search"
     }
   },
   "time": {

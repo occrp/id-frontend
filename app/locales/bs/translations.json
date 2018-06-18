@@ -224,6 +224,10 @@
     },
     "lastName": {
       "label": "Prezime"
+    },
+    "search": {
+      "placeholder": "Search requests",
+      "clear": "Clear search"
     }
   },
   "pods": {
@@ -305,6 +309,14 @@
     "noTickets": {
       "button": "Novi zahtjev",
       "title": "Izgleda da još niste ostavili nijedan zahtjev"
+    }
+  },
+  "nav": {
+    "requests": "Requests",
+    "reports": "Reports",
+    "account": {
+      "profile": "Profile",
+      "logout": "Logout"
     }
   },
   "locales": {
