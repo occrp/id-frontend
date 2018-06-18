@@ -39,7 +39,7 @@ export default Route.extend({
         kind: params.kind,
         requester: params.requester,
         responder: params.responder,
-        name: params.search
+        search: params.search
       },
       page: {
         number: params.page,
