@@ -224,6 +224,10 @@
     },
     "lastName": {
       "label": "Nom de famille"
+    },
+    "search": {
+      "placeholder": "Search requests",
+      "clear": "Clear search"
     }
   },
   "pods": {
@@ -305,6 +309,14 @@
     "noTickets": {
       "button": "",
       "title": ""
+    }
+  },
+  "nav": {
+    "requests": "Requests",
+    "reports": "Reports",
+    "account": {
+      "profile": "Profile",
+      "logout": "Logout"
     }
   },
   "locales": {

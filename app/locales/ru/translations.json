@@ -253,6 +253,10 @@
         },
         "lastName": {
             "label": "Фамилия"
+        },
+        "search": {
+            "placeholder": "Search requests",
+            "clear": "Clear search"
         }
     },
     "pods": {

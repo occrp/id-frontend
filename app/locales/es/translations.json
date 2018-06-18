@@ -210,6 +210,10 @@
     },
     "lastName": {
       "label": "Apellido"
+    },
+    "search": {
+      "placeholder": "Search requests",
+      "clear": "Clear search"
     }
   },
   "pagination": {
@@ -324,5 +328,13 @@
     "defaultCurrentYear": "MMM D",
     "full": "MMM D YYYY, HH:mm",
     "fullCurrentYear": "MMM D, HH:mm"
+  },
+  "nav": {
+    "requests": "Requests",
+    "reports": "Reports",
+    "account": {
+      "profile": "Profile",
+      "logout": "Logout"
+    }
   }
 }

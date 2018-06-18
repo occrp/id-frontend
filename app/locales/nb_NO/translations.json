@@ -138,6 +138,10 @@
             "other": "Land",
             "label": "Registreringsland",
             "one": "Land"
+        },
+        "search": {
+            "placeholder": "Search requests",
+            "clear": "Clear search"
         }
     },
     "profile": {
