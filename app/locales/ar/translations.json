@@ -20,7 +20,7 @@
     },
     "attachment": {
       "action": "((المستخدم)) ارفق الملفات",
-      "removed": ""
+      "removed": "قام {{user}} بإزالة ملف"
     },
     "comment": {
       "action": "",
@@ -102,6 +102,9 @@
         "asc": "الأقدم",
         "desc": "الأحدث"
       },
+      "deadlineAt": {
+        "asc": "أقصى أجل"
+      },
       "label": "تصنيف",
       "title": "تصنيف حسب"
     }
@@ -168,13 +171,13 @@
         "lastYear": "في العام الماضي"
       },
       "openTickets": {
-        "one": "",
+        "one": "{{count}} طلبات مفتوحة",
         "other": "{{count}} طلبات مفتوحة",
         "zero": "{{count}} طلبات مفتوحة"
       },
       "pastDeadline": "",
       "staffTitle": {
-        "one": "",
+        "one": "{{count}} عضو في الفريق",
         "other": "{{count}} أعضاء في الفريق",
         "zero": "{{count}} أعضاء في الفريق"
       }
