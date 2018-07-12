@@ -7,12 +7,12 @@
     },
     "cancel": "الغاء",
     "close": "إغلاق",
-    "delete": "Delete",
-    "remove": "احذف",
+    "delete": "حذف",
+    "remove": "حذف",
     "reopen": "اعادة فتح",
-    "save": "احفظ",
+    "save": "حفظ",
     "unmark": "إزالة العلامة",
-    "upload": "تحميل"
+    "upload": "رفع"
   },
   "activity": {
     "assign": {
@@ -27,12 +27,13 @@
       "submitButton": "أضف تعليقاً",
       "title": "اترك تعليق"
     },
+    "loadOlder": "تحميل الأقدم",
     "one": "نشاط",
     "reopen": {
       "action": "اعيد فتحه"
     },
     "resume": {
-      "action": ""
+      "action": "استئناف"
     },
     "showOnlyComments": "إظهار التعليقات فقط",
     "unassign": {
@@ -54,6 +55,7 @@
       "aborted": "تم الإلغاء",
       "failed": "فشل",
       "queued": "في قائمة الانتظار",
+      "timed_out": "نفذ الوقت",
       "uploaded": "تمّ إرساله",
       "uploading": "جار الرفع"
     },
@@ -61,28 +63,30 @@
   },
   "empty": {
     "noResults": {
-      "body": "",
+      "body": "استخدم القائمة التي بالأعلى لتصنيف الطلبات بسهولة.",
       "title": "لا توجد نتائج مطابقة لبحثك."
     },
     "noTickets": {
       "button": "أرسل طلبك",
-      "title": ""
+      "title": "يبدو أنك لم تقم بارسال أي طلب."
     }
   },
   "errors": {
+    "activities": "حدث خطأ أثناء تحميل تغذية النشاط.",
     "genericInvalid": "ارجو تعبئة هذا الحقل",
     "genericRequest": "حدث خطأ أثناء معالجة طلبك.",
     "routeError": {
+      "body": "تم تنبيهنا تلقائيا و نحتاج لنسخة أفضل من هذه.",
       "title": "حدث خطأ أثناء معالجة طلبك."
     }
   },
   "filters": {
     "country": {
-      "title": "تصفية حسب البلد/الجنسية"
+      "title": "تصنيف حسب البلد/الجنسية"
     },
     "current": {
       "clear": "امسح جميع الفلاتر",
-      "title": "تمت تصفيتها بواسطة"
+      "title": "تمت تصفيتها حسب"
     },
     "kind": {
       "title": "تصنيف حسب النوع"
@@ -103,7 +107,8 @@
         "desc": "الأحدث"
       },
       "deadlineAt": {
-        "asc": "أقصى أجل"
+        "asc": "أبعد موعد نهائي",
+        "desc": "أقرب موعد نهائي"
       },
       "label": "تصنيف",
       "title": "تصنيف حسب"
@@ -113,13 +118,13 @@
     "ar": "العربية",
     "bs": "Bos/Hrv/Srp",
     "en": "English",
-    "es": "الإسبانية",
-    "fr": "الفرنسية",
-    "ru": ""
+    "es": "Español",
+    "fr": "Français",
+    "ru": "Русский"
   },
   "nav": {
     "account": {
-      "logout": "الخروج",
+      "logout": "تسجيل خروج",
       "profile": "الملف الشخصي"
     },
     "reports": "التقارير",
@@ -149,16 +154,16 @@
     },
     "reporting": {
       "closedTickets": {
-        "one": "{{count}} طلبات مغلقة",
+        "one": "{{count}} طلب مغلق",
         "other": "{{count}} طلبات مغلقة",
         "zero": "{{count}} طلبات مغلقة"
       },
       "columns": {
-        "avgTime": "",
-        "month": "الشهر",
-        "name": "Name",
-        "pastDeadline": "",
-        "total": "Total"
+        "avgTime": "متوسط الوقت المتوفر",
+        "month": "شهر",
+        "name": "الاسم",
+        "pastDeadline": "الموعد النهائي السابق",
+        "total": "إجمالي"
       },
       "countriesTitle": {
         "one": "{{count}} بلد",
@@ -166,16 +171,16 @@
         "zero": "{{count}} بلدان"
       },
       "dateRange": {
-        "lastHalf": "6 أشهر الأخيرة",
-        "lastQuarter": "3 أشهر الأخيرة",
+        "lastHalf": "الأشهر الست الأخيرة",
+        "lastQuarter": "الأشهر الثلاث الأخيرة",
         "lastYear": "في العام الماضي"
       },
       "openTickets": {
-        "one": "{{count}} طلبات مفتوحة",
+        "one": "{{count}} طلب مفتوح",
         "other": "{{count}} طلبات مفتوحة",
         "zero": "{{count}} طلبات مفتوحة"
       },
-      "pastDeadline": "",
+      "pastDeadline": "{{count}} الموعد النهائي السابق",
       "staffTitle": {
         "one": "{{count}} عضو في الفريق",
         "other": "{{count}} أعضاء في الفريق",
@@ -185,15 +190,15 @@
     "view": {
       "close": {
         "button": "{{verb}} الطلب",
-        "cancel": "لا",
-        "confirm": "نعم",
+        "cancel": "لا، اتركه مفتوح",
+        "confirm": "نعم، {{verb}} الطلب",
         "title": "هل انت متأكد انك تريد (إرسال) هذا الطلب؟"
       },
       "pending": {
         "button": "وضع إشارة في الإنتظار"
       },
       "reopen": {
-        "button": "اعد فتح طلب",
+        "button": "اعد فتح الطلب",
         "title": "سبب إعادة الفتح"
       }
     }
@@ -297,7 +302,9 @@
       "empty": "لم يتم تعيين أحد",
       "label": "الموظفون المستجيبون",
       "one": "المستجيب",
-      "other": "المستجيبين"
+      "other": "المستجيبين",
+      "selfNotice": "تم تعيينك لطلب البحث هذا.",
+      "selfRemove": "غير معين؟"
     },
     "sensitive": {
       "label": "هل ذلك حساس؟",
@@ -359,7 +366,9 @@
     "viewRequests": "عرض الطلبات"
   },
   "validationErrors": {
+    "after": "هذا التاريخ يجب أن يكون بعد {{after}}",
+    "before": "هذا التاريخ يجب أن يكون قبل {{before}}",
     "blank": "لا يمكن ترك هذا الحقل فارغاً",
-    "email": "يجب أن يكون هذا الحقل عنوان بريد إلكتروني صالح"
+    "email": "يجب أن يكون هذا الحقل عنوان بريد إلكتروني صحيح"
   }
 }
