@@ -1,301 +1,52 @@
 {
-  "profile": {
-    "search": {
-      "placeholder": "Pretražite korisnike",
-      "noResults": "Nisu pronađeni korisnici"
-    }
-  },
-  "pagination": {
-    "prev": "Prethodni",
-    "next": "Sljedeći",
-    "newer": "Noviji",
-    "older": "Stariji"
-  },
-  "errors": {
-    "genericInvalid": "Molimo popunite ovo polje"
-  },
   "actions": {
-    "upload": "Upload",
-    "remove": "Ukloniti",
-    "reopen": "Ponovo otvoriti",
-    "cancel": "Otkazati",
-    "save": "Sačuvati",
     "assign": {
       "longForm": "Dodijelite istraživaču",
       "shortForm": "Dodijeliti"
     },
-    "delete": "Delete"
-  },
-  "prefixes": {
-    "on": "dana {{date}}",
-    "at": "u {{time}}",
-    "by": "{{user}}"
-  },
-  "attachment": {
-    "zero": "Nema priloga",
-    "other": "Prilozi",
-    "dropzone": {
-      "title": "Upload dokumenata",
-      "desc": "Premjestite dokumente ovdje ili {{select}}",
-      "invalidTitle": "Neispravan unos",
-      "select": "Odaberite dokument",
-      "activeTitle": "Dokumenti za upload"
-    },
-    "filesSelected": "{{count}} odabran(a)",
-    "removalPrompt": "Are you sure you want to delete this file?"
-  },
-  "filters": {
-    "sort": {
-      "title": "Sortiraj po",
-      "label": "Sortiraj"
-    },
-    "kind": {
-      "title": "Filtriraj po tipu"
-    },
-    "country": {
-      "title": "Filtriraj po državi/nacionalnosti"
-    },
-    "responder": {
-      "emptyOption": "Nije dodijeljen",
-      "title": "Filtriraj po istraživaču"
-    },
-    "current": {
-      "clear": "Ukloniti sve filtere",
-      "title": "Filtriraj po"
-    },
-    "requester": {
-      "title": "Filtriraj po podnosiocu zahtjeva"
-    },
-    "options": {
-      "all": "Prikaži sve"
-    }
+    "cancel": "Otkazati",
+    "delete": "Delete",
+    "remove": "Ukloniti",
+    "reopen": "Ponovo otvoriti",
+    "save": "Sačuvati",
+    "upload": "Upload"
   },
   "activity": {
-    "comment": {
-      "action": "{{user}} je dodao/la komentar {{relativeTime}}",
-      "submitButton": "Objavi komentar",
-      "title": "Ostavi komentar"
-    },
-    "resume": {
-      "action": "ponovo otvoren"
-    },
-    "one": "Aktivnost",
-    "reopen": {
-      "action": "ponovo otvoren"
+    "assign": {
+      "action": "Istraživač {{user}} se pridružio zahtjevu"
     },
     "attachment": {
       "action": "Istraživač {{user}} je dodao dokumente",
       "removed": "{{user}} removed file"
     },
+    "comment": {
+      "action": "{{user}} je dodao/la komentar {{relativeTime}}",
+      "submitButton": "Objavi komentar",
+      "title": "Ostavi komentar"
+    },
+    "one": "Aktivnost",
+    "reopen": {
+      "action": "ponovo otvoren"
+    },
+    "resume": {
+      "action": "ponovo otvoren"
+    },
     "unassign": {
       "action": "Istraživač {{user}} je napustio zahtjev"
-    },
-    "assign": {
-      "action": "Istraživač {{user}} se pridružio zahtjevu"
     }
   },
-  "ticket": {
-    "one": "Zahtjev",
-    "connections": {
-      "formLabel": "Veze sa drugim firmama i ljudima",
-      "label": "Druge veze"
+  "attachment": {
+    "dropzone": {
+      "activeTitle": "Dokumenti za upload",
+      "desc": "Premjestite dokumente ovdje ili {{select}}",
+      "invalidTitle": "Neispravan unos",
+      "select": "Odaberite dokument",
+      "title": "Upload dokumenata"
     },
-    "sources": {
-      "label": "Izvori",
-      "formLabel": "Gdje ste već provjerili?",
-      "desc": "Koje izvore ste do sada koristili?"
-    },
-    "deadline": {
-      "prefix": "rok {{relativeTime}}",
-      "label": "Krajnji rok",
-      "empty": "Nema krajnjeg roka",
-      "desc": "Potrudit ćemo se da završimo u roku"
-    },
-    "whysensitive": {
-      "label": "Šta je čini povjerljivom?"
-    },
-    "updatedAt": {
-      "prefix": "Ažurirano {{relativeTime}}",
-      "label": "Posljednje ažuriranje"
-    },
-    "initialInformation": {
-      "label": "Početne informacije",
-      "formLabel": "Gdje ste već provjerili?",
-      "desc": "Bilo koje informacije koje već imate"
-    },
-    "businessActivities": {
-      "label": "Poslovne aktivnosti"
-    },
-    "backgroundCompany": {
-      "label": "Pozadina firme",
-      "formLabel": "Šta je vaša priča?",
-      "desc": "Koje informacije već znate?"
-    },
-    "backgroundOther": {
-      "label": "Pitanje",
-      "formLabel": "Šta želite da saznate?",
-      "desc": "Bilo koje informacije koje već imate"
-    },
-    "other": "{{count}} Zahtjev(a)",
-    "status": {
-      "closed": {
-        "name": "Zatvoren"
-      },
-      "in-progress": {
-        "name": "U obradi"
-      },
-      "groups": {
-        "open": "Otvoren",
-        "closed": "Zatvoren"
-      },
-      "cancelled": {
-        "name": "Otkazan"
-      },
-      "new": {
-        "name": "Novi"
-      },
-      "pending": {
-        "name": "Na čekanju"
-      }
-    },
-    "companyName": {
-      "label": "Ime firme"
-    },
-    "bornAt": {
-      "label": "Datum rođenja"
-    },
-    "background": {
-      "label": "Kontekst",
-      "formLabel": "Šta je vaša priča?",
-      "desc": "Koje informacije već znate?"
-    },
-    "requester": {
-      "prefix": "Podnosilac zahtjeva {{requester}}",
-      "other": "Podnosioci zahtjeva",
-      "one": "Podnosilac zahtjeva"
-    },
-    "connectionsPerson": {
-      "label": "Porodica i saradnici",
-      "desc": "Poznate porodične veze"
-    },
-    "countryPerson": {
-      "label": "Državljanstvo"
-    },
-    "kind": {
-      "person_ownership": {
-        "shortName": "Osoba",
-        "name": "Utvrditi šta osoba ima u vlasništvu"
-      },
-      "other": {
-        "shortName": "Drugo",
-        "name": "Ostala pitanja"
-      },
-      "company_ownership": {
-        "shortName": "Firma",
-        "name": "Utvrditi vlasništvo firme"
-      },
-      "one": "Tip"
-    },
-    "firstName": {
-      "label": "Ime"
-    },
-    "sourcesPerson": {
-      "label": "Pseudonimi",
-      "desc": "Drugi načini pisanja imena ili nadimci"
-    },
-    "country": {
-      "search": {
-        "placeholder": "Tražite po nazivu ili kodu države",
-        "noResults": "Nisu pronađene države"
-      },
-      "other": "Države",
-      "label": "Zemlja u kojoj je firma registrovana",
-      "one": "Država"
-    },
-    "responder": {
-      "one": "Istraživač",
-      "other": "Istraživači",
-      "empty": "Istraživač nije dodijeljen",
-      "label": "Odgovorni istraživač"
-    },
-    "sensitive": {
-      "trueLabel": "Zahtjev za informacijama povjerljive prirode",
-      "label": "Da li je informacija povjerljiva?"
-    },
-    "lastName": {
-      "label": "Prezime"
-    }
-  },
-  "pods": {
-    "browse": {
-      "newButton": "Novi zahtjev",
-      "title": "Moji zahtjevi"
-    },
-    "new": {
-      "headline": "Vaš zahtjev bit će dodijeljen našim profesionalnim istraživačima",
-      "form": {
-        "invalidMessage": "Molimo da popunite naznačena polja",
-        "submitButton": "Pošaljite svoj zahtjev",
-        "otherDetails": "Drugi detalji",
-        "requestDetails": "Detalji zahtjeva",
-        "uploadInfo": "You will be able attach documents after submitting the request."
-      },
-      "title": "Podaci o zahtjevu"
-    },
-    "view": {
-      "close": {
-        "cancel": "Ne",
-        "button": "{{verb}} zahtjev",
-        "title": "Da li ste sigurni da želite {{verb}} ovaj zahtjev",
-        "confirm": "Da"
-      },
-      "pending": {
-        "button": "Stavite na čekanje"
-      },
-      "reopen": {
-        "button": "Ponovo otvoriti zahtjev",
-        "title": "Razlog za ponovno otvaranje"
-      }
-    },
-    "reporting": {
-      "openTickets": {
-        "one": "{{count}} Open request",
-        "other": "{{count}} Open requests",
-        "zero": "{{count}} Open requests"
-      },
-      "closedTickets": {
-        "one": "{{count}} Closed request",
-        "other": "{{count}} Closed requests",
-        "zero": "{{count}} Closed requests"
-      },
-      "pastDeadline": "{{count}} past deadline",
-      "columns": {
-        "avgTime": "Avg. resolution time",
-        "month": "Month",
-        "pastDeadline": "Past deadline",
-        "name": "Name",
-        "total": "Total"
-      },
-      "staffTitle": {
-        "one": "{{count}} Staff member",
-        "other": "{{count}} Staff members",
-        "zero": "{{count}} Staff members"
-      },
-      "countriesTitle": {
-        "one": "{{count}} Country",
-        "other": "{{count}} Countries",
-        "zero": "{{count}} Countries"
-      },
-      "dateRange": {
-        "lastQuarter": "Last 3 months",
-        "lastHalf": "Last 6 months",
-        "lastYear": "Last year"
-      }
-    }
-  },
-  "userCard": {
-    "viewRequests": "View requests",
-    "adminProfile": "Admin profile"
+    "filesSelected": "{{count}} odabran(a)",
+    "other": "Prilozi",
+    "removalPrompt": "Are you sure you want to delete this file?",
+    "zero": "Nema priloga"
   },
   "empty": {
     "noResults": {
@@ -307,18 +58,268 @@
       "title": "Izgleda da još niste ostavili nijedan zahtjev"
     }
   },
+  "errors": {
+    "genericInvalid": "Molimo popunite ovo polje"
+  },
+  "filters": {
+    "country": {
+      "title": "Filtriraj po državi/nacionalnosti"
+    },
+    "current": {
+      "clear": "Ukloniti sve filtere",
+      "title": "Filtriraj po"
+    },
+    "kind": {
+      "title": "Filtriraj po tipu"
+    },
+    "options": {
+      "all": "Prikaži sve"
+    },
+    "requester": {
+      "title": "Filtriraj po podnosiocu zahtjeva"
+    },
+    "responder": {
+      "emptyOption": "Nije dodijeljen",
+      "title": "Filtriraj po istraživaču"
+    },
+    "sort": {
+      "label": "Sortiraj",
+      "title": "Sortiraj po"
+    }
+  },
   "locales": {
-    "en": "English",
-    "ru": "Русский",
+    "ar": "العربية",
     "bs": "Bos/Hrv/Srp",
+    "en": "English",
     "es": "Español",
     "fr": "Français",
-    "ar": "العربية"
+    "ru": "Русский"
+  },
+  "pagination": {
+    "newer": "Noviji",
+    "next": "Sljedeći",
+    "older": "Stariji",
+    "prev": "Prethodni"
+  },
+  "pods": {
+    "browse": {
+      "newButton": "Novi zahtjev",
+      "title": "Moji zahtjevi"
+    },
+    "new": {
+      "form": {
+        "invalidMessage": "Molimo da popunite naznačena polja",
+        "otherDetails": "Drugi detalji",
+        "requestDetails": "Detalji zahtjeva",
+        "submitButton": "Pošaljite svoj zahtjev",
+        "uploadInfo": "You will be able attach documents after submitting the request."
+      },
+      "headline": "Vaš zahtjev bit će dodijeljen našim profesionalnim istraživačima",
+      "title": "Podaci o zahtjevu"
+    },
+    "reporting": {
+      "closedTickets": {
+        "one": "{{count}} Closed request",
+        "other": "{{count}} Closed requests",
+        "zero": "{{count}} Closed requests"
+      },
+      "columns": {
+        "avgTime": "Avg. resolution time",
+        "month": "Month",
+        "name": "Name",
+        "pastDeadline": "Past deadline",
+        "total": "Total"
+      },
+      "countriesTitle": {
+        "one": "{{count}} Country",
+        "other": "{{count}} Countries",
+        "zero": "{{count}} Countries"
+      },
+      "dateRange": {
+        "lastHalf": "Last 6 months",
+        "lastQuarter": "Last 3 months",
+        "lastYear": "Last year"
+      },
+      "openTickets": {
+        "one": "{{count}} Open request",
+        "other": "{{count}} Open requests",
+        "zero": "{{count}} Open requests"
+      },
+      "pastDeadline": "{{count}} past deadline",
+      "staffTitle": {
+        "one": "{{count}} Staff member",
+        "other": "{{count}} Staff members",
+        "zero": "{{count}} Staff members"
+      }
+    },
+    "view": {
+      "close": {
+        "button": "{{verb}} zahtjev",
+        "cancel": "Ne",
+        "confirm": "Da",
+        "title": "Da li ste sigurni da želite {{verb}} ovaj zahtjev"
+      },
+      "pending": {
+        "button": "Stavite na čekanje"
+      },
+      "reopen": {
+        "button": "Ponovo otvoriti zahtjev",
+        "title": "Razlog za ponovno otvaranje"
+      }
+    }
+  },
+  "prefixes": {
+    "at": "u {{time}}",
+    "by": "{{user}}",
+    "on": "dana {{date}}"
+  },
+  "profile": {
+    "search": {
+      "noResults": "Nisu pronađeni korisnici",
+      "placeholder": "Pretražite korisnike"
+    }
+  },
+  "ticket": {
+    "background": {
+      "desc": "Koje informacije već znate?",
+      "formLabel": "Šta je vaša priča?",
+      "label": "Kontekst"
+    },
+    "backgroundCompany": {
+      "desc": "Koje informacije već znate?",
+      "formLabel": "Šta je vaša priča?",
+      "label": "Pozadina firme"
+    },
+    "backgroundOther": {
+      "desc": "Bilo koje informacije koje već imate",
+      "formLabel": "Šta želite da saznate?",
+      "label": "Pitanje"
+    },
+    "bornAt": {
+      "label": "Datum rođenja"
+    },
+    "businessActivities": {
+      "label": "Poslovne aktivnosti"
+    },
+    "companyName": {
+      "label": "Ime firme"
+    },
+    "connections": {
+      "formLabel": "Veze sa drugim firmama i ljudima",
+      "label": "Druge veze"
+    },
+    "connectionsPerson": {
+      "desc": "Poznate porodične veze",
+      "label": "Porodica i saradnici"
+    },
+    "country": {
+      "label": "Zemlja u kojoj je firma registrovana",
+      "one": "Država",
+      "other": "Države",
+      "search": {
+        "noResults": "Nisu pronađene države",
+        "placeholder": "Tražite po nazivu ili kodu države"
+      }
+    },
+    "countryPerson": {
+      "label": "Državljanstvo"
+    },
+    "deadline": {
+      "desc": "Potrudit ćemo se da završimo u roku",
+      "empty": "Nema krajnjeg roka",
+      "label": "Krajnji rok",
+      "prefix": "rok {{relativeTime}}"
+    },
+    "firstName": {
+      "label": "Ime"
+    },
+    "initialInformation": {
+      "desc": "Bilo koje informacije koje već imate",
+      "formLabel": "Gdje ste već provjerili?",
+      "label": "Početne informacije"
+    },
+    "kind": {
+      "company_ownership": {
+        "name": "Utvrditi vlasništvo firme",
+        "shortName": "Firma"
+      },
+      "one": "Tip",
+      "other": {
+        "name": "Ostala pitanja",
+        "shortName": "Drugo"
+      },
+      "person_ownership": {
+        "name": "Utvrditi šta osoba ima u vlasništvu",
+        "shortName": "Osoba"
+      }
+    },
+    "lastName": {
+      "label": "Prezime"
+    },
+    "one": "Zahtjev",
+    "other": "{{count}} Zahtjev(a)",
+    "requester": {
+      "one": "Podnosilac zahtjeva",
+      "other": "Podnosioci zahtjeva",
+      "prefix": "Podnosilac zahtjeva {{requester}}"
+    },
+    "responder": {
+      "empty": "Istraživač nije dodijeljen",
+      "label": "Odgovorni istraživač",
+      "one": "Istraživač",
+      "other": "Istraživači",
+      "selfNotice": "Dodijeljen Vam je ovaj zahtjev"
+    },
+    "sensitive": {
+      "label": "Da li je informacija povjerljiva?",
+      "trueLabel": "Zahtjev za informacijama povjerljive prirode"
+    },
+    "sources": {
+      "desc": "Koje izvore ste do sada koristili?",
+      "formLabel": "Gdje ste već provjerili?",
+      "label": "Izvori"
+    },
+    "sourcesPerson": {
+      "desc": "Drugi načini pisanja imena ili nadimci",
+      "label": "Pseudonimi"
+    },
+    "status": {
+      "cancelled": {
+        "name": "Otkazan"
+      },
+      "closed": {
+        "name": "Zatvoren"
+      },
+      "groups": {
+        "closed": "Zatvoren",
+        "open": "Otvoren"
+      },
+      "in-progress": {
+        "name": "U obradi"
+      },
+      "new": {
+        "name": "Novi"
+      },
+      "pending": {
+        "name": "Na čekanju"
+      }
+    },
+    "updatedAt": {
+      "label": "Posljednje ažuriranje",
+      "prefix": "Ažurirano {{relativeTime}}"
+    },
+    "whysensitive": {
+      "label": "Šta je čini povjerljivom?"
+    }
   },
   "time": {
     "default": "MMM D YYYY",
     "defaultCurrentYear": "MMM D",
     "full": "MMM D YYYY, HH:mm",
     "fullCurrentYear": "MMM D, HH:mm"
+  },
+  "userCard": {
+    "adminProfile": "Admin profile",
+    "viewRequests": "View requests"
   }
 }
