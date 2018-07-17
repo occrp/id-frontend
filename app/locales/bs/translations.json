@@ -63,12 +63,12 @@
   },
   "empty": {
     "noResults": {
-      "body": "Koristite menu iznad da odaberete željene zahtjeve",
-      "title": "Nema rezultata pretrage"
+      "body": "Koristite menu iznad da odaberete željene zahtjeve.",
+      "title": "Nema rezultata pretrage."
     },
     "noTickets": {
       "button": "Novi zahtjev",
-      "title": "Izgleda da još niste ostavili nijedan zahtjev"
+      "title": "Izgleda da još niste ostavili nijedan zahtjev."
     }
   },
   "errors": {
@@ -115,12 +115,12 @@
     }
   },
   "locales": {
-    "ar": "العربية",
+    "ar": "Arapski",
     "bs": "Bos/Hrv/Srp",
     "en": "English",
-    "es": "Español",
-    "fr": "Français",
-    "ru": "Русский"
+    "es": "Španski",
+    "fr": "Francuski",
+    "ru": "Ruski"
   },
   "nav": {
     "account": {
@@ -154,37 +154,37 @@
     },
     "reporting": {
       "closedTickets": {
-        "one": "{{count}} Closed request",
-        "other": "{{count}} Closed requests",
-        "zero": "{{count}} Closed requests"
+        "one": "{{count}} Zatvoren zahtjev",
+        "other": "{{count}} Zatvorenih zahtjeva",
+        "zero": "{{count}} Zatvorenih zahtjeva"
       },
       "columns": {
-        "avgTime": "Avg. resolution time",
-        "month": "Month",
+        "avgTime": "Prosječno vrijeme potrebno za odgovor",
+        "month": "Mjesec",
         "name": "Name",
-        "pastDeadline": "Past deadline",
+        "pastDeadline": "Istekao rok",
         "total": "Total"
       },
       "countriesTitle": {
-        "one": "{{count}} Country",
-        "other": "{{count}} Countries",
-        "zero": "{{count}} Countries"
+        "one": "{{count}} Država",
+        "other": "{{count}} Država",
+        "zero": "{{count}} Država"
       },
       "dateRange": {
-        "lastHalf": "Last 6 months",
-        "lastQuarter": "Last 3 months",
-        "lastYear": "Last year"
+        "lastHalf": "Posljednjih šest mjeseci",
+        "lastQuarter": "Posljednja tri mjeseca",
+        "lastYear": "Posljednjih godinu dana"
       },
       "openTickets": {
         "one": "{{count}} Otvorenih zahtjeva",
         "other": "{{count}} Otvorenih zahtjeva",
         "zero": "{{count}} Otvorenih zahtjeva"
       },
-      "pastDeadline": "{{count}} past deadline",
+      "pastDeadline": "{{count}} sa isteklim rokom",
       "staffTitle": {
-        "one": "{{count}} Staff member",
-        "other": "{{count}} Staff members",
-        "zero": "{{count}} Staff members"
+        "one": "{{count}} Istraživač",
+        "other": "{{count}} Istraživača",
+        "zero": "{{count}} Istraživača"
       }
     },
     "view": {
@@ -260,7 +260,7 @@
       "label": "Državljanstvo"
     },
     "deadline": {
-      "desc": "Potrudit ćemo se da završimo u roku",
+      "desc": "Potrudit ćemo se da završimo u roku, ali naši istraživači često su jako zauzeti. <br />Molimo Vas da im ostavite što više vremena možete.",
       "empty": "Nema krajnjeg roka",
       "label": "Krajnji rok",
       "prefix": "rok {{relativeTime}}"
@@ -358,12 +358,12 @@
   "time": {
     "default": "MMM D YYYY",
     "defaultCurrentYear": "MMM D",
-    "full": "MMM D YYYY, HH:mm",
+    "full": "MMM D GGGG, HH:mm",
     "fullCurrentYear": "MMM D, HH:mm"
   },
   "userCard": {
-    "adminProfile": "Admin profile",
-    "viewRequests": "View requests"
+    "adminProfile": "Profil administratora",
+    "viewRequests": "Pogledaj zahtjeve"
   },
   "validationErrors": {
     "after": "Datum mora biti poslije {{after}}",
