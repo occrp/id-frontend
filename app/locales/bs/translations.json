@@ -1,14 +1,17 @@
 {
   "actions": {
+    "addSubscriber": "Dodaj još jednog korisnika",
     "assign": {
       "longForm": "Dodijelite istraživaču",
       "shortForm": "Dodijeliti"
     },
     "cancel": "Otkazati",
+    "close": "Zatvori",
     "delete": "Delete",
     "remove": "Ukloniti",
     "reopen": "Ponovo otvoriti",
     "save": "Sačuvati",
+    "unmark": "Ukloni oznaku",
     "upload": "Upload"
   },
   "activity": {
@@ -17,13 +20,14 @@
     },
     "attachment": {
       "action": "Istraživač {{user}} je dodao dokumente",
-      "removed": "{{user}} removed file"
+      "removed": "{{user}} je uklonio dokument"
     },
     "comment": {
       "action": "{{user}} je dodao/la komentar {{relativeTime}}",
       "submitButton": "Objavi komentar",
       "title": "Ostavi komentar"
     },
+    "loadOlder": "Prikaži starije",
     "one": "Aktivnost",
     "reopen": {
       "action": "ponovo otvoren"
@@ -31,6 +35,7 @@
     "resume": {
       "action": "ponovo otvoren"
     },
+    "showOnlyComments": "Prikaži samo komentare",
     "unassign": {
       "action": "Istraživač {{user}} je napustio zahtjev"
     }
@@ -45,7 +50,15 @@
     },
     "filesSelected": "{{count}} odabran(a)",
     "other": "Prilozi",
-    "removalPrompt": "Are you sure you want to delete this file?",
+    "removalPrompt": "Jeste li sigurni da želite obrisati ovaj dokument?",
+    "state": {
+      "aborted": "Prekinuto",
+      "failed": "Neuspješno",
+      "queued": "Na čekanju",
+      "timed_out": "Isteklo vrijeme",
+      "uploaded": "Dodan",
+      "uploading": "Učitava se"
+    },
     "zero": "Nema priloga"
   },
   "empty": {
@@ -59,7 +72,13 @@
     }
   },
   "errors": {
-    "genericInvalid": "Molimo popunite ovo polje"
+    "activities": "Došlo je do greške prilikom učitavanja liste aktivnosti.",
+    "genericInvalid": "Molimo popunite ovo polje",
+    "genericRequest": "Došlo je do greške u obradi Vašeg zahtjeva.",
+    "routeError": {
+      "body": "Dobili smo automatsku obavijest da je neophodan bolji primjerak.",
+      "title": "Došlo je do greške u obradi Vašeg zahtjeva."
+    }
   },
   "filters": {
     "country": {
@@ -83,6 +102,14 @@
       "title": "Filtriraj po istraživaču"
     },
     "sort": {
+      "createdAt": {
+        "asc": "Nastariji",
+        "desc": "Najskoriji"
+      },
+      "deadlineAt": {
+        "asc": "Najdalji rok",
+        "desc": "Najskoriji rok"
+      },
       "label": "Sortiraj",
       "title": "Sortiraj po"
     }
@@ -94,6 +121,14 @@
     "es": "Español",
     "fr": "Français",
     "ru": "Русский"
+  },
+  "nav": {
+    "account": {
+      "logout": "Odjava",
+      "profile": "Profil"
+    },
+    "reports": "Izvještaji",
+    "requests": "Zahtjevi"
   },
   "pagination": {
     "newer": "Noviji",
@@ -108,13 +143,13 @@
     },
     "new": {
       "form": {
-        "invalidMessage": "Molimo da popunite naznačena polja",
+        "invalidMessage": "Molimo da popunite naznačena polja.",
         "otherDetails": "Drugi detalji",
         "requestDetails": "Detalji zahtjeva",
         "submitButton": "Pošaljite svoj zahtjev",
-        "uploadInfo": "You will be able attach documents after submitting the request."
+        "uploadInfo": "Dokumente ćete moći dodati nakon što predate zahtjev."
       },
-      "headline": "Vaš zahtjev bit će dodijeljen našim profesionalnim istraživačima",
+      "headline": "Vaš zahtjev bit će dodijeljen našim profesionalnim istraživačima.",
       "title": "Podaci o zahtjevu"
     },
     "reporting": {
@@ -141,9 +176,9 @@
         "lastYear": "Last year"
       },
       "openTickets": {
-        "one": "{{count}} Open request",
-        "other": "{{count}} Open requests",
-        "zero": "{{count}} Open requests"
+        "one": "{{count}} Otvorenih zahtjeva",
+        "other": "{{count}} Otvorenih zahtjeva",
+        "zero": "{{count}} Otvorenih zahtjeva"
       },
       "pastDeadline": "{{count}} past deadline",
       "staffTitle": {
@@ -157,7 +192,7 @@
         "button": "{{verb}} zahtjev",
         "cancel": "Ne",
         "confirm": "Da",
-        "title": "Da li ste sigurni da želite {{verb}} ovaj zahtjev"
+        "title": "Da li ste sigurni da želite {{verb}} ovaj zahtjev?"
       },
       "pending": {
         "button": "Stavite na čekanje"
@@ -191,7 +226,7 @@
       "label": "Pozadina firme"
     },
     "backgroundOther": {
-      "desc": "Bilo koje informacije koje već imate",
+      "desc": "Bilo koje informacije koje već imate.",
       "formLabel": "Šta želite da saznate?",
       "label": "Pitanje"
     },
@@ -209,7 +244,7 @@
       "label": "Druge veze"
     },
     "connectionsPerson": {
-      "desc": "Poznate porodične veze",
+      "desc": "Poznate porodične veze.",
       "label": "Porodica i saradnici"
     },
     "country": {
@@ -234,7 +269,7 @@
       "label": "Ime"
     },
     "initialInformation": {
-      "desc": "Bilo koje informacije koje već imate",
+      "desc": "Bilo koje informacije koje već imate.",
       "formLabel": "Gdje ste već provjerili?",
       "label": "Početne informacije"
     },
@@ -268,7 +303,8 @@
       "label": "Odgovorni istraživač",
       "one": "Istraživač",
       "other": "Istraživači",
-      "selfNotice": "Dodijeljen Vam je ovaj zahtjev"
+      "selfNotice": "Dodijeljen Vam je ovaj zahtjev.",
+      "selfRemove": "Odustani od zahtjeva?"
     },
     "sensitive": {
       "label": "Da li je informacija povjerljiva?",
@@ -280,7 +316,7 @@
       "label": "Izvori"
     },
     "sourcesPerson": {
-      "desc": "Drugi načini pisanja imena ili nadimci",
+      "desc": "Drugi načini pisanja imena ili nadimci.",
       "label": "Pseudonimi"
     },
     "status": {
@@ -304,6 +340,13 @@
         "name": "Na čekanju"
       }
     },
+    "subscriber": {
+      "emailPlaceholder": "E-mail adresa korisnika",
+      "one": "Dodatni korisnik na zahtjevu",
+      "other": "Dodatni korisnici na zahtjevu",
+      "selfNotice": "Vi ste dodatni korisnik na ovom zahtjevu.",
+      "selfRemove": "Odustani od zahtjeva?"
+    },
     "updatedAt": {
       "label": "Posljednje ažuriranje",
       "prefix": "Ažurirano {{relativeTime}}"
@@ -321,5 +364,11 @@
   "userCard": {
     "adminProfile": "Admin profile",
     "viewRequests": "View requests"
+  },
+  "validationErrors": {
+    "after": "Datum mora biti poslije {{after}}",
+    "before": "Datum mora biti prije {{before}}",
+    "blank": "Ovo polje ne može biti prazno",
+    "email": "U ovom polju mora biti validna e-mail adresa"
   }
 }
