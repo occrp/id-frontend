@@ -20,12 +20,12 @@
     },
     "attachment": {
       "action": "((المستخدم)) ارفق الملفات",
-      "removed": "قام {{user}} بإزالة ملف"
+      "removed": "قام {{user}} بإزالة الملف"
     },
     "comment": {
       "action": "",
       "submitButton": "أضف تعليقاً",
-      "title": "اترك تعليق"
+      "title": "اترك تعليقاً"
     },
     "loadOlder": "تحميل الأقدم",
     "one": "نشاط",
@@ -33,7 +33,7 @@
       "action": "اعيد فتحه"
     },
     "resume": {
-      "action": "استئناف"
+      "action": "استؤنف"
     },
     "showOnlyComments": "إظهار التعليقات فقط",
     "unassign": {
