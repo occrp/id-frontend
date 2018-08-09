@@ -1,7 +1,9 @@
 import Route from '@ember/routing/route';
-import { CanMixin } from 'ember-can';
+import { inject as service } from '@ember/service';
 
-export default Route.extend(CanMixin, {
+export default Route.extend({
+  can: service(),
+
   queryParams: {
     startAt: {
       refreshModel: true
@@ -11,7 +13,7 @@ export default Route.extend(CanMixin, {
   beforeModel() {
     let result = this._super(...arguments);
 
-    if (!this.can('manage tickets')) {
+    if (!this.get('can').can('manage tickets')) {
       return this.transitionTo('index');
     }
 
