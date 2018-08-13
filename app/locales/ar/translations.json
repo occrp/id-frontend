@@ -72,7 +72,7 @@
     }
   },
   "errors": {
-    "activities": "حدث خطأ أثناء تحميل تغذية النشاط.",
+    "activities": "حدث هناك خطأ أثناء تحميل تغذية النشاط.",
     "genericInvalid": "ارجو تعبئة هذا الحقل",
     "genericRequest": "حدث خطأ أثناء معالجة طلبك.",
     "routeError": {
@@ -162,7 +162,7 @@
         "avgTime": "متوسط الوقت المتوفر",
         "month": "شهر",
         "name": "الاسم",
-        "pastDeadline": "الموعد النهائي السابق",
+        "pastDeadline": "تعدى المهلة",
         "total": "إجمالي"
       },
       "countriesTitle": {
@@ -362,7 +362,7 @@
     "fullCurrentYear": "MMM D, HH:mm"
   },
   "userCard": {
-    "adminProfile": "الملف الشخصي للمدير",
+    "adminProfile": "الملف التعريفي للمدير",
     "viewRequests": "عرض الطلبات"
   },
   "validationErrors": {
