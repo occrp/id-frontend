@@ -1,14 +1,18 @@
 import { isBlank } from '@ember/utils';
 import Component from '@ember/component';
+import { computed } from '@ember/object';
 import { task } from 'ember-concurrency';
-import countries from 'ember-i18n-iso-countries/langs/en';
+import countries from 'i18n-iso-countries';
 import Fuse from 'fuse';
 
 export default Component.extend({
   preloadEmpty: true,
 
-  countriesList: Object.keys(countries).map(function(code) {
-    return { code: code, name: countries[code] };
+  countriesList: computed(function() {
+    const hash = countries.getNames('en');
+    return Object.keys(hash).map((code) => {
+      return { code, name: hash[code] };
+    });
   }),
 
   suggestedCountries: Object.freeze(['US', 'GB', 'FR', 'ES', 'BA', 'AU']),

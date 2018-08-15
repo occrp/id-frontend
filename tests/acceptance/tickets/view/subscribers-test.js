@@ -1,198 +1,203 @@
-import { test } from 'qunit';
-import moduleForAcceptance from 'id-frontend/tests/helpers/module-for-acceptance';
+import { click, fillIn, findAll, find, visit } from '@ember/test-helpers';
+import { module, test } from 'qunit';
+import { setupApplicationTest } from 'ember-qunit';
+import setupMirage from 'ember-cli-mirage/test-support/setup-mirage';
+import { initSession } from 'id-frontend/tests/helpers/init-session';
 
-moduleForAcceptance('Acceptance | tickets/view - subscribers');
+module('Acceptance | tickets/view - subscribers', function(hooks) {
+  setupApplicationTest(hooks);
+  setupMirage(hooks);
 
-test('(staff) add subscribers to the ticket', async function(assert) {
-  assert.expect(5);
+  test('(staff) add subscribers to the ticket', async function(assert) {
+    assert.expect(5);
 
-  initSession({ isStaff: true });
+    initSession({ isStaff: true });
 
-  server.create('profile', {
-    id: 10,
-    firstName: 'Subscriber',
-    lastName: 'Doe',
-    email: 'sub@mail.com'
-  });
+    server.create('profile', {
+      id: 10,
+      firstName: 'Subscriber',
+      lastName: 'Doe',
+      email: 'sub@mail.com'
+    });
 
-  let ticket = server.create('ticket', {
-    status: 'new',
-    kind: 'company_ownership',
-  });
+    let ticket = server.create('ticket', {
+      status: 'new',
+      kind: 'company_ownership',
+    });
 
-  let done = assert.async();
-  server.post('/subscribers', function (schema, request) {
-    let attrs = JSON.parse(request.requestBody);
+    let done = assert.async();
+    server.post('/subscribers', function (schema, request) {
+      let attrs = JSON.parse(request.requestBody);
 
-    assert.deepEqual(attrs, {
-      "data": {
-        "attributes": {
-          "created-at": null,
-          "updated-at": null,
-          "user-email": "sub@mail.com"
-        },
-        "relationships": {
-          "ticket": {
-            "data": {
-              "id": `${ticket.id}`,
-              "type": "tickets"
+      assert.deepEqual(attrs, {
+        "data": {
+          "attributes": {
+            "created-at": null,
+            "updated-at": null,
+            "user-email": "sub@mail.com"
+          },
+          "relationships": {
+            "ticket": {
+              "data": {
+                "id": `${ticket.id}`,
+                "type": "tickets"
+              }
             }
-          }
-        },
-        "type": "subscribers"
-      }
+          },
+          "type": "subscribers"
+        }
+      });
+
+      done();
+
+      let profile = schema.profiles.findBy({ email: attrs.data.attributes['user-email'] });
+
+      return schema.subscribers.create(Object.assign(this.normalizedRequestAttrs(), {
+        user: profile
+      }));
     });
 
-    done();
+    await visit(`/view/${ticket.id}`);
 
-    let profile = schema.profiles.findBy({ email: attrs.data.attributes['user-email'] });
+    assert.equal(findAll('[data-test-subscriber]').length, 0);
 
-    return schema.subscribers.create(Object.assign(this.normalizedRequestAttrs(), {
-      user: profile
-    }));
+    await fillIn('#subscriber-email', 'this.is.not.an.email');
+    await click('[data-test-add-subscriber]');
+    assert.ok(find('#subscriber-email').closest('.formGroup').classList.contains('is-invalid'), 'invalid email shows error');
+
+    await fillIn('#subscriber-email', 'sub@mail.com');
+    await click('[data-test-add-subscriber]');
+
+    assert.equal(findAll('[data-test-subscriber]').length, 1);
+    assert.equal(find('[data-test-subscriber="10"] [data-test-el-item]').textContent.trim(), 'Subscriber Doe', 'user is subscribed');
   });
 
-  await visit(`/view/${ticket.id}`);
 
-  assert.equal(find('[data-test-subscriber]').length, 0);
+  test('(staff) if adding subscribers errors, a message is displayed', async function(assert) {
+    assert.expect(3);
 
-  await fillIn('#subscriber-email', 'this.is.not.an.email');
-  await click('[data-test-add-subscriber]');
-  assert.ok(find('#subscriber-email').closest('.formGroup').hasClass('is-invalid'), 'invalid email shows error');
+    initSession({ isStaff: true });
 
-  await fillIn('#subscriber-email', 'sub@mail.com');
-  await click('[data-test-add-subscriber]');
+    let ticket = server.create('ticket', {
+      status: 'new',
+      kind: 'company_ownership',
+    });
 
-  assert.equal(find('[data-test-subscriber]').length, 1);
-  assert.equal(find('[data-test-subscriber=10] [data-test-el-item]').text().trim(), 'Subscriber Doe', 'user is subscribed');
-});
+    server.post('/subscribers', {
+      errors: [{ detail: "Unable to add subscriber." }]
+    }, 500);
 
+    await visit(`/view/${ticket.id}`);
 
-test('(staff) if adding subscribers errors, a message is displayed', async function(assert) {
-  assert.expect(3);
+    assert.equal(findAll('[data-test-subscriber]').length, 0);
 
-  initSession({ isStaff: true });
+    await fillIn('#subscriber-email', 'sub@mail.com');
+    await click('[data-test-add-subscriber]');
 
-  let ticket = server.create('ticket', {
-    status: 'new',
-    kind: 'company_ownership',
+    assert.equal(findAll('[data-test-subscriber]').length, 0);
+    assert.ok(find('.flash-message'), 'showing alert');
   });
 
-  server.post('/subscribers', {
-    errors: [{ detail: "Unable to add subscriber." }]
-  }, 500);
 
-  await visit(`/view/${ticket.id}`);
+  test('(staff) remove subscribers from ticket', async function(assert) {
+    assert.expect(5);
 
-  assert.equal(find('[data-test-subscriber]').length, 0);
+    let ticket = server.create('ticket', {
+      status: 'new',
+      kind: 'company_ownership',
+    });
 
-  await fillIn('#subscriber-email', 'sub@mail.com');
-  await click('[data-test-add-subscriber]');
+    let profiles = server.createList('profile', 3, {
+      id(i) { return 10 + i },
+      firstName(i) { return `John #${10 + i}`; },
+      lastName: 'Doe',
+    });
 
-  assert.equal(find('[data-test-subscriber]').length, 0);
-  assert.ok(find('.flash-message').length > 0, 'showing alert');
-});
+    profiles.forEach(profile => {
+      server.create('subscriber', {
+        id() { return parseInt(profile.id) + 10 },
+        ticket,
+        user: profile
+      });
+    })
 
+    initSession({ isStaff: true });
 
-test('(staff) remove subscribers from ticket', async function(assert) {
-  assert.expect(5);
+    let done = assert.async();
+    server.del('/subscribers/:id', function (schema, request) {
+      assert.equal(request.params.id, 21);
+      done();
 
-  let ticket = server.create('ticket', {
-    status: 'new',
-    kind: 'company_ownership',
+      schema.subscribers.find(request.params.id).destroy();
+    });
+
+    await visit(`/view/${ticket.id}`);
+
+    assert.equal(findAll('[data-test-subscriber]').length, 3);
+    assert.equal(find('[data-test-subscriber="11"] [data-test-el-item]').textContent.trim(), 'John #11 Doe', 'target user is subscribed');
+
+    await click(find('[data-test-subscriber="11"] [data-test-el-remove]'));
+
+    assert.equal(findAll('[data-test-subscriber]').length, 2);
+    assert.equal(find('[data-test-subscriber="11"]'), null, 'target user is unsubscribed');
   });
 
-  let profiles = server.createList('profile', 3, {
-    id(i) { return 10 + i },
-    firstName(i) { return `John #${10 + i}`; },
-    lastName: 'Doe',
-  });
 
-  profiles.forEach(profile => {
+  test('(staff) if unsubscribing users errors, a message is displayed', async function(assert) {
+    assert.expect(3);
+    initSession({ isStaff: true });
+
+    let ticket = server.create('ticket', {
+      status: 'new',
+      kind: 'company_ownership',
+    });
+
     server.create('subscriber', {
-      id() { return parseInt(profile.id) + 10 },
       ticket,
-      user: profile
+      user: server.create('profile')
     });
-  })
 
-  initSession({ isStaff: true });
+    server.del('/subscribers/:id', {
+      errors: [{ detail: "Unable to unsubscribe user." }]
+    }, 500);
 
-  let done = assert.async();
-  server.del('/subscribers/:id', function (schema, request) {
-    assert.equal(request.params.id, 21);
-    done();
+    await visit(`/view/${ticket.id}`);
 
-    schema.subscribers.find(request.params.id).destroy();
+    assert.equal(findAll('[data-test-subscriber]').length, 1);
+
+    await click(find('[data-test-subscriber] [data-test-el-remove]'));
+
+    assert.equal(findAll('[data-test-subscriber]').length, 1, 'user remains subscribed');
+    assert.ok(find('.flash-message'), 'showing alert');
   });
 
-  await visit(`/view/${ticket.id}`);
 
-  assert.equal(find('[data-test-subscriber]').length, 3);
+  test('current user can unsubscribe from ticket', async function(assert) {
+    assert.expect(2);
+    let currentUser = initSession();
 
-  let $target = find('[data-test-subscriber=11]');
-  assert.equal($target.find('[data-test-el-item]').text().trim(), 'John #11 Doe', 'target user is subscribed');
-  await click($target.find('[data-test-el-remove]'));
+    let ticket = server.create('ticket', {
+      status: 'new',
+      kind: 'company_ownership',
+    });
 
-  assert.equal(find('[data-test-subscriber]').length, 2);
-  assert.equal(find('[data-test-subscriber=11]').length, 0, 'target user is unsubscribed');
-});
+    server.create('subscriber', {
+      ticket,
+      user: currentUser
+    });
 
+    let done = assert.async();
+    server.del('/subscribers/:id', function (schema, request) {
+      done();
+      schema.subscribers.find(request.params.id).destroy();
+    });
 
-test('(staff) if unsubscribing users errors, a message is displayed', async function(assert) {
-  assert.expect(3);
-  initSession({ isStaff: true });
+    await visit(`/view/${ticket.id}`);
 
-  let ticket = server.create('ticket', {
-    status: 'new',
-    kind: 'company_ownership',
+    assert.ok(find('[data-test-unsubscribe-self]'));
+
+    await click('[data-test-unsubscribe-self]');
+
+    assert.equal(find('[data-test-unsubscribe-self]'), null);
   });
-
-  server.create('subscriber', {
-    ticket,
-    user: server.create('profile')
-  });
-
-  server.del('/subscribers/:id', {
-    errors: [{ detail: "Unable to unsubscribe user." }]
-  }, 500);
-
-  await visit(`/view/${ticket.id}`);
-
-  let $target = find('[data-test-subscriber]');
-  assert.equal($target.length, 1);
-
-  await click($target.find('[data-test-el-remove]'));
-
-  assert.equal(find('[data-test-subscriber]').length, 1, 'user remains subscribed');
-  assert.ok(find('.flash-message').length > 0, 'showing alert');
-});
-
-
-test('current user can unsubscribe from ticket', async function(assert) {
-  assert.expect(1);
-  let currentUser = initSession();
-
-  let ticket = server.create('ticket', {
-    status: 'new',
-    kind: 'company_ownership',
-  });
-
-  server.create('subscriber', {
-    ticket,
-    user: currentUser
-  });
-
-  let done = assert.async();
-  server.del('/subscribers/:id', function (schema, request) {
-    done();
-    schema.subscribers.find(request.params.id).destroy();
-  });
-
-  await visit(`/view/${ticket.id}`);
-
-  findWithAssert('[data-test-unsubscribe-self]');
-  await click('[data-test-unsubscribe-self]');
-
-  assert.equal(find('[data-test-unsubscribe-self]').length, 0);
 });

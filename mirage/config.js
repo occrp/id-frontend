@@ -278,6 +278,7 @@ export default function() {
     }
 
     let responder = schema.responders.create(attrs);
+    ticket.responders.add(responder);
 
     schema.activities.create({
       verb: 'responder:create',
