@@ -1,9 +1,12 @@
 import { click, fillIn, findAll, find, visit } from '@ember/test-helpers';
 import { module, test } from 'qunit';
 import { setupApplicationTest } from 'ember-qunit';
+import setupMirage from 'ember-cli-mirage/test-support/setup-mirage';
+import { initSession } from 'id-frontend/tests/helpers/init-session';
 
 module('Acceptance | tickets/view - subscribers', function(hooks) {
   setupApplicationTest(hooks);
+  setupMirage(hooks);
 
   test('(staff) add subscribers to the ticket', async function(assert) {
     assert.expect(5);
@@ -60,13 +63,13 @@ module('Acceptance | tickets/view - subscribers', function(hooks) {
 
     await fillIn('#subscriber-email', 'this.is.not.an.email');
     await click('[data-test-add-subscriber]');
-    assert.ok(find('#subscriber-email').closest('.formGroup').hasClass('is-invalid'), 'invalid email shows error');
+    assert.ok(find('#subscriber-email').closest('.formGroup').classList.contains('is-invalid'), 'invalid email shows error');
 
     await fillIn('#subscriber-email', 'sub@mail.com');
     await click('[data-test-add-subscriber]');
 
     assert.equal(findAll('[data-test-subscriber]').length, 1);
-    assert.equal(find('[data-test-subscriber=10] [data-test-el-item]').textContent.trim(), 'Subscriber Doe', 'user is subscribed');
+    assert.equal(find('[data-test-subscriber="10"] [data-test-el-item]').textContent.trim(), 'Subscriber Doe', 'user is subscribed');
   });
 
 
@@ -92,7 +95,7 @@ module('Acceptance | tickets/view - subscribers', function(hooks) {
     await click('[data-test-add-subscriber]');
 
     assert.equal(findAll('[data-test-subscriber]').length, 0);
-    assert.ok(findAll('.flash-message').length > 0, 'showing alert');
+    assert.ok(find('.flash-message'), 'showing alert');
   });
 
 
@@ -131,13 +134,12 @@ module('Acceptance | tickets/view - subscribers', function(hooks) {
     await visit(`/view/${ticket.id}`);
 
     assert.equal(findAll('[data-test-subscriber]').length, 3);
+    assert.equal(find('[data-test-subscriber="11"] [data-test-el-item]').textContent.trim(), 'John #11 Doe', 'target user is subscribed');
 
-    let $target = find('[data-test-subscriber=11]');
-    assert.equal($target.find('[data-test-el-item]').text().trim(), 'John #11 Doe', 'target user is subscribed');
-    await click($target.find('[data-test-el-remove]'));
+    await click(find('[data-test-subscriber="11"] [data-test-el-remove]'));
 
     assert.equal(findAll('[data-test-subscriber]').length, 2);
-    assert.equal(findAll('[data-test-subscriber=11]').length, 0, 'target user is unsubscribed');
+    assert.equal(find('[data-test-subscriber="11"]'), null, 'target user is unsubscribed');
   });
 
 
@@ -161,18 +163,17 @@ module('Acceptance | tickets/view - subscribers', function(hooks) {
 
     await visit(`/view/${ticket.id}`);
 
-    let $target = find('[data-test-subscriber]');
-    assert.equal($target.length, 1);
+    assert.equal(findAll('[data-test-subscriber]').length, 1);
 
-    await click($target.find('[data-test-el-remove]'));
+    await click(find('[data-test-subscriber] [data-test-el-remove]'));
 
     assert.equal(findAll('[data-test-subscriber]').length, 1, 'user remains subscribed');
-    assert.ok(findAll('.flash-message').length > 0, 'showing alert');
+    assert.ok(find('.flash-message'), 'showing alert');
   });
 
 
   test('current user can unsubscribe from ticket', async function(assert) {
-    assert.expect(1);
+    assert.expect(2);
     let currentUser = initSession();
 
     let ticket = server.create('ticket', {
@@ -193,9 +194,10 @@ module('Acceptance | tickets/view - subscribers', function(hooks) {
 
     await visit(`/view/${ticket.id}`);
 
-    findWithAssert('[data-test-unsubscribe-self]');
+    assert.ok(find('[data-test-unsubscribe-self]'));
+
     await click('[data-test-unsubscribe-self]');
 
-    assert.equal(findAll('[data-test-unsubscribe-self]').length, 0);
+    assert.equal(find('[data-test-unsubscribe-self]'), null);
   });
 });

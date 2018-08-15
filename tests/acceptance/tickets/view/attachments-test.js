@@ -1,13 +1,16 @@
 import { find, click, findAll, visit } from '@ember/test-helpers';
 import { module, test } from 'qunit';
 import { setupApplicationTest } from 'ember-qunit';
+import setupMirage from 'ember-cli-mirage/test-support/setup-mirage';
+import { initSession } from 'id-frontend/tests/helpers/init-session';
 
-import File from 'ember-file-upload/file';
-import upload from 'id-frontend/tests/helpers/upload'; // from the addon
+// import File from 'ember-file-upload/file';
+import { upload } from 'ember-file-upload/test-support';
 import { upload as mirageUpload } from 'ember-file-upload/mirage';
 
 module('Acceptance | tickets/view - attachments', function(hooks) {
   setupApplicationTest(hooks);
+  setupMirage(hooks);
 
   test('uploading a file', async function(assert) {
     assert.expect(6);
@@ -36,6 +39,7 @@ module('Acceptance | tickets/view - attachments', function(hooks) {
         fileName: file.name,
         fileSize: file.size,
         mimeType: file.type,
+        createdAt: (new Date()).toISOString(),
         user: currentUser,
         ticket
       });
@@ -56,21 +60,27 @@ module('Acceptance | tickets/view - attachments', function(hooks) {
     assert.equal(findAll('[data-test-attachment]').length, 0, 'no attachments initially');
     assert.equal(findAll('[data-test-activity]').length, 0);
 
-    let file = File.fromDataURL('data:image/gif;base64,R0lGODdhCgAKAIAAAAEBAf///ywAAAAACgAKAAACEoyPBhp7vlySqVVFL8oWg89VBQA7');
+    let data = new Uint8Array([
+      137,80,78,71,13,10,26,10,0,0,0,13,73,72,68,82,0,0,0,8,0,0,
+      0,8,8,2,0,0,0,75,109,41,220,0,0,0,34,73,68,65,84,8,215,99,120,
+      173,168,135,21,49,0,241,255,15,90,104,8,33,129,83,7,97,163,136,
+      214,129,93,2,43,2,0,181,31,90,179,225,252,176,37,0,0,0,0,73,69,
+      78,68,174,66,96,130
+    ]);
 
-    // ಠ_ಠ https://github.com/tim-evans/ember-file-upload/pull/25#issuecomment-284299637
-    await upload('[data-test-file-upload] input', file.blob, 'smile.gif');
+    let photo = new File([data], 'image.png', { type: 'image/png'});
+    await upload('[data-test-file-upload] input', photo);
 
     await click('[data-test-modal-confirm]');
 
     assert.equal(findAll('[data-test-attachment]').length, 1, 'file was uploaded');
-    assert.equal(find('[data-test-attachment]').getAttribute('title'), 'smile.gif');
+    assert.equal(find('[data-test-attachment]').getAttribute('title'), 'image.png');
     assert.equal(findAll('[data-test-activity=attachment]').length, 1, 'new activity is rendered');
   });
 
 
   test('(admin or author) removing an attachment', async function(assert) {
-    assert.expect(5);
+    assert.expect(6);
     let otherUser = server.create('profile', { firstName: 'Joe' });
     let currentUser = initSession();
 
@@ -106,14 +116,14 @@ module('Acceptance | tickets/view - attachments', function(hooks) {
     await visit(`/view/${ticket.id}`);
 
     assert.equal(findAll('[data-test-attachment]').length, 3);
-    findWithAssert('[data-test-attachment=20]');
+    assert.ok(find('[data-test-attachment="20"]'));
     assert.equal(findAll('[data-test-remove-attachment]').length, 1, 'can only remove own attachment');
 
     await click('[data-test-remove-attachment]');
     await click('[data-test-modal-confirm]');
 
     assert.equal(findAll('[data-test-attachment]').length, 2);
-    assert.equal(findAll('[data-test-attachment=20]').length, 0, 'attachment was removed');
+    assert.equal(findAll('[data-test-attachment="20"]').length, 0, 'attachment was removed');
   });
 
 
@@ -144,7 +154,7 @@ module('Acceptance | tickets/view - attachments', function(hooks) {
     await click('[data-test-modal-confirm]');
 
     assert.equal(findAll('[data-test-attachment]').length, 1, 'attachment was not removed');
-    assert.ok(findAll('.flash-message').length > 0, 'showing alert');
+    assert.ok(find('.flash-message'), 'showing alert');
   });
 });
 

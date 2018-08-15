@@ -1,9 +1,12 @@
 import { click, fillIn, findAll, find, visit } from '@ember/test-helpers';
 import { module, test } from 'qunit';
 import { setupApplicationTest } from 'ember-qunit';
+import setupMirage from 'ember-cli-mirage/test-support/setup-mirage';
+import { initSession } from 'id-frontend/tests/helpers/init-session';
 
 module('Acceptance | tickets/view - responders', function(hooks) {
   setupApplicationTest(hooks);
+  setupMirage(hooks);
 
   test('(admin) assign responders to the ticket', async function(assert) {
     assert.expect(6);
@@ -60,15 +63,12 @@ module('Acceptance | tickets/view - responders', function(hooks) {
     assert.equal(find('[data-test-status]').textContent.trim(), 'New', 'initial status');
     assert.equal(findAll('[data-test-responder]').length, 0);
 
-    let $ddTrigger = find('[data-test-dd="assign-responder"] [data-test-dd-trigger]');
-
-    await click($ddTrigger);
+    await click('[data-test-dd="assign-responder"] [data-test-dd-trigger]');
     await fillIn('[data-test-filter-search]', 'Staff #3');
-    await click('[data-test-search-result]:first');
+    await click('[data-test-search-result]:first-of-type');
 
-    let $responders = find('[data-test-responder]');
-    assert.equal($responders.length, 1);
-    assert.equal($responders.filter(':first').find('[data-test-el-item]').text().trim(), 'Staff #3 Doe', 'user is assigned');
+    assert.equal(findAll('[data-test-responder]').length, 1);
+    assert.equal(find('[data-test-responder] [data-test-el-item]').textContent.trim(), 'Staff #3 Doe', 'user is assigned');
 
     assert.equal(find('[data-test-status]').textContent.trim(), 'In progress', 'status changes to in-progress after first assignment');
   });
@@ -98,14 +98,12 @@ module('Acceptance | tickets/view - responders', function(hooks) {
 
     assert.equal(findAll('[data-test-responder]').length, 0);
 
-    let $ddTrigger = find('[data-test-dd="assign-responder"] [data-test-dd-trigger]');
-
-    await click($ddTrigger);
+    await click('[data-test-dd="assign-responder"] [data-test-dd-trigger]');
     await fillIn('[data-test-filter-search]', 'Staff #3');
-    await click('[data-test-search-result]:first');
+    await click('[data-test-search-result]:first-of-type');
 
     assert.equal(findAll('[data-test-responder]').length, 0);
-    assert.ok(findAll('.flash-message').length > 0, 'showing alert');
+    assert.ok(find('.flash-message'), 'showing alert');
   });
 
 
@@ -145,14 +143,12 @@ module('Acceptance | tickets/view - responders', function(hooks) {
     await visit(`/view/${ticket.id}`);
 
     assert.equal(findAll('[data-test-responder]').length, 3);
+    assert.equal(find('[data-test-responder="11"] [data-test-el-item]').textContent.trim(), 'Staff #11 Doe', 'target user is assigned');
 
-    let $target = find('[data-test-responder=11]');
-    assert.equal($target.find('[data-test-el-item]').text().trim(), 'Staff #11 Doe', 'target user is assigned');
-
-    await click($target.find('[data-test-el-remove]'));
+    await click(find('[data-test-responder="11"] [data-test-el-remove]'));
 
     assert.equal(findAll('[data-test-responder]').length, 2);
-    assert.equal(findAll('[data-test-responder=11]').length, 0, 'target user is unassigned');
+    assert.equal(find('[data-test-responder="11"]'), null, 'target user is unassigned');
   });
 
 
@@ -180,13 +176,12 @@ module('Acceptance | tickets/view - responders', function(hooks) {
 
     await visit(`/view/${ticket.id}`);
 
-    let $target = find('[data-test-responder]');
-    assert.equal($target.length, 1);
+    assert.equal(findAll('[data-test-responder]').length, 1);
 
-    await click($target.find('[data-test-el-remove]'));
+    await click(find('[data-test-responder] [data-test-el-remove]'));
 
     assert.equal(findAll('[data-test-responder]').length, 1, 'user remains assigned');
-    assert.ok(findAll('.flash-message').length > 0, 'showing alert');
+    assert.ok(find('.flash-message'), 'showing alert');
   });
 
 
@@ -215,9 +210,8 @@ module('Acceptance | tickets/view - responders', function(hooks) {
 
     await visit(`/view/${ticket.id}`);
 
-    let $responders = find('[data-test-responder]');
-    assert.equal($responders.length, 1);
-    assert.equal($responders.filter(':first').text().trim(), 'John Appleseed', 'current user is assigned');
+    assert.equal(findAll('[data-test-responder]').length, 1);
+    assert.equal(find('[data-test-responder]').textContent.trim(), 'John Appleseed', 'current user is assigned');
 
     await click('[data-test-unassign-self]');
 

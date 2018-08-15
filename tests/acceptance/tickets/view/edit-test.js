@@ -1,9 +1,12 @@
-import { find, click, fillIn, findAll, visit } from '@ember/test-helpers';
+import { find, click, fillIn, visit } from '@ember/test-helpers';
 import { module, test } from 'qunit';
 import { setupApplicationTest } from 'ember-qunit';
+import setupMirage from 'ember-cli-mirage/test-support/setup-mirage';
+import { initSession } from 'id-frontend/tests/helpers/init-session';
 
 module('Acceptance | tickets/view - edit', function(hooks) {
   setupApplicationTest(hooks);
+  setupMirage(hooks);
 
   test('(admin) editing the ticket deadline', async function(assert) {
     assert.expect(3);
@@ -103,7 +106,7 @@ module('Acceptance | tickets/view - edit', function(hooks) {
     await click('[data-test-ea-open]');
     await fillIn('#ticket-deadline', '20/03/2100');
     await click('[data-test-ea-save]');
-    assert.ok(findAll('.flash-message').length > 0, 'showing alert');
+    assert.ok(find('.flash-message'), 'showing alert');
 
     await click('[data-test-ea-cancel]');
     assert.equal(find('[data-test-deadline-at] time').getAttribute('datetime'), '2018-12-01T22:00:00.000Z',  'deadline is rolled back');

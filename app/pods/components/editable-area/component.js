@@ -1,4 +1,5 @@
 import { inject as service } from '@ember/service';
+import { defineProperty } from "@ember/object";
 import Component from '@ember/component';
 import formBufferProperty from 'ember-validated-form-buffer';
 import { task } from 'ember-concurrency';
@@ -12,7 +13,7 @@ export default Component.extend({
   init() {
     this._super();
     const validations = this.get('validations');
-    this.set('data', formBufferProperty('model', validations));
+    defineProperty(this, 'data', formBufferProperty('model', validations));
   },
 
   saveRecord: task(function * () {

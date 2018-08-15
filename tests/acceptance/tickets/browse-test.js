@@ -1,12 +1,17 @@
 import { find, click, fillIn, findAll, currentURL, visit } from '@ember/test-helpers';
 import { module, test } from 'qunit';
 import { setupApplicationTest } from 'ember-qunit';
+import { setupAssertions } from 'id-frontend/tests/helpers/setup-assertions';
+import setupMirage from 'ember-cli-mirage/test-support/setup-mirage';
+import { initSession } from 'id-frontend/tests/helpers/init-session';
 
 import { faker } from 'ember-cli-mirage';
 const random = faker.random.arrayElement;
 
 module('Acceptance | tickets/browse', function(hooks) {
   setupApplicationTest(hooks);
+  setupAssertions(hooks);
+  setupMirage(hooks);
 
   test('rendering tickets index', async function(assert) {
     assert.expect(4);
@@ -47,18 +52,14 @@ module('Acceptance | tickets/browse', function(hooks) {
 
     await visit('/view');
 
-    let $items = find('[data-test-ticket]');
-    assert.equal($items.length, 25, 'showing first page tickets');
+    assert.equal(findAll('[data-test-ticket]').length, 25, 'showing first page tickets');
 
     await click('[data-test-pagination="next"]');
 
     assert.equal(currentURL(), '/view?page=2');
 
-    $items = find('[data-test-ticket]');
-    assert.equal($items.length, 15, 'showing 2nd page tickets');
-
-    let $firstItemName = $items.eq(0).find('[data-test-ticket-name]');
-    assert.equal($firstItemName.text().trim(), 'John Doe 26');
+    assert.equal(findAll('[data-test-ticket]').length, 15, 'showing 2nd page tickets');
+    assert.equal(find('[data-test-ticket]:first-of-type [data-test-ticket-name]').textContent.trim(), 'John Doe 26');
   });
 
 
@@ -89,16 +90,14 @@ module('Acceptance | tickets/browse', function(hooks) {
 
     await visit('/view');
 
-    let $items = find('[data-test-ticket]');
-    assert.equal($items.length, 10, 'showing unfiltered tickets');
+    assert.equal(findAll('[data-test-ticket]').length, 10, 'showing unfiltered tickets');
 
     await click('[data-test-dd="filter-kind"] [data-test-dd-trigger]');
     await click('[data-test-kind-option="person_ownership"]');
 
     assert.equal(currentURL(), '/view?kind=person_ownership');
 
-    $items = find('[data-test-ticket]');
-    assert.equal($items.length, 4, 'showing person ownership tickets');
+    assert.equal(findAll('[data-test-ticket]').length, 4, 'showing person ownership tickets');
   });
 
 
@@ -149,21 +148,19 @@ module('Acceptance | tickets/browse', function(hooks) {
 
     await visit('/view');
 
-    let $items = find('[data-test-ticket]');
-    assert.equal($items.length, 12, 'showing unfiltered tickets');
+    assert.equal(findAll('[data-test-ticket]').length, 12, 'showing unfiltered tickets');
 
     await click('[data-test-dd="filter-country"] [data-test-dd-trigger]');
     await fillIn('[data-test-filter-search]', 'and');
 
-    assert.equal(find('[data-test-search-result]:first').getAttribute('data-test-search-result'), 'AD');
+    let $result = find('[data-test-search-result]:first-of-type')
+    assert.equal($result.getAttribute('data-test-search-result'), 'AD');
 
-    await click('[data-test-search-result]:first');
+    await click($result);
 
     assert.equal(currentURL(), '/view?country=AD');
 
-    $items = find('[data-test-ticket]');
-    assert.equal($items.length, 3, 'showing companies registered in Andorra');
-
+    assert.equal(findAll('[data-test-ticket]').length, 3, 'showing companies registered in Andorra');
     assert.equal(find('[data-test-active-filter="country"]').textContent, 'AD');
 
     await click('[data-test-dd="filter-country"] [data-test-dd-trigger]');
@@ -218,26 +215,24 @@ module('Acceptance | tickets/browse', function(hooks) {
 
     await visit('/view');
 
-    let $items = find('[data-test-ticket]');
-    assert.equal($items.length, 10, 'showing unfiltered tickets');
+    assert.equal(findAll('[data-test-ticket]').length, 10, 'showing unfiltered tickets');
 
     await click('[data-test-dd="filter-requester"] [data-test-dd-trigger]');
     await fillIn('[data-test-filter-search]', 'User #4');
 
-    assert.equal(find('[data-test-search-result]:first').textContent, 'User #4 Doe');
+    let $result = find('[data-test-search-result]:first-of-type');
+    assert.equal($result.textContent, 'User #4 Doe');
 
-    await click('[data-test-search-result]:first');
+    await click($result);
 
     assert.equal(currentURL(), '/view?requester=4');
 
-    $items = find('[data-test-ticket]');
-    assert.equal($items.length, 8, 'showing user #4 tickets');
-
+    assert.equal(findAll('[data-test-ticket]').length, 8, 'showing user #4 tickets');
     assert.equal(find('[data-test-active-filter="requester"]').textContent, 'User #4 Doe');
 
     await click('[data-test-dd="filter-requester"] [data-test-dd-trigger]');
 
-    assert.ok(find('[data-test-search-result]:contains("User #4 Doe")').classList.contains('is-active'));
+    assert.ok(find('[data-test-search-result="4"]').classList.contains('is-active'));
   });
 
 
@@ -293,36 +288,32 @@ module('Acceptance | tickets/browse', function(hooks) {
 
     await visit('/view');
 
-    let $items = find('[data-test-ticket]');
-    assert.equal($items.length, 10, 'showing unfiltered tickets');
+    assert.equal(findAll('[data-test-ticket]').length, 10, 'showing unfiltered tickets');
 
     await click('[data-test-dd="filter-responder"] [data-test-dd-trigger]');
     await click('[data-test-filter-static-option="none"]');
 
     assert.equal(currentURL(), '/view?responder=none');
 
-    $items = find('[data-test-ticket]');
-    assert.equal($items.length, 6, 'showing unassigned tickets');
-
+    assert.equal(findAll('[data-test-ticket]').length, 6, 'showing unassigned tickets');
     assert.equal(find('[data-test-active-filter="responder"]').textContent.trim(), 'No one assigned');
 
     await click('[data-test-dd="filter-responder"] [data-test-dd-trigger]');
     await fillIn('[data-test-filter-search]', 'Staff #2');
 
-    assert.equal(find('[data-test-search-result]:first').textContent, 'Staff #2 Doe');
+    let $result = find('[data-test-search-result]:first-of-type');
+    assert.equal($result.textContent, 'Staff #2 Doe');
 
-    await click('[data-test-search-result]:first');
+    await click($result);
 
     assert.equal(currentURL(), '/view?responder=2');
 
-    $items = find('[data-test-ticket]');
-    assert.equal($items.length, 4, 'showing tickets assigned to user #2');
-
+    assert.equal(findAll('[data-test-ticket]').length, 4, 'showing tickets assigned to user #2');
     assert.equal(find('[data-test-active-filter="responder"]').textContent, 'Staff #2 Doe');
 
     await click('[data-test-dd="filter-responder"] [data-test-dd-trigger]');
 
-    assert.ok(find('[data-test-search-result]:contains("Staff #2 Doe")').classList.contains('is-active'));
+    assert.ok(find('[data-test-search-result="2"]').classList.contains('is-active'));
   });
 
 
@@ -360,35 +351,31 @@ module('Acceptance | tickets/browse', function(hooks) {
 
     await visit('/view');
 
-    let $items = find('[data-test-ticket]');
-    assert.equal($items.length, 10, 'showing unfiltered tickets');
+    assert.equal(findAll('[data-test-ticket]').length, 10, 'showing unfiltered tickets');
 
     await click('[data-test-dd="filter-kind"] [data-test-dd-trigger]');
     await click('[data-test-kind-option="person_ownership"]');
     await click('[data-test-dd="filter-country"] [data-test-dd-trigger]');
     await fillIn('[data-test-filter-search]', 'and');
-    await click('[data-test-search-result]:first');
+    await click('[data-test-search-result]:first-of-type');
 
     assert.equal(currentURL(), '/view?country=AD&kind=person_ownership');
 
-    $items = find('[data-test-ticket]');
-    assert.equal($items.length, 3, 'showing filtered tickets');
-
-    assert.ok(findAll('[data-test-active-filter="kind"]').length);
-    assert.ok(findAll('[data-test-active-filter="country"]').length);
+    assert.equal(findAll('[data-test-ticket]').length, 3, 'showing filtered tickets');
+    assert.ok(find('[data-test-active-filter="kind"]'));
+    assert.ok(find('[data-test-active-filter="country"]'));
 
     await click('[data-test-remove-filter="kind"]');
 
-    $items = find('[data-test-ticket]');
     assert.equal(currentURL(), '/view?country=AD');
-    assert.equal($items.length, 9, 'showing tickets filtered only by country');
+    assert.equal(findAll('[data-test-ticket]').length, 9, 'showing tickets filtered only by country');
 
-    assert.equal(findAll('[data-test-active-filter="kind"]').length, 0);
-    assert.ok(findAll('[data-test-active-filter="country"]').length);
+    assert.equal(find('[data-test-active-filter="kind"]'), null);
+    assert.ok(find('[data-test-active-filter="country"]'));
   });
 
 
-  test('tickets can sorted', async function(assert) {
+  test('tickets can be sorted', async function(assert) {
     assert.expect(1);
     initSession();
 
@@ -468,7 +455,7 @@ module('Acceptance | tickets/browse', function(hooks) {
 
 
   test('(admins) can assign responders from the ticket list', async function(assert) {
-    assert.expect(8);
+    assert.expect(7);
 
     server.createList('profile', 5, {
       firstName(i) { return `Staff #${i+1}`; },
@@ -531,30 +518,21 @@ module('Acceptance | tickets/browse', function(hooks) {
 
     await visit('/view');
 
-    let $item = find('[data-test-ticket="2"]');
-    assert.equal($item.find('[data-test-ticket-name]').text().trim(), 'Company #2');
-
+    assert.equal(find('[data-test-ticket="2"] [data-test-ticket-name]').textContent.trim(), 'Company #2');
     // Status should change to in-progress after the first assignment
-    let $status = $item.find('[data-test-ticket-status]');
-    assert.equal($status.text().toLowerCase(), 'new');
+    assert.equal(find('[data-test-ticket="2"] [data-test-ticket-status]').textContent.toLowerCase(), 'new');
+    assert.equal(find('[data-test-ticket="2"] [data-test-ticket-responders]'), null);
 
-    let $responders = $item.find('[data-test-ticket-responders]');
-    assert.equal($responders.length, 0);
-
-    let $ddTrigger = $item.find('[data-test-dd="quick-assign-responder"] [data-test-dd-trigger]');
-
-    await click($ddTrigger);
+    await click('[data-test-ticket="2"] [data-test-dd="quick-assign-responder"] [data-test-dd-trigger]');
     await fillIn('[data-test-filter-search]', 'Staff #3');
 
-    assert.equal(find('[data-test-search-result]:first').textContent, 'Staff #3 Doe');
-    await click('[data-test-search-result]:first');
+    let $result = find('[data-test-search-result]:first-of-type');
+    assert.equal($result.textContent, 'Staff #3 Doe');
 
-    $responders = $item.find('[data-test-ticket-responders]');
-    assert.ok($responders.length);
-    assert.equal($responders.text(), 'Staff #3 Doe');
+    await click($result);
 
-    $status = $item.find('[data-test-ticket-status]');
-    assert.equal($status.text().toLowerCase(), 'in progress');
+    assert.equal(find('[data-test-ticket="2"] [data-test-ticket-responders]').textContent.trim(), 'Staff #3 Doe');
+    assert.equal(find('[data-test-ticket="2"] [data-test-ticket-status]').textContent.toLowerCase(), 'in progress');
   });
 
 
@@ -581,22 +559,19 @@ module('Acceptance | tickets/browse', function(hooks) {
 
     await visit('/view');
 
-    let $item = find('[data-test-ticket="2"]');
-    assert.equal($item.find('[data-test-ticket-responders]').length, 0);
+    assert.equal(find('[data-test-ticket="2"] [data-test-ticket-responders]'), null);
 
-    let $ddTrigger = $item.find('[data-test-dd="quick-assign-responder"] [data-test-dd-trigger]');
-
-    await click($ddTrigger);
+    await click('[data-test-ticket="2"] [data-test-dd="quick-assign-responder"] [data-test-dd-trigger]');
     await fillIn('[data-test-filter-search]', 'Staff #3');
-    await click('[data-test-search-result]:first');
+    await click('[data-test-search-result]:first-of-type');
 
-    assert.equal($item.find('[data-test-ticket-responders]').length, 0);
+    assert.equal(find('[data-test-ticket="2"] [data-test-ticket-responders]'), null);
     assert.ok(findAll('.flash-message').length > 0, 'showing alert');
   });
 
 
   test('on route errors, the error template is shown', async function(assert) {
-    assert.expect(2);
+    assert.expect(1);
     initSession();
 
     server.createList('ticket', 2, {
@@ -608,10 +583,11 @@ module('Acceptance | tickets/browse', function(hooks) {
       errors: [{ detail: "Main model error." }]
     }, 500);
 
-    await assert.asyncThrows(() => {
-      return visit(`/view`);
-    }, `GET ${server.namespace}/tickets returned a 500`);
+    // await assert.asyncThrows(() => {
+    //   return visit(`/view`);
+    // }, `GET ${server.namespace}/tickets returned a 500`);
+    await visit(`/view`);
 
-    assert.ok(findAll('[data-test-error-template]').length > 0);
+    assert.ok(find('[data-test-error-template]'));
   });
 });

@@ -1,9 +1,14 @@
 import { click, fillIn, findAll, currentURL, find, visit } from '@ember/test-helpers';
 import { module, test } from 'qunit';
 import { setupApplicationTest } from 'ember-qunit';
+import { setupAssertions } from 'id-frontend/tests/helpers/setup-assertions';
+import setupMirage from 'ember-cli-mirage/test-support/setup-mirage';
+import { initSession } from 'id-frontend/tests/helpers/init-session';
 
 module('Acceptance | tickets/new', function(hooks) {
   setupApplicationTest(hooks);
+  setupAssertions(hooks);
+  setupMirage(hooks);
 
   test('creating a new ticket (person)', async function(assert) {
     assert.expect(4);
@@ -198,7 +203,7 @@ module('Acceptance | tickets/new', function(hooks) {
 
 
   test('creating a new ticket (person) - validations', async function(assert) {
-    assert.expect(6);
+    assert.expect(7);
     initSession();
 
     await visit('/new');
@@ -209,17 +214,17 @@ module('Acceptance | tickets/new', function(hooks) {
 
     assert.equal(currentURL(), '/new');
 
-    assert.ok(find('#ticket-first-name').closest('.formGroup').hasClass('is-invalid'));
-    assert.ok(find('#ticket-last-name').closest('.formGroup').hasClass('is-invalid'));
-    assert.ok(find('#ticket-background').closest('.formGroup').hasClass('is-invalid'));
-    assert.ok(find('#ticket-initialInformation').closest('.formGroup').hasClass('is-invalid'));
+    assert.ok(find('#ticket-first-name').closest('.formGroup').classList.contains('is-invalid'));
+    assert.ok(find('#ticket-last-name').closest('.formGroup').classList.contains('is-invalid'));
+    assert.ok(find('#ticket-background').closest('.formGroup').classList.contains('is-invalid'));
+    assert.ok(find('#ticket-initialInformation').closest('.formGroup').classList.contains('is-invalid'));
 
-    findWithAssert('[data-test-validation-errors]');
+    assert.ok(find('[data-test-validation-errors]'));
   });
 
 
   test('creating a new ticket (company) - validations', async function(assert) {
-    assert.expect(6);
+    assert.expect(7);
     initSession();
 
     await visit('/new');
@@ -231,12 +236,12 @@ module('Acceptance | tickets/new', function(hooks) {
 
     assert.equal(currentURL(), '/new');
 
-    assert.ok(find('#ticket-companyName').closest('.formGroup').hasClass('is-invalid'));
-    assert.ok(find('#ticket-country').closest('.formGroup').hasClass('is-invalid'));
-    assert.ok(find('#ticket-background-company').closest('.formGroup').hasClass('is-invalid'));
-    assert.ok(find('#ticket-sources').closest('.formGroup').hasClass('is-invalid'));
+    assert.ok(find('#ticket-companyName').closest('.formGroup').classList.contains('is-invalid'));
+    assert.ok(find('#ticket-country').closest('.formGroup').classList.contains('is-invalid'));
+    assert.ok(find('#ticket-background-company').closest('.formGroup').classList.contains('is-invalid'));
+    assert.ok(find('#ticket-sources').closest('.formGroup').classList.contains('is-invalid'));
 
-    findWithAssert('[data-test-validation-errors]');
+    assert.ok(find('[data-test-validation-errors]'));
   });
 
 
@@ -250,25 +255,21 @@ module('Acceptance | tickets/new', function(hooks) {
 
     await click('[data-test-save]');
 
-    assert.ok(find('#ticket-first-name').closest('.formGroup').hasClass('is-invalid'));
-    findWithAssert('[data-test-validation-errors]');
+    assert.ok(find('#ticket-first-name').closest('.formGroup').classList.contains('is-invalid'));
+    assert.ok(find('[data-test-validation-errors]'));
 
     await click('[data-test-kind-tab="company"]');
 
-    assert.equal(findAll('[data-test-validation-errors]').length, 0);
+    assert.equal(find('[data-test-validation-errors]'), null);
 
     await click('[data-test-save]');
 
-    assert.ok(find('#ticket-companyName').closest('.formGroup').hasClass('is-invalid'));
+    assert.ok(find('#ticket-companyName').closest('.formGroup').classList.contains('is-invalid'));
+    assert.ok(find('[data-test-validation-errors]'));
 
     await click('[data-test-kind-tab="person"]');
 
-    assert.ok(!find('#ticket-first-name').closest('.formGroup').hasClass('is-invalid'));
-    assert.equal(findAll('[data-test-validation-errors]').length, 0);
-
-    await click('[data-test-kind-tab="company"]');
-
-    assert.ok(!find('#ticket-companyName').closest('.formGroup').hasClass('is-invalid'));
+    assert.equal(find('[data-test-validation-errors]'), null);
   });
 
 

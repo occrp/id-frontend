@@ -1,12 +1,15 @@
 import { click, fillIn, findAll, find, visit } from '@ember/test-helpers';
 import { module, test } from 'qunit';
 import { setupApplicationTest } from 'ember-qunit';
+import setupMirage from 'ember-cli-mirage/test-support/setup-mirage';
+import { initSession } from 'id-frontend/tests/helpers/init-session';
 
 module('Acceptance | tickets/view - status changes', function(hooks) {
   setupApplicationTest(hooks);
+  setupMirage(hooks);
 
   test('cancelling a ticket', async function(assert) {
-    assert.expect(7);
+    assert.expect(8);
     let currentUser = initSession();
 
     let ticket = server.create('ticket', {
@@ -67,15 +70,15 @@ module('Acceptance | tickets/view - status changes', function(hooks) {
     await visit(`/view/${ticket.id}`);
 
     assert.equal(find('[data-test-status]').textContent.trim(), 'New', 'initial status');
-    assert.equal(findAll('.modal').length, 0);
+    assert.equal(find('.modal'), null);
     assert.equal(findAll('[data-test-activity]').length, 0);
 
     await click('[data-test-cancel]');
-    findWithAssert('.modal');
+    assert.ok(find('.modal'));
     await click('[data-test-modal-confirmCancel]');
 
     assert.equal(find('[data-test-status]').textContent.trim(), 'Cancelled', 'status changed to cancelled');
-    assert.equal(findAll('.modal').length, 0);
+    assert.equal(find('.modal'), null);
     assert.equal(findAll('[data-test-activity=cancel]').length, 1, 'new activity is rendered');
   });
 
@@ -101,12 +104,12 @@ module('Acceptance | tickets/view - status changes', function(hooks) {
     await click('[data-test-modal-confirmCancel]');
 
     assert.equal(find('[data-test-status]').textContent.trim(), 'New', 'status is rolled back');
-    assert.ok(findAll('.flash-message').length > 0, 'showing alert');
+    assert.ok(find('.flash-message'), 'showing alert');
   });
 
 
   test('(staff) closing a ticket', async function(assert) {
-    assert.expect(7);
+    assert.expect(8);
     let currentUser = initSession({ isStaff: true });
 
     let ticket = server.create('ticket', {
@@ -167,15 +170,15 @@ module('Acceptance | tickets/view - status changes', function(hooks) {
     await visit(`/view/${ticket.id}`);
 
     assert.equal(find('[data-test-status]').textContent.trim(), 'New', 'initial status');
-    assert.equal(findAll('.modal').length, 0);
+    assert.equal(find('.modal'), null);
     assert.equal(findAll('[data-test-activity]').length, 0);
 
     await click('[data-test-cancel]');
-    findWithAssert('.modal');
+    assert.ok(find('.modal'));
     await click('[data-test-modal-confirmCancel]');
 
     assert.equal(find('[data-test-status]').textContent.trim(), 'Closed', 'status changed to closed');
-    assert.equal(findAll('.modal').length, 0);
+    assert.equal(find('.modal'), null);
     assert.equal(findAll('[data-test-activity=close]').length, 1, 'new activity is rendered');
   });
 
@@ -201,12 +204,12 @@ module('Acceptance | tickets/view - status changes', function(hooks) {
     await click('[data-test-modal-confirmCancel]');
 
     assert.equal(find('[data-test-status]').textContent.trim(), 'New', 'status is rolled back');
-    assert.ok(findAll('.flash-message').length > 0, 'showing alert');
+    assert.ok(find('.flash-message'), 'showing alert');
   });
 
 
   test('reopening a closed/cancelled ticket', async function(assert) {
-    assert.expect(9);
+    assert.expect(10);
     let currentUser = initSession();
 
     let ticket = server.create('ticket', {
@@ -274,20 +277,20 @@ module('Acceptance | tickets/view - status changes', function(hooks) {
     await visit(`/view/${ticket.id}`);
 
     assert.equal(find('[data-test-status]').textContent.trim(), 'Cancelled', 'initial status');
-    assert.equal(findAll('.modal').length, 0);
+    assert.equal(find('.modal'), null);
     assert.equal(findAll('[data-test-activity]').length, 0);
 
     await click('[data-test-reopen]');
-    findWithAssert('.modal');
+    assert.ok(find('.modal'));
     await click('[data-test-modal-confirm]');
 
-    assert.ok(find('#ticket-reopen').closest('.formGroup').hasClass('is-invalid'), 'empty comment shows validation error');
+    assert.ok(find('#ticket-reopen').closest('.formGroup').classList.contains('is-invalid'), 'empty comment shows validation error');
 
     await fillIn('#ticket-reopen', 'Reason for reopening.');
     await click('[data-test-modal-confirm]');
 
     assert.equal(find('[data-test-status]').textContent.trim(), 'In progress', 'status changed to in-progress');
-    assert.equal(findAll('.modal').length, 0);
+    assert.equal(find('.modal'), null);
     assert.equal(findAll('[data-test-activity=reopen]').length, 1);
     assert.equal(find('[data-test-activity-body]').textContent.trim(), 'Reason for reopening.', 'new activity is rendered');
   });
@@ -315,12 +318,12 @@ module('Acceptance | tickets/view - status changes', function(hooks) {
     await click('[data-test-modal-confirm]');
 
     assert.equal(find('[data-test-status]').textContent.trim(), 'Closed', 'status is rolled back');
-    assert.ok(findAll('.flash-message').length > 0, 'showing alert');
+    assert.ok(('.flash-message'), 'showing alert');
   });
 
 
   test('(staff) marking a ticket as pending', async function(assert) {
-    assert.expect(9);
+    assert.expect(10);
     let currentUser = initSession({ isStaff: true });
 
     let ticket = server.create('ticket', {
@@ -394,20 +397,20 @@ module('Acceptance | tickets/view - status changes', function(hooks) {
     await visit(`/view/${ticket.id}`);
 
     assert.equal(find('[data-test-status]').textContent.trim(), 'New', 'initial status');
-    assert.equal(findAll('.modal').length, 0);
+    assert.equal(find('.modal'), null);
     assert.equal(findAll('[data-test-activity]').length, 0);
 
     await click('[data-test-mark-pending]');
-    findWithAssert('.modal');
+    assert.ok(find('.modal'));
     await click('[data-test-modal-confirm]');
 
-    assert.ok(find('#ticket-pending').closest('.formGroup').hasClass('is-invalid'), 'empty comment shows validation error');
+    assert.ok(find('#ticket-pending').closest('.formGroup').classList.contains('is-invalid'), 'empty comment shows validation error');
 
     await fillIn('#ticket-pending', 'Reason for marking.');
     await click('[data-test-modal-confirm]');
 
     assert.equal(find('[data-test-status]').textContent.trim(), 'Pending', 'status changed to pending');
-    assert.equal(findAll('.modal').length, 0);
+    assert.equal(find('.modal'), null);
     assert.equal(findAll('[data-test-activity=pending]').length, 1);
     assert.equal(find('[data-test-activity-body]').textContent.trim(), 'Reason for marking.', 'new activity is rendered');
   });
@@ -440,12 +443,12 @@ module('Acceptance | tickets/view - status changes', function(hooks) {
     await click('[data-test-modal-confirm]');
 
     assert.equal(find('[data-test-status]').textContent.trim(), 'New', 'status is rolled back');
-    assert.ok(findAll('.flash-message').length > 0, 'showing alert');
+    assert.ok(find('.flash-message'), 'showing alert');
   });
 
 
   test('(staff) unmark a ticket as pending', async function(assert) {
-    assert.expect(7);
+    assert.expect(8);
     let currentUser = initSession({ isStaff: true });
 
     let ticket = server.create('ticket', {
@@ -511,15 +514,15 @@ module('Acceptance | tickets/view - status changes', function(hooks) {
     await visit(`/view/${ticket.id}`);
 
     assert.equal(find('[data-test-status]').textContent.trim(), 'Pending', 'initial status');
-    assert.equal(findAll('.modal').length, 0);
+    assert.equal(find('.modal'), null);
     assert.equal(findAll('[data-test-activity]').length, 0);
 
     await click('[data-test-unmark-pending]');
-    findWithAssert('.modal');
+    assert.ok(find('.modal'));
     await click('[data-test-modal-confirm]');
 
     assert.equal(find('[data-test-status]').textContent.trim(), 'In progress', 'status changed to in-progress');
-    assert.equal(findAll('.modal').length, 0);
+    assert.equal(find('.modal'), null);
     assert.equal(findAll('[data-test-activity=resume]').length, 1, 'new activity is rendered');
   });
 
@@ -550,6 +553,6 @@ module('Acceptance | tickets/view - status changes', function(hooks) {
     await click('[data-test-modal-confirm]');
 
     assert.equal(find('[data-test-status]').textContent.trim(), 'Pending', 'status is rolled back');
-    assert.ok(findAll('.flash-message').length > 0, 'showing alert');
+    assert.ok(find('.flash-message'), 'showing alert');
   });
 });

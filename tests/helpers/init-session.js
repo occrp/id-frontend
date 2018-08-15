@@ -1,6 +1,4 @@
-import { registerHelper } from '@ember/test';
-
-export default registerHelper('initSession', function(app, overrides = {}) {
+export function initSession(overrides = {}) {
   return server.create('profile', Object.assign({
     id: 42,
     email: "user@mail.com",
@@ -9,4 +7,4 @@ export default registerHelper('initSession', function(app, overrides = {}) {
     isStaff: false,
     isSuperuser: false
   }, overrides));
-});
+}

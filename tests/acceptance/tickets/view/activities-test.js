@@ -1,9 +1,15 @@
-import { click, fillIn, findAll, visit } from '@ember/test-helpers';
+import { find, click, fillIn, findAll, visit } from '@ember/test-helpers';
 import { module, test } from 'qunit';
 import { setupApplicationTest } from 'ember-qunit';
+import { setupAssertions } from 'id-frontend/tests/helpers/setup-assertions';
+import setupMirage from 'ember-cli-mirage/test-support/setup-mirage';
+import { initSession } from 'id-frontend/tests/helpers/init-session';
 
 module('Acceptance | tickets/view - activities', function(hooks) {
   setupApplicationTest(hooks);
+  setupAssertions(hooks);
+  setupMirage(hooks);
+
 
   test('rendering activities & submitting a comment', async function(assert) {
     assert.expect(4);
@@ -72,8 +78,8 @@ module('Acceptance | tickets/view - activities', function(hooks) {
 
     assert.equal(findAll('[data-test-activity]').length, 9, 'rendering updated activities');
 
-    let $latest = find('[data-test-activity]:last [data-test-activity-body]');
-    assert.equal($latest.text().trim(), 'This is my new comment', 'last activity is the new comment');
+    let $latest = find('[data-test-activity]:nth-child(9) [data-test-activity-body]');
+    assert.equal($latest.textContent.trim(), 'This is my new comment', 'last activity is the new comment');
   });
 
 
@@ -96,7 +102,7 @@ module('Acceptance | tickets/view - activities', function(hooks) {
     }, `GET ${server.namespace}/activities returned a 500`);
 
     assert.equal(findAll('[data-test-activity]').length, 0, 'no activities rendered');
-    assert.ok(findAll('[data-test-activity-error]').length > 0, 'showing alert');
+    assert.ok(find('[data-test-activity-error]'), 'showing alert');
   });
 
 
@@ -131,7 +137,7 @@ module('Acceptance | tickets/view - activities', function(hooks) {
 
 
     assert.equal(findAll('[data-test-activity]').length, 2, 'no new activities show up');
-    assert.ok(findAll('[data-test-comment-error]').length > 0, 'showing alert');
+    assert.ok(find('[data-test-comment-error]'), 'showing alert');
   });
 
 
@@ -163,8 +169,8 @@ module('Acceptance | tickets/view - activities', function(hooks) {
 
     assert.equal(findAll('[data-test-activity]').length, 71, 'rendering updated activities');
 
-    let $latest = find('[data-test-activity]:last [data-test-activity-body]');
-    assert.equal($latest.text().trim(), 'This is my new comment', 'last activity is the new comment');
+    let $latest = find('[data-test-activity]:nth-child(71) [data-test-activity-body]');
+    assert.equal($latest.textContent.trim(), 'This is my new comment', 'last activity is the new comment');
   });
 });
 

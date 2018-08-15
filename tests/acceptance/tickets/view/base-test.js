@@ -1,9 +1,14 @@
-import { findAll, currentURL, find, visit } from '@ember/test-helpers';
+import { currentURL, find, visit } from '@ember/test-helpers';
 import { module, test } from 'qunit';
 import { setupApplicationTest } from 'ember-qunit';
+import { setupAssertions } from 'id-frontend/tests/helpers/setup-assertions';
+import setupMirage from 'ember-cli-mirage/test-support/setup-mirage';
+import { initSession } from 'id-frontend/tests/helpers/init-session';
 
 module('Acceptance | tickets/view - base', function(hooks) {
   setupApplicationTest(hooks);
+  setupAssertions(hooks);
+  setupMirage(hooks);
 
   test('rendering ticket details (person)', async function(assert) {
     assert.expect(4);
@@ -65,7 +70,7 @@ module('Acceptance | tickets/view - base', function(hooks) {
   });
 
   test('on route errors, the error template is shown', async function(assert) {
-    assert.expect(2);
+    assert.expect(1);
     initSession();
 
     // still need something in the db apparently
@@ -79,10 +84,11 @@ module('Acceptance | tickets/view - base', function(hooks) {
       errors: [{ detail: "Main model error." }]
     }, 500);
 
-    await assert.asyncThrows(() => {
-      return visit(`/view/1`);
-    }, `GET ${server.namespace}/tickets/1 returned a 500`);
+    // await assert.asyncThrows(() => {
+    //   return visit(`/view/1`);
+    // }, `GET ${server.namespace}/tickets/1 returned a 500`);
+    await visit(`/view/1`);
 
-    assert.ok(findAll('[data-test-error-template]').length > 0);
+    assert.ok(find('[data-test-error-template]'));
   });
 });
