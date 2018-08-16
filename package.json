@@ -77,7 +77,6 @@
     "loader.js": "^4.2.3",
     "moment-duration-format": "^2.2.2",
     "octicons": "^7.1.0",
-    "qunit-dom": "^0.6.2",
     "rollup-plugin-json": "^3.0.0"
   },
   "engines": {
