@@ -16,10 +16,10 @@
   },
   "activity": {
     "assign": {
-      "action": "{{user}} был назначен/а"
+      "action": "{{user}} был назначен(а)"
     },
     "attachment": {
-      "action": "{{user}} прикрепил/а файлы",
+      "action": "{{user}} прикрепил(а) файлы",
       "removed": "{{user}} удалил(а) файл"
     },
     "comment": {
@@ -37,7 +37,7 @@
     },
     "showOnlyComments": "Показать только комментарии",
     "unassign": {
-      "action": "{{user}} больше не назначен/а"
+      "action": "{{user}} больше не назначен(а)"
     }
   },
   "attachment": {
