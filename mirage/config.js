@@ -317,10 +317,10 @@ export default function() {
     attrs.updatedAt = (new Date()).toISOString();
 
     // let ticket = schema.tickets.find(attrs.ticketId);
-    let profile = schema.profiles.findBy({ email: attrs.userEmail });
+    let profile = schema.profiles.findBy({ email: attrs.email });
 
     let subscriber = schema.subscribers.create(Object.assign({}, attrs, {
-      user: profile
+      user: attrs.email === 'user@mail.com' ? null : profile
     }));
 
     // schema.activities.create({

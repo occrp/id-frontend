@@ -68,4 +68,10 @@
 
 .editableList-content {
 
+  // external subscriber
+  .icon {
+    color: $gray-600;
+    margin: 2px calc(2px + #{$spacer}) 0 2px;
+    vertical-align: top;
+  }
 }

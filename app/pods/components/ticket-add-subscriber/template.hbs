@@ -4,11 +4,11 @@
   <form {{action "save" on="submit"}}>
     {{#validated-field
       class="formGroup"
-      errors=buffer.validations.attrs.userEmail.messages
+      errors=buffer.validations.attrs.email.messages
       didValidate=didValidate as |field|}}
 
       <div class="formGroup--inline">
-        {{input value=buffer.userEmail class="formControl formControl--sm" id="subscriber-email" placeholder=(t 'ticket.subscriber.emailPlaceholder')}}
+        {{input value=buffer.email class="formControl formControl--sm" id="subscriber-email" placeholder=(t 'ticket.subscriber.emailPlaceholder')}}
 
         <button type="submit" disabled={{addSubscriber.isRunning}} class="button button--primary button--sm" data-test-add-subscriber>
           {{~t 'actions.addSubscriber'~}}

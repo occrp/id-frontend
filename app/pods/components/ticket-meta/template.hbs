@@ -85,8 +85,13 @@
       {{#if model.subscribers.length}}
         {{#each model.subscribers as |subscriber|}}
           {{#unless subscriber.isNew}}
-          {{#editable-list-item class="editableList-item" onRemove=(action 'removeSubscriber' subscriber) data-test-subscriber=subscriber.user.id}}
-            {{user-avatar user=subscriber.user}}{{subscriber.user.displayName}}
+          {{#editable-list-item class="editableList-item" onRemove=(action 'removeSubscriber' subscriber) data-test-subscriber=subscriber.id}}
+            {{#if subscriber.user}}
+              {{~user-avatar user=subscriber.user~}}
+            {{else}}
+              {{~icon "mail"~}}
+            {{/if}}
+            {{~subscriber.displayName~}}
           {{/editable-list-item}}
           {{/unless}}
         {{/each}}

@@ -34,7 +34,7 @@ module('Acceptance | tickets/view - subscribers', function(hooks) {
           "attributes": {
             "created-at": null,
             "updated-at": null,
-            "user-email": "sub@mail.com"
+            "email": "sub@mail.com"
           },
           "relationships": {
             "ticket": {
@@ -50,7 +50,7 @@ module('Acceptance | tickets/view - subscribers', function(hooks) {
 
       done();
 
-      let profile = schema.profiles.findBy({ email: attrs.data.attributes['user-email'] });
+      let profile = schema.profiles.findBy({ email: attrs.data.attributes['email'] });
 
       return schema.subscribers.create(Object.assign(this.normalizedRequestAttrs(), {
         user: profile
@@ -69,9 +69,57 @@ module('Acceptance | tickets/view - subscribers', function(hooks) {
     await click('[data-test-add-subscriber]');
 
     assert.equal(findAll('[data-test-subscriber]').length, 1);
-    assert.equal(find('[data-test-subscriber="10"] [data-test-el-item]').textContent.trim(), 'Subscriber Doe', 'user is subscribed');
+    assert.equal(find('[data-test-subscriber="1"] [data-test-el-item]').textContent.trim(), 'Subscriber Doe', 'user is subscribed');
   });
 
+  test('(staff) add external subscribers to the ticket', async function(assert) {
+    assert.expect(4);
+
+    initSession({ isStaff: true });
+
+    let ticket = server.create('ticket', {
+      status: 'new',
+      kind: 'company_ownership',
+    });
+
+    let done = assert.async();
+    server.post('/subscribers', function (schema, request) {
+      let attrs = JSON.parse(request.requestBody);
+
+      assert.deepEqual(attrs, {
+        "data": {
+          "attributes": {
+            "created-at": null,
+            "updated-at": null,
+            "email": "sub@mail.com"
+          },
+          "relationships": {
+            "ticket": {
+              "data": {
+                "id": `${ticket.id}`,
+                "type": "tickets"
+              }
+            }
+          },
+          "type": "subscribers"
+        }
+      });
+
+      done();
+
+      return schema.subscribers.create(this.normalizedRequestAttrs());
+    });
+
+    await visit(`/view/${ticket.id}`);
+
+    assert.equal(findAll('[data-test-subscriber]').length, 0);
+
+    await fillIn('#subscriber-email', 'sub@mail.com');
+    await click('[data-test-add-subscriber]');
+
+    assert.equal(findAll('[data-test-subscriber]').length, 1);
+    assert.equal(find('[data-test-subscriber="1"] [data-test-el-item]').textContent.trim(), 'sub@mail.com', 'external email is subscribed');
+  });
 
   test('(staff) if adding subscribers errors, a message is displayed', async function(assert) {
     assert.expect(3);
@@ -134,12 +182,12 @@ module('Acceptance | tickets/view - subscribers', function(hooks) {
     await visit(`/view/${ticket.id}`);
 
     assert.equal(findAll('[data-test-subscriber]').length, 3);
-    assert.equal(find('[data-test-subscriber="11"] [data-test-el-item]').textContent.trim(), 'John #11 Doe', 'target user is subscribed');
+    assert.equal(find('[data-test-subscriber="21"] [data-test-el-item]').textContent.trim(), 'John #11 Doe', 'target user is subscribed');
 
-    await click(find('[data-test-subscriber="11"] [data-test-el-remove]'));
+    await click(find('[data-test-subscriber="21"] [data-test-el-remove]'));
 
     assert.equal(findAll('[data-test-subscriber]').length, 2);
-    assert.equal(find('[data-test-subscriber="11"]'), null, 'target user is unsubscribed');
+    assert.equal(find('[data-test-subscriber="21"]'), null, 'target user is unsubscribed');
   });
 
 
