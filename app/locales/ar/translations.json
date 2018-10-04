@@ -306,6 +306,10 @@
       "selfNotice": "تم تعيينك لطلب البحث هذا.",
       "selfRemove": "غير معين؟"
     },
+    "search": {
+      "clear": "مسح البحث",
+      "placeholder": "طلبات البحث"
+    },
     "sensitive": {
       "label": "هل ذلك حساس؟",
       "trueLabel": "طلب حساس"
