@@ -1,18 +1,23 @@
 import config from '../config/environment';
+import { set } from '@ember/object';
 
 export function initialize(/* application */) {
-  var options = {};
   var metaTags = document.querySelectorAll(`meta[name^="${config.modulePrefix}"]`);
 
-  for(var i=0; i < metaTags.length; i++) {
+  // initialize .options key
+  config.options = {};
+
+  for (var i=0; i < metaTags.length; i++) {
     var key = metaTags[i].getAttribute('name');
     var value = metaTags[i].getAttribute('content');
-    var name = key.split('/').pop();
 
-    options[name] = value;
+    // Expected: <meta name="id-frontend/initializers/i18n/defaultLocale" content="en" />
+    // Everything after /initializers is used as the path on the config object
+    // Only config.options or keys already present on the config will work
+    var path = key.split('/').slice(2);
+
+    set(config, path.join('.'), value);
   }
-
-  config.options = options;
 }
 
 export default {
