@@ -30,6 +30,11 @@
 
   .badge {
     margin-left: $spacer;
+
+    @include rtl {
+      margin-left: 0;
+      margin-right: $spacer;
+    }
   }
 }
 

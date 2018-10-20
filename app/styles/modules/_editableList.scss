@@ -17,6 +17,11 @@
   .avatar {
     margin-right: $spacer;
     vertical-align: top;
+
+    @include rtl {
+      margin-left: $spacer;
+      margin-right: 0;
+    }
   }
 
   &:last-child {
@@ -73,5 +78,9 @@
     color: $gray-600;
     margin: 2px calc(2px + #{$spacer}) 0 2px;
     vertical-align: top;
+
+    @include rtl {
+      margin: 2px 2px 0 calc(2px + #{$spacer});
+    }
   }
 }

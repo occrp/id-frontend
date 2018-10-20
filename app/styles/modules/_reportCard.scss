@@ -12,6 +12,11 @@
 
     &:nth-child(2n) {
       border-left: 1px solid $gray-300;
+
+      @include rtl {
+        border-right: 1px solid $gray-300;
+        border-left: 0;
+      }
     }
   }
 }
@@ -24,6 +29,11 @@
     flex: 0 1 auto;
     vertical-align: middle;
     margin-right: $spacer-2;
+
+    @include rtl {
+      margin-left: $spacer-2;
+      margin-right: 0;
+    }
   }
 }
 
@@ -128,6 +138,11 @@
 
   td:first-child {
     padding-right: $spacer-2;
+
+    @include rtl {
+      padding-left: $spacer-2;
+      padding-right: 0;
+    }
   }
 }
 
@@ -164,6 +179,11 @@
 
   > a + a {
     margin-left: $spacer-3;
+
+    @include rtl {
+      margin-right: $spacer-3;
+      margin-left: 0;
+    }
   }
 }
 
