@@ -58,15 +58,20 @@
     top: 0;
     left: 14px;
     background: $gray-300;
-
-    @include rtl {
-      left: auto;
-      right: 14px;
-    }
   }
 
   & > .activity:first-child {
     margin-top: 0;
+  }
+
+  @include rtl {
+    margin-left: 0;
+    margin-right: 50px;
+
+    &:before {
+      left: auto;
+      right: 14px;
+    }
   }
 }
 

@@ -180,6 +180,11 @@ select.formControl--lg {
   .icon--lg {
     vertical-align: -7px;
     margin-right: $spacer;
+
+    @include rtl {
+      margin-left: $spacer;
+      margin-right: 0;
+    }
   }
 }
 
@@ -195,6 +200,11 @@ select.formControl--lg {
 
   .button {
     margin-left: $spacer-2;
+
+    @include rtl {
+      margin-left: 0;
+      margin-right: $spacer-2;
+    }
   }
 }
 
