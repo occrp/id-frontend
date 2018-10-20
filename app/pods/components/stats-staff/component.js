@@ -1,19 +1,43 @@
-import { inject as service } from '@ember/service';
 import Component from '@ember/component';
-import { task } from 'ember-concurrency';
+import { inject as service } from '@ember/service';
 import groupByDate from 'id-frontend/pods/reporting/group-by-date';
+import { task, all } from 'ember-concurrency';
+import EmberObject from '@ember/object';
+
+const Dataset = EmberObject.extend({
+  id: null,
+  taskInstance: null,
+  total: 0,
+  processedStats: null,
+  user: null
+});
 
 export default Component.extend({
   tagName: '',
   store: service(),
 
-  statsCache: null,
-  user: null,
-  processedStats: null,
+  datasets: null,
 
-  loadStats: task(function * (profileId) {
+  loadAll: task(function * () {
+    let datasets = [];
+    let childTasks = [];
+
+    this.get('profiles').forEach((id) => {
+      let dataset = Dataset.create({ id });
+      let taskInstance = this.get('loadDataset').perform(dataset);
+
+      dataset.set('taskInstance', taskInstance);
+      datasets.push(dataset);
+      childTasks.push(taskInstance);
+    });
+
+    this.set('datasets', datasets);
+    yield all(childTasks);
+  }).restartable(),
+
+  loadDataset: task(function * (dataset) {
     const filter = Object.assign({
-      'profile': profileId
+      'profile': dataset.get('id')
     }, this.get('filter'));
 
     const records = yield this.get('store').query('ticket-stats', {
@@ -21,14 +45,12 @@ export default Component.extend({
       include: 'profile'
     });
 
-    return records;
-  }).group('group'),
+    dataset.set('total', records.get('meta.total'));
+    dataset.set('processedStats', groupByDate(records));
+    dataset.set('user', this.get('store').peekRecord('profile', dataset.get('id')));
+  }),
 
   didReceiveAttrs() {
-    this.get('loadStats').perform(this.get('profile')).then((records) => {
-      this.set('statsCache', records);
-      this.set('processedStats', groupByDate(records));
-      this.set('user', this.get('store').peekRecord('profile', this.get('profile')));
-    });
+    this.get('loadAll').perform();
   }
 });

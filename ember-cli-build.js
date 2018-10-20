@@ -2,6 +2,10 @@
 
 const EmberApp = require('ember-cli/lib/broccoli/ember-app');
 
+const Funnel = require('broccoli-funnel');
+const jsonModule = require('broccoli-json-module');
+const rollupJson = require('rollup-plugin-json');
+
 module.exports = function(defaults) {
   let buildOptions = {
     babel: {
@@ -32,7 +36,14 @@ module.exports = function(defaults) {
         'node_modules/octicons/build/svg',
       ],
       strategy: 'symbol'
-    }
+    },
+
+    nodeModulesToVendor: [
+      jsonModule(new Funnel('node_modules/i18n-iso-countries/langs', {
+        files: ['en.json'],
+        destDir: 'i18n-iso-countries-langs'
+      }))
+    ]
   };
 
   if ( process.env.EMBER_ENV === 'development') {
@@ -69,6 +80,17 @@ module.exports = function(defaults) {
   app.import('node_modules/moment-duration-format/lib/moment-duration-format.js', {
     using: [
       { transformation: 'amd', as: 'moment-duration-format' }
+    ]
+  });
+
+  app.import('node_modules/i18n-iso-countries/index.js', {
+    using: [
+      { transformation: 'cjs', as: 'i18n-iso-countries', plugins: [ rollupJson() ] }
+    ]
+  });
+  app.import('vendor/i18n-iso-countries-langs/en.js', {
+    using: [
+      { transformation: 'es6', as: 'countries-en' }
     ]
   });
 

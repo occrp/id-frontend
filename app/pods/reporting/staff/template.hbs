@@ -13,15 +13,6 @@
     <th class="t-right statsTable-cell">{{t 'pods.reporting.columns.pastDeadline'}}</th>
   </thead>
   <tbody>
-    {{#if statsTaskGroup.isRunning}}
-      <tr><td class="statsTable-spinner" colspan="9">{{ui-spinner}}</td></tr>
-    {{/if}}
-    {{#each model.meta.staffProfileIds as |profile|}}
-      {{stats-staff
-        profile=profile
-        group=statsTaskGroup
-        filter=model.query.filter
-      }}
-    {{/each}}
+    {{stats-staff profiles=model.meta.staffProfileIds filter=model.query.filter}}
   </tbody>
 </table>

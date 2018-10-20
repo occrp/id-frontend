@@ -1,13 +1,13 @@
 import Component from '@ember/component';
 import { kindList, Validations } from 'id-frontend/models/ticket';
 import formBufferProperty from 'ember-validated-form-buffer';
-import countries from 'ember-i18n-iso-countries/langs/en';
+import countries from 'i18n-iso-countries';
 import moment from 'moment';
 import { task } from 'ember-concurrency';
 
 export default Component.extend({
   kindList,
-  countries,
+  countries: countries.getNames('en'),
 
   today: moment.utc(),
   minimumDeadline: moment.utc().add(3, 'days'),
@@ -21,7 +21,6 @@ export default Component.extend({
   }),
 
   actions: {
-
     changeKind(value) {
       this.get('buffer').discardBufferedChanges();
       this.set('buffer.kind', value);

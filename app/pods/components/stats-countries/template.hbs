@@ -1,9 +1,14 @@
-{{#unless loadStats.isRunning}}
+{{#if loadAll.isRunning}}
+  <tr><td class="statsTable-spinner" colspan="9">{{ui-spinner}}</td></tr>
+{{/if}}
 
-{{#stats-datatable total=statsCache.meta.total processedStats=processedStats}}
-  {{#link-to 'browse' (query-params country=country page=1) class="link-muted"~}}
-    {{country-name country}}
-  {{~/link-to}}
-{{/stats-datatable}}
+{{#each datasets as |set|}}
+  {{#unless set.taskInstance.isRunning}}
 
-{{/unless}}
+  {{#stats-datatable total=set.total processedStats=set.processedStats}}
+    {{#link-to 'browse' (query-params country=set.id page=1) class="link-muted"~}}
+      {{country-name set.id}}
+    {{~/link-to}}
+  {{/stats-datatable}}
+  {{/unless}}
+{{/each}}

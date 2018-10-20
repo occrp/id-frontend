@@ -29,8 +29,8 @@ export default Route.extend({
     loading(transition, originRoute) {
       let loadingSliderService = this.get('loadingSlider');
       loadingSliderService.startLoading();
-      if (isPresent(this.router) && originRoute.routeName !== 'application') {
-        this.router.one('didTransition', function() {
+      if (isPresent(this._router) && originRoute.routeName !== 'application') {
+        this._router.one('didTransition', function() {
           loadingSliderService.endLoading();
         });
       }

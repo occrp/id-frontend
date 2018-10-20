@@ -53,10 +53,7 @@ module.exports = function(environment) {
     flashMessageDefaults: {
       sticky: true,
       preventDuplicates: true
-    },
-
-    // need at least an empty object >_>
-    optionsConfig: {}
+    }
   };
 
   if (environment === 'development') {
