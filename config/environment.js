@@ -39,7 +39,7 @@ module.exports = function(environment) {
         'bs',
         // 'fr',
         'es',
-        // 'ar'
+        'ar'
       ],
 
       // Keeping this array updated manually for now
