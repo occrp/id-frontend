@@ -118,7 +118,7 @@
     "ar": "العربية",
     "bs": "Bos/Hrv/Srp",
     "en": "English",
-    "es": "Español",
+    "es": "‍ Español",
     "fr": "Français",
     "ru": "Русский"
   },
@@ -159,7 +159,7 @@
         "zero": "{{count}} طلبات مغلقة"
       },
       "columns": {
-        "avgTime": "متوسط الوقت المتوفر",
+        "avgTime": "متوسط وقت القرار",
         "month": "شهر",
         "name": "الاسم",
         "pastDeadline": "تعدى المهلة",
