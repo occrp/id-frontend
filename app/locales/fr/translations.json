@@ -1,234 +1,140 @@
 {
-  "profile": {
-    "search": {
-      "placeholder": "Rechercher des utilisateurs",
-      "noResults": "Aucun utilisateurs trouvés "
-    }
-  },
-  "pagination": {
-    "prev": "Précédent/Préc. ",
-    "next": "Suivant",
-    "newer": "",
-    "older": ""
-  },
-  "errors": {
-    "genericInvalid": "S'il-vous-plaît, veuillez remplir le champ suivant"
-  },
   "actions": {
-    "upload": "Télécharger",
-    "remove": "Supprimer",
-    "reopen": "Réouvrir",
-    "cancel": "Annuler",
-    "save": "",
+    "addSubscriber": "Ajouter un abonné",
     "assign": {
       "longForm": "Assigner à l'équipe",
       "shortForm": "Attribuer à l'équipe"
     },
-    "delete": "Delete"
+    "cancel": "Annuler",
+    "close": "Proche",
+    "delete": "Delete",
+    "remove": "Supprimer",
+    "reopen": "Réouvrir",
+    "save": "Enregistrer",
+    "unmark": "Retirer l'indication",
+    "upload": "Télécharger"
   },
-  "prefixes": {
-    "on": "Le {{date}}",
-    "at": "A {{time}}",
-    "by": "Par {{user}}"
+  "activity": {
+    "assign": {
+      "action": "A été attribué à {{user}}"
+    },
+    "attachment": {
+      "action": "{{user}} fichiers joints",
+      "removed": "{{user}} a supprimé le fichier"
+    },
+    "comment": {
+      "action": "",
+      "submitButton": "Publier des commentaires",
+      "title": "Laisser un commentaire"
+    },
+    "loadOlder": "Charger plus ancien",
+    "one": "Activité",
+    "reopen": {
+      "action": "Réouvert"
+    },
+    "resume": {
+      "action": "repris"
+    },
+    "showOnlyComments": "Afficher seulement les commentaires",
+    "unassign": {
+      "action": "N'a pas été attribué à {{user}}"
+    }
   },
   "attachment": {
-    "zero": "",
-    "other": "Pièces jointes",
     "dropzone": {
-      "title": "Télécharger les fichiers",
+      "activeTitle": "Déposer pour télécharger",
       "desc": "Déplacer et déposer les fichiers dans cette zone ou {{select}}",
-      "invalidTitle": "",
+      "invalidTitle": "Non valable",
       "select": "Sélectionner un fichier",
-      "activeTitle": "Déposer pour télécharger"
+      "title": "Télécharger les fichiers"
     },
-    "filesSelected": "{{count}} fichiers sélectionnés ",
-    "removalPrompt": "Are you sure you want to delete this file?"
+    "filesSelected": "{{count}} fichiers sélectionnés",
+    "other": "Pièces jointes",
+    "removalPrompt": "Êtes-vous sûr de vouloir supprimer ce fichier ?",
+    "state": {
+      "aborted": "Annulé",
+      "failed": "Échec",
+      "queued": "En file d'attente",
+      "timed_out": "Délai dépassé",
+      "uploaded": "Téléversé",
+      "uploading": "En téléversement"
+    },
+    "zero": "Aucune pièce jointe"
+  },
+  "empty": {
+    "noResults": {
+      "body": "Utilisez le menu ci-dessus pour filtrer facilement les requêtes.",
+      "title": "Aucun résultat ne correspond à votre recherche."
+    },
+    "noTickets": {
+      "button": "Soumettre une requête",
+      "title": "Il semblerait que vous n'avez pas encore soumis de requêtes."
+    }
+  },
+  "errors": {
+    "activities": "Une erreur s'est produite lors du chargement du flux d'activité.",
+    "genericInvalid": "S'il-vous-plaît, veuillez remplir le champ suivant",
+    "genericRequest": "Une erreur s'est produite lors du traitement de votre requête.",
+    "routeError": {
+      "body": "Nous avons été informés automatiquement et nous avons besoin d'une meilleure copie pour cela.",
+      "title": "Une erreur s'est produite lors du traitement de votre requête."
+    }
   },
   "filters": {
-    "sort": {
-      "title": "Trier par ",
-      "label": "Trier"
+    "country": {
+      "title": "Filtrer par pays ou nationalité"
+    },
+    "current": {
+      "clear": "Supprimer tous les filtres",
+      "title": "Filtrer par"
     },
     "kind": {
       "title": "Filtrer par type"
     },
-    "country": {
-      "title": ""
+    "options": {
+      "all": "Tous"
+    },
+    "requester": {
+      "title": "Filtrer par qui a présenté la demande"
     },
     "responder": {
       "emptyOption": "Assigné à aucune personne",
       "title": "Filtrer par à qui a été assignée la demande"
     },
-    "current": {
-      "clear": "Supprimer tous les filtres",
-      "title": "Filtrer par "
-    },
-    "requester": {
-      "title": "Filtrer par qui a présenté la demande "
-    },
-    "options": {
-      "all": "Tous"
+    "sort": {
+      "createdAt": {
+        "asc": "Le plus ancien",
+        "desc": "Le plus récent"
+      },
+      "deadlineAt": {
+        "asc": "Dernière date butoir",
+        "desc": "Prochaine date butoir"
+      },
+      "label": "Trier",
+      "title": "Trier par"
     }
   },
-  "activity": {
-    "comment": {
-      "action": "",
-      "submitButton": "Publier des commentaires ",
-      "title": "Laisser un commentaire"
-    },
-    "resume": {
-      "action": ""
-    },
-    "one": "Activité",
-    "reopen": {
-      "action": "Réouvert"
-    },
-    "attachment": {
-      "action": "{{user}} fichiers joints",
-      "removed": "{{user}} removed file"
-    },
-    "unassign": {
-      "action": "N'a pas été assigné à {{user}} "
-    },
-    "assign": {
-      "action": "A été assigné à {{user}} "
-    }
+  "locales": {
+    "ar": "arabe",
+    "bs": "serbo-croate",
+    "en": "English",
+    "es": "espagnol",
+    "fr": "français",
+    "ru": "russe"
   },
-  "ticket": {
-    "one": "",
-    "connections": {
-      "formLabel": "Connexions avec d'autres société et personnes",
-      "label": "Connexions"
+  "nav": {
+    "account": {
+      "logout": "Déconnexion",
+      "profile": "Profil"
     },
-    "sources": {
-      "label": "Sources",
-      "formLabel": "Où avez-vous cherché ? ",
-      "desc": "Quelles sources avez-vous aujourd'hui ? "
-    },
-    "deadline": {
-      "prefix": "Exigible le {{relativeTime}}",
-      "label": "Echéance",
-      "empty": "",
-      "desc": "Nous ferons notre possible pour respecter votre échéance"
-    },
-    "whysensitive": {
-      "label": "Pourquoi est-ce sensible ? "
-    },
-    "updatedAt": {
-      "prefix": "Mis à jour le {{relativeTime}}",
-      "label": "Dernière mise à jour"
-    },
-    "initialInformation": {
-      "label": "Information initiale",
-      "formLabel": "Où avez-vous cherché ? ",
-      "desc": "Toute information que vous possédez déjà"
-    },
-    "businessActivities": {
-      "label": "Activités commerciales"
-    },
-    "backgroundCompany": {
-      "label": "Historique de la société",
-      "formLabel": "Votre histoire ",
-      "desc": "Que savez-vous aujourd'hui ? "
-    },
-    "backgroundOther": {
-      "label": "Question",
-      "formLabel": "Qu'est-ce-que vous souhaitez savoir ? ",
-      "desc": "Toute information que vous possédez déjà"
-    },
-    "other": "",
-    "status": {
-      "closed": {
-        "name": "Fermé"
-      },
-      "in-progress": {
-        "name": "En cours "
-      },
-      "groups": {
-        "open": "Ouvert",
-        "closed": "Fermé"
-      },
-      "cancelled": {
-        "name": "Annulé"
-      },
-      "new": {
-        "name": "Nouveau"
-      },
-      "pending": {
-        "name": ""
-      }
-    },
-    "companyName": {
-      "label": "Nom de société"
-    },
-    "bornAt": {
-      "label": "Date de naissance"
-    },
-    "background": {
-      "label": "Historique ",
-      "formLabel": "Votre histoire",
-      "desc": "Que savez-vous aujourd'hui ? "
-    },
-    "requester": {
-      "prefix": "Soumis par {{requester}}",
-      "other": "Demandeurs",
-      "one": "Demandeur"
-    },
-    "connectionsPerson": {
-      "label": "Famille et Associés",
-      "desc": "Relations familiales connues"
-    },
-    "countryPerson": {
-      "label": ""
-    },
-    "kind": {
-      "person_ownership": {
-        "shortName": "Personne",
-        "name": "Identifier ce qu'une personne possède"
-      },
-      "other": {
-        "shortName": "Autres ",
-        "name": "Tout autre question"
-      },
-      "company_ownership": {
-        "shortName": "Société",
-        "name": "Déterminer la propriété de la société"
-      },
-      "one": "Type"
-    },
-    "firstName": {
-      "label": "Prénom"
-    },
-    "sourcesPerson": {
-      "label": "Alias/Pseudonymes",
-      "desc": "Variantes orthographiques ou noms fictifs"
-    },
-    "country": {
-      "search": {
-        "placeholder": "",
-        "noResults": ""
-      },
-      "other": "",
-      "label": "Pays enregistré(s)",
-      "one": ""
-    },
-    "responder": {
-      "one": "Répondre",
-      "other": "Personne en charge de répondre ",
-      "empty": "Aucune personne assignée",
-      "label": "Staff intervenant"
-    },
-    "sensitive": {
-      "trueLabel": "Demande sensible",
-      "label": "Est-ce sensible ? "
-    },
-    "lastName": {
-      "label": "Nom de famille"
-    },
-    "search": {
-      "placeholder": "Search requests",
-      "clear": "Clear search"
-    }
+    "reports": "Reports",
+    "requests": "Requêtes"
+  },
+  "pagination": {
+    "newer": "Plus récent",
+    "next": "Suivant",
+    "older": "Plus ancien",
+    "prev": "Préc"
   },
   "pods": {
     "browse": {
@@ -236,101 +142,237 @@
       "title": "Mes demandes"
     },
     "new": {
-      "headline": "Votre demande sera transmise à notre chercheur professionnel",
       "form": {
-        "invalidMessage": "",
-        "submitButton": "Soumettre sa demande",
-        "otherDetails": "Autres informations ",
+        "invalidMessage": "Veuillez vérifier les champs indiqués ci-dessus pour continuer.",
+        "otherDetails": "Autres informations",
         "requestDetails": "Demander des précisions",
-        "uploadInfo": "You will be able attach documents after submitting the request."
+        "submitButton": "Soumettre sa demande",
+        "uploadInfo": "Vous pourrez joindre des documents après le dépôt de la requête."
       },
-      "title": "Demander des informations "
+      "headline": "Votre requête sera transmise à notre investigateur professionnel. Il va tenter d'apporter de l'aide.",
+      "title": "Demander des informations"
+    },
+    "reporting": {
+      "closedTickets": {
+        "one": "{{count}} requête fermée",
+        "other": "{{count}} requêtes fermées",
+        "zero": "{{count}} requêtes fermées"
+      },
+      "columns": {
+        "avgTime": "Durée de résolution moyenne",
+        "month": "Mois",
+        "name": "Name",
+        "pastDeadline": "Date butoir passée",
+        "total": "Total"
+      },
+      "countriesTitle": {
+        "one": "{{count}} pays",
+        "other": "{{count}} pays",
+        "zero": "{{count}} pays"
+      },
+      "dateRange": {
+        "lastHalf": "Les six derniers mois",
+        "lastQuarter": "Les trois derniers mois",
+        "lastYear": "L’année dernière"
+      },
+      "openTickets": {
+        "one": "{{count}} requête ouverte",
+        "other": "{{count}} requêtes ouvertes",
+        "zero": "{{count}} requêtes ouvertes"
+      },
+      "pastDeadline": "{{count}} date butoir passée",
+      "staffTitle": {
+        "one": "{{count}} membre",
+        "other": "{{count}} membres",
+        "zero": "{{count}} membres"
+      }
     },
     "view": {
       "close": {
-        "cancel": "Non ",
         "button": "{{verb}} la demande",
-        "title": "Etes-vous sûr(e) que vous souhaitez {{verb}} cette demande ?",
-        "confirm": "Oui "
+        "cancel": "Non, laisser en suspens",
+        "confirm": "Oui, {{verb}} la requête",
+        "title": "Êtes-vous sûr(e) que vous souhaitez {{verb}} cette requête ?"
       },
       "pending": {
-        "button": ""
+        "button": "Indiquer comme en attente"
       },
       "reopen": {
         "button": "Réouvrir la demande",
-        "title": "Raisons de réouvrir "
-      }
-    },
-    "reporting": {
-      "openTickets": {
-        "one": "{{count}} Open request",
-        "other": "{{count}} Open requests",
-        "zero": "{{count}} Open requests"
-      },
-      "closedTickets": {
-        "one": "{{count}} Closed request",
-        "other": "{{count}} Closed requests",
-        "zero": "{{count}} Closed requests"
-      },
-      "pastDeadline": "{{count}} past deadline",
-      "columns": {
-        "avgTime": "Avg. resolution time",
-        "month": "Month",
-        "pastDeadline": "Past deadline",
-        "name": "Name",
-        "total": "Total"
-      },
-      "staffTitle": {
-        "one": "{{count}} Staff member",
-        "other": "{{count}} Staff members",
-        "zero": "{{count}} Staff members"
-      },
-      "countriesTitle": {
-        "one": "{{count}} Country",
-        "other": "{{count}} Countries",
-        "zero": "{{count}} Countries"
-      },
-      "dateRange": {
-        "lastQuarter": "Last 3 months",
-        "lastHalf": "Last 6 months",
-        "lastYear": "Last year"
+        "title": "Motif de réouverture"
       }
     }
   },
-  "userCard": {
-    "viewRequests": "View requests",
-    "adminProfile": "Admin profile"
+  "prefixes": {
+    "at": "A {{time}}",
+    "by": "Par {{user}}",
+    "on": "Le {{date}}"
   },
-  "empty": {
-    "noResults": {
-      "body": "",
-      "title": ""
+  "profile": {
+    "search": {
+      "noResults": "Aucun utilisateurs trouvés",
+      "placeholder": "Rechercher des utilisateurs"
+    }
+  },
+  "ticket": {
+    "background": {
+      "desc": "Que savez-vous aujourd'hui ? ",
+      "formLabel": "Votre histoire",
+      "label": "Historique"
     },
-    "noTickets": {
-      "button": "",
-      "title": ""
+    "backgroundCompany": {
+      "desc": "Que savez-vous aujourd'hui ? ",
+      "formLabel": "Votre histoire",
+      "label": "Historique de la société"
+    },
+    "backgroundOther": {
+      "desc": "Toute information déjà en votre possession.",
+      "formLabel": "Qu'est-ce-que vous souhaitez savoir ? ",
+      "label": "Question"
+    },
+    "bornAt": {
+      "label": "Date de naissance"
+    },
+    "businessActivities": {
+      "label": "Activités commerciales"
+    },
+    "companyName": {
+      "label": "Nom de société"
+    },
+    "connections": {
+      "formLabel": "Connexions avec d'autres société et personnes",
+      "label": "Connexions"
+    },
+    "connectionsPerson": {
+      "desc": "Relations familiales connues.",
+      "label": "Famille et Associés"
+    },
+    "country": {
+      "label": "Pays enregistré(s)",
+      "one": "Pays",
+      "other": "Pays",
+      "search": {
+        "noResults": "Aucun pays trouvé",
+        "placeholder": "Rechercher des pays par nom ou code"
+      }
+    },
+    "countryPerson": {
+      "label": "Nationalité"
+    },
+    "deadline": {
+      "desc": "Nous ferons notre possible pour respecter votre échéance. Nous vous informons que nos investigateurs sont assez occupés.<br /> Accordez-leur le plus de temps possible !",
+      "empty": "Aucune date butoir",
+      "label": "Echéance",
+      "prefix": "Exigible le {{relativeTime}}"
+    },
+    "firstName": {
+      "label": "Prénom"
+    },
+    "initialInformation": {
+      "desc": "Toute information déjà en votre possession.",
+      "formLabel": "Où avez-vous cherché ? ",
+      "label": "Information initiale"
+    },
+    "kind": {
+      "company_ownership": {
+        "name": "Déterminer la propriété de la société",
+        "shortName": "Société"
+      },
+      "one": "Type",
+      "other": {
+        "name": "Tout autre question",
+        "shortName": "Autres"
+      },
+      "person_ownership": {
+        "name": "Identifier ce qu'une personne possède",
+        "shortName": "Personne"
+      }
+    },
+    "lastName": {
+      "label": "Nom de famille"
+    },
+    "one": "Requête",
+    "other": "{{count}} requêtes",
+    "requester": {
+      "one": "Demandeur",
+      "other": "Demandeurs",
+      "prefix": "Soumis par {{requester}}"
+    },
+    "responder": {
+      "empty": "Aucune personne assignée",
+      "label": "Staff intervenant",
+      "one": "Répondre",
+      "other": "Personne en charge de répondre",
+      "selfNotice": "Cette requête vous est attribuée.",
+      "selfRemove": "Se retirer ?"
+    },
+    "search": {
+      "clear": "Fermer la recherche",
+      "placeholder": "Chercher des requêtes"
+    },
+    "sensitive": {
+      "label": "Est-ce sensible ? ",
+      "trueLabel": "Demande sensible"
+    },
+    "sources": {
+      "desc": "Quelles sources avez-vous aujourd'hui ? ",
+      "formLabel": "Où avez-vous cherché ? ",
+      "label": "Sources"
+    },
+    "sourcesPerson": {
+      "desc": "Variantes orthographiques ou noms fictifs.",
+      "label": "Alias/Pseudonymes"
+    },
+    "status": {
+      "cancelled": {
+        "name": "Annulé"
+      },
+      "closed": {
+        "name": "Fermé"
+      },
+      "groups": {
+        "closed": "Fermé",
+        "open": "Ouvert"
+      },
+      "in-progress": {
+        "name": "En cours"
+      },
+      "new": {
+        "name": "Nouveau"
+      },
+      "pending": {
+        "name": "En attente"
+      }
+    },
+    "subscriber": {
+      "emailPlaceholder": "Adresse utilisateur",
+      "one": "Abonné",
+      "other": "Abonnés",
+      "selfNotice": "Vous êtes abonné à cette requête.",
+      "selfRemove": "Se désabonner ?"
+    },
+    "updatedAt": {
+      "label": "Dernière mise à jour",
+      "prefix": "Mis à jour le {{relativeTime}}"
+    },
+    "whysensitive": {
+      "label": "Pourquoi est-ce sensible ? "
     }
-  },
-  "nav": {
-    "requests": "Requests",
-    "reports": "Reports",
-    "account": {
-      "profile": "Profile",
-      "logout": "Logout"
-    }
-  },
-  "locales": {
-    "en": "English",
-    "ru": "Русский",
-    "bs": "Bos/Hrv/Srp",
-    "es": "Español",
-    "fr": "Français",
-    "ar": "العربية"
   },
   "time": {
     "default": "MMM D YYYY",
     "defaultCurrentYear": "MMM D",
-    "full": "MMM D YYYY, HH:mm",
-    "fullCurrentYear": "MMM D, HH:mm"
+    "full": "MMM J AAAA, HH:mm",
+    "fullCurrentYear": "MMM J, HH:mm"
+  },
+  "userCard": {
+    "adminProfile": "Profil admin",
+    "viewRequests": "Afficher les requêtes"
+  },
+  "validationErrors": {
+    "after": "Cette date doit être après {{after}}",
+    "before": "Cette date doit être avant {{before}}}",
+    "blank": "Ce champ ne peut pas être vide",
+    "email": "Ce champ requiert une adresse email valide"
   }
 }
