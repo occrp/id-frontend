@@ -1,65 +1,55 @@
 {
   "actions": {
-    "upload": "Subir",
-    "remove": "Remover",
-    "reopen": "Reabrir",
-    "cancel": "Cancelar",
-    "close": "Cerrar",
-    "save": "Guardar",
     "assign": {
       "longForm": "Asignar al equipo",
       "shortForm": "Asignar"
     },
-    "delete": "Delete"
+    "cancel": "Cancelar",
+    "close": "Cerrar",
+    "delete": "Delete",
+    "remove": "Remover",
+    "reopen": "Reabrir",
+    "save": "Guardar",
+    "unmark": "Desmarcar",
+    "upload": "Subir"
   },
-  "filters.sort.createdBy.asc": "Más reciente",
-  "filters": {
-    "sort": {
-      "title": "Ordenar por",
-      "label": "Tipo"
+  "activity": {
+    "assign": {
+      "action": "{{user}} Fue asignado "
     },
-    "kind": {
-      "title": "Filtrar por tipo"
+    "attachment": {
+      "action": "Archivos adjuntos",
+      "removed": "{{user}} removed file"
     },
-    "country": {
-      "title": "Filtrar por país / nacionalidad"
+    "comment": {
+      "action": "Comentó",
+      "submitButton": "Publicar un comentario",
+      "title": "Dejar un comentario"
     },
-    "responder": {
-      "emptyOption": "Sin asignar a nadie",
-      "title": "Filtrar por quién asignó"
+    "one": "Actividad",
+    "reopen": {
+      "action": "Reabierto"
     },
-    "current": {
-      "clear": "Borrar todos los filtros",
-      "title": "Filtrar por"
+    "resume": {
+      "action": "Reanudó"
     },
-    "requester": {
-      "title": "Filtrar por quién presentó la solicitud"
-    },
-    "options": {
-      "all": "Todo"
+    "unassign": {
+      "action": "Sin asignar"
     }
   },
-  "locales.bs": "Bos/Hrv/Srp",
-  "locales.fr": "Français",
-  "prefixes": {
-    "on": "El {{fecha}}",
-    "at": "A (time)",
-    "by": "Por {{user}}"
-  },
   "attachment": {
-    "zero": "Sin documentos adjuntos",
-    "other": "Adjuntos",
     "dropzone": {
-      "title": "Subir archivos",
+      "activeTitle": "Suelte para subir",
       "desc": "Arrastre y suelte archivos en esta área o {{seleccione}}",
       "invalidTitle": "Inválido",
       "select": "Selecciona un archivo",
-      "activeTitle": "Suelte para subir"
+      "title": "Subir archivos"
     },
     "filesSelected": "Archivos seleccionados",
-    "removalPrompt": "Are you sure you want to delete this file?"
+    "other": "Adjuntos",
+    "removalPrompt": "Are you sure you want to delete this file?",
+    "zero": "Sin documentos adjuntos"
   },
-  "validationErrors.before": "Esta fecha debe ser anterior a {{antes}}",
   "empty": {
     "noResults": {
       "body": "Use el menú de arriba para filtrar fácilmente las solicitudes.",
@@ -70,208 +60,119 @@
       "title": "Parece que aún no has enviado ninguna solicitud."
     }
   },
-  "profile": {
-    "search": {
-      "placeholder": "Buscar usuarios",
-      "noResults": "No se encontraron usuarios"
-    }
-  },
-  "filters.sort.deadlineBy.desc": "Fecha límite más lejana ",
-  "filters.sort.createdBy.desc": "Más antiguo",
-  "locales.ar": "العربية",
-  "validationErrors.after": "Esta fecha debe ser posterior a {{after}}",
-  "ticket": {
-    "one": "Solicitud",
-    "connections": {
-      "formLabel": "Conexiones con otras compañías y personas",
-      "label": "Conexiones"
+  "filters": {
+    "country": {
+      "title": "Filtrar por país / nacionalidad"
     },
-    "sources": {
-      "label": "Fuentes",
-      "formLabel": "¿Dónde has buscado?",
-      "desc": "¿Qué fuentes tienes hasta ahora?"
-    },
-    "deadline": {
-      "prefix": "Fecha límite  {{relative time}}",
-      "label": "Fecha límite",
-      "empty": "No hay fecha límite",
-      "desc": "Intentaremos cumplir con tu fecha límite"
-    },
-    "whysensitive": {
-      "label": "¿Por qué es sensible?"
-    },
-    "updatedAt": {
-      "prefix": "Actualizado",
-      "label": "Última actualización"
-    },
-    "initialInformation": {
-      "label": "Información inicial",
-      "formLabel": "¿Dónde has buscado?",
-      "desc": "Alguna información que ya tienes"
-    },
-    "businessActivities": {
-      "label": "Actividades del negocio"
-    },
-    "backgroundCompany": {
-      "label": "Antecedentes de la empresa",
-      "formLabel": "Tu historia",
-      "desc": "¿Qué sabes hasta ahora?"
-    },
-    "backgroundOther": {
-      "label": "Pregunta",
-      "formLabel": "¿Qué quieres saber?",
-      "desc": "Alguna información que ya tienes"
-    },
-    "other": "Solicitudes",
-    "status": {
-      "closed": {
-        "name": "Cerrado"
-      },
-      "in-progress": {
-        "name": "En proceso"
-      },
-      "groups": {
-        "open": "Abierto",
-        "closed": "Cerrado"
-      },
-      "cancelled": {
-        "name": "Cancelado"
-      },
-      "new": {
-        "name": "Nuevo"
-      },
-      "pending": {
-        "name": "Pendiente"
-      }
-    },
-    "companyName": {
-      "label": "Nombre de la compañía"
-    },
-    "bornAt": {
-      "label": "Fecha de nacimiento"
-    },
-    "background": {
-      "label": "Antecedentes",
-      "formLabel": "Tu historia",
-      "desc": "¿Qué sabes hasta ahora?"
-    },
-    "requester": {
-      "prefix": "Enviado por {{solicitante}}",
-      "other": "Solicitantes",
-      "one": "Solicitante"
-    },
-    "connectionsPerson": {
-      "label": "Familia y asociados",
-      "desc": "Relaciones familiares conocidas"
-    },
-    "countryPerson": {
-      "label": "Nacionalidad"
+    "current": {
+      "clear": "Borrar todos los filtros",
+      "title": "Filtrar por"
     },
     "kind": {
-      "person_ownership": {
-        "shortName": "Persona",
-        "name": "identificar lo que una persona posee"
-      },
-      "other": {
-        "shortName": "Otro",
-        "name": "Alguna otra pregunta"
-      },
-      "company_ownership": {
-        "shortName": "Compañía",
-        "name": "Determinar el dueño de la compañía"
-      },
-      "one": "Tipo"
+      "title": "Filtrar por tipo"
     },
-    "firstName": {
-      "label": "Primer nombre"
+    "options": {
+      "all": "Todo"
     },
-    "sourcesPerson": {
-      "label": "Alias/ Pseudónimos",
-      "desc": "Otros nombres, apodos o seudónimos"
-    },
-    "country": {
-      "search": {
-        "placeholder": "Hacer búsqueda de países por nombre o código",
-        "noResults": "No se encontraron ningun país"
-      },
-      "other": "Países",
-      "label": "País de registro",
-      "one": "País"
+    "requester": {
+      "title": "Filtrar por quién presentó la solicitud"
     },
     "responder": {
-      "one": "Persona de primer contacto",
-      "other": "",
-      "empty": "Nadie asignado",
-      "label": "Personal de respuesta"
+      "emptyOption": "Sin asignar a nadie",
+      "title": "Filtrar por quién asignó"
     },
-    "sensitive": {
-      "trueLabel": "Solicitud sensible",
-      "label": "¿Es un tema sensible?"
-    },
-    "lastName": {
-      "label": "Apellido"
-    },
-    "search": {
-      "placeholder": "Search requests",
-      "clear": "Clear search"
+    "sort": {
+      "createdBy": {
+        "asc": "Más reciente",
+        "desc": "Más antiguo"
+      },
+      "deadlineBy": {
+        "asc": "Fecha límite más próxima",
+        "desc": "Fecha límite más lejana "
+      },
+      "label": "Tipo",
+      "title": "Ordenar por"
     }
+  },
+  "locales": {
+    "ar": "العربية",
+    "bs": "Bos/Hrv/Srp",
+    "en": "English",
+    "es": "Español",
+    "fr": "Français",
+    "ru": "Русский"
+  },
+  "nav": {
+    "account": {
+      "logout": "Logout",
+      "profile": "Profile"
+    },
+    "reports": "Reports",
+    "requests": "Requests"
   },
   "pagination": {
-    "prev": "Anterior",
-    "next": "Siguiente",
     "newer": "Más reciente",
-    "older": "Una versión anterior"
+    "next": "Siguiente",
+    "older": "Una versión anterior",
+    "prev": "Anterior"
   },
-  "locales.es": "Español",
-  "locales.ru": "Русский",
-  "filters.sort.deadlineBy.asc": "Fecha límite más próxima",
-  "activity": {
-    "comment": {
-      "action": "Comentó",
-      "submitButton": "Publicar un comentario",
-      "title": "Dejar un comentario"
-    },
-    "resume": {
-      "action": "Reanudó"
-    },
-    "one": "Actividad",
-    "reopen": {
-      "action": "Reabierto"
-    },
-    "attachment": {
-      "action": "Archivos adjuntos",
-      "removed": "{{user}} removed file"
-    },
-    "unassign": {
-      "action": "Sin asignar"
-    },
-    "assign": {
-      "action": "{{user}} Fue asignado "
-    }
-  },
-  "locales.en": "English",
   "pods": {
     "browse": {
       "newButton": "Nueva solicitud",
       "title": "Mis solicitudes "
     },
     "new": {
-      "headline": "Tu solicitud será dirigida a nuestros investigadores profesionales",
       "form": {
         "invalidMessage": "Por favor complete los campos marcados arriba antes de continuar.",
-        "submitButton": "Enviar tu solicitud",
         "otherDetails": "Otros detalles",
         "requestDetails": "Detalles de la solicitud",
+        "submitButton": "Enviar tu solicitud",
         "uploadInfo": "You will be able attach documents after submitting the request."
       },
+      "headline": "Tu solicitud será dirigida a nuestros investigadores profesionales",
       "title": "Pedir información"
+    },
+    "reporting": {
+      "closedTickets": {
+        "one": "{{count}} Closed request",
+        "other": "{{count}} Closed requests",
+        "zero": "{{count}} Closed requests"
+      },
+      "columns": {
+        "avgTime": "Avg. resolution time",
+        "month": "Month",
+        "name": "Name",
+        "pastDeadline": "Past deadline",
+        "total": "Total"
+      },
+      "countriesTitle": {
+        "one": "{{count}} Country",
+        "other": "{{count}} Countries",
+        "zero": "{{count}} Countries"
+      },
+      "dateRange": {
+        "lastHalf": "Last 6 months",
+        "lastQuarter": "Last 3 months",
+        "lastYear": "Last year"
+      },
+      "openTickets": {
+        "one": "{{count}} Open request",
+        "other": "{{count}} Open requests",
+        "zero": "{{count}} Open requests"
+      },
+      "pastDeadline": "{{count}} past deadline",
+      "staffTitle": {
+        "one": "{{count}} Staff member",
+        "other": "{{count}} Staff members",
+        "zero": "{{count}} Staff members"
+      }
     },
     "view": {
       "close": {
-        "cancel": "No",
         "button": "Solicitud {{verb}}",
-        "title": "¿Estás seguro que quiere {{verb}} esta solicitud?",
-        "confirm": "Sí "
+        "cancel": "No",
+        "confirm": "Sí ",
+        "title": "¿Estás seguro que quiere {{verb}} esta solicitud?"
       },
       "pending": {
         "button": "Marcar como pendiente"
@@ -280,61 +181,168 @@
         "button": "Reabrir la solicitud",
         "title": "Razón para reabrir"
       }
-    },
-    "reporting": {
-      "openTickets": {
-        "one": "{{count}} Open request",
-        "other": "{{count}} Open requests",
-        "zero": "{{count}} Open requests"
-      },
-      "closedTickets": {
-        "one": "{{count}} Closed request",
-        "other": "{{count}} Closed requests",
-        "zero": "{{count}} Closed requests"
-      },
-      "pastDeadline": "{{count}} past deadline",
-      "columns": {
-        "avgTime": "Avg. resolution time",
-        "month": "Month",
-        "pastDeadline": "Past deadline",
-        "name": "Name",
-        "total": "Total"
-      },
-      "staffTitle": {
-        "one": "{{count}} Staff member",
-        "other": "{{count}} Staff members",
-        "zero": "{{count}} Staff members"
-      },
-      "countriesTitle": {
-        "one": "{{count}} Country",
-        "other": "{{count}} Countries",
-        "zero": "{{count}} Countries"
-      },
-      "dateRange": {
-        "lastQuarter": "Last 3 months",
-        "lastHalf": "Last 6 months",
-        "lastYear": "Last year"
-      }
     }
   },
-  "userCard": {
-    "viewRequests": "View requests",
-    "adminProfile": "Admin profile"
+  "prefixes": {
+    "at": "A (time)",
+    "by": "Por {{user}}",
+    "on": "El {{fecha}}"
   },
-  "validationErrors.blank": "Este campo no puede estar en blanco",
-  "actions.unmark": "Desmarcar",
+  "profile": {
+    "search": {
+      "noResults": "No se encontraron usuarios",
+      "placeholder": "Buscar usuarios"
+    }
+  },
+  "ticket": {
+    "background": {
+      "desc": "¿Qué sabes hasta ahora?",
+      "formLabel": "Tu historia",
+      "label": "Antecedentes"
+    },
+    "backgroundCompany": {
+      "desc": "¿Qué sabes hasta ahora?",
+      "formLabel": "Tu historia",
+      "label": "Antecedentes de la empresa"
+    },
+    "backgroundOther": {
+      "desc": "Alguna información que ya tienes",
+      "formLabel": "¿Qué quieres saber?",
+      "label": "Pregunta"
+    },
+    "bornAt": {
+      "label": "Fecha de nacimiento"
+    },
+    "businessActivities": {
+      "label": "Actividades del negocio"
+    },
+    "companyName": {
+      "label": "Nombre de la compañía"
+    },
+    "connections": {
+      "formLabel": "Conexiones con otras compañías y personas",
+      "label": "Conexiones"
+    },
+    "connectionsPerson": {
+      "desc": "Relaciones familiares conocidas",
+      "label": "Familia y asociados"
+    },
+    "country": {
+      "label": "País de registro",
+      "one": "País",
+      "other": "Países",
+      "search": {
+        "noResults": "No se encontraron ningun país",
+        "placeholder": "Hacer búsqueda de países por nombre o código"
+      }
+    },
+    "countryPerson": {
+      "label": "Nacionalidad"
+    },
+    "deadline": {
+      "desc": "Intentaremos cumplir con tu fecha límite",
+      "empty": "No hay fecha límite",
+      "label": "Fecha límite",
+      "prefix": "Fecha límite  {{relative time}}"
+    },
+    "firstName": {
+      "label": "Primer nombre"
+    },
+    "initialInformation": {
+      "desc": "Alguna información que ya tienes",
+      "formLabel": "¿Dónde has buscado?",
+      "label": "Información inicial"
+    },
+    "kind": {
+      "company_ownership": {
+        "name": "Determinar el dueño de la compañía",
+        "shortName": "Compañía"
+      },
+      "one": "Tipo",
+      "other": {
+        "name": "Alguna otra pregunta",
+        "shortName": "Otro"
+      },
+      "person_ownership": {
+        "name": "identificar lo que una persona posee",
+        "shortName": "Persona"
+      }
+    },
+    "lastName": {
+      "label": "Apellido"
+    },
+    "one": "Solicitud",
+    "other": "Solicitudes",
+    "requester": {
+      "one": "Solicitante",
+      "other": "Solicitantes",
+      "prefix": "Enviado por {{solicitante}}"
+    },
+    "responder": {
+      "empty": "Nadie asignado",
+      "label": "Personal de respuesta",
+      "one": "Persona de primer contacto",
+      "other": ""
+    },
+    "search": {
+      "clear": "Clear search",
+      "placeholder": "Search requests"
+    },
+    "sensitive": {
+      "label": "¿Es un tema sensible?",
+      "trueLabel": "Solicitud sensible"
+    },
+    "sources": {
+      "desc": "¿Qué fuentes tienes hasta ahora?",
+      "formLabel": "¿Dónde has buscado?",
+      "label": "Fuentes"
+    },
+    "sourcesPerson": {
+      "desc": "Otros nombres, apodos o seudónimos",
+      "label": "Alias/ Pseudónimos"
+    },
+    "status": {
+      "cancelled": {
+        "name": "Cancelado"
+      },
+      "closed": {
+        "name": "Cerrado"
+      },
+      "groups": {
+        "closed": "Cerrado",
+        "open": "Abierto"
+      },
+      "in-progress": {
+        "name": "En proceso"
+      },
+      "new": {
+        "name": "Nuevo"
+      },
+      "pending": {
+        "name": "Pendiente"
+      }
+    },
+    "updatedAt": {
+      "label": "Última actualización",
+      "prefix": "Actualizado"
+    },
+    "whysensitive": {
+      "label": "¿Por qué es sensible?"
+    }
+  },
   "time": {
     "default": "MMM D YYYY",
     "defaultCurrentYear": "MMM D",
     "full": "MMM D YYYY, HH:mm",
     "fullCurrentYear": "MMM D, HH:mm"
   },
-  "nav": {
-    "requests": "Requests",
-    "reports": "Reports",
-    "account": {
-      "profile": "Profile",
-      "logout": "Logout"
-    }
+  "userCard": {
+    "adminProfile": "Admin profile",
+    "viewRequests": "View requests"
+  },
+  "validationErrors": {
+    "after": "Esta fecha debe ser posterior a {{after}}",
+    "before": "Esta fecha debe ser anterior a {{antes}}",
+    "blank": "Este campo no puede estar en blanco"
   }
 }
