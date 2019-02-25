@@ -43,7 +43,7 @@
   "attachment": {
     "dropzone": {
       "activeTitle": "Slipp for å laste opp",
-      "desc": "Dra og slipp filer til dette området eller {{select}}",
+      "desc": "Dra og slipp filer til dette området, eller {{select}}",
       "invalidTitle": "Ugyldig",
       "select": "Velg ei fil",
       "title": "Last opp filer"
@@ -68,7 +68,7 @@
     },
     "noTickets": {
       "button": "Sendt inn en forespørsel",
-      "title": "Det ser ikke ut til at du har innsendt noen forespørsler enda."
+      "title": "Det ser ikke ut til at du har sendt inn noen forespørsler enda."
     }
   },
   "errors": {
@@ -170,8 +170,8 @@
         "zero": "{{count}} land"
       },
       "dateRange": {
-        "lastHalf": "Siste 6 måneder",
-        "lastQuarter": "Siste 3 måneder",
+        "lastHalf": "Siste halvår",
+        "lastQuarter": "Siste tre måneder",
         "lastYear": "Siste år"
       },
       "openTickets": {
@@ -217,7 +217,7 @@
     "backgroundCompany": {
       "desc": "Hva vet du så langt?",
       "formLabel": "Din historie",
-      "label": "Selskapsbakgrunn"
+      "label": "Bedriftsbakgrunn"
     },
     "backgroundOther": {
       "desc": "All informasjon du allerede har.",
@@ -231,10 +231,10 @@
       "label": "Forretningsvirksomheter"
     },
     "companyName": {
-      "label": "Selskapsnavn"
+      "label": "Bedriftsnavn"
     },
     "connections": {
-      "formLabel": "Tilknytninger til andre selskaper og folk",
+      "formLabel": "Tilknytninger til andre bedrifter og folk",
       "label": "Tilknytninger"
     },
     "connectionsPerson": {
@@ -254,7 +254,7 @@
       "label": "Nasjonalitet"
     },
     "deadline": {
-      "desc": "Vi prøver å overholde tidsfristen, men ha i minnet vi er travle.<br /> Gi dem som mye tid du kan!",
+      "desc": "Vi prøver å overholde tidsfristen, men ha i minnet at vi er travle.<br /> Gi dem som mye tid du kan!",
       "empty": "Ingen tidsfrist",
       "label": "Tidsfrist",
       "prefix": "frist {{relativeTime}}"
@@ -270,7 +270,7 @@
     "kind": {
       "company_ownership": {
         "name": "Fastsett bedriftseierskap",
-        "shortName": "Selskap"
+        "shortName": "Bedrift"
       },
       "one": "Type",
       "other": {
@@ -300,6 +300,10 @@
       "selfNotice": "Du er tildelt denne forespørselen.",
       "selfRemove": "Opphev tildeling?"
     },
+    "search": {
+      "clear": "Tøm søk",
+      "placeholder": "Søkeforespørsler"
+    },
     "sensitive": {
       "label": "Er det sensitivt?",
       "trueLabel": "Sensitiv forespørsel"
@@ -311,7 +315,7 @@
     },
     "sourcesPerson": {
       "desc": "Andre stavingsmåter eller dekknavn.",
-      "label": "Alias"
+      "label": "Pseudonymer"
     },
     "status": {
       "cancelled": {
@@ -347,10 +351,6 @@
     },
     "whysensitive": {
       "label": "Hvorfor er det sensitivt?"
-    },
-    "search": {
-      "placeholder": "Search requests",
-      "clear": "Clear search"
     }
   },
   "time": {
