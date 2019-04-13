@@ -345,7 +345,7 @@
       }
     },
     "subscriber": {
-      "emailPlaceholder": "Adresse utilisateur",
+      "emailPlaceholder": "Courriel de l'utilisateur",
       "one": "Abonné",
       "other": "Abonnés",
       "selfNotice": "Vous êtes abonné à cette requête.",
@@ -373,6 +373,6 @@
     "after": "Cette date doit être après {{after}}",
     "before": "Cette date doit être avant {{before}}}",
     "blank": "Ce champ ne peut pas être vide",
-    "email": "Ce champ requiert une adresse email valide"
+    "email": "Ce champ requiert une adresse e-mail valide"
   }
 }
