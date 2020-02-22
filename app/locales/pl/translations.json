@@ -1,1 +1,12 @@
-{}
+{
+  "actions": {
+    "assign": {
+      "shortForm": "Przydziel"
+    },
+    "cancel": "Anuluj",
+    "close": "Zamknij",
+    "delete": "Usuń",
+    "save": "Zapisz",
+    "unmark": "Odznacz"
+  }
+}
