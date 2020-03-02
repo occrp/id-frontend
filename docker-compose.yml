@@ -1,0 +1,21 @@
+version: '2'
+
+services:
+  ember:
+    image: danlynn/ember-cli:latest
+    volumes:
+      - .:/myapp
+      - node_modules:/myapp/node_modules
+    tmpfs:
+      - /myapp/tmp
+    environment:
+      - EMBER_SERVE_ARGS=${EMBER_SERVE_ARGS}
+    ports:
+      - "4200:4200"
+      - "7020:7020"
+      - "7357:7357"
+      - "4400:4400"
+    command: 'ember serve $EMBER_SERVE_ARGS'
+
+volumes:
+  node_modules:

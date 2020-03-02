@@ -1,0 +1,3 @@
+#!/usr/bin/env bash
+echo 'Starting the Dockerized `ember-cli`...'
+EMBER_SERVE_ARGS=$@ docker-compose up
