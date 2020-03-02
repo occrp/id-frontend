@@ -1,0 +1,3 @@
+#!/usr/bin/env bash
+echo 'Starting the Dockerized `ember-cli`...'
+docker-compose run --rm ember ember $@
