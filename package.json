@@ -76,6 +76,7 @@
     "i18n-iso-countries": "^3.7.3",
     "loader.js": "^4.2.3",
     "moment-duration-format": "^2.2.2",
+    "node-sass": "^4.13.1",
     "octicons": "^7.1.0",
     "rollup-plugin-json": "^3.0.0"
   },
