@@ -1,8 +1,7 @@
 import { Factory, faker, trait, association } from 'ember-cli-mirage';
-import { kindList, statusList } from 'id-frontend/models/ticket';
+import { kindList, statusList, priorityList } from 'id-frontend/models/ticket';
 
 const random = faker.random.arrayElement;
-const t = kindList.length;
 
 const paragraphs = `Labore deserunt beatae et et. Expedita autem maiores. Nobis molestiae explicabo aliquam architecto at mollitia.
 
@@ -11,15 +10,19 @@ Voluptatum doloremque exercitationem beatae est. Est laboriosam libero autem dol
 Quia ducimus alias laborum consequuntur rerum. Reiciendis nobis quod temporibus velit in culpa tenetur. Consectetur eos harum. Totam soluta tempore vel ipsum consequuntur voluptas quia ipsa. Velit architecto tenetur dolor aut hic sed error illo. Labore quis pariatur omnis magnam explicabo.`;
 
 export default Factory.extend({
-  kind(i)                 { return kindList[i % t]; },
+  kind()                  { return random(kindList); },
   status()                { return statusList[0]; },
+  priority()              { return random(priorityList); },
   createdAt()             { return faker.date.past(); },
   updatedAt()             { return faker.date.past(); },
   deadlineAt()            { return faker.date.future(); },
 
-  sensitive(i)            { return i % 2 === 0 ? true : false; },
+  sensitive()             { return random([true, false]) },
   whysensitive()          { return faker.lorem.sentences(); },
   background()            { return paragraphs; },
+  country()               { return faker.address.countryCode(); },
+  memberCenter()          { return faker.company.companyName(); },
+  identifier()            { return faker.random.alphaNumeric(); },
 
   // Attributes based on kind. Override with traits
   firstName:              null,
@@ -29,7 +32,6 @@ export default Factory.extend({
   businessActivities:     null,
 
   companyName:            null,
-  country:                null,
   sources:                null,
   connections:            null,
 
@@ -37,7 +39,6 @@ export default Factory.extend({
     kind:                 kindList[0],
     firstName()           { return faker.name.firstName(); },
     lastName()            { return faker.name.lastName(); },
-    country()             { return faker.address.countryCode(); },
     initialInformation()  { return faker.lorem.sentences(); },
     bornAt()              { return faker.date.past(); },
     sources()             { return faker.lorem.sentences(); },
@@ -53,8 +54,19 @@ export default Factory.extend({
     connections()         { return faker.lorem.sentences(); }
   }),
 
-  isOther: trait({
+  isVehicle: trait({
     kind:                 kindList[2],
+    country()             { return faker.address.countryCode(); }
+  }),
+
+  isData: trait({
+    kind:                 kindList[3],
+    initialInformation()  { return faker.lorem.sentences(); },
+    sources()             { return faker.lorem.sentences(); }
+  }),
+
+  isOther: trait({
+    kind:                 kindList[4],
   }),
 
   requester: association(),

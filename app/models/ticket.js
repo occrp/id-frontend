@@ -12,6 +12,8 @@ const { attr, belongsTo, hasMany } = DS;
 export const kindList = [
   'person_ownership',
   'company_ownership',
+  'vehicle_tracking',
+  'data_request',
   'other'
 ];
 
@@ -23,11 +25,25 @@ export const statusList = [
   'cancelled'
 ];
 
+export const priorityList = [
+  'low',
+  'default',
+  'high'
+];
+
+export const dataRequestTypes = [
+  'analysis',
+  'aleph',
+  'scrape',
+  'manipulation',
+  'dunno'
+];
 
 export default DS.Model.extend({
   // Common
   kind: attr('string', { defaultValue: kindList[0] }),
   status: attr('string', { defaultValue: statusList[0] }),
+  priority: attr('string', { defaultValue: priorityList[1] }),
   createdAt: attr('date'),
   updatedAt: attr('date'),
   deadlineAt: attr('date'),
@@ -44,6 +60,10 @@ export default DS.Model.extend({
   background: attr('string'),
   sensitive: attr('boolean', { defaultValue: false }),
   whysensitive: attr('string'),
+  memberCenter: attr('string'),
+  identifier: attr('string'),
+  countries: attr(),
+  tags: attr(),
 
   // Person
   firstName: attr('string'),
@@ -93,6 +113,20 @@ export const Validations = buildValidations({
     })
   ],
 
+  memberCenter: [
+    validator('presence', {
+      presence: true,
+    })
+  ],
+
+  country: validator('presence', {
+    presence: true,
+    disabled: computed('model.kind', function() {
+      return this.get('model.kind') !== kindList[1] &&
+        this.get('model.kind') !== kindList[2]
+    })
+  }),
+
   // Person
   firstName: validator('presence', {
     presence: true,
@@ -105,16 +139,15 @@ export const Validations = buildValidations({
   initialInformation: [
     validator('presence', {
       presence: true,
-      disabled: notEqual('model.kind', raw(kindList[0]))
+      disabled: computed('model.kind', function() {
+        return this.get('model.kind') != kindList[0] &&
+          this.get('model.kind') != kindList[3]
+      })
     })
   ],
 
   // Company
   companyName: validator('presence', {
-    presence: true,
-    disabled: notEqual('model.kind', raw(kindList[1]))
-  }),
-  country: validator('presence', {
     presence: true,
     disabled: notEqual('model.kind', raw(kindList[1]))
   }),
@@ -124,6 +157,12 @@ export const Validations = buildValidations({
       disabled: notEqual('model.kind', raw(kindList[1]))
     })
   ],
+
+  // Vehicle
+  identifier: validator('presence', {
+    presence: true,
+    disabled: notEqual('model.kind', raw(kindList[2]))
+  }),
 
   deadlineAt: validator('date', {
     value(model, attribute) {
