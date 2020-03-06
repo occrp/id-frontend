@@ -1,33 +1,17 @@
 <form {{action "save" on="submit"}}>
 
   <div class="tabs mb-4">
-    <label class="tabs-item {{if (eq buffer.kind kindList.[0]) "is-active"}}" data-test-kind-tab="person">
-      {{radio-button
-        name="ticket-kind"
-        value=kindList.[0]
-        groupValue=buffer.kind
-        changed=(action 'changeKind')}}
-      {{icon-by-kind kindList.[0] class="icon--lg"}}
-      <span>{{t (concat 'ticket.kind.' kindList.[0] '.name')}}</span>
-    </label>
-    <label class="tabs-item {{if (eq buffer.kind kindList.[1]) "is-active"}}" data-test-kind-tab="company">
-      {{radio-button
-        name="ticket-kind"
-        value=kindList.[1]
-        groupValue=buffer.kind
-        changed=(action 'changeKind')}}
-      {{icon-by-kind kindList.[1] class="icon--lg"}}
-      <span>{{t (concat 'ticket.kind.' kindList.[1] '.name')}}</span>
-    </label>
-    <label class="tabs-item {{if (eq buffer.kind kindList.[2]) "is-active"}}" data-test-kind-tab="other">
-      {{radio-button
-        name="ticket-kind"
-        value=kindList.[2]
-        groupValue=buffer.kind
-        changed=(action 'changeKind')}}
-      {{icon-by-kind kindList.[2] class="icon--lg"}}
-      <span>{{t (concat 'ticket.kind.' kindList.[2] '.name')}}</span>
-    </label>
+    {{#each kindList key=@index as |selectedKind| }}
+      <label class="tabs-item {{if (eq buffer.kind selectedKind) "is-active"}}" data-test-kind-tab="{{selectedKind}}">
+        {{radio-button
+          name="ticket-kind"
+          value=selectedKind
+          groupValue=buffer.kind
+          changed=(action 'changeKind')}}
+        {{icon-by-kind selectedKind class="icon--lg"}}
+        <span>{{t (concat 'ticket.kind.' selectedKind '.name')}}</span>
+      </label>
+    {{/each}}
   </div>
 
   <div class="fieldGroup fieldGroup--bordered">
@@ -68,6 +52,11 @@
         {{/if}}
 
       {{/validated-field}}
+
+      <div class="formGroup">
+        <label for="ticket-identifier">{{t 'ticket.identifierPerson.label'}}</label>
+        {{input value=buffer.identifier class="formControl" id="ticket-identifier"}}
+      </div>
 
       <div class="formGroup">
         <label for="ticket-nationality">{{t 'ticket.countryPerson.label'}}</label>
@@ -189,6 +178,11 @@
 
       {{/validated-field}}
 
+      <div class="formGroup">
+        <label for="ticket-identifier">{{t 'ticket.identifierCompany.label'}}</label>
+        {{input value=buffer.identifier class="formControl" id="ticket-identifier"}}
+      </div>
+
       {{#validated-field
         class="formGroup"
         errors=buffer.displayErrors.country
@@ -261,6 +255,119 @@
 
       {{/validated-field}}
 
+    {{else if (eq buffer.kind kindList.[2])}}
+
+      <h2 class="fieldGroup-title">{{t (concat 'ticket.kind.' kindList.[2] '.name')}}</h2>
+
+      {{#validated-field
+        class="formGroup"
+        errors=buffer.displayErrors.identifier
+        didValidate=didValidate as |field|}}
+
+        <label for="ticket-identifier-vehicle">{{t 'ticket.identifierVehicle.label'}} <span class="t-danger">*</span></label>
+        {{input rows=5 value=buffer.identifier class="formControl" id="ticket-identifier-vehicle" focus-out=field.triggerValidations}}
+
+        {{#if field.showErrors}}
+          {{#each field.errors as |error|}}
+            <div class="formFeedback">{{error}}</div>
+          {{/each}}
+        {{/if}}
+      {{/validated-field}}
+
+      {{#validated-field
+        class="formGroup"
+        errors=buffer.displayErrors.country
+        didValidate=didValidate as |field|}}
+
+        <label for="ticket-country-vehicle">{{t 'ticket.countryVehicle.label'}} <span class="t-danger">*</span></label>
+        <select onchange={{action (mut buffer.country) value="target.value"}} onblur={{action field.triggerValidations}} class="formControl" id="ticket-country-vehicle">
+          <option value="">{{t 'dropdownBlank'}}</option>
+          {{#each-in countries as |code name|}}
+            <option value={{code}} selected={{eq buffer.country code}}>{{name}}</option>
+          {{/each-in}}
+        </select>
+
+        {{#if field.showErrors}}
+          {{#each field.errors as |error|}}
+            <div class="formFeedback">{{error}}</div>
+          {{/each}}
+        {{/if}}
+
+      {{/validated-field}}
+
+      {{#validated-field
+        class="formGroup"
+        errors=buffer.displayErrors.background
+        didValidate=didValidate as |field|}}
+
+        <label for="ticket-background-vehicle">{{t 'ticket.backgroundVehicle.label'}} <span class="t-danger">*</span></label>
+        <small class="formText t-muted">{{t 'ticket.backgroundVehicle.desc'}}</small>
+        {{textarea rows=5 value=buffer.background class="formControl" id="ticket-background-vehicle" focus-out=field.triggerValidations}}
+
+        {{#if field.showErrors}}
+          {{#each field.errors as |error|}}
+            <div class="formFeedback">{{error}}</div>
+          {{/each}}
+        {{/if}}
+      {{/validated-field}}
+
+    {{else if (eq buffer.kind kindList.[3])}}
+
+      <h2 class="fieldGroup-title">{{t (concat 'ticket.kind.' kindList.[3] '.name')}}</h2>
+
+      {{#validated-field
+        class="formGroup"
+        errors=buffer.displayErrors.initialInformation
+        didValidate=didValidate as |field|}}
+
+        <label for="ticket-category">{{t 'ticket.dataCategory.label'}} <span class="t-danger">*</span></label>
+        <select onchange={{action (mut buffer.initialInformation) value="target.value"}} onblur={{action field.triggerValidations}} class="formControl" id="ticket-category">
+          <option value="">{{t 'dropdownBlank'}}</option>
+          {{#each-in dataRequestTypes as |_i reqtype|}}
+            <option value={{reqtype}} selected={{eq buffer.initialInformation reqtype}}>{{t (concat 'ticket.dataCategory.' reqtype)}}</option>
+          {{/each-in}}
+        </select>
+
+        {{#if field.showErrors}}
+          {{#each field.errors as |error|}}
+            <div class="formFeedback">{{error}}</div>
+          {{/each}}
+        {{/if}}
+
+      {{/validated-field}}
+
+      {{#validated-field
+        class="formGroup"
+        errors=buffer.displayErrors.background
+        didValidate=didValidate as |field|}}
+
+        <label for="ticket-background-data">{{t 'ticket.backgroundData.label'}} <span class="t-danger">*</span></label>
+        <small class="formText t-muted">{{t 'ticket.backgroundData.desc'}}</small>
+        {{textarea rows=5 value=buffer.background class="formControl" id="ticket-background-data" focus-out=field.triggerValidations}}
+
+        {{#if field.showErrors}}
+          {{#each field.errors as |error|}}
+            <div class="formFeedback">{{error}}</div>
+          {{/each}}
+        {{/if}}
+      {{/validated-field}}
+
+      {{#validated-field
+       class="formGroup"
+       errors=buffer.displayErrors.sources
+       didValidate=didValidate as |field|}}
+
+       <label for="ticket-sources-data">{{t 'ticket.sourcesData.label'}}</label>
+        {{textarea rows=3 value=buffer.sources class="formControl" id="ticket-sources-data" focus-out=field.triggerValidations}}
+
+        {{#if field.showErrors}}
+          {{#each field.errors as |error|}}
+            <div class="formFeedback">{{error}}</div>
+          {{/each}}
+        {{/if}}
+
+      {{/validated-field}}
+
     {{else}}
 
       <h2 class="fieldGroup-title">{{t (concat 'ticket.kind.' kindList.[2] '.name')}}</h2>
@@ -286,6 +393,29 @@
     {{/if}}
     </div>
 
+  </div>
+
+  <div class="fieldGroup fieldGroup--bordered">
+    <div class="l-constrain">
+      <h2 class="fieldGroup-title">{{t 'pods.new.form.memberCenter'}}</h2>
+
+      {{#validated-field
+        class="formGroup"
+        errors=buffer.displayErrors.memberCenter
+        didValidate=didValidate as |field|}}
+
+        <label for="ticket-member-center">{{t 'pods.new.form.memberCenterDetails'}} <span class="t-danger">*</span></label>
+        {{input value=buffer.memberCenter class="formControl" id="ticket-member-center" focus-out=field.triggerValidations}}
+
+        {{#if field.showErrors}}
+          {{#each field.errors as |error|}}
+            <div class="formFeedback">{{error}}</div>
+          {{/each}}
+        {{/if}}
+
+      {{/validated-field}}
+
+    </div>
   </div>
 
   <div class="fieldGroup fieldGroup--bordered">

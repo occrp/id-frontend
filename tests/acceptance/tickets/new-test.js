@@ -14,8 +14,6 @@ module('Acceptance | tickets/new', function(hooks) {
     assert.expect(4);
     initSession();
 
-    server.createList('ticket', 3);
-
     let done = assert.async();
     server.post('/tickets', (schema, request) => {
       let attrs = JSON.parse(request.requestBody);
@@ -41,7 +39,10 @@ module('Acceptance | tickets/new', function(hooks) {
             "kind": "person_ownership",
             "whysensitive": "It just is.",
             "pending-reason": null,
-            "reopen-reason": null
+            "reopen-reason": null,
+            "member-center": "OCCRP",
+            "priority": "default",
+            "identifier": "ID#0"
           },
           "type": "tickets"
         }
@@ -63,11 +64,14 @@ module('Acceptance | tickets/new', function(hooks) {
     await fillIn('#ticket-nationality', 'AD');
     await fillIn('#ticket-background', 'Lorem ipsum some background.');
     await fillIn('#ticket-initialInformation', 'Initial lorem ipsum.');
+    await fillIn('#ticket-identifier', 'ID#0');
 
     await fillIn('#ticket-born-at', '02/12/2004');
     await fillIn('#ticket-sources-person', 'Aliases');
     await fillIn('#ticket-connections-person', 'Family');
     await fillIn('#ticket-businessActivities', 'Bizniss');
+
+    await fillIn('#ticket-member-center', 'OCCRP');
 
     await fillIn('#ticket-deadline', '05/01/2100');
     await click('#ticket-sensitive');
@@ -75,7 +79,7 @@ module('Acceptance | tickets/new', function(hooks) {
 
     await click('[data-test-save]');
 
-    assert.equal(currentURL(), '/view/4');
+    assert.equal(currentURL(), '/view/1');
 
     assert.equal(find('[data-test-name]').textContent, 'John Doe');
   });
@@ -84,8 +88,6 @@ module('Acceptance | tickets/new', function(hooks) {
   test('creating a new ticket (company)', async function(assert) {
     assert.expect(3);
     initSession();
-
-    server.createList('ticket', 3);
 
     let done = assert.async();
     server.post('/tickets', (schema, request) => {
@@ -112,7 +114,10 @@ module('Acceptance | tickets/new', function(hooks) {
             "kind": "company_ownership",
             "whysensitive": null,
             "pending-reason": null,
-            "reopen-reason": null
+            "reopen-reason": null,
+            "member-center": 'OCCRP',
+            "priority": "default",
+            "identifier": "ID#1"
           },
           "type": "tickets"
         }
@@ -127,28 +132,151 @@ module('Acceptance | tickets/new', function(hooks) {
 
     await visit('/new');
 
-    await click('[data-test-kind-tab="company"]');
+    await click('[data-test-kind-tab="company_ownership"]');
 
     await fillIn('#ticket-companyName', 'Acme Inc.');
     await fillIn('#ticket-country', 'RO');
     await fillIn('#ticket-background-company', 'Lorem ipsum some company background.');
     await fillIn('#ticket-sources', 'Sources lorem ipsum.');
+    await fillIn('#ticket-identifier', 'ID#1');
 
     await fillIn('#ticket-connections', 'Connections');
+    await fillIn('#ticket-member-center', 'OCCRP');
 
     await click('[data-test-save]');
 
-    assert.equal(currentURL(), '/view/4');
+    assert.equal(currentURL(), '/view/1');
 
     assert.equal(find('[data-test-name]').textContent, 'Acme Inc.');
   });
 
+  test('creating a new ticket (vehicle)', async function(assert) {
+    assert.expect(3);
+    initSession();
+
+    let done = assert.async();
+
+    server.post('/tickets', (schema, request) => {
+      let attrs = JSON.parse(request.requestBody);
+
+      assert.deepEqual(attrs, {
+        "data": {
+          "attributes": {
+            "background": "Vehicle details.",
+            "business-activities": null,
+            "company-name": null,
+            "connections": null,
+            "country": "RO",
+            "created-at": null,
+            "deadline-at": null,
+            "born-at": null,
+            "initial-information": null,
+            "first-name": null,
+            "sensitive": false,
+            "sources": null,
+            "status": "new",
+            "updated-at": null,
+            "last-name": null,
+            "kind": "vehicle_tracking",
+            "whysensitive": null,
+            "pending-reason": null,
+            "reopen-reason": null,
+            "member-center": 'OCCRP',
+            "priority": "default",
+            "identifier": "ID#1"
+          },
+          "type": "tickets"
+        }
+      });
+
+      done();
+      return schema.tickets.create(Object.assign({}, attrs, {
+        createdAt: (new Date()).toISOString(),
+        updatedAt: (new Date()).toISOString()
+      }));
+    });
+
+    await visit('/new');
+
+    await click('[data-test-kind-tab="vehicle_tracking"]');
+
+    await fillIn('#ticket-identifier-vehicle', 'ID#1');
+    await fillIn('#ticket-country-vehicle', 'RO');
+    await fillIn('#ticket-background-vehicle', 'Vehicle details.');
+    await fillIn('#ticket-member-center', 'OCCRP');
+
+    await click('[data-test-save]');
+
+    assert.equal(currentURL(), '/view/1');
+
+    assert.equal(find('[data-test-background]').textContent, 'Vehicle details.');
+  });
+
+  test('creating a new ticket (data)', async function(assert) {
+    assert.expect(3);
+    initSession();
+
+    let done = assert.async();
+
+    server.post('/tickets', (schema, request) => {
+      let attrs = JSON.parse(request.requestBody);
+
+      assert.deepEqual(attrs, {
+        "data": {
+          "attributes": {
+            "background": "Data details.",
+            "business-activities": null,
+            "company-name": null,
+            "connections": null,
+            "country": null,
+            "created-at": null,
+            "deadline-at": null,
+            "born-at": null,
+            "initial-information": "aleph",
+            "first-name": null,
+            "sensitive": false,
+            "sources": "Data sources.",
+            "status": "new",
+            "updated-at": null,
+            "last-name": null,
+            "kind": "data_request",
+            "whysensitive": null,
+            "pending-reason": null,
+            "reopen-reason": null,
+            "member-center": 'OCCRP',
+            "priority": "default",
+            "identifier": null
+          },
+          "type": "tickets"
+        }
+      });
+
+      done();
+      return schema.tickets.create(Object.assign({}, attrs, {
+        createdAt: (new Date()).toISOString(),
+        updatedAt: (new Date()).toISOString()
+      }));
+    });
+
+    await visit('/new');
+
+    await click('[data-test-kind-tab="data_request"]');
+
+    await fillIn('#ticket-category', 'aleph');
+    await fillIn('#ticket-background-data', 'Data details.');
+    await fillIn('#ticket-sources-data', 'Data sources.');
+    await fillIn('#ticket-member-center', 'OCCRP');
+
+    await click('[data-test-save]');
+
+    assert.equal(currentURL(), '/view/1');
+
+    assert.equal(find('[data-test-background]').textContent, 'Data details.');
+  });
 
   test('creating a new ticket (other)', async function(assert) {
     assert.expect(3);
     initSession();
-
-    server.createList('ticket', 3);
 
     let done = assert.async();
     server.post('/tickets', (schema, request) => {
@@ -175,7 +303,10 @@ module('Acceptance | tickets/new', function(hooks) {
             "kind": "other",
             "whysensitive": null,
             "pending-reason": null,
-            "reopen-reason": null
+            "reopen-reason": null,
+            "member-center": "OCCRP",
+            "priority": "default",
+            "identifier": null
           },
           "type": "tickets"
         }
@@ -193,10 +324,11 @@ module('Acceptance | tickets/new', function(hooks) {
     await click('[data-test-kind-tab="other"]');
 
     await fillIn('#ticket-background-other', 'My question.');
+    await fillIn('#ticket-member-center', 'OCCRP');
 
     await click('[data-test-save]');
 
-    assert.equal(currentURL(), '/view/4');
+    assert.equal(currentURL(), '/view/1');
 
     assert.equal(find('[data-test-background]').textContent, 'My question.');
   });
@@ -231,7 +363,7 @@ module('Acceptance | tickets/new', function(hooks) {
 
     assert.equal(currentURL(), '/new');
 
-    await click('[data-test-kind-tab="company"]');
+    await click('[data-test-kind-tab="company_ownership"]');
     await click('[data-test-save]');
 
     assert.equal(currentURL(), '/new');
@@ -258,7 +390,7 @@ module('Acceptance | tickets/new', function(hooks) {
     assert.ok(find('#ticket-first-name').closest('.formGroup').classList.contains('is-invalid'));
     assert.ok(find('[data-test-validation-errors]'));
 
-    await click('[data-test-kind-tab="company"]');
+    await click('[data-test-kind-tab="company_ownership"]');
 
     assert.equal(find('[data-test-validation-errors]'), null);
 
@@ -267,7 +399,7 @@ module('Acceptance | tickets/new', function(hooks) {
     assert.ok(find('#ticket-companyName').closest('.formGroup').classList.contains('is-invalid'));
     assert.ok(find('[data-test-validation-errors]'));
 
-    await click('[data-test-kind-tab="person"]');
+    await click('[data-test-kind-tab="person_ownership"]');
 
     assert.equal(find('[data-test-validation-errors]'), null);
   });
@@ -285,6 +417,7 @@ module('Acceptance | tickets/new', function(hooks) {
 
     await click('[data-test-kind-tab="other"]');
     await fillIn('#ticket-background-other', 'My question.');
+    await fillIn('#ticket-member-center', 'OCCRP');
 
     await assert.asyncThrows(() => {
       return click('[data-test-save]');
