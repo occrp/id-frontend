@@ -150,6 +150,7 @@ export default function() {
     return schema.profiles.find(id);
   });
 
+  this.patch('/profiles/:id');
 
   this.get('/activities', (schema, request) => {
     // not a standard endpoint. used in place of a ticket.activities relationship
