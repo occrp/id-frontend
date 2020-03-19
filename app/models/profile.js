@@ -9,6 +9,7 @@ export default DS.Model.extend(ProfileDecorator, {
   firstName: attr('string'),
   lastName: attr('string'),
   email: attr('string'),
+  bio: attr('string'),
 
   isStaff: attr('boolean'),
   isSuperuser: attr('boolean'),

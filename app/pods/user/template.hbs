@@ -1,0 +1,16 @@
+<div class="wrapper">
+  <div class="measure">
+    <h2 class="occrp-red mt4">
+      {{t 'pods.user.title' displayName=model.displayName}}
+    </h2>
+
+    <div class="lh-copy mt2">
+      <label for="user-bio" class="db silver">{{t 'pods.user.subtitle'}}</label>
+      {{textarea value=model.bio id="user-bio" class="db w-100 ba pa2"}}
+    </div>
+
+    <div class="lh-copy mt2">
+      <button {{action 'save'}} type="submit" disabled={{model.isSaving}} class="b white ttu ph3 pv2 bn bg-occrp-red br2 dim" data-test-user-save>{{t 'actions.save'}}</button>
+    </div>
+  </div>
+</div>
