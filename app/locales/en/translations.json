@@ -123,6 +123,7 @@
   "nav": {
     "account": {
       "logout": "Logout",
+      "ssoProfile": "SSO Profile",
       "profile": "Profile"
     },
     "reports": "Reports",
@@ -144,6 +145,8 @@
         "invalidMessage": "Please review the fields marked above before continuing.",
         "otherDetails": "Other details",
         "requestDetails": "Request details",
+        "memberCenter": "Member center",
+        "memberCenterDetails": "Select or provide our network center or partner you work with.",
         "submitButton": "Submit your request",
         "uploadInfo": "You will be able attach documents after submitting the request."
       },
@@ -184,6 +187,10 @@
         "other": "{{count}} Staff members",
         "zero": "{{count}} Staff members"
       }
+    },
+    "user": {
+      "title": "Who is {{displayName}}?",
+      "subtitle": "Please tell our team about yourself before filling a request."
     },
     "view": {
       "close": {
@@ -229,12 +236,43 @@
     "businessActivities": {
       "label": "Business Activities"
     },
+    "identifierPerson": {
+      "label": "ID/Passport number"
+    },
     "companyName": {
       "label": "Company name"
+    },
+    "identifierCompany": {
+      "label": "Registration/Tax identifier"
     },
     "connections": {
       "formLabel": "Connections to other companies and people",
       "label": "Connections"
+    },
+    "identifierVehicle": {
+      "label": "Identification number"
+    },
+    "countryVehicle": {
+      "label": "Jurisdiction"
+    },
+    "backgroundVehicle": {
+      "label": "Name or itinerary",
+      "desc": "What do you know so far?"
+    },
+    "dataCategory": {
+      "label": "Category",
+      "analysis": "Analysis",
+      "aleph": "Add data to Aleph",
+      "scrape": "Acquire data (scraping)",
+      "manipulation": "Data wrangling",
+      "dunno": "Don't know"
+    },
+    "backgroundData": {
+      "label": "What do you want to know from the data?",
+      "desc": "Please mention if you need a drop box?"
+    },
+    "sourcesData": {
+      "label": "Please share links to data sources if relevant"
     },
     "connectionsPerson": {
       "desc": "Known family relationships.",
@@ -268,16 +306,24 @@
     },
     "kind": {
       "company_ownership": {
-        "name": "Determine company ownership",
+        "name": "About a company",
         "shortName": "Company"
+      },
+      "vehicle_tracking": {
+        "name": "Vehicle Tracking",
+        "shortName": "Vehicle"
+      },
+      "data_request": {
+        "name": "Data operations",
+        "shortName": "Data"
       },
       "one": "Type",
       "other": {
-        "name": "Any other question",
+        "name": "Something else",
         "shortName": "Other"
       },
       "person_ownership": {
-        "name": "Identify what a person owns",
+        "name": "About a person",
         "shortName": "Person"
       }
     },
@@ -362,6 +408,7 @@
     "adminProfile": "Admin profile",
     "viewRequests": "View requests"
   },
+  "dropdownBlank": "- Choose -",
   "validationErrors": {
     "after": "This date must be after {{after}}",
     "before": "This date must be before {{before}}",
