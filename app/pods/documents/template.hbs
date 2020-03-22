@@ -1,0 +1,14 @@
+<div class="wrapper">
+  <div class="titleBar">
+    <h1 class="titleBar-title t-light t2" data-test-name>
+      {{~icon-by-kind model.kind class="icon--xl"~}}
+      {{~title~}}
+    </h1>
+  </div>
+
+  <div class="mt2 flex bb b--moon-gray">
+    {{#link-to "view" model class="db pv2 ph3 link"}}Details{{/link-to}}
+    <div class="b db pv2 ph3 link br2 br--top ba bb--hide b--moon-gray">Documents</div>
+    {{#link-to "resources" model class="db pv2 ph3 link"}}Resources{{/link-to}}
+  </div>
+</div>
