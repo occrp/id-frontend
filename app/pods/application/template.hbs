@@ -8,12 +8,12 @@
       <abbr>ID</abbr>
     </a>
     <div class="flex ttu occrp-gray">
-      {{#link-to 'browse' class="mr4 occrp-gray"}}
+      {{#link-to 'browse' class="occrp-gray"}}
         {{session.currentUser.ticketsCount}} {{t 'nav.requests'~}}
       {{/link-to}}
 
       {{i18n-switch
-        class="mr4 ttu"
+        class="mh4 ttu"
         locales=activeLocales
         currentLocale=lang
         switchLocale=(action 'switchLocale')
