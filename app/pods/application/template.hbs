@@ -1,47 +1,44 @@
 {{loading-slider isLoading=loading duration=250}}
 
-<nav class="mainNav t-sm t-muted">
-  <div class="wrapper">
+<nav class="mainNav bg-white pv2 mb4 t-sm t-muted bb b--near-white">
+  <div class="wrapper flex pt2 pb4 items-center justify-between">
     <a href="{{parentMeta.rootURL}}" class="mainNav-logo t4 t-light">
       <img width="32" height="32" src="{{parentMeta.rootLogo}}" />
       <span>{{parentMeta.rootName}}</span>
       <abbr>ID</abbr>
     </a>
-    <div>
-      {{#ui-dropdown as |dd|}}
-      {{#dd.trigger}}
-        {{~user-avatar user=session.currentUser}}{{session.currentUser.displayName~}}
-      {{/dd.trigger}}
-      {{#dd.body class="dd--xs"}}
-        <div class="list">
-          <a href={{parentMeta.profileURL}} target="_blank" class="list-item">{{t 'nav.account.ssoProfile'}}</a>
-          {{#link-to 'user' class="list-item"}}{{t 'nav.account.profile'}}{{/link-to}}
-          <a href="{{parentMeta.logoutURL}}" class="list-item">{{t 'nav.account.logout'}}</a>
-        </div>
-      {{/dd.body}}
-    {{/ui-dropdown}}
-    </div>
-  </div>
-</nav>
-
-<nav class="appNav">
-  <div class="wrapper">
-    <div class="appNav-links">
-      {{#link-to 'browse' class="appNav-item"}}
-        {{~t 'nav.requests'~}}
-        <span class="badge">{{session.currentUser.ticketsCount}}</span>
+    <div class="flex ttu occrp-gray">
+      {{#link-to 'browse' class="mr4 occrp-gray"}}
+        {{session.currentUser.ticketsCount}} {{t 'nav.requests'~}}
       {{/link-to}}
-      {{#if (can "manage tickets")}}
-        {{#link-to 'reporting' class="appNav-item"}}{{t 'nav.reports'}}{{/link-to}}
-      {{/if}}
-    </div>
-    <div class="appNav-switcher">
+
       {{i18n-switch
+        class="mr4 ttu"
         locales=activeLocales
         currentLocale=lang
         switchLocale=(action 'switchLocale')
       }}
+
+      {{#ui-dropdown as |dd|}}
+        {{#dd.trigger}}
+          {{session.currentUser.displayName~}}
+        {{/dd.trigger}}
+        {{#dd.body class="dd--xs"}}
+          <div class="list">
+            <a href={{parentMeta.profileURL}} target="_blank" class="list-item">{{t 'nav.account.ssoProfile'}}</a>
+
+            {{#link-to 'user' class="list-item"}}{{t 'nav.account.profile'}}{{/link-to}}
+
+            {{#if (can "manage tickets")}}
+              {{#link-to 'reporting' class="list-item"}}{{t 'nav.reports'}}{{/link-to}}
+            {{/if}}
+
+            <a href="{{parentMeta.logoutURL}}" class="list-item">{{t 'nav.account.logout'}}</a>
+          </div>
+        {{/dd.body}}
+      {{/ui-dropdown}}
     </div>
   </div>
 </nav>
+
 {{outlet}}
