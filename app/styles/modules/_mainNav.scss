@@ -1,23 +1,9 @@
 .mainNav {
-  background: white;
-  padding: $spacer-2 0;
-
-  .wrapper {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-  }
-
   .dd-trigger {
     color: $gray-700;
     @include caret;
     padding: $spacer-2 0;
     margin: -1 * $spacer-2 0;
-
-    .avatar {
-      margin-right: $spacer-2;
-      vertical-align: top;
-    }
 
     @include hover {
       color: theme-color("primary");
@@ -27,12 +13,7 @@
       color: theme-color("primary");
     }
 
-    @include rtl {
-      .avatar {
-        margin-right: 0;
-        margin-left: $spacer-2;
-      }
-    }
+    @include rtl { }
 
   }
 }
