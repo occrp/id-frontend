@@ -5,24 +5,14 @@ import Controller from '@ember/controller';
 import { task } from 'ember-concurrency';
 import { kindList, Validations } from 'id-frontend/models/ticket';
 import moment from 'moment';
+import ControllerTitleMixin from 'id-frontend/mixins/controller-title'
 
-export default Controller.extend({
+export default Controller.extend(ControllerTitleMixin, {
   kindList,
   Validations,
   i18n: service(),
   activityBus: service(),
   flashMessages: service(),
-
-  title: computed('model.kind', 'i18n.locale', function() {
-    let i18n = this.get('i18n');
-
-    switch (this.get('model.kind')) {
-      case kindList[2]:
-        return i18n.t('ticket.one');
-      default:
-        return this.get('model.displayName');
-    }
-  }),
 
   updateStatus: task(function * (newStatus, comment) {
     let model = this.get('model');
