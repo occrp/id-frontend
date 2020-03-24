@@ -6,10 +6,15 @@
     </h1>
   </div>
 
-  <div class="mt2 flex bb b--moon-gray">
-    {{#link-to "view" model class="db pv2 ph3 link"}}Details{{/link-to}}
-    {{#link-to "documents" model class="db pv2 ph3 link"}}Documents{{/link-to}}
-    <div class="b db pv2 ph3 link br2 br--top ba bb--hide b--moon-gray">Resources</div>
+  <div class="mt2 ttu flex">
+    {{#link-to "view" model class="db pv2 link"}}{{t 'ticket.details'}}{{/link-to}}
+    {{#link-to "documents" model class="db pv2 mh3 link"}}{{t 'attachment.attachments'}}{{/link-to}}
+    <div class="b db pv2 bw2 bb b--occrp-gray">{{t 'expenses.title'}}</div>
+
+    <div class="tr ml-auto h1">
+      <button class="b white bg-occrp-red br2 b--occrp-red pointer dim ph3 pv2">
+        {{~t 'actions.add'~}}
+      </button>
+    </div>
   </div>
 </div>
-

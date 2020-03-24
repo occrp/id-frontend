@@ -37,13 +37,13 @@
     {{/unless}}
   </div>
 
-  <div class="mt2 flex bb b--moon-gray">
-    <div class="b db pv2 ph3 link br2 br--top ba bb--hide b--moon-gray">Details</div>
-    {{#link-to "documents" model class="db pv2 ph3 link"}}Documents{{/link-to}}
-    {{#link-to "resources" model class="db pv2 ph3 link"}}Resources{{/link-to}}
+  <div class="mt2 ttu flex">
+    <div class="b db pv2 bw2 bb b--occrp-gray">{{t 'ticket.details'}}</div>
+    {{#link-to "documents" model class="db pv2 mh3 link"}}{{t 'attachment.attachments'}}{{/link-to}}
+    {{#link-to "resources" model class="db pv2 link"}}{{t 'expenses.title'}}{{/link-to}}
   </div>
 
-  <div class="l-fixedColumn">
+  <div class="l-fixedColumn pv4">
     <div class="l-fixedColumn-main">
 
       {{#editable-area model=model keys=(array 'deadlineAt') validations=Validations as |buffer ea|}}
