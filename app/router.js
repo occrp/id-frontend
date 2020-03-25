@@ -11,8 +11,8 @@ Router.map(function() {
   this.route('new');
   this.route('user');
   this.route('view', { path: '/view/:ticket_id' });
-  this.route('documents', { path: '/view/:ticket_id/documents' });
-  this.route('resources', { path: '/view/:ticket_id/resources' });
+  this.route('attachments', { path: '/view/:ticket_id/attachments' });
+  this.route('expenses', { path: '/view/:ticket_id/expenses' });
   this.route('reporting', function() {
     this.route('staff');
     this.route('countries');

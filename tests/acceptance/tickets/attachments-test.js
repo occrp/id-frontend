@@ -4,7 +4,6 @@ import { setupApplicationTest } from 'ember-qunit';
 import setupMirage from 'ember-cli-mirage/test-support/setup-mirage';
 import { initSession } from 'id-frontend/tests/helpers/init-session';
 
-// import File from 'ember-file-upload/file';
 import { upload } from 'ember-file-upload/test-support';
 import { upload as mirageUpload } from 'ember-file-upload/mirage';
 
@@ -13,7 +12,7 @@ module('Acceptance | tickets/view - attachments', function(hooks) {
   setupMirage(hooks);
 
   test('uploading a file', async function(assert) {
-    assert.expect(6);
+    assert.expect(5);
     let currentUser = initSession();
 
     let ticket = server.create('ticket', {
@@ -55,10 +54,9 @@ module('Acceptance | tickets/view - attachments', function(hooks) {
       return attachment;
     }));
 
-    await visit(`/view/${ticket.id}`);
+    await visit(`/view/${ticket.id}/attachments`);
 
     assert.equal(findAll('[data-test-attachment]').length, 0, 'no attachments initially');
-    assert.equal(findAll('[data-test-activity]').length, 0);
 
     let data = new Uint8Array([
       137,80,78,71,13,10,26,10,0,0,0,13,73,72,68,82,0,0,0,8,0,0,
@@ -71,11 +69,17 @@ module('Acceptance | tickets/view - attachments', function(hooks) {
     let photo = new File([data], 'image.png', { type: 'image/png'});
     await upload('[data-test-file-upload] input', photo);
 
-    await click('[data-test-modal-confirm]');
+    await click('[data-test-confirm]');
 
     assert.equal(findAll('[data-test-attachment]').length, 1, 'file was uploaded');
     assert.equal(find('[data-test-attachment]').getAttribute('title'), 'image.png');
-    assert.equal(findAll('[data-test-activity=attachment]').length, 1, 'new activity is rendered');
+
+    await visit(`/view/${ticket.id}`);
+
+    assert.equal(
+      findAll('[data-test-activity=attachment]').length, 1,
+      'new activity is rendered'
+    );
   });
 
 
@@ -113,7 +117,7 @@ module('Acceptance | tickets/view - attachments', function(hooks) {
       schema.attachments.find(request.params.id).destroy();
     });
 
-    await visit(`/view/${ticket.id}`);
+    await visit(`/view/${ticket.id}/attachments`);
 
     assert.equal(findAll('[data-test-attachment]').length, 3);
     assert.ok(find('[data-test-attachment="20"]'));
@@ -146,15 +150,21 @@ module('Acceptance | tickets/view - attachments', function(hooks) {
       errors: [{ detail: "Unable to delete attachment." }]
     }, 500);
 
-    await visit(`/view/${ticket.id}`);
+    await visit(`/view/${ticket.id}/attachments`);
 
     assert.equal(findAll('[data-test-attachment]').length, 1);
 
     await click('[data-test-remove-attachment]');
     await click('[data-test-modal-confirm]');
 
-    assert.equal(findAll('[data-test-attachment]').length, 1, 'attachment was not removed');
     assert.ok(find('.flash-message'), 'showing alert');
+
+    await visit(`/view/${ticket.id}/attachments`);
+
+    assert.equal(
+      findAll('[data-test-attachment]').length, 1,
+      'attachment was not removed'
+    );
   });
 });
 
