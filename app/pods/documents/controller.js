@@ -1,15 +1,11 @@
-import { A } from '@ember/array';
 import { getOwner } from '@ember/application';
 import { inject as service } from '@ember/service';
-import { set, get, computed } from '@ember/object';
+import { get, computed } from '@ember/object';
 import { task, taskGroup } from 'ember-concurrency';
 import RSVP from 'rsvp';
 import Controller from '@ember/controller';
-import ControllerTitleMixin from 'id-frontend/mixins/controller-title'
-import Queue from 'ember-file-upload/queue';
 
-
-export default Controller.extend(ControllerTitleMixin, {
+export default Controller.extend({
   store: service(),
   session: service(),
   flashMessages: service(),

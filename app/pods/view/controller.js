@@ -5,9 +5,8 @@ import Controller from '@ember/controller';
 import { task } from 'ember-concurrency';
 import { kindList, Validations } from 'id-frontend/models/ticket';
 import moment from 'moment';
-import ControllerTitleMixin from 'id-frontend/mixins/controller-title'
 
-export default Controller.extend(ControllerTitleMixin, {
+export default Controller.extend({
   kindList,
   Validations,
   i18n: service(),
