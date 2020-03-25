@@ -55,27 +55,6 @@
   }
 }
 
-.userCard {
-  color: $gray-700;
-  padding: $spacer-3 $spacer-3;
-  font-size: $font-size-sm;
-
-  .icon {
-    vertical-align: -3px;
-    margin-right: .4rem;
-  }
-}
-
-.userCard-title {
-  color: $gray-900;
-}
-
-
-.userCard-email {
-  word-break: break-all;
-}
-
-
 .statusBar {
   font-size: $font-size-sm;
   padding: $spacer-3 $spacer-4;
