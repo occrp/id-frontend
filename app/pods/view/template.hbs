@@ -37,11 +37,7 @@
     {{/unless}}
   </div>
 
-  <div class="mt2 ttu flex">
-    <div class="b db pv2 bw2 bb b--occrp-gray">{{t 'ticket.details'}}</div>
-    {{#link-to "documents" model class="db pv2 mh3 link"}}{{t 'attachment.attachments'}}{{/link-to}}
-    {{#link-to "resources" model class="db pv2 link"}}{{t 'expenses.title'}}{{/link-to}}
-  </div>
+  {{ticket-sections model=model}}
 
   <div class="l-fixedColumn pv4">
     <div class="l-fixedColumn-main">

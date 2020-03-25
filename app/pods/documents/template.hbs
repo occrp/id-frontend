@@ -6,24 +6,18 @@
     </h1>
   </div>
 
-  <div class="mt2 ttu flex">
-    {{#link-to "view" model class="db pv2 link"}}{{t 'ticket.details'}}{{/link-to}}
-    <div class="b db pv2 mh3 bw2 bb b--occrp-gray">{{t 'attachment.attachments'}}</div>
-    {{#link-to "resources" model class="db pv2 link"}}{{t 'expenses.title'}}{{/link-to}}
-
-    <div class="tr ml-auto h1">
-      {{#if model.isOpen}}
-        {{#file-upload
-          name=queueName
-          multiple=true
-          class="b white bg-occrp-red br2 b--occrp-red pointer dim ph3 pv2"
-          data-test-file-upload=true
-          }}
-          {{~t 'actions.add'~}}
-        {{/file-upload}}
-      {{/if}}
-    </div>
-  </div>
+  {{#ticket-sections model=model}}
+    {{#if model.isOpen}}
+      {{#file-upload
+        name=queueName
+        multiple=true
+        class="b white bg-occrp-red br2 b--occrp-red pointer dim ph3 pv2"
+        data-test-file-upload=true
+        }}
+        {{~t 'actions.add'~}}
+      {{/file-upload}}
+    {{/if}}
+  {{/ticket-sections}}
 
   <div class="pv4">
     <table class="w-100" cellspacing="0">

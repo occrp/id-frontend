@@ -2,13 +2,13 @@
 
 <nav class="mainNav bg-white pv2 mb4 t-sm t-muted bb b--near-white">
   <div class="wrapper flex pt2 pb4 items-center justify-between">
-    <a href="{{parentMeta.rootURL}}" class="mainNav-logo t4 t-light">
+    <a href="{{parentMeta.rootURL}}" class="mainNav-logo t4 t-light link">
       <img width="32" height="32" src="{{parentMeta.rootLogo}}" />
       <span>{{parentMeta.rootName}}</span>
       <abbr>ID</abbr>
     </a>
     <div class="flex ttu occrp-gray">
-      {{#link-to 'browse' class="occrp-gray"}}
+      {{#link-to 'browse' class="occrp-gray link"}}
         {{session.currentUser.ticketsCount}} {{t 'nav.requests'~}}
       {{/link-to}}
 
