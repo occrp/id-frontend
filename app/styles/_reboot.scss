@@ -196,7 +196,8 @@ sup { top: -.5em; }
 // Links
 //
 
-a {
+// TODO: Remove this...
+a:not(.link) {
   color: $link-color;
   text-decoration: $link-decoration;
   background-color: transparent; // Remove the gray background on active links in IE 10.

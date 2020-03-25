@@ -1,0 +1,15 @@
+<div class="mt2 ttu flex">
+  {{#link-to "view" model class="occrp-gray db pv2 link dim" activeClass="b bw2 bb b--occrp-gray"}}
+    {{t 'ticket.details'}}
+  {{/link-to}}
+  {{#link-to "documents" model class="occrp-gray db mh3 pv2 dim link" activeClass="b bw2 bb b--occrp-gray"}}
+    {{t 'attachment.attachments'}}
+  {{/link-to}}
+  {{#link-to "resources" model class="occrp-gray db pv2 link dim" activeClass="b bw2 bb b--occrp-gray"}}
+    {{t 'expenses.title'}}
+  {{/link-to}}
+
+  <div class="tr ml-auto h1">
+    {{yield}}
+  </div>
+</div>
