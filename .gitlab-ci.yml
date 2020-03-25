@@ -1,0 +1,14 @@
+# testing environment
+master-cdn-deploy:
+  stage: deploy
+  script:
+  - npm install
+  - npm install ember-cli
+  - npm run lint:js
+  - node_modules/ember-cli/bin/ember build --environment production
+  - rsync -av --delete dist/ /output/id-frontend/
+  only:
+  - master
+  tags:
+  - master
+ 
