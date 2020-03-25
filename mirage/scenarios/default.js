@@ -38,23 +38,28 @@ export default function(server) {
     status: 'pending',
   });
 
-  server.createList('ticket', 3, 'isPerson', 'withResponder', {
+  server.createList('ticket', 2, 'isPerson', 'withResponder', {
     status: 'closed',
   });
-  server.createList('ticket', 3, 'isPerson', 'withResponder', {
+  server.createList('ticket', 2, 'isPerson', 'withResponder', {
     status: 'cancelled',
   });
 
-  server.createList('ticket', 3, 'isCompany', {
-    status: 'new',
-  });
-  server.createList('ticket', 3, 'isOther', {
+  server.createList('ticket', 2, 'isCompany', {
     status: 'new',
   });
 
-  // Just for pagination
-  // server.createList('ticket', 20, 'isPerson');
+  server.createList('ticket', 2, 'isVehicle', {
+    status: 'new',
+  });
 
+  server.createList('ticket', 2, 'isData', {
+    status: 'new',
+  });
+
+  server.createList('ticket', 2, 'isOther', {
+    status: 'new',
+  });
 
   server.createList('ticket-stats', 4, {
     status: 'new',
@@ -70,13 +75,6 @@ export default function(server) {
     },
     profileId: 52
   });
-  // server.createList('ticket-stats', 4, {
-  //   status: 'pending',
-  //   date(i) {
-  //     return moment.utc().startOf('month').subtract(i % 4, 'months').toISOString();
-  //   },
-  //   profileId: 53
-  // });
   server.createList('ticket-stats', 4, {
     status: 'closed',
     date(i) {
