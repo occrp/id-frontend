@@ -13,6 +13,7 @@ export default Route.extend({
   model() {
     return this.get('session.currentUser');
   },
+
   deactivate() {
     this.currentModel.rollbackAttributes();
   }

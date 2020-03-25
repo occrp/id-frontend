@@ -2,19 +2,23 @@
   {{#dd.trigger}}
     {{yield}}
   {{/dd.trigger}}
-  {{#dd.body class="dd--sm" attachment="top center" targetAttachment="bottom center"}}
-    <div class="userCard">
-      <h5 class="userCard-title mb-2">{{user.displayName}}</h5>
-      <p class="userCard-email mb-2">{{user.email}}</p>
-      <p class="mb-1">
+
+  {{#dd.body class="" attachment="top center" targetAttachment="bottom center"}}
+    <div class="pa3">
+      <p class="b">
+        {{user.displayName}}
+      </p>
+      <p class="mt1 i pv2">{{user.bio}}</p>
+      <p class="mt1">📯&#xFE0E; {{user.email}}</p>
+      <p class="mt1">
         {{#link-to 'browse' (query-params requester=user.id page=1)~}}
-          {{icon "issue-opened"}}{{t 'userCard.viewRequests'}}
+          🙋&#xFE0E; {{t 'userCard.viewRequests'}}
         {{~/link-to}}
       </p>
       {{#if (can 'manage tickets')}}
-      <p>
+      <p class="mt1">
         <a href="/admin/accounts/profile/{{user.id}}" target="_blank">
-          {{icon "settings"}}{{t 'userCard.adminProfile'}}
+          🛂&#xFE0E; {{t 'userCard.adminProfile'}}
         </a>
       </p>
       {{/if}}
