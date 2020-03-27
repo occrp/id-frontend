@@ -1,6 +1,9 @@
 import Route from '@ember/routing/route';
+import { inject as service } from '@ember/service';
 
 export default Route.extend({
+  can: service(),
+
   beforeModel() {
     let result = this._super(...arguments);
 
@@ -13,7 +16,7 @@ export default Route.extend({
 
   model(params) {
     return this.get('store').findRecord('ticket', params.ticket_id, {
-      include: 'requester,responders,responders.user,subscribers,subscribers.user,attachments,attachments.user',
+      include: 'expenses,expense.user',
       reload: true
     });
   }

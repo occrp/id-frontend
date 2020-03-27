@@ -1,14 +1,15 @@
 <form {{action "save" on="submit"}}>
 
-  <div class="tabs mb-4">
+  <div class="mb-4 flex ttu items-center justify-between">
     {{#each kindList key=@index as |selectedKind| }}
-      <label class="tabs-item {{if (eq buffer.kind selectedKind) "is-active"}}" data-test-kind-tab="{{selectedKind}}">
+      <label class="pb2 pointer {{if (eq buffer.kind selectedKind) "b bw2 bb b--occrp-gray"}}" data-test-kind-tab="{{selectedKind}}">
         {{radio-button
+          radioClass="visibility-hidden w0 h0 absolute"
           name="ticket-kind"
           value=selectedKind
           groupValue=buffer.kind
           changed=(action 'changeKind')}}
-        {{icon-by-kind selectedKind class="icon--lg"}}
+        {{icon-by-kind selectedKind}}
         <span>{{t (concat 'ticket.kind.' selectedKind '.name')}}</span>
       </label>
     {{/each}}
