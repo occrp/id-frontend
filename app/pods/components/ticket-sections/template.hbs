@@ -1,18 +1,19 @@
-<div class="mt2 ttu flex">
-  {{#link-to "view" model class="occrp-gray db pv2 link dim" activeClass="b bw2 bb b--occrp-gray"}}
-    {{t 'ticket.details'}}
-  {{/link-to}}
-  {{#link-to "attachments" model class="occrp-gray db mh3 pv2 dim link" activeClass="b bw2 bb b--occrp-gray"}}
-    {{t 'attachment.attachments'}}
-  {{/link-to}}
-
-  {{#if (can 'manage tickets') }}
-    {{#link-to "expenses" model class="occrp-gray db pv2 link dim" activeClass="b bw2 bb b--occrp-gray"}}
-      {{t 'expenses.title'}}
+<div class="flex">
+  <div class="mt2 flex ttu items-center justify-between w-40">
+    {{#link-to "view" model class="occrp-gray db pv2 link dim" activeClass="b bw2 bb b--occrp-gray"}}
+      {{t 'ticket.details'}}
     {{/link-to}}
-  {{/if}}
+    {{#link-to "attachments" model class="occrp-gray db pv2 dim link" activeClass="b bw2 bb b--occrp-gray"}}
+      {{t 'attachment.attachments'}}
+    {{/link-to}}
 
-  <div class="tr ml-auto h1">
+    {{#if (can 'manage tickets') }}
+      {{#link-to "expenses" model class="occrp-gray db pv2 link dim" activeClass="b bw2 bb b--occrp-gray"}}
+        {{t 'expenses.title'}}
+      {{/link-to}}
+    {{/if}}
+  </div>
+  <div class="ml-auto">
     {{yield}}
   </div>
 </div>
