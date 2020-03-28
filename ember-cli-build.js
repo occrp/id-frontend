@@ -28,12 +28,12 @@ module.exports = function(defaults) {
     },
 
     'ember-composable-helpers': {
-      only: ['pipe', 'pipe-action', 'queue', 'dec', 'toggle', 'contains', 'array']
+      only: ['pipe', 'pipe-action', 'queue', 'dec', 'toggle', 'contains', 'array', 'repeat']
     },
 
     svgJar: {
       sourceDirs: [
-        'node_modules/octicons/build/svg',
+        'node_modules/@primer/octicons/build/svg',
       ],
       strategy: 'symbol'
     },
