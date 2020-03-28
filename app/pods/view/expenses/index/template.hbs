@@ -1,0 +1,48 @@
+<table class="w-100" cellspacing="0">
+  <thead>
+    <tr class="bb b--moon-gray">
+      <th class="pa2 w-35 mw1 truncate">{{t 'expenses.scope'}}</th>
+      <th class="pa2 w-10 mw1 truncate">{{t 'expenses.rating'}}</th>
+      <th class="pa2 w-20 mw1 truncate">{{t 'expenses.amount'}}</th>
+      <th class="pa2 w-20 mw1 truncate">{{t 'expenses.userName'}}</th>
+      <th class="pa2 w-15 mw1 truncate">{{t 'expenses.date'}}</th>
+    </tr>
+  </thead>
+
+  <tbody class="lh-copy">
+    {{#each model.expenses as |item|}}
+      <tr class="striped--near-white">
+        <td class="pa2 w-35 mw1 truncate">
+          {{#if (and item.amount (gt item.amount 0))}}
+            {{~icon 'bookmark'}}
+          {{else}}
+            {{~icon 'saved'}}
+          {{/if}}
+
+          {{#link-to 'view.expenses.expense' model item}}
+            {{item.scope}}
+          {{/link-to}}
+        </td>
+        <td class="pa2 w-10 mw1 truncate">
+          {{#each (repeat item.rating)}}
+            {{icon 'star' class="o-50"}}
+          {{/each}}
+        </td>
+        <td class="pa2 w-20 mw1 truncate">
+          {{#if item.amount}}
+            {{item.amount}} {{item.amount_currency}}
+            {{#if item.paymentMethod}}
+              <small class="o-50">{{item.paymentMethod}}</small>
+            {{/if}}
+          {{/if}}
+        </td>
+        <td class="pa2 w-20 mw1 truncate">
+          {{item.user.displayName}}
+        </td>
+        <td class="pa2 w-15 mw1 truncate">
+          {{timestamp-full item.createdAt}}
+        </td>
+      </tr>
+    {{/each}}
+  </tbody>
+</table>

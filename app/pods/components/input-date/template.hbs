@@ -1,6 +1,6 @@
 <input type="text"
   id="{{id}}"
-  class="formControl {{class}}"
+  class="{{class}}"
   value={{if currentValue (moment-format currentValue 'DD/MM/YYYY')}}
   onkeyup={{action 'updateDatepicker' value="target.value"}}
   onclick={{action 'open'}}

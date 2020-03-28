@@ -11,5 +11,6 @@ export default DS.Model.extend({
 
   comment: belongsTo(),
   attachment: belongsTo(),
+  expense: belongsTo(),
   responderUser: belongsTo('profile')
 });

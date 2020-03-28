@@ -31,10 +31,10 @@ export default function(server) {
   server.createList('ticket', 1, 'isPerson', 'withActivities', 'withAttachments', {
     status: 'new',
   });
-  server.createList('ticket', 1, 'isPerson', 'withResponder', 'withSubscriber', 'withComments', {
+  server.createList('ticket', 1, 'isPerson', 'withResponder', 'withSubscriber', 'withComments', 'withExpenses', {
     status: 'in-progress',
   });
-  server.create('ticket', 'isPerson', 'withComments', {
+  server.create('ticket', 'isPerson', 'withComments', 'withExpenses', {
     status: 'pending',
   });
 

@@ -212,6 +212,48 @@ export default function() {
   });
 
 
+  this.post('/expenses', function (schema) {
+    let attrs = this.normalizedRequestAttrs();
+
+    attrs.createdAt = (new Date()).toISOString();
+
+    let ticket = schema.tickets.find(attrs.ticketId);
+    let profile = schema.profiles.find(attrs.userId);
+
+    let expense = schema.expenses.create(attrs);
+
+    schema.activities.create({
+      verb: 'expense:create',
+      createdAt: (new Date()).toISOString(),
+      ticket,
+      user: profile,
+      expense
+    });
+
+    return expense;
+  });
+
+  this.get('/expenses/:id', function (schema, request) {
+    return schema.expenses.find(request.params.id);
+  });
+
+  this.del('/expenses/:id', function (schema, request) {
+    let expenseId = request.params.id;
+
+    let expense = schema.expenses.find(expenseId);
+    let ticket = schema.tickets.find(expense.ticketId);
+
+    schema.activities.create({
+      verb: 'expense:destroy',
+      createdAt: (new Date()).toISOString(),
+      ticket,
+      user: schema.profiles.find(42)
+    });
+
+    expense.destroy();
+  });
+
+
   this.post('/attachments', upload(function (schema, request) {
     let file = request.requestBody.upload;
     let meta = JSON.parse(request.requestBody.ticket);
@@ -324,14 +366,6 @@ export default function() {
       user: attrs.email === 'user@mail.com' ? null : profile
     }));
 
-    // schema.activities.create({
-    //   verb: 'subscriber:create',
-    //   createdAt: (new Date()).toISOString(),
-    //   ticket,
-    //   user: schema.profiles.find(42),
-    //   subscriberUser: profile
-    // });
-
     return subscriber;
   });
 
@@ -383,6 +417,4 @@ export default function() {
 
     return schema.ticketStats.where(filters);
   });
-
-
 }

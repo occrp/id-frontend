@@ -107,7 +107,7 @@
       <div class="formGroup">
         <label for="ticket-born-at">{{t 'ticket.bornAt.label'}}</label>
 
-        {{input-date value=buffer.bornAt onSelect=(action (mut buffer.bornAt) value="date") id="ticket-born-at" maxDate=today}}
+        {{input-date value=buffer.bornAt onSelect=(action (mut buffer.bornAt) value="date") id="ticket-born-at" maxDate=today class="formControl"}}
       </div>
 
       {{#validated-field

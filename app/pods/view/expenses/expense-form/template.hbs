@@ -1,0 +1,83 @@
+<div class="flex items-center justify-between">
+  <div class="w-60">
+    <label for="expense-scope" class="db">
+      {{t 'expenses.scope'}}
+    </label>
+    {{input id="expense-scope" value=model.scope class="db w-100 ba pa2"}}
+  </div>
+
+  <div class="w-30">
+    <label for="expense-rating" class="db">
+      {{t 'expenses.rating'}}
+    </label>
+    <select id="expense-rating" class="db bg-white w-100 ba pa2" onchange={{action (mut model.rating) value="target.value"}}>
+      {{#each (repeat 4) as |empty opt|}}
+        <option value={{opt}} selected={{eq model.rating opt}}>{{t (concat 'expenses.rating_' opt)}}</option>
+      {{/each}}
+    </select>
+  </div>
+</div>
+
+{{#if (or showExtra (or model.amount model.notes))}}
+  <div class="mv4 flex items-center justify-between">
+    <div class="w-60 flex">
+      <div class="w-40">
+        <label for="expense-amount" class="db">
+          {{t 'expenses.amount'}}
+        </label>
+        {{input disabled="disabled" class="w3 ba pa2" value=model.amountCurrency}}
+        {{input id="expense-amount" value=model.amount class="w-50 ba pa2"}}
+      </div>
+
+      <div class="w-60">
+        <label for="expense-method" class="db">
+          {{t 'expenses.paymentMethod'}}
+        </label>
+        {{input id="expense-method" value=model.paymentMethod class="db w-100 ba pa2"}}
+      </div>
+    </div>
+
+    <div class="w-30">
+      <label for="expense-date" class="db">
+        {{t 'expenses.date'}}
+      </label>
+      {{input-date
+        value=model.createdAt
+        onSelect=(action (mut model.createdAt) value="date")
+        id="expense-date"
+        class="db w-100 ba pa2"
+      }}
+    </div>
+  </div>
+
+  <div class="mt4">
+    <label for="expense-method" class="db">
+      {{t 'expenses.notes'}}
+    </label>
+    {{textarea id="expense-notes" value=model.notes class="db w-100 h4 ba pa2"}}
+  </div>
+{{else}}
+  <div class="mv4">
+    <p class="lh-copy">
+      <a {{action (action (mut showExtra) (if showExtra false true))}} class="link occrp-gray dim">
+        Add payment details...
+      </a>
+    </p>
+  </div>
+{{/if}}
+
+<div class="mv4">
+  <a
+    {{action 'saveExpense'}} disabled={{model.isSaving}}
+    class="ttu link b white bg-occrp-red br2 b--occrp-red dim ph3 pv2"
+  >
+    {{t 'actions.save'}}
+  </a>
+
+  {{#unless model.isNew}}
+    &nbsp;
+    <a {{action 'deleteExpense'}} class="ttu link b ba br2 b--occrp-gray dim ph3 pv2">
+      {{t 'actions.delete'}}
+    </a>
+  {{/unless}}
+</div>

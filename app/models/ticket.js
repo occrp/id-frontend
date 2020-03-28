@@ -55,6 +55,7 @@ export default DS.Model.extend({
   subscribers: hasMany('subscriber'),
   activities: hasMany('activity'),
   attachments: hasMany('attachment'),
+  expenses: hasMany('expense'),
 
   // Common
   background: attr('string'),

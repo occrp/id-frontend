@@ -1,4 +1,4 @@
-import { Factory, faker, trait, association } from 'ember-cli-mirage';
+import { Factory, trait, faker, association } from 'ember-cli-mirage';
 import { kindList, statusList, priorityList } from 'id-frontend/models/ticket';
 
 const random = faker.random.arrayElement;
@@ -96,6 +96,12 @@ export default Factory.extend({
   withComments: trait({
     afterCreate(ticket, server) {
       server.createList('activity', 3, 'isComment', { ticket });
+    }
+  }),
+
+  withExpenses: trait({
+    afterCreate(ticket, server) {
+      server.createList('activity', 3, 'isExpense', { ticket });
     }
   }),
 

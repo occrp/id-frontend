@@ -1,5 +1,5 @@
 import Serializer from './application';
 
 export default Serializer.extend({
-  include: ['user','comment']
+  include: ['user', 'comment', 'expense']
 });

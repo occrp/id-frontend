@@ -10,9 +10,16 @@ Router.map(function() {
   this.route('browse', { path: '/view' });
   this.route('new');
   this.route('user');
-  this.route('view', { path: '/view/:ticket_id' });
-  this.route('attachments', { path: '/view/:ticket_id/attachments' });
-  this.route('expenses', { path: '/view/:ticket_id/expenses' });
+  this.route('view', { path: '/view/:ticket_id' }, function() {
+    this.route('ticket', { path: '/' });
+    this.route('attachments');
+
+    this.route('expenses', function() {
+      this.route('index', { path: '/' });
+      this.route('new');
+      this.route('expense', { path: '/:expense_id' });
+    });
+  });
   this.route('reporting', function() {
     this.route('staff');
     this.route('countries');

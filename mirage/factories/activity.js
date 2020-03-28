@@ -1,9 +1,24 @@
-import { Factory, faker, trait } from 'ember-cli-mirage';
+import { Factory, trait, faker } from 'ember-cli-mirage';
 
 const random = faker.random.arrayElement;
 
 export default Factory.extend({
   createdAt() { return faker.date.past(); },
+
+  isExpense: trait({
+    verb: 'expense:create',
+
+    afterCreate(activity, server) {
+      let regulars = server.schema.profiles.where({ isStaff: false });
+
+      let expense = server.create('expense', { ticket: activity.ticket });
+
+      activity.update({
+        user: random(regulars.models),
+        expense
+      });
+    }
+  }),
 
   isComment: trait({
     verb: 'comment:create',
