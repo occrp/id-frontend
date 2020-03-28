@@ -1,0 +1,11 @@
+{{#ticket-sections model=model}}
+  {{#unless (eq router.currentRouteName 'view.expenses.new')}}
+    {{#link-to 'view.expenses.new' model class="link ttu b white bg-occrp-red br2 b--occrp-red pointer dim ph3 pv2"}}
+      {{~t 'actions.add'~}}
+    {{/link-to}}
+  {{/unless}}
+{{/ticket-sections}}
+
+<div class="pv4">
+  {{outlet}}
+</div>

@@ -12,12 +12,5 @@ export default Route.extend({
     }
 
     return result;
-  },
-
-  model(params) {
-    return this.get('store').findRecord('ticket', params.ticket_id, {
-      include: 'expenses,expense.user',
-      reload: true
-    });
   }
 });

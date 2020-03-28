@@ -78,7 +78,19 @@
     }
   },
   "expenses": {
-    "title": "Resources"
+    "title": "Resources",
+    "scope": "Name",
+    "amount": "Cost",
+    "currency": "Currency",
+    "rating": "Rating",
+    "notes": "Notes",
+    "paymentMethod": "Payment method",
+    "userName": "Added by",
+    "date": "Date",
+    "rating_0": "Didn't use",
+    "rating_1": "Consulted",
+    "rating_2": "Helpful",
+    "rating_3": "Exclusive"
   },
   "filters": {
     "country": {

@@ -1,0 +1,114 @@
+{{#ticket-sections model=model}}
+  {{#if model.isOpen}}
+    {{#file-upload
+      name=queueName
+      multiple=true
+      class="b white bg-occrp-red br2 b--occrp-red pointer dim ph3 pv2"
+      data-test-file-upload=true
+      }}
+      {{~t 'actions.add'~}}
+    {{/file-upload}}
+  {{/if}}
+{{/ticket-sections}}
+
+<div class="pv4">
+  <table class="w-100" cellspacing="0">
+    <thead>
+      <tr class="bb b--moon-gray">
+        <th class="pa2 w-40 mw1 truncate">{{t 'attachment.filename'}}</th>
+        <th class="pa2 w-10 mw1 truncate">{{t 'attachment.filesize'}}</th>
+        <th class="pa2 w-20 mw1 truncate">{{t 'attachment.fileDate'}}</th>
+        <th class="pa2 w-20 mw1 truncate">{{t 'attachment.userName'}}</th>
+        <th class="pa2 w-10"></th>
+      </tr>
+    </thead>
+
+    <tbody class="lh-copy">
+      {{#each pendingFiles as |file|}}
+        <tr class="bg-washed-yellow">
+          <td class="pa2 w-40 mw1 truncate">
+            {{~icon 'cloud-upload'}}
+            {{file.name}}
+          </td>
+          <td class="pa2 w-10 mw1 truncate">
+            {{format-filesize file.size}}
+          </td>
+          <td class="pa2 w-10 mw1 truncate">
+            {{t (concat 'attachment.state.' file.state)}}
+          </td>
+
+          {{#if (eq file pendingFiles.firstObject)}}
+            <td class="pa2 w-10 tc" colspan="2" rowspan={{pendingFiles.length}}>
+              <a class="underline" {{action 'startUploads'}} disabled={{batchUpload.isRunning}} data-test-confirm>
+                {{~t 'attachment.startUploads'~}}
+              </a>
+
+              {{t 'attachment.or'}}
+
+              <a class="underline" {{action 'flushQueue'}} data-test-cancel>
+                {{~t 'attachment.cancelAll'~}}
+              </a>.
+            </td>
+          {{/if}}
+        </tr>
+      {{/each}}
+
+      {{#if model.attachments.length}}
+
+        {{#ui-modal-container as |modDel|}}
+          {{#if modDel.isShowing}}
+            {{#ui-modal onClose=(queue modDel.toggle (action 'emptyRemovalBin'))}}
+              <div class="bg-white shadow-1 br2 events-auto">
+
+                <div class="pv3 tc gray">
+                  {{t 'attachment.removalPrompt'}}
+                </div>
+
+                <div class="pv3 tc bg-near-white">
+                  {{removalBin.fileName}}
+                </div>
+
+                <div class="pv3 tc">
+                  <button class="bg-near-white dim ttu b ba b--near-white br2 ph4 pv2" {{action (queue modDel.toggle (action 'emptyRemovalBin'))}} data-test-modal-cancel>
+                    {{~t 'actions.cancel'~}}
+                  </button>
+                  <button class="bg-occrp-red white dim ttu b ba b--occrp-red br2 ph4 pv2" {{action 'removeFile' modDel.toggle}} data-test-modal-confirm>
+                    {{~t 'actions.delete'~}}
+                  </button>
+                </div>
+
+              </div>
+            {{/ui-modal}}
+          {{/if}}
+
+          {{#each model.attachments as |item|}}
+            <tr class="striped--near-white">
+              <td class="pa2 w-40 mw1 truncate">
+                {{~icon 'cloud-download'}}
+                <a href={{item.upload}} title={{item.fileName}} target="_blank" data-test-attachment={{item.id}}>
+                  {{item.fileName}}
+                </a>
+              </td>
+              <td class="pa2 w-10 mw1 truncate">
+                {{format-filesize item.fileSize}}
+              </td>
+              <td class="pa2 w-20 mw1 truncate">
+                {{timestamp-full item.createdAt}}
+              </td>
+              <td class="pa2 w-20 mw1 truncate">
+                {{item.user.displayName}}
+              </td>
+              <td class="pa2 w-10">
+                {{#if (or (can 'manage tickets') (eq model.requester.id item.user.id))}}
+                  <a class="link occrp-red" {{action (queue (action 'addToRemovalBin' item) modDel.toggle)}} data-test-remove-attachment>
+                    {{~t "actions.delete"~}}
+                  </a>
+                {{/if}}
+              </td>
+            </tr>
+          {{/each}}
+        {{/ui-modal-container}}
+      {{/if}}
+    </tbody>
+  </table>
+</div>

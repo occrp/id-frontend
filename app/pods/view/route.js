@@ -6,7 +6,7 @@ export default Route.extend({
 
   model(params) {
     return this.get('store').findRecord('ticket', params.ticket_id, {
-      include: 'requester,responders,responders.user,subscribers,subscribers.user,attachments,attachments.user',
+      include: 'requester,responders,responders.user,subscribers,subscribers.user,attachments,attachments.user,expenses,expenses.user',
       reload: true
     });
   },
