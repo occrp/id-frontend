@@ -4,7 +4,7 @@ import Route from '@ember/routing/route';
 export default Route.extend({
   session: service(),
 
-  model(params) {
+  model() {
     const ticket = this.modelFor('view');
     const user = this.get('session.currentUser');
     return this.get('store').createRecord('expense', { ticket, user });

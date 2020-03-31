@@ -19,9 +19,7 @@
             {{~icon 'saved'}}
           {{/if}}
 
-          {{#link-to 'view.expenses.expense' model item}}
-            {{item.scope}}
-          {{/link-to}}
+          {{#link-to 'view.expenses.expense' model item}}{{item.scope}}{{/link-to}}
         </td>
         <td class="pa2 w-10 mw1 truncate">
           {{#each (repeat item.rating)}}
