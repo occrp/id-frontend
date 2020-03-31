@@ -1,6 +1,9 @@
 {{#ticket-sections model=model}}
   {{#unless (eq router.currentRouteName 'view.expenses.new')}}
-    {{#link-to 'view.expenses.new' model class="link ttu b white bg-occrp-red br2 b--occrp-red pointer dim ph3 pv2"}}
+    {{#link-to 'view.expenses.new' model
+      class="link ttu b white bg-occrp-red br2 b--occrp-red pointer dim ph3 pv2"
+      data-test-new=true
+    }}
       {{~t 'actions.add'~}}
     {{/link-to}}
   {{/unless}}

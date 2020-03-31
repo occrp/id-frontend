@@ -59,7 +59,7 @@
 {{else}}
   <div class="mv4">
     <p class="lh-copy">
-      <a {{action (action (mut showExtra) (if showExtra false true))}} class="link occrp-gray dim">
+      <a {{action (action (mut showExtra) (if showExtra false true))}} class="link occrp-gray dim" data-test-extra>
         Add payment details...
       </a>
     </p>
@@ -70,13 +70,18 @@
   <a
     {{action 'saveExpense'}} disabled={{model.isSaving}}
     class="ttu link b white bg-occrp-red br2 b--occrp-red dim ph3 pv2"
+    data-test-save
   >
     {{t 'actions.save'}}
   </a>
 
   {{#unless model.isNew}}
     &nbsp;
-    <a {{action 'deleteExpense'}} class="ttu link b ba br2 b--occrp-gray dim ph3 pv2">
+    <a
+      {{action 'deleteExpense'}}
+      class="ttu link b ba br2 b--occrp-gray dim ph3 pv2"
+      data-test-delete
+    >
       {{t 'actions.delete'}}
     </a>
   {{/unless}}
