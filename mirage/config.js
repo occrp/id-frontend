@@ -233,6 +233,13 @@ export default function() {
     return expense;
   });
 
+  this.get('/expenses', function (schema, request) {
+    const qp = request.queryParams;
+    const ticketId = qp['filter[ticket]'];
+
+    return schema.expenses.where({ ticketId });
+  });
+
   this.get('/expenses/:id', function (schema, request) {
     return schema.expenses.find(request.params.id);
   });
@@ -253,6 +260,13 @@ export default function() {
     expense.destroy();
   });
 
+
+  this.get('/attachments', function (schema, request) {
+    const qp = request.queryParams;
+    const ticketId = qp['filter[ticket]'];
+
+    return schema.attachments.where({ ticketId });
+  });
 
   this.post('/attachments', upload(function (schema, request) {
     let file = request.requestBody.upload;

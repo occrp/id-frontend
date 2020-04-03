@@ -13,5 +13,18 @@ export default Route.extend({
     }
 
     return result;
+  },
+
+  model() {
+    const ticket = this.modelFor('view');
+
+    return this.get('store').query('expense', {
+      filter: {
+        ticket: ticket.id
+      },
+      include: 'user'
+    }).then(function() {
+      return ticket;
+    });
   }
 });

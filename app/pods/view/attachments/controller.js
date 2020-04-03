@@ -69,6 +69,7 @@ export default Controller.extend({
       });
 
       RSVP.allSettled(childTasks).then(() => {
+        this.get('model.expenses').reload();
         this.get('activityBus').trigger('reload');
       });
     },
