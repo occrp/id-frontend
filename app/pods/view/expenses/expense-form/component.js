@@ -1,15 +1,18 @@
 import Component from '@ember/component';
 
 export default Component.extend({
+  afterSave: null,
+  model: null,
+
   actions: {
-    saveExpense: function() {
+    saveExpense() {
       const afterSave = this.get('afterSave');
       const model = this.get('model');
 
       model.save().then(function() { afterSave(model) });
     },
 
-    deleteExpense: function() {
+    deleteExpense() {
       const afterDelete = this.get('afterDelete');
       const model = this.get('model');
       const ticket = this.get('model.ticket');
