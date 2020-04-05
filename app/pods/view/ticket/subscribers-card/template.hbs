@@ -1,0 +1,46 @@
+<p class="pv2">
+  <span class="ttu tracked gray db">{{t 'ticket.addSubscriber'}}</span>
+
+  {{ticket-add-subscriber
+    ticket=model
+    afterSave=(action 'afterAddSubscriber')
+    disable=removeSubscriber.isRunning}}
+</p>
+
+{{#if model.subscribers.length}}
+  <p class="pv2">
+    <span class="ttu tracked gray db">{{t 'ticket.subscriber' count=2}}</span>
+
+    <ul class="list pt2">
+      {{#each model.subscribers as |subscriber|}}
+        {{#unless subscriber.isNew}}
+          <li class="lh-copy" data-test-subscriber={{subscriber.id}}>
+            {{subscriber.displayName}}
+
+            {{#if (and (eq session.currentUser.id subscriber.user.id) (not removeSubscriber.isRunning))}}
+              <span class="gray">&mdash;</span>
+
+              <a class="link b" {{action 'removeSubscriber' subscriber}} data-test-unsubscribe-self>
+                {{~t 'ticket.subscriber.selfRemove'~}}
+              </a>
+            {{/if}}
+
+            {{#if (and (can 'resolve tickets') model.isOpen (not removeSubscriber.isRunning) (not-eq session.currentUser.id subscriber.user.id))}}
+              <span class="gray">&mdash;</span>
+
+              {{#if (or (not isExpanded) (not-eq isExpanded subscriber.id))}}
+                <a class="link gray" {{action (toggle 'isExpanded' this subscriber.id)}} data-test-subscriber-confirm>
+                  {{~t 'actions.delete'~}}
+                </a>
+              {{else}}
+                <a class="link b" tabindex="{{unless isExpanded -1}}" {{action 'removeSubscriber' subscriber}} data-test-subscriber-remove>
+                  {{~t 'actions.confirm'~}}
+                </a>
+              {{/if}}
+            {{/if}}
+          </li>
+        {{/unless}}
+      {{/each}}
+    </ul>
+  </p>
+{{/if}}

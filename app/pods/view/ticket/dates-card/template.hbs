@@ -1,0 +1,47 @@
+<p class="pv2">
+  <span class="gray ttu tracked db">
+    {{t 'ticket.createdAt'}}
+  </span>
+  {{timestamp-full model.createdAt}}
+</p>
+
+<p class="pv2">
+  <span class="gray ttu tracked db">
+    {{t 'ticket.updatedAt'}}
+  </span>
+  {{timestamp-full model.updatedAt}}
+</p>
+
+<p class="pv2" data-test-deadline-at>
+  {{#if (can 'manage tickets')}}
+    <label for="ticket-deadline" class="mb0 db">
+      <span class="gray ttu tracked">
+        {{t 'ticket.deadline.label'}}
+      </span>
+    </label>
+
+    {{input-date
+      value=model.deadlineAt
+      onSelect=(action (mut model.deadlineAt) value="date")
+      id="ticket-deadline"
+      class="m-0 bt-0 bl-0 br-0 bb"
+      center=center
+      minDate=minimumDeadline
+    }}
+
+    {{#if (and model.isValid model.hasDirtyAttributes)}}
+      <a {{action 'saveDeadline'}} disabled={{model.isSaving}} class="link b" data-test-save-deadline-at>
+        {{t 'actions.save'}}
+      </a>
+    {{/if}}
+  {{else}}
+    <span class="gray ttu tracked db">
+      {{#if model.deadlineAt}}
+        {{t 'ticket.deadline.label'}}
+      {{else}}
+        {{t 'ticket.deadline.empty'}}
+      {{/if}}
+    </span>
+    {{timestamp-date model.deadlineAt}}
+  {{/if}}
+</p>

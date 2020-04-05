@@ -135,7 +135,7 @@ export default function() {
         return false;
       }
       if (search) {
-        return profile.firstName.indexOf(search) !== -1;
+        return (profile.firstName || '' ).indexOf(search) !== -1;
       }
       return true;
     });
@@ -373,11 +373,10 @@ export default function() {
     attrs.createdAt = (new Date()).toISOString();
     attrs.updatedAt = (new Date()).toISOString();
 
-    // let ticket = schema.tickets.find(attrs.ticketId);
     let profile = schema.profiles.findBy({ email: attrs.email });
 
     let subscriber = schema.subscribers.create(Object.assign({}, attrs, {
-      user: attrs.email === 'user@mail.com' ? null : profile
+      user: profile
     }));
 
     return subscriber;

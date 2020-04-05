@@ -51,7 +51,7 @@
             current=(array responder)
             onSelect=(pipe-action (action 'applyResponder') dd.close)
           }}
-            <a href class="list-item list-item--special {{if (eq responder "none") "is-active"}}" {{action (pipe (action 'applyResponder' "none") dd.close)}} data-test-filter-static-option="none">
+            <a href class="list-item {{if (eq responder "none") "is-active"}}" {{action (pipe (action 'applyResponder' "none") dd.close)}} data-test-filter-static-option="none">
               {{t 'filters.responder.emptyOption'}}
             </a>
           {{/search-users}}

@@ -3,16 +3,16 @@
 {{else}}
   <form {{action "save" on="submit"}}>
     {{#validated-field
-      class="formGroup"
+      class=""
       errors=buffer.validations.attrs.email.messages
       didValidate=didValidate as |field|}}
 
-      <div class="formGroup--inline">
-        {{input value=buffer.email class="formControl formControl--sm" id="subscriber-email" placeholder=(t 'ticket.subscriber.emailPlaceholder')}}
+      <div class="db">
+        {{input value=buffer.email class="bl-0 br-0 bt-0 bb" id="subscriber-email" placeholder=(t 'ticket.subscriber.emailPlaceholder')}}
 
-        <button type="submit" disabled={{addSubscriber.isRunning}} class="button button--primary button--sm" data-test-add-subscriber>
-          {{~t 'actions.addSubscriber'~}}
-        </button>
+        <a class="link b" {{action 'save'}} data-test-add-subscriber>
+          {{~t 'actions.add'~}}
+        </a>
       </div>
 
       {{#if field.showErrors}}

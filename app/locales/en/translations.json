@@ -1,6 +1,5 @@
 {
   "actions": {
-    "addSubscriber": "Add subscriber",
     "assign": {
       "longForm": "Assign to staff",
       "shortForm": "Assign"
@@ -11,9 +10,11 @@
     "remove": "Remove",
     "reopen": "Reopen",
     "save": "Save",
-    "unmark": "Unmark",
+    "unmark": "unmark",
     "upload": "Upload",
-    "add": "Add"
+    "confirm": "Confirm",
+    "add": "Add",
+    "or": "or"
   },
   "activity": {
     "assign": {
@@ -46,7 +47,6 @@
     "fileDate": "Date",
     "userName": "Uploaded by",
     "startUploads": "Upload",
-    "or": "or",
     "cancelAll": "cancel all",
     "attachments": "Attachments",
     "removalPrompt": "Are you sure you want to delete this file?",
@@ -214,7 +214,8 @@
         "title": "Are you sure you want to {{verb}} this request?"
       },
       "pending": {
-        "button": "Mark as pending"
+        "button": "mark as pending",
+        "title": "Why mark it as pending?"
       },
       "reopen": {
         "button": "Reopen request",
@@ -229,6 +230,7 @@
     }
   },
   "ticket": {
+    "addSubscriber": "Add subscriber",
     "details": "Request description",
     "background": {
       "desc": "What do you know so far?",
@@ -345,9 +347,12 @@
     "lastName": {
       "label": "Last name"
     },
+    "memberCenter": "Member Center",
     "one": "Request",
     "other": "{{count}} Requests",
     "requester": {
+      "bio": "Bio",
+      "email": "Contact",
       "one": "Requester",
       "other": "Requesters",
       "prefix": "Submitted by {{requester}}"
@@ -357,8 +362,13 @@
       "label": "Staff responders",
       "one": "Responder",
       "other": "Responders",
-      "selfNotice": "You are assigned to this request.",
-      "selfRemove": "Unassign?"
+      "selfRemove": "Unassign yourself"
+    },
+    "priority": {
+      "label": "Priority",
+      "default": "Normal",
+      "high": "High",
+      "low": "Low"
     },
     "search": {
       "clear": "Clear search",
@@ -378,6 +388,7 @@
       "label": "Aliases"
     },
     "status": {
+      "label": "Current status",
       "cancelled": {
         "name": "Cancelled"
       },
@@ -402,13 +413,10 @@
       "emailPlaceholder": "User e-mail",
       "one": "Subscriber",
       "other": "Subscribers",
-      "selfNotice": "You are subscribed to this request.",
-      "selfRemove": "Unsubscribe?"
+      "selfRemove": "Unsubscribe yourself"
     },
-    "updatedAt": {
-      "label": "Last update",
-      "prefix": "updated {{relativeTime}}"
-    },
+    "updatedAt": "Updated on",
+    "createdAt": "Added on",
     "whysensitive": {
       "label": "Why is it sensitive?"
     }

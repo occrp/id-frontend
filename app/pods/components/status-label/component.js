@@ -3,8 +3,8 @@ import Component from '@ember/component';
 
 export default Component.extend({
   tagName: 'span',
-  classNames: ['tag', 'tag--status'],
-  classNameBindings: ['statusClass'],
+  baseClassNamess: true,
+  classNameBindings: ['statusClass', 'baseClassNamess:tag', 'baseClassNamess:tag--status'],
 
   classByStatus: Object.freeze({
     'new': 'tag--new',

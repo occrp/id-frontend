@@ -1,3 +1,7 @@
-<a href id={{uuid}} class="dd-trigger {{class}} {{if isOpen "is-active"}}" {{action open}} data-test-dd-trigger>
-  {{~yield~}}
-</a>
+{{#if linkWrap}}
+  <a href id={{uuid}} class="dd-trigger {{class}} {{if isOpen "is-active"}}" {{action open}} data-test-dd-trigger>
+    {{~yield~}}
+  </a>
+{{else}}
+  {{~yield this~}}
+{{/if}}

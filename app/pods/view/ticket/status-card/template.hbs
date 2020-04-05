@@ -1,0 +1,36 @@
+<p class="pv2">
+  <span class="gray tracked ttu db">
+    {{t 'ticket.status.label'}}
+  </span>
+
+  {{#if updateStatus.isRunning}}
+    {{ui-spinner class="pv3"}}
+  {{else}}
+    {{status-label model.status data-test-status baseClassNamess=false class="ttu b"}}
+  {{/if}}
+</p>
+
+<p class="pv2">
+  {{#unless updateStatus.isRunning }}
+    {{#if model.isOpen}}
+      {{view/ticket/status-card/close model=model
+        activityType=(if (can "resolve tickets") 'close' 'cancel')
+        activityLabel=(if (can "resolve tickets") (t 'actions.close') (t 'actions.cancel'))
+        onSave=(action 'saveStatus')
+      }}
+    {{else}}
+      {{view/ticket/status-card/reopen model=model onSave=(action 'saveStatus' 'reopen')}}
+    {{/if}}
+
+    {{#if (and (can "resolve tickets") model.isOpen model.responders.length)}}
+
+      {{t 'actions.or'}}
+
+      {{#if model.isPending}}
+        {{view/ticket/status-card/unmark-pending model=model activityType='unmark' activityLabel=(t 'actions.unmark') onSave=(action 'saveStatus')}}
+      {{else}}
+        {{view/ticket/status-card/mark-pending model=model onSave=(action 'saveStatus' 'pending')~}}
+      {{/if}}
+    {{/if}}
+  {{/unless}}
+</p>

@@ -27,8 +27,12 @@ module('Acceptance | tickets/view - base', function(hooks) {
     assert.equal(currentURL(), `/view/${ticket.id}`);
 
     assert.equal(find('[data-test-name]').textContent, 'John Doe');
-    assert.equal(find('[data-test-background]').textContent, 'Lorem ipsum some background.');
-    assert.equal(find('[data-test-born-at]').textContent, 'December 2, 2004');
+    assert.ok(
+      find('[data-test="background"]').textContent.includes('Lorem ipsum some background.')
+    );
+    assert.ok(
+      find('[data-test="born-at"]').textContent.includes('December 2, 2004')
+    );
   });
 
 
@@ -48,8 +52,12 @@ module('Acceptance | tickets/view - base', function(hooks) {
     assert.equal(currentURL(), `/view/${ticket.id}`);
 
     assert.equal(find('[data-test-name]').textContent, 'Acme Inc.');
-    assert.equal(find('[data-test-country]').textContent, 'Bosnia and Herzegovina');
-    assert.equal(find('[data-test-background]').textContent, 'Lorem ipsum some comapny background.');
+    assert.ok(
+      find('[data-test="country"]').textContent.includes('Bosnia and Herzegovina')
+    );
+    assert.ok(
+      find('[data-test="background"]').textContent.includes('Lorem ipsum some comapny background.')
+    );
   });
 
 
@@ -66,7 +74,9 @@ module('Acceptance | tickets/view - base', function(hooks) {
 
     assert.equal(currentURL(), `/view/${ticket.id}`);
 
-    assert.equal(find('[data-test-background]').textContent, 'My question.');
+    assert.ok(
+      find('[data-test="background"]').textContent.includes('My question.')
+    );
   });
 
   test('on route errors, the error template is shown', async function(assert) {

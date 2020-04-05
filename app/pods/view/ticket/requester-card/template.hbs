@@ -1,0 +1,22 @@
+<p class="pv2">
+  <span class="ttu tracked gray db">{{t 'ticket.requester.prefix'}}</span>
+  {{#link-to 'browse' (query-params requester=model.id page=1) class="b link occrp-gray dim"}}
+    {{model.displayName}}
+  {{~/link-to}}
+</p>
+<p class="pv2">
+  <span class="ttu tracked gray db">{{t 'ticket.memberCenter'}}</span>
+  {{#if model.memberCenter}}
+    {{model.memberCenter}}
+  {{else}}
+    &mdash;
+  {{/if}}
+</p>
+<p class="pv2">
+  <span class="ttu tracked gray db">{{t 'ticket.requester.email'}}</span>
+  {{model.email}}
+</p>
+<p class="pv2">
+  <span class="ttu tracked gray db">{{t 'ticket.requester.bio'}}</span>
+  <span class="i">{{model.bio}}</span>
+</p>

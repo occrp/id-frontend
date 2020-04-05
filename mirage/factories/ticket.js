@@ -1,5 +1,5 @@
 import { Factory, trait, faker, association } from 'ember-cli-mirage';
-import { kindList, statusList, priorityList } from 'id-frontend/models/ticket';
+import { kindList, statusList, priorityList, dataRequestTypes } from 'id-frontend/models/ticket';
 
 const random = faker.random.arrayElement;
 
@@ -22,7 +22,7 @@ export default Factory.extend({
   background()            { return paragraphs; },
   country()               { return faker.address.countryCode(); },
   memberCenter()          { return faker.company.companyName(); },
-  identifier()            { return faker.random.alphaNumeric(); },
+  identifier()            { return faker.random.number(); },
 
   // Attributes based on kind. Override with traits
   firstName:              null,
@@ -61,7 +61,7 @@ export default Factory.extend({
 
   isData: trait({
     kind:                 kindList[3],
-    initialInformation()  { return faker.lorem.sentences(); },
+    initialInformation()  { return random(dataRequestTypes); },
     sources()             { return faker.lorem.sentences(); }
   }),
 

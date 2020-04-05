@@ -1,0 +1,24 @@
+<p class="pv2">
+  <span class="gray ttu tracked db">
+    {{t 'ticket.priority.label'}}
+  </span>
+  {{#if (can 'manage tickets')}}
+    <select id="ticket-priority" class="mt2 bg-white w-70 bl-0 br-0 bt-0 bb"
+      onchange={{action (mut model.priority) value="target.value"}}
+    >
+      {{#each priorityList as |opt|}}
+        <option value={{opt}} selected={{eq opt model.priority}}>
+          {{t (concat 'ticket.priority.' opt)}}
+        </option>
+      {{/each}}
+    </select>
+
+    {{#if (and model.isValid model.hasDirtyAttributes (not model.isSaving))}}
+      <a {{action 'savePriority'}} class="link b">
+        {{t 'actions.save'}}
+      </a>
+    {{/if}}
+  {{else}}
+    {{t (concat 'ticket.priority.' model.priority)}}
+  {{/if}}
+</p>

@@ -1,15 +1,15 @@
 {{#ui-modal-container as |m|}}
 
-<button class="button buttonOutlined--primary" {{action m.toggle}} data-test-mark-pending>
+<a {{action m.toggle}} data-test-mark-pending>
   {{t 'pods.view.pending.button'}}
-</button>
+</a>
 
 {{#if m.isShowing}}
 {{#ui-modal modifiers="modal--lg" onClose=(action m.toggle)}}
   <form class="modal-content" {{action "save" m.toggle on="submit"}}>
 
     <div class="modal-header">
-      <h4 class="modal-title t-primary">{{t 'pods.view.pending.button'}}</h4>
+      <h4 class="modal-title t-primary">{{t 'pods.view.pending.title'}}</h4>
       <button class="button button--icon button--dark" {{action m.toggle}} aria-label="Close">
         {{~icon "x"~}}
       </button>

@@ -1,8 +1,8 @@
 {{#ui-modal-container as |m|}}
 
-<button class="button button--primary" {{action m.toggle}} data-test-reopen>
+<a class="b" {{action m.toggle}} data-test-reopen>
   {{t 'pods.view.reopen.button'}}
-</button>
+</a>
 
 {{#if m.isShowing}}
 {{#ui-modal modifiers="modal--lg" onClose=(action m.toggle)}}
