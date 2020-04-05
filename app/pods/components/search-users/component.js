@@ -3,6 +3,10 @@ import Component from '@ember/component';
 export default Component.extend({
   isStaff: false,
   preloadEmpty: true,
+  autoFocus: true,
+  inputClassNames: 'formControl formControl--sm',
+  baseClassNames: 'searchBox',
+  renderInPlace: true,
 
   didInsertElement() {
     if (this.get('preloadEmpty')) {
@@ -12,7 +16,8 @@ export default Component.extend({
       }
     }
 
-    this.$('input').focus();
+    if (this.get('autoFocus')) {
+      this.$('input').focus();
+    }
   }
-
 });

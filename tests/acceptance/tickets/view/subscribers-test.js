@@ -63,13 +63,13 @@ module('Acceptance | tickets/view - subscribers', function(hooks) {
 
     await fillIn('#subscriber-email', 'this.is.not.an.email');
     await click('[data-test-add-subscriber]');
-    assert.ok(find('#subscriber-email').closest('.formGroup').classList.contains('is-invalid'), 'invalid email shows error');
+    assert.ok(find('#subscriber-email').closest('form').children[0].classList.contains('is-invalid'), 'invalid email shows error');
 
     await fillIn('#subscriber-email', 'sub@mail.com');
     await click('[data-test-add-subscriber]');
 
     assert.equal(findAll('[data-test-subscriber]').length, 1);
-    assert.equal(find('[data-test-subscriber="1"] [data-test-el-item]').textContent.trim(), 'Subscriber Doe', 'user is subscribed');
+    assert.ok(find('[data-test-subscriber="1"]').textContent.includes('Subscriber Doe'), 'user is subscribed');
   });
 
   test('(staff) add external subscribers to the ticket', async function(assert) {
@@ -118,7 +118,7 @@ module('Acceptance | tickets/view - subscribers', function(hooks) {
     await click('[data-test-add-subscriber]');
 
     assert.equal(findAll('[data-test-subscriber]').length, 1);
-    assert.equal(find('[data-test-subscriber="1"] [data-test-el-item]').textContent.trim(), 'sub@mail.com', 'external email is subscribed');
+    assert.ok(find('[data-test-subscriber="1"]').textContent.includes('sub@mail.com'), 'external email is subscribed');
   });
 
   test('(staff) if adding subscribers errors, a message is displayed', async function(assert) {
@@ -182,9 +182,10 @@ module('Acceptance | tickets/view - subscribers', function(hooks) {
     await visit(`/view/${ticket.id}`);
 
     assert.equal(findAll('[data-test-subscriber]').length, 3);
-    assert.equal(find('[data-test-subscriber="21"] [data-test-el-item]').textContent.trim(), 'John #11 Doe', 'target user is subscribed');
+    assert.ok(find('[data-test-subscriber="21"]').textContent.includes('John #11 Doe'), 'target user is subscribed');
 
-    await click(find('[data-test-subscriber="21"] [data-test-el-remove]'));
+    await click(find('[data-test-subscriber="21"] [data-test-subscriber-confirm]'));
+    await click(find('[data-test-subscriber="21"] [data-test-subscriber-remove]'));
 
     assert.equal(findAll('[data-test-subscriber]').length, 2);
     assert.equal(find('[data-test-subscriber="21"]'), null, 'target user is unsubscribed');
@@ -213,7 +214,8 @@ module('Acceptance | tickets/view - subscribers', function(hooks) {
 
     assert.equal(findAll('[data-test-subscriber]').length, 1);
 
-    await click(find('[data-test-subscriber] [data-test-el-remove]'));
+    await click(find('[data-test-subscriber] [data-test-subscriber-confirm]'));
+    await click(find('[data-test-subscriber] [data-test-subscriber-remove]'));
 
     assert.equal(findAll('[data-test-subscriber]').length, 1, 'user remains subscribed');
     assert.ok(find('.flash-message'), 'showing alert');

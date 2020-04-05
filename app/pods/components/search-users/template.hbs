@@ -1,20 +1,38 @@
-<div class="searchBox">
-  <input type="text" class="formControl formControl--sm" oninput={{perform task value="target.value" }} placeholder={{t 'profile.search.placeholder'}} autocomplete="off" data-test-filter-search />
-</div>
-
-{{yield}}
-
-{{#if task.isRunning}}
-  {{ui-spinner}}
-{{else}}
-
-  {{#if task.lastSuccessful.value.length}}
-    <div class="list">
-      {{#each task.lastSuccessful.value as |user|}}
-        <a href class="list-item {{if (contains user.id current) "is-active"}}" {{action onSelect user}} data-test-search-result={{user.id}}>{{user-avatar user=user}}{{user.displayName}}</a>
-      {{/each}}
+{{#ui-dropdown isOpen=true data-test-dd="search-users-result" as |dd|}}
+  {{#dd.trigger linkWrap=false as |ddt|}}
+    <div class={{baseClassNames}}>
+      {{input
+        id=ddt.uuid
+        class=inputClassNames
+        input=(queue (action dd.open) (perform task value='target.value'))
+        placeholder=(t 'profile.search.placeholder')
+        autocomplete='off'
+        data-test-filter-search=''
+      }}
     </div>
-  {{else if task.lastSuccessful}}
-    <div class="noResults">{{t 'profile.search.noResults'}}</div>
-  {{/if}}
-{{/if}}
+  {{/dd.trigger}}
+
+  {{#dd.body renderInPlace=renderInPlace}}
+    <div class="list">
+      {{#if task.isRunning}}
+        <span class="list-item lh-copy">
+          {{ui-spinner}}
+        </span>
+      {{else if task.lastSuccessful.value.length}}
+        {{#each task.lastSuccessful.value as |user|}}
+          <a
+            class="list-item {{if (contains user.id current) "is-active"}}"
+            {{action (pipe (action onSelect user) (action dd.close))}}
+            data-test-search-result={{user.id}}
+          >
+            {{user.displayName}}
+          </a>
+        {{/each}}
+      {{else if task.lastSuccessful}}
+        <span class="list-item noResults">{{t 'profile.search.noResults'}}</span>
+      {{/if}}
+
+      {{yield}}
+    </div>
+  {{/dd.body}}
+{{/ui-dropdown}}

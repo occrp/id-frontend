@@ -1,0 +1,58 @@
+{{#if (and (can 'manage tickets') model.isOpen)}}
+  <p class="pv2">
+    <span class="ttu tracked gray db">{{t 'actions.assign.longForm'}}</span>
+
+    {{#if (or addResponder.isRunning removeResponder.isRunning)}}
+      {{ui-spinner class="spinner--mimicButton"}}
+    {{else}}
+      {{search-users
+        task=searchStaff
+        current=model.responderIds
+        preloadEmpty=false
+        autoFocus=false
+        baseClassNames='db'
+        inputClassNames='bl-0 br-0 bt-0 bb'
+        noModal=true
+        onSelect=(pipe-action (action 'addResponder'))
+      }}
+    {{/if}}
+  </p>
+{{/if}}
+
+{{#if model.responders.length}}
+  <p class="pv2">
+    <span class="ttu tracked gray db">{{t 'ticket.responder.label'}}</span>
+
+    <ul class="list">
+      {{#each model.responders as |responder|}}
+        {{#unless responder.isNew}}
+          <li class="lh-copy" data-test-responder={{responder.user.id}}>
+            {{responder.user.displayName}}
+
+            {{#if (and (eq session.currentUser.id responder.user.id) (not removeResponder.isRunning))}}
+              <span class="gray">&mdash;</span>
+
+              <a class="link b" {{action 'removeResponder' responder}} data-test-unassign-self>
+                {{~t 'ticket.responder.selfRemove'~}}
+              </a>
+            {{/if}}
+
+            {{#if (and (can 'manage tickets') model.isOpen (not removeResponder.isRunning) (not-eq responder.user.id session.currentUser.id))}}
+              <span class="gray">&mdash;</span>
+
+              {{#if (or (not isExpanded) (not-eq isExpanded responder))}}
+                <a class="link gray" {{action (toggle 'isExpanded' this responder)}} data-test-responder-confirm={{responder.user.id}}>
+                  {{~t 'actions.delete'~}}
+                </a>
+              {{else}}
+                <a class="link b" tabindex="{{unless isExpanded -1}}" {{action 'removeResponder' responder}} data-test-responder-remove>
+                  {{~t 'actions.confirm'~}}
+                </a>
+              {{/if}}
+            {{/if}}
+          </li>
+        {{/unless}}
+      {{/each}}
+    </ul>
+  </p>
+{{/if}}

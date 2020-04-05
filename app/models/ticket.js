@@ -6,6 +6,7 @@ import { validator, buildValidations } from 'ember-cp-validations';
 import notEqual from '../macros/not-equal';
 import raw from 'ember-macro-helpers/raw';
 import moment from 'moment';
+import { inject as service } from '@ember/service';
 
 const { attr, belongsTo, hasMany } = DS;
 
@@ -40,6 +41,8 @@ export const dataRequestTypes = [
 ];
 
 export default DS.Model.extend({
+  i18n: service(),
+
   // Common
   kind: attr('string', { defaultValue: kindList[0] }),
   status: attr('string', { defaultValue: statusList[0] }),
@@ -80,14 +83,20 @@ export default DS.Model.extend({
   connections: attr('string'), // reused on Person, labeled "Family info"
 
 
-  displayName: computed('kind', 'firstName', 'lastName', 'companyName', 'background', function() {
+  displayName: computed('kind', 'firstName', 'lastName', 'companyName', 'identifier', function() {
     switch (this.get('kind')) {
       case kindList[0]:
         return `${this.get('firstName')} ${this.get('lastName')}`;
       case kindList[1]:
         return this.get('companyName');
+      case kindList[2]:
+        return this.get('identifier');
+      case kindList[3]:
+        return this.get('i18n').t(
+          'ticket.dataCategory.' + this.get('initialInformation')
+        );
       default:
-        return this.get('background').slice(0, 140);
+        return this.get('i18n').t('ticket.one');
     }
   }),
 

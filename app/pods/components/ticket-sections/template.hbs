@@ -1,7 +1,7 @@
 <div class="flex">
   <div class="mt2 flex ttu items-center justify-between w-40">
     {{#link-to "view.ticket" model class="occrp-gray db pv2 link dim" activeClass="b bw2 bb b--occrp-gray"}}
-      {{t 'ticket.details'}}
+      #{{model.id}} {{t 'ticket.details'}}
     {{/link-to}}
     {{#link-to "view.attachments" model class="occrp-gray db pv2 dim link" activeClass="b bw2 bb b--occrp-gray"}}
       {{t 'attachment.attachments'}}

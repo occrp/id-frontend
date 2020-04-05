@@ -63,12 +63,11 @@ module('Acceptance | tickets/view - responders', function(hooks) {
     assert.equal(find('[data-test-status]').textContent.trim(), 'New', 'initial status');
     assert.equal(findAll('[data-test-responder]').length, 0);
 
-    await click('[data-test-dd="assign-responder"] [data-test-dd-trigger]');
     await fillIn('[data-test-filter-search]', 'Staff #3');
     await click('[data-test-search-result]:first-of-type');
 
     assert.equal(findAll('[data-test-responder]').length, 1);
-    assert.equal(find('[data-test-responder] [data-test-el-item]').textContent.trim(), 'Staff #3 Doe', 'user is assigned');
+    assert.ok(find('[data-test-responder]').textContent.includes('Staff #3 Doe'), 'user is assigned');
 
     assert.equal(find('[data-test-status]').textContent.trim(), 'In progress', 'status changes to in-progress after first assignment');
   });
@@ -98,7 +97,6 @@ module('Acceptance | tickets/view - responders', function(hooks) {
 
     assert.equal(findAll('[data-test-responder]').length, 0);
 
-    await click('[data-test-dd="assign-responder"] [data-test-dd-trigger]');
     await fillIn('[data-test-filter-search]', 'Staff #3');
     await click('[data-test-search-result]:first-of-type');
 
@@ -108,7 +106,7 @@ module('Acceptance | tickets/view - responders', function(hooks) {
 
 
   test('(admin) remove responders from ticket', async function(assert) {
-    assert.expect(5);
+    assert.expect(4);
 
     let ticket = server.create('ticket', {
       status: 'new',
@@ -143,9 +141,9 @@ module('Acceptance | tickets/view - responders', function(hooks) {
     await visit(`/view/${ticket.id}`);
 
     assert.equal(findAll('[data-test-responder]').length, 3);
-    assert.equal(find('[data-test-responder="11"] [data-test-el-item]').textContent.trim(), 'Staff #11 Doe', 'target user is assigned');
 
-    await click(find('[data-test-responder="11"] [data-test-el-remove]'));
+    await click('[data-test-responder="11"] [data-test-responder-confirm]');
+    await click('[data-test-responder="11"] [data-test-responder-remove]');
 
     assert.equal(findAll('[data-test-responder]').length, 2);
     assert.equal(find('[data-test-responder="11"]'), null, 'target user is unassigned');
@@ -178,7 +176,8 @@ module('Acceptance | tickets/view - responders', function(hooks) {
 
     assert.equal(findAll('[data-test-responder]').length, 1);
 
-    await click(find('[data-test-responder] [data-test-el-remove]'));
+    await click(find('[data-test-responder] [data-test-responder-confirm]'));
+    await click(find('[data-test-responder] [data-test-responder-remove]'));
 
     assert.equal(findAll('[data-test-responder]').length, 1, 'user remains assigned');
     assert.ok(find('.flash-message'), 'showing alert');
@@ -211,7 +210,7 @@ module('Acceptance | tickets/view - responders', function(hooks) {
     await visit(`/view/${ticket.id}`);
 
     assert.equal(findAll('[data-test-responder]').length, 1);
-    assert.equal(find('[data-test-responder]').textContent.trim(), 'John Appleseed', 'current user is assigned');
+    assert.ok(find('[data-test-responder]').textContent.includes('John Appleseed'), 'current user is assigned');
 
     await click('[data-test-unassign-self]');
 

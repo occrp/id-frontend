@@ -209,7 +209,9 @@ module('Acceptance | tickets/new', function(hooks) {
 
     assert.equal(currentURL(), '/view/1');
 
-    assert.equal(find('[data-test-background]').textContent, 'Vehicle details.');
+    assert.ok(
+      find('[data-test="background"]').textContent.includes('Vehicle details.')
+    );
   });
 
   test('creating a new ticket (data)', async function(assert) {
@@ -271,7 +273,9 @@ module('Acceptance | tickets/new', function(hooks) {
 
     assert.equal(currentURL(), '/view/1');
 
-    assert.equal(find('[data-test-background]').textContent, 'Data details.');
+    assert.ok(
+      find('[data-test="background"]').textContent.includes('Data details.')
+    );
   });
 
   test('creating a new ticket (other)', async function(assert) {
@@ -330,7 +334,9 @@ module('Acceptance | tickets/new', function(hooks) {
 
     assert.equal(currentURL(), '/view/1');
 
-    assert.equal(find('[data-test-background]').textContent, 'My question.');
+    assert.ok(
+      find('[data-test="background"]').textContent.includes('My question.')
+    );
   });
 
 

@@ -171,7 +171,7 @@ module('Acceptance | tickets/browse', function(hooks) {
 
 
   test('(admins) tickets can be filtered by requester', async function(assert) {
-    assert.expect(6);
+    assert.expect(5);
 
     server.createList('profile', 5, {
       firstName(i) { return `User #${i+1}`; },
@@ -221,7 +221,6 @@ module('Acceptance | tickets/browse', function(hooks) {
     await fillIn('[data-test-filter-search]', 'User #4');
 
     let $result = find('[data-test-search-result]:first-of-type');
-    assert.equal($result.textContent, 'User #4 Doe');
 
     await click($result);
 
@@ -237,7 +236,7 @@ module('Acceptance | tickets/browse', function(hooks) {
 
 
   test('(admins) tickets can be filtered by responder', async function(assert) {
-    assert.expect(9);
+    assert.expect(8);
 
     server.createList('profile', 5, 'staff', {
       firstName(i) { return `Staff #${i+1}`; },
@@ -302,7 +301,6 @@ module('Acceptance | tickets/browse', function(hooks) {
     await fillIn('[data-test-filter-search]', 'Staff #2');
 
     let $result = find('[data-test-search-result]:first-of-type');
-    assert.equal($result.textContent, 'Staff #2 Doe');
 
     await click($result);
 
@@ -455,7 +453,7 @@ module('Acceptance | tickets/browse', function(hooks) {
 
 
   test('(admins) can assign responders from the ticket list', async function(assert) {
-    assert.expect(7);
+    assert.expect(6);
 
     server.createList('profile', 5, {
       firstName(i) { return `Staff #${i+1}`; },
@@ -527,7 +525,6 @@ module('Acceptance | tickets/browse', function(hooks) {
     await fillIn('[data-test-filter-search]', 'Staff #3');
 
     let $result = find('[data-test-search-result]:first-of-type');
-    assert.equal($result.textContent, 'Staff #3 Doe');
 
     await click($result);
 
