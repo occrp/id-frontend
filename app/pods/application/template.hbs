@@ -25,7 +25,9 @@
         {{/dd.trigger}}
         {{#dd.body class="dd--xs"}}
           <div class="list">
-            <a href={{parentMeta.profileURL}} target="_blank" class="list-item">{{t 'nav.account.ssoProfile'}}</a>
+            <a href={{parentMeta.profileURL}} target="_blank" class="list-item">
+              {{t 'nav.account.ssoProfile'}}
+            </a>
 
             {{#link-to 'user' class="list-item"}}{{t 'nav.account.profile'}}{{/link-to}}
 
@@ -33,7 +35,9 @@
               {{#link-to 'reporting' class="list-item"}}{{t 'nav.reports'}}{{/link-to}}
             {{/if}}
 
-            <a href="{{parentMeta.logoutURL}}" class="list-item">{{t 'nav.account.logout'}}</a>
+            <a href="{{parentMeta.logoutURL}}/{{session.currentUser.id}}" class="list-item">
+              {{t 'nav.account.logout'}}
+            </a>
           </div>
         {{/dd.body}}
       {{/ui-dropdown}}
