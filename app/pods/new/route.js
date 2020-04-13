@@ -9,7 +9,7 @@ export default Route.extend({
     let result = this._super(...arguments);
 
     if (isBlank(this.get('session.currentUser.bio'))) {
-      this.transitionTo('user');
+      this.transitionTo('user', { queryParams: { resumeSubmission: true } });
     }
 
     return result;
