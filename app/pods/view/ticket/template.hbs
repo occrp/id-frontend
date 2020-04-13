@@ -2,11 +2,25 @@
 
 <div class="pv4 flex justify-between bb b--near-white">
   <div class="w-30">
-    {{view/ticket/requester-card model=model.requester}}
+    <!-- {{view/ticket/requester-card model=model.requester}} -->
+    {{#view/ticket/generic-card testSel='reqLink' title=(t 'ticket.requester.prefix')}}
+      {{#link-to 'browse' (query-params requester=model.requester.id page=1) content='' class="b link occrp-gray dim"}}
+        {{model.requester.displayName}}
+      {{~/link-to}}
+    {{/view/ticket/generic-card}}
+    {{view/ticket/generic-card testSel='memberCenter' title=(t 'ticket.memberCenter') content=model.memberCenter}}
+    {{view/ticket/generic-card testSel='email' title=(t 'ticket.requester.email') content=model.requester.email}}
+    {{view/ticket/generic-card testSel='bio' title=(t 'ticket.requester.bio') content=model.requester.bio}}
   </div>
   <div class="flex justify-between w-60">
     <div class="w-45">
-      {{view/ticket/dates-card model=model}}
+      {{#view/ticket/generic-card testSel='createdAt' title=(t 'ticket.createdAt') content=''}}
+        {{timestamp-full model.createdAt}}
+      {{/view/ticket/generic-card}}
+      {{#view/ticket/generic-card testSel='updatedAt' title=(t 'ticket.updatedAt') content=''}}
+        {{timestamp-full model.updatedAt}}
+      {{/view/ticket/generic-card}}
+      {{view/ticket/deadline-card model=model}}
     </div>
     <div class="w-45">
       {{view/ticket/status-card model=model}}
@@ -67,9 +81,7 @@
 
 <div class="pv4 flex justify-between">
   <div class="w-30">
-    {{#if model.sensitive}}
-      {{view/ticket/sensitive-card model=model}}
-    {{/if}}
+    {{view/ticket/generic-card testSel='sensitive' title=(t 'ticket.sensitive.trueLabel') content=model.whysensitive contentCssNames='mt2 db pa3 bg-washed-yellow'}}
   </div>
 
   <div class="flex justify-between w-60">

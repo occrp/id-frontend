@@ -1,17 +1,3 @@
-<p class="pv2">
-  <span class="gray ttu tracked db">
-    {{t 'ticket.createdAt'}}
-  </span>
-  {{timestamp-full model.createdAt}}
-</p>
-
-<p class="pv2">
-  <span class="gray ttu tracked db">
-    {{t 'ticket.updatedAt'}}
-  </span>
-  {{timestamp-full model.updatedAt}}
-</p>
-
 <p class="pv2" data-test-deadline-at>
   {{#if (can 'manage tickets')}}
     <label for="ticket-deadline" class="mb0 db">

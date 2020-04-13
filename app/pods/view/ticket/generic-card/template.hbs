@@ -1,10 +1,8 @@
 <p class="pv2">
   <span class="ttu tracked gray db">{{title}}</span>
 
-  {{#if content}}
-    <span data-test={{testSel}}>
-      {{content}}
-    </span>
+  {{#if (not-eq content null)}}
+    <span class="{{contentCssNames}}" data-test={{testSel}}>{{~yield~}}{{~content~}}</span>
   {{else}}
     &mdash;
   {{/if}}
