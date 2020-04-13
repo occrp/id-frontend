@@ -14,7 +14,9 @@
     "upload": "Upload",
     "confirm": "Confirm",
     "add": "Add",
-    "or": "or"
+    "or": "or",
+    "markdownPreview": "Markdown preview",
+    "markdownEdit": "Markdown edit"
   },
   "activity": {
     "assign": {

@@ -53,6 +53,12 @@ module.exports = function(environment) {
     flashMessageDefaults: {
       sticky: true,
       preventDuplicates: true
+    },
+
+    showdown: {
+      noHeaderId: true,
+      headerLevelStart: 5,
+      smoothLivePreview: true
     }
   };
 

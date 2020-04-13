@@ -26,7 +26,7 @@ module('Acceptance | tickets/view - base', function(hooks) {
 
     assert.equal(currentURL(), `/view/${ticket.id}`);
 
-    assert.equal(find('[data-test-name]').textContent, 'John Doe');
+    assert.equal(find('[data-test-name]').textContent.trim(), 'John Doe');
     assert.ok(
       find('[data-test="background"]').textContent.includes('Lorem ipsum some background.')
     );
@@ -51,7 +51,7 @@ module('Acceptance | tickets/view - base', function(hooks) {
 
     assert.equal(currentURL(), `/view/${ticket.id}`);
 
-    assert.equal(find('[data-test-name]').textContent, 'Acme Inc.');
+    assert.equal(find('[data-test-name]').textContent.trim(), 'Acme Inc.');
     assert.ok(
       find('[data-test="country"]').textContent.includes('Bosnia and Herzegovina')
     );

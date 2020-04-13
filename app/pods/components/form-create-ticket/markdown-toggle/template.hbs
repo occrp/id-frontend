@@ -1,0 +1,19 @@
+{{#if value}}
+  <a class="link" {{action (toggle 'isPreviewed' this)}}>
+    <small class="light-silver b">
+      {{#if isPreviewed}}
+        {{t 'actions.markdownEdit'}}
+      {{else}}
+        {{t 'actions.markdownPreview'}}
+      {{/if}}
+    </small>
+  </a>
+{{/if}}
+
+{{#if (and value isPreviewed)}}
+  <div class="bg-washed-yellow mt2 pa3">
+    {{markdown-to-html value}}
+  </div>
+{{else}}
+  {{yield}}
+{{/if}}

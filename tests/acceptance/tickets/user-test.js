@@ -35,7 +35,7 @@ module('Acceptance | user', function(hooks) {
 
     await fillIn('#user-bio', newBio);
     await click('[data-test-user-save]');
-    assert.equal(currentURL(), '/user');
+    assert.equal(currentURL(), '/new');
 
     await visit('/new');
     assert.equal(currentURL(), '/new');
