@@ -1,9 +1,9 @@
 <div class="flex">
-  <div class="mt2 flex ttu items-center justify-between w-40">
+  <div class="mt2 ttu w-60 flex">
     {{#link-to "view.ticket" model class="occrp-gray db pv2 link dim" activeClass="b bw2 bb b--occrp-gray"}}
       #{{model.id}} {{t 'ticket.details'}}
     {{/link-to}}
-    {{#link-to "view.attachments" model class="occrp-gray db pv2 dim link" activeClass="b bw2 bb b--occrp-gray"}}
+    {{#link-to "view.attachments" model class="occrp-gray db pv2 mh4 dim link" activeClass="b bw2 bb b--occrp-gray"}}
       {{t 'attachment.attachments'}}
     {{/link-to}}
 
