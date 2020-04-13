@@ -74,9 +74,11 @@
         errors=buffer.displayErrors.background
         didValidate=didValidate as |field|}}
 
-        <label for="ticket-background">{{t 'ticket.background.formLabel'}} <span class="t-danger">*</span></label>
-        <small class="formText t-muted">{{t 'ticket.background.desc'}}</small>
-        {{textarea rows=5 value=buffer.background class="formControl" id="ticket-background" focus-out=field.triggerValidations}}
+        <label class="db" for="ticket-background">{{t 'ticket.background.formLabel'}} <span class="t-danger">*</span></label>
+        <small class="light-silver">{{t 'ticket.background.desc'}}</small>
+        {{#form-create-ticket/markdown-toggle tagName='' value=buffer.background}}
+          {{textarea rows=5 value=buffer.background class="formControl mt2" id="ticket-background" focus-out=field.triggerValidations}}
+        {{/form-create-ticket/markdown-toggle}}
 
         {{#if field.showErrors}}
           {{#each field.errors as |error|}}
@@ -90,9 +92,11 @@
        errors=buffer.displayErrors.initialInformation
        didValidate=didValidate as |field|}}
 
-        <label for="ticket-initialInformation">{{t 'ticket.initialInformation.formLabel'}} <span class="t-danger">*</span></label>
-        <small class="formText t-muted">{{t 'ticket.initialInformation.desc'}}</small>
-        {{textarea rows=5 value=buffer.initialInformation class="formControl" id="ticket-initialInformation" focus-out=field.triggerValidations}}
+        <label class="db" for="ticket-initialInformation">{{t 'ticket.initialInformation.formLabel'}} <span class="t-danger">*</span></label>
+        <small class="light-silver">{{t 'ticket.initialInformation.desc'}}</small>
+        {{#form-create-ticket/markdown-toggle tagName='' value=buffer.initialInformation}}
+          {{textarea rows=5 value=buffer.initialInformation class="formControl mt2" id="ticket-initialInformation" focus-out=field.triggerValidations}}
+        {{/form-create-ticket/markdown-toggle}}
 
         {{#if field.showErrors}}
           {{#each field.errors as |error|}}
@@ -115,9 +119,11 @@
        errors=buffer.displayErrors.sources
        didValidate=didValidate as |field|}}
 
-       <label for="ticket-sources-person">{{t 'ticket.sourcesPerson.label'}}</label>
-        <small class="formText t-muted">{{t 'ticket.sourcesPerson.desc'}}</small>
-        {{textarea rows=3 value=buffer.sources class="formControl" id="ticket-sources-person" focus-out=field.triggerValidations}}
+       <label class="db" for="ticket-sources-person">{{t 'ticket.sourcesPerson.label'}}</label>
+        <small class="light-silver">{{t 'ticket.sourcesPerson.desc'}}</small>
+        {{#form-create-ticket/markdown-toggle tagName='' value=buffer.sources}}
+          {{textarea rows=3 value=buffer.sources class="formControl mt2" id="ticket-sources-person" focus-out=field.triggerValidations}}
+        {{/form-create-ticket/markdown-toggle}}
 
         {{#if field.showErrors}}
           {{#each field.errors as |error|}}
@@ -132,9 +138,11 @@
        errors=buffer.displayErrors.connections
        didValidate=didValidate as |field|}}
 
-        <label for="ticket-connections-person">{{t 'ticket.connectionsPerson.label'}}</label>
-        <small class="formText t-muted">{{t 'ticket.connectionsPerson.desc'}}</small>
-        {{textarea rows=3 value=buffer.connections class="formControl" id="ticket-connections-person" focus-out=field.triggerValidations}}
+        <label class="db" for="ticket-connections-person">{{t 'ticket.connectionsPerson.label'}}</label>
+        <small class="light-silver">{{t 'ticket.connectionsPerson.desc'}}</small>
+        {{#form-create-ticket/markdown-toggle tagName='' value=buffer.connections}}
+          {{textarea rows=3 value=buffer.connections class="formControl mt2" id="ticket-connections-person" focus-out=field.triggerValidations}}
+        {{/form-create-ticket/markdown-toggle}}
 
         {{#if field.showErrors}}
           {{#each field.errors as |error|}}
@@ -148,8 +156,10 @@
        errors=buffer.displayErrors.businessActivities
        didValidate=didValidate as |field|}}
 
-        <label for="ticket-businessActivities">{{t 'ticket.businessActivities.label'}}</label>
-        {{textarea rows=3 value=buffer.businessActivities class="formControl" id="ticket-businessActivities" focus-out=field.triggerValidations}}
+        <label class="db" for="ticket-businessActivities">{{t 'ticket.businessActivities.label'}}</label>
+        {{#form-create-ticket/markdown-toggle tagName='' value=buffer.businessActivities}}
+          {{textarea rows=3 value=buffer.businessActivities class="formControl mt2" id="ticket-businessActivities" focus-out=field.triggerValidations}}
+        {{/form-create-ticket/markdown-toggle}}
 
         {{#if field.showErrors}}
           {{#each field.errors as |error|}}
@@ -210,9 +220,11 @@
         errors=buffer.displayErrors.background
         didValidate=didValidate as |field|}}
 
-        <label for="ticket-background-company">{{t 'ticket.backgroundCompany.formLabel'}} <span class="t-danger">*</span></label>
-        <small class="formText t-muted">{{t 'ticket.backgroundCompany.desc'}}</small>
-        {{textarea rows=5 value=buffer.background class="formControl" id="ticket-background-company" focus-out=field.triggerValidations}}
+        <label class="db" for="ticket-background-company">{{t 'ticket.backgroundCompany.formLabel'}} <span class="t-danger">*</span></label>
+        <small class="light-silver">{{t 'ticket.backgroundCompany.desc'}}</small>
+        {{#form-create-ticket/markdown-toggle tagName='' value=buffer.background}}
+          {{textarea rows=5 value=buffer.background class="formControl mt2" id="ticket-background-company" focus-out=field.triggerValidations}}
+        {{/form-create-ticket/markdown-toggle}}
 
         {{#if field.showErrors}}
           {{#each field.errors as |error|}}
@@ -226,9 +238,11 @@
         errors=buffer.displayErrors.sources
         didValidate=didValidate as |field|}}
 
-        <label for="ticket-sources">{{t 'ticket.sources.formLabel'}} <span class="t-danger">*</span></label>
-        <small class="formText t-muted">{{t 'ticket.sources.desc'}}</small>
-        {{textarea rows=5 value=buffer.sources class="formControl" id="ticket-sources" focus-out=field.triggerValidations}}
+        <label class="db" for="ticket-sources">{{t 'ticket.sources.formLabel'}} <span class="t-danger">*</span></label>
+        <small class="light-silver">{{t 'ticket.sources.desc'}}</small>
+        {{#form-create-ticket/markdown-toggle tagName='' value=buffer.sources}}
+          {{textarea rows=5 value=buffer.sources class="formControl mt2" id="ticket-sources" focus-out=field.triggerValidations}}
+        {{/form-create-ticket/markdown-toggle}}
 
         {{#if field.showErrors}}
           {{#each field.errors as |error|}}
@@ -245,8 +259,10 @@
        errors=buffer.displayErrors.connections
        didValidate=didValidate as |field|}}
 
-        <label for="ticket-connections">{{t 'ticket.connections.formLabel'}}</label>
-        {{textarea rows=3 value=buffer.connections class="formControl" id="ticket-connections" focus-out=field.triggerValidations}}
+        <label class="db" for="ticket-connections">{{t 'ticket.connections.formLabel'}}</label>
+        {{#form-create-ticket/markdown-toggle tagName='' value=buffer.connections}}
+          {{textarea rows=3 value=buffer.connections class="formControl mt2" id="ticket-connections" focus-out=field.triggerValidations}}
+        {{/form-create-ticket/markdown-toggle}}
 
         {{#if field.showErrors}}
           {{#each field.errors as |error|}}
@@ -301,9 +317,11 @@
         errors=buffer.displayErrors.background
         didValidate=didValidate as |field|}}
 
-        <label for="ticket-background-vehicle">{{t 'ticket.backgroundVehicle.label'}} <span class="t-danger">*</span></label>
-        <small class="formText t-muted">{{t 'ticket.backgroundVehicle.desc'}}</small>
-        {{textarea rows=5 value=buffer.background class="formControl" id="ticket-background-vehicle" focus-out=field.triggerValidations}}
+        <label class="db" for="ticket-background-vehicle">{{t 'ticket.backgroundVehicle.label'}} <span class="t-danger">*</span></label>
+        <small class="light-silver">{{t 'ticket.backgroundVehicle.desc'}}</small>
+        {{#form-create-ticket/markdown-toggle tagName='' value=buffer.background}}
+          {{textarea rows=5 value=buffer.background class="formControl mt2" id="ticket-background-vehicle" focus-out=field.triggerValidations}}
+        {{/form-create-ticket/markdown-toggle}}
 
         {{#if field.showErrors}}
           {{#each field.errors as |error|}}
@@ -342,9 +360,11 @@
         errors=buffer.displayErrors.background
         didValidate=didValidate as |field|}}
 
-        <label for="ticket-background-data">{{t 'ticket.backgroundData.label'}} <span class="t-danger">*</span></label>
-        <small class="formText t-muted">{{t 'ticket.backgroundData.desc'}}</small>
-        {{textarea rows=5 value=buffer.background class="formControl" id="ticket-background-data" focus-out=field.triggerValidations}}
+        <label class="db" for="ticket-background-data">{{t 'ticket.backgroundData.label'}} <span class="t-danger">*</span></label>
+        <small class="light-silver">{{t 'ticket.backgroundData.desc'}}</small>
+        {{#form-create-ticket/markdown-toggle tagName='' value=buffer.background}}
+          {{textarea rows=5 value=buffer.background class="formControl mt2" id="ticket-background-data" focus-out=field.triggerValidations}}
+        {{/form-create-ticket/markdown-toggle}}
 
         {{#if field.showErrors}}
           {{#each field.errors as |error|}}
@@ -358,8 +378,10 @@
        errors=buffer.displayErrors.sources
        didValidate=didValidate as |field|}}
 
-       <label for="ticket-sources-data">{{t 'ticket.sourcesData.label'}}</label>
-        {{textarea rows=3 value=buffer.sources class="formControl" id="ticket-sources-data" focus-out=field.triggerValidations}}
+        <label class="db" for="ticket-sources-data">{{t 'ticket.sourcesData.label'}}</label>
+        {{#form-create-ticket/markdown-toggle tagName='' value=buffer.sources}}
+          {{textarea rows=3 value=buffer.sources class="formControl mt2" id="ticket-sources-data" focus-out=field.triggerValidations}}
+        {{/form-create-ticket/markdown-toggle}}
 
         {{#if field.showErrors}}
           {{#each field.errors as |error|}}
@@ -379,9 +401,11 @@
         didValidate=didValidate
         as |field|}}
 
-        <label for="ticket-background-other">{{t 'ticket.backgroundOther.formLabel'}} <span class="t-danger">*</span></label>
-        <small class="formText t-muted">{{t 'ticket.backgroundOther.desc'}}</small>
-        {{textarea rows=7 value=buffer.background class="formControl" id="ticket-background-other" focus-out=field.triggerValidations}}
+        <label class="db" for="ticket-background-other">{{t 'ticket.backgroundOther.formLabel'}} <span class="t-danger">*</span></label>
+        <small class="light-silver">{{t 'ticket.backgroundOther.desc'}}</small>
+        {{#form-create-ticket/markdown-toggle tagName='' value=buffer.background}}
+          {{textarea rows=3 value=buffer.background class="formControl mt2" id="ticket-background-other" focus-out=field.triggerValidations}}
+        {{/form-create-ticket/markdown-toggle}}
 
         {{#if field.showErrors}}
           {{#each field.errors as |error|}}
@@ -462,8 +486,10 @@
           didValidate=didValidate
           as |field|}}
 
-          <label for="ticket-whysensitive" class="formText t-muted">{{t 'ticket.whysensitive.label'}}</label>
-          {{textarea rows=5 value=buffer.whysensitive class="formControl" id="ticket-whysensitive" focus-out=field.triggerValidations}}
+          <label for="ticket-whysensitive" class="light-silver">{{t 'ticket.whysensitive.label'}}</label>
+          {{#form-create-ticket/markdown-toggle tagName='' value=buffer.whysensitive}}
+              {{textarea rows=5 value=buffer.whysensitive class="formControl mt2" id="ticket-whysensitive" focus-out=field.triggerValidations}}
+          {{/form-create-ticket/markdown-toggle}}
 
           {{#if field.showErrors}}
             {{#each field.errors as |error|}}

@@ -9,7 +9,7 @@ export default Route.extend({
   session: service(),
 
   actions: {
-    save: function(params, queryParams) {
+    save: function() {
       this.currentModel.save().then(()=> {
         if (this.get('resumeSubmission')) {
           this.transitionTo('new');

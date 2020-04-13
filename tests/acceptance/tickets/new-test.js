@@ -81,7 +81,7 @@ module('Acceptance | tickets/new', function(hooks) {
 
     assert.equal(currentURL(), '/view/1');
 
-    assert.equal(find('[data-test-name]').textContent, 'John Doe');
+    assert.equal(find('[data-test-name]').textContent.trim(), 'John Doe');
   });
 
 
@@ -147,7 +147,7 @@ module('Acceptance | tickets/new', function(hooks) {
 
     assert.equal(currentURL(), '/view/1');
 
-    assert.equal(find('[data-test-name]').textContent, 'Acme Inc.');
+    assert.equal(find('[data-test-name]').textContent.trim(), 'Acme Inc.');
   });
 
   test('creating a new ticket (vehicle)', async function(assert) {

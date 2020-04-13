@@ -2,7 +2,13 @@
   <span class="ttu tracked gray db">{{title}}</span>
 
   {{#if (not-eq content null)}}
-    <span class="{{contentCssNames}}" data-test={{testSel}}>{{~yield~}}{{~content~}}</span>
+    {{#if markdown}}
+      <div class="{{contentCssNames}}" data-test={{testSel}}>
+        {{markdown-to-html content}}
+      </div>
+    {{else}}
+      <span class="{{contentCssNames}}" data-test={{testSel}}>{{~yield~}}{{~content~}}</span>
+    {{/if}}
   {{else}}
     &mdash;
   {{/if}}
