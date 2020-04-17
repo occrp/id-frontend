@@ -1,10 +1,10 @@
-<div class="blankSlate">
-  {{icon "issue-opened" class="icon--xxl blankSlate-icon"}}
+<div class="tc pt5">
+  {{icon "issue-opened" class="icon--xxl mv4"}}
 
   {{#if title}}
-    <h3 class="t4 blankSlate-title">{{title}}</h3>
+    <h3 class="normal">{{title}}</h3>
   {{/if}}
-  <div class="blankSlate-body">
+  <div class="lh-copy pv3">
     {{yield}}
   </div>
 </div>
