@@ -12,10 +12,6 @@ export default Component.extend({
       const afterSave = this.get('afterSave');
       const model = this.get('model');
 
-      if (!model.get('createdAt')) {
-        model.set('createdAt', new Date);
-      }
-
       model.save().then(function() { afterSave(model) });
     },
 

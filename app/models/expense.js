@@ -7,10 +7,10 @@ export default DS.Model.extend({
   scope: attr('string'),
   amount: attr('number'),
   amountCurrency: attr('string', { defaultValue: 'USD' }),
-  rating: attr('number'),
+  rating: attr('number', { defaultValue: 0 }),
   notes: attr('string'),
   paymentMethod: attr('string'),
-  createdAt: attr('date'),
+  createdAt: attr('date', { defaultValue() { return new Date(); } }),
   updatedAt: attr('date'),
 
   user: belongsTo('profile'),
