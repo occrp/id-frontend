@@ -18,7 +18,9 @@ export default Component.extend({
     'attachment:create': 'attachment',
     'attachment:destroy': 'attachment-deleted',
     'responder:create': 'assign',
-    'responder:destroy': 'unassign'
+    'responder:destroy': 'unassign',
+    'expense:create': 'expense',
+    'expense:destroy': 'expense-deleted'
   }),
 
   activityCache: null,

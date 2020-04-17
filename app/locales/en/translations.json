@@ -31,6 +31,10 @@
       "submitButton": "Post comment",
       "title": "Leave a comment"
     },
+    "expense": {
+      "action": "{{user}} saved a resource",
+      "removed": "{{user}} removed a resource"
+    },
     "loadOlder": "Load older",
     "one": "Activity",
     "reopen": {

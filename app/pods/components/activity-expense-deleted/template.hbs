@@ -1,0 +1,8 @@
+<div class="activity-headline">
+  {{icon "bookmark"}}
+  <div>
+    <strong>{{user-avatar user=data.user preset="small"}}{{data.user.displayName}}</strong>
+    {{t 'activity.expense.removed'}} &bull;
+    {{timestamp-full data.createdAt}}
+  </div>
+</div>
