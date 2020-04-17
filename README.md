@@ -1,7 +1,6 @@
-# The Investigative Dashboard Project Client 🕵️
+# The Investigative Dashboard project web app 🕵️
 
-[![Build Status](https://travis-ci.org/occrp/id-frontend.svg?branch=master)](https://travis-ci.org/occrp/id-frontend)
- [![Translation status](https://hosted.weblate.org/widgets/occrp/-/investigative-dashboard/svg-badge.svg)](https://hosted.weblate.org/engage/occrp/?utm_source=widget)
+[![Translation status](https://hosted.weblate.org/widgets/occrp/-/investigative-dashboard/svg-badge.svg)](https://hosted.weblate.org/engage/occrp/?utm_source=widget)
 
 [OCCRP](https://tech.occrp.org/projects/) research desk application front-end.
 
@@ -59,4 +58,3 @@ To sync the translations add the git repository and rebase Weblate commits:
 $ git remote add weblate https://hosted.weblate.org/git/occrp/investigative-dashboard/
 $ git fetch -all
 $ git rebase weblate/master
-```
