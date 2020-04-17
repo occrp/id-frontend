@@ -62,7 +62,7 @@
       <div class="formGroup">
         <label for="ticket-nationality">{{t 'ticket.countryPerson.label'}}</label>
         <select onchange={{action (mut buffer.country) value="target.value"}} class="formControl" id="ticket-nationality">
-          <option value="">- Choose -</option>
+          <option value=""> - {{t 'actions.choose'}} - </option>
           {{#each-in countries as |code name|}}
             <option value={{code}} selected={{eq buffer.country code}}>{{name}}</option>
           {{/each-in}}
@@ -430,7 +430,12 @@
         didValidate=didValidate as |field|}}
 
         <label for="ticket-member-center">{{t 'pods.new.form.memberCenterDetails'}} <span class="t-danger">*</span></label>
-        {{input value=buffer.memberCenter class="formControl" id="ticket-member-center" focus-out=field.triggerValidations}}
+        <select onchange={{action (mut buffer.memberCenter) value="target.value"}} class="formControl" id="ticket-member-center">
+          <option value=""> - {{t 'actions.choose'}} - </option>
+          {{#each session.currentUserMeta.memberCenters as |memberCenter|}}
+            <option value={{memberCenter}} selected={{eq buffer.memberCenter memberCenter}}>{{memberCenter}}</option>
+          {{/each}}
+        </select>
 
         {{#if field.showErrors}}
           {{#each field.errors as |error|}}

@@ -63,6 +63,7 @@ module('Acceptance | Expense creation', function(hooks) {
 
     assert.equal(currentURL(), `/view/${ticket.id}/expenses/new`);
 
+    await click('[data-test-cust-scope]');
     await fillIn('#expense-scope', 'data.occrp.org');
     await fillIn('#expense-rating', 3);
 

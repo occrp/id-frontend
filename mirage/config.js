@@ -5,7 +5,12 @@ import Response from 'ember-cli-mirage/response';
 export default function() {
   this.namespace = '/api/v3';
 
-  this.get('/me', function (schema) {
+  this.get('/me', function (schema, request) {
+    request.mirageMeta = {
+      'member-centers': ['OCCRP', 'RISE'],
+      'expense-scopes': ['orbis.com', 'domaintools.com']
+    };
+
     return schema.profiles.find(42);
   }, { timing: 0 });
 

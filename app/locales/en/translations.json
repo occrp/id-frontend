@@ -15,6 +15,7 @@
     "confirm": "Confirm",
     "add": "Add",
     "or": "or",
+    "choose": "Choose",
     "markdownPreview": "Markdown preview",
     "markdownEdit": "Markdown edit"
   },
@@ -92,7 +93,9 @@
     "rating_0": "Didn't use",
     "rating_1": "Consulted",
     "rating_2": "Helpful",
-    "rating_3": "Exclusive"
+    "rating_3": "Exclusive",
+    "customScope": "Not in the list? Add it manually...",
+    "paymentExtras": "Add payment details..."
   },
   "filters": {
     "country": {

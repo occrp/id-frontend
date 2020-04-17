@@ -3,7 +3,28 @@
     <label for="expense-scope" class="db">
       {{t 'expenses.scope'}}
     </label>
-    {{input id="expense-scope" value=model.scope class="db w-100 ba pa2"}}
+
+    {{#if (or customScope (and model.scope (not (contains model.scope session.currentUserMeta.expenseScopes))))}}
+      {{input id="expense-scope" value=model.scope class="db w-100 ba pa2"}}
+    {{else}}
+      <select id="expense-scope" class="dib bg-white w-50 ba pa2"
+        onchange={{action (mut model.scope) value="target.value"}}
+      >
+        <option> - {{t 'actions.choose'}} - </option>
+
+        {{#each session.currentUserMeta.expenseScopes as |scope|}}
+          <option value={{scope}} selected={{eq scope model.scope}}>
+            {{scope}}
+          </option>
+        {{/each}}
+      </select>
+
+      <a {{action (action (mut customScope) (if customScope false true))}}
+        class="link silver dim" data-test-cust-scope
+      >
+        {{t 'expenses.customScope'}}
+      </a>
+    {{/if}}
   </div>
 
   <div class="w-30">
@@ -64,7 +85,7 @@
   <div class="mv4">
     <p class="lh-copy">
       <a {{action (action (mut showExtra) (if showExtra false true))}} class="link occrp-gray dim" data-test-extra>
-        Add payment details...
+        {{t 'expenses.paymentExtras'}}
       </a>
     </p>
   </div>

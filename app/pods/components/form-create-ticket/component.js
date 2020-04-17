@@ -4,11 +4,14 @@ import formBufferProperty from 'ember-validated-form-buffer';
 import countries from 'i18n-iso-countries';
 import moment from 'moment';
 import { task } from 'ember-concurrency';
+import { inject as service } from '@ember/service';
 
 export default Component.extend({
   kindList,
   dataRequestTypes,
   countries: countries.getNames('en'),
+
+  session: service(),
 
   today: moment.utc(),
   minimumDeadline: moment.utc().add(3, 'days'),

@@ -2,7 +2,7 @@ import { camelize } from '@ember/string';
 import { typeOf } from '@ember/utils';
 import DS from 'ember-data';
 
-let camelCaseKeys = function(hash) {
+export function camelCaseKeys(hash) {
   let json = {};
 
   for (let prop in hash) {
@@ -16,7 +16,7 @@ let camelCaseKeys = function(hash) {
   }
 
   return json;
-};
+}
 
 export default DS.JSONAPISerializer.extend({
 
