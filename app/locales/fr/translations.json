@@ -6,13 +6,16 @@
       "shortForm": "Attribuer à l'équipe"
     },
     "cancel": "Annuler",
+    "choose": "Choisir",
     "close": "Proche",
-    "delete": "Delete",
-    "remove": "Supprimer",
+    "confirm": "Confirmer",
+    "delete": "Supprimer",
+    "or": "ou",
+    "remove": "Retirer",
     "reopen": "Réouvrir",
     "save": "Enregistrer",
-    "unmark": "Retirer l'indication",
-    "upload": "Télécharger"
+    "unmark": "retirer l'indication",
+    "upload": "Téléverser"
   },
   "activity": {
     "assign": {
@@ -26,6 +29,10 @@
       "action": "",
       "submitButton": "Publier des commentaires",
       "title": "Laisser un commentaire"
+    },
+    "expense": {
+      "action": "{{user}} a enregistré une ressource",
+      "removed": "{{user}} a retiré une ressource"
     },
     "loadOlder": "Charger plus ancien",
     "one": "Activité",
@@ -50,7 +57,7 @@
     },
     "filesSelected": "{{count}} fichiers sélectionnés",
     "other": "Pièces jointes",
-    "removalPrompt": "Êtes-vous sûr de vouloir supprimer ce fichier ?",
+    "removalPrompt": "Êtes-vous sûr(e) de vouloir supprimer ce fichier ?",
     "state": {
       "aborted": "Annulé",
       "failed": "Échec",
@@ -79,6 +86,10 @@
       "body": "Nous avons été informés automatiquement et nous avons besoin d'une meilleure copie pour cela.",
       "title": "Une erreur s'est produite lors du traitement de votre requête."
     }
+  },
+  "expenses": {
+    "customScope": "Pas dans la liste ? Ajoutez-le manuellement…",
+    "paymentExtras": "Ajouter les détails du paiement…"
   },
   "filters": {
     "country": {
@@ -117,14 +128,14 @@
   "locales": {
     "ar": "arabe",
     "bs": "serbo-croate",
-    "en": "English",
+    "en": "anglais",
     "es": "espagnol",
     "fr": "français",
     "ru": "russe"
   },
   "nav": {
     "account": {
-      "logout": "Déconnexion",
+      "logout": "Se déconnecter",
       "profile": "Profil"
     },
     "reports": "Reports",
@@ -195,7 +206,8 @@
         "title": "Êtes-vous sûr(e) que vous souhaitez {{verb}} cette requête ?"
       },
       "pending": {
-        "button": "Indiquer comme en attente"
+        "button": "marquer comme en attente",
+        "title": "Pourquoi le marquer comme en attente ?"
       },
       "reopen": {
         "button": "Réouvrir la demande",
@@ -215,6 +227,7 @@
     }
   },
   "ticket": {
+    "addSubscriber": "Ajouter un·e abonné·e",
     "background": {
       "desc": "Que savez-vous aujourd'hui ? ",
       "formLabel": "Votre histoire",
@@ -245,10 +258,10 @@
     },
     "connectionsPerson": {
       "desc": "Relations familiales connues.",
-      "label": "Famille et Associés"
+      "label": "Famille et associés"
     },
     "country": {
-      "label": "Pays enregistré(s)",
+      "label": "Pays enregistré",
       "one": "Pays",
       "other": "Pays",
       "search": {
@@ -259,10 +272,11 @@
     "countryPerson": {
       "label": "Nationalité"
     },
+    "createdAt": "Ajouté le",
     "deadline": {
-      "desc": "Nous ferons notre possible pour respecter votre échéance. Nous vous informons que nos investigateurs sont assez occupés.<br /> Accordez-leur le plus de temps possible !",
+      "desc": "Nous ferons notre possible pour respecter votre échéance. Nous vous informons que nos investigateurs sont assez occupés.<br /> Accordez-leur le plus de temps possible !",
       "empty": "Aucune date butoir",
-      "label": "Echéance",
+      "label": "Échéance",
       "prefix": "Exigible le {{relativeTime}}"
     },
     "firstName": {
@@ -270,30 +284,39 @@
     },
     "initialInformation": {
       "desc": "Toute information déjà en votre possession.",
-      "formLabel": "Où avez-vous cherché ? ",
+      "formLabel": "Où avez-vous cherché ?",
       "label": "Information initiale"
     },
     "kind": {
       "company_ownership": {
-        "name": "Déterminer la propriété de la société",
+        "name": "À propos d'une société",
         "shortName": "Société"
       },
       "one": "Type",
       "other": {
-        "name": "Tout autre question",
+        "name": "Quelque chose d'autre",
         "shortName": "Autres"
       },
       "person_ownership": {
-        "name": "Identifier ce qu'une personne possède",
+        "name": "À propos d'une personne",
         "shortName": "Personne"
       }
     },
     "lastName": {
       "label": "Nom de famille"
     },
+    "memberCenter": "Centre des membres",
     "one": "Requête",
     "other": "{{count}} requêtes",
+    "priority": {
+      "default": "Normale",
+      "high": "Haute",
+      "label": "Priorité",
+      "low": "Basse"
+    },
     "requester": {
+      "bio": "Bio",
+      "email": "Contact",
       "one": "Demandeur",
       "other": "Demandeurs",
       "prefix": "Soumis par {{requester}}"
@@ -304,7 +327,7 @@
       "one": "Répondre",
       "other": "Personne en charge de répondre",
       "selfNotice": "Cette requête vous est attribuée.",
-      "selfRemove": "Se retirer ?"
+      "selfRemove": "Se retirer"
     },
     "search": {
       "clear": "Fermer la recherche",
@@ -337,6 +360,7 @@
       "in-progress": {
         "name": "En cours"
       },
+      "label": "État actuel",
       "new": {
         "name": "Nouveau"
       },
@@ -349,12 +373,9 @@
       "one": "Abonné",
       "other": "Abonnés",
       "selfNotice": "Vous êtes abonné à cette requête.",
-      "selfRemove": "Se désabonner ?"
+      "selfRemove": "Se désabonner"
     },
-    "updatedAt": {
-      "label": "Dernière mise à jour",
-      "prefix": "Mis à jour le {{relativeTime}}"
-    },
+    "updatedAt": "Mis à jour le",
     "whysensitive": {
       "label": "Pourquoi est-ce sensible ? "
     }
@@ -373,6 +394,6 @@
     "after": "Cette date doit être après {{after}}",
     "before": "Cette date doit être avant {{before}}}",
     "blank": "Ce champ ne peut pas être vide",
-    "email": "Ce champ requiert une adresse e-mail valide"
+    "email": "Ce champ requiert une adresse courriel valide"
   }
 }
