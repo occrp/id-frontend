@@ -6,8 +6,13 @@
       "shortForm": "Tildel"
     },
     "cancel": "Avbryt",
+    "choose": "Velg",
     "close": "Lukk",
+    "confirm": "Bekreft",
     "delete": "Slett",
+    "markdownEdit": "Markdown-redigering",
+    "markdownPreview": "Markdown-forhåndsvisning",
+    "or": "eller",
     "remove": "Fjern",
     "reopen": "Gjenåpne",
     "save": "Lagre",
@@ -26,6 +31,10 @@
       "action": "{{user}} kommenterte {{relativeTime}}",
       "submitButton": "Legg inn kommentar",
       "title": "Kommenter"
+    },
+    "expense": {
+      "action": "{{user}} lagret en ressurs",
+      "removed": "{{user}} fjernet en ressurs"
     },
     "loadOlder": "Last inn eldre",
     "one": "Aktivitet",
@@ -253,6 +262,7 @@
     "countryPerson": {
       "label": "Nasjonalitet"
     },
+    "createdAt": "Lagt til",
     "deadline": {
       "desc": "Vi prøver å overholde tidsfristen, men ha i minnet at vi er travle.<br /> Gi dem som mye tid du kan!",
       "empty": "Ingen tidsfrist",
@@ -287,6 +297,12 @@
     },
     "one": "Forespørsel",
     "other": "{{count}} forespørsler",
+    "priority": {
+      "default": "Normal",
+      "high": "Høy",
+      "label": "Prioritet",
+      "low": "Lav"
+    },
     "requester": {
       "one": "Forespørrer",
       "other": "Forespørrere",
@@ -331,6 +347,7 @@
       "in-progress": {
         "name": "Underveis"
       },
+      "label": "Nåværende status",
       "new": {
         "name": "Ny"
       },
@@ -345,10 +362,7 @@
       "selfNotice": "Du abonnerer på denne forespørselen.",
       "selfRemove": "Opphev abonnement?"
     },
-    "updatedAt": {
-      "label": "Siste oppdatering",
-      "prefix": "oppdatert {{relativeTime}}"
-    },
+    "updatedAt": "Oppdatert",
     "whysensitive": {
       "label": "Hvorfor er det sensitivt?"
     }
