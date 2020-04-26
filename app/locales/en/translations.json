@@ -281,6 +281,9 @@
       "desc": "Known family relationships.",
       "label": "Family And Associates"
     },
+    "countries": {
+      "label": "Related countries"
+    },
     "country": {
       "label": "Country registered",
       "one": "Country",

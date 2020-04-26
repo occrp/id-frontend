@@ -1,0 +1,38 @@
+<p class="pv2">
+  <span class="gray ttu tracked db">
+    {{t 'ticket.countries.label'}}
+  </span>
+
+  {{#if (can 'manage tickets')}}
+    <select
+      onchange={{action (mut selectedCountry) value="target.value"}}
+      class="mv2 bg-white w-70 bl-0 br-0 bt-0 bb"
+      id="ticket-countries"
+    >
+      <option value=""> - {{t 'actions.choose'}} - </option>
+      {{#each-in countries as |code name|}}
+        <option value={{code}} selected={{eq selectedCountry code}}>{{name}}</option>
+      {{/each-in}}
+    </select>
+
+    {{#if (and selectedCountry (not model.isSaving))}}
+      <a {{action 'addCountry'}} class="link b">
+        {{t 'actions.save'}}
+      </a>
+    {{/if}}
+  {{/if}}
+</p>
+
+<p>
+  {{#each model.countries as |code index|}}
+    {{#if (can 'manage tickets')}}
+      <a class="dib link gray ba b--gray pa1 mb1" {{action 'removeCountry' code}} disabled={{model.isSaving}}>
+        {{code}} {{icon 'x' class='nb-2'}}
+      </a>&nbsp;
+    {{else}}
+      <span class="dib link gray ba b--gray pa1 mb1">
+        {{code}}
+      </span>&nbsp;
+    {{/if}}
+  {{/each}}
+</p>
