@@ -16,23 +16,21 @@
     </select>
 
     {{#if (and selectedCountry (not model.isSaving))}}
-      <a {{action 'addCountry'}} class="link b">
+      <a {{action 'addCountry'}} class="link b" data-test-add-country>
         {{t 'actions.save'}}
       </a>
     {{/if}}
   {{/if}}
 </p>
 
-<p>
+<p data-test-countries>
   {{#each model.countries as |code index|}}
     {{#if (can 'manage tickets')}}
       <a class="dib link gray ba b--gray pa1 mb1" {{action 'removeCountry' code}} disabled={{model.isSaving}}>
         {{code}} {{icon 'x' class='nb-2'}}
       </a>&nbsp;
     {{else}}
-      <span class="dib link gray ba b--gray pa1 mb1">
-        {{code}}
-      </span>&nbsp;
+      <span class="dib link gray ba b--gray pa1 mb1">{{code}}</span>&nbsp;
     {{/if}}
   {{/each}}
 </p>

@@ -39,6 +39,7 @@ module('Acceptance | tickets/view - edit', function(hooks) {
         "business-activities": "Bizniss",
         "company-name": null,
         "connections": "Family",
+        "countries": [],
         "created-at": "2016-12-01T22:00:00.000Z",
         "deadline-at": "2100-03-20T00:00:00.000Z",
         "born-at": "2004-12-01T22:00:00.000Z",

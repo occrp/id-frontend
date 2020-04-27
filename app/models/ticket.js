@@ -66,7 +66,7 @@ export default DS.Model.extend({
   whysensitive: attr('string'),
   memberCenter: attr('string'),
   identifier: attr('string'),
-  countries: attr(),
+  countries: attr({ defaultValue: function() { return Array(); } }),
   tags: attr(),
 
   // Person
