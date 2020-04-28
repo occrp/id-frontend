@@ -31,6 +31,11 @@ export default Route.extend({
     }
   },
 
+  afterModel(transition) {
+    const controller = this.controllerFor(this.get('routeName'));
+    controller.set('csvExportParams', transition.query);
+  },
+
   model(params) {
     return this.get('store').query('ticket', {
       filter: {

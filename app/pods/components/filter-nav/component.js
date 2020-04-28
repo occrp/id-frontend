@@ -1,3 +1,5 @@
+import $ from 'jquery';
+import { getOwner } from '@ember/application';
 import { computed } from '@ember/object';
 import { inject as service } from '@ember/service';
 import Component from '@ember/component';
@@ -10,6 +12,14 @@ export default Component.extend({
 
   tagName: '',
   kindList,
+  csvExportParams: null,
+
+  csvExportUrl: computed('csvExportParams', function() {
+    const adapter = getOwner(this).lookup('adapter:application');
+    const qParams = $.param(this.get('csvExportParams'));
+
+    return adapter.urlForQuery({}, 'ticket-exports') + '?' + qParams;
+  }),
 
   sortFields: computed('i18n.locale', function() {
     let i18n = this.get('i18n');

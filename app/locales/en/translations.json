@@ -110,6 +110,10 @@
       "clear": "Clear all filters",
       "title": "Filtered by"
     },
+    "export": {
+      "action": "As CSV",
+      "title": "Export"
+    },
     "kind": {
       "title": "Filter by type"
     },

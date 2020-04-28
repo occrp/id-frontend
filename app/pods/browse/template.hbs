@@ -23,6 +23,7 @@
       responder=responder
       sort=sort
       updateFilter=(action 'updateFilter')
+      csvExportParams=csvExportParams
     }}
       <div class="statusTabs">
         {{#link-to 'browse' (query-params status=statusPairs.open page=1) class=(if (eq status statusPairs.open) "active") data-test-status-tab="open"}}

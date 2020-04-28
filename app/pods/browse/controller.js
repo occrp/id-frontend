@@ -17,6 +17,8 @@ export default Controller.extend(Pageable, {
   responder: null,
   sort: '-created-at',
 
+  csvExportParams: null,
+
   statusPairs: Object.freeze({
     open: 'new,in-progress,pending',
     closed: 'closed,cancelled'

@@ -372,6 +372,20 @@ module('Acceptance | tickets/browse', function(hooks) {
     assert.ok(find('[data-test-active-filter="country"]'));
   });
 
+  test('tickets can be exported', async function(assert) {
+    assert.expect(1);
+    initSession();
+
+    await visit('/view');
+
+    await click('[data-test-dd="sort"] [data-test-dd-trigger]');
+    await click('[data-test-sort-option="-deadline-at"]');
+    await click('[data-test-dd="export"] [data-test-dd-trigger]');
+
+    assert.ok(
+      find('[data-test-export-option]').href.trim().includes('sort=-deadline_at')
+    );
+  });
 
   test('tickets can be sorted', async function(assert) {
     assert.expect(1);
