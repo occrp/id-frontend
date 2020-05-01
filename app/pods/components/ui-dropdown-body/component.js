@@ -6,7 +6,7 @@ import ENV from 'id-frontend/config/environment';
 export default Component.extend({
   tagName: '',
   i18n: service(),
-  noModal: null,
+  noModal: false,
 
   targetAttachment: computed('i18n.isRtl', function() {
     return this.get('i18n.isRtl') ? 'bottom left' : 'bottom right';
@@ -14,11 +14,11 @@ export default Component.extend({
   attachment: computed('i18n.isRtl', function() {
     return this.get('i18n.isRtl') ? 'top left' : 'top right';
   }),
-  renderInPlace: computed('useModal', function() {
-    if (this.get('noModal')) {
-      return this.get('noModal');
+  renderInPlace: computed('noModal', function() {
+    if (ENV.environment === 'test') {
+      return true;
     }
 
-    return ENV.environment === 'test';
+    return this.get('noModal');
   })
 });

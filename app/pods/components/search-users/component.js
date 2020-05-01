@@ -6,7 +6,7 @@ export default Component.extend({
   autoFocus: true,
   inputClassNames: 'formControl formControl--sm',
   baseClassNames: 'searchBox',
-  renderInPlace: true,
+  noModal: true,
 
   didInsertElement() {
     if (this.get('preloadEmpty')) {
