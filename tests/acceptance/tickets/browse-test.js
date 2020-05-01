@@ -374,7 +374,7 @@ module('Acceptance | tickets/browse', function(hooks) {
 
   test('tickets can be exported', async function(assert) {
     assert.expect(1);
-    initSession();
+    initSession({ isSuperuser: true });
 
     await visit('/view');
 

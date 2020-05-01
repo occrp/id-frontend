@@ -71,17 +71,19 @@
         {{/dd.body}}
       {{/ui-dropdown}}
     </div>
-    <div class="filters-item">
-      {{#ui-dropdown data-test-dd="export" as |dd|}}
-        {{#dd.trigger}}{{t 'filters.export.title'}}{{/dd.trigger}}
-        {{#dd.body headerText=(t 'filters.export.title')}}
-          <div class="list">
-            <a href={{csvExportUrl}} class="list-item" data-test-export-option>
-              {{t 'filters.export.action'}}
-            </a>
-          </div>
-        {{/dd.body}}
-      {{/ui-dropdown}}
-    </div>
+    {{#if (can "manage tickets")}}
+      <div class="filters-item">
+        {{#ui-dropdown data-test-dd="export" as |dd|}}
+          {{#dd.trigger}}{{t 'filters.export.title'}}{{/dd.trigger}}
+          {{#dd.body headerText=(t 'filters.export.title')}}
+            <div class="list">
+              <a href={{csvExportUrl}} class="list-item" data-test-export-option>
+                {{t 'filters.export.action'}}
+              </a>
+            </div>
+          {{/dd.body}}
+        {{/ui-dropdown}}
+      </div>
+    {{/if}}
   </div>
 </div>
