@@ -1,5 +1,5 @@
-<p class="pv2">
-  <span class="gray ttu tracked db">
+<p class="pb2">
+  <span class="gray ttu tracked db b">
     {{t 'ticket.countries.label'}}
   </span>
 
@@ -23,7 +23,7 @@
   {{/if}}
 </p>
 
-<p data-test-countries>
+<p class="pb4" data-test-countries>
   {{#each model.countries as |code index|}}
     {{#if (can 'manage tickets')}}
       <a class="dib link gray ba b--gray pa1 mb1" {{action 'removeCountry' code}} disabled={{model.isSaving}}>

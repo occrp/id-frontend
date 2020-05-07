@@ -1,5 +1,5 @@
-<p class="pv2">
-  <span class="gray tracked ttu db">
+<p class="pb4">
+  <span class="gray tracked ttu db b">
     {{t 'ticket.status.label'}}
   </span>
 
@@ -10,7 +10,7 @@
   {{/if}}
 </p>
 
-<p class="pv2">
+<p class="pb4">
   {{#unless updateStatus.isRunning }}
     {{#if model.isOpen}}
       {{view/ticket/status-card/close model=model

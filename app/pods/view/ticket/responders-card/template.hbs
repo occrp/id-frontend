@@ -1,6 +1,6 @@
 {{#if (and (can 'manage tickets') model.isOpen)}}
-  <p class="pv2">
-    <span class="ttu tracked gray db">{{t 'actions.assign.longForm'}}</span>
+  <p class="pb4">
+    <span class="ttu tracked gray db b">{{t 'actions.assign.longForm'}}</span>
 
     {{#if (or addResponder.isRunning removeResponder.isRunning)}}
       {{ui-spinner class="spinner--mimicButton"}}
@@ -20,8 +20,8 @@
 {{/if}}
 
 {{#if model.responders.length}}
-  <p class="pv2">
-    <span class="ttu tracked gray db">{{t 'ticket.responder.label'}}</span>
+  <p class="pb4">
+    <span class="ttu tracked gray db b">{{t 'ticket.responder.label'}}</span>
 
     <ul class="list">
       {{#each model.responders as |responder|}}

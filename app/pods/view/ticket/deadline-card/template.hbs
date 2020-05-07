@@ -1,7 +1,7 @@
-<p class="pv2" data-test-deadline-at>
+<p class="pb4" data-test-deadline-at>
   {{#if (can 'manage tickets')}}
     <label for="ticket-deadline" class="mb0 db">
-      <span class="gray ttu tracked">
+      <span class="gray ttu tracked b">
         {{t 'ticket.deadline.label'}}
       </span>
     </label>
@@ -21,7 +21,7 @@
       </a>
     {{/if}}
   {{else}}
-    <span class="gray ttu tracked db">
+    <span class="gray ttu tracked db b">
       {{#if model.deadlineAt}}
         {{t 'ticket.deadline.label'}}
       {{else}}

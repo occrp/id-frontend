@@ -1,5 +1,5 @@
-<p class="pv2">
-  <span class="ttu tracked gray db">{{t 'ticket.addSubscriber'}}</span>
+<p class="pb4">
+  <span class="ttu tracked gray db b">{{t 'ticket.addSubscriber'}}</span>
 
   {{ticket-add-subscriber
     ticket=model
@@ -8,8 +8,8 @@
 </p>
 
 {{#if model.subscribers.length}}
-  <p class="pv2">
-    <span class="ttu tracked gray db">{{t 'ticket.subscriber' count=2}}</span>
+  <p class="pb4">
+    <span class="ttu tracked gray db b">{{t 'ticket.subscriber' count=2}}</span>
 
     <ul class="list pt2">
       {{#each model.subscribers as |subscriber|}}
