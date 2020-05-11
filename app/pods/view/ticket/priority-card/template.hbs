@@ -3,7 +3,7 @@
     {{t 'ticket.priority.label'}}
   </span>
   {{#if (can 'manage tickets')}}
-    <select id="ticket-priority" class="mt2 bg-white w-70 bl-0 br-0 bt-0 bb"
+    <select id="ticket-priority" class="mt2 bg-white w-70 ba br1 b--moon-gray"
       onchange={{action (mut model.priority) value="target.value"}}
     >
       {{#each priorityList as |opt|}}

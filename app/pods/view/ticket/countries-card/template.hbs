@@ -6,7 +6,7 @@
   {{#if (can 'manage tickets')}}
     <select
       onchange={{action (mut selectedCountry) value="target.value"}}
-      class="mv2 bg-white w-70 bl-0 br-0 bt-0 bb"
+      class="mv2 bg-white w-70 ba br1 b--moon-gray"
       id="ticket-countries"
     >
       <option value=""> - {{t 'actions.choose'}} - </option>

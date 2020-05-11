@@ -70,6 +70,11 @@
 
   <div class="w-30">
     {{view/ticket/status-card model=model}}
+    {{#view/ticket/generic-card title=(t 'attachment.attachments') content=''}}
+      {{#link-to 'view.attachments' model class="dim link occrp-red"}}
+        {{t 'ticket.addAttachments'}}
+      {{/link-to}}
+    {{/view/ticket/generic-card}}
     {{view/ticket/priority-card model=model}}
     {{view/ticket/deadline-card model=model}}
     {{view/ticket/countries-card model=model}}

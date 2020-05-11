@@ -3,10 +3,10 @@
     {{#file-upload
       name=queueName
       multiple=true
-      class="b white bg-occrp-red br2 b--occrp-red pointer dim ph3 pv2"
+      class="ma0 link ttu b white bg-occrp-red br2 b--occrp-red pointer dim ph3 pv2"
       data-test-file-upload=true
       }}
-      {{~t 'actions.add'~}}
+      {{~t 'actions.upload'~}}
     {{/file-upload}}
   {{/if}}
 {{/ticket-sections}}
@@ -15,10 +15,10 @@
   <table class="w-100" cellspacing="0">
     <thead>
       <tr class="bb b--moon-gray">
-        <th class="pa2 w-40 mw1 truncate">{{t 'attachment.filename'}}</th>
-        <th class="pa2 w-10 mw1 truncate">{{t 'attachment.filesize'}}</th>
-        <th class="pa2 w-20 mw1 truncate">{{t 'attachment.fileDate'}}</th>
-        <th class="pa2 w-20 mw1 truncate">{{t 'attachment.userName'}}</th>
+        <th class="pa2 w-40 mw1 truncate ttu tracked gray b">{{t 'attachment.filename'}}</th>
+        <th class="pa2 w-10 mw1 truncate ttu tracked gray b">{{t 'attachment.filesize'}}</th>
+        <th class="pa2 w-20 mw1 truncate ttu tracked gray b">{{t 'attachment.fileDate'}}</th>
+        <th class="pa2 w-20 mw1 truncate ttu tracked gray b">{{t 'attachment.userName'}}</th>
         <th class="pa2 w-10"></th>
       </tr>
     </thead>

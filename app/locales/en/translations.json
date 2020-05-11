@@ -244,6 +244,8 @@
     }
   },
   "ticket": {
+    "addAttachments": "View or upload request files",
+    "addExpense": "Add expense",
     "addSubscriber": "Add subscriber",
     "background": {
       "desc": "What do you know so far?",

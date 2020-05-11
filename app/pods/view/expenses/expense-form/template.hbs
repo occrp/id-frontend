@@ -5,9 +5,9 @@
     </label>
 
     {{#if (or customScope (and model.scope (not (contains model.scope session.currentUserMeta.expenseScopes))))}}
-      {{input id="expense-scope" value=model.scope class="db w-100 ba pa2"}}
+      {{input id="expense-scope" value=model.scope class="db w-100 ba br1 pa2 b--moon-gray"}}
     {{else}}
-      <select id="expense-scope" class="dib bg-white w-50 ba pa2"
+      <select id="expense-scope" class="dib bg-white w-50 ba pa2 br1 b--moon-gray"
         onchange={{action (mut model.scope) value="target.value"}}
       >
         <option> - {{t 'actions.choose'}} - </option>
@@ -31,7 +31,7 @@
     <label for="expense-rating" class="db">
       {{t 'expenses.rating'}}
     </label>
-    <select id="expense-rating" class="db bg-white w-100 ba pa2"
+    <select id="expense-rating" class="db bg-white w-100 ba pa2 br1 b--moon-gray"
       onchange={{action (mut model.rating) value="target.value"}}
     >
       {{#each (array 0 1 2 3) as |opt|}}
@@ -50,15 +50,15 @@
         <label for="expense-amount" class="db">
           {{t 'expenses.amount'}}
         </label>
-        {{input disabled="disabled" class="w3 ba pa2" value=model.amountCurrency}}
-        {{input id="expense-amount" value=model.amount class="w-50 ba pa2"}}
+        {{input disabled="disabled" class="w3 ba pa2 br1" value=model.amountCurrency}}
+        {{input id="expense-amount" value=model.amount class="w-50 ba pa2 br1 b--moon-gray"}}
       </div>
 
       <div class="w-60">
         <label for="expense-method" class="db">
           {{t 'expenses.paymentMethod'}}
         </label>
-        {{input id="expense-method" value=model.paymentMethod class="db w-100 ba pa2"}}
+        {{input id="expense-method" value=model.paymentMethod class="db w-100 ba pa2 br1 b--moon-gray"}}
       </div>
     </div>
 
@@ -70,7 +70,7 @@
         value=model.createdAt
         onSelect=(action (mut model.createdAt) value="date")
         id="expense-date"
-        class="db w-100 ba pa2"
+        class="db w-100 ba pa2 br1 b--moon-gray"
       }}
     </div>
   </div>
@@ -79,7 +79,7 @@
     <label for="expense-method" class="db">
       {{t 'expenses.notes'}}
     </label>
-    {{textarea id="expense-notes" value=model.notes class="db w-100 h4 ba pa2"}}
+    {{textarea id="expense-notes" value=model.notes class="db w-100 h4 ba pa2 br1 b--moon-gray"}}
   </div>
 {{else}}
   <div class="mv4">
