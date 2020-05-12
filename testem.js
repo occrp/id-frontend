@@ -2,16 +2,16 @@ module.exports = {
   test_page: 'tests/index.html',
   disable_watching: true,
   launch_in_ci: [
-    'Chrome'
+    'Chromium'
   ],
   launch_in_dev: [
-    'Chrome'
+    'Chromium'
   ],
   browser_args: {
     Chrome: {
       ci: [
         // --no-sandbox is needed when running Chrome inside a container
-        process.env.CI ? '--no-sandbox' : null,
+        '--no-sandbox',
         '--headless',
         '--disable-gpu',
         '--disable-dev-shm-usage',
