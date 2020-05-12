@@ -2,7 +2,8 @@
   <div class="t-center mt-5 mb-8">
     <h1 class="t-primary t-light mb-3">{{t 'pods.new.title'}}</h1>
 
-    <p class="t4 t-muted">{{t 'pods.new.headline'}}</p>
+    <p class="t4 center t-muted measure">{{t 'pods.new.headline'}}</p>
+    <p class="mt4 center t4 t-muted measure">{{t 'pods.new.subheadline'}}</p>
   </div>
 
   {{form-create-ticket model=model afterSave=(action "goToTicketPage")}}

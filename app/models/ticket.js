@@ -34,7 +34,6 @@ export const priorityList = [
 
 export const dataRequestTypes = [
   'analysis',
-  'aleph',
   'scrape',
   'manipulation',
   'dunno'

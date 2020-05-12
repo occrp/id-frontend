@@ -238,7 +238,7 @@ module('Acceptance | tickets/new', function(hooks) {
             "created-at": null,
             "deadline-at": null,
             "born-at": null,
-            "initial-information": "aleph",
+            "initial-information": "analysis",
             "first-name": null,
             "sensitive": false,
             "sources": "Data sources.",
@@ -268,7 +268,7 @@ module('Acceptance | tickets/new', function(hooks) {
 
     await click('[data-test-kind-tab="data_request"]');
 
-    await fillIn('#ticket-category', 'aleph');
+    await fillIn('#ticket-category', 'analysis');
     await fillIn('#ticket-background-data', 'Data details.');
     await fillIn('#ticket-sources-data', 'Data sources.');
     await fillIn('#ticket-member-center', 'OCCRP');

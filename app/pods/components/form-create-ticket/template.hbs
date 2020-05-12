@@ -1,8 +1,8 @@
 <form {{action "save" on="submit"}}>
 
-  <div class="mb-4 flex ttu items-center justify-between">
+  <div class="mb-4 flex ttu items-center justify-between bb b--moon-gray">
     {{#each kindList key=@index as |selectedKind| }}
-      <label class="pb2 pointer {{if (eq buffer.kind selectedKind) "b bw2 bb b--occrp-gray"}}" data-test-kind-tab="{{selectedKind}}">
+      <label class="mb0 pb2 pointer {{if (eq buffer.kind selectedKind) "b bw2 bb b--occrp-gray"}}" data-test-kind-tab="{{selectedKind}}">
         {{radio-button
           radioClass="visibility-hidden w0 h0 absolute"
           name="ticket-kind"

@@ -178,8 +178,9 @@
         "submitButton": "Submit your request",
         "uploadInfo": "You will be able attach documents after submitting the request."
       },
-      "headline": "Your request will be routed to our professional researchers, who will try to help.",
-      "title": "Request Information"
+      "headline": "Please choose which type of request you’d like to file, and make sure to include as much information as you can. The more information you share, the better equipped we are to help you.",
+      "subheadline": "We try our best to meet the deadlines you set. We will be in touch if we cannot. If there is a problem or we can’t fulfill your request we aim to get back to you within 3 working days.",
+      "title": "Welcome!"
     },
     "reporting": {
       "closedTickets": {
@@ -307,12 +308,11 @@
     },
     "createdAt": "Added on",
     "dataCategory": {
-      "aleph": "Add data to Aleph",
-      "analysis": "Analysis",
+      "analysis": "Analyse data",
       "dunno": "Don't know",
       "label": "Category",
-      "manipulation": "Data wrangling",
-      "scrape": "Acquire data (scraping)"
+      "manipulation": "Clean data",
+      "scrape": "Get data"
     },
     "deadline": {
       "desc": "We will try to meet your deadline, but please note that our researchers are quite busy.<br /> Give them as much time as you possibly can!",
@@ -340,11 +340,11 @@
     },
     "kind": {
       "company_ownership": {
-        "name": "About a company",
+        "name": "A company",
         "shortName": "Company"
       },
       "data_request": {
-        "name": "Data operations",
+        "name": "A dataset",
         "shortName": "Data"
       },
       "one": "Type",
@@ -353,11 +353,11 @@
         "shortName": "Other"
       },
       "person_ownership": {
-        "name": "About a person",
+        "name": "A person",
         "shortName": "Person"
       },
       "vehicle_tracking": {
-        "name": "Vehicle Tracking",
+        "name": "A vehicle",
         "shortName": "Vehicle"
       }
     },
