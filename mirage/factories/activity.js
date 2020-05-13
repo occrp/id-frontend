@@ -1,4 +1,6 @@
-import { Factory, trait, faker } from 'ember-cli-mirage';
+import { Factory, trait } from 'ember-cli-mirage';
+
+import faker from 'faker';
 
 const random = faker.random.arrayElement;
 

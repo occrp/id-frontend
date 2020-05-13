@@ -1,7 +1,9 @@
 import moment from 'moment';
+import momentDurationFormatSetup from 'moment-duration-format';
 import { get } from '@ember/object';
-
 import BaseHelper from 'ember-moment/helpers/-base';
+
+momentDurationFormatSetup(moment);
 
 export default BaseHelper.extend({
   compute(params, { locale, timeZone }) {

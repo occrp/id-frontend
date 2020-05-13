@@ -35,7 +35,7 @@ export default Component.extend({
 
     const results = yield fuse.search(term);
 
-    return results.slice(0,6);
+    return results.map(r => r.item.code).slice(0,6);
   }).restartable(),
 
   didInsertElement() {

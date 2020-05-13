@@ -18,7 +18,7 @@ export default function groupByDate (items) {
     emptyDataset[status] = Object.assign({}, emptyStats)
   })
 
-  let groups = new A();
+  let groups = A();
 
   items.forEach((item) => {
     let date = get(item, 'date');

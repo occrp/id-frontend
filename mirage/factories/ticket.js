@@ -1,4 +1,5 @@
-import { Factory, trait, faker, association } from 'ember-cli-mirage';
+import { Factory, trait, association } from 'ember-cli-mirage';
+import faker from 'faker';
 import { kindList, statusList, priorityList, dataRequestTypes } from 'id-frontend/models/ticket';
 
 const random = faker.random.arrayElement;

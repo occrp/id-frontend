@@ -4,7 +4,7 @@ import { setupApplicationTest } from 'ember-qunit';
 import { setupAssertions } from 'id-frontend/tests/helpers/setup-assertions';
 import setupMirage from 'ember-cli-mirage/test-support/setup-mirage';
 import { initSession } from 'id-frontend/tests/helpers/init-session';
-import { faker } from 'ember-cli-mirage';
+import faker from 'faker';
 
 module('Acceptance | user', function(hooks) {
   setupApplicationTest(hooks);

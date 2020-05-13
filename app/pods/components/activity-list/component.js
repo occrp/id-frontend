@@ -62,7 +62,7 @@ export default Component.extend({
   init() {
     this._super(...arguments);
 
-    this.set('activityCache', new A());
+    this.set('activityCache', A());
     this.reloadActivitites();
 
     this.get('activityBus').on('reload', this, 'reloadActivitites');
@@ -86,7 +86,7 @@ export default Component.extend({
 
     changeKind(value) {
       this.set('showOnlyComments', value);
-      this.set('activityCache', new A());
+      this.set('activityCache', A());
       this.reloadActivitites();
     },
   }

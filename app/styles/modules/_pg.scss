@@ -56,13 +56,13 @@
 
 
 .pg-prev {
-  @include caret(left, theme-color("secondary"))
+  @include caret(left, theme-color("secondary"));
   &::before {
     vertical-align: baseline;
   }
 }
 .pg-next {
-  @include caret(right, theme-color("secondary"))
+  @include caret(right, theme-color("secondary"));
   &::after {
     vertical-align: baseline;
   }
