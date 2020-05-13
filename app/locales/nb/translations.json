@@ -96,6 +96,10 @@
       "clear": "Tøm alle filter",
       "title": "Filtrert etter"
     },
+    "export": {
+      "action": "Som CSV",
+      "title": "Eksporter"
+    },
     "kind": {
       "title": "Filtrer etter type"
     },
@@ -158,6 +162,7 @@
         "uploadInfo": "Du vil kunne legge ved dokumenter etter å ha sendt inn forespørselen."
       },
       "headline": "Din forespørsel vil bli videresendt til våre profesjonelle granskere, som vil forsøke å hjelpe.",
+      "subheadline": "Vi prøver så godt vi klarer å overholde de tidsfristene du setter. Vi tar kontakt hvis så ikke skulle skje. Hvis det oppstår problemer eller vi ikke kan tilstedekomme forespørselen din, tar vi sikte på å ta kontakt innen tre arbeidsdager.",
       "title": "Forespør informasjon"
     },
     "reporting": {
@@ -218,6 +223,8 @@
     }
   },
   "ticket": {
+    "addAttachments": "Vis eller last opp forespurte filer",
+    "addExpense": "Legg til utgift",
     "background": {
       "desc": "Hva vet du så langt?",
       "formLabel": "Din historie",
@@ -250,6 +257,9 @@
       "desc": "Kjente familieforhold.",
       "label": "Familie og tilknyttede"
     },
+    "countries": {
+      "label": "Relaterte land"
+    },
     "country": {
       "label": "Registreringsland",
       "one": "Land",
@@ -263,6 +273,11 @@
       "label": "Nasjonalitet"
     },
     "createdAt": "Lagt til",
+    "dataCategory": {
+      "analysis": "Analyser data",
+      "manipulation": "Tøm data",
+      "scrape": "Hent data"
+    },
     "deadline": {
       "desc": "Vi prøver å overholde tidsfristen, men ha i minnet at vi er travle.<br /> Gi dem som mye tid du kan!",
       "empty": "Ingen tidsfrist",
@@ -282,6 +297,9 @@
         "name": "Fastsett bedriftseierskap",
         "shortName": "Bedrift"
       },
+      "data_request": {
+        "name": "Et datasett"
+      },
       "one": "Type",
       "other": {
         "name": "Enhver annen person",
@@ -290,6 +308,9 @@
       "person_ownership": {
         "name": "Identifiser hva en person eier",
         "shortName": "Person"
+      },
+      "vehicle_tracking": {
+        "name": "Et kjøretøy"
       }
     },
     "lastName": {
