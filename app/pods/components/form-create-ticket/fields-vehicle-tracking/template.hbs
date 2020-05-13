@@ -1,0 +1,59 @@
+<div class="fieldGroup fieldGroup--bordered">
+  <div class="l-constrain">
+    <h2 class="fieldGroup-title">{{t 'ticket.kind.vehicle_tracking.name'}}</h2>
+
+    {{#validated-field
+      class="formGroup"
+      errors=buffer.displayErrors.identifier
+      didValidate=didValidate as |field|}}
+
+      <label for="ticket-identifier-vehicle">{{t 'ticket.identifierVehicle.label'}} <span class="t-danger">*</span></label>
+      {{input rows=5 value=buffer.identifier class="formControl" id="ticket-identifier-vehicle" focus-out=field.triggerValidations}}
+
+      {{#if field.showErrors}}
+        {{#each field.errors as |error|}}
+          <div class="formFeedback">{{error}}</div>
+        {{/each}}
+      {{/if}}
+    {{/validated-field}}
+
+    {{#validated-field
+      class="formGroup"
+      errors=buffer.displayErrors.country
+      didValidate=didValidate as |field|}}
+
+      <label for="ticket-country-vehicle">{{t 'ticket.countryVehicle.label'}} <span class="t-danger">*</span></label>
+      <select onchange={{action (mut buffer.country) value="target.value"}} onblur={{action field.triggerValidations}} class="formControl" id="ticket-country-vehicle">
+        <option value="">{{t 'dropdownBlank'}}</option>
+        {{#each-in countries as |code name|}}
+          <option value={{code}} selected={{eq buffer.country code}}>{{name}}</option>
+        {{/each-in}}
+      </select>
+
+      {{#if field.showErrors}}
+        {{#each field.errors as |error|}}
+          <div class="formFeedback">{{error}}</div>
+        {{/each}}
+      {{/if}}
+
+    {{/validated-field}}
+
+    {{#validated-field
+      class="formGroup"
+      errors=buffer.displayErrors.background
+      didValidate=didValidate as |field|}}
+
+      <label class="db" for="ticket-background-vehicle">{{t 'ticket.backgroundVehicle.label'}} <span class="t-danger">*</span></label>
+      <small class="light-silver">{{t 'ticket.backgroundVehicle.desc'}}</small>
+      {{#form-create-ticket/markdown-toggle tagName='' value=buffer.background}}
+        {{textarea rows=5 value=buffer.background class="formControl mt2" id="ticket-background-vehicle" focus-out=field.triggerValidations}}
+      {{/form-create-ticket/markdown-toggle}}
+
+      {{#if field.showErrors}}
+        {{#each field.errors as |error|}}
+          <div class="formFeedback">{{error}}</div>
+        {{/each}}
+      {{/if}}
+    {{/validated-field}}
+  </div>
+</div>

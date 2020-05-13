@@ -1,0 +1,25 @@
+<div class="fieldGroup fieldGroup--bordered">
+  <div class="l-constrain">
+    <h2 class="fieldGroup-title">{{t 'ticket.kind.other.name'}}</h2>
+
+    {{#validated-field
+      class="formGroup"
+      errors=buffer.displayErrors.background
+      didValidate=didValidate
+      as |field|}}
+
+      <label class="db" for="ticket-background-other">{{t 'ticket.backgroundOther.formLabel'}} <span class="t-danger">*</span></label>
+      <small class="light-silver">{{t 'ticket.backgroundOther.desc'}}</small>
+      {{#form-create-ticket/markdown-toggle tagName='' value=buffer.background}}
+        {{textarea rows=3 value=buffer.background class="formControl mt2" id="ticket-background-other" focus-out=field.triggerValidations}}
+      {{/form-create-ticket/markdown-toggle}}
+
+      {{#if field.showErrors}}
+        {{#each field.errors as |error|}}
+          <div class="formFeedback">{{error}}</div>
+        {{/each}}
+      {{/if}}
+
+    {{/validated-field}}
+  </div>
+</div>

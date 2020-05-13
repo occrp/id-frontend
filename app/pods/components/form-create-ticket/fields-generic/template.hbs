@@ -1,0 +1,59 @@
+<div class="fieldGroup fieldGroup--bordered">
+  <div class="l-constrain">
+
+    <h2 class="fieldGroup-title">{{t 'pods.new.form.requestDetails'}}</h2>
+
+    {{#validated-field
+      class="formGroup"
+      errors=buffer.displayErrors.deadlineAt
+      didValidate=didValidate
+      as |field|}}
+
+      <label for="ticket-deadline">{{t 'ticket.deadline.label'}}</label>
+      <small class="formText t-muted">{{t 'ticket.deadline.desc'}}</small>
+      {{input-date
+        value=buffer.deadlineAt
+        onSelect=(queue (action (mut buffer.deadlineAt) value="date") field.triggerValidations)
+        id="ticket-deadline"
+        center=minimumDeadline
+        minDate=minimumDeadline
+      }}
+
+      {{#if field.showErrors}}
+        {{#each field.errors as |error|}}
+          <div class="formFeedback">{{error}}</div>
+        {{/each}}
+      {{/if}}
+
+    {{/validated-field}}
+
+    <div class="formGroup">
+      <label class="customControl customControl--checkbox">
+        {{input type="checkbox" class="customControl-input" checked=buffer.sensitive id="ticket-sensitive"}}
+        <span class="customControl-indicator"></span>
+        <span class="customControl-description">{{t 'ticket.sensitive.label'}}</span>
+      </label>
+
+      {{#if buffer.sensitive}}
+        {{#validated-field
+          class="mt-2 ml-5"
+          errors=buffer.displayErrors.whysensitive
+          didValidate=didValidate
+          as |field|}}
+
+          <label for="ticket-whysensitive" class="light-silver">{{t 'ticket.whysensitive.label'}}</label>
+          {{#form-create-ticket/markdown-toggle tagName='' value=buffer.whysensitive}}
+              {{textarea rows=5 value=buffer.whysensitive class="formControl mt2" id="ticket-whysensitive" focus-out=field.triggerValidations}}
+          {{/form-create-ticket/markdown-toggle}}
+
+          {{#if field.showErrors}}
+            {{#each field.errors as |error|}}
+              <div class="formFeedback">{{error}}</div>
+            {{/each}}
+          {{/if}}
+
+        {{/validated-field}}
+      {{/if}}
+    </div>
+  </div>
+</div>

@@ -1,0 +1,104 @@
+<div class="fieldGroup fieldGroup--bordered">
+  <div class="l-constrain">
+    <h2 class="fieldGroup-title">{{t 'ticket.kind.company_ownership.name'}}</h2>
+
+    {{#validated-field
+      class="formGroup"
+      errors=buffer.displayErrors.companyName
+      didValidate=didValidate as |field|}}
+
+      <label for="ticket-companyName">{{t 'ticket.companyName.label'}} <span class="t-danger">*</span></label>
+      {{input value=buffer.companyName class="formControl" id="ticket-companyName" focus-out=field.triggerValidations}}
+
+      {{#if field.showErrors}}
+        {{#each field.errors as |error|}}
+          <div class="formFeedback">{{error}}</div>
+        {{/each}}
+      {{/if}}
+
+    {{/validated-field}}
+
+    <div class="formGroup">
+      <label for="ticket-identifier">{{t 'ticket.identifierCompany.label'}}</label>
+      {{input value=buffer.identifier class="formControl" id="ticket-identifier"}}
+    </div>
+
+    {{#validated-field
+      class="formGroup"
+      errors=buffer.displayErrors.country
+      didValidate=didValidate as |field|}}
+
+      <label for="ticket-country">{{t 'ticket.country.label'}} <span class="t-danger">*</span></label>
+      <select onchange={{action (mut buffer.country) value="target.value"}} onblur={{action field.triggerValidations}} class="formControl" id="ticket-country">
+        <option value="">- Choose -</option>
+        {{#each-in countries as |code name|}}
+          <option value={{code}} selected={{eq buffer.country code}}>{{name}}</option>
+        {{/each-in}}
+      </select>
+
+      {{#if field.showErrors}}
+        {{#each field.errors as |error|}}
+          <div class="formFeedback">{{error}}</div>
+        {{/each}}
+      {{/if}}
+
+    {{/validated-field}}
+
+    {{#validated-field
+      class="formGroup"
+      errors=buffer.displayErrors.background
+      didValidate=didValidate as |field|}}
+
+      <label class="db" for="ticket-background-company">{{t 'ticket.backgroundCompany.formLabel'}} <span class="t-danger">*</span></label>
+      <small class="light-silver">{{t 'ticket.backgroundCompany.desc'}}</small>
+      {{#form-create-ticket/markdown-toggle tagName='' value=buffer.background}}
+        {{textarea rows=5 value=buffer.background class="formControl mt2" id="ticket-background-company" focus-out=field.triggerValidations}}
+      {{/form-create-ticket/markdown-toggle}}
+
+      {{#if field.showErrors}}
+        {{#each field.errors as |error|}}
+          <div class="formFeedback">{{error}}</div>
+        {{/each}}
+      {{/if}}
+    {{/validated-field}}
+
+    {{#validated-field
+      class="formGroup"
+      errors=buffer.displayErrors.sources
+      didValidate=didValidate as |field|}}
+
+      <label class="db" for="ticket-sources">{{t 'ticket.sources.formLabel'}} <span class="t-danger">*</span></label>
+      <small class="light-silver">{{t 'ticket.sources.desc'}}</small>
+      {{#form-create-ticket/markdown-toggle tagName='' value=buffer.sources}}
+        {{textarea rows=5 value=buffer.sources class="formControl mt2" id="ticket-sources" focus-out=field.triggerValidations}}
+      {{/form-create-ticket/markdown-toggle}}
+
+      {{#if field.showErrors}}
+        {{#each field.errors as |error|}}
+          <div class="formFeedback">{{error}}</div>
+        {{/each}}
+      {{/if}}
+
+    {{/validated-field}}
+
+    <h2 class="fieldGroup-title">{{t 'pods.new.form.otherDetails'}}</h2>
+
+    {{#validated-field
+     class="formGroup"
+     errors=buffer.displayErrors.connections
+     didValidate=didValidate as |field|}}
+
+      <label class="db" for="ticket-connections">{{t 'ticket.connections.formLabel'}}</label>
+      {{#form-create-ticket/markdown-toggle tagName='' value=buffer.connections}}
+        {{textarea rows=3 value=buffer.connections class="formControl mt2" id="ticket-connections" focus-out=field.triggerValidations}}
+      {{/form-create-ticket/markdown-toggle}}
+
+      {{#if field.showErrors}}
+        {{#each field.errors as |error|}}
+          <div class="formFeedback">{{error}}</div>
+        {{/each}}
+      {{/if}}
+
+    {{/validated-field}}
+  </div>
+</div>
