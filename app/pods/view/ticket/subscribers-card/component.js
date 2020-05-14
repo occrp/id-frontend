@@ -4,7 +4,7 @@ import { task } from 'ember-concurrency';
 import { relRemovalGenerator } from '../responders-card/component';
 
 export default Component.extend({
-  i18n: service(),
+  intl: service(),
   store: service(),
   session: service(),
   flashMessages: service(),

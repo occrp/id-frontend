@@ -8,7 +8,7 @@ const wrapper = EmberObject.extend(ProfileDecorator);
 
 export default Component.extend({
   tagName: '',
-  i18n: service(),
+  intl: service(),
   hasFilters: or('requester', 'responder', 'kind', 'country'),
 
   // fyi, these CPs will get triggered twice per change.
@@ -19,10 +19,10 @@ export default Component.extend({
     return this.get('requester') && wrapper.create(this.get('filterMeta.requester'));
   }),
 
-  currentResponder: computed('responder', 'filterMeta.responder', 'i18n.locale', function() {
+  currentResponder: computed('responder', 'filterMeta.responder', 'intl.locale', function() {
     if (this.get('responder') === 'none') {
       return wrapper.create({
-        email: this.get('i18n').t('ticket.responder.empty')
+        email: this.get('intl').t('ticket.responder.empty')
       });
     }
 

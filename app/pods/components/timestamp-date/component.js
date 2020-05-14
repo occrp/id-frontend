@@ -5,13 +5,13 @@ import moment from 'moment';
 
 export default Component.extend({
   tagName: '',
-  i18n: service(),
-  format: computed('date', 'i18n.locale', function () {
+  intl: service(),
+  format: computed('date', 'intl.locale', function () {
     let showYear = moment.utc(this.get('date')).year() !== moment.utc().year();
 
     return showYear ?
-      this.get('i18n').t('time.default').string :
-      this.get('i18n').t('time.defaultCurrentYear').string;
+      this.get('intl').t('time.default') :
+      this.get('intl').t('time.defaultCurrentYear');
   }),
 }).reopenClass({
   positionalParams: ['date']

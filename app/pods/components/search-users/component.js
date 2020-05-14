@@ -17,7 +17,7 @@ export default Component.extend({
     }
 
     if (this.get('autoFocus')) {
-      this.$('input').focus();
+      this.element.querySelector('input').focus();
     }
   }
 });

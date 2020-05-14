@@ -29,12 +29,12 @@
         {{#link-to 'browse' (query-params status=statusPairs.open page=1) class=(if (eq status statusPairs.open) "active") data-test-status-tab="open"}}
           {{icon "issue-opened"~}}
           {{total.open}}
-          {{t 'ticket.status.groups.open' count=total.open}}
+          {{t 'ticket.status.open.name'}}
         {{/link-to}}
         {{#link-to 'browse' (query-params status=statusPairs.closed page=1) class=(if (eq status statusPairs.closed) "active") data-test-status-tab="closed"}}
           {{icon "check"~}}
           {{total.closed}}
-          {{t 'ticket.status.groups.closed' count=total.closed}}
+          {{t 'ticket.status.closed.name'}}
         {{/link-to}}
       </div>
     {{/filter-nav}}

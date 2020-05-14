@@ -29,12 +29,12 @@ module.exports = function(environment) {
       includeLocales: ['bs', 'ru', 'fr', 'es', 'ar']
     },
 
-    i18n: {
-      defaultLocale: 'en',
+    intl: {
+      defaultLocale: 'en-us',
 
       // These next 2 props are used in the app, not coming from the addon
       activeLocales: [
-        'en',
+        'en-us',
         'ru',
         'bs',
         // 'fr',

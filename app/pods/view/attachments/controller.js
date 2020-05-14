@@ -9,7 +9,7 @@ export default Controller.extend({
   store: service(),
   session: service(),
   flashMessages: service(),
-  i18n: service(),
+  intl: service(),
   activityBus: service(),
   fileQueue: service(),
 

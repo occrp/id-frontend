@@ -1,37 +1,37 @@
 import { computed } from '@ember/object';
 import { inject as service } from '@ember/service';
 import Controller from '@ember/controller';
-import $ from 'jquery';
 import ENV from 'id-frontend/config/environment';
 
 export default Controller.extend({
-  i18n: service(),
+  intl: service(),
   moment: service(),
   session: service(),
 
   queryParams: ['lang'],
 
-  activeLocales: ENV.i18n.activeLocales,
+  activeLocales: ENV.intl.activeLocales,
   parentMeta: ENV.options,
 
   // no other way to add classes/attrs to the root element afaict
   manageRtlAttrs(locale) {
-    const $root = $(ENV.APP.rootElement);
-    if (ENV.i18n.rtlLocales.indexOf(locale) >= 0) {
-      $root.addClass('is-rtl');
-      $root.attr('dir', 'rtl');
+    const root = document.querySelector(ENV.APP.rootElement);
+
+    if (ENV.intl.rtlLocales.indexOf(locale) >= 0) {
+      root.classList.add('is-rtl');
+      root.dir = 'rtl';
     } else {
-      $root.removeClass('is-rtl');
-      $root.removeAttr('dir');
+      root.classList.remove('is-rtl');
+      root.dir = '';
     }
   },
 
-  lang: computed('i18n.locale', {
+  lang: computed('intl.locale', {
     get() {
-      return this.get('i18n.locale');
+      return this.get('intl.locale');
     },
     set(key, value) {
-      this.set('i18n.locale', value);
+      this.set('intl.locale', value);
       this.get('moment').setLocale(value);
       this.manageRtlAttrs(value);
       return value;

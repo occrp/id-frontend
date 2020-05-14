@@ -16,14 +16,14 @@
   },
   "activity": {
     "assign": {
-      "action": "{{user}} был назначен(а)"
+      "action": "{user} был назначен(а)"
     },
     "attachment": {
-      "action": "{{user}} прикрепил(а) файлы",
-      "removed": "{{user}} удалил(а) файл"
+      "action": "{user} прикрепил(а) файлы",
+      "removed": "{user} удалил(а) файл"
     },
     "comment": {
-      "action": "{{user}} оставил/а комментарий {{relativeTime}}",
+      "action": "{user} оставил/а комментарий {relativeTime}",
       "submitButton": "Опубликовать",
       "title": "Добавить комментарий"
     },
@@ -37,18 +37,18 @@
     },
     "showOnlyComments": "Показать только комментарии",
     "unassign": {
-      "action": "{{user}} больше не назначен(а)"
+      "action": "{user} больше не назначен(а)"
     }
   },
   "attachment": {
     "dropzone": {
       "activeTitle": "Отпустите для загрузки",
-      "desc": "Перетащите файл в это поле или {{select}}",
+      "desc": "Перетащите файл в это поле или {select}",
       "invalidTitle": "Недоступно",
       "select": "Выбрать файл",
       "title": "Загрузить файлы"
     },
-    "filesSelected": "{{count}} файлов выбраны",
+    "filesSelected": "{count} файлов выбраны",
     "other": "Приложения",
     "removalPrompt": "Вы уверены, что хотите удалить файл?",
     "state": {
@@ -153,9 +153,9 @@
     },
     "reporting": {
       "closedTickets": {
-        "one": "{{count}} Закрытый запрос",
-        "other": "{{count}}  Закрытых запросов",
-        "zero": "{{count}}  Закрытых запросов"
+        "one": "{count} Закрытый запрос",
+        "other": "{count}  Закрытых запросов",
+        "zero": "{count}  Закрытых запросов"
       },
       "columns": {
         "avgTime": "Среднее время разрешения",
@@ -165,9 +165,9 @@
         "total": "Total"
       },
       "countriesTitle": {
-        "one": "{{count}} Страна",
-        "other": "{{count}} Страны",
-        "zero": "{{count}} Стран"
+        "one": "{count} Страна",
+        "other": "{count} Страны",
+        "zero": "{count} Стран"
       },
       "dateRange": {
         "lastHalf": "Последние 6 месяцев",
@@ -175,23 +175,23 @@
         "lastYear": "В прошлом году"
       },
       "openTickets": {
-        "one": "{{count}} Открытый запрос",
-        "other": "{{count}} Открытых запросов",
-        "zero": "{{count}} Открытых запросов"
+        "one": "{count} Открытый запрос",
+        "other": "{count} Открытых запросов",
+        "zero": "{count} Открытых запросов"
       },
-      "pastDeadline": "{{count}} истекшие",
+      "pastDeadline": "{count} истекшие",
       "staffTitle": {
-        "one": "{{count}} Сотрудник",
-        "other": "{{count}} Сотрудники",
-        "zero": "{{count}} Сотрудника"
+        "one": "{count} Сотрудник",
+        "other": "{count} Сотрудники",
+        "zero": "{count} Сотрудника"
       }
     },
     "view": {
       "close": {
-        "button": "{{verb}} запрос",
+        "button": "{verb} запрос",
         "cancel": "Нет",
         "confirm": "Да",
-        "title": "Вы уверены, что хотите {{verb}} этот запрос?"
+        "title": "Вы уверены, что хотите {verb} этот запрос?"
       },
       "pending": {
         "button": "Придержать в ожидании ответа"
@@ -203,9 +203,9 @@
     }
   },
   "prefixes": {
-    "at": "{{time}}",
-    "by": "Пользователем {{user}}",
-    "on": "{{date}}"
+    "at": "{time}",
+    "by": "Пользователем {user}",
+    "on": "{date}"
   },
   "profile": {
     "search": {
@@ -263,7 +263,7 @@
       "desc": "Мы постараемся удовлетворить ваши сроки, но, пожалуйста, обратите внимание, что наш персонал довольно занят.<br />Дайте им как можно больше времени!",
       "empty": "Без дедлайна",
       "label": "Срок исполнения",
-      "prefix": "Выполнить до {{relativeTime}}"
+      "prefix": "Выполнить до {relativeTime}"
     },
     "firstName": {
       "label": "Имя"
@@ -291,12 +291,12 @@
     "lastName": {
       "label": "Фамилия"
     },
-    "one": "{{count}} запрос",
-    "other": "{{count}} запросa",
+    "one": "{count} запрос",
+    "other": "{count} запросa",
     "requester": {
       "one": "Автор запроса",
       "other": "Авторы запроса",
-      "prefix": "Отправитель {{requester}}",
+      "prefix": "Отправитель {requester}",
       "zero": "Авторов запроса"
     },
     "responder": {
@@ -355,12 +355,12 @@
     },
     "updatedAt": {
       "label": "Последнее обновление",
-      "prefix": "обновлено {{relativeTime}}"
+      "prefix": "обновлено {relativeTime}"
     },
     "whysensitive": {
       "label": "Почему он критичен?"
     },
-    "zero": "{{count}} запросов"
+    "zero": "{count} запросов"
   },
   "time": {
     "default": "MMM D YYYY",
@@ -373,8 +373,8 @@
     "viewRequests": "Запросы"
   },
   "validationErrors": {
-    "after": "Эта дата должна быть позже {{after}}",
-    "before": "Тут дата должна быть раньше {{before}}",
+    "after": "Эта дата должна быть позже {after}",
+    "before": "Тут дата должна быть раньше {before}",
     "blank": "Это поле не может быть пустым",
     "email": "В этом поле должен быть адрес электронной почты"
   }

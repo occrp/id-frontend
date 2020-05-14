@@ -15,11 +15,11 @@
   },
   "activity": {
     "assign": {
-      "action": "{{user}} Fue asignado "
+      "action": "{user} Fue asignado "
     },
     "attachment": {
       "action": "Archivos adjuntos",
-      "removed": "{{user}} removed file"
+      "removed": "{user} removed file"
     },
     "comment": {
       "action": "Comentó",
@@ -40,7 +40,7 @@
   "attachment": {
     "dropzone": {
       "activeTitle": "Suelte para subir",
-      "desc": "Arrastre y suelte archivos en esta área o {{seleccione}}",
+      "desc": "Arrastre y suelte archivos en esta área o {seleccione}",
       "invalidTitle": "Inválido",
       "select": "Selecciona un archivo",
       "title": "Subir archivos"
@@ -134,9 +134,9 @@
     },
     "reporting": {
       "closedTickets": {
-        "one": "{{count}} Closed request",
-        "other": "{{count}} Closed requests",
-        "zero": "{{count}} Closed requests"
+        "one": "{count} Closed request",
+        "other": "{count} Closed requests",
+        "zero": "{count} Closed requests"
       },
       "columns": {
         "avgTime": "Avg. resolution time",
@@ -146,9 +146,9 @@
         "total": "Total"
       },
       "countriesTitle": {
-        "one": "{{count}} Country",
-        "other": "{{count}} Countries",
-        "zero": "{{count}} Countries"
+        "one": "{count} Country",
+        "other": "{count} Countries",
+        "zero": "{count} Countries"
       },
       "dateRange": {
         "lastHalf": "Last 6 months",
@@ -156,23 +156,23 @@
         "lastYear": "Last year"
       },
       "openTickets": {
-        "one": "{{count}} Open request",
-        "other": "{{count}} Open requests",
-        "zero": "{{count}} Open requests"
+        "one": "{count} Open request",
+        "other": "{count} Open requests",
+        "zero": "{count} Open requests"
       },
-      "pastDeadline": "{{count}} past deadline",
+      "pastDeadline": "{count} past deadline",
       "staffTitle": {
-        "one": "{{count}} Staff member",
-        "other": "{{count}} Staff members",
-        "zero": "{{count}} Staff members"
+        "one": "{count} Staff member",
+        "other": "{count} Staff members",
+        "zero": "{count} Staff members"
       }
     },
     "view": {
       "close": {
-        "button": "Solicitud {{verb}}",
+        "button": "Solicitud {verb}",
         "cancel": "No",
         "confirm": "Sí ",
-        "title": "¿Estás seguro que quiere {{verb}} esta solicitud?"
+        "title": "¿Estás seguro que quiere {verb} esta solicitud?"
       },
       "pending": {
         "button": "Marcar como pendiente"
@@ -185,8 +185,8 @@
   },
   "prefixes": {
     "at": "A (time)",
-    "by": "Por {{user}}",
-    "on": "El {{fecha}}"
+    "by": "Por {user}",
+    "on": "El {fecha}"
   },
   "profile": {
     "search": {
@@ -243,7 +243,7 @@
       "desc": "Intentaremos cumplir con tu fecha límite",
       "empty": "No hay fecha límite",
       "label": "Fecha límite",
-      "prefix": "Fecha límite  {{relative time}}"
+      "prefix": "Fecha límite {relativeTime}"
     },
     "firstName": {
       "label": "Primer nombre"
@@ -276,7 +276,7 @@
     "requester": {
       "one": "Solicitante",
       "other": "Solicitantes",
-      "prefix": "Enviado por {{solicitante}}"
+      "prefix": "Enviado por {solicitante}"
     },
     "responder": {
       "empty": "Nadie asignado",
@@ -341,8 +341,8 @@
     "viewRequests": "View requests"
   },
   "validationErrors": {
-    "after": "Esta fecha debe ser posterior a {{after}}",
-    "before": "Esta fecha debe ser anterior a {{antes}}",
+    "after": "Esta fecha debe ser posterior a {after}",
+    "before": "Esta fecha debe ser anterior a {antes}",
     "blank": "Este campo no puede estar en blanco"
   }
 }

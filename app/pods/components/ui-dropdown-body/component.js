@@ -5,14 +5,14 @@ import ENV from 'id-frontend/config/environment';
 
 export default Component.extend({
   tagName: '',
-  i18n: service(),
+  intl: service(),
   noModal: false,
 
-  targetAttachment: computed('i18n.isRtl', function() {
-    return this.get('i18n.isRtl') ? 'bottom left' : 'bottom right';
+  targetAttachment: computed('intl.isRtl', function() {
+    return this.get('intl.isRtl') ? 'bottom left' : 'bottom right';
   }),
-  attachment: computed('i18n.isRtl', function() {
-    return this.get('i18n.isRtl') ? 'top left' : 'top right';
+  attachment: computed('intl.isRtl', function() {
+    return this.get('intl.isRtl') ? 'top left' : 'top right';
   }),
   renderInPlace: computed('noModal', function() {
     if (ENV.environment === 'test') {

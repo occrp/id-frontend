@@ -19,11 +19,11 @@
   },
   "activity": {
     "assign": {
-      "action": "A été attribué à {{user}}"
+      "action": "A été attribué à {user}"
     },
     "attachment": {
-      "action": "{{user}} fichiers joints",
-      "removed": "{{user}} a supprimé le fichier"
+      "action": "{user} fichiers joints",
+      "removed": "{user} a supprimé le fichier"
     },
     "comment": {
       "action": "",
@@ -31,8 +31,8 @@
       "title": "Laisser un commentaire"
     },
     "expense": {
-      "action": "{{user}} a enregistré une ressource",
-      "removed": "{{user}} a retiré une ressource"
+      "action": "{user} a enregistré une ressource",
+      "removed": "{user} a retiré une ressource"
     },
     "loadOlder": "Charger plus ancien",
     "one": "Activité",
@@ -44,18 +44,18 @@
     },
     "showOnlyComments": "Afficher seulement les commentaires",
     "unassign": {
-      "action": "N'a pas été attribué à {{user}}"
+      "action": "N'a pas été attribué à {user}"
     }
   },
   "attachment": {
     "dropzone": {
       "activeTitle": "Déposer pour télécharger",
-      "desc": "Déplacer et déposer les fichiers dans cette zone ou {{select}}",
+      "desc": "Déplacer et déposer les fichiers dans cette zone ou {select}",
       "invalidTitle": "Non valable",
       "select": "Sélectionner un fichier",
       "title": "Télécharger les fichiers"
     },
-    "filesSelected": "{{count}} fichiers sélectionnés",
+    "filesSelected": "{count} fichiers sélectionnés",
     "other": "Pièces jointes",
     "removalPrompt": "Êtes-vous sûr(e) de vouloir supprimer ce fichier ?",
     "state": {
@@ -165,9 +165,9 @@
     },
     "reporting": {
       "closedTickets": {
-        "one": "{{count}} requête fermée",
-        "other": "{{count}} requêtes fermées",
-        "zero": "{{count}} requêtes fermées"
+        "one": "{count} requête fermée",
+        "other": "{count} requêtes fermées",
+        "zero": "{count} requêtes fermées"
       },
       "columns": {
         "avgTime": "Durée de résolution moyenne",
@@ -177,9 +177,9 @@
         "total": "Total"
       },
       "countriesTitle": {
-        "one": "{{count}} pays",
-        "other": "{{count}} pays",
-        "zero": "{{count}} pays"
+        "one": "{count} pays",
+        "other": "{count} pays",
+        "zero": "{count} pays"
       },
       "dateRange": {
         "lastHalf": "Les six derniers mois",
@@ -187,23 +187,23 @@
         "lastYear": "L’année dernière"
       },
       "openTickets": {
-        "one": "{{count}} requête ouverte",
-        "other": "{{count}} requêtes ouvertes",
-        "zero": "{{count}} requêtes ouvertes"
+        "one": "{count} requête ouverte",
+        "other": "{count} requêtes ouvertes",
+        "zero": "{count} requêtes ouvertes"
       },
-      "pastDeadline": "{{count}} date butoir passée",
+      "pastDeadline": "{count} date butoir passée",
       "staffTitle": {
-        "one": "{{count}} membre",
-        "other": "{{count}} membres",
-        "zero": "{{count}} membres"
+        "one": "{count} membre",
+        "other": "{count} membres",
+        "zero": "{count} membres"
       }
     },
     "view": {
       "close": {
-        "button": "{{verb}} la demande",
+        "button": "{verb} la demande",
         "cancel": "Non, laisser en suspens",
-        "confirm": "Oui, {{verb}} la requête",
-        "title": "Êtes-vous sûr(e) que vous souhaitez {{verb}} cette requête ?"
+        "confirm": "Oui, {verb} la requête",
+        "title": "Êtes-vous sûr(e) que vous souhaitez {verb} cette requête ?"
       },
       "pending": {
         "button": "marquer comme en attente",
@@ -216,9 +216,9 @@
     }
   },
   "prefixes": {
-    "at": "A {{time}}",
-    "by": "Par {{user}}",
-    "on": "Le {{date}}"
+    "at": "A {time}",
+    "by": "Par {user}",
+    "on": "Le {date}"
   },
   "profile": {
     "search": {
@@ -277,7 +277,7 @@
       "desc": "Nous ferons notre possible pour respecter votre échéance. Nous vous informons que nos investigateurs sont assez occupés.<br /> Accordez-leur le plus de temps possible !",
       "empty": "Aucune date butoir",
       "label": "Échéance",
-      "prefix": "Exigible le {{relativeTime}}"
+      "prefix": "Exigible le {relativeTime}"
     },
     "firstName": {
       "label": "Prénom"
@@ -307,7 +307,7 @@
     },
     "memberCenter": "Centre des membres",
     "one": "Requête",
-    "other": "{{count}} requêtes",
+    "other": "{count} requêtes",
     "priority": {
       "default": "Normale",
       "high": "Haute",
@@ -319,7 +319,7 @@
       "email": "Contact",
       "one": "Demandeur",
       "other": "Demandeurs",
-      "prefix": "Soumis par {{requester}}"
+      "prefix": "Soumis par {requester}"
     },
     "responder": {
       "empty": "Aucune personne assignée",
@@ -391,8 +391,8 @@
     "viewRequests": "Afficher les requêtes"
   },
   "validationErrors": {
-    "after": "Cette date doit être après {{after}}",
-    "before": "Cette date doit être avant {{before}}}",
+    "after": "Cette date doit être après {after}",
+    "before": "Cette date doit être avant {before}}",
     "blank": "Ce champ ne peut pas être vide",
     "email": "Ce champ requiert une adresse courriel valide"
   }

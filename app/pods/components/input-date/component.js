@@ -7,18 +7,18 @@ import moment from 'moment';
 
 export default Component.extend({
   tagName: '',
-  i18n: service(),
+  intl: service(),
 
   currentValue: readOnly('value'),
   theCenter: oneWay('center'),
 
   isShowingPopup: false,
 
-  attachment: computed('i18n.isRtl', function() {
-    return this.get('i18n.isRtl') ? 'bottom right' : 'bottom left';
+  attachment: computed('intl.isRtl', function() {
+    return this.get('intl.isRtl') ? 'bottom right' : 'bottom left';
   }),
-  targetAttachment: computed('i18n.isRtl', function() {
-    return this.get('i18n.isRtl') ? 'top right' : 'top left';
+  targetAttachment: computed('intl.isRtl', function() {
+    return this.get('intl.isRtl') ? 'top right' : 'top left';
   }),
   constraints: Object.freeze([
     {

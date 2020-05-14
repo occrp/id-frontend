@@ -19,11 +19,11 @@
   },
   "activity": {
     "assign": {
-      "action": "تم تعيين {{user}}"
+      "action": "تم تعيين {user}"
     },
     "attachment": {
       "action": "((المستخدم)) ارفق الملفات",
-      "removed": "قام {{user}} بإزالة الملف"
+      "removed": "قام {user} بإزالة الملف"
     },
     "comment": {
       "action": "",
@@ -170,9 +170,9 @@
     },
     "reporting": {
       "closedTickets": {
-        "one": "{{count}} طلب مغلق",
-        "other": "{{count}} طلبات مغلقة",
-        "zero": "{{count}} طلبات مغلقة"
+        "one": "{count} طلب مغلق",
+        "other": "{count} طلبات مغلقة",
+        "zero": "{count} طلبات مغلقة"
       },
       "columns": {
         "avgTime": "متوسط وقت القرار",
@@ -182,9 +182,9 @@
         "total": "إجمالي"
       },
       "countriesTitle": {
-        "one": "{{count}} بلد",
-        "other": "{{count}} بلدان",
-        "zero": "{{count}} بلدان"
+        "one": "{count} بلد",
+        "other": "{count} بلدان",
+        "zero": "{count} بلدان"
       },
       "dateRange": {
         "lastHalf": "الأشهر الست الأخيرة",
@@ -192,22 +192,22 @@
         "lastYear": "في العام الماضي"
       },
       "openTickets": {
-        "one": "{{count}} طلب مفتوح",
-        "other": "{{count}} طلبات مفتوحة",
-        "zero": "{{count}} طلبات مفتوحة"
+        "one": "{count} طلب مفتوح",
+        "other": "{count} طلبات مفتوحة",
+        "zero": "{count} طلبات مفتوحة"
       },
-      "pastDeadline": "{{count}} الموعد النهائي السابق",
+      "pastDeadline": "{count} الموعد النهائي السابق",
       "staffTitle": {
-        "one": "{{count}} عضو في الفريق",
-        "other": "{{count}} أعضاء في الفريق",
-        "zero": "{{count}} أعضاء في الفريق"
+        "one": "{count} عضو في الفريق",
+        "other": "{count} أعضاء في الفريق",
+        "zero": "{count} أعضاء في الفريق"
       }
     },
     "view": {
       "close": {
-        "button": "{{verb}} الطلب",
+        "button": "{verb} الطلب",
         "cancel": "لا، اتركه مفتوح",
-        "confirm": "نعم، {{verb}} الطلب",
+        "confirm": "نعم، {verb} الطلب",
         "title": "هل انت متأكد انك تريد (إرسال) هذا الطلب؟"
       },
       "pending": {
@@ -412,8 +412,8 @@
     "viewRequests": "عرض الطلبات"
   },
   "validationErrors": {
-    "after": "هذا التاريخ يجب أن يكون بعد {{after}}",
-    "before": "هذا التاريخ يجب أن يكون قبل {{before}}",
+    "after": "هذا التاريخ يجب أن يكون بعد {after}",
+    "before": "هذا التاريخ يجب أن يكون قبل {before}",
     "blank": "لا يمكن ترك هذا الحقل فارغاً",
     "email": "يجب أن يكون هذا الحقل عنوان بريد إلكتروني صحيح"
   }

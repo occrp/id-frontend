@@ -6,7 +6,7 @@
     <ul class="activeFilters-list">
     {{#if kind}}
       <li class="chip">
-        <div class="chip-label">{{t 'ticket.kind' count=1}}</div>
+        <div class="chip-label">{{t 'ticket.kind.one'}}</div>
         <div class="chip-value" data-test-active-filter="kind">
           {{~t (concat 'ticket.kind.' kind '.shortName')~}}
         </div>
@@ -17,7 +17,7 @@
     {{/if}}
     {{#if country}}
       <li class="chip">
-        <div class="chip-label">{{t 'ticket.country' count=1}}</div>
+        <div class="chip-label">{{t 'ticket.country.one'}}</div>
         <div class="chip-value" data-test-active-filter="country" title="{{country-name country}}">
           {{~country~}}
         </div>
@@ -28,7 +28,7 @@
     {{/if}}
     {{#if currentRequester}}
       <li class="chip">
-        <div class="chip-label">{{t 'ticket.requester' count=1}}</div>
+        <div class="chip-label">{{t 'ticket.requester.one'}}</div>
         <div class="chip-value" data-test-active-filter="requester">
           {{~currentRequester.displayName~}}
         </div>
@@ -39,7 +39,7 @@
     {{/if}}
     {{#if currentResponder}}
       <li class="chip">
-        <div class="chip-label">{{t 'ticket.responder' count=1}}</div>
+        <div class="chip-label">{{t 'ticket.responder.one'}}</div>
         <div class="chip-value" data-test-active-filter="responder">
           {{~currentResponder.displayName~}}
         </div>

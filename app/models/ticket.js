@@ -40,7 +40,7 @@ export const dataRequestTypes = [
 ];
 
 export default DS.Model.extend({
-  i18n: service(),
+  intl: service(),
 
   // Common
   kind: attr('string', { defaultValue: kindList[0] }),
@@ -91,11 +91,11 @@ export default DS.Model.extend({
       case kindList[2]:
         return this.get('identifier');
       case kindList[3]:
-        return this.get('i18n').t(
+        return this.get('intl').t(
           'ticket.dataCategory.' + this.get('initialInformation')
         );
       default:
-        return this.get('i18n').t('ticket.one');
+        return this.get('intl').t('ticket.one');
     }
   }),
 

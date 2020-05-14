@@ -46,7 +46,7 @@ export default Component.extend({
       }
     }
 
-    this.$('input').focus();
+    this.element.querySelector('input').focus();
   }
 
 });

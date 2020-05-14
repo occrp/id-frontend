@@ -21,20 +21,20 @@
   },
   "activity": {
     "assign": {
-      "action": "{{user}} ble tildelt"
+      "action": "{user} ble tildelt"
     },
     "attachment": {
-      "action": "{{user}} la til filer",
-      "removed": "{{user}} fjernet ei fil"
+      "action": "{user} la til filer",
+      "removed": "{user} fjernet ei fil"
     },
     "comment": {
-      "action": "{{user}} kommenterte {{relativeTime}}",
+      "action": "{user} kommenterte {relativeTime}",
       "submitButton": "Legg inn kommentar",
       "title": "Kommenter"
     },
     "expense": {
-      "action": "{{user}} lagret en ressurs",
-      "removed": "{{user}} fjernet en ressurs"
+      "action": "{user} lagret en ressurs",
+      "removed": "{user} fjernet en ressurs"
     },
     "loadOlder": "Last inn eldre",
     "one": "Aktivitet",
@@ -46,18 +46,18 @@
     },
     "showOnlyComments": "Kun vis kommentarer",
     "unassign": {
-      "action": "{{user}} fikk sin tildelning opphevet"
+      "action": "{user} fikk sin tildelning opphevet"
     }
   },
   "attachment": {
     "dropzone": {
       "activeTitle": "Slipp for å laste opp",
-      "desc": "Dra og slipp filer til dette området, eller {{select}}",
+      "desc": "Dra og slipp filer til dette området, eller {select}",
       "invalidTitle": "Ugyldig",
       "select": "Velg ei fil",
       "title": "Last opp filer"
     },
-    "filesSelected": "{{count}} filer valgt",
+    "filesSelected": "{count} filer valgt",
     "other": "Vedlegg",
     "removalPrompt": "Er du sikker på at du ønsker å slette denne fila?",
     "state": {
@@ -167,9 +167,9 @@
     },
     "reporting": {
       "closedTickets": {
-        "one": "{{count}} lukket forespørsel",
-        "other": "{{count}} lukkede forespørsler",
-        "zero": "{{count}} lukkede forespørsler"
+        "one": "{count} lukket forespørsel",
+        "other": "{count} lukkede forespørsler",
+        "zero": "{count} lukkede forespørsler"
       },
       "columns": {
         "avgTime": "Gjen. løsningstid",
@@ -179,9 +179,9 @@
         "total": "Totalt"
       },
       "countriesTitle": {
-        "one": "{{count}} land",
-        "other": "{{count}} land",
-        "zero": "{{count}} land"
+        "one": "{count} land",
+        "other": "{count} land",
+        "zero": "{count} land"
       },
       "dateRange": {
         "lastHalf": "Siste halvår",
@@ -189,23 +189,23 @@
         "lastYear": "Siste år"
       },
       "openTickets": {
-        "one": "{{count}} åpen forespørsel",
-        "other": "{{count}} åpne forespørsler",
-        "zero": "{{count}} åpne forespørsler"
+        "one": "{count} åpen forespørsel",
+        "other": "{count} åpne forespørsler",
+        "zero": "{count} åpne forespørsler"
       },
-      "pastDeadline": "{{count}} med utløpt tidsfrist",
+      "pastDeadline": "{count} med utløpt tidsfrist",
       "staffTitle": {
-        "one": "{{count}} stabsmedlem",
-        "other": "{{count}} stabsmedlemmer",
-        "zero": "{{count}} stabsmedlemmer"
+        "one": "{count} stabsmedlem",
+        "other": "{count} stabsmedlemmer",
+        "zero": "{count} stabsmedlemmer"
       }
     },
     "view": {
       "close": {
-        "button": "{{verb}} forespørsel",
+        "button": "{verb} forespørsel",
         "cancel": "Nei, la den forbli åpen",
-        "confirm": "Ja, {{verb}} forespørselen",
-        "title": "Er du sikker på at du vil {{verb}} denne forespørselen?"
+        "confirm": "Ja, {verb} forespørselen",
+        "title": "Er du sikker på at du vil {verb} denne forespørselen?"
       },
       "pending": {
         "button": "Merk som ventende"
@@ -282,7 +282,7 @@
       "desc": "Vi prøver å overholde tidsfristen, men ha i minnet at vi er travle.<br /> Gi dem som mye tid du kan!",
       "empty": "Ingen tidsfrist",
       "label": "Tidsfrist",
-      "prefix": "frist {{relativeTime}}"
+      "prefix": "frist {relativeTime}"
     },
     "firstName": {
       "label": "Fornavn"
@@ -317,7 +317,7 @@
       "label": "Etternavn"
     },
     "one": "Forespørsel",
-    "other": "{{count}} forespørsler",
+    "other": "{count} forespørsler",
     "priority": {
       "default": "Normal",
       "high": "Høy",
@@ -327,7 +327,7 @@
     "requester": {
       "one": "Forespørrer",
       "other": "Forespørrere",
-      "prefix": "Innsendt av {{requester}}"
+      "prefix": "Innsendt av {requester}"
     },
     "responder": {
       "empty": "Ingen tildelt",
@@ -399,8 +399,8 @@
     "viewRequests": "Vis forespørsler"
   },
   "validationErrors": {
-    "after": "Denne datoen må være etter {{after}}",
-    "before": "Denne datoen må være før {{before}}",
+    "after": "Denne datoen må være etter {after}",
+    "before": "Denne datoen må være før {before}",
     "blank": "Dette feltet kan ikke stå tomt",
     "email": "Dette feltet må være en gyldig e-postadresse"
   }

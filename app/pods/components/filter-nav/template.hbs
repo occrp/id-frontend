@@ -5,7 +5,7 @@
   <div class="filters-secondary">
     <div class="filters-item">
       {{#ui-dropdown data-test-dd="filter-kind" as |dd|}}
-        {{#dd.trigger}}{{t 'ticket.kind' count=1}}{{/dd.trigger}}
+        {{#dd.trigger}}{{t 'ticket.kind.one'}}{{/dd.trigger}}
         {{#dd.body headerText=(t 'filters.kind.title')}}
           <div class="list">
             {{#each kindList as |value|}}
@@ -21,7 +21,7 @@
     {{#if (or (can "resolve tickets") (can "manage tickets"))}}
     <div class="filters-item">
       {{#ui-dropdown data-test-dd="filter-country" as |dd|}}
-        {{#dd.trigger}}{{t 'ticket.country' count=1}}{{/dd.trigger}}
+        {{#dd.trigger}}{{t 'ticket.country.one'}}{{/dd.trigger}}
         {{#dd.body headerText=(t 'filters.country.title')}}
           {{search-countries
             current=country
@@ -33,7 +33,7 @@
     {{#if (can "manage tickets")}}
     <div class="filters-item">
       {{#ui-dropdown data-test-dd="filter-requester" as |dd|}}
-        {{#dd.trigger}}{{t 'ticket.requester' count=1}}{{/dd.trigger}}
+        {{#dd.trigger}}{{t 'ticket.requester.one'}}{{/dd.trigger}}
         {{#dd.body headerText=(t 'filters.requester.title')}}
           {{search-users
             task=searchRequesters
@@ -44,7 +44,7 @@
     </div>
     <div class="filters-item">
       {{#ui-dropdown data-test-dd="filter-responder" as |dd|}}
-        {{#dd.trigger}}{{t 'ticket.responder' count=1}}{{/dd.trigger}}
+        {{#dd.trigger}}{{t 'ticket.responder.one'}}{{/dd.trigger}}
         {{#dd.body headerText=(t 'filters.responder.title')}}
           {{#search-users
             task=searchStaff

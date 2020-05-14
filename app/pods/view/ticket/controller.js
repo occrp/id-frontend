@@ -9,7 +9,7 @@ import moment from 'moment';
 export default Controller.extend({
   kindList,
   Validations,
-  i18n: service(),
+  intl: service(),
   activityBus: service(),
   flashMessages: service(),
 

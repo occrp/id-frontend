@@ -29,7 +29,7 @@
           {{/if}}
         {{else}}
           <span>
-            {{t 'ticket.updatedAt.prefix'}}
+            {{t 'ticket.updatedAt'}}
             {{timestamp-full item.updatedAt}}
           </span>
         {{/if}}
@@ -71,8 +71,7 @@
       <p>{{timestamp-date item.createdAt}}</p>
       {{#if item.deadlineAt}}
         <p class="ticket-deadline">
-          {{t 'ticket.deadline.prefix'}}
-          {{timestamp-rel item.deadlineAt}}
+          {{t 'ticket.deadline.prefix' relativeTime=(moment-from-now item.deadlineAt)}}
         </p>
       {{/if}}
     </div>

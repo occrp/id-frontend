@@ -1,4 +1,3 @@
-import $ from 'jquery';
 import { getOwner } from '@ember/application';
 import { computed } from '@ember/object';
 import { inject as service } from '@ember/service';
@@ -8,7 +7,7 @@ import { kindList } from 'id-frontend/models/ticket';
 import { getSearchGenerator } from 'id-frontend/models/profile';
 
 export default Component.extend({
-  i18n: service(),
+  intl: service(),
 
   tagName: '',
   kindList,
@@ -16,18 +15,20 @@ export default Component.extend({
 
   csvExportUrl: computed('csvExportParams', function() {
     const adapter = getOwner(this).lookup('adapter:application');
-    const qParams = $.param(this.get('csvExportParams'));
+    const qParams = new URLSearchParams(
+      Object.entries(this.get('csvExportParams'))
+    ).toString();
 
     return adapter.urlForQuery({}, 'ticket-exports') + '?' + qParams;
   }),
 
-  sortFields: computed('i18n.locale', function() {
-    let i18n = this.get('i18n');
+  sortFields: computed('intl.locale', function() {
+    let intl = this.get('intl');
     return {
-      '-created-at': i18n.t('filters.sort.createdAt.desc'),
-      'created-at': i18n.t('filters.sort.createdAt.asc'),
-      'deadline-at': i18n.t('filters.sort.deadlineAt.desc'),
-      '-deadline-at': i18n.t('filters.sort.deadlineAt.asc')
+      '-created-at': intl.t('filters.sort.createdAt.desc'),
+      'created-at': intl.t('filters.sort.createdAt.asc'),
+      'deadline-at': intl.t('filters.sort.deadlineAt.desc'),
+      '-deadline-at': intl.t('filters.sort.deadlineAt.asc')
     }
   }),
 

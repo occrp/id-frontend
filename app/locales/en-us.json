@@ -21,19 +21,19 @@
   },
   "activity": {
     "assign": {
-      "action": "{{user}} was assigned"
+      "action": "was assigned"
     },
     "attachment": {
-      "action": "{{user}} attached files",
-      "removed": "{{user}} removed file"
+      "action": "attached files",
+      "removed": "removed file"
     },
     "comment": {
       "submitButton": "Post comment",
       "title": "Leave a comment"
     },
     "expense": {
-      "action": "{{user}} saved a resource",
-      "removed": "{{user}} removed a resource"
+      "action": "saved a resource",
+      "removed": "removed a resource"
     },
     "loadOlder": "Load older",
     "one": "Activity",
@@ -45,7 +45,7 @@
     },
     "showOnlyComments": "Show only comments",
     "unassign": {
-      "action": "{{user}} was unassigned"
+      "action": "was unassigned"
     }
   },
   "attachment": {
@@ -143,7 +143,7 @@
   "locales": {
     "ar": "العربية",
     "bs": "Bos/Hrv/Srp",
-    "en": "English",
+    "en-us": "English",
     "es": "Español",
     "fr": "Français",
     "ru": "Русский"
@@ -183,11 +183,7 @@
       "title": "Welcome!"
     },
     "reporting": {
-      "closedTickets": {
-        "one": "{{count}} Closed request",
-        "other": "{{count}} Closed requests",
-        "zero": "{{count}} Closed requests"
-      },
+      "closedTickets": "{count} Closed requests found",
       "columns": {
         "avgTime": "Avg. resolution time",
         "month": "Month",
@@ -195,38 +191,26 @@
         "pastDeadline": "Past deadline",
         "total": "Total"
       },
-      "countriesTitle": {
-        "one": "{{count}} Country",
-        "other": "{{count}} Countries",
-        "zero": "{{count}} Countries"
-      },
+      "countriesTitle": "{count} Countries found",
       "dateRange": {
         "lastHalf": "Last 6 months",
         "lastQuarter": "Last 3 months",
         "lastYear": "Last year"
       },
-      "openTickets": {
-        "one": "{{count}} Open request",
-        "other": "{{count}} Open requests",
-        "zero": "{{count}} Open requests"
-      },
-      "pastDeadline": "{{count}} past deadline",
-      "staffTitle": {
-        "one": "{{count}} Staff member",
-        "other": "{{count}} Staff members",
-        "zero": "{{count}} Staff members"
-      }
+      "openTickets": "{count} Open requests found",
+      "pastDeadline": "{count} past deadline",
+      "staffTitle": "{count} Staff member found"
     },
     "user": {
       "subtitle": "Please tell our team about yourself before filling a request.",
-      "title": "Who is {{displayName}}?"
+      "title": "Who is {displayName}?"
     },
     "view": {
       "close": {
-        "button": "{{verb}} request",
+        "button": "{verb} request",
         "cancel": "No, leave it open",
-        "confirm": "Yes, {{verb}} request",
-        "title": "Are you sure you want to {{verb}} this request?"
+        "confirm": "Yes, {verb} request",
+        "title": "Are you sure you want to {verb} this request?"
       },
       "pending": {
         "button": "mark as pending",
@@ -318,7 +302,7 @@
       "desc": "We will try to meet your deadline, but please note that our researchers are quite busy.<br /> Give them as much time as you possibly can!",
       "empty": "No deadline",
       "label": "Deadline",
-      "prefix": "due {{relativeTime}}"
+      "prefix": "due {relativeTime}"
     },
     "details": "Request description",
     "firstName": {
@@ -366,7 +350,7 @@
     },
     "memberCenter": "Member Center",
     "one": "Request",
-    "other": "{{count}} Requests",
+    "other": "{count} Requests",
     "priority": {
       "default": "Normal",
       "high": "High",
@@ -378,7 +362,7 @@
       "email": "Contact",
       "one": "Requester",
       "other": "Requesters",
-      "prefix": "Submitted by {{requester}}"
+      "prefix": "Submitted by"
     },
     "responder": {
       "empty": "No one assigned",
@@ -414,9 +398,8 @@
       "closed": {
         "name": "Closed"
       },
-      "groups": {
-        "closed": "Closed",
-        "open": "Open"
+      "open": {
+        "name": "Open"
       },
       "in-progress": {
         "name": "In progress"
@@ -451,8 +434,8 @@
     "viewRequests": "View requests"
   },
   "validationErrors": {
-    "after": "This date must be after {{after}}",
-    "before": "This date must be before {{before}}",
+    "after": "This date must be after {after}",
+    "before": "This date must be before {before}",
     "blank": "This field can't be blank",
     "email": "This field must be a valid e-mail address"
   }
