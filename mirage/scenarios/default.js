@@ -57,7 +57,7 @@ export default function(server) {
     status: 'new',
   });
 
-  server.createList('ticket', 2, 'isOther', {
+  server.createList('ticket', 30, 'isOther', {
     status: 'new',
   });
 
