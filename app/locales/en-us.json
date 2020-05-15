@@ -9,6 +9,7 @@
     "choose": "Choose",
     "close": "Close",
     "confirm": "Confirm",
+    "customOption": "Not in the list? Add it manually…",
     "delete": "Delete",
     "markdownEdit": "Markdown edit",
     "markdownPreview": "Markdown preview",
@@ -88,7 +89,6 @@
   "expenses": {
     "amount": "Cost",
     "currency": "Currency",
-    "customScope": "Not in the list? Add it manually…",
     "date": "Date",
     "notes": "Notes",
     "paymentExtras": "Add payment details…",
@@ -172,7 +172,7 @@
       "form": {
         "invalidMessage": "Please review the fields marked above before continuing.",
         "memberCenter": "Member center",
-        "memberCenterDetails": "Select or provide our network center or partner you work with.",
+        "memberCenterDetails": "Which member center or OCCRP partner are you working with?",
         "otherDetails": "Other details",
         "requestDetails": "Request details",
         "submitButton": "Submit your request",
@@ -229,7 +229,7 @@
     }
   },
   "ticket": {
-    "addAttachments": "View or upload request files",
+    "addAttachments": "View or upload files",
     "addExpense": "Add expense",
     "addSubscriber": "Add subscriber",
     "background": {
@@ -299,7 +299,7 @@
       "scrape": "Get data"
     },
     "deadline": {
-      "desc": "We will try to meet your deadline, but please note that our researchers are quite busy.<br /> Give them as much time as you possibly can!",
+      "desc": "We will try to meet your deadline, but please note that our researchers are quite busy. It will take us a minimum of three working days to respond.",
       "empty": "No deadline",
       "label": "Deadline",
       "prefix": "due {relativeTime}"
