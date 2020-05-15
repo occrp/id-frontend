@@ -4,17 +4,6 @@
     @include caret;
     padding: $spacer-2 0;
     margin: -1 * $spacer-2 0;
-
-    @include hover {
-      color: theme-color("primary");
-      text-decoration: none;
-    }
-    &.is-active {
-      color: theme-color("primary");
-    }
-
-    @include rtl { }
-
   }
 }
 
@@ -22,7 +11,6 @@
   position: relative;
   display: flex;
   align-items: center;
-  color: inherit;
 
   img {
     display: inline-block;
@@ -32,15 +20,7 @@
     display: none;
   }
 
-  &:hover {
-    color: theme-color("primary");
-    text-decoration: none;
-  }
-
   @include respond($max: sm) {
-    span {
-      @include squish-text;
-    }
     abbr {
       display: inline;
     }

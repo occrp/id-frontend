@@ -1,8 +1,8 @@
 {{loading-slider isLoading=loading duration=250}}
 
-<nav class="mainNav bg-white pv2 mb4 t-sm t-muted bb b--near-white">
+<nav class="mainNav bg-white pv2 mb4 t-sm bb b--near-white">
   <div class="wrapper flex pt2 pb4 items-center justify-between">
-    <a href="{{parentMeta.rootURL}}" class="mainNav-logo t4 t-light link">
+    <a href="{{parentMeta.rootURL}}" class="mainNav-logo t4 normal gray link">
       <img width="32" height="32" src="{{parentMeta.rootLogo}}" />
       <span>{{parentMeta.rootName}}</span>
       <abbr>ID</abbr>
@@ -12,16 +12,24 @@
         {{session.currentUser.ticketsCount}} {{t 'nav.requests'~}}
       {{/link-to}}
 
-      {{i18n-switch
-        class="mh4 ttu"
-        locales=activeLocales
-        currentLocale=lang
-        switchLocale=(action 'switchLocale')
-      }}
+      {{#ui-dropdown class='mh4 ttu' data-test-dd="i18n-switch" as |dd|}}
+        {{#dd.trigger class="link mid-gray"}}
+          {{icon 'globe' class="nb-2"}} {{lang}}
+        {{/dd.trigger}}
+        {{#dd.body class="dd--xs"}}
+          <div class="list">
+            {{#each activeLocales as |locale|}}
+              <a href {{action (pipe (action 'switchLocale' locale) dd.close)}} class="list-item {{if (eq lang locale) "is-active"}}" data-test-kind-option={{locale}}>
+                {{t (concat 'locales.' locale)}}
+              </a>
+            {{/each}}
+          </div>
+        {{/dd.body}}
+      {{/ui-dropdown}}
 
       {{#ui-dropdown as |dd|}}
-        {{#dd.trigger}}
-          {{session.currentUser.displayName~}}
+        {{#dd.trigger class="link mid-gray"}}
+          {{session.currentUser.displayName}}
         {{/dd.trigger}}
         {{#dd.body class="dd--xs"}}
           <div class="list">
