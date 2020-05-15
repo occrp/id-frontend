@@ -1,13 +1,17 @@
 {{#if value}}
-  <a class="link" {{action (toggle 'isPreviewed' this)}}>
-    <small class="light-silver b">
+  <small class="fr">
+    {{icon 'markdown' class="nb-2"}}
+    <a class="link light-silver b" {{action (toggle 'isPreviewed' this)}}>
       {{#if isPreviewed}}
         {{t 'actions.markdownEdit'}}
       {{else}}
         {{t 'actions.markdownPreview'}}
       {{/if}}
-    </small>
-  </a>
+    </a>
+    <a href="https://commonmark.org/help/" target="_blank" class="link light-silver">
+      {{t 'actions.markdownHelp'}}
+    </a>
+  </small>
 {{/if}}
 
 {{#if (and value isPreviewed)}}
