@@ -7,12 +7,22 @@
       didValidate=didValidate as |field|}}
 
       <label for="ticket-member-center">{{t 'pods.new.form.memberCenterDetails'}} <span class="t-danger">*</span></label>
-      <select onchange={{action (mut buffer.memberCenter) value="target.value"}} class="formControl" id="ticket-member-center">
-        <option value=""> - {{t 'actions.choose'}} - </option>
-        {{#each memberCenters as |memberCenter|}}
-          <option value={{memberCenter}} selected={{eq buffer.memberCenter memberCenter}}>{{memberCenter}}</option>
-        {{/each}}
-      </select>
+      {{#if customCenter }}
+        {{input id="ticket-member-center" value=buffer.memberCenter class="db w-100 ba br1 pa2 b--moon-gray"}}
+      {{else}}
+        <select onchange={{action (mut buffer.memberCenter) value="target.value"}} class="formControl mb2" id="ticket-member-center">
+          <option value=""> - {{t 'actions.choose'}} - </option>
+          {{#each memberCenters as |memberCenter|}}
+            <option value={{memberCenter}} selected={{eq buffer.memberCenter memberCenter}}>{{memberCenter}}</option>
+          {{/each}}
+        </select>
+
+        <a {{action (action (mut customCenter) (if customCenter false true))}}
+          class="link silver dim" data-test-cust-scope
+        >
+          {{t 'actions.customOption'}}
+        </a>
+      {{/if}}
 
       {{#if field.showErrors}}
         {{#each field.errors as |error|}}
