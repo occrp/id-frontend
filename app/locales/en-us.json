@@ -435,9 +435,7 @@
     "viewRequests": "View requests"
   },
   "validationErrors": {
-    "after": "This date must be after {after}",
-    "before": "This date must be before {before}",
-    "blank": "This field can't be blank",
+    "present": "This field can't be blank",
     "email": "This field must be a valid e-mail address"
   }
 }

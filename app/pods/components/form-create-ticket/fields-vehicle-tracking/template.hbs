@@ -1,59 +1,36 @@
-<div class="fieldGroup fieldGroup--bordered">
-  <div class="l-constrain">
-    <h2 class="fieldGroup-title">{{t 'ticket.kind.vehicle_tracking.name'}}</h2>
+<div class="mw7 center pv4 ph4">
+  {{validated-input defaultField=true inputId='ticket-identifier-vehicle' label=(t 'ticket.identifierVehicle.label') required=true buffer=buffer property='identifier'}}
 
-    {{#validated-field
-      class="formGroup"
-      errors=buffer.displayErrors.identifier
-      didValidate=didValidate as |field|}}
+  {{#validated-input class="pt4" inputId='ticket-country-vehicle' label=(t 'ticket.countryVehicle.label') buffer=buffer required=true property='country' as |vi errors|}}
+    <select
+      class={{concat 'db w-100 ba br1 pa2 b--moon-gray bg-white ' (if errors.validation 'b--dark-red')}}
+      id={{vi.inputId}}
+      oninput={{action (changeset-set buffer vi.property) value='target.value'}}
+      onblur={{action 'validateProperty' buffer vi.property target=vi}}
+    >
+      <option value=""> - {{t 'actions.choose'}} - </option>
+      {{#each-in countries as |code name|}}
+        <option value={{code}} selected={{eq buffer.country code}}>{{name}}</option>
+      {{/each-in}}
+    </select>
+  {{/validated-input}}
 
-      <label for="ticket-identifier-vehicle">{{t 'ticket.identifierVehicle.label'}} <span class="t-danger">*</span></label>
-      {{input rows=5 value=buffer.identifier class="formControl" id="ticket-identifier-vehicle" focus-out=field.triggerValidations}}
-
-      {{#if field.showErrors}}
-        {{#each field.errors as |error|}}
-          <div class="formFeedback">{{error}}</div>
-        {{/each}}
-      {{/if}}
-    {{/validated-field}}
-
-    {{#validated-field
-      class="formGroup"
-      errors=buffer.displayErrors.country
-      didValidate=didValidate as |field|}}
-
-      <label for="ticket-country-vehicle">{{t 'ticket.countryVehicle.label'}} <span class="t-danger">*</span></label>
-      <select onchange={{action (mut buffer.country) value="target.value"}} onblur={{action field.triggerValidations}} class="formControl" id="ticket-country-vehicle">
-        <option value="">{{t 'dropdownBlank'}}</option>
-        {{#each-in countries as |code name|}}
-          <option value={{code}} selected={{eq buffer.country code}}>{{name}}</option>
-        {{/each-in}}
-      </select>
-
-      {{#if field.showErrors}}
-        {{#each field.errors as |error|}}
-          <div class="formFeedback">{{error}}</div>
-        {{/each}}
-      {{/if}}
-
-    {{/validated-field}}
-
-    {{#validated-field
-      class="formGroup"
-      errors=buffer.displayErrors.background
-      didValidate=didValidate as |field|}}
-
-      <label class="db" for="ticket-background-vehicle">{{t 'ticket.backgroundVehicle.label'}} <span class="t-danger">*</span></label>
-      <small class="light-silver">{{t 'ticket.backgroundVehicle.desc'}}</small>
-      {{#form-create-ticket/markdown-toggle tagName='' value=buffer.background}}
-        {{textarea rows=5 value=buffer.background class="formControl mt2" id="ticket-background-vehicle" focus-out=field.triggerValidations}}
-      {{/form-create-ticket/markdown-toggle}}
-
-      {{#if field.showErrors}}
-        {{#each field.errors as |error|}}
-          <div class="formFeedback">{{error}}</div>
-        {{/each}}
-      {{/if}}
-    {{/validated-field}}
-  </div>
+  {{#validated-input
+    class="pt4" inputId='ticket-background-vehicle'
+    label=(t 'ticket.backgroundVehicle.label')
+    desc=(t 'ticket.backgroundVehicle.desc')
+    required=true
+    buffer=buffer
+    property='background' as |vi errors|
+  }}
+    {{#form-create-ticket/markdown-toggle tagName='' value=(changeset-get buffer vi.property)}}
+      {{textarea
+        rows=5
+        class=(concat 'db w-100 ba br1 pa2 b--moon-gray ' (if errors.validation 'b--dark-red'))
+        id=vi.inputId
+        value=(mut (get buffer vi.property))
+        focus-out=(action 'validateProperty' buffer vi.property target=vi)
+      }}
+    {{/form-create-ticket/markdown-toggle}}
+  {{/validated-input}}
 </div>

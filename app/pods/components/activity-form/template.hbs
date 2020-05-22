@@ -9,32 +9,30 @@
   <div class="activity-avatar">{{user-avatar user=session.currentUser preset="large"}}</div>
 
   <div class="activity-author"><strong>{{t 'activity.comment.title'}}</strong></div>
-  <form class="activity-body activity-form" {{action "save" on="submit"}}>
 
-    {{#validated-field
-      class="formGroup"
-      errors=this.validations.attrs.body.messages
-      didValidate=didValidate as |field|}}
-
-      {{textarea value=body id="new-comment" class="formControl formControl--sm" rows="6"}}
-
-      {{#if field.showErrors}}
-        {{#each field.errors as |error|}}
-          <div class="formFeedback t-right">{{error}}</div>
-        {{/each}}
-      {{/if}}
-
-    {{/validated-field}}
-
-    <div class="formGroup formGroup--actions">
-      <button disabled={{publishComment.isRunning}} type="submit" class="button button--primary" data-test-publish-comment>
-        {{t 'activity.comment.submitButton'}}
-      </button>
+  {{#with (changeset record Validations) as |buffer|}}
+    <form class="activity-body activity-form" {{action "save" buffer on="submit"}}>
+      {{#validated-input inputId='new-comment' buffer=buffer property='body' showErrors=false as |vi errors|}}
+        {{textarea
+          rows=6
+          disabled=publishComment.isRunning
+          class=(concat 'db w-100 ba br1 pa2 mb2 b--moon-gray' (if errors.validation ' b--dark-red'))
+          id=vi.inputId
+          value=(mut (get buffer vi.property))
+          focus-out=(action 'validateProperty' buffer vi.property target=vi)
+        }}
+      {{/validated-input}}
 
       {{#if publishComment.isRunning}}
         {{ui-spinner}}
+      {{else}}
+        <button
+          type="submit"
+          disabled={{publishComment.isRunning}}
+          class="db ttu b white bg-occrp-red br2 bn pointer dim ph3 pv2"
+          data-test-publish-comment
+        >{{t 'activity.comment.submitButton'}}</button>
       {{/if}}
-    </div>
-
-  </form>
+    </form>
+  {{/with}}
 </div>

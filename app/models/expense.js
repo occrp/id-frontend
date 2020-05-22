@@ -1,5 +1,5 @@
 import DS from 'ember-data';
-import { validator, buildValidations } from 'ember-cp-validations';
+import { validatePresence } from 'ember-changeset-validations/validators';
 
 const { attr, belongsTo } = DS;
 
@@ -17,11 +17,8 @@ export default DS.Model.extend({
   ticket: belongsTo()
 });
 
-export const Validations = buildValidations({
-  scope: validator('presence', {
-    presence: true,
-  })
-}, {
-  debounce: 100,
-  messageKey: 'validationErrors.blank'
-});
+export const Validations = {
+  scope: [
+    validatePresence(true)
+  ]
+};

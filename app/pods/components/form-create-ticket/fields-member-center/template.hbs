@@ -1,35 +1,34 @@
-<div class="fieldGroup fieldGroup--bordered">
-  <div class="l-constrain">
-    <h2 class="fieldGroup-title">{{t 'pods.new.form.memberCenter'}}</h2>
-    {{#validated-field
-      class="formGroup"
-      errors=buffer.displayErrors.memberCenter
-      didValidate=didValidate as |field|}}
+<div class="mw7 center pv4 ph4 bt b--light-gray">
+  <h2 class="normal mb4">{{t 'pods.new.form.memberCenter'}}</h2>
 
-      <label for="ticket-member-center">{{t 'pods.new.form.memberCenterDetails'}} <span class="t-danger">*</span></label>
-      {{#if customCenter }}
-        {{input id="ticket-member-center" value=buffer.memberCenter class="db w-100 ba br1 pa2 b--moon-gray"}}
-      {{else}}
-        <select onchange={{action (mut buffer.memberCenter) value="target.value"}} class="formControl mb2" id="ticket-member-center">
-          <option value=""> - {{t 'actions.choose'}} - </option>
-          {{#each memberCenters as |memberCenter|}}
-            <option value={{memberCenter}} selected={{eq buffer.memberCenter memberCenter}}>{{memberCenter}}</option>
-          {{/each}}
-        </select>
+  {{#validated-input
+    inputId='ticket-member-center'
+    label=(t 'pods.new.form.memberCenterDetails')
+    defaultField=customCenter
+    required=true
+    buffer=buffer
+    property='memberCenter' as |vi errors|
+  }}
+    <select
+      class={{concat 'db w-100 ba br1 pa2 b--moon-gray bg-white ' (if errors.validation 'b--dark-red')}}
+      id={{vi.inputId}}
+      oninput={{action (changeset-set buffer vi.property) value='target.value'}}
+      onblur={{action 'validateProperty' buffer vi.property target=vi}}
+    >
+      <option value=""> - {{t 'actions.choose'}} - </option>
+      {{#each memberCenters as |memberCenter|}}
+        <option value={{memberCenter}} selected={{eq buffer.memberCenter memberCenter}}>{{memberCenter}}</option>
+      {{/each}}
+    </select>
 
-        <a {{action (action (mut customCenter) (if customCenter false true))}}
-          class="link silver dim" data-test-cust-scope
-        >
-          {{t 'actions.customOption'}}
-        </a>
-      {{/if}}
-
-      {{#if field.showErrors}}
-        {{#each field.errors as |error|}}
-          <div class="formFeedback">{{error}}</div>
-        {{/each}}
-      {{/if}}
-
-    {{/validated-field}}
-  </div>
+    <p class="pt2">
+      <a
+        {{action (action (mut customCenter) (if customCenter false true))}}
+        class="link silver dim"
+        data-test-cust-scope
+      >
+        {{t 'actions.customOption'}}
+      </a>
+    </p>
+  {{/validated-input}}
 </div>

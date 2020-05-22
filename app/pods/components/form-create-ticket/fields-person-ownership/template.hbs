@@ -1,152 +1,123 @@
-<div class="fieldGroup fieldGroup--bordered">
-  <div class="l-constrain">
-    <h2 class="fieldGroup-title">{{t 'ticket.kind.person_ownership.name'}}</h2>
+<div class="mw7 center pv4 ph4">
+  {{validated-input defaultField=true inputId='ticket-first-name' label=(t 'ticket.firstName.label') required=true buffer=buffer property='firstName'}}
 
-    {{#validated-field
-      class="formGroup"
-      errors=buffer.displayErrors.firstName
-      didValidate=didValidate as |field|}}
+  {{validated-input defaultField=true class="pt4" inputId='ticket-last-name' label=(t 'ticket.lastName.label') required=true buffer=buffer property='lastName'}}
 
-      <label for="ticket-first-name">{{t 'ticket.firstName.label'}} <span class="t-danger">*</span></label>
-      {{input value=buffer.firstName class="formControl" id="ticket-first-name" focus-out=field.triggerValidations}}
+  <div class="pt4">
+    <label for="ticket-born-at">{{t 'ticket.bornAt.label'}}</label>
 
-      {{#if field.showErrors}}
-        {{#each field.errors as |error|}}
-          <div class="formFeedback">{{error}}</div>
-        {{/each}}
-      {{/if}}
-
-    {{/validated-field}}
-
-    {{#validated-field
-      class="formGroup"
-      errors=buffer.displayErrors.lastName
-      didValidate=didValidate as |field|}}
-
-      <label for="ticket-last-name">{{t 'ticket.lastName.label'}} <span class="t-danger">*</span></label>
-      {{input value=buffer.lastName class="formControl" id="ticket-last-name" focus-out=field.triggerValidations}}
-
-      {{#if field.showErrors}}
-        {{#each field.errors as |error|}}
-          <div class="formFeedback">{{error}}</div>
-        {{/each}}
-      {{/if}}
-
-    {{/validated-field}}
-
-    <div class="formGroup">
-      <label for="ticket-identifier">{{t 'ticket.identifierPerson.label'}}</label>
-      {{input value=buffer.identifier class="formControl" id="ticket-identifier"}}
-    </div>
-
-    <div class="formGroup">
-      <label for="ticket-nationality">{{t 'ticket.countryPerson.label'}}</label>
-      <select onchange={{action (mut buffer.country) value="target.value"}} class="formControl" id="ticket-nationality">
-        <option value=""> - {{t 'actions.choose'}} - </option>
-        {{#each-in countries as |code name|}}
-          <option value={{code}} selected={{eq buffer.country code}}>{{name}}</option>
-        {{/each-in}}
-      </select>
-    </div>
-
-    {{#validated-field
-      class="formGroup"
-      errors=buffer.displayErrors.background
-      didValidate=didValidate as |field|}}
-
-      <label class="db" for="ticket-background">{{t 'ticket.background.formLabel'}} <span class="t-danger">*</span></label>
-      <small class="light-silver">{{t 'ticket.background.desc'}}</small>
-      {{#form-create-ticket/markdown-toggle tagName='' value=buffer.background}}
-        {{textarea rows=5 value=buffer.background class="formControl mt2" id="ticket-background" focus-out=field.triggerValidations}}
-      {{/form-create-ticket/markdown-toggle}}
-
-      {{#if field.showErrors}}
-        {{#each field.errors as |error|}}
-          <div class="formFeedback">{{error}}</div>
-        {{/each}}
-      {{/if}}
-    {{/validated-field}}
-
-    {{#validated-field
-     class="formGroup"
-     errors=buffer.displayErrors.initialInformation
-     didValidate=didValidate as |field|}}
-
-      <label class="db" for="ticket-initialInformation">{{t 'ticket.initialInformation.formLabel'}} <span class="t-danger">*</span></label>
-      <small class="light-silver">{{t 'ticket.initialInformation.desc'}}</small>
-      {{#form-create-ticket/markdown-toggle tagName='' value=buffer.initialInformation}}
-        {{textarea rows=5 value=buffer.initialInformation class="formControl mt2" id="ticket-initialInformation" focus-out=field.triggerValidations}}
-      {{/form-create-ticket/markdown-toggle}}
-
-      {{#if field.showErrors}}
-        {{#each field.errors as |error|}}
-          <div class="formFeedback">{{error}}</div>
-        {{/each}}
-      {{/if}}
-
-    {{/validated-field}}
-
-    <h2 class="fieldGroup-title">{{t 'pods.new.form.otherDetails'}}</h2>
-
-    <div class="formGroup">
-      <label for="ticket-born-at">{{t 'ticket.bornAt.label'}}</label>
-
-      {{input-date value=buffer.bornAt onSelect=(action (mut buffer.bornAt) value="date") id="ticket-born-at" maxDate=today class="formControl"}}
-    </div>
-
-    {{#validated-field
-     class="formGroup"
-     errors=buffer.displayErrors.sources
-     didValidate=didValidate as |field|}}
-
-     <label class="db" for="ticket-sources-person">{{t 'ticket.sourcesPerson.label'}}</label>
-      <small class="light-silver">{{t 'ticket.sourcesPerson.desc'}}</small>
-      {{#form-create-ticket/markdown-toggle tagName='' value=buffer.sources}}
-        {{textarea rows=3 value=buffer.sources class="formControl mt2" id="ticket-sources-person" focus-out=field.triggerValidations}}
-      {{/form-create-ticket/markdown-toggle}}
-
-      {{#if field.showErrors}}
-        {{#each field.errors as |error|}}
-          <div class="formFeedback">{{error}}</div>
-        {{/each}}
-      {{/if}}
-
-    {{/validated-field}}
-
-    {{#validated-field
-     class="formGroup"
-     errors=buffer.displayErrors.connections
-     didValidate=didValidate as |field|}}
-
-      <label class="db" for="ticket-connections-person">{{t 'ticket.connectionsPerson.label'}}</label>
-      <small class="light-silver">{{t 'ticket.connectionsPerson.desc'}}</small>
-      {{#form-create-ticket/markdown-toggle tagName='' value=buffer.connections}}
-        {{textarea rows=3 value=buffer.connections class="formControl mt2" id="ticket-connections-person" focus-out=field.triggerValidations}}
-      {{/form-create-ticket/markdown-toggle}}
-
-      {{#if field.showErrors}}
-        {{#each field.errors as |error|}}
-          <div class="formFeedback">{{error}}</div>
-        {{/each}}
-      {{/if}}
-    {{/validated-field}}
-
-    {{#validated-field
-     class="formGroup"
-     errors=buffer.displayErrors.businessActivities
-     didValidate=didValidate as |field|}}
-
-      <label class="db" for="ticket-businessActivities">{{t 'ticket.businessActivities.label'}}</label>
-      {{#form-create-ticket/markdown-toggle tagName='' value=buffer.businessActivities}}
-        {{textarea rows=3 value=buffer.businessActivities class="formControl mt2" id="ticket-businessActivities" focus-out=field.triggerValidations}}
-      {{/form-create-ticket/markdown-toggle}}
-
-      {{#if field.showErrors}}
-        {{#each field.errors as |error|}}
-          <div class="formFeedback">{{error}}</div>
-        {{/each}}
-      {{/if}}
-
-    {{/validated-field}}
+    {{input-date
+      id='ticket-born-at'
+      class='db w-100 ba br1 pa2 b--moon-gray'
+      value=buffer.bornAt
+      onSelect=(action (changeset-set buffer 'bornAt') value='date')
+      maxDate=today
+    }}
   </div>
+
+  {{validated-input defaultField=true class="pt4" inputId='ticket-identifier' label=(t 'ticket.identifierPerson.label') buffer=buffer property='identifier'}}
+
+  {{#validated-input class="pt4" inputId='ticket-nationality' label=(t 'ticket.countryPerson.label') buffer=buffer property='country' as |vi errors|}}
+
+    <select
+      class={{concat 'db w-100 ba br1 pa2 b--moon-gray bg-white ' (if errors.validation 'b--dark-red')}}
+      id={{vi.inputId}}
+      oninput={{action (changeset-set buffer vi.property) value='target.value'}}
+      onblur={{action 'validateProperty' buffer vi.property target=vi}}
+    >
+      <option value=""> - {{t 'actions.choose'}} - </option>
+      {{#each-in countries as |code name|}}
+        <option value={{code}} selected={{eq buffer.country code}}>{{name}}</option>
+      {{/each-in}}
+    </select>
+  {{/validated-input}}
+
+  {{#validated-input
+    class="pt4" inputId='ticket-background'
+    label=(t 'ticket.background.formLabel')
+    desc=(t 'ticket.background.desc')
+    required=true
+    buffer=buffer
+    property='background' as |vi errors|
+  }}
+    {{#form-create-ticket/markdown-toggle tagName='' value=(changeset-get buffer vi.property)}}
+      {{textarea
+        rows=5
+        class=(concat 'db w-100 ba br1 pa2 b--moon-gray ' (if errors.validation 'b--dark-red'))
+        id=vi.inputId
+        value=(mut (get buffer vi.property))
+        focus-out=(action 'validateProperty' buffer vi.property target=vi)
+      }}
+    {{/form-create-ticket/markdown-toggle}}
+  {{/validated-input}}
+
+  {{#validated-input
+    class="pt4"
+    inputId='ticket-initial-information'
+    label=(t 'ticket.initialInformation.formLabel')
+    desc=(t 'ticket.initialInformation.desc')
+    required=true
+    buffer=buffer
+    property='initialInformation' as |vi errors|
+  }}
+    {{#form-create-ticket/markdown-toggle tagName='' value=(changeset-get buffer vi.property)}}
+      {{textarea
+        rows=5
+        class=(concat 'db w-100 ba br1 pa2 b--moon-gray ' (if errors.validation 'b--dark-red'))
+        id=vi.inputId
+        value=(mut (get buffer vi.property))
+        focus-out=(action 'validateProperty' buffer vi.property target=vi)
+      }}
+    {{/form-create-ticket/markdown-toggle}}
+  {{/validated-input}}
+
+  {{#validated-input
+    class="pt4"
+    inputId='ticket-sources-person'
+    label=(t 'ticket.sourcesPerson.label')
+    desc=(t 'ticket.sourcesPerson.desc')
+    buffer=buffer
+    property='sources' as |vi errors|
+  }}
+    {{#form-create-ticket/markdown-toggle tagName='' value=(changeset-get buffer vi.property)}}
+      {{textarea
+        rows=5
+        class=(concat 'db w-100 ba br1 pa2 b--moon-gray ' (if errors.validation 'b--dark-red'))
+        id=vi.inputId
+        value=(mut (get buffer vi.property))
+        focus-out=(action 'validateProperty' buffer vi.property target=vi)
+      }}
+    {{/form-create-ticket/markdown-toggle}}
+  {{/validated-input}}
+
+  {{#validated-input
+    class="pt4"
+    inputId='ticket-connections-person'
+    label=(t 'ticket.connectionsPerson.label')
+    desc=(t 'ticket.connectionsPerson.desc')
+    buffer=buffer
+    property='connections' as |vi errors|
+  }}
+    {{#form-create-ticket/markdown-toggle tagName='' value=(changeset-get buffer vi.property)}}
+      {{textarea
+        rows=5
+        class=(concat 'db w-100 ba br1 pa2 b--moon-gray ' (if errors.validation 'b--dark-red'))
+        id=vi.inputId
+        value=(mut (get buffer vi.property))
+        focus-out=(action 'validateProperty' buffer vi.property target=vi)
+      }}
+    {{/form-create-ticket/markdown-toggle}}
+  {{/validated-input}}
+
+  {{#validated-input class="pt4" inputId='ticket-business-activities' label=(t 'ticket.businessActivities.label') buffer=buffer property='businessActivities' as |vi errors|}}
+    {{#form-create-ticket/markdown-toggle tagName='' value=(changeset-get buffer vi.property)}}
+      {{textarea
+        rows=5
+        class=(concat 'db w-100 ba br1 pa2 b--moon-gray ' (if errors.validation 'b--dark-red'))
+        id=vi.inputId
+        value=(mut (get buffer vi.property))
+        focus-out=(action 'validateProperty' buffer vi.property target=vi)
+      }}
+    {{/form-create-ticket/markdown-toggle}}
+  {{/validated-input}}
 </div>

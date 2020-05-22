@@ -18,10 +18,11 @@ export default Component.extend({
 
       model.set('countries', countries);
 
-      // TODO: Add validations
       if (model.get('isValid')) {
         model.save().then(()=> {
           this.set('selectedCountry', null);
+        }).catch(() => {
+          this.get('flashMessages').danger('errors.genericRequest');
         });
       }
     },
@@ -31,9 +32,10 @@ export default Component.extend({
 
       model.get('countries').removeObject(code);
 
-      // TODO: Add validations
       if (model.get('isValid')) {
-        model.save();
+        model.save().catch(() => {
+          this.get('flashMessages').danger('errors.genericRequest');
+        });
       }
     }
   }

@@ -4,8 +4,8 @@ import { setupApplicationTest } from 'ember-qunit';
 import setupMirage from 'ember-cli-mirage/test-support/setup-mirage';
 import { initSession } from 'id-frontend/tests/helpers/init-session';
 
-import { upload } from 'ember-file-upload/test-support';
-import { upload as mirageUpload } from 'ember-file-upload/mirage';
+import { selectFiles } from 'ember-file-upload/test-support';
+import { upload } from 'ember-file-upload/mirage';
 
 module('Acceptance | tickets/view - attachments', function(hooks) {
   setupApplicationTest(hooks);
@@ -22,7 +22,7 @@ module('Acceptance | tickets/view - attachments', function(hooks) {
     });
 
     let done = assert.async();
-    server.post('/attachments', mirageUpload(function (schema, request) {
+    server.post('/attachments', upload(function (schema, request) {
       let file = request.requestBody.upload;
       let meta = JSON.parse(request.requestBody.ticket);
 
@@ -67,7 +67,7 @@ module('Acceptance | tickets/view - attachments', function(hooks) {
     ]);
 
     let photo = new File([data], 'image.png', { type: 'image/png'});
-    await upload('[data-test-file-upload] input', photo);
+    await selectFiles('[data-test-file-upload] input', photo);
 
     await click('[data-test-confirm]');
 

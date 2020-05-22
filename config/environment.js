@@ -59,6 +59,10 @@ module.exports = function(environment) {
       noHeaderId: true,
       headerLevelStart: 5,
       smoothLivePreview: true
+    },
+
+    'changeset-validations': {
+      rawOutput: true
     }
   };
 

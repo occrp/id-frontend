@@ -10,9 +10,10 @@ export default Component.extend({
     savePriority() {
       const model = this.get('model');
 
-      // TODO: Add validations
       if (model.get('isValid')) {
-        model.save();
+        model.save().catch(() => {
+          this.get('flashMessages').danger('errors.genericRequest');
+        });
       }
     }
   }

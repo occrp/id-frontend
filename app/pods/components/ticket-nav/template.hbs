@@ -5,7 +5,7 @@
     {{/link-to}}
   </div>
   <div class="ticketNav-search">
-    <input type="text" class="formControl" oninput={{perform searchTickets value="target.value" }} placeholder={{t 'ticket.search.placeholder'}} value={{search}} data-test-ticket-search />
+    <input type="text" class="db w-100 ba br1 pa2 b--moon-gray bg-white" oninput={{perform searchTickets value="target.value" }} placeholder={{t 'ticket.search.placeholder'}} value={{search}} data-test-ticket-search />
     {{#if search}}
     <button class="button button--link" {{action resetFilter 'search'}}>
       {{t 'ticket.search.clear'}}

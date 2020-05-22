@@ -1,15 +1,11 @@
-<div class="activityHeader">
-
-  <div class="activityHeader-controls">
+<div class="mt4">
+  <div class="bb b--light-gray p2 flex justify-between">
     <span class="gray ttu b tracked">{{t 'activity.one'}}</span>
 
-     <div class="formGroup">
-      <label class="customControl customControl--checkbox">
-        <input type="checkbox" class="customControl-input" checked={{showOnlyComments}} onchange={{action 'changeKind' value="target.checked"}} id="show-only-comments"/>
-        <span class="customControl-indicator"></span>
-        <span class="customControl-description">{{t 'activity.showOnlyComments'}}</span>
-      </label>
-    </div>
+    <label class="flex align-center">
+      <input type="checkbox" checked={{showOnlyComments}} onchange={{action 'changeKind' value="target.checked"}} id="show-only-comments"/>
+      {{t 'activity.showOnlyComments'}}
+    </label>
   </div>
 
   <div class="activityHeader-loader">

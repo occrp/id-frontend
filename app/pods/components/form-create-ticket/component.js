@@ -1,6 +1,14 @@
 import Component from '@ember/component';
-import { kindList, dataRequestTypes, Validations } from 'id-frontend/models/ticket';
-import formBufferProperty from 'ember-validated-form-buffer';
+import { computed } from '@ember/object';
+import {
+  kindList,
+  dataRequestTypes,
+  PersonValidations,
+  CompanyValidations,
+  VehicleValidations,
+  DataValidations,
+  OtherValidations
+} from 'id-frontend/models/ticket';
 import countries from 'i18n-iso-countries';
 import moment from 'moment';
 import { task } from 'ember-concurrency';
@@ -10,42 +18,42 @@ export default Component.extend({
   kindList,
   dataRequestTypes,
   countries: countries.getNames('en'),
-
   session: service(),
-
   today: moment.utc(),
   minimumDeadline: moment.utc().add(3, 'days'),
 
-  buffer: formBufferProperty('model', Validations),
+  validations: computed('model.kind', function() {
+    const kind = this.get('model.kind');
 
-  didValidate: false,
+    if (kind === kindList[0]) {
+      return PersonValidations;
+    } else if (kind === kindList[1] ) {
+      return CompanyValidations;
+    } else if (kind === kindList[2] ) {
+      return VehicleValidations;
+    } else if (kind === kindList[3] ) {
+      return DataValidations;
+    } else {
+      return OtherValidations;
+    }
+  }),
 
-  saveRecord: task(function * () {
-    yield this.get('model').save();
+  saveRecord: task(function * (changeset) {
+    yield changeset.save();
   }),
 
   actions: {
-    changeKind(value) {
-      this.get('buffer').discardBufferedChanges();
-      this.set('buffer.kind', value);
-      this.set('didValidate', false);
-    },
-
-    save() {
-      const buffer = this.get('buffer');
+    save: function(changeset) {
       const model = this.get('model');
       const afterSave = this.get('afterSave');
+      const saveRecord = this.get('saveRecord');
 
-      buffer.validate().then(({ validations }) => {
-        this.set('didValidate', true);
-
-        if (validations.get('isValid')) {
-          buffer.applyChanges();
-          this.get('saveRecord').perform().then(() => {
+      changeset.validate().then(function() {
+        if (changeset.get('isValid')) {
+          saveRecord.perform(changeset).then(function() {
             afterSave(model);
           });
         }
-
       });
     }
   }

@@ -1,6 +1,6 @@
 import DS from 'ember-data';
 import { computed } from '@ember/object';
-import { validator, buildValidations } from 'ember-cp-validations';
+import { validateFormat } from 'ember-changeset-validations/validators';
 
 const { attr, belongsTo } = DS;
 
@@ -21,10 +21,8 @@ export default DS.Model.extend({
   })
 });
 
-export const Validations = buildValidations({
-  email: validator('format', {
-    type: 'email'
-  })
-}, {
-  debounce: 500
-});
+export const Validations = {
+  email: [
+    validateFormat({ type: 'email' })
+  ]
+}

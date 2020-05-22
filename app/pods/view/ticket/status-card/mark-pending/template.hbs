@@ -1,48 +1,44 @@
 {{#ui-modal-container as |m|}}
 
-<a {{action m.toggle}} data-test-mark-pending>
-  {{t 'pods.view.pending.button'}}
-</a>
+  <a {{action m.toggle}} data-test-mark-pending>
+    {{t 'pods.view.pending.button'}}
+  </a>
 
-{{#if m.isShowing}}
-{{#ui-modal modifiers="modal--lg" onClose=(action m.toggle)}}
-  <form class="modal-content" {{action "save" m.toggle on="submit"}}>
+  {{#if m.isShowing}}
+    {{#ui-modal modifiers="modal--lg" onClose=(action m.toggle)}}
+      <div class="modal-header">
+        <h4 class="modal-title t-primary">{{t 'pods.view.pending.title'}}</h4>
+        <button class="button button--icon button--dark" {{action m.toggle}} aria-label="Close">
+          {{~icon "x"~}}
+        </button>
+      </div>
 
-    <div class="modal-header">
-      <h4 class="modal-title t-primary">{{t 'pods.view.pending.title'}}</h4>
-      <button class="button button--icon button--dark" {{action m.toggle}} aria-label="Close">
-        {{~icon "x"~}}
-      </button>
-    </div>
+      <form class="modal-content" {{action "save" m.toggle on="submit"}}>
+        <div class="modal-body">
+          {{textarea
+            id='ticket-pending'
+            rows=6
+            placeholder=(t 'pods.view.pending.title')
+            class=(concat 'db w-100 ba br1 pa2 mb2 b--moon-gray' (unless body ' b--dark-red'))
+            value=(mut body)
+          }}
+        </div>
 
-    <div class="modal-body">
-      {{#validated-field
-        class="formGroup"
-        errors=this.validations.attrs.body.messages
-        didValidate=didValidate as |field|}}
-
-        {{textarea value=body class="formControl formControl--sm" id="ticket-pending" rows="6" placeholder=(t 'activity.comment.title')}}
-
-        {{#if field.showErrors}}
-          {{#each field.errors as |error|}}
-            <div class="formFeedback t-right">{{error}}</div>
-          {{/each}}
-        {{/if}}
-
-      {{/validated-field}}
-    </div>
-
-    <div class="modal-footer">
-      <button class="button buttonOutlined--secondary" {{action m.toggle}} data-test-modal-cancel>
-        {{~t 'actions.cancel'~}}
-      </button>
-      <button type="submit" class="button button--primary" data-test-modal-confirm>
-        {{~t 'actions.save'~}}
-      </button>
-    </div>
-
-  </form>
-{{/ui-modal}}
-{{/if}}
+        <div class="modal-footer">
+          <button class="db ttu b bg-white bn dim ph3 pv2" {{action m.toggle}} data-test-modal-cancel>
+            {{~t 'actions.cancel'~}}
+          </button>
+          <button
+            type="submit"
+            class="db ttu b white bg-occrp-red br2 bn dim ph3 pv2"
+            disabled={{unless body true}}
+            data-test-modal-confirm
+          >
+            {{~t 'actions.save'~}}
+          </button>
+        </div>
+      </form>
+    {{/ui-modal}}
+  {{/if}}
 
 {{/ui-modal-container}}

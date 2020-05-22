@@ -64,13 +64,13 @@ module('Acceptance | tickets/new', function(hooks) {
     await fillIn('#ticket-last-name', 'Doe');
     await fillIn('#ticket-nationality', 'AD');
     await fillIn('#ticket-background', 'Lorem ipsum some background.');
-    await fillIn('#ticket-initialInformation', 'Initial lorem ipsum.');
+    await fillIn('#ticket-initial-information', 'Initial lorem ipsum.');
     await fillIn('#ticket-identifier', 'ID#0');
 
     await fillIn('#ticket-born-at', '02/12/2004');
     await fillIn('#ticket-sources-person', 'Aliases');
     await fillIn('#ticket-connections-person', 'Family');
-    await fillIn('#ticket-businessActivities', 'Bizniss');
+    await fillIn('#ticket-business-activities', 'Bizniss');
 
     await fillIn('#ticket-member-center', 'OCCRP');
 
@@ -136,7 +136,7 @@ module('Acceptance | tickets/new', function(hooks) {
 
     await click('[data-test-kind-tab="company_ownership"]');
 
-    await fillIn('#ticket-companyName', 'Acme Inc.');
+    await fillIn('#ticket-company-name', 'Acme Inc.');
     await fillIn('#ticket-country', 'RO');
     await fillIn('#ticket-background-company', 'Lorem ipsum some company background.');
     await fillIn('#ticket-sources', 'Sources lorem ipsum.');
@@ -357,10 +357,10 @@ module('Acceptance | tickets/new', function(hooks) {
 
     assert.equal(currentURL(), '/new');
 
-    assert.ok(find('#ticket-first-name').closest('.formGroup').classList.contains('is-invalid'));
-    assert.ok(find('#ticket-last-name').closest('.formGroup').classList.contains('is-invalid'));
-    assert.ok(find('#ticket-background').closest('.formGroup').classList.contains('is-invalid'));
-    assert.ok(find('#ticket-initialInformation').closest('.formGroup').classList.contains('is-invalid'));
+    assert.ok(find('#ticket-first-name.b--dark-red'));
+    assert.ok(find('#ticket-last-name.b--dark-red'));
+    assert.ok(find('#ticket-background.b--dark-red'));
+    assert.ok(find('#ticket-initial-information.b--dark-red'));
 
     assert.ok(find('[data-test-validation-errors]'));
   });
@@ -379,10 +379,10 @@ module('Acceptance | tickets/new', function(hooks) {
 
     assert.equal(currentURL(), '/new');
 
-    assert.ok(find('#ticket-companyName').closest('.formGroup').classList.contains('is-invalid'));
-    assert.ok(find('#ticket-country').closest('.formGroup').classList.contains('is-invalid'));
-    assert.ok(find('#ticket-background-company').closest('.formGroup').classList.contains('is-invalid'));
-    assert.ok(find('#ticket-sources').closest('.formGroup').classList.contains('is-invalid'));
+    assert.ok(find('#ticket-company-name.b--dark-red'));
+    assert.ok(find('#ticket-country.b--dark-red'));
+    assert.ok(find('#ticket-background-company.b--dark-red'));
+    assert.ok(find('#ticket-sources.b--dark-red'));
 
     assert.ok(find('[data-test-validation-errors]'));
   });
@@ -398,7 +398,7 @@ module('Acceptance | tickets/new', function(hooks) {
 
     await click('[data-test-save]');
 
-    assert.ok(find('#ticket-first-name').closest('.formGroup').classList.contains('is-invalid'));
+    assert.ok(find('#ticket-first-name.b--dark-red'));
     assert.ok(find('[data-test-validation-errors]'));
 
     await click('[data-test-kind-tab="company_ownership"]');
@@ -407,7 +407,7 @@ module('Acceptance | tickets/new', function(hooks) {
 
     await click('[data-test-save]');
 
-    assert.ok(find('#ticket-companyName').closest('.formGroup').classList.contains('is-invalid'));
+    assert.ok(find('#ticket-company-name.b--dark-red'));
     assert.ok(find('[data-test-validation-errors]'));
 
     await click('[data-test-kind-tab="person_ownership"]');

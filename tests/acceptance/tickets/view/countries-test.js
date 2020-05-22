@@ -72,6 +72,24 @@ module('Acceptance | tickets/view - countries', function(hooks) {
     assert.equal(findAll('[data-test-countries] a').length, 0);
   });
 
+  test('(staff) on ticket countries error, a message is displayed', async function(assert) {
+    assert.expect(1);
+    initSession({ isSuperuser: true });
+
+    let ticket = server.create('ticket', { countries: ['RO'] });
+
+    server.patch('/tickets/:id', {
+      errors: [{ detail: "Unable to edit countries." }]
+    }, 500);
+
+    await visit(`/view/${ticket.id}`);
+
+    await fillIn('#ticket-countries', 'RU');
+    await click('[data-test-add-country]');
+
+    assert.ok(find('.flash-message'), 'showing alert');
+  });
+
   test('current user sees ticket countries', async function(assert) {
     assert.expect(3);
     let currentUser = initSession();

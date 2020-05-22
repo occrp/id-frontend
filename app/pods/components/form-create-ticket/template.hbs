@@ -1,64 +1,53 @@
-<form {{action "save" on="submit"}}>
+{{#with (changeset model validations) as |buffer|}}
+  <form {{action 'save' buffer on='submit'}}>
+    <div class="flex ttu items-center justify-between bb b--moon-gray">
+      {{#each kindList key=@index as |selectedKind| }}
+        <div class="dib mb0 pb2 pointer {{if (eq model.kind selectedKind) "b bw2 bb b--occrp-gray"}}" data-test-kind-tab={{selectedKind}} {{action (mut model.kind) selectedKind}}>
+          {{icon-by-kind selectedKind}}
+          <span>{{t (concat 'ticket.kind.' selectedKind '.name')}}</span>
+        </div>
+      {{/each}}
+    </div>
 
-  <div class="mb-4 flex ttu items-center justify-between bb b--moon-gray">
-    {{#each kindList key=@index as |selectedKind| }}
-      <label class="mb0 pb2 pointer {{if (eq buffer.kind selectedKind) "b bw2 bb b--occrp-gray"}}" data-test-kind-tab="{{selectedKind}}">
-        {{radio-button
-          radioClass="visibility-hidden w0 h0 absolute"
-          name="ticket-kind"
-          value=selectedKind
-          groupValue=buffer.kind
-          changed=(action 'changeKind')}}
-        {{icon-by-kind selectedKind}}
-        <span>{{t (concat 'ticket.kind.' selectedKind '.name')}}</span>
-      </label>
-    {{/each}}
-  </div>
+    {{#if (eq model.kind kindList.[0])}}
+      {{form-create-ticket/fields-person-ownership buffer=buffer today=today countries=countries}}
+    {{else if (eq model.kind kindList.[1])}}
+      {{form-create-ticket/fields-company-ownership buffer=buffer countries=countries}}
+    {{else if (eq model.kind kindList.[2])}}
+      {{form-create-ticket/fields-vehicle-tracking buffer=buffer countries=countries}}
+    {{else if (eq model.kind kindList.[3])}}
+      {{form-create-ticket/fields-data-request buffer=buffer dataRequestTypes=dataRequestTypes}}
+    {{else}}
+      {{form-create-ticket/fields-other buffer=buffer}}
+    {{/if}}
 
-  {{#if (eq buffer.kind kindList.[0])}}
-    {{form-create-ticket/fields-person-ownership buffer=buffer didValidate=didValidate today=today countries=countries}}
-  {{else if (eq buffer.kind kindList.[1])}}
-    {{form-create-ticket/fields-company-ownership buffer=buffer didValidate=didValidate countries=countries}}
-  {{else if (eq buffer.kind kindList.[2])}}
-    {{form-create-ticket/fields-vehicle-tracking buffer=buffer didValidate=didValidate countries=countries}}
-  {{else if (eq buffer.kind kindList.[3])}}
-    {{form-create-ticket/fields-data-request buffer=buffer didValidate=didValidate dataRequestTypes=dataRequestTypes}}
-  {{else}}
-    {{form-create-ticket/fields-other buffer=buffer didValidate=didValidate}}
-  {{/if}}
+    {{form-create-ticket/fields-generic buffer=buffer minimumDeadline=minimumDeadline}}
 
-  {{form-create-ticket/fields-generic buffer=buffer didValidate=didValidate minimumDeadline=minimumDeadline}}
+    {{form-create-ticket/fields-member-center buffer=buffer memberCenters=session.currentUserMeta.memberCenters}}
 
-  {{form-create-ticket/fields-member-center buffer=buffer didValidate=didValidate memberCenters=session.currentUserMeta.memberCenters}}
-
-  <div class="fieldGroup">
-    <div class="l-constrain">
-
-      <p class="formText mb-4">
-        {{icon "info" class="icon--lg "}}<span class="t-muted">{{t 'pods.new.form.uploadInfo'}}</span>
+    <div class="mw7 center pv4 ph4 bt b--light-gray">
+      <p class="mb4">
+        {{icon 'info' class='nb-2'}}
+        {{t 'pods.new.form.uploadInfo'}}
       </p>
 
-      {{#if (and didValidate buffer.hasDisplayErrors)}}
-        <div class="alert alert--danger t-sm mb-4" data-test-validation-errors>
-          {{t 'pods.new.form.invalidMessage'}}
-        </div>
-      {{/if}}
-
       {{#if saveRecord.last.error}}
-        <div class="alert alert--danger t-sm mb-4" data-test-submit-error>
+        <p class="mb4 dark-red" data-test-submit-error>
           {{icon "alert"}}
           {{t 'errors.genericRequest'}}
-        </div>
+        </p>
       {{/if}}
 
-      <div class="fieldGroup-actions">
-        <button type="submit" disabled={{saveRecord.isRunning}} class="button button--primary" data-test-save>{{t 'pods.new.form.submitButton'}}</button>
+      <button
+        type="submit"
+        disabled={{saveRecord.isRunning}}
+        class="db ttu b white bg-occrp-red bn br2 pointer dim ph3 pv2"
+        data-test-save
+      >{{t 'pods.new.form.submitButton'}}</button>
 
-        {{#if saveRecord.isRunning}}
-          {{ui-spinner}}
-        {{/if}}
-      </div>
-
+      {{#if saveRecord.isRunning}}
+        {{ui-spinner}}
+      {{/if}}
     </div>
-  </div>
-</form>
+  </form>
+{{/with}}

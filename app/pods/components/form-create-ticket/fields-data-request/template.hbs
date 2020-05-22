@@ -1,62 +1,60 @@
-<div class="fieldGroup fieldGroup--bordered">
-  <div class="l-constrain">
-    <h2 class="fieldGroup-title">{{t 'ticket.kind.data_request.name'}}</h2>
+<div class="mw7 center pv4 ph4">
+  {{#validated-input
+    class="pt4"
+    inputId='ticket-category'
+    label=(t 'ticket.dataCategory.label')
+    buffer=buffer
+    required=true
+    property='initialInformation' as |vi errors|
+  }}
+    <select
+      class={{concat 'db w-100 ba br1 pa2 b--moon-gray bg-white ' (if errors.validation 'b--dark-red')}}
+      id={{vi.inputId}}
+      oninput={{action (changeset-set buffer vi.property) value='target.value'}}
+      onblur={{action 'validateProperty' buffer vi.property target=vi}}
+    >
+      <option value="">{{t 'dropdownBlank'}}</option>
+      {{#each-in dataRequestTypes as |_i reqtype|}}
+        <option value={{reqtype}} selected={{eq buffer.initialInformation reqtype}}>{{t (concat 'ticket.dataCategory.' reqtype)}}</option>
+      {{/each-in}}
+    </select>
+  {{/validated-input}}
 
-    {{#validated-field
-      class="formGroup"
-      errors=buffer.displayErrors.initialInformation
-      didValidate=didValidate as |field|}}
+  {{#validated-input
+    class="pt4" inputId='ticket-background-data'
+    label=(t 'ticket.backgroundData.label')
+    desc=(t 'ticket.backgroundData.desc')
+    required=true
+    buffer=buffer
+    property='background' as |vi errors|
+  }}
+    {{#form-create-ticket/markdown-toggle tagName='' value=(changeset-get buffer vi.property)}}
+      {{textarea
+        rows=5
+        class=(concat 'db w-100 ba br1 pa2 b--moon-gray ' (if errors.validation 'b--dark-red'))
+        id=vi.inputId
+        value=(mut (get buffer vi.property))
+        focus-out=(action 'validateProperty' buffer vi.property target=vi)
+      }}
+    {{/form-create-ticket/markdown-toggle}}
+  {{/validated-input}}
 
-      <label for="ticket-category">{{t 'ticket.dataCategory.label'}} <span class="t-danger">*</span></label>
-      <select onchange={{action (mut buffer.initialInformation) value="target.value"}} onblur={{action field.triggerValidations}} class="formControl" id="ticket-category">
-        <option value="">{{t 'dropdownBlank'}}</option>
-        {{#each-in dataRequestTypes as |_i reqtype|}}
-          <option value={{reqtype}} selected={{eq buffer.initialInformation reqtype}}>{{t (concat 'ticket.dataCategory.' reqtype)}}</option>
-        {{/each-in}}
-      </select>
-
-      {{#if field.showErrors}}
-        {{#each field.errors as |error|}}
-          <div class="formFeedback">{{error}}</div>
-        {{/each}}
-      {{/if}}
-
-    {{/validated-field}}
-
-    {{#validated-field
-      class="formGroup"
-      errors=buffer.displayErrors.background
-      didValidate=didValidate as |field|}}
-
-      <label class="db" for="ticket-background-data">{{t 'ticket.backgroundData.label'}} <span class="t-danger">*</span></label>
-      <small class="light-silver">{{t 'ticket.backgroundData.desc'}}</small>
-      {{#form-create-ticket/markdown-toggle tagName='' value=buffer.background}}
-        {{textarea rows=5 value=buffer.background class="formControl mt2" id="ticket-background-data" focus-out=field.triggerValidations}}
-      {{/form-create-ticket/markdown-toggle}}
-
-      {{#if field.showErrors}}
-        {{#each field.errors as |error|}}
-          <div class="formFeedback">{{error}}</div>
-        {{/each}}
-      {{/if}}
-    {{/validated-field}}
-
-    {{#validated-field
-     class="formGroup"
-     errors=buffer.displayErrors.sources
-     didValidate=didValidate as |field|}}
-
-      <label class="db" for="ticket-sources-data">{{t 'ticket.sourcesData.label'}}</label>
-      {{#form-create-ticket/markdown-toggle tagName='' value=buffer.sources}}
-        {{textarea rows=3 value=buffer.sources class="formControl mt2" id="ticket-sources-data" focus-out=field.triggerValidations}}
-      {{/form-create-ticket/markdown-toggle}}
-
-      {{#if field.showErrors}}
-        {{#each field.errors as |error|}}
-          <div class="formFeedback">{{error}}</div>
-        {{/each}}
-      {{/if}}
-
-    {{/validated-field}}
-  </div>
+  {{#validated-input
+    class="pt4"
+    inputId='ticket-sources-data'
+    label=(t 'ticket.sourcesData.label')
+    desc=(t 'ticket.sourcesData.desc')
+    buffer=buffer
+    property='sources' as |vi errors|
+  }}
+    {{#form-create-ticket/markdown-toggle tagName='' value=(changeset-get buffer vi.property)}}
+      {{textarea
+        rows=5
+        class=(concat 'db w-100 ba br1 pa2 b--moon-gray ' (if errors.validation 'b--dark-red'))
+        id=vi.inputId
+        value=(mut (get buffer vi.property))
+        focus-out=(action 'validateProperty' buffer vi.property target=vi)
+      }}
+    {{/form-create-ticket/markdown-toggle}}
+  {{/validated-input}}
 </div>

@@ -4,7 +4,7 @@ export default Component.extend({
   isStaff: false,
   preloadEmpty: true,
   autoFocus: true,
-  inputClassNames: 'formControl formControl--sm',
+  inputClassNames: 'db w-100 ba br1 pa2 b--moon-gray bg-white',
   baseClassNames: 'searchBox',
   noModal: true,
 

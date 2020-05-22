@@ -76,7 +76,7 @@
       {{/link-to}}
     {{/view/ticket/generic-card}}
     {{view/ticket/priority-card model=model}}
-    {{view/ticket/deadline-card model=model}}
+    {{view/ticket/deadline-card model=model center=center minimumDeadline=minimumDeadline}}
     {{view/ticket/countries-card model=model}}
     {{#view/ticket/generic-card testSel='createdAt' title=(t 'ticket.createdAt') content=''}}
       {{timestamp-full model.createdAt}}

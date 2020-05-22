@@ -1,29 +1,43 @@
-<div class="flex items-center justify-between">
+{{#with (changeset model Validations) as |buffer|}}
+<div class="flex justify-between">
   <div class="w-60">
     <label for="expense-scope" class="db">
       {{t 'expenses.scope'}}
     </label>
 
     {{#if (or customScope (and model.scope (not (contains model.scope session.currentUserMeta.expenseScopes))))}}
-      {{input id="expense-scope" value=model.scope class="db w-100 ba br1 pa2 b--moon-gray"}}
+      {{#validated-input inputId='expense-scope' label=false buffer=buffer property='scope' as |vi errors|}}
+        <input
+          class={{concat 'db w-100 ba br1 pa2 b--moon-gray ' (if errors.validation 'b--dark-red')}}
+          id={{vi.inputId}}
+          value={{get buffer vi.property}}
+          oninput={{action (mut (get buffer vi.property)) value='target.value'}}
+          onblur={{action 'validateProperty' buffer vi.property target=vi}}
+        >
+      {{/validated-input}}
     {{else}}
-      <select id="expense-scope" class="dib bg-white w-50 ba pa2 br1 b--moon-gray"
-        onchange={{action (mut model.scope) value="target.value"}}
-      >
-        <option> - {{t 'actions.choose'}} - </option>
+      {{#validated-input inputId='expense-scope' label=false buffer=buffer property='scope' as |vi errors|}}
+        <select
+          id={{vi.inputId}}
+          class={{concat 'dib bg-white w-50 ba pa2 br1 b--moon-gray ' (if errors.validation 'b--dark-red')}}
+          onchange={{action (mut model.scope) value="target.value"}}
+          onblur={{action 'validateProperty' buffer vi.property target=vi}}
+        >
+          <option> - {{t 'actions.choose'}} - </option>
 
-        {{#each session.currentUserMeta.expenseScopes as |scope|}}
-          <option value={{scope}} selected={{eq scope model.scope}}>
-            {{scope}}
-          </option>
-        {{/each}}
-      </select>
+          {{#each session.currentUserMeta.expenseScopes as |scope|}}
+            <option value={{scope}} selected={{eq scope model.scope}}>
+              {{scope}}
+            </option>
+          {{/each}}
+        </select>
 
-      <a {{action (action (mut customScope) (if customScope false true))}}
-        class="link silver dim" data-test-cust-scope
-      >
-        {{t 'actions.customOption'}}
-      </a>
+        <a {{action (action (mut customScope) (if customScope false true))}}
+          class="link silver dim" data-test-cust-scope
+        >
+          {{t 'actions.customOption'}}
+        </a>
+      {{/validated-input}}
     {{/if}}
   </div>
 
@@ -93,7 +107,7 @@
 
 <div class="mv4">
   <a
-    {{action 'saveExpense'}} disabled={{model.isSaving}}
+    {{action 'saveExpense' buffer}} disabled={{model.isSaving}}
     class="ttu link b white bg-occrp-red br2 b--occrp-red dim ph3 pv2"
     data-test-save
   >
@@ -111,3 +125,4 @@
     </a>
   {{/unless}}
 </div>
+{{/with}}

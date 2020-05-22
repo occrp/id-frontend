@@ -1,6 +1,6 @@
 <input type="text"
-  id="{{id}}"
-  class="{{class}}"
+  id={{id}}
+  class={{class}}
   value={{if currentValue (moment-format currentValue 'DD/MM/YYYY')}}
   onkeyup={{action 'updateDatepicker' value="target.value"}}
   onclick={{action 'open'}}
@@ -20,14 +20,14 @@
   hasOverlay=false
   clickOutsideToClose=true}}
 
-  <div class="datepickerContainer">
-    {{#power-calendar class="datepicker"
+  <div class="datepicker bg-white ba b--near-white shadow-1">
+    {{#power-calendar
       center=theCenter
       onCenterChange=(action (mut theCenter) value="date")
       selected=currentValue
       onSelect=onSelect as |calendar|}}
-      {{calendar.nav}}
-      {{calendar.days weekdayFormat="min" minDate=minDate maxDate=maxDate}}
+      {{calendar.Nav}}
+      {{calendar.Days weekdayFormat="min" minDate=minDate maxDate=maxDate}}
     {{/power-calendar}}
   </div>
 

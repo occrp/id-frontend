@@ -3,32 +3,37 @@ import Component from '@ember/component';
 import { task } from 'ember-concurrency';
 import { Validations } from 'id-frontend/models/comment';
 
-export default Component.extend(Validations, {
+export default Component.extend({
+  Validations,
+
   store: service(),
   session: service(),
   activityBus: service(),
 
-  body: null,
-  didValidate: false,
+  init() {
+    this.set('record', this.buildComment());
+    this._super(arguments);
+  },
 
-  publishComment: task(function * () {
-    let record = this.get('store').createRecord('comment', {
-      body: this.get('body'),
+  buildComment() {
+    return this.get('store').createRecord('comment', {
       ticket: this.get('model'),
       user: this.get('session.currentUser')
     });
-    yield record.save();
+  },
+
+  publishComment: task(function * (changeset) {
+    yield changeset.save();
   }),
 
   actions: {
-    save() {
-      this.validate().then(({ validations }) => {
-        this.set('didValidate', true);
+    save(changeset) {
+      const publishComment = this.get('publishComment');
 
-        if (validations.get('isValid')) {
-          this.get('publishComment').perform().then(() => {
-            this.set('body', null);
-            this.set('didValidate', false);
+      changeset.validate().then(() => {
+        if (changeset.get('isValid')) {
+          publishComment.perform(changeset).then(() => {
+            this.set('record', this.buildComment());
             this.get('activityBus').trigger('reload');
           });
         }

@@ -1,25 +1,22 @@
-{{#if (or addSubscriber.isRunning disable)}}
-  {{ui-spinner class="spinner--mimicButton"}}
-{{else}}
-  <form {{action "save" on="submit"}}>
-    {{#validated-field
-      class=""
-      errors=buffer.validations.attrs.email.messages
-      didValidate=didValidate as |field|}}
+{{#with (changeset record Validations) as |buffer|}}
+  <form {{action "save" buffer on="submit"}}>
+    {{#validated-input
+      tagName=''
+      defaultField=(not (or addSubscriber.isRunning disable))
+      inputId='subscriber-email'
+      inputClass='bl-0 br-0 bt-0 bb b--moon-gray'
+      placeholder=(t 'ticket.subscriber.emailPlaceholder')
+      showErrors=false
+      buffer=buffer
+      property='email'
+    }}
+      {{ui-spinner class="spinner--mimicButton"}}
+    {{/validated-input}}
 
-      <div class="db">
-        {{input value=buffer.email class="bl-0 br-0 bt-0 bb b--moon-gray" id="subscriber-email" placeholder=(t 'ticket.subscriber.emailPlaceholder')}}
-
-        <a class="link b" {{action 'save'}} data-test-add-subscriber>
-          {{~t 'actions.add'~}}
-        </a>
-      </div>
-
-      {{#if field.showErrors}}
-        {{#each field.errors as |error|}}
-          <div class="formFeedback">{{error}}</div>
-        {{/each}}
-      {{/if}}
-    {{/validated-field}}
+    {{#unless (or addSubscriber.isRunning disable)}}
+      <a class="link b" {{action 'save' buffer}} data-test-add-subscriber>
+        {{~t 'actions.add'~}}
+      </a>
+    {{/unless}}
   </form>
-{{/if}}
+{{/with}}

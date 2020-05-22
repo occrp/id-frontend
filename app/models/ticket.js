@@ -1,11 +1,10 @@
-import { isEmpty } from '@ember/utils';
 import { not, equal } from '@ember/object/computed';
 import { computed } from '@ember/object';
 import DS from 'ember-data';
-import { validator, buildValidations } from 'ember-cp-validations';
-import notEqual from '../macros/not-equal';
-import raw from 'ember-macro-helpers/raw';
-import moment from 'moment';
+import {
+  validateDate,
+  validatePresence
+} from 'ember-changeset-validations/validators';
 import { inject as service } from '@ember/service';
 
 const { attr, belongsTo, hasMany } = DS;
@@ -115,78 +114,57 @@ export default DS.Model.extend({
 });
 
 
-export const Validations = buildValidations({
+export const OtherValidations = {
   background: [
-    validator('presence', {
-      presence: true,
-    })
+    validatePresence(true)
   ],
-
   memberCenter: [
-    validator('presence', {
-      presence: true,
-    })
+    validatePresence(true)
   ],
-
-  country: validator('presence', {
-    presence: true,
-    disabled: computed('model.kind', function() {
-      return this.get('model.kind') !== kindList[1] &&
-        this.get('model.kind') !== kindList[2]
+  deadlineAt: [
+    validateDate({
+      allowBlank: true,
+      format: 'DD/MM/YYYY',
+      after: new Date(),
     })
-  }),
+  ]
+};
 
-  // Person
-  firstName: validator('presence', {
-    presence: true,
-    disabled: notEqual('model.kind', raw(kindList[0]))
-  }),
-  lastName: validator('presence', {
-    presence: true,
-    disabled: notEqual('model.kind', raw(kindList[0]))
-  }),
+export const PersonValidations = Object.assign({}, OtherValidations, {
+  firstName: [
+    validatePresence(true)
+  ],
+  lastName: [
+    validatePresence(true)
+  ],
   initialInformation: [
-    validator('presence', {
-      presence: true,
-      disabled: computed('model.kind', function() {
-        return this.get('model.kind') != kindList[0] &&
-          this.get('model.kind') != kindList[3]
-      })
-    })
-  ],
+    validatePresence(true)
+  ]
+});
 
-  // Company
-  companyName: validator('presence', {
-    presence: true,
-    disabled: notEqual('model.kind', raw(kindList[1]))
-  }),
+export const CompanyValidations = Object.assign({}, OtherValidations, {
+  country: [
+    validatePresence(true)
+  ],
+  companyName: [
+    validatePresence(true)
+  ],
   sources: [
-    validator('presence', {
-      presence: true,
-      disabled: notEqual('model.kind', raw(kindList[1]))
-    })
+    validatePresence(true)
+  ]
+});
+
+export const VehicleValidations = Object.assign({}, OtherValidations, {
+  country: [
+    validatePresence(true)
   ],
+  identifier: [
+    validatePresence(true)
+  ]
+});
 
-  // Vehicle
-  identifier: validator('presence', {
-    presence: true,
-    disabled: notEqual('model.kind', raw(kindList[2]))
-  }),
-
-  deadlineAt: validator('date', {
-    value(model, attribute) {
-      const val = model.get(attribute);
-      if (isEmpty(val)) {
-        return val;
-      }
-      return moment.utc(val).format('DD/MM/YYYY');
-    },
-    allowBlank: true,
-    format: 'DD/MM/YYYY',
-    after: computed(function() {
-      return moment.utc().format('DD/MM/YYYY');
-    }).volatile()
-  })
-}, {
-  debounce: 100
+export const DataValidations = Object.assign({}, OtherValidations, {
+  initialInformation: [
+    validatePresence(true)
+  ]
 });

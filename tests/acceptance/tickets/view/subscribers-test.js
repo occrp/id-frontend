@@ -63,13 +63,13 @@ module('Acceptance | tickets/view - subscribers', function(hooks) {
 
     await fillIn('#subscriber-email', 'this.is.not.an.email');
     await click('[data-test-add-subscriber]');
-    assert.ok(find('#subscriber-email').closest('form').children[0].classList.contains('is-invalid'), 'invalid email shows error');
+    assert.ok(find('#subscriber-email.b--dark-red'), 'invalid email shows error');
 
     await fillIn('#subscriber-email', 'sub@mail.com');
     await click('[data-test-add-subscriber]');
 
     assert.equal(findAll('[data-test-subscriber]').length, 1);
-    assert.ok(find('[data-test-subscriber="1"]').textContent.includes('Subscriber Doe'), 'user is subscribed');
+    assert.ok(find('[data-test-subscriber="1"]'), 'user is subscribed');
   });
 
   test('(staff) add external subscribers to the ticket', async function(assert) {

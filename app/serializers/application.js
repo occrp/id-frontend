@@ -6,7 +6,7 @@ export function camelCaseKeys(hash) {
   let json = {};
 
   for (let prop in hash) {
-    if (hash.hasOwnProperty(prop)) {
+    if (Object.prototype.hasOwnProperty.call(hash, prop)) {
       if (hash[prop] !== null && typeOf(hash[prop]) === 'object') {
         json[camelize(prop)] = camelCaseKeys(hash[prop]);
       } else {

@@ -6,20 +6,28 @@
       </span>
     </label>
 
-    {{input-date
-      value=model.deadlineAt
-      onSelect=(action (mut model.deadlineAt) value="date")
-      id="ticket-deadline"
-      class="m-0 bt-0 bl-0 br-0 bb b--moon-gray"
-      center=center
-      minDate=minimumDeadline
-    }}
+    {{#with (changeset model OtherValidations) as |buffer|}}
+      {{#validated-input
+        tagName=''
+        inputId='ticket-deadline'
+        showErrors=false
+        buffer=buffer
+        property='deadlineAt' as |vi errors|
+      }}
+        {{input-date
+          value=(get buffer vi.property)
+          onSelect=(action (changeset-set buffer vi.property) value='date')
+          id=vi.inputId
+          class=(concat 'm-0 bt-0 bl-0 br-0 bb b--moon-gray' (if errors.validation ' b--dark-red'))
+          center=center
+          minDate=minimumDeadline
+        }}
+      {{/validated-input}}
 
-    {{#if (and model.isValid model.hasDirtyAttributes)}}
-      <a {{action 'saveDeadline'}} disabled={{model.isSaving}} class="link b" data-test-save-deadline-at>
+      <a {{action 'saveDeadline' buffer}} disabled={{model.isSaving}} class="link b" data-test-save-deadline-at>
         {{t 'actions.save'}}
       </a>
-    {{/if}}
+    {{/with}}
   {{else}}
     <span class="gray ttu tracked db b">
       {{#if model.deadlineAt}}

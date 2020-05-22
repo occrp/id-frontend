@@ -1,0 +1,32 @@
+{{#if label}}
+  <label for={{inputId}}>
+    {{label}}
+    {{#if required}}<span class="dark-red b">*</span>{{/if}}
+  </label>
+{{/if}}
+
+{{#if desc}}
+  <small class="light-silver">{{desc}}</small>
+{{/if}}
+
+{{#with (or (get buffer.error property) (hash)) as |errors|}}
+  {{#if defaultField}}
+    {{input
+      id=inputId
+      class=(concat (or inputClass 'db w-100 bn br1 pa2 bg-white') (if errors.validation ' b--dark-red'))
+      value=(mut (get buffer property))
+      placeholder=placeholder
+      onblur=(action 'validateProperty' buffer property)
+    }}
+  {{else}}
+    {{yield this errors}}
+  {{/if}}
+
+  {{#if (and showErrors errors.validation)}}
+    {{#each errors.validation as |error|}}
+      <p class="dark-red f6" data-test-validation-errors>
+        {{t (concat 'validationErrors.' error.type)}}
+      </p>
+    {{/each}}
+  {{/if}}
+{{/with}}

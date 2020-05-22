@@ -14,7 +14,7 @@
     </select>
 
     {{#if (and model.isValid model.hasDirtyAttributes (not model.isSaving))}}
-      <a {{action 'savePriority'}} class="link b">
+      <a {{action 'savePriority'}} class="link b" data-test-save-priority>
         {{t 'actions.save'}}
       </a>
     {{/if}}

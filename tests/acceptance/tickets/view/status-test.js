@@ -296,7 +296,7 @@ module('Acceptance | tickets/view - status changes', function(hooks) {
     assert.ok(find('.modal'));
     await click('[data-test-modal-confirm]');
 
-    assert.ok(find('#ticket-reopen').closest('.formGroup').classList.contains('is-invalid'), 'empty comment shows validation error');
+    assert.ok(find('#ticket-reopen.b--dark-red'), 'empty comment shows validation error');
 
     await fillIn('#ticket-reopen', 'Reason for reopening.');
     await click('[data-test-modal-confirm]');
@@ -420,7 +420,7 @@ module('Acceptance | tickets/view - status changes', function(hooks) {
     assert.ok(find('.modal'));
     await click('[data-test-modal-confirm]');
 
-    assert.ok(find('#ticket-pending').closest('.formGroup').classList.contains('is-invalid'), 'empty comment shows validation error');
+    assert.ok(find('#ticket-pending.b--dark-red'), 'empty comment shows validation error');
 
     await fillIn('#ticket-pending', 'Reason for marking.');
     await click('[data-test-modal-confirm]');
