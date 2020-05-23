@@ -31,8 +31,8 @@
       "title": "اترك تعليقاً"
     },
     "expense": {
-      "action": "{{user}} حفظ مصدراً",
-      "removed": "{{user}} أزال مصدراً"
+      "action": "{user} حفظ مصدراً",
+      "removed": "{user} أزال مصدراً"
     },
     "loadOlder": "تحميل الأقدم",
     "one": "نشاط",
@@ -328,7 +328,7 @@
     },
     "memberCenter": "مركز العضو",
     "one": "طلب",
-    "other": "{{count}} طلبات",
+    "other": "{count} طلبات",
     "priority": {
       "default": "عادي",
       "high": "مرتفع",
