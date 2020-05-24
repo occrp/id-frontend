@@ -5,8 +5,13 @@
       "shortForm": "Dodijeliti"
     },
     "cancel": "Otkazati",
+    "choose": "Odaberite",
     "close": "Zatvori",
+    "confirm": "Potvrdi",
     "delete": "Delete",
+    "markdownEdit": "Povratak na uređivanje.",
+    "markdownPreview": "Pregled.",
+    "or": "ili",
     "remove": "Ukloniti",
     "reopen": "Ponovo otvoriti",
     "save": "Sačuvati",
@@ -24,6 +29,10 @@
     "comment": {
       "submitButton": "Objavi komentar",
       "title": "Ostavi komentar"
+    },
+    "expense": {
+      "action": "spremljen resurs",
+      "removed": "uklonjen resurs"
     },
     "loadOlder": "Prikaži starije",
     "one": "Aktivnost",
@@ -67,6 +76,9 @@
       "title": "Došlo je do greške u obradi Vašeg zahtjeva."
     }
   },
+  "expenses": {
+    "paymentExtras": "Dodajte detalje o plaćanju..."
+  },
   "filters": {
     "country": {
       "title": "Filtriraj po državi/nacionalnosti"
@@ -74,6 +86,10 @@
     "current": {
       "clear": "Ukloniti sve filtere",
       "title": "Filtriraj po"
+    },
+    "export": {
+      "action": "Kao CSV",
+      "title": "Export"
     },
     "kind": {
       "title": "Filtriraj po tipu"
@@ -135,8 +151,9 @@
         "submitButton": "Pošaljite svoj zahtjev",
         "uploadInfo": "Dokumente ćete moći dodati nakon što predate zahtjev."
       },
-      "headline": "Vaš zahtjev bit će dodijeljen našim profesionalnim istraživačima.",
-      "title": "Podaci o zahtjevu"
+      "headline": "",
+      "subheadline": "Trudimo se da ispunimo rokove koje ste postavili i bićemo u kontaktu ako ne budemo mogli. Ako postoji problem ili ne možemo ispuniti vaš zahtjev, nastojaćemo da vam se obratimo u roku od 3 radna dana.",
+      "title": "Dobrodošli!"
     },
     "reporting": {
       "columns": {
@@ -161,7 +178,8 @@
         "title": "Da li ste sigurni da želite {verb} ovaj zahtjev?"
       },
       "pending": {
-        "button": "Stavite na čekanje"
+        "button": "Stavite na čekanje",
+        "title": "Zašto označiti \"na čekanju\"?"
       },
       "reopen": {
         "button": "Ponovo otvoriti zahtjev",
@@ -176,6 +194,9 @@
     }
   },
   "ticket": {
+    "addAttachments": "Pregledajte ili prenesite tražene datoteke",
+    "addExpense": "Dodajte trošak",
+    "addSubscriber": "Dodajte pretplatnika/cu",
     "background": {
       "desc": "Koje informacije već znate?",
       "formLabel": "Šta je vaša priča?",
@@ -208,6 +229,9 @@
       "desc": "Poznate porodične veze.",
       "label": "Porodica i saradnici"
     },
+    "countries": {
+      "label": "Srodne zemlje"
+    },
     "country": {
       "label": "Zemlja u kojoj je firma registrovana",
       "one": "Država",
@@ -219,6 +243,12 @@
     },
     "countryPerson": {
       "label": "Državljanstvo"
+    },
+    "createdAt": "Dodano na",
+    "dataCategory": {
+      "analysis": "Analizirajte podatke",
+      "manipulation": "Očisti podatke",
+      "scrape": "Preuzmi podatke"
     },
     "deadline": {
       "desc": "Potrudit ćemo se da završimo u roku, ali naši istraživači često su jako zauzeti. <br />Molimo Vas da im ostavite što više vremena možete.",
@@ -236,8 +266,11 @@
     },
     "kind": {
       "company_ownership": {
-        "name": "Utvrditi vlasništvo firme",
+        "name": "Firma",
         "shortName": "Firma"
+      },
+      "data_request": {
+        "name": "Baza podataka"
       },
       "one": "Tip",
       "other": {
@@ -247,14 +280,26 @@
       "person_ownership": {
         "name": "Utvrditi šta osoba ima u vlasništvu",
         "shortName": "Osoba"
+      },
+      "vehicle_tracking": {
+        "name": "Vozilo"
       }
     },
     "lastName": {
       "label": "Prezime"
     },
+    "memberCenter": "Naši članovi",
     "one": "Zahtjev",
     "other": "{count} Zahtjev(a)",
+    "priority": {
+      "default": "Normalno",
+      "high": "Visoko",
+      "label": "Prioritet",
+      "low": "Nisko"
+    },
     "requester": {
+      "bio": "Biografija",
+      "email": "Kontakt",
       "one": "Podnosilac zahtjeva",
       "other": "Podnosioci zahtjeva",
       "prefix": "Podnosilac zahtjeva {requester}"
@@ -264,7 +309,7 @@
       "label": "Odgovorni istraživač",
       "one": "Istraživač",
       "other": "Istraživači",
-      "selfRemove": "Odustani od zahtjeva?"
+      "selfRemove": "Odjavite se"
     },
     "sensitive": {
       "label": "Da li je informacija povjerljiva?",
@@ -289,6 +334,7 @@
       "in-progress": {
         "name": "U obradi"
       },
+      "label": "Trenutni status",
       "new": {
         "name": "Novi"
       },
@@ -302,6 +348,7 @@
       "other": "Dodatni korisnici na zahtjevu",
       "selfRemove": "Odustani od zahtjeva?"
     },
+    "updatedAt": "Ažurirano u",
     "whysensitive": {
       "label": "Šta je čini povjerljivom?"
     }
