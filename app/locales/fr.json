@@ -145,8 +145,8 @@
         "submitButton": "Soumettre sa demande",
         "uploadInfo": "Vous pourrez joindre des documents après le dépôt de la requête."
       },
-      "headline": "Votre requête sera transmise à notre investigateur professionnel. Il va tenter d'apporter de l'aide.",
-      "title": "Demander des informations"
+      "headline": "",
+      "title": "Bienvenue !"
     },
     "reporting": {
       "columns": {
@@ -189,18 +189,18 @@
   "ticket": {
     "addSubscriber": "Ajouter un·e abonné·e",
     "background": {
-      "desc": "Que savez-vous aujourd'hui ? ",
+      "desc": "Que savez-vous aujourd'hui ?",
       "formLabel": "Votre histoire",
       "label": "Historique"
     },
     "backgroundCompany": {
-      "desc": "Que savez-vous aujourd'hui ? ",
+      "desc": "Que savez-vous aujourd'hui?",
       "formLabel": "Votre histoire",
       "label": "Historique de la société"
     },
     "backgroundOther": {
       "desc": "Toute information déjà en votre possession.",
-      "formLabel": "Qu'est-ce-que vous souhaitez savoir ? ",
+      "formLabel": "Qu'est-ce-que vous souhaitez savoir?",
       "label": "Question"
     },
     "bornAt": {
@@ -234,7 +234,7 @@
     },
     "createdAt": "Ajouté le",
     "deadline": {
-      "desc": "Nous ferons notre possible pour respecter votre échéance. Nous vous informons que nos investigateurs sont assez occupés.<br /> Accordez-leur le plus de temps possible !",
+      "desc": "Nous ferons notre possible pour respecter votre échéance. Nous vous informons que nos investigateurs sont assez occupés. Accordez-leur le plus de temps possible!",
       "empty": "Aucune date butoir",
       "label": "Échéance",
       "prefix": "Exigible le {relativeTime}"
@@ -249,7 +249,7 @@
     },
     "kind": {
       "company_ownership": {
-        "name": "À propos d'une société",
+        "name": "Une société",
         "shortName": "Société"
       },
       "one": "Type",
@@ -258,7 +258,7 @@
         "shortName": "Autres"
       },
       "person_ownership": {
-        "name": "À propos d'une personne",
+        "name": "Une personne",
         "shortName": "Personne"
       }
     },
@@ -293,12 +293,12 @@
       "placeholder": "Chercher des requêtes"
     },
     "sensitive": {
-      "label": "Est-ce sensible ? ",
+      "label": "Est-ce sensible?",
       "trueLabel": "Demande sensible"
     },
     "sources": {
-      "desc": "Quelles sources avez-vous aujourd'hui ? ",
-      "formLabel": "Où avez-vous cherché ? ",
+      "desc": "Quelles sources avez-vous aujourd'hui?",
+      "formLabel": "Où avez-vous cherché?",
       "label": "Sources"
     },
     "sourcesPerson": {
@@ -331,7 +331,7 @@
     },
     "updatedAt": "Mis à jour le",
     "whysensitive": {
-      "label": "Pourquoi est-ce sensible ? "
+      "label": "Pourquoi est-ce sensible?"
     }
   },
   "time": {
