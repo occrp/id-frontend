@@ -18,12 +18,10 @@ export default Component.extend({
   addSubscriber: task(function * (changeset) {
     changeset.set('ticket', this.get('ticket'));
 
-    try {
-      yield changeset.save();
-    } catch (err) {
+    yield changeset.save().catch(() => {
       changeset.rollback();
       this.get('flashMessages').danger('errors.genericRequest');
-    }
+    })
   }),
 
   actions: {

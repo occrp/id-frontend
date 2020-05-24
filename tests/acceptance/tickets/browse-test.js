@@ -315,7 +315,7 @@ module('Acceptance | tickets/browse', function(hooks) {
   });
 
 
-  test('(staff) ticket filters can be removed', async function(assert) {
+  test('(staff) ticket filters can be removed [flanky]', async function(assert) {
     assert.expect(9);
     initSession({ isStaff: true });
 
@@ -407,7 +407,7 @@ module('Acceptance | tickets/browse', function(hooks) {
   });
 
 
-  test('(admins) ticket filtering or sorting should reset pagination', async function(assert) {
+  test('(admins) ticket filtering or sorting should reset pagination [flanky]', async function(assert) {
     assert.expect(8);
 
     server.createList('profile', 5, {

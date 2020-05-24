@@ -51,12 +51,11 @@ export default Controller.extend({
   }).group('batchUpload'),
 
   removeAttachment: task(function * (file) {
-    try {
-      yield file.destroyRecord();
+    yield file.destroyRecord().then(() => {
       this.get('activityBus').trigger('reload');
-    } catch (error) {
+    }).catch(() => {
       this.get('flashMessages').danger('errors.genericRequest');
-    }
+    })
   }),
 
   actions: {

@@ -14,12 +14,10 @@ export default Component.extend({
       user
     });
 
-    try {
-      yield record.save();
-    } catch (e) {
+    yield record.save().catch(() => {
       record.rollbackAttributes();
       this.get('flashMessages').danger('errors.genericRequest');
-    }
+    })
   }),
 
   actions: {

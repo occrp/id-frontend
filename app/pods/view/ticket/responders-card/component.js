@@ -4,11 +4,9 @@ import { task } from 'ember-concurrency';
 import { getSearchGenerator } from 'id-frontend/models/profile';
 
 export const relRemovalGenerator = function * (rel) {
-  try {
-    yield rel.destroyRecord();
-  } catch (e) {
+  yield rel.destroyRecord().catch(() => {
     this.get('flashMessages').danger('errors.genericRequest');
-  }
+  });
 };
 
 export default Component.extend({
@@ -24,12 +22,10 @@ export default Component.extend({
       ticket,
       user
     });
-    try {
-      yield record.save();
-    } catch (e) {
+    yield record.save().catch(() => {
       record.rollbackAttributes();
       this.get('flashMessages').danger('errors.genericRequest');
-    }
+    })
   }),
 
   removeResponder: task(relRemovalGenerator),
