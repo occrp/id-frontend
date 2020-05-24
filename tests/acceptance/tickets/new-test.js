@@ -57,6 +57,7 @@ module('Acceptance | tickets/new', function(hooks) {
     });
 
     await visit('/new');
+    await click('[data-test-kind-tab="person_ownership"]');
 
     assert.equal(currentURL(), '/new');
 
@@ -350,6 +351,7 @@ module('Acceptance | tickets/new', function(hooks) {
     initSession();
 
     await visit('/new');
+    await click('[data-test-kind-tab="person_ownership"]');
 
     assert.equal(currentURL(), '/new');
 
@@ -393,6 +395,7 @@ module('Acceptance | tickets/new', function(hooks) {
     initSession();
 
     await visit('/new');
+    await click('[data-test-kind-tab="person_ownership"]');
 
     assert.equal(currentURL(), '/new');
 

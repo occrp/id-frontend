@@ -13,7 +13,7 @@
   {{#if defaultField}}
     {{input
       id=inputId
-      class=(concat (or inputClass 'db w-100 bn br1 pa2 bg-white') (if errors.validation ' b--dark-red'))
+      class=(concat (or inputClass 'db w-100 br1 pa2 bg-white ba b--moon-gray') (if errors.validation ' b--dark-red'))
       value=(mut (get buffer property))
       placeholder=placeholder
       onblur=(action 'validateProperty' buffer property)

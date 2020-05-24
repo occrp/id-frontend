@@ -1,6 +1,7 @@
 import Route from '@ember/routing/route';
 import { isBlank } from '@ember/utils';
 import { inject as service } from '@ember/service';
+import { kindList } from 'id-frontend/models/ticket';
 
 export default Route.extend({
   session: service(),
@@ -16,7 +17,7 @@ export default Route.extend({
   },
 
   model() {
-    return this.get('store').createRecord('ticket');
+    return this.get('store').createRecord('ticket', { kind: kindList[1] });
   },
 
   deactivate() {
