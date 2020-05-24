@@ -1,6 +1,5 @@
 {
   "actions": {
-    "addSubscriber": "إضافة مشترك",
     "assign": {
       "longForm": "تعيين لموظف",
       "shortForm": "تعيين"
@@ -26,7 +25,6 @@
       "removed": "قام {user} بإزالة الملف"
     },
     "comment": {
-      "action": "",
       "submitButton": "أضف تعليقاً",
       "title": "اترك تعليقاً"
     },
@@ -48,15 +46,6 @@
     }
   },
   "attachment": {
-    "dropzone": {
-      "activeTitle": "اسقط للتحميل",
-      "desc": "اسحب واسقط الملفات هنا",
-      "invalidTitle": "غير صالح",
-      "select": "اختر ملف",
-      "title": "تحميل ملف"
-    },
-    "filesSelected": "((اعتمد)) الملفات المختارة",
-    "other": "المرفقات",
     "removalPrompt": "هل أنت متأكد من أنك تريد حذف هذا الملف ؟",
     "state": {
       "aborted": "تم الإلغاء",
@@ -65,8 +54,7 @@
       "timed_out": "نفذ الوقت",
       "uploaded": "تمّ إرساله",
       "uploading": "جار الرفع"
-    },
-    "zero": "مِن دون مرفقات"
+    }
   },
   "empty": {
     "noResults": {
@@ -80,7 +68,6 @@
   },
   "errors": {
     "activities": "حدث هناك خطأ أثناء تحميل تغذية النشاط.",
-    "genericInvalid": "ارجو تعبئة هذا الحقل",
     "genericRequest": "حدث خطأ أثناء معالجة طلبك.",
     "routeError": {
       "body": "تم تنبيهنا تلقائيا و نحتاج لنسخة أفضل من هذه.",
@@ -88,7 +75,6 @@
     }
   },
   "expenses": {
-    "customScope": "غير موجود في القائمة؟ إضافته يدويا…",
     "paymentExtras": "إضافة تفاصيل الدفع…"
   },
   "filters": {
@@ -132,7 +118,6 @@
   "locales": {
     "ar": "العربية",
     "bs": "Bos/Hrv/Srp",
-    "en": "English",
     "es": "‍ Español",
     "fr": "Français",
     "ru": "Русский"
@@ -169,11 +154,6 @@
       "title": "أهلا!"
     },
     "reporting": {
-      "closedTickets": {
-        "one": "{count} طلب مغلق",
-        "other": "{count} طلبات مغلقة",
-        "zero": "{count} طلبات مغلقة"
-      },
       "columns": {
         "avgTime": "متوسط وقت القرار",
         "month": "شهر",
@@ -181,27 +161,12 @@
         "pastDeadline": "تعدى المهلة",
         "total": "إجمالي"
       },
-      "countriesTitle": {
-        "one": "{count} بلد",
-        "other": "{count} بلدان",
-        "zero": "{count} بلدان"
-      },
       "dateRange": {
         "lastHalf": "الأشهر الست الأخيرة",
         "lastQuarter": "الأشهر الثلاث الأخيرة",
         "lastYear": "في العام الماضي"
       },
-      "openTickets": {
-        "one": "{count} طلب مفتوح",
-        "other": "{count} طلبات مفتوحة",
-        "zero": "{count} طلبات مفتوحة"
-      },
-      "pastDeadline": "{count} الموعد النهائي السابق",
-      "staffTitle": {
-        "one": "{count} عضو في الفريق",
-        "other": "{count} أعضاء في الفريق",
-        "zero": "{count} أعضاء في الفريق"
-      }
+      "pastDeadline": "{count} الموعد النهائي السابق"
     },
     "view": {
       "close": {
@@ -219,11 +184,6 @@
         "title": "سبب إعادة الفتح"
       }
     }
-  },
-  "prefixes": {
-    "at": "في تمام (الوقت)",
-    "by": "من قبل (المستخدم)",
-    "on": "في (تاريخ محدد)"
   },
   "profile": {
     "search": {
@@ -347,7 +307,6 @@
       "label": "الموظفون المستجيبون",
       "one": "المستجيب",
       "other": "المستجيبين",
-      "selfNotice": "تم تعيينك لطلب البحث هذا.",
       "selfRemove": "إلغاء تعيين نفسك"
     },
     "search": {
@@ -374,10 +333,6 @@
       "closed": {
         "name": "مغلقة"
       },
-      "groups": {
-        "closed": "مغلق",
-        "open": "مفتوح"
-      },
       "in-progress": {
         "name": "جاري العمل عليه"
       },
@@ -393,7 +348,6 @@
       "emailPlaceholder": "البريد الإلكتروني للمستخدم",
       "one": "مشترك",
       "other": "المشتركون",
-      "selfNotice": "أنت مشترك في هذا الطلب.",
       "selfRemove": "إلغاء اشتراكك"
     },
     "updatedAt": "تم تحديثه في",
@@ -412,9 +366,6 @@
     "viewRequests": "عرض الطلبات"
   },
   "validationErrors": {
-    "after": "هذا التاريخ يجب أن يكون بعد {after}",
-    "before": "هذا التاريخ يجب أن يكون قبل {before}",
-    "blank": "لا يمكن ترك هذا الحقل فارغاً",
     "email": "يجب أن يكون هذا الحقل عنوان بريد إلكتروني صحيح"
   }
 }

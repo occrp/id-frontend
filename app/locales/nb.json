@@ -1,6 +1,5 @@
 {
   "actions": {
-    "addSubscriber": "Legg til abonnent",
     "assign": {
       "longForm": "Tildel stab",
       "shortForm": "Tildel"
@@ -28,7 +27,6 @@
       "removed": "{user} fjernet ei fil"
     },
     "comment": {
-      "action": "{user} kommenterte {relativeTime}",
       "submitButton": "Legg inn kommentar",
       "title": "Kommenter"
     },
@@ -50,15 +48,6 @@
     }
   },
   "attachment": {
-    "dropzone": {
-      "activeTitle": "Slipp for å laste opp",
-      "desc": "Dra og slipp filer til dette området, eller {select}",
-      "invalidTitle": "Ugyldig",
-      "select": "Velg ei fil",
-      "title": "Last opp filer"
-    },
-    "filesSelected": "{count} filer valgt",
-    "other": "Vedlegg",
     "removalPrompt": "Er du sikker på at du ønsker å slette denne fila?",
     "state": {
       "aborted": "Kansellert",
@@ -67,8 +56,7 @@
       "timed_out": "Tidsavbrudd",
       "uploaded": "Opplastet",
       "uploading": "Laster opp"
-    },
-    "zero": "Ingen vedlegg"
+    }
   },
   "empty": {
     "noResults": {
@@ -129,7 +117,6 @@
   "locales": {
     "ar": "Arabisk",
     "bs": "Bsn/Hrz/Srb",
-    "en": "Engelsk",
     "es": "Spansk",
     "fr": "Fransk",
     "ru": "Russisk"
@@ -166,11 +153,6 @@
       "title": "Forespør informasjon"
     },
     "reporting": {
-      "closedTickets": {
-        "one": "{count} lukket forespørsel",
-        "other": "{count} lukkede forespørsler",
-        "zero": "{count} lukkede forespørsler"
-      },
       "columns": {
         "avgTime": "Gjen. løsningstid",
         "month": "Måned",
@@ -178,27 +160,12 @@
         "pastDeadline": "Utløpt tidsfrist",
         "total": "Totalt"
       },
-      "countriesTitle": {
-        "one": "{count} land",
-        "other": "{count} land",
-        "zero": "{count} land"
-      },
       "dateRange": {
         "lastHalf": "Siste halvår",
         "lastQuarter": "Siste tre måneder",
         "lastYear": "Siste år"
       },
-      "openTickets": {
-        "one": "{count} åpen forespørsel",
-        "other": "{count} åpne forespørsler",
-        "zero": "{count} åpne forespørsler"
-      },
-      "pastDeadline": "{count} med utløpt tidsfrist",
-      "staffTitle": {
-        "one": "{count} stabsmedlem",
-        "other": "{count} stabsmedlemmer",
-        "zero": "{count} stabsmedlemmer"
-      }
+      "pastDeadline": "{count} med utløpt tidsfrist"
     },
     "view": {
       "close": {
@@ -334,7 +301,6 @@
       "label": "Stabssvarere",
       "one": "Svarer",
       "other": "Svarere",
-      "selfNotice": "Du er tildelt denne forespørselen.",
       "selfRemove": "Opphev tildeling?"
     },
     "search": {
@@ -361,10 +327,6 @@
       "closed": {
         "name": "Lukket"
       },
-      "groups": {
-        "closed": "Lukket",
-        "open": "Åpen"
-      },
       "in-progress": {
         "name": "Underveis"
       },
@@ -380,7 +342,6 @@
       "emailPlaceholder": "Bruker-e-post",
       "one": "Abonnent",
       "other": "Abonnenter",
-      "selfNotice": "Du abonnerer på denne forespørselen.",
       "selfRemove": "Opphev abonnement?"
     },
     "updatedAt": "Oppdatert",
@@ -399,9 +360,6 @@
     "viewRequests": "Vis forespørsler"
   },
   "validationErrors": {
-    "after": "Denne datoen må være etter {after}",
-    "before": "Denne datoen må være før {before}",
-    "blank": "Dette feltet kan ikke stå tomt",
     "email": "Dette feltet må være en gyldig e-postadresse"
   }
 }

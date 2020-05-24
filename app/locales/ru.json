@@ -1,6 +1,5 @@
 {
   "actions": {
-    "addSubscriber": "Добавить подписчика",
     "assign": {
       "longForm": "Назначить сотрудника",
       "shortForm": "назначить"
@@ -23,7 +22,6 @@
       "removed": "{user} удалил(а) файл"
     },
     "comment": {
-      "action": "{user} оставил/а комментарий {relativeTime}",
       "submitButton": "Опубликовать",
       "title": "Добавить комментарий"
     },
@@ -41,15 +39,6 @@
     }
   },
   "attachment": {
-    "dropzone": {
-      "activeTitle": "Отпустите для загрузки",
-      "desc": "Перетащите файл в это поле или {select}",
-      "invalidTitle": "Недоступно",
-      "select": "Выбрать файл",
-      "title": "Загрузить файлы"
-    },
-    "filesSelected": "{count} файлов выбраны",
-    "other": "Приложения",
     "removalPrompt": "Вы уверены, что хотите удалить файл?",
     "state": {
       "aborted": "Отменена",
@@ -58,8 +47,7 @@
       "timed_out": "Превышено допустимое время",
       "uploaded": "Загружен",
       "uploading": "Загружается"
-    },
-    "zero": "Без приложений"
+    }
   },
   "empty": {
     "noResults": {
@@ -116,7 +104,6 @@
   "locales": {
     "ar": "العربية",
     "bs": "Bos/Hrv/Srp",
-    "en": "English",
     "es": "Español",
     "fr": "Français",
     "ru": "Русский"
@@ -152,11 +139,6 @@
       "title": "Информация о запросе"
     },
     "reporting": {
-      "closedTickets": {
-        "one": "{count} Закрытый запрос",
-        "other": "{count}  Закрытых запросов",
-        "zero": "{count}  Закрытых запросов"
-      },
       "columns": {
         "avgTime": "Среднее время разрешения",
         "month": "Месяц",
@@ -164,27 +146,12 @@
         "pastDeadline": "Истекшие",
         "total": "Total"
       },
-      "countriesTitle": {
-        "one": "{count} Страна",
-        "other": "{count} Страны",
-        "zero": "{count} Стран"
-      },
       "dateRange": {
         "lastHalf": "Последние 6 месяцев",
         "lastQuarter": "Последние 3 месяца",
         "lastYear": "В прошлом году"
       },
-      "openTickets": {
-        "one": "{count} Открытый запрос",
-        "other": "{count} Открытых запросов",
-        "zero": "{count} Открытых запросов"
-      },
-      "pastDeadline": "{count} истекшие",
-      "staffTitle": {
-        "one": "{count} Сотрудник",
-        "other": "{count} Сотрудники",
-        "zero": "{count} Сотрудника"
-      }
+      "pastDeadline": "{count} истекшие"
     },
     "view": {
       "close": {
@@ -201,11 +168,6 @@
         "title": "Причина повторного открытия"
       }
     }
-  },
-  "prefixes": {
-    "at": "{time}",
-    "by": "Пользователем {user}",
-    "on": "{date}"
   },
   "profile": {
     "search": {
@@ -253,8 +215,7 @@
       "search": {
         "noResults": "Не найдено ни одной страны",
         "placeholder": "Поиск страны по названию или коду"
-      },
-      "zero": "Стран"
+      }
     },
     "countryPerson": {
       "label": "Национальность"
@@ -296,17 +257,14 @@
     "requester": {
       "one": "Автор запроса",
       "other": "Авторы запроса",
-      "prefix": "Отправитель {requester}",
-      "zero": "Авторов запроса"
+      "prefix": "Отправитель {requester}"
     },
     "responder": {
       "empty": "Никто не назначен",
       "label": "Назначеные исполнители",
       "one": "Исполнитель",
       "other": "Исполнители",
-      "selfNotice": "Этот запрос назначен вам.",
-      "selfRemove": "Удалить назначение?",
-      "zero": "Исполнителя"
+      "selfRemove": "Удалить назначение?"
     },
     "search": {
       "clear": "Очистить поиск",
@@ -332,10 +290,6 @@
       "closed": {
         "name": "Закрыт"
       },
-      "groups": {
-        "closed": "Закрытые",
-        "open": "Открытые"
-      },
       "in-progress": {
         "name": "В процессе"
       },
@@ -350,17 +304,11 @@
       "emailPlaceholder": "Почта пользователя",
       "one": "Подписчик",
       "other": "Подписчики",
-      "selfNotice": "Вы подписаны на этот вопрос.",
       "selfRemove": "Отказываться от подписки?"
-    },
-    "updatedAt": {
-      "label": "Последнее обновление",
-      "prefix": "обновлено {relativeTime}"
     },
     "whysensitive": {
       "label": "Почему он критичен?"
-    },
-    "zero": "{count} запросов"
+    }
   },
   "time": {
     "default": "MMM D YYYY",
@@ -373,9 +321,6 @@
     "viewRequests": "Запросы"
   },
   "validationErrors": {
-    "after": "Эта дата должна быть позже {after}",
-    "before": "Тут дата должна быть раньше {before}",
-    "blank": "Это поле не может быть пустым",
     "email": "В этом поле должен быть адрес электронной почты"
   }
 }

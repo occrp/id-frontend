@@ -1,6 +1,5 @@
 {
   "actions": {
-    "addSubscriber": "Dodaj još jednog korisnika",
     "assign": {
       "longForm": "Dodijelite istraživaču",
       "shortForm": "Dodijeliti"
@@ -23,7 +22,6 @@
       "removed": "{user} je uklonio dokument"
     },
     "comment": {
-      "action": "{user} je dodao/la komentar {relativeTime}",
       "submitButton": "Objavi komentar",
       "title": "Ostavi komentar"
     },
@@ -41,15 +39,6 @@
     }
   },
   "attachment": {
-    "dropzone": {
-      "activeTitle": "Dokumenti za upload",
-      "desc": "Premjestite dokumente ovdje ili {select}",
-      "invalidTitle": "Neispravan unos",
-      "select": "Odaberite dokument",
-      "title": "Upload dokumenata"
-    },
-    "filesSelected": "{count} odabran(a)",
-    "other": "Prilozi",
     "removalPrompt": "Jeste li sigurni da želite obrisati ovaj dokument?",
     "state": {
       "aborted": "Prekinuto",
@@ -58,8 +47,7 @@
       "timed_out": "Isteklo vrijeme",
       "uploaded": "Dodan",
       "uploading": "Učitava se"
-    },
-    "zero": "Nema priloga"
+    }
   },
   "empty": {
     "noResults": {
@@ -73,7 +61,6 @@
   },
   "errors": {
     "activities": "Došlo je do greške prilikom učitavanja liste aktivnosti.",
-    "genericInvalid": "Molimo popunite ovo polje",
     "genericRequest": "Došlo je do greške u obradi Vašeg zahtjeva.",
     "routeError": {
       "body": "Dobili smo automatsku obavijest da je neophodan bolji primjerak.",
@@ -117,7 +104,6 @@
   "locales": {
     "ar": "Arapski",
     "bs": "Bos/Hrv/Srp",
-    "en": "English",
     "es": "Španski",
     "fr": "Francuski",
     "ru": "Ruski"
@@ -153,11 +139,6 @@
       "title": "Podaci o zahtjevu"
     },
     "reporting": {
-      "closedTickets": {
-        "one": "{count} Zatvoren zahtjev",
-        "other": "{count} Zatvorenih zahtjeva",
-        "zero": "{count} Zatvorenih zahtjeva"
-      },
       "columns": {
         "avgTime": "Prosječno vrijeme potrebno za odgovor",
         "month": "Mjesec",
@@ -165,27 +146,12 @@
         "pastDeadline": "Istekao rok",
         "total": "Total"
       },
-      "countriesTitle": {
-        "one": "{count} Država",
-        "other": "{count} Država",
-        "zero": "{count} Država"
-      },
       "dateRange": {
         "lastHalf": "Posljednjih šest mjeseci",
         "lastQuarter": "Posljednja tri mjeseca",
         "lastYear": "Posljednjih godinu dana"
       },
-      "openTickets": {
-        "one": "{count} Otvorenih zahtjeva",
-        "other": "{count} Otvorenih zahtjeva",
-        "zero": "{count} Otvorenih zahtjeva"
-      },
-      "pastDeadline": "{count} sa isteklim rokom",
-      "staffTitle": {
-        "one": "{count} Istraživač",
-        "other": "{count} Istraživača",
-        "zero": "{count} Istraživača"
-      }
+      "pastDeadline": "{count} sa isteklim rokom"
     },
     "view": {
       "close": {
@@ -202,11 +168,6 @@
         "title": "Razlog za ponovno otvaranje"
       }
     }
-  },
-  "prefixes": {
-    "at": "u {time}",
-    "by": "{user}",
-    "on": "dana {date}"
   },
   "profile": {
     "search": {
@@ -303,7 +264,6 @@
       "label": "Odgovorni istraživač",
       "one": "Istraživač",
       "other": "Istraživači",
-      "selfNotice": "Dodijeljen Vam je ovaj zahtjev.",
       "selfRemove": "Odustani od zahtjeva?"
     },
     "sensitive": {
@@ -326,10 +286,6 @@
       "closed": {
         "name": "Zatvoren"
       },
-      "groups": {
-        "closed": "Zatvoren",
-        "open": "Otvoren"
-      },
       "in-progress": {
         "name": "U obradi"
       },
@@ -344,12 +300,7 @@
       "emailPlaceholder": "E-mail adresa korisnika",
       "one": "Dodatni korisnik na zahtjevu",
       "other": "Dodatni korisnici na zahtjevu",
-      "selfNotice": "Vi ste dodatni korisnik na ovom zahtjevu.",
       "selfRemove": "Odustani od zahtjeva?"
-    },
-    "updatedAt": {
-      "label": "Posljednje ažuriranje",
-      "prefix": "Ažurirano {relativeTime}"
     },
     "whysensitive": {
       "label": "Šta je čini povjerljivom?"
@@ -366,9 +317,6 @@
     "viewRequests": "Pogledaj zahtjeve"
   },
   "validationErrors": {
-    "after": "Datum mora biti poslije {after}",
-    "before": "Datum mora biti prije {before}",
-    "blank": "Ovo polje ne može biti prazno",
     "email": "U ovom polju mora biti validna e-mail adresa"
   }
 }

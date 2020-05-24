@@ -1,6 +1,5 @@
 {
   "actions": {
-    "addSubscriber": "Ajouter un abonné",
     "assign": {
       "longForm": "Assigner à l'équipe",
       "shortForm": "Attribuer à l'équipe"
@@ -26,7 +25,6 @@
       "removed": "{user} a supprimé le fichier"
     },
     "comment": {
-      "action": "",
       "submitButton": "Publier des commentaires",
       "title": "Laisser un commentaire"
     },
@@ -48,15 +46,6 @@
     }
   },
   "attachment": {
-    "dropzone": {
-      "activeTitle": "Déposer pour télécharger",
-      "desc": "Déplacer et déposer les fichiers dans cette zone ou {select}",
-      "invalidTitle": "Non valable",
-      "select": "Sélectionner un fichier",
-      "title": "Télécharger les fichiers"
-    },
-    "filesSelected": "{count} fichiers sélectionnés",
-    "other": "Pièces jointes",
     "removalPrompt": "Êtes-vous sûr(e) de vouloir supprimer ce fichier ?",
     "state": {
       "aborted": "Annulé",
@@ -65,8 +54,7 @@
       "timed_out": "Délai dépassé",
       "uploaded": "Téléversé",
       "uploading": "En téléversement"
-    },
-    "zero": "Aucune pièce jointe"
+    }
   },
   "empty": {
     "noResults": {
@@ -80,7 +68,6 @@
   },
   "errors": {
     "activities": "Une erreur s'est produite lors du chargement du flux d'activité.",
-    "genericInvalid": "S'il-vous-plaît, veuillez remplir le champ suivant",
     "genericRequest": "Une erreur s'est produite lors du traitement de votre requête.",
     "routeError": {
       "body": "Nous avons été informés automatiquement et nous avons besoin d'une meilleure copie pour cela.",
@@ -88,7 +75,6 @@
     }
   },
   "expenses": {
-    "customScope": "Pas dans la liste ? Ajoutez-le manuellement…",
     "paymentExtras": "Ajouter les détails du paiement…"
   },
   "filters": {
@@ -128,7 +114,6 @@
   "locales": {
     "ar": "arabe",
     "bs": "serbo-croate",
-    "en": "anglais",
     "es": "espagnol",
     "fr": "français",
     "ru": "russe"
@@ -164,11 +149,6 @@
       "title": "Demander des informations"
     },
     "reporting": {
-      "closedTickets": {
-        "one": "{count} requête fermée",
-        "other": "{count} requêtes fermées",
-        "zero": "{count} requêtes fermées"
-      },
       "columns": {
         "avgTime": "Durée de résolution moyenne",
         "month": "Mois",
@@ -176,27 +156,12 @@
         "pastDeadline": "Date butoir passée",
         "total": "Total"
       },
-      "countriesTitle": {
-        "one": "{count} pays",
-        "other": "{count} pays",
-        "zero": "{count} pays"
-      },
       "dateRange": {
         "lastHalf": "Les six derniers mois",
         "lastQuarter": "Les trois derniers mois",
         "lastYear": "L’année dernière"
       },
-      "openTickets": {
-        "one": "{count} requête ouverte",
-        "other": "{count} requêtes ouvertes",
-        "zero": "{count} requêtes ouvertes"
-      },
-      "pastDeadline": "{count} date butoir passée",
-      "staffTitle": {
-        "one": "{count} membre",
-        "other": "{count} membres",
-        "zero": "{count} membres"
-      }
+      "pastDeadline": "{count} date butoir passée"
     },
     "view": {
       "close": {
@@ -214,11 +179,6 @@
         "title": "Motif de réouverture"
       }
     }
-  },
-  "prefixes": {
-    "at": "A {time}",
-    "by": "Par {user}",
-    "on": "Le {date}"
   },
   "profile": {
     "search": {
@@ -326,7 +286,6 @@
       "label": "Staff intervenant",
       "one": "Répondre",
       "other": "Personne en charge de répondre",
-      "selfNotice": "Cette requête vous est attribuée.",
       "selfRemove": "Se retirer"
     },
     "search": {
@@ -353,10 +312,6 @@
       "closed": {
         "name": "Fermé"
       },
-      "groups": {
-        "closed": "Fermé",
-        "open": "Ouvert"
-      },
       "in-progress": {
         "name": "En cours"
       },
@@ -372,7 +327,6 @@
       "emailPlaceholder": "Courriel de l'utilisateur",
       "one": "Abonné",
       "other": "Abonnés",
-      "selfNotice": "Vous êtes abonné à cette requête.",
       "selfRemove": "Se désabonner"
     },
     "updatedAt": "Mis à jour le",
@@ -391,9 +345,6 @@
     "viewRequests": "Afficher les requêtes"
   },
   "validationErrors": {
-    "after": "Cette date doit être après {after}",
-    "before": "Cette date doit être avant {before}}",
-    "blank": "Ce champ ne peut pas être vide",
     "email": "Ce champ requiert une adresse courriel valide"
   }
 }
