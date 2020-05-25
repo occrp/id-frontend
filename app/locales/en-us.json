@@ -179,8 +179,8 @@
         "submitButton": "Submit your request",
         "uploadInfo": "You will be able attach documents after submitting the request."
       },
-      "headline": "Please choose which type of request you’d like to file, and make sure to include as much information as you can. The more information you share, the better equipped we are to help you.",
-      "subheadline": "We try our best to meet the deadlines you set. We will be in touch if we cannot. If there is a problem or we can’t fulfill your request we aim to get back to you within 3 working days.",
+      "headline": "Please choose which type of request you’d like to file, and make sure to include as much information as possible. The more information you share, the better we can assist you.",
+      "subheadline": "We try our best to meet the set deadline and will contact you if we are not able to. If there is a problem or we can’t fulfill your request, we aim to get back to you within three working days.",
       "title": "Welcome!"
     },
     "reporting": {
