@@ -12,3 +12,20 @@ master-cdn-deploy:
   - master
   tags:
   - master
+
+# production environment
+master-tagged-cdn-deploy:
+  stage: deploy
+  script:
+  - npm install
+  - npm install ember-cli
+  - npm run lint:js
+  - node_modules/ember-cli/bin/ember test --launch=Chromium --filter='!flanky'
+  - node_modules/ember-cli/bin/ember build --environment production
+  - rsync -av --delete dist/ /output/id-frontend/
+  only:
+  - tags
+  exclude:
+  - branches
+  tags:
+  - production
