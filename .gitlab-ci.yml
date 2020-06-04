@@ -25,7 +25,7 @@ master-tagged-cdn-deploy:
   - rsync -av --delete dist/ /output/id-frontend/
   only:
   - tags
-  exclude:
+  except:
   - branches
   tags:
   - production
