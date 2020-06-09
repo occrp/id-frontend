@@ -1,5 +1,6 @@
 {
   "actions": {
+    "add": "Добавить",
     "assign": {
       "longForm": "Назначить сотрудника",
       "shortForm": "назначить"
@@ -8,7 +9,11 @@
     "choose": "Выбрать",
     "close": "закрыть",
     "confirm": "Подтвердить",
+    "customOption": "Не найдено? Добавь вручную.",
     "delete": "Удалить",
+    "markdownEdit": "Вернуться к редактированию.",
+    "markdownHelp": "Помощь?!",
+    "markdownPreview": "Предварительный просмотр.",
     "or": "или",
     "remove": "удалить",
     "reopen": "oткрыть заново",
@@ -28,6 +33,10 @@
       "submitButton": "Опубликовать",
       "title": "Добавить комментарий"
     },
+    "expense": {
+      "action": "сохраненный источник",
+      "removed": "удаленный источник"
+    },
     "loadOlder": "Загрузить старые",
     "one": "Лента изменений",
     "reopen": {
@@ -42,7 +51,13 @@
     }
   },
   "attachment": {
+    "attachments": "Приложения",
+    "cancelAll": "Отменить все",
+    "fileDate": "Дата",
+    "filename": "Имя",
+    "filesize": "Размер",
     "removalPrompt": "Вы уверены, что хотите удалить файл?",
+    "startUploads": "Загрузить",
     "state": {
       "aborted": "Отменена",
       "failed": "Не удалась",
