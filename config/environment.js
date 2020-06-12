@@ -34,12 +34,12 @@ module.exports = function(environment) {
 
       // These next 2 props are used in the app, not coming from the addon
       activeLocales: [
-        'en-us',
-        'ru',
+        // 'ar',
         'bs',
         // 'fr',
         'es',
-        'ar'
+        'ru',
+        'en-us'
       ],
 
       // Keeping this array updated manually for now
@@ -58,7 +58,8 @@ module.exports = function(environment) {
     showdown: {
       noHeaderId: true,
       headerLevelStart: 5,
-      smoothLivePreview: true
+      smoothLivePreview: true,
+      simpleLineBreaks: true
     },
 
     'changeset-validations': {
