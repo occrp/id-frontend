@@ -1,7 +1,7 @@
 <p class="pb4">
   <span class="ttu tracked gray db b">{{t 'ticket.addSubscriber'}}</span>
 
-  {{ticket-add-subscriber ticket=model disable=removeSubscriber.isRunning}}
+  {{ticket-add-subscriber ticket=model disable=removeSubscriber.isRunning afterAddSubscriber=(action 'afterAddSubscriber')}}
 </p>
 
 {{#if model.subscribers.length}}

@@ -27,11 +27,13 @@ export default Component.extend({
   actions: {
     save(changeset) {
       const addSubscriber = this.get('addSubscriber');
+      const afterAddSubscriber = this.get('afterAddSubscriber');
 
       changeset.validate().then(() => {
         if (changeset.get('isValid')) {
           addSubscriber.perform(changeset).then(() => {
             this.set('record', this.get('store').createRecord('subscriber'));
+            afterAddSubscriber();
           });
         }
       });
