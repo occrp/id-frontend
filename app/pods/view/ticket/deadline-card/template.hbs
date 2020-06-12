@@ -36,6 +36,8 @@
         {{t 'ticket.deadline.empty'}}
       {{/if}}
     </span>
-    {{timestamp-date model.deadlineAt}}
+    {{#if model.deadlineAt}}
+      {{timestamp-date model.deadlineAt}}
+    {{/if}}
   {{/if}}
 </p>
