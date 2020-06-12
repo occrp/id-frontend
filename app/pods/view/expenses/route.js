@@ -8,7 +8,7 @@ export default Route.extend({
     const ticket = this.modelFor('view');
     const result = this._super(...arguments);
 
-    if (!this.get('can').can('manage tickets')) {
+    if (!this.get('can').can('resolve tickets')) {
       return this.transitionTo('view', ticket);
     }
 

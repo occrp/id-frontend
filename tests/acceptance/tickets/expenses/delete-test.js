@@ -13,7 +13,7 @@ module('Acceptance | Expense deletion', function(hooks) {
   test('deletes the record', async function(assert) {
     assert.expect(4);
 
-    initSession({ isSuperuser: true });
+    initSession({ isStaff: true });
 
     let ticket = server.create('ticket');
     let expenses = server.createList('expense', 2, { ticket });

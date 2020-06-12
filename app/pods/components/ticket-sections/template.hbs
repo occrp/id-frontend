@@ -7,7 +7,7 @@
       {{t 'attachment.attachments'}}
     {{/link-to}}
 
-    {{#if (can 'manage tickets') }}
+    {{#if (can 'resolve tickets') }}
       {{#link-to "view.expenses" model class="occrp-gray db pv2 link dim" activeClass="b bw2 bb b--occrp-gray"}}
         {{t 'expenses.title'}}
       {{/link-to}}

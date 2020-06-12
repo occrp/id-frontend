@@ -24,7 +24,7 @@ module('Acceptance | Expense creation', function(hooks) {
   test('expense creation', async function(assert) {
     assert.expect(4);
 
-    let user = initSession({ isSuperuser: true });
+    let user = initSession({ isStaff: true });
     let ticket = server.create('ticket');
     let done = assert.async();
 

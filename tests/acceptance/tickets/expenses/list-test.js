@@ -24,7 +24,7 @@ module('Acceptance | Expense listing', function(hooks) {
   test('shows all', async function(assert) {
     assert.expect(2);
 
-    initSession({ isSuperuser: true });
+    initSession({ isStaff: true });
 
     let ticket = server.create('ticket');
     let expenses = server.createList('expense', 2, { ticket });
