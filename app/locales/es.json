@@ -1,12 +1,20 @@
 {
   "actions": {
+    "add": "Añadir",
     "assign": {
       "longForm": "Asignar al equipo",
       "shortForm": "Asignar"
     },
     "cancel": "Cancelar",
+    "choose": "Elige",
     "close": "Cerrar",
-    "delete": "Delete",
+    "confirm": "Confirmar",
+    "customOption": "¿No está en la lista? Añádelo manualmente…",
+    "delete": "Eliminar",
+    "markdownEdit": "Editor de Markdown.",
+    "markdownHelp": "¡¿Ayuda?!",
+    "markdownPreview": "Previsualización de Markdown.",
+    "or": "o",
     "remove": "Remover",
     "reopen": "Reabrir",
     "save": "Guardar",
@@ -15,39 +23,85 @@
   },
   "activity": {
     "assign": {
-      "action": "{user} Fue asignado "
+      "action": "{{user}} fue asignado"
     },
     "attachment": {
-      "action": "Archivos adjuntos",
-      "removed": "{user} removed file"
+      "action": "{{user}} adjuntó archivos",
+      "removed": "{{user}} eliminó un archivo"
     },
     "comment": {
-      "submitButton": "Publicar un comentario",
+      "submitButton": "Publicar comentario",
       "title": "Dejar un comentario"
     },
+    "expense": {
+      "action": "{{user}} guardó un recurso",
+      "removed": "{{user}} eliminó un recurso"
+    },
+    "loadOlder": "Cargar mensajes anteriores",
     "one": "Actividad",
     "reopen": {
       "action": "Reabierto"
     },
     "resume": {
-      "action": "Reanudó"
+      "action": "reanudado"
     },
+    "showOnlyComments": "Mostrar únicamente comentarios",
     "unassign": {
-      "action": "Sin asignar"
+      "action": "{{user}} dejó de estar asignado"
     }
   },
   "attachment": {
-    "removalPrompt": "Are you sure you want to delete this file?"
+    "attachments": "Adjuntos",
+    "cancelAll": "cancelar todo",
+    "fileDate": "Fecha",
+    "filename": "Nombre",
+    "filesize": "Tamaño",
+    "removalPrompt": "¿Está seguro (a) de que desea eliminar este archivo?",
+    "startUploads": "Cargar",
+    "state": {
+      "aborted": "Cancelado",
+      "failed": "Fallido",
+      "queued": "En cola",
+      "timed_out": "Se agotó el tiempo de espera",
+      "uploaded": "Subido",
+      "uploading": "Subiendo"
+    },
+    "userName": "Subido por"
   },
+  "dropdownBlank": "- Elige -",
   "empty": {
     "noResults": {
       "body": "Use el menú de arriba para filtrar fácilmente las solicitudes.",
       "title": "No hay resultados que coincidan con tu búsqueda."
     },
     "noTickets": {
-      "button": "Presentar una solicitud",
+      "button": "Presente una solicitud",
       "title": "Parece que aún no has enviado ninguna solicitud."
     }
+  },
+  "errors": {
+    "activities": "Un error ocurrió mientras se cargaba la página.",
+    "genericRequest": "Ocurrió un error mientras se procesaba su solicitud.",
+    "routeError": {
+      "body": "Hemos sido notificados automáticamente y necesitamos estudiar el problema.",
+      "title": "Un error ocurrió mientras se procesaba su solicitud."
+    }
+  },
+  "expenses": {
+    "amount": "Costo",
+    "currency": "Moneda",
+    "date": "Fecha",
+    "notes": "Notas",
+    "paymentExtras": "Añadir detalles de pago…",
+    "paymentMethod": "Método de pago",
+    "rating": "Calificación",
+    "rating_0": "No lo usé",
+    "rating_1": "Consultado",
+    "rating_2": "Útil",
+    "rating_3": "Exclusivo",
+    "scope": "Nombre",
+    "title": "Recursos",
+    "userName": "Añadido por"
   },
   "filters": {
     "country": {
@@ -56,6 +110,10 @@
     "current": {
       "clear": "Borrar todos los filtros",
       "title": "Filtrar por"
+    },
+    "export": {
+      "action": "Como un .csv",
+      "title": "Exportar"
     },
     "kind": {
       "title": "Filtrar por tipo"
@@ -68,27 +126,37 @@
     },
     "responder": {
       "emptyOption": "Sin asignar a nadie",
-      "title": "Filtrar por quién asignó"
+      "title": "Filtrar por quién fue asignado"
     },
     "sort": {
-      "label": "Tipo",
+      "createdAt": {
+        "asc": "Lo más antiguo",
+        "desc": "Lo más nuevo"
+      },
+      "deadlineAt": {
+        "asc": "Deadline más lejano",
+        "desc": "Deadline más cercano"
+      },
+      "label": "Filtrar",
       "title": "Ordenar por"
     }
   },
   "locales": {
     "ar": "العربية",
     "bs": "Bos/Hrv/Srp",
+    "en-us": "Inglés",
     "es": "Español",
     "fr": "Français",
     "ru": "Русский"
   },
   "nav": {
     "account": {
-      "logout": "Logout",
-      "profile": "Profile"
+      "logout": "Cerrar sesión",
+      "profile": "Perfil",
+      "ssoProfile": "Perfil de SSO"
     },
-    "reports": "Reports",
-    "requests": "Requests"
+    "reports": "Informes",
+    "requests": "Solicitudes"
   },
   "pagination": {
     "newer": "Más reciente",
@@ -99,43 +167,55 @@
   "pods": {
     "browse": {
       "newButton": "Nueva solicitud",
-      "title": "Mis solicitudes "
+      "title": "Mis solicitudes"
     },
     "new": {
       "form": {
         "invalidMessage": "Por favor complete los campos marcados arriba antes de continuar.",
+        "memberCenter": "Miembros del Centro",
+        "memberCenterDetails": "¿Para cuál organización de la OCCRP, o medio asociado trabajas?",
         "otherDetails": "Otros detalles",
         "requestDetails": "Detalles de la solicitud",
         "submitButton": "Enviar tu solicitud",
-        "uploadInfo": "You will be able attach documents after submitting the request."
+        "uploadInfo": "Usted podrá adjuntar documentos después de enviar la solicitud."
       },
-      "headline": "Tu solicitud será dirigida a nuestros investigadores profesionales",
-      "title": "Pedir información"
+      "headline": "Por favor, escoge el tipo de solicitud que quieres enviar y asegúrate de inculir tanta información como te sea posible. Entre más información compartas, tendremos más herramientas para poder ayudarte.",
+      "subheadline": "Procuramos hacer todo lo posible para ajustarnos a los tiempos de cierre o deadline que definas. Estaremos en contacto si no podemos conseguirlo. Si existe un problema o si no podemos resolver tu consulta, te contactaremos dentro de tres días hábiles.",
+      "title": "¡Bienvenido (a)!"
     },
     "reporting": {
+      "closedTickets": "{count} consultas cerradas encontradas",
       "columns": {
-        "avgTime": "Avg. resolution time",
-        "month": "Month",
-        "name": "Name",
-        "pastDeadline": "Past deadline",
+        "avgTime": "Tiempo promedio de respuesta",
+        "month": "Mes",
+        "name": "Nombre",
+        "pastDeadline": "Después del deadline",
         "total": "Total"
       },
+      "countriesTitle": "{count} países encontrados",
       "dateRange": {
-        "lastHalf": "Last 6 months",
-        "lastQuarter": "Last 3 months",
-        "lastYear": "Last year"
+        "lastHalf": "Los últimos 6 meses",
+        "lastQuarter": "Los últimos 3 meses",
+        "lastYear": "Último año"
       },
-      "pastDeadline": "{count} past deadline"
+      "openTickets": "{count} Consultas abiertas encontradas",
+      "pastDeadline": "{{count}} después del deadline",
+      "staffTitle": "{count} miembros de staff encontrados"
+    },
+    "user": {
+      "subtitle": "Por favor, preséntate a nuestro equipo antes de llenar una consulta.",
+      "title": "¿Quién es {displayName}?"
     },
     "view": {
       "close": {
-        "button": "Solicitud {verb}",
-        "cancel": "No",
-        "confirm": "Sí ",
-        "title": "¿Estás seguro que quiere {verb} esta solicitud?"
+        "button": "{{verb}} solicitud",
+        "cancel": "No, déjalo abierto",
+        "confirm": "Sí , {{verb}} la solicitud",
+        "title": "¿Estás seguro (a) de que quieres {{verb}} esta solicitud?"
       },
       "pending": {
-        "button": "Marcar como pendiente"
+        "button": "Marcar como pendiente",
+        "title": "¿Por qué marcarla como pendiente?"
       },
       "reopen": {
         "button": "Reabrir la solicitud",
@@ -150,6 +230,9 @@
     }
   },
   "ticket": {
+    "addAttachments": "Ver o subir archivos adjuntos",
+    "addExpense": "Añadir gasto",
+    "addSubscriber": "Copiar a alguien más",
     "background": {
       "desc": "¿Qué sabes hasta ahora?",
       "formLabel": "Tu historia",
@@ -160,10 +243,18 @@
       "formLabel": "Tu historia",
       "label": "Antecedentes de la empresa"
     },
+    "backgroundData": {
+      "desc": "Por favor, cuéntenos si necesita un drop box.",
+      "label": "¿Qué datos quiere conocer al respecto?"
+    },
     "backgroundOther": {
-      "desc": "Alguna información que ya tienes",
+      "desc": "Cualquier información que ya tengas.",
       "formLabel": "¿Qué quieres saber?",
       "label": "Pregunta"
+    },
+    "backgroundVehicle": {
+      "desc": "¿Qué sabe usted hasta el momento?",
+      "label": "Nombre"
     },
     "bornAt": {
       "label": "Fecha de nacimiento"
@@ -179,69 +270,111 @@
       "label": "Conexiones"
     },
     "connectionsPerson": {
-      "desc": "Relaciones familiares conocidas",
+      "desc": "Relaciones familiares conocidas.",
       "label": "Familia y asociados"
+    },
+    "countries": {
+      "label": "Países relacionados"
     },
     "country": {
       "label": "País de registro",
       "one": "País",
       "other": "Países",
       "search": {
-        "noResults": "No se encontraron ningun país",
+        "noResults": "No se encontró ningún país",
         "placeholder": "Hacer búsqueda de países por nombre o código"
       }
     },
     "countryPerson": {
       "label": "Nacionalidad"
     },
+    "countryVehicle": {
+      "label": "Jurisdicción"
+    },
+    "createdAt": "Añadido el",
+    "dataCategory": {
+      "analysis": "Analizar datos",
+      "dunno": "No lo se",
+      "label": "Categoría",
+      "manipulation": "Limpiar datos",
+      "scrape": "Obtener datos"
+    },
     "deadline": {
-      "desc": "Intentaremos cumplir con tu fecha límite",
-      "empty": "No hay fecha límite",
-      "label": "Fecha límite",
+      "desc": "Intentaremos cumplir con tu deadline, pero -por favor- ten en cuenta que nuestros investigadores están muy ocupados. Nos tomará un mínimo de tres días para responder.",
+      "empty": "No hay deadline",
+      "label": "Deadline",
       "prefix": "Fecha límite {relativeTime}"
     },
+    "details": "Pedir descripción",
     "firstName": {
       "label": "Primer nombre"
     },
+    "identifierCompany": {
+      "label": "Registro/Identificador tributario"
+    },
+    "identifierPerson": {
+      "label": "ID/Número de pasaporte"
+    },
+    "identifierVehicle": {
+      "label": "Número de identificación"
+    },
     "initialInformation": {
-      "desc": "Alguna información que ya tienes",
+      "desc": "Cualquier información que ya tengas.",
       "formLabel": "¿Dónde has buscado?",
       "label": "Información inicial"
     },
     "kind": {
       "company_ownership": {
-        "name": "Determinar el dueño de la compañía",
+        "name": "Una compañía",
         "shortName": "Compañía"
+      },
+      "data_request": {
+        "name": "Un conjunto de datos",
+        "shortName": "Datos"
       },
       "one": "Tipo",
       "other": {
-        "name": "Alguna otra pregunta",
-        "shortName": "Otro"
+        "name": "Algo más",
+        "shortName": "Otro (a)"
       },
       "person_ownership": {
-        "name": "identificar lo que una persona posee",
+        "name": "Una persona",
         "shortName": "Persona"
+      },
+      "vehicle_tracking": {
+        "name": "Un vehículo",
+        "shortName": "Vehículo"
       }
     },
     "lastName": {
       "label": "Apellido"
     },
+    "memberCenter": "Miembro del Centro",
     "one": "Solicitud",
     "other": "Solicitudes",
+    "priority": {
+      "default": "Normal",
+      "high": "Alta",
+      "label": "Prioridad",
+      "low": "Baja"
+    },
     "requester": {
+      "bio": "Biografía",
+      "email": "Contacto",
       "one": "Solicitante",
       "other": "Solicitantes",
       "prefix": "Enviado por {solicitante}"
     },
     "responder": {
       "empty": "Nadie asignado",
-      "label": "Personal de respuesta",
-      "one": "Persona de primer contacto",
-      "other": ""
+      "label": "Personal encargado de la respuesta",
+      "one": "Encargado (a) de responder",
+      "other": "Encargados de responder",
+      "selfRemove": "Desasignarte"
     },
     "search": {
-      "clear": "Clear search",
-      "placeholder": "Search requests"
+      "clear": "Limpiar búsqueda",
+      "placeholder": "Buscar solicitudes"
     },
     "sensitive": {
       "label": "¿Es un tema sensible?",
@@ -252,8 +385,11 @@
       "formLabel": "¿Dónde has buscado?",
       "label": "Fuentes"
     },
+    "sourcesData": {
+      "label": "Por favor, comparte los links a fuentes de datos que sean relevantes"
+    },
     "sourcesPerson": {
-      "desc": "Otros nombres, apodos o seudónimos",
+      "desc": "Otros nombres, apodos o seudónimos.",
       "label": "Alias/ Pseudónimos"
     },
     "status": {
@@ -266,13 +402,24 @@
       "in-progress": {
         "name": "En proceso"
       },
+      "label": "Estado actual",
       "new": {
         "name": "Nuevo"
+      },
+      "open": {
+        "name": "Abrir"
       },
       "pending": {
         "name": "Pendiente"
       }
     },
+    "subscriber": {
+      "emailPlaceholder": "Correo electrónico del usuario",
+      "one": "Suscriptor",
+      "other": "Suscriptores",
+      "selfRemove": "Darte de baja en la suscripción"
+    },
+    "updatedAt": "Actualizado el",
     "whysensitive": {
       "label": "¿Por qué es sensible?"
     }
@@ -284,7 +431,11 @@
     "fullCurrentYear": "MMM D, HH:mm"
   },
   "userCard": {
-    "adminProfile": "Admin profile",
-    "viewRequests": "View requests"
+    "adminProfile": "Administrar perfil",
+    "viewRequests": "Mirar solicitudes"
+  },
+  "validationErrors": {
+    "email": "Este campo requiere de un correo electrónico válido",
+    "present": "Este campo no puede estar vacío"
   }
 }
