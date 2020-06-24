@@ -1,5 +1,6 @@
 {
   "actions": {
+    "add": "Ajouter",
     "assign": {
       "longForm": "Assigner à l'équipe",
       "shortForm": "Attribuer à l'équipe"
@@ -8,7 +9,11 @@
     "choose": "Choisir",
     "close": "Proche",
     "confirm": "Confirmer",
+    "customOption": "Liste incomplète ? Ajouter manuellement…",
     "delete": "Supprimer",
+    "markdownEdit": "Retour vers la modification.",
+    "markdownHelp": "À l'aide ?!",
+    "markdownPreview": "Aperçu.",
     "or": "ou",
     "remove": "Retirer",
     "reopen": "Réouvrir",
@@ -46,7 +51,13 @@
     }
   },
   "attachment": {
+    "attachments": "Pièces jointes",
+    "cancelAll": "tout annuler",
+    "fileDate": "Date",
+    "filename": "Nom",
+    "filesize": "Taille",
     "removalPrompt": "Êtes-vous sûr(e) de vouloir supprimer ce fichier ?",
+    "startUploads": "Téléverser",
     "state": {
       "aborted": "Annulé",
       "failed": "Échec",
@@ -54,8 +65,10 @@
       "timed_out": "Délai dépassé",
       "uploaded": "Téléversé",
       "uploading": "En téléversement"
-    }
+    },
+    "userName": "Téléversé par"
   },
+  "dropdownBlank": "- Choisir -",
   "empty": {
     "noResults": {
       "body": "Utilisez le menu ci-dessus pour filtrer facilement les requêtes.",
@@ -75,7 +88,20 @@
     }
   },
   "expenses": {
-    "paymentExtras": "Ajouter les détails du paiement…"
+    "amount": "Coût",
+    "currency": "Devise",
+    "date": "Date",
+    "notes": "Remarques",
+    "paymentExtras": "Ajouter les détails du paiement…",
+    "paymentMethod": "Moyen de paiement",
+    "rating": "Score",
+    "rating_0": "Pas utilisé",
+    "rating_1": "Consulté",
+    "rating_2": "Utile",
+    "rating_3": "Exclusif",
+    "scope": "Nom",
+    "title": "Ressource",
+    "userName": "Ajouté par"
   },
   "filters": {
     "country": {
@@ -84,6 +110,10 @@
     "current": {
       "clear": "Supprimer tous les filtres",
       "title": "Filtrer par"
+    },
+    "export": {
+      "action": "En CSV",
+      "title": "Exporter"
     },
     "kind": {
       "title": "Filtrer par type"
@@ -114,6 +144,7 @@
   "locales": {
     "ar": "arabe",
     "bs": "serbo-croate",
+    "en-us": "Anglais",
     "es": "espagnol",
     "fr": "français",
     "ru": "russe"
@@ -121,7 +152,8 @@
   "nav": {
     "account": {
       "logout": "Se déconnecter",
-      "profile": "Profil"
+      "profile": "Profil",
+      "ssoProfile": "Profile SSO"
     },
     "reports": "Reports",
     "requests": "Requêtes"
@@ -140,15 +172,19 @@
     "new": {
       "form": {
         "invalidMessage": "Veuillez vérifier les champs indiqués ci-dessus pour continuer.",
+        "memberCenter": "Centre de membres",
+        "memberCenterDetails": "Avec quel centre ou partenaire d'OCCRP travaillez-vous ?",
         "otherDetails": "Autres informations",
         "requestDetails": "Demander des précisions",
         "submitButton": "Soumettre sa demande",
         "uploadInfo": "Vous pourrez joindre des documents après le dépôt de la requête."
       },
-      "headline": "",
+      "headline": "Veuillez choisir le type de demande que vous souhaitez déposer, en incluant autant d'informations que possible. Plus vous nous communiquerez d'informations, mieux nous pourrons vous aider.",
+      "subheadline": "Nous faisons de notre mieux pour respecter le délai et nous vous contacterons si nous n'y parvenons pas. En cas de problème ou si nous ne pouvons pas répondre à votre demande, nous nous efforcerons de vous répondre en trois jours ouvrables.",
       "title": "Bienvenue !"
     },
     "reporting": {
+      "closedTickets": "{count} demandes classées trouvées",
       "columns": {
         "avgTime": "Durée de résolution moyenne",
         "month": "Mois",
@@ -156,12 +192,19 @@
         "pastDeadline": "Date butoir passée",
         "total": "Total"
       },
+      "countriesTitle": "{count} pays trouvés",
       "dateRange": {
         "lastHalf": "Les six derniers mois",
         "lastQuarter": "Les trois derniers mois",
         "lastYear": "L’année dernière"
       },
-      "pastDeadline": "{count} date butoir passée"
+      "openTickets": "{count} demandes en cours trouvées",
+      "pastDeadline": "{count} date butoir passée",
+      "staffTitle": "{count} membres du personnel trouvés"
+    },
+    "user": {
+      "subtitle": "Veuillez vous présenter à notre équipe avant de remplir une demande.",
+      "title": "Qui est {displayName} ?"
     },
     "view": {
       "close": {
@@ -187,6 +230,8 @@
     }
   },
   "ticket": {
+    "addAttachments": "Voir ou déposer des fichiers",
+    "addExpense": "Ajouter une dépense",
     "addSubscriber": "Ajouter un·e abonné·e",
     "background": {
       "desc": "Que savez-vous aujourd'hui ?",
@@ -194,14 +239,22 @@
       "label": "Historique"
     },
     "backgroundCompany": {
-      "desc": "Que savez-vous aujourd'hui?",
+      "desc": "Que savez-vous aujourd'hui ?",
       "formLabel": "Votre histoire",
       "label": "Historique de la société"
     },
+    "backgroundData": {
+      "desc": "Veuillez préciser si vous avez besoin d'une boîte de dépôt (drop box).",
+      "label": "Que voulez-vous apprendre à partir de ces données ?"
+    },
     "backgroundOther": {
       "desc": "Toute information déjà en votre possession.",
-      "formLabel": "Qu'est-ce-que vous souhaitez savoir?",
+      "formLabel": "Qu'est-ce-que vous souhaitez savoir ?",
       "label": "Question"
+    },
+    "backgroundVehicle": {
+      "desc": "Que savez-vous jusqu'à présent ?",
+      "label": "Nom ou itinéraire"
     },
     "bornAt": {
       "label": "Date de naissance"
@@ -220,6 +273,9 @@
       "desc": "Relations familiales connues.",
       "label": "Famille et associés"
     },
+    "countries": {
+      "label": "Pays liés"
+    },
     "country": {
       "label": "Pays enregistré",
       "one": "Pays",
@@ -232,15 +288,35 @@
     "countryPerson": {
       "label": "Nationalité"
     },
+    "countryVehicle": {
+      "label": "Juridiction"
+    },
     "createdAt": "Ajouté le",
+    "dataCategory": {
+      "analysis": "Analyser les données",
+      "dunno": "Ne sais pas",
+      "label": "Catégorie",
+      "manipulation": "Nettoyer les données",
+      "scrape": "Obtenir des données"
+    },
     "deadline": {
-      "desc": "Nous ferons notre possible pour respecter votre échéance. Nous vous informons que nos investigateurs sont assez occupés. Accordez-leur le plus de temps possible!",
+      "desc": "Nous ferons notre possible pour respecter votre échéance. Nous vous informons que nos investigateurs sont assez occupés. Accordez-leur le plus de temps possible !",
       "empty": "Aucune date butoir",
       "label": "Échéance",
       "prefix": "Exigible le {relativeTime}"
     },
+    "details": "Description de la demande",
     "firstName": {
       "label": "Prénom"
+    },
+    "identifierCompany": {
+      "label": "Identifiant fiscal ou d'enregistrement"
+    },
+    "identifierPerson": {
+      "label": "Numéro de CI ou de passeport"
+    },
+    "identifierVehicle": {
+      "label": "Numéro d'identification"
     },
     "initialInformation": {
       "desc": "Toute information déjà en votre possession.",
@@ -252,6 +328,10 @@
         "name": "Une société",
         "shortName": "Société"
       },
+      "data_request": {
+        "name": "Un jeu de données",
+        "shortName": "Données"
+      },
       "one": "Type",
       "other": {
         "name": "Quelque chose d'autre",
@@ -260,6 +340,10 @@
       "person_ownership": {
         "name": "Une personne",
         "shortName": "Personne"
+      },
+      "vehicle_tracking": {
+        "name": "Un véhicule",
+        "shortName": "Véhicule"
       }
     },
     "lastName": {
@@ -293,13 +377,16 @@
       "placeholder": "Chercher des requêtes"
     },
     "sensitive": {
-      "label": "Est-ce sensible?",
+      "label": "Est-ce sensible ?",
       "trueLabel": "Demande sensible"
     },
     "sources": {
-      "desc": "Quelles sources avez-vous aujourd'hui?",
-      "formLabel": "Où avez-vous cherché?",
+      "desc": "Quelles sources avez-vous jusqu'à présent ?",
+      "formLabel": "Où avez-vous cherché ?",
       "label": "Sources"
+    },
+    "sourcesData": {
+      "label": "Veuillez mettre les liens des sources des données lorsqu'ils sont pertinents"
     },
     "sourcesPerson": {
       "desc": "Variantes orthographiques ou noms fictifs.",
@@ -319,6 +406,9 @@
       "new": {
         "name": "Nouveau"
       },
+      "open": {
+        "name": "Ouvrir"
+      },
       "pending": {
         "name": "En attente"
       }
@@ -331,7 +421,7 @@
     },
     "updatedAt": "Mis à jour le",
     "whysensitive": {
-      "label": "Pourquoi est-ce sensible?"
+      "label": "Pourquoi est-ce sensible ?"
     }
   },
   "time": {
@@ -345,6 +435,7 @@
     "viewRequests": "Afficher les requêtes"
   },
   "validationErrors": {
-    "email": "Ce champ requiert une adresse courriel valide"
+    "email": "Ce champ requiert une adresse courriel valide",
+    "present": "Ce champs doit être rempli"
   }
 }
