@@ -193,11 +193,6 @@
         "total": "Total"
       },
       "countriesTitle": "{count} Countries found",
-      "dateRange": {
-        "lastHalf": "Last 6 months",
-        "lastQuarter": "Last 3 months",
-        "lastYear": "Last year"
-      },
       "openTickets": "{count} Open requests found",
       "pastDeadline": "{count} past deadline",
       "staffTitle": "{count} Staff member found"

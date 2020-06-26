@@ -24,7 +24,7 @@ module.exports = function(defaults) {
     },
 
     'ember-composable-helpers': {
-      only: ['pipe', 'pipe-action', 'queue', 'dec', 'toggle', 'contains', 'array', 'repeat']
+      only: ['pipe', 'pipe-action', 'queue', 'dec', 'toggle', 'contains', 'array', 'repeat', 'range']
     },
 
     svgJar: {

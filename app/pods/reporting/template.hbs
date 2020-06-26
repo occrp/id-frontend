@@ -1,25 +1,14 @@
 <div class="wrapper">
-  <div class="subNav mb-5">
-    <div class="subNav-main">
-      {{#link-to "reporting.index"}}Overview{{/link-to}}
-      {{#link-to "reporting.staff"}}Staff{{/link-to}}
-      {{#link-to "reporting.countries"}}Countries{{/link-to}}
+  <div class="flex align-center justify-between bb b--gray mb-5">
+    <div class="flex">
+      {{#link-to "reporting.index" class="link p4 dim occrp-gray" activeClass="bb bw2 b--occrp-gray"}}Overview{{/link-to}}
+      {{#link-to "reporting.staff" class="link p4 mh4 dim occrp-gray" activeClass="bb bw2 b--occrp-gray"}}Staff{{/link-to}}
+      {{#link-to "reporting.countries" class="link p4 dim occrp-gray" activeClass="bb bw2 b--occrp-gray"}}Countries{{/link-to}}
     </div>
-    <div class="subNav-secondary">
-      {{#ui-dropdown as |dd|}}
-        {{#dd.trigger}}
-          {{~moment-format model.meta.startDate 'MMM Y'}} &mdash; {{moment-format model.meta.endDate 'MMM Y'~}}
-        {{/dd.trigger}}
-        {{#dd.body class="dd--sm"}}
-          <div class="list">
-            {{#each startAtOptions as |option|}}
-              <a href class="list-item {{if (eq startAt option.value) 'is-active'}}" {{action (queue (action (mut startAt) option.value) dd.close)}}>
-                {{option.label}}
-              </a>
-            {{/each}}
-          </div>
-        {{/dd.body}}
-      {{/ui-dropdown}}
+    <div>
+        Show stats from
+        {{input class='dib bg-washed-yellow w2 bn pa2' value=monthsAgo}}
+        months ago
     </div>
   </div>
 
