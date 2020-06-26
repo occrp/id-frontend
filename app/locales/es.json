@@ -23,19 +23,19 @@
   },
   "activity": {
     "assign": {
-      "action": "{{user}} fue asignado"
+      "action": "fue asignado"
     },
     "attachment": {
-      "action": "{{user}} adjuntó archivos",
-      "removed": "{{user}} eliminó un archivo"
+      "action": "adjuntó archivos",
+      "removed": "eliminó un archivo"
     },
     "comment": {
       "submitButton": "Publicar comentario",
       "title": "Dejar un comentario"
     },
     "expense": {
-      "action": "{{user}} guardó un recurso",
-      "removed": "{{user}} eliminó un recurso"
+      "action": "guardó un recurso",
+      "removed": "eliminó un recurso"
     },
     "loadOlder": "Cargar mensajes anteriores",
     "one": "Actividad",
@@ -47,7 +47,7 @@
     },
     "showOnlyComments": "Mostrar únicamente comentarios",
     "unassign": {
-      "action": "{{user}} dejó de estar asignado"
+      "action": "dejó de estar asignado"
     }
   },
   "attachment": {
@@ -199,7 +199,7 @@
         "lastYear": "Último año"
       },
       "openTickets": "{count} Consultas abiertas encontradas",
-      "pastDeadline": "{{count}} después del deadline",
+      "pastDeadline": "{count} después del deadline",
       "staffTitle": "{count} miembros de staff encontrados"
     },
     "user": {
@@ -208,10 +208,10 @@
     },
     "view": {
       "close": {
-        "button": "{{verb}} solicitud",
+        "button": "{verb} solicitud",
         "cancel": "No, déjalo abierto",
-        "confirm": "Sí , {{verb}} la solicitud",
-        "title": "¿Estás seguro (a) de que quieres {{verb}} esta solicitud?"
+        "confirm": "Sí , {verb} la solicitud",
+        "title": "¿Estás seguro (a) de que quieres {verb} esta solicitud?"
       },
       "pending": {
         "button": "Marcar como pendiente",
