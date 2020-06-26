@@ -50,19 +50,19 @@
 .pg-item:not(.is-disabled) {
   &.is-active {
     color: $gray-900;
-    border-color: theme-color("secondary");
+    border-color: theme-color("primary");
   }
 }
 
 
 .pg-prev {
-  @include caret(left, theme-color("secondary"));
+  @include caret(left, theme-color("primary"));
   &::before {
     vertical-align: baseline;
   }
 }
 .pg-next {
-  @include caret(right, theme-color("secondary"));
+  @include caret(right, theme-color("primary"));
   &::after {
     vertical-align: baseline;
   }
