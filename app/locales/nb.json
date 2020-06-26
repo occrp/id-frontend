@@ -160,11 +160,6 @@
         "pastDeadline": "Utløpt tidsfrist",
         "total": "Totalt"
       },
-      "dateRange": {
-        "lastHalf": "Siste halvår",
-        "lastQuarter": "Siste tre måneder",
-        "lastYear": "Siste år"
-      },
       "pastDeadline": "{count} med utløpt tidsfrist"
     },
     "view": {

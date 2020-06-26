@@ -163,11 +163,6 @@
         "pastDeadline": "Istekao rok",
         "total": "Total"
       },
-      "dateRange": {
-        "lastHalf": "Posljednjih šest mjeseci",
-        "lastQuarter": "Posljednja tri mjeseca",
-        "lastYear": "Posljednjih godinu dana"
-      },
       "pastDeadline": "{count} sa isteklim rokom"
     },
     "view": {

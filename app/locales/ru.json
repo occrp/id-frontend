@@ -171,11 +171,6 @@
         "pastDeadline": "Истекшие",
         "total": "Total"
       },
-      "dateRange": {
-        "lastHalf": "Последние 6 месяцев",
-        "lastQuarter": "Последние 3 месяца",
-        "lastYear": "В прошлом году"
-      },
       "pastDeadline": "{count} истекшие"
     },
     "view": {

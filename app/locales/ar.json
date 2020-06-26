@@ -161,11 +161,6 @@
         "pastDeadline": "تعدى المهلة",
         "total": "إجمالي"
       },
-      "dateRange": {
-        "lastHalf": "الأشهر الست الأخيرة",
-        "lastQuarter": "الأشهر الثلاث الأخيرة",
-        "lastYear": "في العام الماضي"
-      },
       "pastDeadline": "{count} الموعد النهائي السابق"
     },
     "view": {
