@@ -1,1 +1,229 @@
-{}
+{
+  "actions": {
+    "add": "Hinzufügen",
+    "cancel": "Abbrechen",
+    "choose": "Auswählen",
+    "close": "Schließen",
+    "confirm": "Bestätigen",
+    "customOption": "Nicht in der Liste? Fügen Sie das manuell hinzu …",
+    "delete": "Löschen",
+    "markdownEdit": "Zurück zur Bearbeitung.",
+    "markdownHelp": "Hilfe?!",
+    "markdownPreview": "Vorschau.",
+    "or": "oder",
+    "remove": "Entfernen",
+    "reopen": "Wieder öffnen",
+    "save": "Speichern",
+    "upload": "Hochladen"
+  },
+  "activity": {
+    "attachment": {
+      "action": "angehängte Dateien",
+      "removed": "entfernte Datei"
+    },
+    "comment": {
+      "submitButton": "Kommentar veröffentlichen",
+      "title": "Hinterlassen Sie einen Kommentar"
+    },
+    "expense": {
+      "action": "hat eine Ressource gespeichert",
+      "removed": "hat eine Ressource entfernt"
+    },
+    "loadOlder": "Ältere laden",
+    "one": "Aktivität",
+    "reopen": {
+      "action": "wiedereröffnet"
+    },
+    "showOnlyComments": "Nur Kommentare anzeigen"
+  },
+  "attachment": {
+    "attachments": "Anhänge",
+    "cancelAll": "alle abbrechen",
+    "fileDate": "Datum",
+    "filename": "Name",
+    "filesize": "Größe",
+    "removalPrompt": "Sind Sie sicher, dass Sie diese Datei löschen wollen?",
+    "startUploads": "Hochladen",
+    "state": {
+      "aborted": "Abgebrochen",
+      "failed": "Fehlgeschlagen",
+      "queued": "In der Warteschlange",
+      "uploaded": "Hochgeladen",
+      "uploading": "Wird hochgeladen"
+    },
+    "userName": "Hochgeladen von"
+  },
+  "dropdownBlank": "- Auswählen -",
+  "empty": {
+    "noResults": {
+      "body": "Verwenden Sie das Menü oben, um Anfragen einfach zu filtern.",
+      "title": "Keine Ergebnisse entsprechen Ihrer Abfrage."
+    },
+    "noTickets": {
+      "button": "Einen Antrag einreichen",
+      "title": "Es sieht so aus, als hätten Sie noch keine Anträge eingereicht."
+    }
+  },
+  "errors": {
+    "activities": "Beim Laden des Aktivitäts-Feeds ist ein Fehler aufgetreten.",
+    "genericRequest": "Bei der Bearbeitung Ihrer Anfrage ist ein Fehler aufgetreten.",
+    "routeError": {
+      "body": "Wir sind automatisch benachrichtigt worden und brauchen dafür eine bessere Kopie.",
+      "title": "Bei der Bearbeitung Ihrer Anfrage ist ein Fehler aufgetreten."
+    }
+  },
+  "expenses": {
+    "amount": "Kosten",
+    "currency": "Währung",
+    "date": "Datum",
+    "notes": "Anmerkungen",
+    "paymentExtras": "Zahlungsdetails hinzufügen …",
+    "paymentMethod": "Zahlungsmethode",
+    "rating": "Bewertung",
+    "rating_0": "Nicht benutzt",
+    "rating_2": "Hilfreich",
+    "rating_3": "Exklusiv",
+    "scope": "Name",
+    "title": "Ressourcen",
+    "userName": "Hinzugefügt von"
+  },
+  "filters": {
+    "country": {
+      "title": "Nach Land/Nationalität filtern"
+    },
+    "current": {
+      "clear": "Alle Filter löschen",
+      "title": "Gefiltert nach"
+    },
+    "export": {
+      "action": "Als CSV",
+      "title": "Exportieren"
+    },
+    "kind": {
+      "title": "Nach Typ filtern"
+    },
+    "options": {
+      "all": "Alle"
+    },
+    "requester": {
+      "title": "Nach Antragsteller filtern"
+    }
+  },
+  "ticket": {
+    "dataCategory": {
+      "label": "Kategorie",
+      "manipulation": "Daten bereinigen",
+      "scrape": "Daten abrufen"
+    },
+    "deadline": {
+      "desc": "Wir werden versuchen, Ihre Frist einzuhalten, aber bitte beachten Sie, dass unsere Forscher sehr beschäftigt sind. Es wird mindestens drei Arbeitstage dauern, bis wir Ihnen antworten können.",
+      "empty": "Keine Frist",
+      "label": "Frist"
+    },
+    "firstName": {
+      "label": "Vorname"
+    },
+    "identifierCompany": {
+      "label": "Registrierung/Steueridentifikationsnummer"
+    },
+    "identifierPerson": {
+      "label": "Personalausweis/Reisepassnummer"
+    },
+    "identifierVehicle": {
+      "label": "Identifikationsnummer"
+    },
+    "initialInformation": {
+      "desc": "Alle Informationen, die Sie bereits haben.",
+      "formLabel": "Wo haben Sie nachgesehen?",
+      "label": "Erste Informationen"
+    },
+    "kind": {
+      "company_ownership": {
+        "name": "Eine Firma",
+        "shortName": "Unternehmen"
+      },
+      "data_request": {
+        "name": "Ein Datensatz",
+        "shortName": "Daten"
+      },
+      "one": "Typ",
+      "other": {
+        "name": "Etwas anderes",
+        "shortName": "Anderes"
+      },
+      "person_ownership": {
+        "name": "Eine Person",
+        "shortName": "Person"
+      },
+      "vehicle_tracking": {
+        "name": "Ein Fahrzeug",
+        "shortName": "Fahrzeug"
+      }
+    },
+    "lastName": {
+      "label": "Nachname"
+    },
+    "memberCenter": "Mitgliederzentrum",
+    "one": "Anfrage",
+    "other": "{count} Anfragen",
+    "priority": {
+      "default": "Normal",
+      "high": "Hoch",
+      "label": "Priorität",
+      "low": "Niedrig"
+    },
+    "requester": {
+      "bio": "Bio",
+      "email": "Kontakt",
+      "one": "Antragsteller/in",
+      "other": "Antragsteller/innen",
+      "prefix": "Eingereicht von"
+    },
+    "sensitive": {
+      "label": "Ist es heikel?",
+      "trueLabel": "Heikle Anfrage"
+    },
+    "sources": {
+      "desc": "Welche Quellen haben Sie bisher?",
+      "formLabel": "Wo haben Sie nachgesehen?",
+      "label": "Quellen"
+    },
+    "sourcesData": {
+      "label": "Bitte teilen Sie Links zu Datenquellen mit, falls relevant"
+    },
+    "sourcesPerson": {
+      "desc": "Andere Schreibweisen oder Decknamen.",
+      "label": "Aliasnamen"
+    },
+    "status": {
+      "cancelled": {
+        "name": "Abgebrochen"
+      },
+      "closed": {
+        "name": "Geschlossen"
+      },
+      "label": "Aktueller Status",
+      "new": {
+        "name": "Neu"
+      },
+      "open": {
+        "name": "Öffnen"
+      },
+      "pending": {
+        "name": "Ausstehend"
+      }
+    },
+    "subscriber": {
+      "emailPlaceholder": "E-Mail des Benutzers",
+      "one": "Abonnent/in",
+      "other": "Abonnenten/innen"
+    },
+    "updatedAt": "Aktualisiert am",
+    "whysensitive": {
+      "label": "Warum ist es heikel?"
+    }
+  },
+  "validationErrors": {
+    "email": "Dieses Feld muss eine gültige E-Mail-Adresse sein"
+  }
+}
