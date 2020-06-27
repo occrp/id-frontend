@@ -7,7 +7,7 @@
     },
     "cancel": "Annuler",
     "choose": "Choisir",
-    "close": "Proche",
+    "close": "Fermer",
     "confirm": "Confirmer",
     "customOption": "Liste incomplète ? Ajouter manuellement…",
     "delete": "Supprimer",
@@ -26,11 +26,11 @@
       "action": "A été attribué à {user}"
     },
     "attachment": {
-      "action": "{user} fichiers joints",
+      "action": "fichiers joints",
       "removed": "{user} a supprimé le fichier"
     },
     "comment": {
-      "submitButton": "Publier des commentaires",
+      "submitButton": "Publier le commentaire",
       "title": "Laisser un commentaire"
     },
     "expense": {
@@ -40,7 +40,7 @@
     "loadOlder": "Charger plus ancien",
     "one": "Activité",
     "reopen": {
-      "action": "Réouvert"
+      "action": "rouvert"
     },
     "resume": {
       "action": "repris"
@@ -83,7 +83,7 @@
     "activities": "Une erreur s'est produite lors du chargement du flux d'activité.",
     "genericRequest": "Une erreur s'est produite lors du traitement de votre requête.",
     "routeError": {
-      "body": "Nous avons été informés automatiquement et nous avons besoin d'une meilleure copie pour cela.",
+      "body": "Nous avons été informés automatiquement et nous avons besoin d'une meilleure copie pour ceci.",
       "title": "Une erreur s'est produite lors du traitement de votre requête."
     }
   },
