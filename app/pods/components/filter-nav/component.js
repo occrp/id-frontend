@@ -1,3 +1,4 @@
+import jQuery from 'jquery'
 import { getOwner } from '@ember/application';
 import { computed } from '@ember/object';
 import { inject as service } from '@ember/service';
@@ -15,9 +16,7 @@ export default Component.extend({
 
   csvExportUrl: computed('csvExportParams', function() {
     const adapter = getOwner(this).lookup('adapter:application');
-    const qParams = new URLSearchParams(
-      Object.entries(this.get('csvExportParams'))
-    ).toString();
+    const qParams = jQuery.param(this.get('csvExportParams'));
 
     return adapter.urlForQuery({}, 'ticket-exports') + '?' + qParams;
   }),
