@@ -23,5 +23,11 @@ export default Route.extend({
       },
       include: 'user'
     });
+  },
+
+  actions: {
+    refreshModel() {
+      this.refresh();
+    }
   }
 });

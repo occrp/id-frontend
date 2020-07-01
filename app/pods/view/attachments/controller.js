@@ -73,6 +73,7 @@ export default Controller.extend(Pageable, {
       });
 
       RSVP.allSettled(childTasks).then(() => {
+        this.send('refreshModel');
         this.get('ticket.expenses').reload();
         this.get('activityBus').trigger('reload');
       });
