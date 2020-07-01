@@ -19,9 +19,7 @@ export default Controller.extend(Pageable, {
 
   batchUpload: taskGroup().maxConcurrency(3).enqueue(),
 
-  ticket: computed('model.@each', function() {
-    return this.get('model.firstObject.ticket');
-  }),
+  ticket: null,
 
   queue: computed('queueName', function() {
     let queues = this.get('fileQueue');

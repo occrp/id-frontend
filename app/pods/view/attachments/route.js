@@ -10,6 +10,11 @@ export default Route.extend({
     }
   },
 
+  setupController (controller, model) {
+    this._super(controller, model);
+    controller.set('ticket', this.modelFor('view'));
+  },
+
   model(params) {
     const ticket = this.modelFor('view');
 
