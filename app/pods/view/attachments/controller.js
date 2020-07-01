@@ -4,8 +4,9 @@ import { get, computed } from '@ember/object';
 import { task, taskGroup } from 'ember-concurrency';
 import RSVP from 'rsvp';
 import Controller from '@ember/controller';
+import Pageable from 'id-frontend/mixins/pageable';
 
-export default Controller.extend({
+export default Controller.extend(Pageable, {
   store: service(),
   session: service(),
   flashMessages: service(),
@@ -17,6 +18,10 @@ export default Controller.extend({
   queueName: 'documents',
 
   batchUpload: taskGroup().maxConcurrency(3).enqueue(),
+
+  ticket: computed('model.@each', function() {
+    return this.get('model.firstObject.ticket');
+  }),
 
   queue: computed('queueName', function() {
     let queues = this.get('fileQueue');
@@ -42,7 +47,7 @@ export default Controller.extend({
       ],
       data: {
         ticket: JSON.stringify(
-          {id: this.get('model.id'), type: 'tickets'}
+          {id: this.get('ticket.id'), type: 'tickets'}
         ),
       }
     });
@@ -68,7 +73,7 @@ export default Controller.extend({
       });
 
       RSVP.allSettled(childTasks).then(() => {
-        this.get('model.expenses').reload();
+        this.get('ticket.expenses').reload();
         this.get('activityBus').trigger('reload');
       });
     },

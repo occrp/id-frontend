@@ -270,7 +270,11 @@ export default function() {
     const qp = request.queryParams;
     const ticketId = qp['filter[ticket]'];
 
-    return schema.attachments.where({ ticketId });
+    return paginate(
+      schema.attachments.where({ ticketId }),
+      request,
+      this.namespace
+    );
   });
 
   this.post('/attachments', upload(function (schema, request) {

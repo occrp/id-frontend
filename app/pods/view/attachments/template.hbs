@@ -1,5 +1,5 @@
-{{#ticket-sections model=model}}
-  {{#if model.isOpen}}
+{{#ticket-sections model=ticket}}
+  {{#if ticket.isOpen}}
     {{#file-upload
       name=queueName
       multiple=true
@@ -53,7 +53,7 @@
         </tr>
       {{/each}}
 
-      {{#if model.attachments.length}}
+      {{#if model.length}}
 
         {{#ui-modal-container as |modDel|}}
           {{#if modDel.isShowing}}
@@ -81,7 +81,7 @@
             {{/ui-modal}}
           {{/if}}
 
-          {{#each model.attachments as |item|}}
+          {{#each model as |item|}}
             <tr class="striped--near-white">
               <td class="pa2 w-40 mw1 truncate">
                 {{~icon 'cloud-download'}}
@@ -99,7 +99,7 @@
                 {{item.user.displayName}}
               </td>
               <td class="pa2 w-10">
-                {{#if (or (can 'manage tickets') (eq model.requester.id item.user.id))}}
+                {{#if (or (can 'manage tickets') (eq ticket.requester.id item.user.id))}}
                   <a class="link occrp-red" {{action (queue (action 'addToRemovalBin' item) modDel.toggle)}} data-test-remove-attachment>
                     {{~t "actions.delete"~}}
                   </a>
@@ -111,4 +111,6 @@
       {{/if}}
     </tbody>
   </table>
+
+  {{ui-pagination class="mt-4" meta=model.meta current=page route='view.attachments' routeModel=ticket}}
 </div>

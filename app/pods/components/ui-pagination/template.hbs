@@ -1,6 +1,9 @@
 {{#if (gt total 1)}}
-
-  {{#if meta.pagination.prev.number}}
+  {{#if (and meta.pagination.prev.number routeModel)}}
+    {{#link-to route routeModel (query-params page=meta.pagination.prev.number) class="pg-prev" data-test-pagination="prev"}}
+      {{~t 'pagination.prev'~}}
+    {{/link-to}}
+  {{else if meta.pagination.prev.number}}
     {{#link-to route (query-params page=meta.pagination.prev.number) class="pg-prev" data-test-pagination="prev"}}
       {{~t 'pagination.prev'~}}
     {{/link-to}}
@@ -9,7 +12,11 @@
   {{/if}}
 
   {{#each items as |number|}}
-    {{#if number}}
+    {{#if (and number routeModel)}}
+      {{#link-to route routeModel (query-params page=number) class=(concat "pg-item " (if (eq number current) "is-active"))}}
+        {{~number~}}
+      {{/link-to}}
+    {{else if number}}
       {{#link-to route (query-params page=number) class=(concat "pg-item " (if (eq number current) "is-active"))}}
         {{~number~}}
       {{/link-to}}
@@ -18,7 +25,11 @@
     {{/if}}
   {{/each}}
 
-  {{#if meta.pagination.next.number}}
+  {{#if (and meta.pagination.next.number routeModel)}}
+    {{#link-to route routeModel (query-params page=meta.pagination.next.number) class="pg-next" data-test-pagination="next"}}
+      {{~t 'pagination.next'~}}
+    {{/link-to}}
+  {{else if meta.pagination.next.number}}
     {{#link-to route (query-params page=meta.pagination.next.number) class="pg-next" data-test-pagination="next"}}
       {{~t 'pagination.next'~}}
     {{/link-to}}
