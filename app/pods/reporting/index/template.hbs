@@ -1,51 +1,4 @@
-<div class="reportCard-header">
-  <div class="reportCard-title">
-    {{~icon "issue-opened" class="icon--lg"~}}
-    <div>
-      <h2 class="t4 t-light">{{t 'pods.reporting.openTickets' count=total.open}}</h2>
-      <p class="t5 t-danger mt-2">{{t 'pods.reporting.pastDeadline' count=total.pastDeadline}}</p>
-
-      <table class="labelTable mt-3">
-        <tbody>
-          <tr>
-            <td>{{total.new}}</td>
-            <td>{{status-label 'new'}}</td>
-          </tr>
-          <tr>
-            <td>{{total.inProgress}}</td>
-            <td>{{status-label 'in-progress'}}</td>
-          </tr>
-          <tr>
-            <td>{{total.pending}}</td>
-            <td>{{status-label 'pending'}}</td>
-          </tr>
-        </tbody>
-      </table>
-    </div>
-  </div>
-
-  <div class="reportCard-title">
-    {{~icon "check" class="icon--lg"~}}
-    <div>
-      <h2 class="t4 t-light">{{t 'pods.reporting.closedTickets' count=total.resolved}}</h2>
-
-      <table class="labelTable mt-3">
-        <tbody>
-          <tr>
-            <td>{{total.closed}}</td>
-            <td>{{status-label 'closed'}}</td>
-          </tr>
-          <tr>
-            <td>{{total.cancelled}}</td>
-            <td>{{status-label 'cancelled'}}</td>
-          </tr>
-        </tbody>
-      </table>
-    </div>
-  </div>
-</div>
-
-<table class="statsTable mt-5">
+<table class="statsTable">
   <thead>
     <tr>
       <th class="statsTable-main">{{t 'pods.reporting.columns.month'}}</th>
@@ -59,50 +12,36 @@
     </tr>
   </thead>
   <tbody>
-    {{#each processedStats as |month index|}}
+    {{#each-in (group-by 'date' model) as |date items|}}
       <tr>
         <td>
-          {{moment-format month.date 'MMMM Y'}}
-          {{#if (eq index 0)}}<p class="t-sm t-muted">{{t 'pods.reporting.columns.avgTime'}}</p>{{/if}}
+          {{moment-format date 'MMMM Y'}}
+          <p class="t-sm t-muted">{{t 'pods.reporting.columns.avgTime'}}</p>
         </td>
-        {{#with month.new as |item|}}
+        {{#each (array 'new' 'in-progress' 'pending' 'closed' 'cancelled') as |status|}}
           <td class="t-right">
-            {{item.count}}
-          </td>
-        {{/with}}
-        {{#with month.in-progress as |item|}}
-          <td class="t-right">
-            {{item.count}}
-            {{#if item.avgTime}}<p class="t-sm t-muted">{{moment-duration-format item.avgTime 'hours'}}</p>{{/if}}
-          </td>
-        {{/with}}
-        {{#with month.pending as |item|}}
-          <td class="t-right">
-            {{item.count}}
-            {{#if item.avgTime}}<p class="t-sm t-muted">{{moment-duration-format item.avgTime 'hours'}}</p>{{/if}}
-          </td>
-        {{/with}}
-        {{#with month.closed as |item|}}
-          <td class="t-right">
-            {{item.count}}
-            {{#if item.avgTime}}<p class="t-sm t-muted">{{moment-duration-format item.avgTime 'hours'}}</p>{{/if}}
-          </td>
-        {{/with}}
-        {{#with month.cancelled as |item|}}
-          <td class="t-right">
-            {{item.count}}
-            {{#if item.avgTime}}<p class="t-sm t-muted">{{moment-duration-format item.avgTime 'hours'}}</p>{{/if}}
-          </td>
-        {{/with}}
-        <td class="t-right"><strong>{{month.totalCount}}</strong></td>
+            {{#with (filter-by 'status' status items) as |byStatus|}}
+              {{sum (map-by "count" byStatus)}}
+
+              {{#with (sum (map-by "avgTime" byStatus)) as |avgTimeSum|}}
+                <p class="t-sm t-muted">{{moment-duration-format avgTimeSum 'hours'}}</p>
+              {{/with}}
+            {{/with}}
+
+            {{unless (filter-by 'status' status items) 0}}
+            </td>
+        {{/each}}
         <td class="t-right">
-          {{#if month.totalPastDeadline}}
-            <span class="t-danger">{{month.totalPastDeadline}}</span>
-          {{else}}
-            0
-          {{/if}}
+          <strong>
+            {{sum (map-by "count" items)}}
+          </strong>
+        </td>
+        <td class="t-right">
+          <span class="t-danger">
+            {{sum (map-by "pastDeadline" items)}}
+          </span>
         </td>
       </tr>
-    {{/each}}
+    {{/each-in}}
   </tbody>
 </table>

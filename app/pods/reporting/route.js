@@ -6,7 +6,10 @@ export default Route.extend({
   can: service(),
 
   queryParams: {
-    monthsAgo: {
+    startAt: {
+      refreshModel: true
+    },
+    by: {
       refreshModel: true
     }
   },
@@ -22,16 +25,18 @@ export default Route.extend({
   },
 
   model(params) {
-    let startAt = moment.utc()
-      .startOf('month')
-      .subtract(params.monthsAgo, 'months')
-      .toISOString()
-      .slice(0, -5);
+    let includes = null;
+
+    if (params.by === 'responder') {
+      includes = 'responder';
+    }
 
     return this.get('store').query('ticket-stats', {
       filter: {
-        startAt: startAt
+        startAt: params.startAt,
+        by: params.by
       },
+      include: includes
     });
   }
 });

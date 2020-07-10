@@ -1,14 +1,24 @@
 <div class="wrapper">
-  <div class="flex align-center justify-between bb b--gray mb-5">
+  <div class="flex justify-between bb b--gray">
     <div class="flex">
-      {{#link-to "reporting.index" class="link p4 dim occrp-gray" activeClass="bb bw2 b--occrp-gray"}}Overview{{/link-to}}
-      {{#link-to "reporting.staff" class="link p4 mh4 dim occrp-gray" activeClass="bb bw2 b--occrp-gray"}}Staff{{/link-to}}
-      {{#link-to "reporting.countries" class="link p4 dim occrp-gray" activeClass="bb bw2 b--occrp-gray"}}Countries{{/link-to}}
+      {{#link-to "reporting.index" (query-params by=null) class="link pv2 dim occrp-gray" activeClass="bb bw2 b--occrp-gray"}}
+        Overview
+      {{/link-to}}
+      {{#link-to "reporting.staff" (query-params by="responder") class="link pv2 mh4 dim occrp-gray" activeClass="bb bw2 b--occrp-gray"}}
+        Staff
+      {{/link-to}}
+      {{#link-to "reporting.countries" (query-params by="country") class="link pv2 dim occrp-gray" activeClass="bb bw2 b--occrp-gray"}}
+        Countries
+      {{/link-to}}
     </div>
-    <div>
+    <div class="tr">
         Show stats from
-        {{input class='dib bg-washed-yellow w2 bn pa2' value=monthsAgo}}
-        months ago
+        {{input-date
+          value=(moment selectedStartAt)
+          onSelect=(action (mut selectedStartAt) value="date")
+          id="stats-date"
+          class="dib bt-0 bl-0 br-0 bb b--dotted b--moon-gray w-30"
+        }}
     </div>
   </div>
 

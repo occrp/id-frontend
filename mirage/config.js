@@ -411,31 +411,13 @@ export default function() {
 
 
   this.get('/ticket-stats', (schema, request) => {
-    let profileId = request.queryParams['filter[responders__user]'];
+    let responderId = request.queryParams['filter[responders__user]'];
 
     let filters = {};
 
-    if (profileId) {
-      filters.profileId = profileId
+    if (responderId) {
+      filters.responderId = responderId;
     }
-
-    request.mirageMeta = {
-      'staff-profile-ids': [51, 52, 53],
-      countries: ['AU', 'AT', 'BM', 'BA', 'RU'],
-      total: {
-        'all': schema.tickets.all().length,
-        'new': 12,
-        'in-progress': 143,
-        'pending': 3,
-        'closed': 20,
-        'cancelled':42,
-        'past-deadline': 80,
-        'open': 42,
-        'resolved': 66
-      },
-      startDate: '2017-09-01T00:00:00.000Z',
-      endDate: '2017-12-01T00:00:00.000Z'
-    };
 
     return schema.ticketStats.where(filters);
   });

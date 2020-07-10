@@ -1,46 +1,6 @@
-.reportCard {
-
-}
-
-.reportCard-header {
-  display: flex;
-
-  & > div {
-    flex: 0 0 auto;
-    width: 50%;
-    padding: 0 $spacer-3;
-
-    &:nth-child(2n) {
-      border-left: 1px solid $gray-300;
-
-      @include rtl {
-        border-right: 1px solid $gray-300;
-        border-left: 0;
-      }
-    }
-  }
-}
-
-.reportCard-title {
-  display: flex;
-  align-items: flex-start;
-
-  .icon {
-    flex: 0 1 auto;
-    vertical-align: middle;
-    margin-right: $spacer-2;
-
-    @include rtl {
-      margin-left: $spacer-2;
-      margin-right: 0;
-    }
-  }
-}
-
 .statsTable {
   width: 100%;
   background: white;
-  border-top: 2px solid $gray-700;
   border-bottom: 1px solid $gray-300;
   table-layout: fixed;
   line-height: $line-height-sm;

@@ -66,28 +66,28 @@ export default function(server) {
     date(i) {
       return moment.utc().startOf('month').subtract(i % 4, 'months').toISOString();
     },
-    profileId: 52
+    responder: server.schema.profiles.where({id: 52}).models[0],
   });
   server.createList('ticket-stats', 4, {
     status: 'in-progress',
     date(i) {
       return moment.utc().startOf('month').subtract(i % 4, 'months').toISOString();
     },
-    profileId: 52
+    responder: server.schema.profiles.where({id: 52}).models[0],
   });
   server.createList('ticket-stats', 4, {
     status: 'closed',
     date(i) {
       return moment.utc().startOf('month').subtract(i % 4, 'months').toISOString();
     },
-    profileId: 53
+    responder: server.schema.profiles.where({id: 53}).models[0],
   });
   server.createList('ticket-stats', 4, {
     status: 'cancelled',
     date(i) {
       return moment.utc().startOf('month').subtract(i % 4, 'months').toISOString();
     },
-    profileId: 51
+    responder: server.schema.profiles.where({id: 51}).models[0],
   });
 
 }

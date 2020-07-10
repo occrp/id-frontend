@@ -1,9 +1,11 @@
 import { Factory } from 'ember-cli-mirage';
-
-const randomInt = (min, max) => Math.floor(Math.random() * (max - min + 1)) + min;
+import { statusList } from 'id-frontend/models/ticket';
+import faker from 'faker';
 
 export default Factory.extend({
-  count()             { return randomInt(0, 42); },
-  avgTime()           { return randomInt(16, 360); },
-  pastDeadline()      { return 10; }
+  count()        { return faker.random.number(10); },
+  status()       { return faker.random.arrayElement(statusList); },
+  avgTime()      { return faker.random.number(100); },
+  pastDeadline() { return faker.random.number(10); },
+  country()      { return faker.address.countryCode(); }
 });
