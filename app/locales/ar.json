@@ -1,5 +1,6 @@
 {
   "actions": {
+    "add": "إضافة",
     "assign": {
       "longForm": "تعيين لموظف",
       "shortForm": "تعيين"
@@ -8,7 +9,11 @@
     "choose": "اختر",
     "close": "إغلاق",
     "confirm": "تأكيد",
+    "customOption": "ليست في هذه القائمة؟ إضافتها يدوياً…",
     "delete": "حذف",
+    "markdownEdit": "العودة للتحرير.",
+    "markdownHelp": "مساعدة؟!",
+    "markdownPreview": "عرض.",
     "or": "أو",
     "remove": "حذف",
     "reopen": "اعادة فتح",
@@ -46,7 +51,13 @@
     }
   },
   "attachment": {
+    "attachments": "المرفقات",
+    "cancelAll": "إلغاء الكل",
+    "fileDate": "التاريخ",
+    "filename": "الاسم",
+    "filesize": "الحجم",
     "removalPrompt": "هل أنت متأكد من حذف الملف ؟",
+    "startUploads": "رفع",
     "state": {
       "aborted": "تم الإلغاء",
       "failed": "فشل",
@@ -54,8 +65,10 @@
       "timed_out": "نفذ الوقت",
       "uploaded": "تمّ رفعه",
       "uploading": "جار الرفع"
-    }
+    },
+    "userName": "رفعت من خلال"
   },
+  "dropdownBlank": "- اختر -",
   "empty": {
     "noResults": {
       "body": "استخدم القائمة التي بالأعلى لتصنيف الطلبات بسهولة.",
@@ -237,9 +250,14 @@
     "countryPerson": {
       "label": "الجنسية"
     },
+    "countryVehicle": {
+      "label": "التشريعات"
+    },
     "createdAt": "تم إضافته",
     "dataCategory": {
       "analysis": "تحليل البيانات",
+      "dunno": "لا أعلم",
+      "label": "الصنف",
       "manipulation": "تنظيف البيانات",
       "scrape": "جلب البيانات"
     },
@@ -249,11 +267,21 @@
       "label": "الموعد النهائي",
       "prefix": "الاستحقاق ((في تاريخ))"
     },
+    "details": "وصف الطلب",
     "firstName": {
       "label": "الاسم الأول"
     },
+    "identifierCompany": {
+      "label": "التسجيل/ المعرف الضريبي"
+    },
+    "identifierPerson": {
+      "label": "الرقم الوطني/ رقم جواز السفر"
+    },
+    "identifierVehicle": {
+      "label": "الرقم التعريفي"
+    },
     "initialInformation": {
-      "desc": "اي معلومة بحوزتك.",
+      "desc": "اية معلومات بحوزتك.",
       "formLabel": "اين بحثت من قبل؟",
       "label": "المعلومات الأولية"
     },
@@ -263,7 +291,8 @@
         "shortName": "الشركة"
       },
       "data_request": {
-        "name": "مجموعة بيانات"
+        "name": "مجموعة بيانات",
+        "shortName": "البيانات"
       },
       "one": "نوع",
       "other": {
@@ -302,7 +331,7 @@
       "label": "الموظفون المستجيبون",
       "one": "المستجيب",
       "other": "المستجيبين",
-      "selfRemove": "لم يتم التعيين؟"
+      "selfRemove": "إلغاء تعيينك"
     },
     "search": {
       "clear": "مسح البحث",
@@ -316,6 +345,9 @@
       "desc": "ما هي مصادرك؟",
       "formLabel": "اين بحثت؟",
       "label": "مصادر"
+    },
+    "sourcesData": {
+      "label": "الرجاء مشاركة مصادر روابط البيانات ذات الصلة"
     },
     "sourcesPerson": {
       "desc": "تهجئات أو أسماء وهمية أخرى.",
@@ -334,6 +366,9 @@
       "label": "الوضع الحالي",
       "new": {
         "name": "جديد"
+      },
+      "open": {
+        "name": "فتح"
       },
       "pending": {
         "name": "مُعلَّقة"
@@ -361,6 +396,7 @@
     "viewRequests": "عرض الطلبات"
   },
   "validationErrors": {
-    "email": "يجب أن يكون هذا الحقل عنوان بريد إلكتروني صحيح"
+    "email": "يجب أن يكون هذا الحقل عنوان بريد إلكتروني صحيح",
+    "present": "لا يمكن أن يكون هذا الحقل فارغاً"
   }
 }
