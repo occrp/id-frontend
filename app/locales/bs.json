@@ -1,5 +1,6 @@
 {
   "actions": {
+    "add": "Dodaj",
     "assign": {
       "longForm": "Dodijelite istraživaču",
       "shortForm": "Dodijeliti"
@@ -8,15 +9,17 @@
     "choose": "Odaberite",
     "close": "Zatvori",
     "confirm": "Potvrdi",
-    "delete": "Delete",
+    "customOption": "Nije na listi? Dodaj ručno…",
+    "delete": "Izbriši",
     "markdownEdit": "Povratak na uređivanje.",
+    "markdownHelp": "Pomoć?!",
     "markdownPreview": "Pregled.",
     "or": "ili",
     "remove": "Ukloniti",
     "reopen": "Ponovo otvoriti",
     "save": "Sačuvati",
-    "unmark": "Ukloni oznaku",
-    "upload": "Upload"
+    "unmark": "ukloni oznaku",
+    "upload": "Učitaj"
   },
   "activity": {
     "assign": {
@@ -31,8 +34,8 @@
       "title": "Ostavi komentar"
     },
     "expense": {
-      "action": "spremljen resurs",
-      "removed": "uklonjen resurs"
+      "action": "spremljen izvor",
+      "removed": "uklonjen izvor"
     },
     "loadOlder": "Prikaži starije",
     "one": "Aktivnost",
@@ -40,7 +43,7 @@
       "action": "ponovo otvoren"
     },
     "resume": {
-      "action": "ponovo otvoren"
+      "action": "nastavljen"
     },
     "showOnlyComments": "Prikaži samo komentare",
     "unassign": {
@@ -48,19 +51,27 @@
     }
   },
   "attachment": {
+    "attachments": "Prilog",
+    "cancelAll": "otkaži sve",
+    "fileDate": "Datum",
+    "filename": "Ime",
+    "filesize": "Veličina",
     "removalPrompt": "Jeste li sigurni da želite obrisati ovaj dokument?",
+    "startUploads": "Učitaj",
     "state": {
       "aborted": "Prekinuto",
       "failed": "Neuspješno",
       "queued": "Na čekanju",
       "timed_out": "Isteklo vrijeme",
-      "uploaded": "Dodan",
+      "uploaded": "Dodano",
       "uploading": "Učitava se"
-    }
+    },
+    "userName": "Učitao korisnik"
   },
+  "dropdownBlank": "- Odaberi -",
   "empty": {
     "noResults": {
-      "body": "Koristite menu iznad da odaberete željene zahtjeve.",
+      "body": "Koristite izbornik iznad da odaberete željene zahtjeve.",
       "title": "Nema rezultata pretrage."
     },
     "noTickets": {
@@ -70,14 +81,27 @@
   },
   "errors": {
     "activities": "Došlo je do greške prilikom učitavanja liste aktivnosti.",
-    "genericRequest": "Došlo je do greške u obradi Vašeg zahtjeva.",
+    "genericRequest": "Došlo je do greške u obradi vašeg zahtjeva.",
     "routeError": {
       "body": "Dobili smo automatsku obavijest da je neophodan bolji primjerak.",
-      "title": "Došlo je do greške u obradi Vašeg zahtjeva."
+      "title": "Došlo je do greške u obradi vašeg zahtjeva."
     }
   },
   "expenses": {
-    "paymentExtras": "Dodajte detalje o plaćanju..."
+    "amount": "Cijena",
+    "currency": "Valuta",
+    "date": "Datum",
+    "notes": "Bilješke",
+    "paymentExtras": "Dodajte detalje o plaćanju…",
+    "paymentMethod": "Način plaćanja",
+    "rating": "Procjena",
+    "rating_0": "Nisam koristio",
+    "rating_1": "Konsultovao",
+    "rating_2": "Korisno",
+    "rating_3": "Ekskluzivno",
+    "scope": "Ime",
+    "title": "Izvori",
+    "userName": "Dodano od strane"
   },
   "filters": {
     "country": {
@@ -89,13 +113,13 @@
     },
     "export": {
       "action": "Kao CSV",
-      "title": "Export"
+      "title": "Eksportirati"
     },
     "kind": {
       "title": "Filtriraj po tipu"
     },
     "options": {
-      "all": "Prikaži sve"
+      "all": "Sve"
     },
     "requester": {
       "title": "Filtriraj po podnosiocu zahtjeva"
@@ -106,7 +130,7 @@
     },
     "sort": {
       "createdAt": {
-        "asc": "Nastariji",
+        "asc": "Najstariji",
         "desc": "Najskoriji"
       },
       "deadlineAt": {
@@ -120,6 +144,7 @@
   "locales": {
     "ar": "Arapski",
     "bs": "Bos/Hrv/Srp",
+    "en-us": "Engleski",
     "es": "Španski",
     "fr": "Francuski",
     "ru": "Ruski"
@@ -127,7 +152,8 @@
   "nav": {
     "account": {
       "logout": "Odjava",
-      "profile": "Profil"
+      "profile": "Profil",
+      "ssoProfile": "SSO Profil"
     },
     "reports": "Izvještaji",
     "requests": "Zahtjevi"
@@ -146,38 +172,48 @@
     "new": {
       "form": {
         "invalidMessage": "Molimo da popunite naznačena polja.",
+        "memberCenter": "Članovi mreže",
+        "memberCenterDetails": "S kojim članom mreže ili OCCRP partnerom radite?",
         "otherDetails": "Drugi detalji",
         "requestDetails": "Detalji zahtjeva",
         "submitButton": "Pošaljite svoj zahtjev",
         "uploadInfo": "Dokumente ćete moći dodati nakon što predate zahtjev."
       },
-      "headline": "",
+      "headline": "Odaberite vrstu zahtjeva koju želite podnijeti i obavezno uključite što više informacija. Što više informacija podijelite s nama, možemo vam bolje pomoći.",
       "subheadline": "Trudimo se da ispunimo rokove koje ste postavili i bićemo u kontaktu ako ne budemo mogli. Ako postoji problem ili ne možemo ispuniti vaš zahtjev, nastojaćemo da vam se obratimo u roku od 3 radna dana.",
       "title": "Dobrodošli!"
     },
     "reporting": {
+      "closedTickets": "{count} Pronađeni su zatvoreni zahtjevi",
       "columns": {
         "avgTime": "Prosječno vrijeme potrebno za odgovor",
         "month": "Mjesec",
-        "name": "Name",
+        "name": "Ime",
         "pastDeadline": "Istekao rok",
-        "total": "Total"
+        "total": "Ukupno"
       },
-      "pastDeadline": "{count} sa isteklim rokom"
+      "countriesTitle": "{count} Pronađene države",
+      "openTickets": "{count} Pronađeni otvoreni zahtjevi",
+      "pastDeadline": "{count} sa isteklim rokom",
+      "staffTitle": "{count} Pronađen član osoblja"
+    },
+    "user": {
+      "subtitle": "Prije nego što ispunite zahtjev, napišite nešto o sebi.",
+      "title": "Ko je {displayName}?"
     },
     "view": {
       "close": {
         "button": "{verb} zahtjev",
-        "cancel": "Ne",
-        "confirm": "Da",
+        "cancel": "Ne, ostaviti otvoreno",
+        "confirm": "Da, {verb} zahtjev",
         "title": "Da li ste sigurni da želite {verb} ovaj zahtjev?"
       },
       "pending": {
-        "button": "Stavite na čekanje",
+        "button": "staviti na čekanje",
         "title": "Zašto označiti \"na čekanju\"?"
       },
       "reopen": {
-        "button": "Ponovo otvoriti zahtjev",
+        "button": "Ponovo otvori zahtjev",
         "title": "Razlog za ponovno otvaranje"
       }
     }
@@ -189,23 +225,31 @@
     }
   },
   "ticket": {
-    "addAttachments": "Pregledajte ili prenesite tražene datoteke",
+    "addAttachments": "Pregledajte ili učitajte tražene datoteke",
     "addExpense": "Dodajte trošak",
-    "addSubscriber": "Dodajte pretplatnika/cu",
+    "addSubscriber": "Dodajte pretplatnika",
     "background": {
       "desc": "Koje informacije već znate?",
-      "formLabel": "Šta je vaša priča?",
+      "formLabel": "Vaša priča",
       "label": "Kontekst"
     },
     "backgroundCompany": {
       "desc": "Koje informacije već znate?",
-      "formLabel": "Šta je vaša priča?",
+      "formLabel": "Vaša priča",
       "label": "Pozadina firme"
+    },
+    "backgroundData": {
+      "desc": "Molim vas da nam napišete ako vam treba drop box?",
+      "label": "Što želite znati od podataka?"
     },
     "backgroundOther": {
       "desc": "Bilo koje informacije koje već imate.",
       "formLabel": "Šta želite da saznate?",
       "label": "Pitanje"
+    },
+    "backgroundVehicle": {
+      "desc": "Šta znate do sada?",
+      "label": "Naziv ili sadržaj"
     },
     "bornAt": {
       "label": "Datum rođenja"
@@ -225,10 +269,10 @@
       "label": "Porodica i saradnici"
     },
     "countries": {
-      "label": "Srodne zemlje"
+      "label": "Srodne države"
     },
     "country": {
-      "label": "Zemlja u kojoj je firma registrovana",
+      "label": "Država u kojoj je firma registrovana",
       "one": "Država",
       "other": "Države",
       "search": {
@@ -239,20 +283,35 @@
     "countryPerson": {
       "label": "Državljanstvo"
     },
+    "countryVehicle": {
+      "label": "Nadležnost"
+    },
     "createdAt": "Dodano na",
     "dataCategory": {
       "analysis": "Analizirajte podatke",
+      "dunno": "Ne znam",
+      "label": "Kategorija",
       "manipulation": "Očisti podatke",
       "scrape": "Preuzmi podatke"
     },
     "deadline": {
-      "desc": "Potrudit ćemo se da završimo u roku, ali naši istraživači često su jako zauzeti. <br />Molimo Vas da im ostavite što više vremena možete.",
+      "desc": "Pokušat ćemo ispuniti vaš rok, ali imajte na umu da su naši istraživači prilično zaposleni. Trebat će nam najmanje tri radna dana da odgovorimo na vaš zahtjev.",
       "empty": "Nema krajnjeg roka",
       "label": "Krajnji rok",
       "prefix": "rok {relativeTime}"
     },
+    "details": "Opis zahtjeva",
     "firstName": {
       "label": "Ime"
+    },
+    "identifierCompany": {
+      "label": "Registracijski / Porezni identifikator"
+    },
+    "identifierPerson": {
+      "label": "ID/Broj pasoša"
+    },
+    "identifierVehicle": {
+      "label": "Identifikacijski broj"
     },
     "initialInformation": {
       "desc": "Bilo koje informacije koje već imate.",
@@ -265,7 +324,8 @@
         "shortName": "Firma"
       },
       "data_request": {
-        "name": "Baza podataka"
+        "name": "Baza podataka",
+        "shortName": "Podaci"
       },
       "one": "Tip",
       "other": {
@@ -273,11 +333,12 @@
         "shortName": "Drugo"
       },
       "person_ownership": {
-        "name": "Utvrditi šta osoba ima u vlasništvu",
+        "name": "Osoba",
         "shortName": "Osoba"
       },
       "vehicle_tracking": {
-        "name": "Vozilo"
+        "name": "Vozilo",
+        "shortName": "Vozilo"
       }
     },
     "lastName": {
@@ -285,7 +346,7 @@
     },
     "memberCenter": "Naši članovi",
     "one": "Zahtjev",
-    "other": "{count} Zahtjev(a)",
+    "other": "{count} Zahtjeva",
     "priority": {
       "default": "Normalno",
       "high": "Visoko",
@@ -297,7 +358,7 @@
       "email": "Kontakt",
       "one": "Podnosilac zahtjeva",
       "other": "Podnosioci zahtjeva",
-      "prefix": "Podnosilac zahtjeva {requester}"
+      "prefix": "Zahtjev podnio"
     },
     "responder": {
       "empty": "Istraživač nije dodijeljen",
@@ -305,6 +366,10 @@
       "one": "Istraživač",
       "other": "Istraživači",
       "selfRemove": "Odjavite se"
+    },
+    "search": {
+      "clear": "Očisti pretragu",
+      "placeholder": "Pretraži zahtjeve"
     },
     "sensitive": {
       "label": "Da li je informacija povjerljiva?",
