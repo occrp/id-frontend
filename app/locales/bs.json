@@ -380,6 +380,9 @@
       "formLabel": "Gdje ste već provjerili?",
       "label": "Izvori"
     },
+    "sourcesData": {
+      "label": "Molim podijelite veze sa izvorima podataka ako je relevantno"
+    },
     "sourcesPerson": {
       "desc": "Drugi načini pisanja imena ili nadimci.",
       "label": "Pseudonimi"
@@ -398,6 +401,9 @@
       "new": {
         "name": "Novi"
       },
+      "open": {
+        "name": "Otvoren"
+      },
       "pending": {
         "name": "Na čekanju"
       }
@@ -406,7 +412,7 @@
       "emailPlaceholder": "E-mail adresa korisnika",
       "one": "Dodatni korisnik na zahtjevu",
       "other": "Dodatni korisnici na zahtjevu",
-      "selfRemove": "Odustani od zahtjeva?"
+      "selfRemove": "Odustani od zahtjeva"
     },
     "updatedAt": "Ažurirano u",
     "whysensitive": {
@@ -424,6 +430,7 @@
     "viewRequests": "Pogledaj zahtjeve"
   },
   "validationErrors": {
-    "email": "U ovom polju mora biti validna e-mail adresa"
+    "email": "U ovom polju mora biti validna e-mail adresa",
+    "present": "Ovo polje ne može biti prazno"
   }
 }
