@@ -358,7 +358,7 @@
       "email": "Contacto",
       "one": "Solicitante",
       "other": "Solicitantes",
-      "prefix": "Enviado por {solicitante}"
+      "prefix": "Enviado por"
     },
     "responder": {
       "empty": "Nadie asignado",
