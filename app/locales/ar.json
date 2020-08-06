@@ -88,7 +88,20 @@
     }
   },
   "expenses": {
-    "paymentExtras": "إضافة تفاصيل الدفع…"
+    "amount": "تكلفه",
+    "currency": "العمله",
+    "date": "التاريخ",
+    "notes": "مذكرات",
+    "paymentExtras": "إضافة تفاصيل الدفع…",
+    "paymentMethod": "طريقة الدفع",
+    "rating": "التقييم",
+    "rating_0": "لم يستخدم",
+    "rating_1": "استشاره",
+    "rating_2": "مفيده",
+    "rating_3": "الحصري",
+    "scope": "الاسم",
+    "title": "الموراد",
+    "userName": "أضيفت بواسطة"
   },
   "filters": {
     "country": {
@@ -131,6 +144,7 @@
   "locales": {
     "ar": "العربية",
     "bs": "Bos/Hrv/Srp",
+    "en-us": "English",
     "es": "‍ Español",
     "fr": "Français",
     "ru": "Русский"
@@ -138,7 +152,8 @@
   "nav": {
     "account": {
       "logout": "تسجيل خروج",
-      "profile": "الملف الشخصي"
+      "profile": "الملف الشخصي",
+      "ssoProfile": "ملف تعريف SSO"
     },
     "reports": "التقارير",
     "requests": "الطلبات"
@@ -157,6 +172,8 @@
     "new": {
       "form": {
         "invalidMessage": "الرجاء مراجعة الحقول أعلاه قبل المتابعة.",
+        "memberCenter": "مركز الأعضاء",
+        "memberCenterDetails": "أي مركز عضو أو شريك OCCRP الذي تعمل معه؟",
         "otherDetails": "تفاصيل أخرى",
         "requestDetails": "تفاصيل الطلب",
         "submitButton": "أرسل طلبك",
@@ -167,6 +184,7 @@
       "title": "أهلا!"
     },
     "reporting": {
+      "closedTickets": "{count} تم العثور على الطلبات المغلقة",
       "columns": {
         "avgTime": "متوسط وقت القرار",
         "month": "شهر",
@@ -174,7 +192,14 @@
         "pastDeadline": "تعدى المهلة",
         "total": "إجمالي"
       },
-      "pastDeadline": "{count} الموعد النهائي السابق"
+      "countriesTitle": "{count} البلدان التي تم العثور عليها",
+      "openTickets": "{count} تم العثور على الطلبات المغلقة",
+      "pastDeadline": "{count} الموعد النهائي السابق",
+      "staffTitle": "{count} العثور على موظف"
+    },
+    "user": {
+      "subtitle": "يرجى إخبار فريقنا عن نفسك قبل ملء الطلب.",
+      "title": "من هو {displayName}؟"
     },
     "view": {
       "close": {
@@ -213,10 +238,18 @@
       "formLabel": "قصتك",
       "label": "خلفبة الشركة"
     },
+    "backgroundData": {
+      "desc": "يرجى ذكر إذا كنت بحاجة إلى مربع قطرة؟",
+      "label": "ماذا تريد أن تعرف من البيانات؟"
+    },
     "backgroundOther": {
       "desc": "أي معلومة بحوزتك.",
       "formLabel": "ماذا تريد ان تعرف؟",
       "label": "سؤال"
+    },
+    "backgroundVehicle": {
+      "desc": "ما الذي تعرفه حتى الان؟",
+      "label": "الاسم أو خط سير الرحلة"
     },
     "bornAt": {
       "label": "تاريخ الميلاد"
@@ -304,7 +337,8 @@
         "shortName": "شخص"
       },
       "vehicle_tracking": {
-        "name": "مركبة"
+        "name": "مركبة",
+        "shortName": "السياره"
       }
     },
     "lastName": {
