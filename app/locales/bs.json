@@ -3,10 +3,10 @@
     "add": "Dodaj",
     "assign": {
       "longForm": "Dodijelite istraživaču",
-      "shortForm": "Dodijeliti"
+      "shortForm": "Dodijeli"
     },
-    "cancel": "Otkazati",
-    "choose": "Odaberite",
+    "cancel": "Otkaži",
+    "choose": "Odaberi",
     "close": "Zatvori",
     "confirm": "Potvrdi",
     "customOption": "Nije na listi? Dodaj ručno…",
@@ -16,8 +16,8 @@
     "markdownPreview": "Pregled.",
     "or": "ili",
     "remove": "Ukloniti",
-    "reopen": "Ponovo otvoriti",
-    "save": "Sačuvati",
+    "reopen": "Ponovo otvori",
+    "save": "Sačuvaj",
     "unmark": "ukloni oznaku",
     "upload": "Učitaj"
   },
@@ -88,15 +88,15 @@
     }
   },
   "expenses": {
-    "amount": "Cijena",
+    "amount": "Trošak",
     "currency": "Valuta",
     "date": "Datum",
     "notes": "Bilješke",
     "paymentExtras": "Dodajte detalje o plaćanju…",
     "paymentMethod": "Način plaćanja",
     "rating": "Procjena",
-    "rating_0": "Nisam koristio",
-    "rating_1": "Konsultovao",
+    "rating_0": "Nije korišteno",
+    "rating_1": "Konsultovano",
     "rating_2": "Korisno",
     "rating_3": "Ekskluzivno",
     "scope": "Ime",
@@ -179,7 +179,7 @@
         "submitButton": "Pošaljite svoj zahtjev",
         "uploadInfo": "Dokumente ćete moći dodati nakon što predate zahtjev."
       },
-      "headline": "Odaberite vrstu zahtjeva koju želite podnijeti i obavezno uključite što više informacija. Što više informacija podijelite s nama, možemo vam bolje pomoći.",
+      "headline": "Odaberite vrstu zahtjeva kojeg želite podnijeti i obavezno uključite što više informacija. Što više informacija podijelite s nama, možemo vam bolje pomoći.",
       "subheadline": "Trudimo se da ispunimo rokove koje ste postavili i bićemo u kontaktu ako ne budemo mogli. Ako postoji problem ili ne možemo ispuniti vaš zahtjev, nastojaćemo da vam se obratimo u roku od 3 radna dana.",
       "title": "Dobrodošli!"
     },
@@ -229,7 +229,7 @@
     "addExpense": "Dodajte trošak",
     "addSubscriber": "Dodajte pretplatnika",
     "background": {
-      "desc": "Koje informacije već znate?",
+      "desc": "Koje informacije već poznajete?",
       "formLabel": "Vaša priča",
       "label": "Kontekst"
     },
@@ -239,8 +239,8 @@
       "label": "Pozadina firme"
     },
     "backgroundData": {
-      "desc": "Molim vas da nam napišete ako vam treba drop box?",
-      "label": "Što želite znati od podataka?"
+      "desc": "Molimo vas da nam napišete ako vam je potreban drop box?",
+      "label": "Šta želite znati od podataka?"
     },
     "backgroundOther": {
       "desc": "Bilo koje informacije koje već imate.",
@@ -295,7 +295,7 @@
       "scrape": "Preuzmi podatke"
     },
     "deadline": {
-      "desc": "Pokušat ćemo ispuniti vaš rok, ali imajte na umu da su naši istraživači prilično zaposleni. Trebat će nam najmanje tri radna dana da odgovorimo na vaš zahtjev.",
+      "desc": "Pokušat ćemo ispuniti vaš rok ali imajte na umu da su naši istraživači prilično zaposleni. Trebat će nam najmanje tri radna dana da odgovorimo na vaš zahtjev.",
       "empty": "Nema krajnjeg roka",
       "label": "Krajnji rok",
       "prefix": "rok {relativeTime}"
@@ -381,7 +381,7 @@
       "label": "Izvori"
     },
     "sourcesData": {
-      "label": "Molim podijelite veze sa izvorima podataka ako je relevantno"
+      "label": "Molim podijelite linkove sa izvorima podataka ako je relevantno"
     },
     "sourcesPerson": {
       "desc": "Drugi načini pisanja imena ili nadimci.",
@@ -416,11 +416,11 @@
     },
     "updatedAt": "Ažurirano u",
     "whysensitive": {
-      "label": "Šta je čini povjerljivom?"
+      "label": "Zašto je povjerljivo?"
     }
   },
   "time": {
-    "default": "MMM D YYYY",
+    "default": "MMM D GGGG",
     "defaultCurrentYear": "MMM D",
     "full": "MMM D GGGG, HH:mm",
     "fullCurrentYear": "MMM D, HH:mm"
