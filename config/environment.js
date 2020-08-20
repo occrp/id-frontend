@@ -35,9 +35,9 @@ module.exports = function(environment) {
 
       // These next 2 props are used in the app, not coming from the addon
       activeLocales: [
-        'ar',
+        // 'ar',
         'bs',
-        'fr',
+        // 'fr',
         'es',
         'ru',
         'en-us'
