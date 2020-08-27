@@ -77,8 +77,13 @@
           {{#dd.trigger}}{{t 'filters.export.title'}}{{/dd.trigger}}
           {{#dd.body headerText=(t 'filters.export.title')}}
             <div class="list">
-              <a href={{csvExportUrl}} class="list-item" data-test-export-option>
-                {{t 'filters.export.action'}}
+              <a href={{csvExportTicketsUrl}} class="list-item" data-test-export-tickets>
+                {{t 'filters.export.tickets'}}
+              </a>
+            </div>
+            <div class="list">
+              <a href={{csvExportExpensesUrl}} class="list-item" data-test-export-expenses>
+                {{t 'filters.export.expenses'}}
               </a>
             </div>
           {{/dd.body}}

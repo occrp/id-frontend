@@ -383,7 +383,22 @@ module('Acceptance | tickets/browse', function(hooks) {
     await click('[data-test-dd="export"] [data-test-dd-trigger]');
 
     assert.ok(
-      find('[data-test-export-option]').href.trim().includes('sort=-deadline_at')
+      find('[data-test-export-tickets]').href.trim().includes('sort=-deadline_at')
+    );
+  });
+
+  test('expenses can be exported', async function(assert) {
+    assert.expect(1);
+    initSession({ isSuperuser: true });
+
+    await visit('/view');
+
+    await click('[data-test-dd="sort"] [data-test-dd-trigger]');
+    await click('[data-test-sort-option="-deadline-at"]');
+    await click('[data-test-dd="export"] [data-test-dd-trigger]');
+
+    assert.ok(
+      find('[data-test-export-expenses]').href.trim().includes('sort=-deadline_at')
     );
   });
 

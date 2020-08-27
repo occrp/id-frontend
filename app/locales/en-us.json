@@ -112,8 +112,9 @@
       "title": "Filtered by"
     },
     "export": {
-      "action": "As CSV",
-      "title": "Export"
+      "tickets": "Tickets",
+      "expenses": "Ticket resources",
+      "title": "CSV Export"
     },
     "kind": {
       "title": "Filter by type"
@@ -226,7 +227,7 @@
   },
   "ticket": {
     "addAttachments": "View or upload files",
-    "addExpense": "Add expense",
+    "addExpense": "Add resource",
     "addSubscriber": "Add subscriber",
     "background": {
       "desc": "What do you know so far?",

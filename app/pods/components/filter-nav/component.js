@@ -14,11 +14,18 @@ export default Component.extend({
   kindList,
   csvExportParams: null,
 
-  csvExportUrl: computed('csvExportParams', function() {
+  csvExportTicketsUrl: computed('csvExportParams', function() {
     const adapter = getOwner(this).lookup('adapter:application');
     const qParams = jQuery.param(this.get('csvExportParams'));
 
     return adapter.urlForQuery({}, 'ticket-exports') + '?' + qParams;
+  }),
+
+  csvExportExpensesUrl: computed('csvExportParams', function() {
+    const adapter = getOwner(this).lookup('adapter:application');
+    const qParams = jQuery.param(this.get('csvExportParams'));
+
+    return adapter.urlForQuery({}, 'expense-exports') + '?' + qParams;
   }),
 
   sortFields: computed('intl.locale', function() {
