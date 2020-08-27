@@ -112,7 +112,6 @@
       "title": "Filtrar por"
     },
     "export": {
-      "action": "Como un .csv",
       "title": "Exportar"
     },
     "kind": {

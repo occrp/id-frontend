@@ -112,7 +112,6 @@
       "title": "Filtrer par"
     },
     "export": {
-      "action": "En CSV",
       "title": "Exporter"
     },
     "kind": {

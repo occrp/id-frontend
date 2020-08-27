@@ -96,7 +96,6 @@
       "title": "Gefiltert nach"
     },
     "export": {
-      "action": "Als CSV",
       "title": "Exportieren"
     },
     "kind": {

@@ -112,7 +112,6 @@
       "title": "Фильтры"
     },
     "export": {
-      "action": "CSV",
       "title": "Экспортировать"
     },
     "kind": {
