@@ -112,6 +112,8 @@
       "title": "Filtrar por"
     },
     "export": {
+      "expenses": "Recursos de solicitudes",
+      "tickets": "Solicitudes",
       "title": "Exportar"
     },
     "kind": {
@@ -172,7 +174,7 @@
       "form": {
         "invalidMessage": "Por favor complete los campos marcados arriba antes de continuar.",
         "memberCenter": "Miembros del Centro",
-        "memberCenterDetails": "¿Para cuál organización de la OCCRP, o medio asociado trabajas?",
+        "memberCenterDetails": "¿Trabaja para la OCCRP, un centro miembro o socio editorial? Si es así, ¿cuál?",
         "otherDetails": "Otros detalles",
         "requestDetails": "Detalles de la solicitud",
         "submitButton": "Enviar tu solicitud",
