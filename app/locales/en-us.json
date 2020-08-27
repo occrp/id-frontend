@@ -174,7 +174,7 @@
       "form": {
         "invalidMessage": "Please review the fields marked above before continuing.",
         "memberCenter": "Member center",
-        "memberCenterDetails": "Which member center or OCCRP partner are you working with?",
+        "memberCenterDetails": "Do you work for OCCRP, a member center or publishing partner? If so, which one?",
         "otherDetails": "Other details",
         "requestDetails": "Request details",
         "submitButton": "Submit your request",
