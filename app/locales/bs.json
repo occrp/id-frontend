@@ -112,6 +112,8 @@
       "title": "Filtriraj po"
     },
     "export": {
+      "expenses": "Zahtjeve izvori",
+      "tickets": "Zahtjeve",
       "title": "Eksportirati"
     },
     "kind": {
