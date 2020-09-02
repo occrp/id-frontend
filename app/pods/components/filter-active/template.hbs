@@ -48,6 +48,17 @@
         </button>
       </li>
     {{/if}}
+    {{#if startDate}}
+      <li class="chip">
+        <div class="chip-label">{{t 'filters.startDate'}}</div>
+        <div class="chip-value" data-test-active-filter="start-date">
+          {{moment-from-now startDate}}
+        </div>
+        <button class="button--icon chip-action" {{action resetFilter 'startDate'}} aria-label="Remove" data-test-remove-filter="start-date">
+          {{icon "x"}}
+        </button>
+      </li>
+    {{/if}}
     </ul>
     <button class="button button--link activeFilters-clear" {{action resetAllFilters}}>
       {{t 'filters.current.clear'}}

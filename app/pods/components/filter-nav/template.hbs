@@ -73,6 +73,28 @@
     </div>
     {{#if (can "manage tickets")}}
       <div class="filters-item">
+        {{#ui-dropdown data-test-dd="filter-start-date" as |dd|}}
+          {{#dd.trigger}}{{t 'filters.startDate'}}{{/dd.trigger}}
+          {{#dd.body}}
+
+            <div class="pv4 datepicker center">
+              {{#power-calendar
+                center=(moment theCenter)
+                onCenterChange=(action (mut theCenter) value="date")
+                selected=(moment startDate)
+                onSelect=(action (pipe (action 'applyStartDate') (action dd.close)) value="date")
+                as |calendar|
+              }}
+                {{calendar.Nav}}
+                {{calendar.Days weekdayFormat="min" maxDate=(now)}}
+              {{/power-calendar}}
+            </div>
+
+          {{/dd.body}}
+        {{/ui-dropdown}}
+      </div>
+
+      <div class="filters-item">
         {{#ui-dropdown data-test-dd="export" as |dd|}}
           {{#dd.trigger}}{{t 'filters.export.title'}}{{/dd.trigger}}
           {{#dd.body headerText=(t 'filters.export.title')}}

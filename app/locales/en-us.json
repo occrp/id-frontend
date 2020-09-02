@@ -140,7 +140,8 @@
       },
       "label": "Sort",
       "title": "Sort by"
-    }
+    },
+    "startDate": "Submission date"
   },
   "locales": {
     "ar": "العربية",

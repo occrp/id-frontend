@@ -28,6 +28,9 @@ export default Route.extend({
     },
     responder: {
       refreshModel: true
+    },
+    startDate: {
+      refreshModel: true
     }
   },
 
@@ -44,7 +47,8 @@ export default Route.extend({
         kind: params.kind,
         requester: params.requester,
         responder: params.responder,
-        search: params.search
+        search: params.search,
+        created_at__gte: params.startDate
       },
       page: {
         number: params.page,

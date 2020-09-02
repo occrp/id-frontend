@@ -1,4 +1,5 @@
 import jQuery from 'jquery'
+import moment from 'moment';
 import { getOwner } from '@ember/application';
 import { computed } from '@ember/object';
 import { inject as service } from '@ember/service';
@@ -42,6 +43,15 @@ export default Component.extend({
   searchStaff: task(getSearchGenerator({ isStaff: true })).restartable(),
 
   actions: {
+    applyStartDate(newStartDate) {
+      if (newStartDate) {
+        this.get('updateFilter')(
+          'startDate',
+          moment(newStartDate).toISOString().slice(0, -5)
+        );
+      }
+    },
+
     applyRequester(user) {
       this.get('updateFilter')('requester', user.get('id'), {
         firstName: user.get('firstName'),

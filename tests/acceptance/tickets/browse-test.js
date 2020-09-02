@@ -5,6 +5,7 @@ import { setupAssertions } from 'id-frontend/tests/helpers/setup-assertions';
 import setupMirage from 'ember-cli-mirage/test-support/setup-mirage';
 import { initSession } from 'id-frontend/tests/helpers/init-session';
 
+import moment from 'moment';
 import faker from 'faker';
 const random = faker.random.arrayElement;
 
@@ -615,5 +616,32 @@ module('Acceptance | tickets/browse', function(hooks) {
     await visit(`/view`);
 
     assert.ok(find('[data-test-error-template]'));
+  });
+
+  test('(admins) tickets can be filtered by start date', async function(assert) {
+    assert.expect(3);
+    initSession({ isSuperuser: true });
+
+    let today = moment().startOf('day').toISOString().slice(0, -5);
+    let done = assert.async();
+
+    server.get('/tickets', (schema, request) => {
+      let startDate = request.queryParams['filter[created_at__gte]'];
+
+      if (startDate) {
+        assert.equal(startDate, today);
+        done();
+      }
+
+      return schema.tickets.all();
+    });
+
+    await visit('/view');
+
+    await click('[data-test-dd="filter-start-date"] [data-test-dd-trigger]');
+    await click('button.ember-power-calendar-day--today');
+
+    assert.equal(currentURL(), `/view?startDate=${encodeURIComponent(today)}`);
+    assert.ok(find('[data-test-active-filter="start-date"]'));
   });
 });

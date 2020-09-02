@@ -7,7 +7,16 @@ export default Controller.extend(Pageable, {
   session: service(),
   flashMessages: service(),
 
-  queryParams: ['status', 'search', 'country', 'kind', 'requester', 'responder', 'sort'],
+  queryParams: [
+    'status',
+    'search',
+    'country',
+    'kind',
+    'requester',
+    'responder',
+    'sort',
+    'startDate'
+],
 
   status: 'new,in-progress,pending',
   search: null,
@@ -16,6 +25,7 @@ export default Controller.extend(Pageable, {
   requester: null,
   responder: null,
   sort: '-created-at',
+  startDate: null,
 
   csvExportParams: null,
 
@@ -63,6 +73,7 @@ export default Controller.extend(Pageable, {
         country: null,
         requester: null,
         responder: null,
+        startDate: null,
         page: 1
       });
     },
