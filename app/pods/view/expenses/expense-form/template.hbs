@@ -48,7 +48,7 @@
     <select id="expense-rating" class="db bg-white w-100 ba pa2 br1 b--moon-gray"
       onchange={{action (mut model.rating) value="target.value"}}
     >
-      {{#each (array 0 1 2 3) as |opt|}}
+      {{#each (array 0 2 3) as |opt|}}
         <option value={{opt}} selected={{eq opt (numeric model.rating)}}>
           {{t (concat 'expenses.rating_' opt)}}
         </option>
