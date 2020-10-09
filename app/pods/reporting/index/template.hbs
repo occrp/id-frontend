@@ -15,7 +15,7 @@
     {{#each-in (group-by 'date' model) as |date items|}}
       <tr>
         <td>
-          {{moment-format date 'MMMM Y'}}
+          {{moment-format (utc date) 'MMMM Y'}}
           <p class="t-sm t-muted">{{t 'pods.reporting.columns.avgTime'}}</p>
         </td>
         {{#each (array 'new' 'in-progress' 'pending' 'closed' 'cancelled') as |status|}}
