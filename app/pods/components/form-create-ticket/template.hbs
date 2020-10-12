@@ -35,6 +35,9 @@
         <p class="mb4 dark-red" data-test-submit-error>
           {{icon "alert"}}
           {{t 'errors.genericRequest'}}
+          <pre class="db">
+            {{~json-pretty-print saveRecord.last.error}}
+          </pre>
         </p>
       {{/if}}
 
