@@ -9,10 +9,10 @@
     "choose": "Choisir",
     "close": "Fermer",
     "confirm": "Confirmer",
-    "customOption": "Liste incomplète ? Ajouter manuellement…",
+    "customOption": "Pas dans la liste ? Ajouter manuellement…",
     "delete": "Supprimer",
     "markdownEdit": "Retour vers la modification.",
-    "markdownHelp": "À l'aide ?!",
+    "markdownHelp": "À l'aide ?!",
     "markdownPreview": "Aperçu.",
     "or": "ou",
     "remove": "Retirer",
@@ -138,7 +138,8 @@
       },
       "label": "Trier",
       "title": "Trier par"
-    }
+    },
+    "startDate": "Date de soumission"
   },
   "locales": {
     "ar": "arabe",
@@ -172,7 +173,7 @@
       "form": {
         "invalidMessage": "Veuillez vérifier les champs indiqués ci-dessus pour continuer.",
         "memberCenter": "Centre de membres",
-        "memberCenterDetails": "Avec quel centre ou partenaire d'OCCRP travaillez-vous ?",
+        "memberCenterDetails": "Travaillez-vous pour l'OCCRP, un centre membre ou un partenaire d'édition ? Si oui, lequel ?",
         "otherDetails": "Autres informations",
         "requestDetails": "Demander des précisions",
         "submitButton": "Soumettre sa demande",
@@ -294,7 +295,7 @@
       "scrape": "Obtenir des données"
     },
     "deadline": {
-      "desc": "Nous ferons notre possible pour respecter votre échéance. Nous vous informons que nos investigateurs sont assez occupés. Accordez-leur le plus de temps possible !",
+      "desc": "Nous ferons notre possible pour respecter votre échéance. Nous vous informons que nos investigateurs sont assez occupés. Accordez-leur le plus de temps possible.",
       "empty": "Aucune date butoir",
       "label": "Échéance",
       "prefix": "Exigible le {relativeTime}"
