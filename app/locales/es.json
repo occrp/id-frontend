@@ -140,15 +140,16 @@
       },
       "label": "Filtrar",
       "title": "Ordenar por"
-    }
+    },
+    "startDate": "Fecha del envío"
   },
   "locales": {
     "ar": "العربية",
     "bs": "Bos/Hrv/Srp",
     "en-us": "Inglés",
     "es": "Español",
-    "fr": "Français",
-    "ru": "Русский"
+    "fr": "Francés",
+    "ru": "Ruso"
   },
   "nav": {
     "account": {
@@ -240,7 +241,7 @@
       "label": "Antecedentes de la empresa"
     },
     "backgroundData": {
-      "desc": "Por favor, cuéntenos si necesita un drop box.",
+      "desc": "Por favor cuéntenos, ¿necesita un drop box?",
       "label": "¿Qué datos quiere conocer al respecto?"
     },
     "backgroundOther": {
@@ -298,7 +299,7 @@
     "deadline": {
       "desc": "Intentaremos cumplir con tu deadline, pero -por favor- ten en cuenta que nuestros investigadores están muy ocupados. Nos tomará un mínimo de tres días para responder.",
       "empty": "No hay deadline",
-      "label": "Deadline",
+      "label": "Fecha límite",
       "prefix": "Fecha límite {relativeTime}"
     },
     "details": "Pedir descripción",
