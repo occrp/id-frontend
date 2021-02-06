@@ -10,7 +10,7 @@
     <th class="t-right statsTable-cell">{{t 'pods.reporting.columns.pastDeadline'}}</th>
   </thead>
   <tbody>
-    {{#each-in (group-by 'country' model) as |countryCode items|}}
+    {{#each-in (group-by 'country' (sort-by 'country' model)) as |countryCode items|}}
       <tr>
         <td>
           {{country-name countryCode}}

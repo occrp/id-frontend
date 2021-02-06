@@ -35,6 +35,7 @@ module.exports = function(defaults) {
         'repeat',
         'range',
         'group-by',
+        'sort-by',
         'map-by',
         'reduce',
         'filter-by'

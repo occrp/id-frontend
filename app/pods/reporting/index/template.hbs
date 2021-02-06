@@ -12,7 +12,7 @@
     </tr>
   </thead>
   <tbody>
-    {{#each-in (group-by 'date' model) as |date items|}}
+    {{#each-in (group-by 'date' (sort-by 'date' model)) as |date items|}}
       <tr>
         <td>
           {{moment-format (utc date) 'MMMM Y'}}

@@ -10,7 +10,7 @@
     <th class="t-right statsTable-cell">{{t 'pods.reporting.columns.pastDeadline'}}</th>
   </thead>
   <tbody>
-    {{#each-in (group-by 'responder.id' model) as |responder items|}}
+    {{#each-in (group-by 'responder.id' (sort-by 'responder.id' model)) as |responder items|}}
       <tr>
         <td>
           {{items.firstObject.responder.firstName}} {{items.firstObject.responder.lastName}}

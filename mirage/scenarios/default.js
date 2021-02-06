@@ -64,14 +64,16 @@ export default function(server) {
   server.createList('ticket-stats', 4, {
     status: 'new',
     date(i) {
-      return moment.utc().startOf('month').subtract(i % 4, 'months').toISOString();
+      var rand = Math.floor(Math.random() * Math.floor(5));
+      return moment.utc().startOf('month').subtract(rand % 4, 'months').toISOString();
     },
     responder: server.schema.profiles.where({id: 52}).models[0],
   });
   server.createList('ticket-stats', 4, {
     status: 'in-progress',
     date(i) {
-      return moment.utc().startOf('month').subtract(i % 4, 'months').toISOString();
+      var rand = Math.floor(Math.random() * Math.floor(5));
+      return moment.utc().startOf('month').subtract(rand % 4, 'months').toISOString();
     },
     responder: server.schema.profiles.where({id: 52}).models[0],
   });
