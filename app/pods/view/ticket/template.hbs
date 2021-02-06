@@ -18,6 +18,10 @@
         {{view/ticket/generic-card testSel='country' title=(t 'ticket.countryPerson.label') content=(country-name model.country)}}
         </div>
         <div class="w-100">
+          {{view/ticket/generic-card testSel='background' title=(t 'ticket.background.label') content=model.background markdown=true}}
+          {{view/ticket/generic-card title=(t 'ticket.initialInformation.label') content=model.initialInformation markdown=true}}
+        </div>
+        <div class="w-100">
         {{view/ticket/generic-card title=(t 'ticket.sourcesPerson.label') content=model.sources markdown=true}}
         </div>
         <div class="w-100">
@@ -34,6 +38,9 @@
           {{view/ticket/generic-card testSel='country' title=(t 'ticket.country.label') content=(country-name model.country)}}
         </div>
         <div class="w-100">
+          {{view/ticket/generic-card testSel='background' title=(t 'ticket.backgroundCompany.label') content=model.background markdown=true}}
+        </div>
+        <div class="w-100">
           {{view/ticket/generic-card title=(t 'ticket.sources.label') content=model.sources markdown=true}}
         </div>
         <div class="w-100">
@@ -46,24 +53,18 @@
         <div class="w-30">
           {{view/ticket/generic-card testSel='country' title=(t 'ticket.countryVehicle.label') content=(country-name model.country)}}
         </div>
+        <div class="w-100">
+          {{view/ticket/generic-card testSel='background' title=(t 'ticket.backgroundVehicle.label') content=model.background markdown=true}}
+        </div>
       {{else if (eq model.kind kindList.[3])}}
         <div class="w-100">
+          {{view/ticket/generic-card testSel='background' title=(t 'ticket.backgroundData.label') content=model.background markdown=true}}
           {{view/ticket/generic-card title=(t 'ticket.sources.label') content=model.sources}}
         </div>
-      {{/if}}
-    </div>
-    <div>
-      {{#if (eq model.kind kindList.[0])}}
-        {{view/ticket/generic-card testSel='background' title=(t 'ticket.background.label') content=model.background markdown=true}}
-        {{view/ticket/generic-card title=(t 'ticket.initialInformation.label') content=model.initialInformation markdown=true}}
-      {{else if (eq model.kind kindList.[1])}}
-        {{view/ticket/generic-card testSel='background' title=(t 'ticket.backgroundCompany.label') content=model.background markdown=true}}
-      {{else if (eq model.kind kindList.[2])}}
-        {{view/ticket/generic-card testSel='background' title=(t 'ticket.backgroundVehicle.label') content=model.background markdown=true}}
-      {{else if (eq model.kind kindList.[3])}}
-        {{view/ticket/generic-card testSel='background' title=(t 'ticket.backgroundData.label') content=model.background markdown=true}}
-    {{else}}
-        {{view/ticket/generic-card testSel='background' title=(t 'ticket.backgroundOther.label') content=model.background markdown=true}}
+      {{else}}
+        <div class="w-100">
+          {{view/ticket/generic-card testSel='background' title=(t 'ticket.backgroundOther.label') content=model.background markdown=true}}
+        </div>
       {{/if}}
     </div>
   </div>
