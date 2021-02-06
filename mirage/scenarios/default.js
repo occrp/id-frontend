@@ -63,7 +63,7 @@ export default function(server) {
 
   server.createList('ticket-stats', 4, {
     status: 'new',
-    date(i) {
+    date() {
       var rand = Math.floor(Math.random() * Math.floor(5));
       return moment.utc().startOf('month').subtract(rand % 4, 'months').toISOString();
     },
@@ -71,7 +71,7 @@ export default function(server) {
   });
   server.createList('ticket-stats', 4, {
     status: 'in-progress',
-    date(i) {
+    date() {
       var rand = Math.floor(Math.random() * Math.floor(5));
       return moment.utc().startOf('month').subtract(rand % 4, 'months').toISOString();
     },
