@@ -112,6 +112,8 @@
       "title": "Filtrer par"
     },
     "export": {
+      "expenses": "Ressources de tickets",
+      "tickets": "Tickets",
       "title": "Exporter"
     },
     "kind": {
