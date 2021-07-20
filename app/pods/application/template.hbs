@@ -29,28 +29,30 @@
         {{/dd.body}}
       {{/ui-dropdown}}
 
-      {{#ui-dropdown as |dd|}}
-        {{#dd.trigger class="link mid-gray"}}
-          {{session.currentUser.displayName}}
-        {{/dd.trigger}}
-        {{#dd.body class="dd--xs"}}
-          <div class="list">
-            <a href={{parentMeta.profileURL}} target="_blank" class="list-item">
-              {{t 'nav.account.ssoProfile'}}
-            </a>
+      {{#if session.currentUser}}
+        {{#ui-dropdown as |dd|}}
+          {{#dd.trigger class="link mid-gray"}}
+            {{session.currentUser.displayName}}
+          {{/dd.trigger}}
+          {{#dd.body class="dd--xs"}}
+            <div class="list">
+              <a href={{parentMeta.profileURL}} target="_blank" class="list-item">
+                {{t 'nav.account.ssoProfile'}}
+              </a>
 
-            {{#link-to 'user' class="list-item"}}{{t 'nav.account.profile'}}{{/link-to}}
+              {{#link-to 'user' class="list-item"}}{{t 'nav.account.profile'}}{{/link-to}}
 
-            {{#if (can "manage tickets")}}
-              {{#link-to 'reporting' class="list-item"}}{{t 'nav.reports'}}{{/link-to}}
-            {{/if}}
+              {{#if (can "manage tickets")}}
+                {{#link-to 'reporting' class="list-item"}}{{t 'nav.reports'}}{{/link-to}}
+              {{/if}}
 
-            <a href="{{parentMeta.logoutURL}}/{{session.currentUser.id}}" class="list-item">
-              {{t 'nav.account.logout'}}
-            </a>
-          </div>
-        {{/dd.body}}
-      {{/ui-dropdown}}
+              <a href="{{parentMeta.logoutURL}}/{{session.currentUser.id}}" class="list-item">
+                {{t 'nav.account.logout'}}
+              </a>
+            </div>
+          {{/dd.body}}
+        {{/ui-dropdown}}
+      {{/if}}
     </div>
   </div>
 </nav>

@@ -226,6 +226,23 @@
       "placeholder": "Search users"
     }
   },
+  "review": {
+    "body": {
+      "question": "Any comments? What could we do to improve your experience?"
+    },
+    "description": "This is an anonymous form submission. For this reason no ticket details are shown.",
+    "link": {
+      "question": "Did you use the research, if so do you have a link to share with us?"
+    },
+    "rating": {
+      "question": "Did you find helpful working with our team?",
+      "yes": "Yes",
+      "no": "No",
+      "dontknow": "Don't know"
+    },
+    "thankyou": "Thank you for your time. Your feedback was submitted!",
+    "title": "Your feedback on request #{ticket_id}"
+  },
   "ticket": {
     "addAttachments": "View or upload files",
     "addExpense": "Add resource",

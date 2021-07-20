@@ -3,6 +3,7 @@ import DS from 'ember-data';
 import ENV from 'id-frontend/config/environment';
 import { inject as service } from '@ember/service';
 import { isPresent } from '@ember/utils';
+import { get } from '@ember/object';
 
 const { UnauthorizedError } = DS;
 
@@ -10,8 +11,10 @@ export default Route.extend({
   session: service(),
   loadingSlider: service(),
 
-  beforeModel() {
-    return this.get('session').getCurrentSession();
+  beforeModel(transition) {
+    if (get(transition, 'to.metadata.requireSession') !== false) {
+      return this.get('session').getCurrentSession();
+    }
   },
 
   actions: {

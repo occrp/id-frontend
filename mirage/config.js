@@ -238,6 +238,14 @@ export default function() {
     return expense;
   });
 
+  this.post('/reviews', function (schema) {
+    let attrs = this.normalizedRequestAttrs();
+
+    attrs.createdAt = (new Date()).toISOString();
+
+    return schema.reviews.create(attrs);
+  });
+
   this.get('/expenses', function (schema, request) {
     const qp = request.queryParams;
     const ticketId = qp['filter[ticket]'];

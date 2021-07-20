@@ -20,6 +20,9 @@ Router.map(function() {
       this.route('expense', { path: '/:expense_id' });
     });
   });
+
+  this.route('review', { path: '/view/:ticket_id/review' });
+
   this.route('reporting', function() {
     this.route('staff');
     this.route('countries');

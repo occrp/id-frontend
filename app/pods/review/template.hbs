@@ -1,0 +1,94 @@
+<div class="wrapper">
+  {{#each flashMessages.queue as |flash|}}
+    {{#ui-flash flash=flash class="t-sm"}}
+      {{icon "alert"}}
+      {{t flash.message}}
+    {{/ui-flash}}
+  {{/each}}
+
+  <div>
+    <h1 class="t-primary t-light" data-test-name>
+      {{t 'review.title' ticket_id=model.ticket.id}}
+    </h1>
+  </div>
+
+  <div class="pt2">
+    <p class="t-muted pv2">
+      {{t 'review.description'}}
+    </p>
+
+    {{#if saved}}
+      <div class="w-60 pt4">
+        <p class="ttu">
+          {{t 'review.thankyou'}}
+        </p>
+      </div>
+    {{else}}
+      {{#with (changeset model Validations) as |buffer|}}
+        <form {{action 'save' buffer on='submit'}}>
+
+          <div class="w-60 pt4">
+            <p class="ttu">
+              {{t 'review.rating.question'}}
+            </p>
+
+            <div class="flex pv4 justify-between ttu">
+              <div class="w-25 tc br2 ba b--light-gray pv4 pointer {{if (eq buffer.rating 1) "b b--occrp-gray"}}" {{action (mut buffer.rating) 1}}>
+                {{t 'review.rating.yes'}}
+              </div>
+              <div class="w-25 tc br2 ba b--light-gray pv4 pointer {{if (eq buffer.rating -1) "b b--occrp-gray"}}" {{action (mut buffer.rating) -1}}>
+                {{t 'review.rating.no'}}
+              </div>
+              <div class="w-25 tc br2 ba b--light-gray pv4 pointer {{if (eq buffer.rating 0) "b b--occrp-gray"}}" {{action (mut buffer.rating) 0}}>
+                {{t 'review.rating.dontknow'}}
+              </div>
+            </div>
+          </div>
+
+          <div class="w-60 pb4">
+            {{validated-input
+              defaultField=true
+              class='ttu'
+              inputId='review-link'
+              label=(t 'review.link.question')
+              placeholder='https://...'
+              buffer=buffer
+              property='link'
+            }}
+          </div>
+
+          <div class="w-60 pb4">
+            {{#validated-input
+              class='ttu'
+              inputId='review-body'
+              label=(t 'review.body.question')
+              buffer=buffer
+              property='body' as |vi errors|
+            }}
+              {{textarea
+                rows=5
+                class=(concat 'db w-100 ba br1 pa2 b--moon-gray ' (if errors.validation 'b--dark-red'))
+                id=vi.inputId
+                value=(mut (get buffer vi.property))
+                focus-out=(action 'validateProperty' buffer vi.property target=vi)
+              }}
+            {{/validated-input}}
+          </div>
+
+          {{#if saveRecord.isRunning}}
+            {{ui-spinner}}
+          {{else}}
+            <button
+              type="submit"
+              disabled={{saveRecord.isRunning}}
+              class="db ttu b white bg-occrp-red bn br2 pointer dim ph3 pv2"
+              data-test-save
+            >{{t 'actions.save'}}</button>
+          {{/if}}
+
+        </form>
+      {{/with}}
+    {{/if}}
+
+  </div>
+</div>
