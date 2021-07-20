@@ -16,8 +16,8 @@ export default Route.extend({
 
   model(params) {
     // Don't load the model, it's not available!
-    let ticket = this.get('store').createRecord(
-      'ticket', { id: params.ticket_id }
+    let ticket = this.get('store').push(
+      { data: { id: params.ticket_id, type: 'ticket' }}
     );
 
     return this.get('store').createRecord(

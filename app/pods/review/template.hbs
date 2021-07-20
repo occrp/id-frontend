@@ -19,7 +19,7 @@
 
     {{#if saved}}
       <div class="w-60 pt4">
-        <p class="ttu">
+        <p class="ttu" id="thankyou">
           {{t 'review.thankyou'}}
         </p>
       </div>
@@ -33,7 +33,7 @@
             </p>
 
             <div class="flex pv4 justify-between ttu">
-              <div class="w-25 tc br2 ba b--light-gray pv4 pointer {{if (eq buffer.rating 1) "b b--occrp-gray"}}" {{action (mut buffer.rating) 1}}>
+              <div class="w-25 tc br2 ba b--light-gray pv4 pointer {{if (eq buffer.rating 1) "b b--occrp-gray"}}" {{action (mut buffer.rating) 1}} data-test-yes>
                 {{t 'review.rating.yes'}}
               </div>
               <div class="w-25 tc br2 ba b--light-gray pv4 pointer {{if (eq buffer.rating -1) "b b--occrp-gray"}}" {{action (mut buffer.rating) -1}}>

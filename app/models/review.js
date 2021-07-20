@@ -10,8 +10,7 @@ export default DS.Model.extend({
   rating: attr('number', { defaultValue: 0 }),
   link: attr('string'),
   body: attr('string'),
-  createdAt: attr('date', { defaultValue() { return new Date(); } }),
-
+  createdAt: attr('date'),
 
   token: attr('string'),
 
