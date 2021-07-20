@@ -1,10 +1,14 @@
 import Route from '@ember/routing/route';
 import { inject as service } from '@ember/service';
+import { isBlank } from '@ember/utils';
 
 export default Route.extend({
   can: service(),
 
   queryParams: {
+    statsType: {
+      refreshModel: true
+    },
     startAt: {
       refreshModel: true
     },
@@ -26,11 +30,18 @@ export default Route.extend({
   model(params) {
     let includes = null;
 
-    if (params.by === 'responder') {
+    if (isBlank(params.statsType)) {
+      params.statsType = 'ticket-stats';
+    }
+
+
+    if (params.by === 'ticket') {
+      includes = 'ticket';
+    } else if (params.by === 'responder') {
       includes = 'responder';
     }
 
-    return this.get('store').query('ticket-stats', {
+    return this.get('store').query(params.statsType, {
       filter: {
         startAt: params.startAt,
         by: params.by

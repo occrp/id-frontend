@@ -429,4 +429,8 @@ export default function() {
 
     return schema.ticketStats.where(filters);
   });
+
+  this.get('/review-stats', (schema, request) => {
+    return schema.reviewStats.all();
+  });
 }
