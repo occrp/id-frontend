@@ -8,7 +8,6 @@ inflector.uncountable('review-stats');
 const { attr, belongsTo } = DS;
 
 export default DS.Model.extend({
-  date: attr('string'),
   count: attr('number'),
   ratings: attr('string'),
 

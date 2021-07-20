@@ -93,18 +93,10 @@ export default function(server) {
   });
 
   server.createList('review-stats', 4, {
-    date() {
-      var rand = Math.floor(Math.random() * Math.floor(5));
-      return moment.utc().startOf('month').subtract(rand % 4, 'months').toISOString();
-    },
     ticket: server.schema.tickets.where({id: 1}).models[0],
     responder: server.schema.profiles.where({id: 51}).models[0],
   });
   server.createList('review-stats', 4, {
-    date() {
-      var rand = Math.floor(Math.random() * Math.floor(5));
-      return moment.utc().startOf('month').subtract(rand % 4, 'months').toISOString();
-    },
     ticket: server.schema.tickets.where({id: 2}).models[0],
     responder: server.schema.profiles.where({id: 52}).models[0],
   });
