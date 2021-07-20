@@ -114,6 +114,7 @@
     "export": {
       "tickets": "Tickets",
       "expenses": "Ticket resources",
+      "reviews": "Reviews",
       "title": "CSV Export"
     },
     "kind": {

@@ -29,6 +29,13 @@ export default Component.extend({
     return adapter.urlForQuery({}, 'expense-exports') + '?' + qParams;
   }),
 
+  csvExportReviewsUrl: computed('csvExportParams', function() {
+    const adapter = getOwner(this).lookup('adapter:application');
+    const qParams = jQuery.param(this.get('csvExportParams'));
+
+    return adapter.urlForQuery({}, 'review-exports') + '?' + qParams;
+  }),
+
   sortFields: computed('intl.locale', function() {
     let intl = this.get('intl');
     return {
