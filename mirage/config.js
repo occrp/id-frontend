@@ -430,7 +430,7 @@ export default function() {
     return schema.ticketStats.where(filters);
   });
 
-  this.get('/review-stats', (schema, request) => {
+  this.get('/review-stats', (schema) => {
     return schema.reviewStats.all();
   });
 }
