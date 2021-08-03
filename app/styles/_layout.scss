@@ -3,7 +3,10 @@
   max-width: 1170px;
   margin: 0 auto;
   padding: 0 15px;
-  word-break: break-all;
+  // Better word-breaks, see:
+  //  https://developer.mozilla.org/en-US/docs/Web/CSS/word-break#values
+  word-break: normal;
+  overflow-wrap: anywhere;
 }
 
 .section {
