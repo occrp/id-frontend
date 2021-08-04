@@ -4,5 +4,5 @@
   {{timestamp-full data.createdAt}}
 </div>
 <div class="activity-body formatted" data-test-activity-body>
-  {{~data.comment.body~}}
+  {{~html-safe data.comment.body~}}
 </div>
