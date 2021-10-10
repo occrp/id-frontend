@@ -1,1 +1,90 @@
-{}
+{
+  "actions": {
+    "add": "Přidat",
+    "assign": {
+      "longForm": "Přiřadit zaměstnancům",
+      "shortForm": "Přiřadit"
+    },
+    "cancel": "Zrušit",
+    "choose": "Vybrat",
+    "close": "Zavřít",
+    "confirm": "Potvrdit",
+    "customOption": "Není v seznamu? Přidejte ho ručně…",
+    "delete": "Smazat",
+    "markdownEdit": "Zpět k úpravám.",
+    "markdownHelp": "Nápověda?!",
+    "markdownPreview": "Náhled.",
+    "or": "nebo",
+    "remove": "Odebrat",
+    "reopen": "Znovu otevřít",
+    "save": "Uložit",
+    "unmark": "odznačit",
+    "upload": "Nahrát"
+  },
+  "activity": {
+    "assign": {
+      "action": "byl přiřazen"
+    },
+    "attachment": {
+      "action": "připojené soubory",
+      "removed": "odstraněný soubor"
+    },
+    "comment": {
+      "submitButton": "Komentář k příspěvku",
+      "title": "Zanechte komentář"
+    },
+    "expense": {
+      "action": "uložený zdroj",
+      "removed": "odebraný zdroj"
+    },
+    "loadOlder": "Načíst starší",
+    "one": "Aktivita",
+    "reopen": {
+      "action": "znovu otevřen"
+    },
+    "resume": {
+      "action": "obnoven"
+    },
+    "showOnlyComments": "Zobrazit pouze komentáře",
+    "unassign": {
+      "action": "byl nepřiřazen"
+    }
+  },
+  "attachment": {
+    "attachments": "Přílohy",
+    "cancelAll": "zrušit vše",
+    "fileDate": "Datum",
+    "filename": "Název",
+    "filesize": "Velikost",
+    "removalPrompt": "Opravdu chcete tento soubor odstranit?",
+    "startUploads": "Nahrát",
+    "state": {
+      "aborted": "Přerušeno",
+      "failed": "Selhalo",
+      "queued": "Ve frontě",
+      "timed_out": "Vypršel čas",
+      "uploaded": "Nahráno",
+      "uploading": "Nahrávání"
+    },
+    "userName": "Nahrál"
+  },
+  "dropdownBlank": "- Vyberte -",
+  "empty": {
+    "noResults": {
+      "body": "Pomocí horní nabídky snadno filtrujte požadavky.",
+      "title": "Vašemu hledání neodpovídají žádné výsledky."
+    },
+    "noTickets": {
+      "button": "Odeslat žádost",
+      "title": "Vypadá to, že jste zatím nepodal žádnou žádost."
+    }
+  },
+  "errors": {
+    "activities": "Při načítání kanálu aktivit došlo k chybě.",
+    "genericRequest": "Při zpracování vašeho požadavku došlo k chybě.",
+    "routeError": {
+      "body": "Byli jsme automaticky upozorněni a potřebujeme k tomu lepší kopii.",
+      "title": "Při zpracování vašeho požadavku došlo k chybě."
+    }
+  }
+}
