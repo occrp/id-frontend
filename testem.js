@@ -21,7 +21,7 @@ module.exports = {
         '--window-size=1440,900'
       ].filter(Boolean)
     },
-    Chrome: {
+    Chromium: {
       ci: [
         // --no-sandbox is needed when running Chrome inside a container
         '--no-sandbox',
