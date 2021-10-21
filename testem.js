@@ -2,10 +2,10 @@ module.exports = {
   test_page: 'tests/index.html',
   disable_watching: true,
   launch_in_ci: [
-    'Chromium'
+    'Chrome'
   ],
   launch_in_dev: [
-    'Chromium'
+    'Chrome'
   ],
   browser_args: {
     Chrome: {
@@ -21,7 +21,7 @@ module.exports = {
         '--window-size=1440,900'
       ].filter(Boolean)
     },
-    Chromium: {
+    Chrome: {
       ci: [
         // --no-sandbox is needed when running Chrome inside a container
         '--no-sandbox',
