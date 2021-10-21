@@ -20,19 +20,6 @@ module.exports = {
         '--remote-debugging-port=0',
         '--window-size=1440,900'
       ].filter(Boolean)
-    },
-    Chromium: {
-      ci: [
-        // --no-sandbox is needed when running Chrome inside a container
-        '--no-sandbox',
-        '--headless',
-        '--disable-gpu',
-        '--disable-dev-shm-usage',
-        '--disable-software-rasterizer',
-        '--mute-audio',
-        '--remote-debugging-port=0',
-        '--window-size=1440,900'
-      ].filter(Boolean)
     }
   }
 };
