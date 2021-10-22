@@ -1,13 +1,16 @@
 # testing environment
+#
+# Get new Chrome releases from:
+# https://ungoogled-software.github.io/ungoogled-chromium-binaries/releases/linux_portable/64bit/
 master-cdn-deploy:
   stage: deploy
   script:
   - npm install
   - npm install ember-cli
   - npm run lint:js
-  - wget -q -O - https://dl-ssl.google.com/linux/linux_signing_key.pub | sudo apt-key add -
-  - sudo sh -c 'echo "deb [arch=amd64] http://dl.google.com/linux/chrome/deb/ stable main" >> /etc/apt/sources.list.d/google.list'
-  - sudo apt-get update && apt-get install -yq google-chrome-stable
+  - wget -q https://github.com/mdedonno1337/ungoogled-chromium-binaries/releases/download/91.0.4472.164-1.1/ungoogled-chromium_91.0.4472.164-1.1_linux.tar.xz
+  - tar xf ungoogled-chromium_91.0.4472.164-1.1_linux.tar.xz
+  - mv ungoogled-chromium_91.0.4472.164-1.1_linux /tmp/chromium
   - node_modules/ember-cli/bin/ember test --launch=Chrome --filter='!flanky'
   - node_modules/ember-cli/bin/ember build --environment production
   - rsync -av --delete dist/ /output/id-frontend/
@@ -23,9 +26,9 @@ master-tagged-cdn-deploy:
   - npm install
   - npm install ember-cli
   - npm run lint:js
-  - wget -q -O - https://dl-ssl.google.com/linux/linux_signing_key.pub | sudo apt-key add -
-  - sudo sh -c 'echo "deb [arch=amd64] http://dl.google.com/linux/chrome/deb/ stable main" >> /etc/apt/sources.list.d/google.list'
-  - sudo apt-get update && apt-get install -yq google-chrome-stable
+  - wget -q https://github.com/mdedonno1337/ungoogled-chromium-binaries/releases/download/91.0.4472.164-1.1/ungoogled-chromium_91.0.4472.164-1.1_linux.tar.xz
+  - tar xf ungoogled-chromium_91.0.4472.164-1.1_linux.tar.xz
+  - mv ungoogled-chromium_91.0.4472.164-1.1_linux /tmp/chromium
   - npm run test:ci
   - node_modules/ember-cli/bin/ember test --launch=Chrome --filter='!flanky'
   - node_modules/ember-cli/bin/ember build --environment production

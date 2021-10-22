@@ -7,6 +7,9 @@ module.exports = {
   launch_in_dev: [
     'Chrome'
   ],
+  browser_paths: {
+    Chrome: '/tmp/chromium/chrome'
+  },
   browser_args: {
     Chrome: {
       ci: [
