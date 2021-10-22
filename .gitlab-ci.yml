@@ -29,7 +29,6 @@ master-tagged-cdn-deploy:
   - wget -q https://github.com/mdedonno1337/ungoogled-chromium-binaries/releases/download/91.0.4472.164-1.1/ungoogled-chromium_91.0.4472.164-1.1_linux.tar.xz
   - tar xf ungoogled-chromium_91.0.4472.164-1.1_linux.tar.xz
   - mv ungoogled-chromium_91.0.4472.164-1.1_linux /tmp/chromium
-  - npm run test:ci
   - node_modules/ember-cli/bin/ember test --launch=Chrome --filter='!flanky'
   - node_modules/ember-cli/bin/ember build --environment production
   - rsync -av --delete dist/ /output/id-frontend/
