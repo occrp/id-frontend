@@ -229,14 +229,13 @@
   },
   "review": {
     "body": {
-      "question": "Any comments? What could we do to improve your experience?"
+      "question": "What could we do to improve your experience? Any comments?"
     },
-    "description": "This is an anonymous form submission. For this reason no ticket details are shown.",
     "link": {
-      "question": "Did you use the research, if so do you have a link to share with us?"
+      "question": "Did you use the research? If so, do you have a link to share with us?"
     },
     "rating": {
-      "question": "Did you find helpful working with our team?",
+      "question": "Was our response to your research request helpful?",
       "yes": "Yes",
       "no": "No",
       "dontknow": "Don't know"
