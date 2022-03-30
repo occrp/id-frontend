@@ -1,40 +1,35 @@
-# testing environment
-#
-# Get new Chrome releases from:
-# https://ungoogled-software.github.io/ungoogled-chromium-binaries/releases/linux_portable/64bit/
-master-cdn-deploy:
-  stage: deploy
-  script:
-  - npm install
-  - npm install ember-cli
-  - npm run lint:js
-  - wget -q https://github.com/mdedonno1337/ungoogled-chromium-binaries/releases/download/91.0.4472.164-1.1/ungoogled-chromium_91.0.4472.164-1.1_linux.tar.xz
-  - tar xf ungoogled-chromium_91.0.4472.164-1.1_linux.tar.xz
-  - mv ungoogled-chromium_91.0.4472.164-1.1_linux /tmp/chromium
-  - node_modules/ember-cli/bin/ember test --launch=Chrome --filter='!flanky'
-  - node_modules/ember-cli/bin/ember build --environment production
-  - rsync -av --delete dist/ /output/id-frontend/
-  only:
-  - master
-  tags:
-  - master
+stages:
+  - build
+  - deploy
 
-# production environment
-master-tagged-cdn-deploy:
+# Build for all commits and environments
+build:
+  stage: build
+  script:
+    - sudo -E /occrp/scripts/id/build-assets.sh
+  tags:
+    - zam
+
+# Deploy on testing environment
+deploy-test:
   stage: deploy
   script:
-  - npm install
-  - npm install ember-cli
-  - npm run lint:js
-  - wget -q https://github.com/mdedonno1337/ungoogled-chromium-binaries/releases/download/91.0.4472.164-1.1/ungoogled-chromium_91.0.4472.164-1.1_linux.tar.xz
-  - tar xf ungoogled-chromium_91.0.4472.164-1.1_linux.tar.xz
-  - mv ungoogled-chromium_91.0.4472.164-1.1_linux /tmp/chromium
-  - node_modules/ember-cli/bin/ember test --launch=Chrome --filter='!flanky'
-  - node_modules/ember-cli/bin/ember build --environment production
-  - rsync -av --delete dist/ /output/id-frontend/
-  only:
-  - tags
-  except:
-  - branches
+    - sudo -E /occrp/scripts/id/deploy-assets.sh
+  environment:
+    name: test-id
+    url: https://test.id.occrp.org
   tags:
-  - production
+    - zam
+
+# Deploy on production environment only for master branch
+deploy-test:
+  stage: deploy
+  script:
+    - sudo -E /occrp/scripts/id/deploy-assets.sh
+  environment:
+    name: id
+    url: https://id.occrp.org
+  only:
+    - master
+  tags:
+    - zam

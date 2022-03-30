@@ -1,0 +1,17 @@
+FROM      node:16-alpine  AS id-frontend
+RUN       mkdir -p /app
+WORKDIR   /app
+COPY      ./package.json /app/package.json
+RUN       npm install
+COPY      . /app
+RUN       /app/node_modules/ember-cli/bin/ember build --environment production
+
+FROM 	  nginx:1.21.6-alpine
+COPY      --from=id-frontend           /app/dist /usr/share/nginx/html/id-frontend
+
+WORKDIR   /usr/share/nginx/html
+RUN       tar -zcf /assets.tar.gz id-frontend
+
+CMD 	  [ "cat", "/assets.tar.gz"] 
+
+# docker run id-web | tar -zxf -
