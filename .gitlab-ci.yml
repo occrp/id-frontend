@@ -22,7 +22,7 @@ deploy-test:
     - zam
 
 # Deploy on production environment only for master branch
-deploy-test:
+deploy-prod:
   stage: deploy
   script:
     - sudo -E /occrp/scripts/id/deploy-assets.sh
