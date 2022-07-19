@@ -9,7 +9,7 @@
 
     <div class="ticket-cell ticket-body">
       <h4 class="ticket-name" data-test-ticket-name>
-        {{#link-to "view" item.id}}{{item.displayName}}{{/link-to}}
+        {{#link-to "view" item.id}}{{html-safe item.displayName}}{{/link-to}}
       </h4>
 
       <p class="ticket-updated">
