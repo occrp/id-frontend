@@ -60,7 +60,7 @@
     "startUploads": "Cargar",
     "state": {
       "aborted": "Cancelado",
-      "failed": "Fallido",
+      "failed": "Error",
       "queued": "En cola",
       "timed_out": "Se agotó el tiempo de espera",
       "uploaded": "Subido",
