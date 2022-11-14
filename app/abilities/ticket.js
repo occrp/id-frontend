@@ -5,6 +5,6 @@ import { Ability } from 'ember-can';
 export default Ability.extend({
   session: service(),
 
-  canManage: reads('session.currentUser.isSuperuser'),
+  canManage: reads('session.currentUser.isStaff'),
   canResolve: reads('session.currentUser.isStaff')
 });
