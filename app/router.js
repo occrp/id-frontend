@@ -27,7 +27,6 @@ Router.map(function() {
     this.route('staff');
     this.route('countries');
     this.route('ticket-reviews');
-    this.route('staff-reviews');
   });
 });
 
