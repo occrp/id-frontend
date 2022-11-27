@@ -229,13 +229,13 @@
   },
   "review": {
     "body": {
-      "question": "What could we do to improve your experience? Any comments?"
+      "question": "What could we do to improve? Any comments?"
     },
     "link": {
-      "question": "Did you use the information in a story you published? If so, please share the link:"
+      "question": "Did you use the information in a story? Please share the link."
     },
     "rating": {
-      "question": "Was our response to your research request helpful?",
+      "question": "Did our response to your request meet your expectations?",
       "yes": "Yes",
       "no": "No",
       "dontknow": "Don't know"
