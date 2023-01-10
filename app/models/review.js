@@ -20,6 +20,6 @@ export default DS.Model.extend({
 export const Validations = {
   rating: [
     validatePresence(true),
-    validateNumber({ integer: true, lte: 1, gte: -1 })
+    validateNumber({ integer: true, lte: 3, gte: 0 })
   ]
 };

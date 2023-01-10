@@ -21,7 +21,7 @@ module('Acceptance | Review creation', function(hooks) {
       assert.deepEqual(attrs, {
         "data": {
           "attributes": {
-            "rating": 1,
+            "rating": 2,
             "link": "https://occrp.org",
             "token": "<TOKEN>",
             "body": "Worked",

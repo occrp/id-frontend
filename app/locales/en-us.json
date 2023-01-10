@@ -237,8 +237,9 @@
     "rating": {
       "question": "Did our response to your request meet your expectations?",
       "yes": "Yes",
-      "no": "No",
-      "dontknow": "Don't know"
+      "no": "Not at all",
+      "partly": "Partly",
+      "exceeded": "Exceeded my expectations"
     },
     "thankyou": "Thank you for your time. Your feedback was submitted!",
     "title": "Your feedback on request #{ticket_id}"

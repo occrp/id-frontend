@@ -29,14 +29,17 @@
             </p>
 
             <div class="flex pv4 justify-between ttu">
-              <div class="w-25 tc br2 ba b--light-gray pv4 pointer {{if (eq buffer.rating 1) "b b--occrp-gray"}}" {{action (mut buffer.rating) 1}} data-test-yes>
-                {{t 'review.rating.yes'}}
-              </div>
-              <div class="w-25 tc br2 ba b--light-gray pv4 pointer {{if (eq buffer.rating -1) "b b--occrp-gray"}}" {{action (mut buffer.rating) -1}}>
+              <div class="w-20 tc br2 ba b--light-gray pv4 pointer {{if (eq buffer.rating 0) "b b--occrp-gray"}}" {{action (mut buffer.rating) 0}}>
                 {{t 'review.rating.no'}}
               </div>
-              <div class="w-25 tc br2 ba b--light-gray pv4 pointer {{if (eq buffer.rating 0) "b b--occrp-gray"}}" {{action (mut buffer.rating) 0}}>
-                {{t 'review.rating.dontknow'}}
+              <div class="w-20 tc br2 ba b--light-gray pv4 pointer {{if (eq buffer.rating 1) "b b--occrp-gray"}}" {{action (mut buffer.rating) 1}}>
+                {{t 'review.rating.partly'}}
+              </div>
+              <div class="w-20 tc br2 ba b--light-gray pv4 pointer {{if (eq buffer.rating 2) "b b--occrp-gray"}}" {{action (mut buffer.rating) 2}} data-test-yes>
+                {{t 'review.rating.yes'}}
+              </div>
+              <div class="w-20 tc br2 ba b--light-gray pv4 pointer {{if (eq buffer.rating 3) "b b--occrp-gray"}}" {{action (mut buffer.rating) 3}}>
+                {{t 'review.rating.exceeded'}}
               </div>
             </div>
           </div>
